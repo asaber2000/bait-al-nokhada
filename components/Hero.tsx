@@ -15,7 +15,6 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          controls //
           className="w-full h-full object-cover opacity-75 filter brightness-105 will-change-transform"
         >
           <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
