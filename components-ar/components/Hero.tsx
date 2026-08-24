@@ -16,7 +16,7 @@ export default function Hero() {
           preload="auto"
           className="w-full h-full object-cover opacity-75 filter brightness-105 will-change-transform"
         >
-          <source src="" type="video/mp4" />
+          <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
