@@ -61,7 +61,7 @@ export default function ArabicNavbar() {
             animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-8 overflow-y-auto text-right touch-pan-y flex flex-col justify-between"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 overflow-y-auto text-right touch-pan-y flex flex-col justify-between"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <style jsx>{`
@@ -70,10 +70,10 @@ export default function ArabicNavbar() {
               }
             `}</style>
 
-            <div className="max-w-7xl mx-auto w-full flex flex-col min-h-full justify-between">
+            <div className="max-w-7xl mx-auto w-full flex flex-col min-h-full justify-between pb-20">
               
               {/* Top Bar inside Overlay */}
-              <div className="flex items-center justify-between w-full shrink-0 mb-8">
+              <div className="flex items-center justify-between w-full shrink-0 mb-6">
                 <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
                 <button 
                   onClick={() => setMobileMenuOpen(false)}
@@ -84,11 +84,11 @@ export default function ArabicNavbar() {
                 </button>
               </div>
 
-              {/* Middle Content Links (Accordion) */}
-              <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 py-4 items-start">
+              {/* Middle Content Links (Accordion with optimized mobile font sizes) */}
+              <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 py-2 items-start">
                 
-                {/* Main Links Column */}
-                <div className="space-y-4 text-2xl sm:text-4xl font-extrabold text-white font-heading">
+                {/* Main Links Column - Reduced mobile font size */}
+                <div className="space-y-3 text-xl sm:text-4xl font-extrabold text-white font-heading">
                   <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
                     الرئيسية
                   </Link>
@@ -107,15 +107,15 @@ export default function ArabicNavbar() {
                 </div>
 
                 {/* Accordion Databases Column */}
-                <div className="space-y-4 text-sm text-slate-300 border-r border-white/10 pr-6 sm:pr-10 pl-2 pb-12">
+                <div className="space-y-3 text-sm text-slate-300 border-r border-white/10 pr-4 sm:pr-10 pl-2">
                   
                   {/* Products Section */}
-                  <div className="space-y-2 bg-white/5 p-4 rounded-2xl border border-white/10">
+                  <div className="space-y-2 bg-white/5 p-3 sm:p-4 rounded-2xl border border-white/10">
                     <button 
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center justify-between w-full text-base sm:text-lg font-bold text-[#D4AF37] cursor-pointer"
                     >
-                      <ChevronDown className={`w-5 h-5 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
                       <span>المنتجات ({productsDatabase.length})</span>
                     </button>
                     
@@ -123,16 +123,16 @@ export default function ArabicNavbar() {
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="grid grid-cols-1 gap-2 pt-3 border-t border-white/10 mt-2"
+                        className="grid grid-cols-1 gap-1.5 pt-2 border-t border-white/10 mt-2"
                       >
                         {productsDatabase.map((item) => (
                           <Link
                             key={item.slug}
                             href={`/ar/products/${item.slug}`}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center justify-between py-2 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
                           >
-                            <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                            <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
                             <span>{item.ar ? item.ar.name : item.name}</span>
                           </Link>
                         ))}
@@ -141,12 +141,12 @@ export default function ArabicNavbar() {
                   </div>
 
                   {/* Solutions Section */}
-                  <div className="space-y-2 bg-white/5 p-4 rounded-2xl border border-white/10">
+                  <div className="space-y-2 bg-white/5 p-3 sm:p-4 rounded-2xl border border-white/10">
                     <button 
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                      className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center justify-between w-full text-base sm:text-lg font-bold text-[#D4AF37] cursor-pointer"
                     >
-                      <ChevronDown className={`w-5 h-5 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
                       <span>الحلول والخدمات ({solutionsDatabase.length})</span>
                     </button>
                     
@@ -154,16 +154,16 @@ export default function ArabicNavbar() {
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="grid grid-cols-1 gap-2 pt-3 border-t border-white/10 mt-2"
+                        className="grid grid-cols-1 gap-1.5 pt-2 border-t border-white/10 mt-2"
                       >
                         {solutionsDatabase.map((item) => (
                           <Link
                             key={item.slug}
                             href={`/ar/solutions/${item.slug}`}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center justify-between py-2 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
                           >
-                            <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                            <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
                             <span>{item.name}</span>
                           </Link>
                         ))}
@@ -174,20 +174,21 @@ export default function ArabicNavbar() {
                 </div>
               </div>
 
-              {/* Bottom Footer inside Overlay - Sticky at Bottom with Glassmorphism */}
-              <div className="sticky bottom-0 z-20 bg-[#070B14]/95 backdrop-blur-md max-w-7xl mx-auto w-full pt-4 pb-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shrink-0 mt-8 shadow-2xl">
-                <Link
-                  href={targetLanguageUrl}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-1.5 text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
-                >
-                  <Globe className="w-4 h-4 text-[#D4AF37]" />
-                  <span>ENGLISH (EN)</span>
-                </Link>
-                <p>© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
-              </div>
-
             </div>
+
+            {/* Bottom Footer - Fixed / Locked strictly at bottom of the screen */}
+            <div className="absolute bottom-0 left-0 right-0 z-30 bg-[#070B14]/95 backdrop-blur-md px-6 sm:px-16 py-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shadow-[0_-10px_25px_rgba(0,0,0,0.5)]">
+              <Link
+                href={targetLanguageUrl}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
+              >
+                <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
+                <span>ENGLISH (EN)</span>
+              </Link>
+              <p className="text-[10px] sm:text-xs">© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
+            </div>
+
           </motion.div>
         )}
       </AnimatePresence>
