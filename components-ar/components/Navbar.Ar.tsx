@@ -54,136 +54,120 @@ export default function ArabicNavbar() {
 
       <AnimatePresence>
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-[99999] overflow-hidden">
-            <motion.div 
-              dir="rtl"
-              data-lenis-prevent="true"
-              initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-              animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
-              exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-              transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-              className="absolute inset-0 bg-[#070B14]/98 backdrop-blur-3xl px-4 sm:px-16 py-4 overflow-y-auto text-right touch-pan-y pb-28"
-              style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              <style jsx>{`
-                div::-webkit-scrollbar {
-                  display: none !important;
-                }
-              `}</style>
+          <motion.div 
+            dir="rtl"
+            data-lenis-prevent="true"
+            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-4 sm:px-16 py-4 h-screen overflow-hidden flex flex-col justify-between text-right"
+          >
+            {/* Top Bar inside Overlay */}
+            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0">
+              <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
+              <button 
+                onClick={() => setMobileMenuOpen(false)}
+                className="pointer-events-auto p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
+                aria-label="إغلاق القائمة"
+              >
+                <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+            </div>
 
-              <div className="max-w-7xl mx-auto w-full flex flex-col justify-between">
+            {/* Middle Content Links (Accordion with compact scroll if needed) */}
+            <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4 my-auto py-2 items-start">
+              
+              {/* Main Links Column */}
+              <div className="space-y-2 text-lg sm:text-3xl font-bold text-white font-heading">
+                <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
+                  الرئيسية
+                </Link>
+                <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
+                  من نحن
+                </Link>
+                <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
+                  المشاريع
+                </Link>
+                <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
+                  الأخبار والمقالات
+                </Link>
+                <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
+                  تواصل معنا
+                </Link>
+              </div>
+
+              {/* Accordion Databases Column with internal scroll */}
+              <div className="space-y-2.5 text-sm text-slate-300 border-r border-white/10 pr-3 sm:pr-8 pl-1 max-h-[50vh] overflow-y-auto custom-scroll" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <style jsx>{`
+                  .custom-scroll::-webkit-scrollbar {
+                    display: none !important;
+                  }
+                `}</style>
                 
-                {/* Top Bar inside Overlay */}
-                <div className="flex items-center justify-between w-full shrink-0 mb-3">
-                  <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
+                {/* Products Section */}
+                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
                   <button 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="pointer-events-auto p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
-                    aria-label="إغلاق القائمة"
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
                   >
-                    <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                    <span>المنتجات ({productsDatabase.length})</span>
                   </button>
+                  
+                  {mobileProductsOpen && (
+                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+                      {productsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/products/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+                        >
+                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                          <span>{item.ar ? item.ar.name : item.name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
-                {/* Middle Content Links */}
-                <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4 py-2 items-start">
+                {/* Solutions Section */}
+                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
+                  <button 
+                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                    <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+                  </button>
                   
-                  {/* Main Links Column */}
-                  <div className="space-y-2 text-lg sm:text-3xl font-bold text-white font-heading">
-                    <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
-                      الرئيسية
-                    </Link>
-                    <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
-                      من نحن
-                    </Link>
-                    <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
-                      المشاريع
-                    </Link>
-                    <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
-                      الأخبار والمقالات
-                    </Link>
-                    <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
-                      تواصل معنا
-                    </Link>
-                  </div>
-
-                  {/* Accordion Databases Column */}
-                  <div className="space-y-2.5 text-sm text-slate-300 border-r border-white/10 pr-3 sm:pr-8 pl-1">
-                    
-                    {/* Products Section */}
-                    <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                      <button 
-                        onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                        className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                      >
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
-                        <span>المنتجات ({productsDatabase.length})</span>
-                      </button>
-                      
-                      {mobileProductsOpen && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1 max-h-[40vh] overflow-y-auto"
+                  {mobileSolutionsOpen && (
+                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+                      {solutionsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/solutions/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
                         >
-                          {productsDatabase.map((item) => (
-                            <Link
-                              key={item.slug}
-                              href={`/ar/products/${item.slug}`}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                            >
-                              <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-                              <span>{item.ar ? item.ar.name : item.name}</span>
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
+                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                          <span>{item.name}</span>
+                        </Link>
+                      ))}
                     </div>
-
-                    {/* Solutions Section */}
-                    <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                      <button 
-                        onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                        className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                      >
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                        <span>الحلول والخدمات ({solutionsDatabase.length})</span>
-                      </button>
-                      
-                      {mobileSolutionsOpen && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1 max-h-[40vh] overflow-y-auto"
-                        >
-                          {solutionsDatabase.map((item) => (
-                            <Link
-                              key={item.slug}
-                              href={`/ar/solutions/${item.slug}`}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                            >
-                              <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-                              <span>{item.name}</span>
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </div>
-
-                  </div>
+                  )}
                 </div>
 
               </div>
-            </motion.div>
+            </div>
 
-            {/* Bottom Footer - Fixed Strictly at Bottom outside scroll */}
-            <div className="fixed bottom-0 left-0 right-0 z-[100000] bg-[#070B14]/95 backdrop-blur-md px-4 sm:px-16 py-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
+            {/* Bottom Footer - Perfectly locked at the bottom matching original design */}
+            <div className="max-w-7xl mx-auto w-full pt-3 pb-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0">
               <Link
                 href={targetLanguageUrl}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-1 font-bold text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm pointer-events-auto"
+                className="flex items-center gap-1 font-bold text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
               >
                 <Globe className="w-3 h-3 text-[#D4AF37]" />
                 <span>ENGLISH (EN)</span>
@@ -191,7 +175,7 @@ export default function ArabicNavbar() {
               <p className="text-[10px] sm:text-xs">© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
             </div>
 
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
