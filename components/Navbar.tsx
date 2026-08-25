@@ -66,7 +66,7 @@ export default function Navbar() {
             animate={{ opacity: 1, clipPath: "circle(150% at 0% 0%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 0% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[99999] h-[100dvh] overflow-y-auto bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 flex flex-col justify-between text-right"
+            className="fixed inset-0 z-[99999] h-full overflow-y-auto bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 flex flex-col justify-between text-left touch-pan-y"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {/* Top Bar inside Overlay */}
