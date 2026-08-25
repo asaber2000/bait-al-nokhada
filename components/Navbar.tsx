@@ -66,145 +66,146 @@ export default function Navbar() {
             animate={{ opacity: 1, clipPath: "circle(150% at 0% 0%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 0% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[99999] h-full overflow-y-auto bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 flex flex-col justify-between text-left touch-pan-y"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-8 overflow-y-auto text-left touch-pan-y"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {/* Top Bar inside Overlay */}
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0">
-              <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold">Navigation Directory</span>
-              <button 
-                onClick={() => setMobileMenuOpen(false)}
-                className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
-                aria-label="Close Menu"
-              >
-                <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-              </button>
-            </div>
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                display: none !important;
+              }
+            `}</style>
 
-            {/* Middle Content Links (All Pages & Dynamic Databases) - Constrained Height */}
-            <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 my-auto py-4 items-start overflow-hidden">
+            <div className="max-w-7xl mx-auto w-full flex flex-col min-h-full justify-between">
               
-              {/* Main Links Column */}
-              <div className="space-y-4 text-2xl sm:text-4xl font-extrabold text-white">
-                <Link 
-                  href="/" 
-                  onClick={() => setMobileMenuOpen(false)} 
-                  className="block hover:text-[#D4AF37] transition-colors"
+              {/* Top Bar inside Overlay */}
+              <div className="flex items-center justify-between w-full shrink-0 mb-8">
+                <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold">Navigation Directory</span>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
+                  aria-label="Close Menu"
                 >
-                  Home
-                </Link>
-                <Link 
-                  href="/about" 
-                  onClick={() => setMobileMenuOpen(false)} 
-                  className="block hover:text-[#D4AF37] transition-colors"
-                >
-                  About Us
-                </Link>
-                <Link 
-                  href="/projects" 
-                  onClick={() => setMobileMenuOpen(false)} 
-                  className="block hover:text-[#D4AF37] transition-colors"
-                >
-                  Projects
-                </Link>
-                <Link 
-                  href="/news" 
-                  onClick={() => setMobileMenuOpen(false)} 
-                  className="block hover:text-[#D4AF37] transition-colors"
-                >
-                  News
-                </Link>
-                <Link 
-                  href="/contact" 
-                  onClick={() => setMobileMenuOpen(false)} 
-                  className="block hover:text-[#D4AF37] transition-colors"
-                >
-                  Contact
-                </Link>
+                  <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+                </button>
               </div>
 
-              {/* Dynamic Databases Column (Products & Solutions) - Internal Scroll Only */}
-              <div 
-                className="space-y-6 text-sm text-slate-300 border-l border-white/10 pl-6 sm:pl-10 max-h-[60vh] overflow-y-auto pr-2 custom-scroll"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
-                <style jsx>{`
-                  .custom-scroll::-webkit-scrollbar {
-                    display: none !important;
-                  }
-                `}</style>
+              {/* Middle Content Links (All Pages & Dynamic Databases) */}
+              <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 py-4 items-start">
                 
-                {/* Products Section */}
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
+                {/* Main Links Column */}
+                <div className="space-y-4 text-2xl sm:text-4xl font-extrabold text-white">
+                  <Link 
+                    href="/" 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    className="block hover:text-[#D4AF37] transition-colors"
                   >
-                    <span>Products ({productsDatabase.length})</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  
-                  {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
-                      {productsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/products/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
-                        >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                    Home
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    className="block hover:text-[#D4AF37] transition-colors"
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/projects" 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    className="block hover:text-[#D4AF37] transition-colors"
+                  >
+                    Projects
+                  </Link>
+                  <Link 
+                    href="/news" 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    className="block hover:text-[#D4AF37] transition-colors"
+                  >
+                    News
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    className="block hover:text-[#D4AF37] transition-colors"
+                  >
+                    Contact
+                  </Link>
                 </div>
 
-                {/* Solutions Section */}
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                    className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
-                  >
-                    <span>Solutions ({solutionsDatabase.length})</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                  </button>
+                {/* Dynamic Databases Column (Products & Solutions) - Fully Scrollable */}
+                <div className="space-y-6 text-sm text-slate-300 border-l border-white/10 pl-6 sm:pl-10 pr-2 pb-12">
                   
-                  {mobileSolutionsOpen && (
-                    <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
-                      {solutionsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/solutions/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
-                        >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {/* Products Section */}
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                      className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
+                    >
+                      <span>Products ({productsDatabase.length})</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    
+                    {mobileProductsOpen && (
+                      <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
+                        {productsDatabase.map((item) => (
+                          <Link
+                            key={item.slug}
+                            href={`/products/${item.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
+                          >
+                            <span>{item.name}</span>
+                            <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
+                  {/* Solutions Section */}
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                      className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
+                    >
+                      <span>Solutions ({solutionsDatabase.length})</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    
+                    {mobileSolutionsOpen && (
+                      <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
+                        {solutionsDatabase.map((item) => (
+                          <Link
+                            key={item.slug}
+                            href={`/solutions/${item.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
+                          >
+                            <span>{item.name}</span>
+                            <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                </div>
               </div>
+
+              {/* Bottom Footer inside Overlay */}
+              <div className="max-w-7xl mx-auto w-full pt-6 pb-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shrink-0 mt-8">
+                <Link
+                  href={targetLanguageUrl}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-1.5 text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
+                >
+                  <Globe className="w-4 h-4 text-[#D4AF37]" />
+                  <span>العربية (AR)</span>
+                </Link>
+
+                <p>© 2026 Bait Al Nokhada. All Rights Reserved.</p>
+              </div>
+
             </div>
-
-            {/* Bottom Footer inside Overlay */}
-            <div className="max-w-7xl mx-auto w-full pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shrink-0">
-              <Link
-                href={targetLanguageUrl}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-1.5 text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
-              >
-                <Globe className="w-4 h-4 text-[#D4AF37]" />
-                <span>العربية (AR)</span>
-              </Link>
-
-              <p>© 2026 Bait Al Nokhada. All Rights Reserved.</p>
-            </div>
-
           </motion.div>
         )}
       </AnimatePresence>
