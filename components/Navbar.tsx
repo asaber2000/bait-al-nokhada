@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
@@ -24,28 +24,29 @@ export default function Navbar() {
     : `/ar${pathname === "/" ? "" : pathname}`;
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#070B14]/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
+    <header className="fixed top-5 left-0 w-full z-50 px-4 sm:px-6 transition-all duration-300 pointer-events-none">
+      {/* Floating Island Container */}
+      <div className="max-w-7xl mx-auto bg-[#070B14]/80 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-2xl px-5 h-20 flex items-center justify-between pointer-events-auto">
+
         {/* Brand Logo */}
-        <Link href="/" className="flex flex-col">
-          <span className="text-xl sm:text-2xl font-black tracking-wider text-white font-heading">
+        <Link href="/" className="flex flex-col text-left">
+          <span className="text-base sm:text-lg font-black tracking-wider text-white font-heading">
             BAIT AL NOKHADA
           </span>
-          <span className="text-[9px] sm:text-[10px] tracking-[0.25em] text-[#D4AF37] uppercase -mt-1 font-semibold">
+          <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#D4AF37] uppercase -mt-0.5 font-semibold">
             Tents & Fabric Structures
           </span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
+        <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-300">
           <Link href="/" className="hover:text-[#D4AF37] transition-colors">
             Home
           </Link>
           <Link href="/about" className="hover:text-[#D4AF37] transition-colors">
             About Us
           </Link>
-          
+
           {/* Products Mega Menu Dropdown */}
           <div 
             className="relative"
@@ -78,7 +79,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 w-205 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-3"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-205 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-3"
                 >
                   {productsDatabase.map((item) => (
                     <Link
@@ -131,7 +132,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 w-170 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-3"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-170 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-3"
                 >
                   {solutionsDatabase.map((item) => (
                     <Link
@@ -164,7 +165,7 @@ export default function Navbar() {
         </nav>
 
         {/* Direct Language Switcher & Quote Button */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <Link
             href={targetLanguageUrl}
             className="flex items-center gap-1.5 text-xs font-bold text-slate-300 hover:text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
@@ -175,9 +176,9 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-sm transition hover:brightness-110 shadow-lg shadow-[#D4AF37]/20"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs transition hover:brightness-110 shadow-lg shadow-[#D4AF37]/20"
           >
-            <PhoneCall className="w-4 h-4" />
+            <PhoneCall className="w-3.5 h-3.5" />
             <span>Get a Quote</span>
           </Link>
         </div>
@@ -194,14 +195,14 @@ export default function Navbar() {
       {/* Mobile Drawer - Modern & Luxury UI */}
       {mobileMenuOpen && (
         <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-[#070B14]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-2 text-slate-200 text-left max-h-[80vh] overflow-y-auto"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="lg:hidden max-w-7xl mx-auto mt-2 bg-[#070B14]/98 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-2xl px-6 py-6 space-y-2 text-slate-200 text-left max-h-[75vh] overflow-y-auto pointer-events-auto"
         >
           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Home</Link>
           <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">About Us</Link>
-          
+
           {/* Mobile Products Accordion */}
           <div>
             <div className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/5 transition text-[#D4AF37]">
@@ -216,7 +217,7 @@ export default function Navbar() {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
               </button>
             </div>
-            
+
             <AnimatePresence>
               {mobileProductsOpen && (
                 <motion.div 
@@ -255,7 +256,7 @@ export default function Navbar() {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
               </button>
             </div>
-            
+
             <AnimatePresence>
               {mobileSolutionsOpen && (
                 <motion.div 
@@ -283,7 +284,7 @@ export default function Navbar() {
           <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Projects</Link>
           <Link href="/news" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">News</Link>
           <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Contact</Link>
-          
+
           <div className="pt-4 mt-2 border-t border-white/10 flex flex-col gap-3">
             <Link
               href={targetLanguageUrl}
