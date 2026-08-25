@@ -293,14 +293,24 @@ export default function ArabicNavbar() {
             تواصل معنا
           </Link>
           
+          {/* زرار تبديل اللغة وزرار الـ CTA في أسفل المنيو العربية للموبايل */}
           <div className="pt-6 mt-4 border-t border-white/10 flex flex-col gap-3 pb-16">
             <Link
               href={targetLanguageUrl}
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 text-sm font-bold text-white py-3.5 rounded-xl bg-white/5 border border-white/10 transition shadow-sm"
+              className="flex items-center justify-center gap-2 text-sm font-bold text-white py-3.5 rounded-xl bg-white/5 border border-white/10 transition shadow-sm hover:bg-white/10"
             >
               <Globe className="w-4 h-4 text-[#D4AF37]" />
               <span>Switch to English</span>
+            </Link>
+
+            <Link
+              href="/ar/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-base shadow-lg shadow-[#D4AF37]/20 transition hover:brightness-110"
+            >
+              <PhoneCall className="w-5 h-5" />
+              <span>طلب عرض سعر</span>
             </Link>
           </div>
         </motion.div>
