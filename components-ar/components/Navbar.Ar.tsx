@@ -9,8 +9,6 @@ import { productsDatabase } from "@/app/data/products.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
 
 export default function ArabicNavbar() {
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
@@ -23,298 +21,169 @@ export default function ArabicNavbar() {
     : `/ar${pathname === "/" ? "" : pathname}`;
 
   return (
-    <header dir="rtl" className="fixed top-0 left-0 w-full z-50 bg-[#070B14]/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300 text-right">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        {/* Brand Logo */}
-        <Link href="/ar" className="flex flex-col">
-          <span className="text-xl sm:text-2xl font-black tracking-wider text-white font-heading">
+    <>
+      {/* Transparent Header Layout for Arabic */}
+      <header dir="rtl" className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 h-24 flex items-center justify-between pointer-events-none">
+        <button 
+          onClick={() => setMobileMenuOpen(true)}
+          className="pointer-events-auto flex items-center gap-2.5 text-white group cursor-pointer p-2 rounded-xl hover:bg-white/10 transition backdrop-blur-sm"
+          aria-label="فتح القائمة"
+        >
+          <Menu className="w-6 h-6 text-[#D4AF37] group-hover:scale-110 transition-transform" />
+          <span className="hidden sm:inline text-xs font-bold tracking-widest uppercase text-slate-200">القائمة</span>
+        </button>
+
+        <Link href="/ar" className="pointer-events-auto flex flex-col text-center">
+          <span className="text-base sm:text-xl font-black tracking-wider text-white font-heading drop-shadow-md">
             بيت النوخذة
           </span>
-          <span className="text-[9px] sm:text-[10px] tracking-[0.2em] text-[#D4AF37] uppercase -mt-1 font-semibold">
+          <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#D4AF37] uppercase -mt-0.5 font-semibold drop-shadow">
             للخيام والهياكل النسيجية
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-8 space-x-reverse text-sm font-medium text-slate-300">
-          <Link href="/ar" className="hover:text-[#D4AF37] transition-colors">
-            الرئيسية
-          </Link>
-          <Link href="/ar/about" className="hover:text-[#D4AF37] transition-colors">
-            من نحن
-          </Link>
-          
-          {/* Products Mega Menu Dropdown */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setIsProductsOpen(true)}
-            onMouseLeave={() => setIsProductsOpen(false)}
-          >
-            <div className="flex items-center gap-1 py-2">
-              <Link 
-                href="/ar/products" 
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                المنتجات
-              </Link>
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsProductsOpen(!isProductsOpen);
-                }}
-                className="hover:text-[#D4AF37] transition-colors p-0.5 cursor-pointer"
-                aria-label="Toggle Products Menu"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isProductsOpen ? "rotate-180 text-[#D4AF37]" : ""}`} />
-              </button>
-            </div>
-
-            <AnimatePresence>
-              {isProductsOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full right-1/2 translate-x-1/2 w-205 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-3 text-right"
-                >
-                  {productsDatabase.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/ar/products/${item.slug}`}
-                      className="p-3 rounded-xl hover:bg-white/5 transition border border-transparent hover:border-[#D4AF37]/30 group"
-                    >
-                      <div className="font-semibold text-white group-hover:text-[#D4AF37] transition-colors text-xs sm:text-sm font-heading">
-                        {item.ar ? item.ar.name : item.name}
-                      </div>
-                      <div className="text-[11px] text-slate-400 mt-1 line-clamp-1">
-                        {item.ar ? item.ar.tagline : item.tagline}
-                      </div>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Solutions Dropdown Menu */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setIsSolutionsOpen(true)}
-            onMouseLeave={() => setIsSolutionsOpen(false)}
-          >
-            <div className="flex items-center gap-1 py-2">
-              <Link 
-                href="/ar/solutions" 
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                الحلول والخدمات
-              </Link>
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsSolutionsOpen(!isSolutionsOpen);
-                }}
-                className="hover:text-[#D4AF37] transition-colors p-0.5 cursor-pointer"
-                aria-label="Toggle Solutions Menu"
-              >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isSolutionsOpen ? "rotate-180 text-[#D4AF37]" : ""}`} />
-              </button>
-            </div>
-
-            <AnimatePresence>
-              {isSolutionsOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full right-1/2 translate-x-1/2 w-170 bg-[#0B1120]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-3 text-right"
-                >
-                  {solutionsDatabase.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/ar/solutions/${item.slug}`}
-                      className="p-3 rounded-xl hover:bg-white/5 transition border border-transparent hover:border-[#D4AF37]/30 group"
-                    >
-                      <div className="font-semibold text-white group-hover:text-[#D4AF37] transition-colors text-xs sm:text-sm font-heading">
-                        {item.name}
-                      </div>
-                      <div className="text-xs text-slate-400 mt-1 line-clamp-1">
-                        {item.tagline}
-                      </div>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <Link href="/ar/projects" className="hover:text-[#D4AF37] transition-colors">
-            المشاريع
-          </Link>
-          <Link href="/ar/news" className="hover:text-[#D4AF37] transition-colors">
-            الأخبار والمقالات
-          </Link>
-          <Link href="/ar/contact" className="hover:text-[#D4AF37] transition-colors">
-            تواصل معنا
-          </Link>
-        </nav>
-
-        {/* Direct Language Switcher & Quote Button */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href={targetLanguageUrl}
-            className="flex items-center gap-1.5 text-xs font-bold text-slate-300 hover:text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
-          >
-            <Globe className="w-4 h-4 text-[#D4AF37]" />
-            <span>ENGLISH</span>
-          </Link>
-
+        <div className="pointer-events-auto flex items-center gap-3">
           <Link
             href="/ar/contact"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-sm transition hover:brightness-110 shadow-lg shadow-[#D4AF37]/20"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-lg"
           >
-            <PhoneCall className="w-4 h-4" />
-            <span>طلب عرض سعر</span>
+            <PhoneCall className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span className="hidden sm:inline">طلب عرض سعر</span>
           </Link>
         </div>
+      </header>
 
-        {/* Mobile Menu Button */}
-        <button 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-slate-300 hover:text-white cursor-pointer"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-[#D4AF37]" />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="lg:hidden fixed top-20 right-0 w-screen h-[calc(100vh-80px)] bg-[#070B14] border-t border-white/10 px-6 py-6 space-y-3 text-slate-200 text-right overflow-y-auto z-50 shadow-2xl"
-        >
-          <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
-            الرئيسية
-          </Link>
-          <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
-            من نحن
-          </Link>
-          
-          {/* Mobile Products Accordion (Arabic) */}
-          <div className="rounded-xl bg-white/[0.02] border border-white/5 overflow-hidden">
-            <div className="flex items-center justify-between py-3 px-4 hover:bg-white/5 transition text-[#D4AF37]">
+      {/* Fullscreen Cinematic Menu Overlay - Fixed Screen with Internal Scroll for Products/Solutions */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            dir="rtl"
+            data-lenis-prevent="true"
+            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 flex flex-col justify-between h-screen overflow-hidden text-right"
+          >
+            {/* Top Bar inside Overlay */}
+            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0">
+              <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
               <button 
-                onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                className="p-1 cursor-pointer"
-                aria-label="Toggle Products Submenu"
+                onClick={() => setMobileMenuOpen(false)}
+                className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
+                aria-label="إغلاق القائمة"
               >
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
+                <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
               </button>
-              <Link href="/ar/products" onClick={() => setMobileMenuOpen(false)} className="font-semibold flex-1 text-right text-base">
-                المنتجات
-              </Link>
             </div>
-            
-            <AnimatePresence>
-              {mobileProductsOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="grid grid-cols-1 gap-1.5 py-2 px-3 my-1 border-t border-white/5 text-right bg-black/40"
-                >
-                  {productsDatabase.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/ar/products/${item.slug}`}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between py-2.5 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 transition rounded-lg group"
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#D4AF37] transition-colors" />
-                      <span className="font-medium text-sm">{item.ar ? item.ar.name : item.name}</span>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
 
-          {/* Mobile Solutions Accordion (Arabic) */}
-          <div className="rounded-xl bg-white/[0.02] border border-white/5 overflow-hidden">
-            <div className="flex items-center justify-between py-3 px-4 hover:bg-white/5 transition">
-              <button 
-                onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                className="p-1 cursor-pointer"
-                aria-label="Toggle Solutions Submenu"
+            {/* Middle Content Links (Arabic Pages & Databases) */}
+            <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 my-auto py-4 items-start overflow-hidden">
+              
+              {/* Main Links Column (Arabic) */}
+              <div className="space-y-4 text-2xl sm:text-4xl font-extrabold text-white font-heading">
+                <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  الرئيسية
+                </Link>
+                <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  من نحن
+                </Link>
+                <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  المشاريع
+                </Link>
+                <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  الأخبار والمقالات
+                </Link>
+                <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  تواصل معنا
+                </Link>
+              </div>
+
+              {/* Dynamic Databases Column (Products & Solutions) - Internal Scroll Only */}
+              <div 
+                className="space-y-6 text-sm text-slate-300 border-r border-white/10 pr-6 sm:pr-10 max-h-[60vh] overflow-y-auto pl-2 custom-scroll"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
-              </button>
-              <Link href="/ar/solutions" onClick={() => setMobileMenuOpen(false)} className="font-semibold flex-1 text-right text-base text-slate-200">
-                الحلول والخدمات
-              </Link>
+                <style jsx>{`
+                  .custom-scroll::-webkit-scrollbar {
+                    display: none !important;
+                  }
+                `}</style>
+                
+                {/* Products Section */}
+                <div className="space-y-2">
+                  <button 
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                    <span>المنتجات ({productsDatabase.length})</span>
+                  </button>
+                  
+                  {mobileProductsOpen && (
+                    <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
+                      {productsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/products/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
+                        >
+                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                          <span>{item.ar ? item.ar.name : item.name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Solutions Section */}
+                <div className="space-y-2">
+                  <button 
+                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                    className="flex items-center justify-between w-full text-lg font-bold text-[#D4AF37] py-2 border-b border-white/10 cursor-pointer"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                    <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+                  </button>
+                  
+                  {mobileSolutionsOpen && (
+                    <div className="grid grid-cols-1 gap-2 pt-2 pb-2">
+                      {solutionsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/solutions/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition group"
+                        >
+                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+                          <span>{item.name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+              </div>
             </div>
-            
-            <AnimatePresence>
-              {mobileSolutionsOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="grid grid-cols-1 gap-1.5 py-2 px-3 my-1 border-t border-white/5 text-right bg-black/40"
-                >
-                  {solutionsDatabase.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/ar/solutions/${item.slug}`}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between py-2.5 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 transition rounded-lg group"
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#D4AF37] transition-colors" />
-                      <span className="font-medium text-sm">{item.name}</span>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
 
-          <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
-            المشاريع
-          </Link>
-          <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
-            الأخبار والمقالات
-          </Link>
-          <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
-            تواصل معنا
-          </Link>
-          
-          {/* زرار تبديل اللغة وزرار الـ CTA في أسفل المنيو العربية للموبايل */}
-          <div className="pt-6 mt-4 border-t border-white/10 flex flex-col gap-3 pb-16">
-            <Link
-              href={targetLanguageUrl}
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 text-sm font-bold text-white py-3.5 rounded-xl bg-white/5 border border-white/10 transition shadow-sm hover:bg-white/10"
-            >
-              <Globe className="w-4 h-4 text-[#D4AF37]" />
-              <span>Switch to English</span>
-            </Link>
+            {/* Bottom Footer inside Overlay - Perfectly Locked at Bottom */}
+            <div className="max-w-7xl mx-auto w-full pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shrink-0">
+              <Link
+                href={targetLanguageUrl}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
+              >
+                <Globe className="w-4 h-4 text-[#D4AF37]" />
+                <span>ENGLISH (EN)</span>
+              </Link>
 
-            <Link
-              href="/ar/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-base shadow-lg shadow-[#D4AF37]/20 transition hover:brightness-110"
-            >
-              <PhoneCall className="w-5 h-5" />
-              <span>طلب عرض سعر</span>
-            </Link>
-          </div>
-        </motion.div>
-      )}
-  </header>
-);
+              <p>© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
+            </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
