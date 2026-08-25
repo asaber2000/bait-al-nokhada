@@ -61,7 +61,7 @@ export default function ArabicNavbar() {
             animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-6 sm:px-16 py-6 overflow-y-auto text-right touch-pan-y flex flex-col justify-between"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-3xl px-4 sm:px-16 py-4 overflow-y-auto text-right touch-pan-y flex flex-col justify-between"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <style jsx>{`
@@ -70,52 +70,52 @@ export default function ArabicNavbar() {
               }
             `}</style>
 
-            <div className="max-w-7xl mx-auto w-full flex flex-col min-h-full justify-between pb-20">
+            <div className="max-w-7xl mx-auto w-full flex flex-col min-h-full justify-between pb-24">
               
               {/* Top Bar inside Overlay */}
-              <div className="flex items-center justify-between w-full shrink-0 mb-6">
-                <span className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
+              <div className="flex items-center justify-between w-full shrink-0 mb-3">
+                <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold">دليل تصفح الموقع</span>
                 <button 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
+                  className="pointer-events-auto p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition cursor-pointer flex items-center gap-2 group"
                   aria-label="إغلاق القائمة"
                 >
-                  <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+                  <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
                 </button>
               </div>
 
-              {/* Middle Content Links (Accordion with optimized mobile font sizes) */}
-              <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 py-2 items-start">
+              {/* Middle Content Links (Optimized compact spacing and small font sizes for mobile) */}
+              <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4 py-2 items-start">
                 
-                {/* Main Links Column - Reduced mobile font size */}
-                <div className="space-y-3 text-xl sm:text-4xl font-extrabold text-white font-heading">
-                  <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                {/* Main Links Column - Compact text size */}
+                <div className="space-y-2 text-lg sm:text-3xl font-bold text-white font-heading">
+                  <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
                     الرئيسية
                   </Link>
-                  <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
                     من نحن
                   </Link>
-                  <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
                     المشاريع
                   </Link>
-                  <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
                     الأخبار والمقالات
                   </Link>
-                  <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors">
+                  <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#D4AF37] transition-colors py-0.5">
                     تواصل معنا
                   </Link>
                 </div>
 
                 {/* Accordion Databases Column */}
-                <div className="space-y-3 text-sm text-slate-300 border-r border-white/10 pr-4 sm:pr-10 pl-2">
+                <div className="space-y-2.5 text-sm text-slate-300 border-r border-white/10 pr-3 sm:pr-8 pl-1">
                   
                   {/* Products Section */}
-                  <div className="space-y-2 bg-white/5 p-3 sm:p-4 rounded-2xl border border-white/10">
+                  <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
                     <button 
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center justify-between w-full text-base sm:text-lg font-bold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
                     >
-                      <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
                       <span>المنتجات ({productsDatabase.length})</span>
                     </button>
                     
@@ -123,14 +123,14 @@ export default function ArabicNavbar() {
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="grid grid-cols-1 gap-1.5 pt-2 border-t border-white/10 mt-2"
+                        className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1 max-h-[40vh] overflow-y-auto"
                       >
                         {productsDatabase.map((item) => (
                           <Link
                             key={item.slug}
                             href={`/ar/products/${item.slug}`}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+                            className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
                           >
                             <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
                             <span>{item.ar ? item.ar.name : item.name}</span>
@@ -141,12 +141,12 @@ export default function ArabicNavbar() {
                   </div>
 
                   {/* Solutions Section */}
-                  <div className="space-y-2 bg-white/5 p-3 sm:p-4 rounded-2xl border border-white/10">
+                  <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
                     <button 
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                      className="flex items-center justify-between w-full text-base sm:text-lg font-bold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
                     >
-                      <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
                       <span>الحلول والخدمات ({solutionsDatabase.length})</span>
                     </button>
                     
@@ -154,14 +154,14 @@ export default function ArabicNavbar() {
                       <motion.div 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="grid grid-cols-1 gap-1.5 pt-2 border-t border-white/10 mt-2"
+                        className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1 max-h-[40vh] overflow-y-auto"
                       >
                         {solutionsDatabase.map((item) => (
                           <Link
                             key={item.slug}
                             href={`/ar/solutions/${item.slug}`}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center justify-between py-1.5 px-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+                            className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
                           >
                             <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
                             <span>{item.name}</span>
@@ -176,14 +176,14 @@ export default function ArabicNavbar() {
 
             </div>
 
-            {/* Bottom Footer - Fixed / Locked strictly at bottom of the screen */}
-            <div className="absolute bottom-0 left-0 right-0 z-30 bg-[#070B14]/95 backdrop-blur-md px-6 sm:px-16 py-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 shadow-[0_-10px_25px_rgba(0,0,0,0.5)]">
+            {/* Bottom Footer - Fixed Strictly at Bottom */}
+            <div className="absolute bottom-0 left-0 right-0 z-30 bg-[#070B14]/95 backdrop-blur-md px-4 sm:px-16 py-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shadow-[0_-5px_15px_rgba(0,0,0,0.5)]">
               <Link
                 href={targetLanguageUrl}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
+                className="flex items-center gap-1 font-bold text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition shadow-sm"
               >
-                <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
+                <Globe className="w-3 h-3 text-[#D4AF37]" />
                 <span>ENGLISH (EN)</span>
               </Link>
               <p className="text-[10px] sm:text-xs">© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
