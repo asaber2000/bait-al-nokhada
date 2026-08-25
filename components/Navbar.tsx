@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Globe, Menu, X, PhoneCall } from "lucide-react";
+import { ChevronDown, Globe, Menu, X, PhoneCall, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { productsDatabase } from "@/app/data/products.En";
 import { solutionsDatabase } from "@/app/data/solutions.En";
@@ -12,6 +12,9 @@ export default function Navbar() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
   const pathname = usePathname() || "/";
   const isArabic = pathname.startsWith("/ar");
@@ -188,22 +191,119 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer - Modern & Luxury UI */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#070B14] border-b border-white/10 px-6 py-6 space-y-4 text-slate-300 text-left">
-          <Link href="/" className="block py-2">Home</Link>
-          <Link href="/products" className="block py-2 text-[#D4AF37]">Products</Link>
-          <Link href="/solutions" className="block py-2">Solutions</Link>
-          <Link href="/projects" className="block py-2">Projects</Link>
-          <Link href="/contact" className="block py-2">Contact</Link>
-          <Link
-            href={targetLanguageUrl}
-            className="flex items-center gap-2 text-xs font-bold text-[#D4AF37] pt-2"
-          >
-            <Globe className="w-4 h-4" />
-            <span>التبديل إلى العربية</span>
-          </Link>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="lg:hidden bg-[#070B14]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-2 text-slate-200 text-left max-h-[80vh] overflow-y-auto"
+        >
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Home</Link>
+          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">About Us</Link>
+          
+          {/* Mobile Products Accordion */}
+          <div>
+            <div className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/5 transition text-[#D4AF37]">
+              <Link href="/products" onClick={() => setMobileMenuOpen(false)} className="font-semibold flex-1">
+                Products
+              </Link>
+              <button 
+                onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                className="p-1 cursor-pointer"
+                aria-label="Toggle Products Submenu"
+              >
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
+              </button>
+            </div>
+            
+            <AnimatePresence>
+              {mobileProductsOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="grid grid-cols-1 gap-1.5 py-2 px-2 my-1 bg-white/[0.02] rounded-xl border border-white/5"
+                >
+                  {productsDatabase.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/products/${item.slug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-2 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 transition rounded-lg group"
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#D4AF37] transition-colors" />
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile Solutions Accordion */}
+          <div>
+            <div className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/5 transition">
+              <Link href="/solutions" onClick={() => setMobileMenuOpen(false)} className="font-semibold flex-1 text-slate-200">
+                Solutions
+              </Link>
+              <button 
+                onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                className="p-1 cursor-pointer"
+                aria-label="Toggle Solutions Submenu"
+              >
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180 text-[#D4AF37]" : "text-slate-400"}`} />
+              </button>
+            </div>
+            
+            <AnimatePresence>
+              {mobileSolutionsOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="grid grid-cols-1 gap-1.5 py-2 px-2 my-1 bg-white/[0.02] rounded-xl border border-white/5"
+                >
+                  {solutionsDatabase.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/solutions/${item.slug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-2 px-3 text-xs text-slate-300 hover:text-white hover:bg-white/10 transition rounded-lg group"
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#D4AF37] transition-colors" />
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Projects</Link>
+          <Link href="/news" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">News</Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-lg hover:bg-white/5 transition">Contact</Link>
+          
+          <div className="pt-4 mt-2 border-t border-white/10 flex flex-col gap-3">
+            <Link
+              href={targetLanguageUrl}
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 text-xs font-bold text-white py-3 rounded-xl bg-white/5 border border-white/10 transition"
+            >
+              <Globe className="w-4 h-4 text-[#D4AF37]" />
+              <span>العربية (AR)</span>
+            </Link>
+
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-sm shadow-lg shadow-[#D4AF37]/20"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span>Get a Quote</span>
+            </Link>
+          </div>
+        </motion.div>
       )}
     </header>
   );

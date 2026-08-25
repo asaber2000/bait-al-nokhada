@@ -190,31 +190,45 @@ export default function ArabicNavbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#070B14] border-b border-white/10 px-6 py-6 space-y-4 text-slate-300 text-right">
-          <Link href="/ar" className="block py-2">
-            الرئيسية
-          </Link>
-          <Link href="/ar/products" className="block py-2 text-[#D4AF37]">
-            المنتجات
-          </Link>
-          <Link href="/ar/solutions" className="block py-2">
-            الحلول والخدمات
-          </Link>
-          <Link href="/ar/projects" className="block py-2">
-            المشاريع
-          </Link>
-          <Link href="/ar/contact" className="block py-2">
-            تواصل معنا
-          </Link>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="lg:hidden fixed top-20 right-0 w-screen h-[calc(100vh-80px)] bg-[#070B14] border-t border-white/10 px-6 py-6 space-y-4 text-slate-200 text-right overflow-y-auto z-50 shadow-2xl"
+        >
+          <Link href="/ar" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          الرئيسية
+        </Link>
+        <Link href="/ar/about" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          من نحن
+        </Link>
+        <Link href="/ar/products" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition text-[#D4AF37] font-semibold">
+          المنتجات
+        </Link>
+        <Link href="/ar/solutions" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          الحلول والخدمات
+        </Link>
+        <Link href="/ar/projects" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          المشاريع
+        </Link>
+        <Link href="/ar/news" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          الأخبار والمقالات
+        </Link>
+        <Link href="/ar/contact" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-3 rounded-lg hover:bg-white/5 transition font-semibold">
+          تواصل معنا
+        </Link>
+        <div className="pt-4 border-t border-white/10">
           <Link
             href={targetLanguageUrl}
-            className="flex items-center gap-2 text-xs font-bold text-[#D4AF37] pt-2 justify-start"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-xs font-bold text-[#D4AF37] pt-2 justify-start py-3 px-3 rounded-lg hover:bg-white/5 transition"
           >
             <Globe className="w-4 h-4" />
             <span>Switch to English</span>
           </Link>
         </div>
-      )}
-    </header>
-  );
+      </motion.div>
+    )}
+  </header>
+);
 }
