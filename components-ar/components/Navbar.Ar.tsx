@@ -106,58 +106,63 @@ export default function ArabicNavbar() {
                 `}</style>
                 
                 {/* Products Section */}
-                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                  <button 
-                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                  >
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
-                    <span>المنتجات ({productsDatabase.length})</span>
-                  </button>
-                  
-                  {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-                      {productsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/ar/products/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                        >
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-                          <span>{item.ar ? item.ar.name : item.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                {/* Products Section */}
+<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
+  <button 
+    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+  >
+    {/* عكسنا: النص الأول وبعدين السهم */}
+    <span>المنتجات ({productsDatabase.length})</span>
+    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+  </button>
+  
+  {mobileProductsOpen && (
+    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+      {productsDatabase.map((item) => (
+        <Link
+          key={item.slug}
+          href={`/ar/products/${item.slug}`}
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+        >
+          {/* عكسنا: اسم المنتج الأول وبعدين السهم */}
+          <span>{item.ar ? item.ar.name : item.name}</span>
+          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+        </Link>
+      ))}
+    </div>
+  )}
+</div>
 
-                {/* Solutions Section */}
-                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                  <button 
-                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                  >
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                    <span>الحلول والخدمات ({solutionsDatabase.length})</span>
-                  </button>
-                  
-                  {mobileSolutionsOpen && (
-                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-                      {solutionsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/ar/solutions/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                        >
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-                          <span>{item.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+{/* Solutions Section */}
+<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
+  <button 
+    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+  >
+    {/* عكسنا: النص الأول وبعدين السهم */}
+    <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+  </button>
+  
+  {mobileSolutionsOpen && (
+    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+      {solutionsDatabase.map((item) => (
+        <Link
+          key={item.slug}
+          href={`/ar/solutions/${item.slug}`}
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+        >
+          {/* عكسنا: اسم الحل الأول وبعدين السهم */}
+          <span>{item.name}</span>
+          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
+        </Link>
+      ))}
+    </div>
+  )}
+</div>
 
               </div>
             </div>
