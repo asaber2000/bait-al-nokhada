@@ -106,59 +106,78 @@ export default function Navbar() {
                 `}</style>
                 
                 {/* Products Section */}
-                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                  <button 
-                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                  >
-                    <span>Products ({productsDatabase.length})</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  
-                  {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-                      {productsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/products/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                        >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
+  <div className="flex items-center justify-between w-full">
+    <button 
+      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+    >
+      <span>Products ({productsDatabase.length})</span>
+      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+    </button>
+    <Link 
+      href="/products" 
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
+    >
+      View All <ArrowUpRight className="w-3 h-3" />
+    </Link>
+  </div>
+  
+  {mobileProductsOpen && (
+    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+      {productsDatabase.map((item) => (
+        <Link
+          key={item.slug}
+          href={`/products/${item.slug}`}
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+        >
+          <span>{item.name}</span>
+          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
+        </Link>
+      ))}
+    </div>
+  )}
+</div>
+
+
 
                 {/* Solutions Section */}
-                <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-                  <button 
-                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-                  >
-                    <span>Solutions ({solutionsDatabase.length})</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  
-                  {mobileSolutionsOpen && (
-                    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-                      {solutionsDatabase.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/solutions/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-                        >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
+<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
+  <div className="flex items-center justify-between w-full">
+    <button 
+      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+    >
+      <span>Solutions ({solutionsDatabase.length})</span>
+      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+    </button>
+    <Link 
+      href="/solutions" 
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
+    >
+      View All <ArrowUpRight className="w-3 h-3" />
+    </Link>
+  </div>
+  
+  {mobileSolutionsOpen && (
+    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
+      {solutionsDatabase.map((item) => (
+        <Link
+          key={item.slug}
+          href={`/solutions/${item.slug}`}
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
+        >
+          <span>{item.name}</span>
+          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
+        </Link>
+      ))}
+    </div>
+  )}
+</div>
               </div>
             </div>
 
