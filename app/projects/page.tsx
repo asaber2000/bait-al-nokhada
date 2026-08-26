@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { Sparkles, MapPin, Calendar, Play, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,73 +13,50 @@ const filterTabs = [
   "VIP & ROYAL MAJLIS"
 ];
 
-export default function ProjectsCatalogPage() {
-  const [activeTab, setActiveTab] = useState("ALL PROJECTS");
-  const [searchQuery] = useState("");
-  
-  // البدء بالداتا المحلية فوراً لضمان السرعة المطلقة
-  const [allProjects, setAllProjects] = useState<any[]>(projectsDatabase);
-  const [loading, setLoading] = useState(false);
+// جلب مشاريع سانتي مباشرة على السيرفر لتجنب أي تأخير أو ومضة على العميل
+async function getSanityEnglishProjects() {
+  try {
+    const query = `*[_type == "projectEn" && defined(titleEn)] | order(_createdAt desc){
+      titleEn,
+      clientEn,
+      locationEn,
+      year,
+      coveredArea,
+      categoryEn,
+      scopeOfWorkEn,
+      "slug": slug.current,
+      "coverImage": image.asset->url
+    }`;
 
-  // جلب المشاريع الإنجليزية من Sanity ودمجها في الخلفية
-  useEffect(() => {
-    const fetchSanityEnglishProjects = async () => {
-      try {
-        const query = `*[_type == "projectEn" && defined(titleEn)] | order(_createdAt desc){
-          titleEn,
-          clientEn,
-          locationEn,
-          year,
-          coveredArea,
-          categoryEn,
-          scopeOfWorkEn,
-          "slug": slug.current,
-          "coverImage": image.asset->url
-        }`;
+    const sanityData = await client.fetch(query, {}, { cache: 'no-store' });
 
-        const sanityData = await client.fetch(query, {}, { cache: 'no-store' });
+    return (sanityData || []).map((item: any) => {
+      const locationParts = (item.locationEn || "Dubai, UAE").split(",");
+      const city = locationParts[0]?.trim() || "Dubai";
+      const country = locationParts[1]?.trim() || "UAE";
 
-        const formattedSanityProjects = (sanityData || []).map((item: any) => {
-          const locationParts = (item.locationEn || "Dubai, UAE").split(",");
-          const city = locationParts[0]?.trim() || "Dubai";
-          const country = locationParts[1]?.trim() || "UAE";
+      return {
+        slug: item.slug,
+        coverImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        year: item.year || "2026",
+        category: item.categoryEn || "VIP & Royal Majlis",
+        title: item.titleEn,
+        summary: item.scopeOfWorkEn,
+        city: city,
+        country: country,
+        client: item.clientEn
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching English projects from Sanity:", error);
+    return [];
+  }
+}
 
-          return {
-            slug: item.slug,
-            coverImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-            year: item.year || "2026",
-            category: item.categoryEn || "VIP & Royal Majlis",
-            title: item.titleEn,
-            summary: item.scopeOfWorkEn,
-            city: city,
-            country: country,
-            client: item.clientEn
-          };
-        });
-
-        if (formattedSanityProjects.length > 0) {
-          setAllProjects([...formattedSanityProjects, ...projectsDatabase]);
-        }
-      } catch (error) {
-        console.error("Error fetching English projects from Sanity:", error);
-      }
-    };
-
-    fetchSanityEnglishProjects();
-  }, []);
-
-  const filteredProjects = allProjects.filter((proj) => {
-    const matchesSearch =
-      proj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      proj.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      proj.client.toLowerCase().includes(searchQuery.toLowerCase());
-
-    if (activeTab === "ALL PROJECTS") return matchesSearch;
-    if (activeTab === "EXHIBITIONS & SUMMITS") return matchesSearch && proj.category === "Exhibitions & Summits";
-    if (activeTab === "SPORTS & ARENAS") return matchesSearch && proj.category === "Sports & Arenas";
-    if (activeTab === "VIP & ROYAL MAJLIS") return matchesSearch && proj.category === "VIP & Royal Majlis";
-    return matchesSearch;
-  });
+export default async function ProjectsCatalogPage() {
+  // جلب داتا سانتي ودمجها مع الداتا المحلية مسبقاً على السيرفر
+  const sanityProjects = await getSanityEnglishProjects();
+  const allProjects = [...sanityProjects, ...projectsDatabase];
 
   return (
     <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
@@ -109,29 +83,24 @@ export default function ProjectsCatalogPage() {
             Explore our precision-built temporary pavilions, high-span exhibition halls, and luxury royal marquees across the UAE and GCC.
           </p>
 
-          {/* Filter Tabs */}
+          {/* Static Filter Display (أو الفلترة حسب رغبتك) */}
           <div className="pt-6 flex flex-wrap items-center justify-center gap-2.5">
             {filterTabs.map((tab) => (
-              <button
+              <span
                 key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  activeTab === tab
-                    ? "bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
-                    : "bg-[#0D1527] text-slate-300 border border-white/10 hover:bg-white/5"
-                }`}
+                className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#0D1527] text-slate-300 border border-white/10"
               >
                 {tab}
-              </button>
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Projects 2-Column Grid (يظهر فوراً بدون أي شاشات تحميل) */}
+      {/* Projects 2-Column Grid (تظهر كاملة دفعة واحدة من السيرفر) */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, idx) => (
+          {allProjects.map((project, idx) => (
             <div
               key={project.slug || idx}
               className="group rounded-3xl overflow-hidden bg-[#0D1527]/80 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 flex flex-col justify-between shadow-2xl"
