@@ -106,16 +106,26 @@ export default function ArabicNavbar() {
                 `}</style>
                 
                 {/* Products Section */}
-                {/* Products Section */}
 <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-  <button 
-    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-  >
-    {/* عكسنا: النص الأول وبعدين السهم */}
-    <span>المنتجات ({productsDatabase.length})</span>
-    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
-  </button>
+  <div className="flex items-center justify-between w-full">
+    {/* زرار الفتح والإغلاق للقائمة */}
+    <button 
+      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+    >
+      <span>المنتجات ({productsDatabase.length})</span>
+      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+    </button>
+
+    {/* رابط سريع يوديه لصفحة المنتجات الكاملة لو حابب */}
+    <Link 
+      href="/ar/products" 
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
+    >
+      عرض الكل <ArrowUpRight className="w-3 h-3" />
+    </Link>
+  </div>
   
   {mobileProductsOpen && (
     <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
@@ -126,7 +136,6 @@ export default function ArabicNavbar() {
           onClick={() => setMobileMenuOpen(false)}
           className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
         >
-          {/* عكسنا: اسم المنتج الأول وبعدين السهم */}
           <span>{item.ar ? item.ar.name : item.name}</span>
           <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
         </Link>
@@ -137,14 +146,22 @@ export default function ArabicNavbar() {
 
 {/* Solutions Section */}
 <div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-  <button 
-    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-    className="flex items-center justify-between w-full text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-  >
-    {/* عكسنا: النص الأول وبعدين السهم */}
-    <span>الحلول والخدمات ({solutionsDatabase.length})</span>
-    <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-  </button>
+  <div className="flex items-center justify-between w-full">
+    <button 
+      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
+    >
+      <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+    </button>
+    <Link 
+      href="/ar/solutions" 
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
+    >
+      عرض الكل <ArrowUpRight className="w-3 h-3" />
+    </Link>
+  </div>
   
   {mobileSolutionsOpen && (
     <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
@@ -155,7 +172,6 @@ export default function ArabicNavbar() {
           onClick={() => setMobileMenuOpen(false)}
           className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
         >
-          {/* عكسنا: اسم الحل الأول وبعدين السهم */}
           <span>{item.name}</span>
           <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
         </Link>
@@ -163,7 +179,6 @@ export default function ArabicNavbar() {
     </div>
   )}
 </div>
-
               </div>
             </div>
 
