@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Award, Building2, Globe2 } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
   return (
     <section dir="rtl" className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-10 px-6 overflow-hidden bg-[#070B14] text-center">
       
+      {/* خلفية الفيديو */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -22,6 +23,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
       </div>
 
+      {/* المحتوى الرئيسي (العنوان والأزرار) */}
       <div className="relative z-10 max-w-5xl mx-auto w-full my-auto text-center space-y-6">
         
         <motion.h1
@@ -69,52 +71,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
-        className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/15 backdrop-blur-[2px] text-right"
-      >
-        <div className="flex items-center gap-3 justify-start">
-          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-            <Award className="w-5 h-5 text-[#D4AF37]" />
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-black text-white">+28</div>
-            <div className="text-[11px] font-medium text-slate-300 uppercase tracking-wider">سنة من الريادة</div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 justify-start">
-          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-            <Building2 className="w-5 h-5 text-[#D4AF37]" />
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-black text-white">+5,000</div>
-            <div className="text-[11px] font-medium text-slate-300 uppercase tracking-wider">هيكل مصنع ومبني</div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 justify-start">
-          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-            <Globe2 className="w-5 h-5 text-[#D4AF37]" />
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-black text-white">+12</div>
-            <div className="text-[11px] font-medium text-slate-300 uppercase tracking-wider">دولة خليجية وإقليمية</div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 justify-start">
-          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-            <span className="text-lg font-bold text-[#D4AF37]">99%</span>
-          </div>
-          <div>
-            <div className="text-xl sm:text-2xl font-black text-white">ثقة مطلقة</div>
-            <div className="text-[11px] font-medium text-slate-300 uppercase tracking-wider">عملاء المؤسسات الكبرى</div>
-          </div>
-        </div>
-      </motion.div>
+      {/* تم مسح الـ Stats القديمة من هنا بنجاح */}
     </section>
   );
 }
