@@ -5,9 +5,9 @@ import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
+    <section className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center">
       
-      {/* 1. Background Video Layer (Crystal Clear & Full Screen) */}
+      {/* 1. Background Video Layer (Crystal Clear & Full Screen without mobile bar jumps) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
