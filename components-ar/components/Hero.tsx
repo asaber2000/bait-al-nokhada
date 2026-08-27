@@ -5,7 +5,7 @@ import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section dir="rtl" className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-10 px-6 overflow-hidden bg-[#070B14] text-center">
+    <section dir="rtl" className="relative min-h-[100dvh] w-full flex flex-col justify-between pt-28 pb-10 px-6 overflow-hidden bg-[#070B14] text-center">
       
       {/* خلفية الفيديو */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
