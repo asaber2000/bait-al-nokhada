@@ -5,17 +5,20 @@ import { ArrowRight, Play } from "lucide-react";
 
 export default function ArabicHero() {
   return (
-    <section dir="rtl" className="relative h-[100dvh] w-full flex items-center justify-center px-6 overflow-hidden bg-[#070B14] text-center">
+    <section 
+      dir="rtl" 
+      className="relative w-full h-[100dvh] flex items-center justify-center px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
+    >
       
-      {/* خلفية الفيديو ثابتة تماماً وبتملى الشاشة من غير أي حركة */}
-      <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none">
+      {/* خلفية الفيديو - تم ضبطها بـ absolute داخل الـ section لتتحרק بانسجام تام بدون أي اهتزاز */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none transform-gpu">
         <video
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover opacity-75 filter brightness-105 will-change-transform"
+          className="w-full h-full object-cover opacity-75 filter brightness-105 transform-gpu"
         >
           <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
         </video>
@@ -23,8 +26,8 @@ export default function ArabicHero() {
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
       </div>
 
-      {/* المحتوى الرئيسي (هيتثبت فوق الخلفية بثبات تام) */}
-      <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6 pt-16">
+      {/* المحتوى الرئيسي */}
+      <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6 pt-16 transform-gpu">
         
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
