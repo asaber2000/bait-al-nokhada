@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
-export default function Hero() {
+export default function ArabicHero() {
   return (
-    <section dir="rtl" className="relative min-h-[100dvh] w-full flex flex-col justify-between pt-28 pb-10 px-6 overflow-hidden bg-[#070B14] text-center">
+    <section dir="rtl" className="relative min-h-[100dvh] w-full flex items-center justify-center pt-32 pb-16 px-6 overflow-hidden bg-[#070B14] text-center">
       
-      {/* خلفية الفيديو */}
+      {/* خلفية الفيديو ثابتة ومستقرة تماماً */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -23,8 +23,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
       </div>
 
-      {/* المحتوى الرئيسي (العنوان والأزرار) */}
-      <div className="relative z-10 max-w-5xl mx-auto w-full my-auto text-center space-y-6">
+      {/* المحتوى الرئيسي بثبات تام ومساحات مريحة تمنع أي اهتزاز */}
+      <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6">
         
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* تم مسح الـ Stats القديمة من هنا بنجاح */}
     </section>
   );
 }
