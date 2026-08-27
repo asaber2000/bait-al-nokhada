@@ -7,7 +7,7 @@ export default function ArabicHero() {
   return (
     <section 
       dir="rtl" 
-      className="relative w-full h-[100dvh] flex items-center justify-center px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
+      className="relative w-full min-h-[100dvh] flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
     >
       
       {/* خلفية الفيديو - تم تثبيتها بـ fixed لمنع أي اهتزاز أثناء السكرول على الموبايل */}
