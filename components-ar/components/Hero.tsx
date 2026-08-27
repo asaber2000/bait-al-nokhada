@@ -5,10 +5,10 @@ import { ArrowRight, Play } from "lucide-react";
 
 export default function ArabicHero() {
   return (
-    <section dir="rtl" className="relative min-h-[100dvh] w-full flex items-center justify-center pt-32 pb-16 px-6 overflow-hidden bg-[#070B14] text-center">
+    <section dir="rtl" className="relative h-[100dvh] w-full flex items-center justify-center px-6 overflow-hidden bg-[#070B14] text-center">
       
-      {/* خلفية الفيديو ثابتة ومستقرة تماماً */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+      {/* خلفية الفيديو ثابتة تماماً وبتملى الشاشة من غير أي حركة */}
+      <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
           loop
@@ -23,13 +23,13 @@ export default function ArabicHero() {
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
       </div>
 
-      {/* المحتوى الرئيسي بثبات تام ومساحات مريحة تمنع أي اهتزاز */}
-      <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6">
+      {/* المحتوى الرئيسي (هيتثبت فوق الخلفية بثبات تام) */}
+      <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6 pt-16">
         
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.5 }}
           className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1] drop-shadow-lg font-heading"
         >
           الريادة والبراعة الهندسية <br />
@@ -39,9 +39,9 @@ export default function ArabicHero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-base sm:text-lg text-slate-200/90 max-w-2xl mx-auto font-light drop-shadow"
         >
           هندسة أرقى القاعات الملكية ومظلات الشد الإنشائي الذكية في مختلف أنحاء الشرق الأوسط.
@@ -50,7 +50,7 @@ export default function ArabicHero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="flex flex-wrap items-center justify-center gap-4 pt-2"
         >
           <a
