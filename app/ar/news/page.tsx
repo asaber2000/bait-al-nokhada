@@ -31,8 +31,7 @@ export default function ArabicNewsCatalogPage() {
   const [articlesList, setArticlesList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // جلب المقالات ديناميكياً من سانتي
-// جلب المقالات ديناميكياً في الخلفية بدون شاشة تحميل مزعجة
+  // جلب المقالات ديناميكياً في الخلفية بدون شاشة تحميل مزعجة
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -76,6 +75,10 @@ export default function ArabicNewsCatalogPage() {
 
     fetchArticles();
   }, []);
+
+  // تحديد المقالة المميزة الأولى
+  const featuredArticle = articlesList[0];
+
   const filteredArticles = articlesList.filter((art: any) => {
     const title = art.ar?.title || "";
     const desc = art.ar?.desc || "";
@@ -85,11 +88,17 @@ export default function ArabicNewsCatalogPage() {
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       desc.toLowerCase().includes(searchQuery.toLowerCase());
 
-    if (activeCategory === "ALL") return matchesSearch;
+    if (activeCategory === "ALL") {
+      // استبعاد المقالة المميزة من الشبكة لمنع التكرار في الوضع الافتراضي
+      const isDefaultView = searchQuery === "" && activeCategory === "ALL";
+      if (isDefaultView && featuredArticle && art.slug === featuredArticle.slug) {
+        return false;
+      }
+      return matchesSearch;
+    }
+
     return matchesSearch && category === activeCategory;
   });
-
-  const featuredArticle = articlesList[0];
 
   return (
     <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
@@ -209,7 +218,7 @@ export default function ArabicNewsCatalogPage() {
         </section>
       )}
 
-      {/* Articles Grid (بدون أي Framer Motion معفن) */}
+      {/* Articles Grid - (تم استبعاد المقالة المميزة منها تلقائياً لمنع التكرار) */}
       <section className="py-12 pb-24 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {!loading && filteredArticles.map((art: any) => {

@@ -106,79 +106,77 @@ export default function ArabicNavbar() {
                 `}</style>
                 
                 {/* Products Section */}
-<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-  <div className="flex items-center justify-between w-full">
-    {/* زرار الفتح والإغلاق للقائمة */}
-    <button 
-      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-    >
-      <span>المنتجات ({productsDatabase.length})</span>
-      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileProductsOpen ? "rotate-180" : ""}`} />
-    </button>
+                <div className="space-y-2 bg-white/[0.04] p-3.5 sm:p-4 rounded-2xl border border-white/10 shadow-lg">
+                  <div className="flex items-center justify-between w-full">
+                    <button 
+                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                      className="flex items-center gap-2 text-base sm:text-lg font-extrabold text-[#D4AF37] cursor-pointer"
+                    >
+                      <span>المنتجات ({productsDatabase.length})</span>
+                      <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    <Link 
+                      href="/ar/products" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                    >
+                      عرض الكل <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  
+                  {mobileProductsOpen && (
+                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-white/10 mt-2">
+                      {productsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/products/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-2 px-3 text-xs sm:text-sm text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl transition-all duration-200 group active:scale-[0.98]"
+                        >
+                          <span className="font-medium">{item.ar ? item.ar.name : item.name}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] opacity-60 group-hover:opacity-100 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-    {/* رابط سريع يوديه لصفحة المنتجات الكاملة لو حابب */}
-    <Link 
-      href="/ar/products" 
-      onClick={() => setMobileMenuOpen(false)}
-      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
-    >
-      عرض الكل <ArrowUpRight className="w-3 h-3" />
-    </Link>
-  </div>
-  
-  {mobileProductsOpen && (
-    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-      {productsDatabase.map((item) => (
-        <Link
-          key={item.slug}
-          href={`/ar/products/${item.slug}`}
-          onClick={() => setMobileMenuOpen(false)}
-          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-        >
-          <span>{item.ar ? item.ar.name : item.name}</span>
-          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-        </Link>
-      ))}
-    </div>
-  )}
-</div>
+                {/* Solutions Section */}
+                <div className="space-y-2 bg-white/[0.04] p-3.5 sm:p-4 rounded-2xl border border-white/10 shadow-lg">
+                  <div className="flex items-center justify-between w-full">
+                    <button 
+                      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                      className="flex items-center gap-2 text-base sm:text-lg font-extrabold text-[#D4AF37] cursor-pointer"
+                    >
+                      <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+                      <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    <Link 
+                      href="/ar/solutions" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                    >
+                      عرض الكل <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  
+                  {mobileSolutionsOpen && (
+                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-white/10 mt-2">
+                      {solutionsDatabase.map((item) => (
+                        <Link
+                          key={item.slug}
+                          href={`/ar/solutions/${item.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between py-2 px-3 text-xs sm:text-sm text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl transition-all duration-200 group active:scale-[0.98]"
+                        >
+                          <span className="font-medium">{item.name}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] opacity-60 group-hover:opacity-100 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-{/* Solutions Section */}
-<div className="space-y-1 bg-white/5 p-2.5 sm:p-3 rounded-xl border border-white/10">
-  <div className="flex items-center justify-between w-full">
-    <button 
-      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-      className="flex items-center gap-2 text-sm sm:text-base font-bold text-[#D4AF37] cursor-pointer"
-    >
-      <span>الحلول والخدمات ({solutionsDatabase.length})</span>
-      <ChevronDown className={`w-4 h-4 transition-transform duration-305 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-    </button>
-    <Link 
-      href="/ar/solutions" 
-      onClick={() => setMobileMenuOpen(false)}
-      className="text-[11px] text-slate-400 hover:text-white underline flex items-center gap-1"
-    >
-      عرض الكل <ArrowUpRight className="w-3 h-3" />
-    </Link>
-  </div>
-  
-  {mobileSolutionsOpen && (
-    <div className="grid grid-cols-1 gap-1 pt-2 border-t border-white/10 mt-1">
-      {solutionsDatabase.map((item) => (
-        <Link
-          key={item.slug}
-          href={`/ar/solutions/${item.slug}`}
-          onClick={() => setMobileMenuOpen(false)}
-          className="flex items-center justify-between py-1 px-2 text-[11px] text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition group"
-        >
-          <span>{item.name}</span>
-          <ArrowUpRight className="w-3 h-3 text-[#D4AF37] group-hover:-translate-x-0.5 transition-transform" />
-        </Link>
-      ))}
-    </div>
-  )}
-</div>
               </div>
             </div>
 

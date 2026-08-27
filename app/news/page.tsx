@@ -7,8 +7,7 @@ import {
   Calendar, 
   Clock, 
   Search, 
-  Tag, 
-  Send 
+  Tag 
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,16 +68,25 @@ export default function NewsPage() {
   // دمج المقالات الثابتة مع مقالات سانتي الحقيقية فور توفرها
   const allArticles = [...articlesDatabase, ...cmsArticles];
 
+  // تحديد المقالة المميزة الأولى
+  const featuredPost = allArticles.find((a) => a.featured) || allArticles[0];
+
+  // فلترة المقالات للـ Grid (مع استبعاد المقالة المميزة إذا كنا في القسم الافتراضي لعدم التكرار)
   const filteredArticles = allArticles.filter((art) => {
     const matchesCategory =
       activeCategory === "All Articles" || art.category === activeCategory;
     const matchesSearch =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       art.desc.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    // إذا لم يكن هناك بحث وكنا في "All Articles"، نقوم باستبعاد المقالة المميزة لعدم تكرارها
+    const isDefaultView = searchQuery === "" && activeCategory === "All Articles";
+    if (isDefaultView && featuredPost && art.slug === featuredPost.slug) {
+      return false;
+    }
+
     return matchesCategory && matchesSearch;
   });
-
-  const featuredPost = allArticles.find((a) => a.featured) || allArticles[0];
 
   return (
     <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
@@ -186,7 +194,7 @@ export default function NewsPage() {
         </section>
       )}
 
-      {/* Grid of Articles - تعرض المقالات فوراً بدون شاشة "Loading" مزعجة */}
+      {/* Grid of Articles - تم استبعاد المقالة المميزة منها تلقائياً لمنع التكرار */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.map((article: any) => (
