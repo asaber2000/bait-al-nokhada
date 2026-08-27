@@ -22,7 +22,7 @@ export default function ArabicNavbar() {
 
   return (
     <>
-      <header dir="rtl" className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 h-24 flex items-center justify-between bg-[#070B14]/80 backdrop-blur-md transform-gpu">
+      <header dir="rtl" className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 h-24 flex items-center justify-between pointer-events-none">
         <button 
           onClick={() => setMobileMenuOpen(true)}
           className="pointer-events-auto flex items-center gap-2.5 text-white group cursor-pointer p-2 rounded-xl hover:bg-white/10 transition backdrop-blur-sm"

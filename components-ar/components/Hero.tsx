@@ -10,8 +10,8 @@ export default function ArabicHero() {
       className="relative w-full h-[100dvh] flex items-center justify-center px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
     >
       
-      {/* خلفية الفيديو - تم ضبطها بـ absolute داخل الـ section لتتحרק بانسجام تام بدون أي اهتزاز */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none transform-gpu">
+      {/* خلفية الفيديو - تم تثبيتها بـ fixed لمنع أي اهتزاز أثناء السكرول على الموبايل */}
+      <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none transform-gpu">
         <video
           autoPlay
           loop
