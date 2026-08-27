@@ -3,6 +3,7 @@ import "./globals.css";
 import { fontHeadingEn, fontBodyEn, fontHeadingAr, fontBodyAr } from "./fonts";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <Preloader />
           {children}
         </SmoothScroll>
+        <SpeedInsights />
       </body>
     </html>
   );
