@@ -2,11 +2,11 @@ import { Award, Building2, Globe2 } from "lucide-react";
 
 export default function ArabicStatsSection() {
   return (
-    <section dir="rtl" className="relative z-25 bg-[#070B14] py-12 px-4 sm:px-6 lg:px-12 border-b border-white/10 text-right">
+    <section dir="rtl" className="relative z-20 bg-[#070B14] py-12 px-4 sm:px-6 lg:px-12 border-b border-white/10 text-right transform-gpu">
       <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         
         {/* الكارد الأول: سنة من الريادة */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center sm:text-right">
+        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 text-center sm:text-right transform-gpu">
           <div className="p-2 sm:p-3 rounded-xl bg-white/5 border border-white/10 shrink-0">
             <Award className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
           </div>
@@ -17,7 +17,7 @@ export default function ArabicStatsSection() {
         </div>
 
         {/* الكارد الثاني: هيكل مصنع ومبني */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center sm:text-right">
+        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 text-center sm:text-right transform-gpu">
           <div className="p-2 sm:p-3 rounded-xl bg-white/5 border border-white/10 shrink-0">
             <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
           </div>
@@ -28,7 +28,7 @@ export default function ArabicStatsSection() {
         </div>
 
         {/* الكارد الثالث: دولة خليجية وإقليمية */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center sm:text-right">
+        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 text-center sm:text-right transform-gpu">
           <div className="p-2 sm:p-3 rounded-xl bg-white/5 border border-white/10 shrink-0">
             <Globe2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
           </div>
@@ -39,7 +39,7 @@ export default function ArabicStatsSection() {
         </div>
 
         {/* الكارد الرابع: ثقة مطلقة */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md text-center sm:text-right">
+        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 text-center sm:text-right transform-gpu">
           <div className="p-2 sm:p-3 rounded-xl bg-white/5 border border-white/10 shrink-0">
             <span className="text-sm sm:text-xl font-bold text-[#D4AF37]">99%</span>
           </div>
