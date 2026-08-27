@@ -9,15 +9,15 @@ export default function ArabicHero() {
       className="relative w-full min-h-screen flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center"
     >
       
-      {/* خلفية الفيديو - تم تحويلها إلى absolute طبيعي مع منع أي زووم عبر object-cover وثبات الحاوية */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+      {/* خلفية الفيديو ثابتة هندسياً بدون أي زووم أو تمدد */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none bg-[#070B14]">
         <video
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-75 filter brightness-105"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-75 filter brightness-105 pointer-events-none"
         >
           <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
         </video>
