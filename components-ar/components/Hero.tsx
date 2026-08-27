@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
 export default function ArabicHero() {
@@ -10,7 +9,7 @@ export default function ArabicHero() {
       className="relative w-full min-h-[100dvh] flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
     >
       
-      {/* خلفية الفيديو - تم تثبيتها بـ fixed لمنع أي اهتزاز أثناء السكرول على الموبايل */}
+      {/* خلفية الفيديو - ثابتة بـ fixed */}
       <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none transform-gpu">
         <video
           autoPlay
@@ -26,34 +25,25 @@ export default function ArabicHero() {
         <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
       </div>
 
-      {/* المحتوى الرئيسي */}
+      {/* المحتوى الرئيسي (بدون أي motion لضمان الثبات التام) */}
       <div className="relative z-10 max-w-5xl mx-auto w-full text-center space-y-6 pt-16 transform-gpu">
         
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <h1
           className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1] drop-shadow-lg font-heading"
         >
           الريادة والبراعة الهندسية <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
             في صناعة الهياكل الفاخرة
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+        <p
           className="text-base sm:text-lg text-slate-200/90 max-w-2xl mx-auto font-light drop-shadow"
         >
           هندسة أرقى القاعات الملكية ومظلات الشد الإنشائي الذكية في مختلف أنحاء الشرق الأوسط.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+        <div
           className="flex flex-wrap items-center justify-center gap-4 pt-2"
         >
           <a
@@ -71,7 +61,7 @@ export default function ArabicHero() {
             <Play className="w-4 h-4 text-[#D4AF37] fill-[#D4AF37]" />
             <span>مشاهدة الفيلم التعريفي</span>
           </a>
-        </motion.div>
+        </div>
       </div>
 
     </section>
