@@ -31,76 +31,90 @@ const badges = [
 
 export default function WhyUsSection() {
   return (
-    <section className="relative py-24 px-6 bg-[#070B14] border-t border-white/10 overflow-hidden">
+    <section className="relative py-28 px-6 bg-[#070B14] border-t border-white/10 overflow-hidden">
       
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+      {/* خلفية محيطية مضيئة متدرجة */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-20">
+      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20 shadow-inner">
             <Sparkles className="w-3.5 h-3.5" />
             <span>The Gold Standard Since 1997</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
             Why Industry Leaders <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
               Trust Bait Al Nokhada
             </span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed font-light">
             Delivering precision engineering, certified safety compliance, and rapid turnkey installations tailored for royal venues, defense expos, and corporate summits.
           </p>
         </div>
 
-        {/* 3 Strategic Pillars (01, 02, 03) */}
+        {/* 3 Strategic Pillars (01, 02, 03) بتصميم كروت فخمة مع خلفية عميقة */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="relative p-8 rounded-3xl bg-gradient-to-b from-white/[0.05] to-white/[0.01] border border-white/10 hover:border-[#D4AF37]/40 transition-all duration-300 group flex flex-col justify-between"
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              whileHover={{ y: -6 }}
+              className="relative p-8 sm:p-10 rounded-[2rem] bg-gradient-to-br from-white/[0.06] to-white/[0.01] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 group flex flex-col justify-between shadow-2xl overflow-hidden backdrop-blur-xl"
             >
-              <div className="space-y-4">
-                <span className="inline-block text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#D4AF37] to-white/20">
-                  {pillar.num}
-                </span>
-                <h3 className="text-lg font-bold tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">
+              {/* إضاءة خفيفة تظهر عند الـ Hover خلف الكارت */}
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#D4AF37]/10 rounded-full blur-3xl group-hover:bg-[#D4AF37]/20 transition-all duration-500 pointer-events-none" />
+
+              <div className="space-y-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <span className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#D4AF37] via-white/80 to-white/10 opacity-80 group-hover:opacity-100 transition-opacity">
+                    {pillar.num}
+                  </span>
+                  <div className="w-2 h-2 rounded-full bg-[#D4AF37]/40 group-hover:bg-[#D4AF37] group-hover:scale-150 transition-all shadow-[0_0_10px_#D4AF37]" />
+                </div>
+                
+                <h3 className="text-xl font-extrabold tracking-wider text-white group-hover:text-[#D4AF37] transition-colors font-heading">
                   {pillar.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                
+                <p className="text-sm text-slate-300 leading-relaxed font-light">
                   {pillar.desc}
                 </p>
               </div>
+
+              {/* خط ذهبي سفضي رفيع يتوهج عند مرور الماوس */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/0 group-hover:via-[#D4AF37] to-transparent transition-all duration-500" />
             </motion.div>
           ))}
         </div>
 
-        {/* Trust Badges Strip (ISO, Fire Retardant, etc.) */}
+        {/* Trust Badges Strip بتصميم أنيق ومتحرك */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-6"
         >
           {badges.map((badge, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/30 hover:bg-white/[0.04] transition-all text-center space-y-3 group"
+              whileHover={{ scale: 1.03, y: -3 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/40 hover:bg-white/[0.05] transition-all text-center space-y-3.5 group shadow-lg cursor-pointer"
             >
-              <div className="p-3 rounded-xl bg-[#D4AF37]/10 text-[#D4AF37] group-hover:scale-110 transition-transform">
+              <div className="p-3.5 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#070B14] transition-all duration-300 shadow-md">
                 <badge.icon className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-300 group-hover:text-white transition-colors">
                 {badge.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 

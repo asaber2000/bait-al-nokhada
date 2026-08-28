@@ -5,6 +5,7 @@
 // اجعله يشير للمجلد العربي الجديد:
 import Navbar from "../../components-ar/components/Navbar.Ar";
 import Hero from "../../components-ar/components/Hero";
+import FeatureShowcase from "@/components-ar/components/FeatureShowcase";
 import StatsSection from "../../components-ar/components/StatsSection";
 import WhyUsSection from "../../components-ar/components/WhyUsSection";
 import SolutionsSection from "../../components-ar/components/SolutionsSection";
@@ -21,6 +22,7 @@ export default function ArabicHome() {
     <main dir="rtl" className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
       <Navbar />
       <Hero />
+      <FeatureShowcase />
       <StatsSection />
       <WhyUsSection />
       <SolutionsSection />

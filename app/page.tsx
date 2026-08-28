@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import FeatureShowcase from "@/components/FeatureShowcase";
 import StatsSection from "../components/StatsSection";
 import WhyUsSection from "../components/WhyUsSection";
 import SolutionsSection from "../components/SolutionsSection";
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
       <Navbar />
       <Hero />
+      <FeatureShowcase />
       <StatsSection />
       <WhyUsSection />
       <SolutionsSection />
