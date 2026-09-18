@@ -2,14 +2,10 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import StatsSection from "../components/StatsSection";
-import WhyUsSection from "../components/WhyUsSection";
 import SolutionsSection from "../components/SolutionsSection";
-import FeaturedProjects from "../components/FeaturedProjects";
+import FeaturedSolutions from "@/components/FeaturedSolutions";
 import ClientsTicker from "../components/ClientsTicker";
 import TestimonialsSection from "../components/TestimonialsSection";
-import FaqSection from "../components/FaqSection";
-import BlogSection from "../components/BlogSection";
-import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -19,14 +15,10 @@ export default function Home() {
       <Hero />
       <FeatureShowcase />
       <StatsSection />
-      <WhyUsSection />
       <SolutionsSection />
-      <FeaturedProjects />
+      <FeaturedSolutions />
       <ClientsTicker />
       <TestimonialsSection />
-      <FaqSection />
-      <BlogSection />
-      <MapSection />
       <Footer />
     </main>
   );

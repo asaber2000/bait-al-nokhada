@@ -9,13 +9,14 @@ import FeatureShowcase from "@/components-ar/components/FeatureShowcase";
 import StatsSection from "../../components-ar/components/StatsSection";
 import WhyUsSection from "../../components-ar/components/WhyUsSection";
 import SolutionsSection from "../../components-ar/components/SolutionsSection";
-import FeaturedProjects from "../../components-ar/components/FeaturedProjects";
+import FeaturedSolutions from "../../components-ar/components/FeaturedSolutions";
 import ClientsTicker from "../../components-ar/components/ClientsTicker";
 import TestimonialsSection from "../../components-ar/components/TestimonialsSection";
 import FaqSection from "../../components-ar/components/FaqSection";
 import BlogSection from "../../components-ar/components/BlogSection";
 import MapSection from "../../components-ar/components/MapSection";
 import Footer from "@/components-ar/components/Footer.Ar";
+
 
 export default function ArabicHome() {
   return (
@@ -26,7 +27,7 @@ export default function ArabicHome() {
       <StatsSection />
       <WhyUsSection />
       <SolutionsSection />
-      <FeaturedProjects />
+      <FeaturedSolutions />
       <ClientsTicker />
       <TestimonialsSection />
       <FaqSection />

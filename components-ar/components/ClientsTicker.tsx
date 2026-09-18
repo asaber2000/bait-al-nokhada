@@ -4,52 +4,58 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const clients = [
-  { name: "تسلا", logo: "/images/Tesla-Logo (1).svg" },
-  { name: "شرطة دبي", logo: "/images/ADM-logo.svg" },
-  { name: "إعمار", logo: "/images/adnoc-logo-updated (1).svg" },
-  { name: "مطارات أبوظبي", logo: "/images/emaar-logo-w (1).svg" },
-  { name: "هيلتون", logo: "/images/Etihad-Rail-UAE (1).svg" },
-  { name: "الاتحاد قطار", logo: "/images/Fairmont-Hotel-Logo-Vector.svg- (1).svg"},
-  { name: "دي بي ورلد", logo: "/images/Government-of-Sharjah-Agriculture-Livestock-Department.svg" },
-  { name: "إكسبو سيتي دبي", logo: "/images/Grandiose-Logo_Sept2_637446820117728624 (1).svg" },
-  { name: "مبادلة", logo: "/images/HeaderLogo (1).svg" },
-  { name: "اليونيسف", logo: "/images/logo (1).svg" },
-  { name: "فيرمونت", logo: "/images/mubadala-investment-company-vector-logo (1).svg"},
+  { name: "تسلا", logo: "/images/Tesla-Logo (1).svg", filterType: "normal" },
+  { name: "أبوظبي للإعلام", logo: "/images/ADM-logo.svg", filterType: "invert" },
+  { name: "أدنوك", logo: "/images/adnoc-logo-updated (1).svg", filterType: "normal" },
+  { name: "إعمار", logo: "/images/emaar-logo-w (1).svg", filterType: "normal" },
+  { name: "قطارات الاتحاد", logo: "/images/Etihad-Rail-UAE (1).svg", filterType: "invert" },
+  { name: "فيرمونت", logo: "/images/Fairmont-Hotel-Logo-Vector.svg- (1).svg", filterType: "invert" },
+  { name: "حكومة الشارقة", logo: "/images/Government-of-Sharjah-Agriculture-Livestock-Department.svg", filterType: "invert" },
+  { name: "جرانديوس", logo: "/images/Grandiose-Logo_Sept2_637446820117728624 (1).svg", filterType: "normal" },
+  { name: "شعار الشريك", logo: "/images/HeaderLogo (1).svg", filterType: "invert" },
+  { name: "يونيسف", logo: "/images/logo (1).svg", filterType: "invert" },
+  { name: "مبادلة", logo: "/images/mubadala-investment-company-vector-logo (1).svg", filterType: "mubadala" },
 ];
 
-export default function ArabicClientsTicker() {
+export default function ClientsTickerAr() {
   return (
-    <section dir="rtl" className="relative py-24 bg-[#070B14] border-t border-white/10 overflow-hidden text-right">
+    <section dir="rtl" className="relative py-20 bg-[#070B14] border-t border-white/5 overflow-hidden font-sans">
       
-      {/* Background Subtle Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[300px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
+      {/* توهج خلفي محيطي خفيف */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="w-full px-12 sm:px-16 lg:px-32 mb-14 text-center">
-        <span className="text-xs uppercase tracking-[0.35em] font-bold text-slate-400">
-          نحظى بثقة كبرى المؤسسات العالمية والجهات الحكومية
+      <div className="w-full px-6 mb-12 text-center">
+        <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/25 px-5 py-2 rounded-full shadow-sm">
+          تحظى بثقة كبرى المؤسسات العالمية والجهات الحكومية
         </span>
       </div>
 
-      {/* Infinite Horizontal Marquee for Large Logos */}
+      {/* شريط السكرول المتواصل بحجم أكبر وأوضح */}
       <div className="flex overflow-hidden select-none w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <motion.div
           animate={{ x: ["0%", "50%"] }}
           transition={{ ease: "linear", duration: 45, repeat: Infinity }}
-          className="flex items-center gap-16 whitespace-nowrap shrink-0"
+          className="flex items-center gap-8 whitespace-nowrap shrink-0"
         >
-          {[...clients, ...clients, ...clients, ...clients].map((client, idx) => (
+          {[...clients, ...clients].map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex items-center justify-center w-[220px] h-[190px] px-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/40 hover:bg-white/[0.05] transition-all duration-300 group shrink-0 backdrop-blur-sm shadow-xl"
+              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/50 hover:bg-white/[0.06] transition-all duration-300 group shrink-0 shadow-xl"
             >
-              {/* حاوية اللوجو بحجم كبير وواضح */}
-              <div className="relative w-35 h-50 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
+              {/* حاوية اللوجو - نفس المقاسات والفلاتر بالضبط */}
+              <div className="relative w-full h-[65px] flex items-center justify-center">
                 <Image
                   src={client.logo}
                   alt={client.name}
                   fill
-                  sizes="176px"
-                  className="object-contain filter brightness-95 contrast-125 grayscale group-hover:grayscale-0 transition-all duration-300"
+                  sizes="200px"
+                  className={`object-contain transition-all duration-300 group-hover:scale-110 ${
+                    client.filterType === "invert"
+                      ? "invert brightness-200 opacity-90 group-hover:opacity-100"
+                      : client.filterType === "mubadala"
+                      ? "opacity-75 brightness-90 contrast-125 mix-blend-screen group-hover:opacity-100 transition-opacity"
+                      : "opacity-90 group-hover:opacity-100"
+                  }`}
                 />
               </div>
             </div>
