@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import FeatureShowcase from "@/components/FeatureShowcase";
-import StatsSection from "../components/StatsSection";
 import SolutionsSection from "../components/SolutionsSection";
 import FeaturedSolutions from "@/components/FeaturedSolutions";
 import ClientsTicker from "../components/ClientsTicker";
@@ -14,7 +13,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <FeatureShowcase />
-      <StatsSection />
       <SolutionsSection />
       <FeaturedSolutions />
       <ClientsTicker />

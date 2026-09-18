@@ -48,24 +48,25 @@ export default function ArabicNavbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
+          {/* اللوجو العربي بحجم ووزن مطابق تماماً للنسخة الإنجليزية */}
           <Link href="/ar" className="flex flex-col text-right group">
             <span
-              className={`font-black tracking-wider text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 ${
-                isScrolled ? "text-sm sm:text-base" : "text-lg sm:text-2xl md:text-3xl"
+              className={`font-black text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-3xl md:text-4xl"
               }`}
             >
-              بيت النوخذة
+            بيت
             </span>
             <span
-              className={`text-[#D4AF37] uppercase font-bold drop-shadow transition-all duration-300 ${
-                isScrolled ? "text-[6px] tracking-[0.1em]" : "text-[10px] sm:text-[11px] tracking-[0.2em]"
+              className={`text-[#D4AF37] font-bold drop-shadow transition-all duration-300 pt-1 leading-none ${
+                isScrolled ? "text-[8px] sm:text-[9px]" : "text-xs sm:text-sm"
               }`}
             >
-              للخيام والهياكل النسيجية
+              النوخذة
             </span>
           </Link>
 
-          {/* أزرار الهيدر: زر تحويل اللغة ظاهر أمام العين + زر القائمة */}
+          {/* الأزرار العلوية بنفس القياس والأبعاد والارتفاع */}
           <div className="flex items-center gap-3">
             <Link
               href={targetLanguageUrl}
@@ -75,10 +76,11 @@ export default function ArabicNavbar() {
               <span className="text-xs font-black tracking-wider uppercase">EN</span>
             </Link>
 
+            {/* زر القائمة العربي بنفس قياس وارتفاع زر MENU الإنجليزي */}
             <button
               onClick={() => setMobileMenuOpen(true)}
               className={`flex items-center gap-3 text-white group cursor-pointer rounded-2xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl ${
-                isScrolled ? "py-2 px-4" : "py-2.5 px-5"
+                isScrolled ? "py-2 px-5 h-9 sm:h-10" : "py-2.5 px-6 h-11 sm:h-12"
               }`}
               aria-label="فتح القائمة"
             >
@@ -86,7 +88,7 @@ export default function ArabicNavbar() {
                 <span className="w-5 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-3 transition-all duration-300" />
                 <span className="w-3 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-5 transition-all duration-300" />
               </div>
-              <span className="font-extrabold uppercase text-xs sm:text-sm tracking-[0.15em] text-white group-hover:text-[#D4AF37] transition-colors">
+              <span className="font-extrabold text-xs sm:text-base text-white group-hover:text-[#D4AF37] transition-colors">
                 القائمة
               </span>
             </button>

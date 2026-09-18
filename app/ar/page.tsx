@@ -6,15 +6,10 @@
 import Navbar from "../../components-ar/components/Navbar.Ar";
 import Hero from "../../components-ar/components/Hero";
 import FeatureShowcase from "@/components-ar/components/FeatureShowcase";
-import StatsSection from "../../components-ar/components/StatsSection";
-import WhyUsSection from "../../components-ar/components/WhyUsSection";
 import SolutionsSection from "../../components-ar/components/SolutionsSection";
 import FeaturedSolutions from "../../components-ar/components/FeaturedSolutions";
 import ClientsTicker from "../../components-ar/components/ClientsTicker";
 import TestimonialsSection from "../../components-ar/components/TestimonialsSection";
-import FaqSection from "../../components-ar/components/FaqSection";
-import BlogSection from "../../components-ar/components/BlogSection";
-import MapSection from "../../components-ar/components/MapSection";
 import Footer from "@/components-ar/components/Footer.Ar";
 
 
@@ -24,15 +19,10 @@ export default function ArabicHome() {
       <Navbar />
       <Hero />
       <FeatureShowcase />
-      <StatsSection />
-      <WhyUsSection />
       <SolutionsSection />
       <FeaturedSolutions />
       <ClientsTicker />
       <TestimonialsSection />
-      <FaqSection />
-      <BlogSection />
-      <MapSection />
       <Footer />
     </main>
   );

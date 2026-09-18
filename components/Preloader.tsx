@@ -38,7 +38,7 @@ export default function Preloader() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-2xl sm:text-4xl font-black tracking-wider text-white font-heading"
             >
-              {isArabic ? "بيت النوخذة" : "Bait Al Nokhada"}
+              {isArabic ? "بيت" : "Bait"}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ export default function Preloader() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-xs sm:text-sm tracking-[0.3em] text-[#D4AF37] uppercase font-semibold"
             >
-              {isArabic ? "خيام وهياكل إنشائية" : "TENTS & FABRIC STRUCTURES"}
+              {isArabic ? "النوخذة" : "Al Nokhada"}
             </motion.p>
           </div>
         </motion.div>

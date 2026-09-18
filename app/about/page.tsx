@@ -56,33 +56,6 @@ const journeyMilestones = [
   },
 ];
 
-const structuralPillars = [
-  {
-    num: "01",
-    title: "Aerospace-Grade Certified Alloys",
-    desc: "Only strong, corrosion-resistant and lightweight materials consisting of anodized aluminum profiles (6061/T6) and hot-dip galvanized structural steel are used to minimize maintenance and maximize lifespan.",
-  },
-  {
-    num: "02",
-    title: "Infinite Relocation & Modular Reusability",
-    desc: "Every structure is engineered to be demountable, re-transported an unlimited number of times, and compactly stored without risk of degradation under extreme desert environments.",
-  },
-  {
-    num: "03",
-    title: "Pioneering Curved & Arch Span Technology",
-    desc: "Setting the trend for architectural standardization across the GCC with high-apex polygons, geodesic spheres, and multi-span clear structures that withstand heavy gust loads.",
-  },
-  {
-    num: "04",
-    title: "Automated CNC & High-Frequency HF Welding",
-    desc: "Utilizing European automated numerical control machinery and high-frequency PVC membrane welding for 100% waterproof, flame-retardant (DIN 4102 B1), and UV-resistant performance.",
-  },
-  {
-    num: "05",
-    title: "Full-Cycle Turnkey Project Execution",
-    desc: "A multidisciplinary team of structural engineers, 3D visualizers, and licensed site technicians taking projects from concept calculation to instant on-site handover.",
-  },
-];
 
 const expertiseList = [
   {
@@ -206,58 +179,7 @@ export default function AboutPage() {
           </AnimatePresence>
         </div>
       </section>
-
-      {/* Structural Pillars */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5 space-y-6 sticky top-28">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-              Engineering Discipline
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight font-heading">
-              Precision Manufacturing & Heavy-Duty Reliability
-            </h2>
-            <p className="text-sm text-slate-400 font-light leading-relaxed">
-              We operate state-of-the-art European fabrication plants in Abu Dhabi (ICAD-1) and Dubai, adhering to certified DIN EN 13782 standards.
-            </p>
-            
-            <div className="pt-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
-              >
-                <span>Consult With Our Engineers</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-6">
-            {structuralPillars.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-[#0D1527]/70 border border-white/10 hover:border-[#D4AF37]/40 transition-all group flex gap-6"
-              >
-                <span className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-linear-to-br from-[#D4AF37] to-white/20 shrink-0">
-                  {item.num}
-                </span>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#D4AF37] transition-colors font-heading">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* Vision & Mission */}
       <section className="py-20 px-6 max-w-7xl mx-auto border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

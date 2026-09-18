@@ -52,13 +52,13 @@ export default function Navbar() {
               className={`font-black tracking-wider text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 ${isScrolled ? "text-sm sm:text-base" : "text-lg sm:text-2xl md:text-3xl"
                 }`}
             >
-              BAIT AL NOKHADA
+              BAIT 
             </span>
             <span
               className={`text-[#D4AF37] uppercase font-bold drop-shadow transition-all duration-300 ${isScrolled ? "text-[6px] tracking-[0.15em]" : "text-[10px] sm:text-[11px] tracking-[0.3em]"
                 }`}
             >
-              Tents & Fabric Structures
+              AL NOKHADA
             </span>
           </Link>
 

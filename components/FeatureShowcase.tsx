@@ -36,13 +36,6 @@ const pillars = [
   },
 ];
 
-const badges = [
-  { icon: Award, label: "5,000+ Projects Delivered" },
-  { icon: ShieldCheck, label: "ISO 9001:2015 Certified" },
-  { icon: CheckCircle2, label: "All 7 Emirates Coverage" },
-  { icon: Clock, label: "24/7 Field Support" },
-  { icon: Flame, label: "Certified Fire-Retardant PVC" },
-];
 
 export default function FeatureShowcase() {
   return (
@@ -105,15 +98,6 @@ export default function FeatureShowcase() {
                 unoptimized
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/80 via-transparent to-transparent opacity-80" />
-              
-              <div className="absolute bottom-4 left-4 right-4 z-20 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-xl">
-                <ShieldCheck className="w-5 h-5 text-[#D4AF37] shrink-0" />
-                <div>
-                  <p className="text-xs font-bold text-white">Certified International Standards</p>
-                  <p className="text-[10px] text-slate-400">German DIN & Fire-Retardant PVC</p>
-                </div>
-              </div>
             </div>
           </motion.div>
 
@@ -170,21 +154,6 @@ export default function FeatureShowcase() {
         </div>
 
         {/* 3. شريط أختام الجودة والاعتمادات (Badges Strip) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
-          {badges.map((badge, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center justify-center p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/30 transition-all text-center space-y-2 group shadow-md"
-            >
-              <div className="p-2 rounded-xl bg-[#D4AF37]/10 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#070B14] transition-all duration-300">
-                <badge.icon className="w-4 h-4" />
-              </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300 group-hover:text-white transition-colors">
-                {badge.label}
-              </span>
-            </div>
-          ))}
-        </div>
 
       </div>
     </section>

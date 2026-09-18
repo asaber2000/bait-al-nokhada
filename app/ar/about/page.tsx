@@ -56,33 +56,6 @@ const journeyMilestones = [
   },
 ];
 
-const structuralPillars = [
-  {
-    num: "01",
-    title: "سبائك ألمنيوم معتمدة بمواصفات الطيران",
-    desc: "نستخدم حصرياً قطاعات الألمنيوم المقسّى المعالج بالأكسدة (6061/T6) والمفاصل الفولاذية المجلفنة بالغمس الساخن لتقليل الصيانة ومقاومة الصدأ ومضاعفة العمر الافتراضي.",
-  },
-  {
-    num: "02",
-    title: "إعادة استخدام ونقل لا محدود",
-    desc: "تم تصميم كافة الهياكل لتكون سهلة الفك وإعادة التركيب والنقل لمرات غير محدودة، مع تخزين مدمج دون أي تآكل حتى في أقسى الظروف الصحراوية.",
-  },
-  {
-    num: "03",
-    title: "ريادة تقنيات البحور القوسية والمضلعة",
-    desc: "وضع المعايير القياسية للهياكل في الخليج عبر الخيام المضلعة عالية القمة، والقباب الجيوديسية، والهياكل ذات البحور المفتوحة المقاومة للرياح العاتية.",
-  },
-  {
-    num: "04",
-    title: "قص آلي CNC ولحام عالي التردد HF",
-    desc: "الاعتماد على خطوط إنتاج أوروبية آلية ولحام أغشية PVC عالية التردد لضمان مقاومة تسريب المياه بنسبة 100%، ومقاومة الحريق (DIN 4102 B1)، وحجب الأشعة فوق البنفسجية.",
-  },
-  {
-    num: "05",
-    title: "تنفيذ شامل للمشاريع تسليم مفتاح",
-    desc: "فريق متكامل يضم نخبة من المهندسين الإنشائيين، مصممي النماذج ثلاثية الأبعاد، والفنيين المعتمدين لمتابعة المشروع من الحسابات الهندسية وحتى التسليم النهائي في الموقع.",
-  },
-];
 
 const expertiseList = [
   {
@@ -204,57 +177,6 @@ export default function ArabicAboutPage() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
-      </section>
-
-      {/* Structural Pillars */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-right">
-          <div className="lg:col-span-5 space-y-6 sticky top-28">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-              الانضباط والمعايير الهندسية
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight font-heading">
-              دقة التصنيع وموثوقية الهياكل الثقيلة
-            </h2>
-            <p className="text-sm text-slate-400 font-light leading-relaxed">
-              ندير مجمعات صناعية أوروبية متطورة في مدينة أبوظبي الصناعية (ICAD-1) ودبي، مع الالتزام بأعلى معايير السلامة الألمانية المعتمدة DIN EN 13782.
-            </p>
-            
-            <div className="pt-4">
-              <Link
-                href="/ar/contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
-              >
-                <span>استشر مهندسينا في مشروعك</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-6">
-            {structuralPillars.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-[#0D1527]/70 border border-white/10 hover:border-[#D4AF37]/40 transition-all group flex gap-6"
-              >
-                <span className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-linear-to-br from-[#D4AF37] to-white/20 shrink-0">
-                  {item.num}
-                </span>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#D4AF37] transition-colors font-heading">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
