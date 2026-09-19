@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { productsDatabase } from "@/app/data/products.En";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
@@ -42,26 +43,20 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-            ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3 border-b border-white/5"
-            : "bg-transparent py-8"
+          ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3 border-b border-white/5"
+          : "bg-transparent py-8"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
-          <Link href="/" className="flex flex-col text-left group">
-            <span
-              className={`font-black tracking-wider text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 ${isScrolled ? "text-sm sm:text-base" : "text-lg sm:text-2xl md:text-3xl"
-                }`}
-            >
-              BAIT 
-            </span>
-            <span
-              className={`text-[#D4AF37] uppercase font-bold drop-shadow transition-all duration-300 ${isScrolled ? "text-[6px] tracking-[0.15em]" : "text-[10px] sm:text-[11px] tracking-[0.3em]"
-                }`}
-            >
-              AL NOKHADA
-            </span>
-          </Link>
-
+          <Link href="/" className="relative flex items-center group py-2">
+  <img
+    src="/icons/Bait-Al-Nokhada-Tents-Logooo.svg"
+    alt="Bait Al Nokhada Tents"
+    className={`w-auto object-contain transition-all duration-300 ${
+      isScrolled ? "h-12 sm:h-14" : "h-24 sm:h-30"
+    }`}
+  />
+</Link>
           {/* أزرار الهيدر الإنجليزي: زر التحويل للعربية + زر القائمة */}
           <div className="flex items-center gap-3">
             <Link
