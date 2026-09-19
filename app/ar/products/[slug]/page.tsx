@@ -1,12 +1,12 @@
-import { 
-  Sparkles, 
-  ArrowRight, 
-  Send, 
-  CheckCircle2, 
-  Maximize2, 
-  PhoneCall, 
-  Boxes, 
-  ShieldCheck, 
+import {
+  Sparkles,
+  ArrowRight,
+  Send,
+  CheckCircle2,
+  Maximize2,
+  PhoneCall,
+  Boxes,
+  ShieldCheck,
   Award,
   Clock,
   Layers,
@@ -185,12 +185,12 @@ export default async function ArabicProductDetailPage({
       overviewTitle: sanityProduct.overviewTitleAr || "التصميم الإنشائي ومعايير جودة المواد",
       description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || "",
       features: sanityProduct.engineeredAdvantages || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
-      models: sanityProduct.availableProfiles?.length > 0 
+      models: sanityProduct.availableProfiles?.length > 0
         ? sanityProduct.availableProfiles.map((prof: any) => ({
-            name: prof.sizeName || "طراز قياسي",
-            size: prof.dimensions || "مواصفات خاصة",
-            capacity: prof.capacity || "حسب الطلب"
-          }))
+          name: prof.sizeName || "طراز قياسي",
+          size: prof.dimensions || "مواصفات خاصة",
+          capacity: prof.capacity || "حسب الطلب"
+        }))
         : [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
       specs: [
         { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || "ألومنيوم فضاء معالج 6061/T6" },
@@ -211,14 +211,14 @@ export default async function ArabicProductDetailPage({
     arData = product.ar;
   }
 
-  const galleryImages: string[] = sanityProduct?.productGallery?.length > 0 
+  const galleryImages: string[] = sanityProduct?.productGallery?.length > 0
     ? sanityProduct.productGallery.map((img: any) => img.url).filter(Boolean)
     : [
-        product.heroImage,
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      ];
+      product.heroImage,
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+    ];
 
   const schemaData = generateProductGraphSchema(product, arData);
 
@@ -304,10 +304,7 @@ export default async function ArabicProductDetailPage({
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-                  <span className="px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37] font-semibold">
-                    مواصفات قياسية معتمدة
-                  </span>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs">
                   <span className="text-slate-400 font-sans">بيت النوخذة</span>
                 </div>
               </div>
@@ -319,7 +316,7 @@ export default async function ArabicProductDetailPage({
       {/* 2. Engineering Specifications & Dimensions Matrix */}
       <section className="py-24 px-6 max-w-7xl mx-auto border-b border-white/10 text-right">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
+
           {/* العمود الأيمن: النظرة العامة + المميزات + بطاقة المعايير الإنشائية لملء الفراغ */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
@@ -384,8 +381,8 @@ export default async function ArabicProductDetailPage({
 
               <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-white/5">
                 <span className="text-slate-400 font-light">هل تحتاج لحسابات إنشائية مخصصة لموقعك؟</span>
-                <Link 
-                  href="/ar/contact" 
+                <Link
+                  href="/ar/contact"
                   className="text-[#D4AF37] hover:underline font-bold flex items-center gap-1"
                 >
                   استشر مهندسينا الإنشائيين <FileText className="w-3.5 h-3.5" />

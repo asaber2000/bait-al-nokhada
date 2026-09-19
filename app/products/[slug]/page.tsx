@@ -202,11 +202,8 @@ export default async function ProductDetailPage({
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-                  <span className="px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37] font-semibold">
-                    Turnkey Architectural Specification
-                  </span>
-                  <span className="text-slate-400 font-mono">Bait Al Nokhada</span>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs">
+                  <span className="text-slate-400 font-sans"> Bait Al Nokhada </span>
                 </div>
               </div>
             </div>
