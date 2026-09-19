@@ -1,40 +1,53 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Sparkles, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
-  Building2 
+import {
+  Sparkles,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send,
+  CheckCircle2,
+  Building2,
+  MessageCircle,
+  ExternalLink,
+  Navigation
 } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 const branches = [
   {
-    city: "Abu Dhabi - Headquarters & Factory",
-    address: "Plot 5970362, Technopark, ICAD-1, Musaffah, Abu Dhabi, UAE",
-    phone: "+971 2 554 5585",
-    email: "info@baitalnokhada.com",
-    timing: "Sun – Thu: 8:00 AM – 6:00 PM",
-  },
-  {
-    city: "Dubai Regional Operations Hub",
-    address: "Al Quoz Industrial Area / Sheikh Zayed Road, Dubai, UAE",
-    phone: "+971 4 344 4912",
+    city: "Dubai - Headquarters & Factory",
+    address: "National Industries Park / Technopark - Mina Jebel Ali, Dubai, UAE",
+    phone: "+971 55885 0631",
+    whatsapp: "+971 43444091",
     email: "dubai@baitalnokhada.com",
     timing: "Sun – Thu: 8:00 AM – 6:00 PM",
+    mapUrl: "https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d463096.34941468964!2d55.065001!3d24.934106!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f0da58ab6364d%3A0xb668e74c8c5b934b!2z2KjZitiqINin2YTZhtmI2K7YsNipIC0gQkFJVEFMTk9LSEFEQSBURU5UUyBGQUNUT1JZIC1IRUFEIE9GRklDRSBEVUJBSQ!5e0!3m2!1sen!2sae!4v1789797127922!5m2!1sen!2sae",
   },
   {
-    city: "Saudi Arabia Division (KSA)",
-    address: "Riyadh Industrial Hub & Logistics Zone, Saudi Arabia",
-    phone: "+966 11 000 0000",
+    city: "Abu Dhabi",
+    address: "Musaffah - ICAD I, Abu Dhabi, UAE",
+    phone: "+971 55497 2465",
+    whatsapp: "+971 43444091",
+    email: "info@baitalnokhada.com",
+    timing: "Sun – Thu: 8:00 AM – 6:00 PM",
+    mapUrl: "https://www.google.com/maps/place/Bait+Al+Nokhada+Tents+and+Fabric+Shade+Factory+LLC/@24.329919,54.506679,10z/data=!4m6!3m5!1s0x3e5e3f5897d3f4bd:0x85a564def64cac9!8m2!3d24.329919!4d54.506679!16s%2Fg%2F1pp2vgtxq?hl=en&entry=tts&shorturl=1",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d465340.88139722793!2d54.506679!3d24.329919!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e3f5897d3f4bd%3A0x85a564def64cac9!2sBait%20Al%20Nokhada%20Tents%20and%20Fabric%20Shade%20Factory%20LLC!5e0!3m2!1sen!2sae!4v1789797480170!5m2!1sen!2sae",
+  },
+
+  {
+    city: "Saudi Arabia (KSA)",
+    address: "Office, No. 32, Abdalrahman Al Rosis Center, Olaya St, Riyadh 12211, Saudi Arabia",
+    phone: "+966546917670",
+    whatsapp: "+971 43444091",
     email: "ksa@baitalnokhada.com",
     timing: "Sun – Thu: 8:30 AM – 5:30 PM",
+    mapUrl: "https://www.google.com/maps/place/Bait+Al+Nokhada+Tents+And+Fabric+Shades+L.L.C/@24.682873,46.690347,10z/data=!4m6!3m5!1s0x3e2f03a6ffaa6281:0xfabe7d0cdc115b44!8m2!3d24.6828729!4d46.6903469!16s%2Fg%2F11tnjxbp2l?ll=24.682873,46.690347&z=10&t=m&hl=en&gl=US&mapclient=embed&cid=18068016249242213188&entry=tts&shorturl=1",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d464035.9394153128!2d46.690347!3d24.682873!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03a6ffaa6281%3A0xfabe7d0cdc115b44!2zQmFpdCBBbCBOb2toYWRhIFRlbnRzIEwuTC5DINmF2LXZhti5INio2YrYqiDYp9mE2YbZiNiu2LDYqSDZhNmE2K7ZitmFIC0g2YHYsdi5INin2YTYsdmK2KfYtg!5e0!3m2!1sen!2sus!4v1789797578373!5m2!1sen!2sus",
   },
 ];
 
@@ -76,7 +89,7 @@ export default function ContactPage() {
       {/* Main Grid: Form + Branch Info */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Quote & RFP Form */}
           <div className="lg:col-span-7 rounded-3xl bg-[#0D1527]/80 border border-white/10 p-8 sm:p-12 shadow-2xl backdrop-blur-md">
             {submitted ? (
@@ -220,6 +233,21 @@ export default function ContactPage() {
                         {branch.phone}
                       </a>
                     </div>
+                    
+                    {branch.whatsapp && (
+                      <div className="flex items-center gap-2.5">
+                        <MessageCircle className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+                        <a 
+                          href={`https://wa.me/${branch.whatsapp.replace(/[^0-9]/g, '')}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="hover:text-[#D4AF37] transition-colors"
+                        >
+                          {branch.whatsapp}
+                        </a>
+                      </div>
+                    )}
+
 
                     <div className="flex items-center gap-2.5">
                       <Mail className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
@@ -238,6 +266,66 @@ export default function ContactPage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* 3. Interactive Regional Branch Maps Grid (السكشن المضاف) */}
+      <section className="py-16 pb-28 px-6 max-w-7xl mx-auto border-t border-white/10 space-y-12">
+        <div className="text-center space-y-3 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#D4AF37]">
+            <Navigation className="w-3.5 h-3.5" />
+            <span>Locations & On-Site Facilities</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-white font-heading">
+            Visit Our Factories & Regional Centers
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400 font-light">
+            Navigate directly to our main manufacturing complexes, regional hubs, and client lounges via Google Maps.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {branches.map((branch, idx) => (
+            <div
+              key={idx}
+              className="rounded-3xl overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 flex flex-col justify-between shadow-2xl group"
+            >
+              {/* Google Map Embed iFrame */}
+              <div className="relative w-full h-64 bg-black/40">
+                <iframe
+                  src={branch.embedUrl}
+                  title={`Map for ${branch.city}`}
+                  loading="lazy"
+                  className="w-full h-full border-0 grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                />
+              </div>
+
+              {/* Card Meta & External Map Link */}
+              <div className="p-6 space-y-4 flex flex-col justify-between grow">
+                <div className="space-y-2">
+                  <h3 className="text-base font-bold text-white group-hover:text-[#D4AF37] transition-colors flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    <span>{branch.city}</span>
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed font-light">
+                    {branch.address}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/5">
+                  <a
+                    href={branch.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 hover:border-[#D4AF37] transition-all shadow-md group/btn"
+                  >
+                    <span>Open in Google Maps</span>
+                    <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -31,7 +31,6 @@ export default function ArabicNewsCatalogPage() {
   const [articlesList, setArticlesList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // جلب المقالات ديناميكياً في الخلفية بدون شاشة تحميل مزعجة
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -60,14 +59,14 @@ export default function ArabicNewsCatalogPage() {
             readTime: "5 دقائق قراءة"
           },
           heroImage: item.imageUrl || "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
-          category: "رؤى صناعية"
+          category: "رؤى صناعية",
+          featured: false
         }));
 
-        // دمج مقالات سانتي مع المقالات المحلية الاستاتيك لضمان ظهورها جميعاً
         setArticlesList([...formattedSanityArticles, ...articlesArDatabase]);
       } catch (error) {
         console.error("Error fetching catalog articles:", error);
-        setArticlesList(articlesArDatabase); // Fallback للداتا المحلية لو حدث خطأ
+        setArticlesList(articlesArDatabase);
       } finally {
         setLoading(false);
       }
@@ -76,8 +75,8 @@ export default function ArabicNewsCatalogPage() {
     fetchArticles();
   }, []);
 
-  // تحديد المقالة المميزة الأولى
-  const featuredArticle = articlesList[0];
+  // تحديد المقالة المميزة بنفس المنطق الدقيق للنسخة الإنجليزية
+  const featuredArticle = articlesList.find((a) => a.featured || a.ar?.featured) || articlesList[0];
 
   const filteredArticles = articlesList.filter((art: any) => {
     const title = art.ar?.title || "";
@@ -89,7 +88,7 @@ export default function ArabicNewsCatalogPage() {
       desc.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (activeCategory === "ALL") {
-      // استبعاد المقالة المميزة من الشبكة لمنع التكرار في الوضع الافتراضي
+      // استبعاد المقالة المميزة من الشبكة لمنع التكرار في العرض الافتراضي
       const isDefaultView = searchQuery === "" && activeCategory === "ALL";
       if (isDefaultView && featuredArticle && art.slug === featuredArticle.slug) {
         return false;
@@ -101,12 +100,12 @@ export default function ArabicNewsCatalogPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]" dir="rtl">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-44 pb-16 px-6 border-b border-white/10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-187.5 h-87.5 bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
+      <section className="relative pt-44 pb-16 px-6 border-b border-white/10 overflow-hidden text-right">
+        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/30">
@@ -116,7 +115,7 @@ export default function ArabicNewsCatalogPage() {
 
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight font-heading">
             الأخبار، المقالات <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
               والدراسات الهندسية
             </span>
           </h1>
@@ -147,7 +146,7 @@ export default function ArabicNewsCatalogPage() {
                 onClick={() => setActiveCategory(cat.en)}
                 className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wider transition-all duration-300 cursor-pointer ${
                   activeCategory === cat.en
-                    ? "bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
+                    ? "bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
                     : "bg-[#0D1527] text-slate-300 border border-white/10 hover:bg-white/5"
                 }`}
               >
@@ -161,65 +160,71 @@ export default function ArabicNewsCatalogPage() {
       {/* Loading State */}
       {loading && (
         <div className="text-center py-20 text-[#D4AF37] animate-pulse text-sm">
-          جاري تحميل المقالات من لوحة التحكم...
+          جاري تحميل المقالات...
         </div>
       )}
 
-      {/* Featured Article Highlight */}
+      {/* Featured Article Highlight: تصميم سينمائي فخم مطابق للإنجليزي مع بادج القصة المميزة */}
       {!loading && featuredArticle && activeCategory === "ALL" && !searchQuery && (
-        <section className="py-12 px-6 max-w-7xl mx-auto">
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#0D1527] border border-[#D4AF37]/40 shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-right">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="inline-block px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
-                  {featuredArticle.ar?.category}
-                </span>
-                <Link href={`/ar/news/${featuredArticle.slug}`}>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white hover:text-[#D4AF37] transition-colors leading-snug font-heading">
-                    {featuredArticle.ar?.title}
-                  </h2>
-                </Link>
-                <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed line-clamp-3">
-                  {featuredArticle.ar?.desc}
-                </p>
-                <div className="flex items-center gap-4 text-xs text-slate-400 pt-2 justify-start">
-                  <span className="flex items-center gap-1">
+        <section className="py-16 px-6 max-w-7xl mx-auto text-right">
+          <div className="rounded-3xl overflow-hidden bg-[#0D1527]/80 border border-white/10 hover:border-[#D4AF37]/40 transition-all grid grid-cols-1 lg:grid-cols-12 shadow-2xl">
+            
+            {/* الصورة الرئيسية مع بادج التثبيت في الزاوية */}
+            <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-full min-h-[340px]">
+              <Image
+                src={featuredArticle.heroImage}
+                alt={featuredArticle.ar?.title || "مقالة مميزة"}
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover brightness-90"
+              />
+              <div className="absolute top-4 right-4 z-10 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>قصة مميزة • Featured Story</span>
+              </div>
+            </div>
+
+            {/* تفاصيل المقالة على اليسار */}
+            <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 text-xs text-slate-400 justify-start">
+                  <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
                     {featuredArticle.ar?.date}
                   </span>
                   <span>•</span>
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
                     {featuredArticle.ar?.readTime}
                   </span>
                 </div>
-                <div className="pt-2">
-                  <Link
-                    href={`/ar/news/${featuredArticle.slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs hover:scale-105 transition-transform"
-                  >
-                    <span>قراءة المقال بالكامل</span>
-                    <ArrowUpLeft className="w-4 h-4" />
-                  </Link>
-                </div>
+
+                <Link href={`/ar/news/${featuredArticle.slug}`}>
+                  <h2 className="text-2xl sm:text-3xl font-black text-white hover:text-[#D4AF37] transition-colors leading-tight font-heading">
+                    {featuredArticle.ar?.title}
+                  </h2>
+                </Link>
+
+                <p className="text-sm text-slate-300 font-light leading-relaxed line-clamp-4">
+                  {featuredArticle.ar?.desc}
+                </p>
               </div>
 
-              <div className="lg:col-span-5 relative h-72 sm:h-80 rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src={featuredArticle.heroImage}
-                  alt={featuredArticle.ar?.title || "مقال"}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
-              </div>
+              <Link
+                href={`/ar/news/${featuredArticle.slug}`}
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:text-white transition-colors"
+              >
+                <span>قراءة المقال بالكامل</span>
+                <ArrowUpLeft className="w-4 h-4" />
+              </Link>
             </div>
+
           </div>
         </section>
       )}
 
-      {/* Articles Grid - (تم استبعاد المقالة المميزة منها تلقائياً لمنع التكرار) */}
-      <section className="py-12 pb-24 px-6 max-w-7xl mx-auto">
+      {/* Articles Grid */}
+      <section className="py-12 pb-24 px-6 max-w-7xl mx-auto text-right">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {!loading && filteredArticles.map((art: any) => {
             const arData = art.ar || {};
@@ -238,14 +243,14 @@ export default function ArabicNewsCatalogPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
 
                     <span className="absolute top-4 right-4 z-10 px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
-                      {arData.category}
+                      {arData.category || art.category}
                     </span>
                   </Link>
 
-                  <div className="p-7 space-y-4 text-right">
+                  <div className="p-7 space-y-4">
                     <div className="flex items-center gap-3 text-xs text-slate-400 font-medium justify-start">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -298,7 +303,7 @@ export default function ArabicNewsCatalogPage() {
           <div className="pt-2">
             <Link
               href="/ar/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
             >
               <span>تواصل مع الإدارة الهندسية</span>
               <Send className="w-4 h-4 rotate-180" />

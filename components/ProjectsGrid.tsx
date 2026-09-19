@@ -14,15 +14,13 @@ interface ProjectsGridProps {
 export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = false }: ProjectsGridProps) {
   const [activeTab, setActiveTab] = useState(filterTabs[0]);
   const [searchQuery] = useState("");
-  
-  // State عشان نعرف إيه الفيديو اللي شغال حالياً جوه الكارت أو المودال
   const [playingVideoSlug, setPlayingVideoSlug] = useState<string | null>(null);
 
   const filteredProjects = initialProjects.filter((proj) => {
     const matchesSearch =
-      proj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      proj.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      proj.client.toLowerCase().includes(searchQuery.toLowerCase());
+      proj.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      proj.city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      proj.client?.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (activeTab === filterTabs[0]) return matchesSearch;
     return matchesSearch && proj.category?.trim().toUpperCase() === activeTab.trim().toUpperCase();
@@ -38,7 +36,7 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
             onClick={() => setActiveTab(tab)}
             className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
               activeTab === tab
-                ? "bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
+                ? "bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
                 : "bg-[#0D1527] text-slate-300 border border-white/10 hover:bg-white/5"
             }`}
           >
@@ -47,11 +45,11 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
         ))}
       </div>
 
-      {/* Projects Grid - تم تعديل العرض ليصبح عمود واحد (فيديو واحد في السطر) */}
-      <section className="py-16 px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 gap-12">
+      {/* Projects Grid - تم توسيع العرض إلى max-w-7xl ليصبح الكارت عريضاً وفخماً */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-14">
           {filteredProjects.map((project, idx) => {
-            const videoUrl = project.videoUrl || project.video || project.videoFile || project.url;
+            const youtubeId = project.youtubeVideoId || (project.videoUrl && project.videoUrl.includes("v=") ? project.videoUrl.split("v=")[1] : null);
             const isPlaying = playingVideoSlug === project.slug;
 
             return (
@@ -59,47 +57,48 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 flex flex-col justify-between shadow-2xl"
               >
-                {/* Media Container: لو المستخدم ضغط تشغيل والفيديو موجود، هيشتغل مباشرة جوه الكارت */}
-                <div className="relative h-96 sm:h-[450px] w-full overflow-hidden block bg-black">
-                  {isPlaying && videoUrl ? (
+                {/* Media Container: مشغل يوتيوب تفاعلي مدمج */}
+                <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
+                  {isPlaying && youtubeId ? (
                     <div className="relative w-full h-full">
-                      <video
-                        src={videoUrl}
-                        controls
-                        autoPlay
-                        playsInline
-                        className="w-full h-full object-cover"
+                      <iframe
+                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                        title={project.title}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
                       />
-                      {/* زر لإغلاق الفيديو العودة للصورة */}
+                      {/* زر إغلاق الفيديو والعودة للصورة */}
                       <button 
                         onClick={() => setPlayingVideoSlug(null)}
-                        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/70 text-white hover:bg-[#D4AF37] hover:text-black transition-colors"
+                        className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#D4AF37] hover:text-[#070B14] transition-all shadow-xl cursor-pointer"
+                        aria-label="Close Video"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
                   ) : (
                     <div 
-                      onClick={() => videoUrl && setPlayingVideoSlug(project.slug)}
+                      onClick={() => setPlayingVideoSlug(project.slug)}
                       className="relative w-full h-full cursor-pointer group"
                     >
                       <Image
                         src={project.coverImage}
                         alt={project.title || "Engineering Project"}
                         fill
-                        sizes="100vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                        sizes="(max-width: 1280px) 100vw, 1400px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                       />
-                      <div className="absolute inset-0 bg-linear-to-t from-[#070B14] via-black/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-black/20 to-transparent pointer-events-none" />
 
                       <span className="absolute top-5 left-5 z-10 px-4 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
                         {project.category}
                       </span>
 
-                      {/* زر التشغيل اللي لما تدوس عليه الفيديو يشتغل فوري */}
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div className="w-16 h-16 rounded-full bg-[#D4AF37] text-[#070B14] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/40 group-hover:scale-110 transition-transform">
-                          <Play className="w-6 h-6 fill-current ml-1" />
+                      {/* زر التشغيل الذهبي */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full bg-[#D4AF37] hover:bg-white text-[#070B14] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/50 group-hover:scale-110 transition-transform duration-300">
+                          <Play className="w-8 h-8 fill-current ml-1" />
                         </div>
                       </div>
                     </div>
@@ -126,22 +125,22 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
                     </h2>
                   </Link>
 
-                  <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed max-w-4xl">
                     {project.summary}
                   </p>
 
                   <div className="pt-5 border-t border-white/10 flex items-center justify-between text-sm">
                     <button
-                      onClick={() => videoUrl && setPlayingVideoSlug(project.slug)}
+                      onClick={() => setPlayingVideoSlug(project.slug)}
                       className="text-[#D4AF37] font-bold uppercase tracking-wider flex items-center gap-2 hover:underline cursor-pointer"
                     >
                       <Play className="w-4 h-4 fill-current" />
-                      <span>WATCH VIDEO DIRECTLY</span>
+                      <span>Watch Video Directly</span>
                     </button>
 
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="text-slate-400 hover:text-white font-medium flex items-center gap-1.5"
+                      className="text-slate-400 hover:text-white font-medium flex items-center gap-1.5 transition-colors"
                     >
                       <span>Full Case Details</span>
                       <ArrowUpRight className="w-4 h-4" />
