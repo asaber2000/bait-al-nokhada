@@ -6,7 +6,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { productsDatabase } from "../../data/products.Ar";
 import { client } from "@/app/lib/sanity";
 export const dynamic = 'force-static';
-export const revalidate = 3600; 
+export const revalidate = 3600;
 
 // خريطة الترجمة الذكية لأسماء ووصف المنتجات بالعربية حسب الـ Slug
 const arabicTranslations: Record<string, { name: string; tagline: string }> = {
@@ -82,9 +82,9 @@ async function getSanityArabicProducts() {
       "slug": slug.current,
       "coverImage": coverImage.asset->url
     }`;
-    
+
     // استخدمنا هنا options تضمن التخزين المؤقت واستجابة فورية بدون انتظار
-    const sanityData = await client.fetch(query, {}, { 
+    const sanityData = await client.fetch(query, {}, {
       cache: 'force-cache', // تخزين دائم في الذاكرة المؤقتة لسرعة خرافية
     });
 
@@ -179,6 +179,7 @@ export default async function ArabicProductsCatalogPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
 
+                    {/* 
                     <div className="absolute top-4 right-4 left-4 flex items-center justify-between pointer-events-none">
                       <span className="px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-black/85 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
                         {product.badge ? product.badge.split("•")[0] : "DIN 4102 B1"}
@@ -187,6 +188,7 @@ export default async function ArabicProductsCatalogPage() {
                         {product.models?.length || 2} طرازات
                       </span>
                     </div>
+*/}
                   </div>
 
                   <div className="p-7 space-y-4">

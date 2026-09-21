@@ -100,6 +100,7 @@ export default async function ProductsCatalogPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
 
+                  {/* 
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
                     <span className="px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
                       {product.badge ? product.badge.split("•")[0] : "DIN 4102 B1"}
@@ -108,6 +109,7 @@ export default async function ProductsCatalogPage() {
                       {product.models ? product.models.length : "3"} Models
                     </span>
                   </div>
+*/}
                 </div>
 
                 <div className="p-7 space-y-4">
