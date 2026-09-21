@@ -164,7 +164,7 @@ export default function ArabicNavbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي */}
               <div
-                className="lg:col-span-4 space-y-3 text-sm text-slate-300 border-r border-white/10 pr-4 sm:pr-6 max-h-[55vh] overflow-y-scroll overscroll-contain select-none"
+                className="lg:col-span-4 space-y-3 text-sm text-slate-300 lg:border-r lg:border-white/10 pr-0 lg:pr-6 max-h-none lg:max-h-[55vh] lg:overflow-y-auto select-none"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
