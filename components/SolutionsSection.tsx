@@ -127,7 +127,8 @@ export default function SolutionsSection() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 1024px) 440px, 480px"
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
 
