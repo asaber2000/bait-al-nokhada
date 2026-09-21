@@ -263,30 +263,20 @@ export default function ArabicNavbar() {
                 <div className="space-y-3.5">
                   {/* رقم الاتصال المباشر (Call) */}
                   <a 
-                    href="tel:+971558850631" 
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start"
-                  >
+                    href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start">
                     <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
                       <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     </div>
-                    <span className="font-bold text-base text-white group-hover:text-[#D4AF37] transition-colors" dir="ltr">
-                      +971 4 344 4091
-                    </span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">+971 55 885 0631</span>
                   </a>
 
                   {/* رقم الواتساب المباشر (WhatsApp) */}
                   <a 
-                    href="https://wa.me/97143444091" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start"
-                  >
+                    href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start">
                     <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
                       <MessageCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     </div>
-                    <span className="font-bold text-base text-white group-hover:text-[#D4AF37] transition-colors" dir="ltr">
-                      +971 4 344 4091
-                    </span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">+971 4 344 4091</span>
                   </a>
 
                   {/* البريد الإلكتروني العام */}

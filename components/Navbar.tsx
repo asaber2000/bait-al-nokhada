@@ -247,14 +247,14 @@ export default function Navbar() {
                     <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
                       <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     </div>
-                    <span className="font-bold text-base text-white">+971 4 344 4091</span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">+971 55 885 0631</span>
                   </a>
 
                   <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group">
                     <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
                       <MessageCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
                     </div>
-                    <span className="font-bold text-base text-white">+971 4 344 4091</span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">+971 4 344 4091</span>
                   </a>
 
                   <a
