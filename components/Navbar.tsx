@@ -99,7 +99,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-screen flex flex-col justify-between text-left will-change-transform overflow-hidden"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-y-contain flex flex-col text-left will-change-transform"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
@@ -121,7 +121,7 @@ export default function Navbar() {
             </div>
 
             {/* Grid Content */}
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 my-auto py-4 items-start relative z-10">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 py-6 pb-12 items-start relative z-10 flex-1">
 
               {/* العمود الأول */}
               <div className="lg:col-span-4 space-y-2">
@@ -146,9 +146,7 @@ export default function Navbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي مع منع انتشار التمرير للخارج */}
               <div
-                onWheel={(e) => e.stopPropagation()}
-                onTouchMove={(e) => e.stopPropagation()}
-                className="lg:col-span-4 space-y-3 text-sm text-slate-300 border-l border-white/10 pl-4 sm:pl-6 max-h-[55vh] overflow-y-scroll overscroll-contain select-none"
+                className="lg:col-span-4 space-y-3 text-sm text-slate-300 lg:border-l lg:border-white/10 pl-0 lg:pl-6 max-h-none lg:max-h-[55vh] lg:overflow-y-auto select-none"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -407,7 +405,7 @@ export default function Navbar() {
             </div>
 
             {/* Footer */}
-            <div className="max-w-7xl mx-auto w-full pt-3 pb-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
+            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
               <p className="text-[10px] sm:text-xs">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
             </div>
           </motion.div>
