@@ -11,7 +11,7 @@ import { solutionsDatabase } from "@/app/data/solutions.En";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
