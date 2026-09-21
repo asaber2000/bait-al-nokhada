@@ -183,9 +183,7 @@ export default function ProjectDetailPage() {
               {project.titleEn}
             </h1>
 
-            <p className="text-sm sm:text-base text-[#C5A880] font-semibold tracking-wide">
-              Client / Authority: {project.clientEn}
-            </p>
+
           </div>
 
           {/* 2. Modern Engineering HUD Dashboard */}

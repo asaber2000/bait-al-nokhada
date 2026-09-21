@@ -280,6 +280,27 @@ export default function ArabicArticleDetailPage() {
         </div>
       </section>
 
+      {/* فهرس مخصص للموبايل في بداية المقال */}
+{tocList.length > 0 && (
+  <div className="block lg:hidden my-6 p-5 rounded-2xl bg-[#0D1527] border border-white/10 space-y-3 shadow-lg text-right" dir="rtl">
+    <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2 justify-start">
+      <BookOpen className="w-4 h-4" />
+      <span>فهرس ومحتويات المقال</span>
+    </p>
+    <div className="space-y-2 text-xs">
+      {tocList.map((item: any, tIdx: number) => (
+        <a
+          key={item?.id || tIdx}
+          href={`#${item?.id}`}
+          className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1.5 hover:underline border-b border-white/5 last:border-none"
+        >
+          {item?.label}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
       <section className="py-16 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-right">
           
@@ -387,13 +408,13 @@ export default function ArabicArticleDetailPage() {
             )}
           </div>
 
-          <div className="lg:col-span-4 space-y-6 sticky top-28">
+          <div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
             {tocList.length > 0 && (
               <div className="p-6 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4 shadow-xl">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2 justify-start">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2 justify-start">
                   <BookOpen className="w-4 h-4" />
                   <span>فهرس ومحتويات المقال</span>
-                </h3>
+                </p>
                 <div className="space-y-2 text-xs">
                   {tocList.map((item: any, tIdx: number) => (
                     <a

@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { 
-  ArrowLeft, 
-  Calendar, 
-  Clock, 
-  User, 
-  ChevronDown, 
-  HelpCircle, 
-  BookOpen, 
-  CheckCircle2, 
-  Send, 
-  Sparkles 
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  User,
+  ChevronDown,
+  HelpCircle,
+  BookOpen,
+  CheckCircle2,
+  Send,
+  Sparkles
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,7 +61,7 @@ export default function ArticleDetailPage() {
           faqsEn[]{question, answer},
           _createdAt
         }`;
-        
+
         const sanityData = await client.fetch(query, { slug });
 
         if (sanityData) {
@@ -69,8 +69,8 @@ export default function ArticleDetailPage() {
           const formattedSections = (sanityData.contentSectionsEn || []).map((sec: any, idx: number) => ({
             id: sec.id || `section-${idx}`,
             heading: sec.heading || "",
-            body: Array.isArray(sec.body) 
-              ? sec.body.map((block: any) => block.children?.map((c: any) => c.text).join('')).join('\n') 
+            body: Array.isArray(sec.body)
+              ? sec.body.map((block: any) => block.children?.map((c: any) => c.text).join('')).join('\n')
               : (sec.body || ""),
             points: sec.points || [],
             sectionImageUrl: sec.sectionImageUrl || null,
@@ -214,10 +214,30 @@ export default function ArticleDetailPage() {
         </div>
       </section>
 
+{/* Mobile Table of Contents - يظهر فقط على الموبايل في أول المقال */}
+{tocList.length > 0 && (
+  <div className="block lg:hidden my-6 p-5 rounded-2xl bg-[#0D1527] border border-white/10 space-y-3 shadow-lg">
+    <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
+      <BookOpen className="w-4 h-4" />
+      <span>Table of Contents</span>
+    </p>
+    <div className="space-y-2 text-xs">
+      {tocList.map((item: any) => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1 hover:underline"
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
       {/* Main Content Layout */}
       <section className="py-16 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Main Article Body */}
           <div className="lg:col-span-8 space-y-10">
             {article.desc && (
@@ -252,11 +272,10 @@ export default function ArticleDetailPage() {
                     <div className="pt-4">
                       <Link
                         href={section.sectionButton.btnUrl || "/contact"}
-                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-transform hover:scale-105 shadow-lg ${
-                          section.sectionButton.btnStyle === 'outline'
+                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-transform hover:scale-105 shadow-lg ${section.sectionButton.btnStyle === 'outline'
                             ? 'bg-transparent text-[#D4AF37] border border-[#D4AF37]/50 hover:bg-[#D4AF37]/10'
                             : 'bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14]'
-                        }`}
+                          }`}
                       >
                         <span>{section.sectionButton.btnText}</span>
                         <Send className="w-3.5 h-3.5" />
@@ -264,36 +283,36 @@ export default function ArticleDetailPage() {
                     </div>
                   )}
                   {section.sectionImageUrl && (
-  <div className="pt-4">
-    <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-      <Image
-        src={section.sectionImageUrl}
-        alt={section.heading || "Section Image"}
-        fill
-        sizes="(max-width: 768px) 100vw, 60vw"
-        className="object-cover"
-      />
-    </div>
-  </div>
-)}
+                    <div className="pt-4">
+                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                        <Image
+                          src={section.sectionImageUrl}
+                          alt={section.heading || "Section Image"}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 60vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
 
-{/* عرض الفيديو لو موجود */}
-{section.sectionVideoUrl && (
-  <div className="pt-4">
-    <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        className="w-full h-full object-cover"
-      >
-        <source src={section.sectionVideoUrl} type="video/mp4" />
-      </video>
-    </div>
-  </div>
-)}
+                  {/* عرض الفيديو لو موجود */}
+                  {section.sectionVideoUrl && (
+                    <div className="pt-4">
+                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          className="w-full h-full object-cover"
+                        >
+                          <source src={section.sectionVideoUrl} type="video/mp4" />
+                        </video>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -331,26 +350,26 @@ export default function ArticleDetailPage() {
           </div>
 
           {/* Sidebar Table of Contents */}
-          <div className="lg:col-span-4 space-y-6 sticky top-28">
-            {tocList.length > 0 && (
-              <div className="p-6 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4 shadow-xl">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
-                  <BookOpen className="w-4 h-4" />
-                  <span>Table of Contents</span>
-                </h3>
-                <div className="space-y-2 text-xs">
-                  {tocList.map((item: any) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1 hover:underline"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+<div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
+  {tocList.length > 0 && (
+    <div className="p-6 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4 shadow-xl">
+      <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
+        <BookOpen className="w-4 h-4" />
+        <span>Table of Contents</span>
+      </p>
+      <div className="space-y-2 text-xs">
+        {tocList.map((item: any) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1 hover:underline"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
 
             {/* Quick Contact Box */}
             <div className="p-6 rounded-3xl bg-linear-to-r from-[#0D1527] to-[#070B14] border border-[#D4AF37]/30 space-y-4 text-center">
