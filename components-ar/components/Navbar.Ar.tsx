@@ -59,17 +59,18 @@ export default function ArabicNavbar() {
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           {/* اللوجو العربي */}
-          <Link href="/ar" className="flex flex-col text-right group">
+          {/* اللوجو العربي بجانب بعض */}
+          <Link href="/ar" className="flex items-center gap-2 group">
             <span
               className={`font-black text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
-                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-3xl md:text-4xl"
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
               }`}
             >
               بيت
             </span>
             <span
-              className={`text-[#D4AF37] font-bold drop-shadow transition-all duration-300 pt-1 leading-none ${
-                isScrolled ? "text-[8px] sm:text-[9px]" : "text-xs sm:text-sm"
+              className={`text-[#D4AF37] font-black drop-shadow transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
               }`}
             >
               النوخذة

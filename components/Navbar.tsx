@@ -48,13 +48,21 @@ export default function Navbar() {
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
-          <Link href="/" className="relative flex items-center group py-2">
-            <img
-              src="/icons/Bait-Al-Nokhada-Tents-Logooo.svg"
-              alt="Bait Al Nokhada Tents"
-              className={`w-auto object-contain transition-all duration-300 ${isScrolled ? "h-12 sm:h-14" : "h-24 sm:h-30"
-                }`}
-            />
+          <Link href="/" className="flex items-center gap-1.5 group">
+            <span
+              className={`font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+              }`}
+            >
+              Bait Al
+            </span>
+            <span
+              className={`text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+              }`}
+            >
+              Nokhada
+            </span>
           </Link>
           {/* أزرار الهيدر الإنجليزي: زر التحويل للعربية + زر القائمة */}
           <div className="flex items-center gap-3">
