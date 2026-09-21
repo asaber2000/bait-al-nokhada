@@ -116,7 +116,7 @@ export default function ArabicNavbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-screen flex flex-col justify-between text-right will-change-transform overflow-hidden font-sans"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-y-contain flex flex-col text-right will-change-transform font-sans"
           >
             {/* إضاءة خلفية ذهبية ناعمة */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
@@ -139,7 +139,7 @@ export default function ArabicNavbar() {
             </div>
 
             {/* محتوى المنيو */}
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 my-auto py-4 items-start relative z-10">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 py-6 pb-12 items-start relative z-10 flex-1">
               
               {/* العمود الأول: الروابط الرئيسية */}
               <div className="lg:col-span-4 space-y-2">
@@ -164,8 +164,6 @@ export default function ArabicNavbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي */}
               <div
-                onWheel={(e) => e.stopPropagation()}
-                onTouchMove={(e) => e.stopPropagation()}
                 className="lg:col-span-4 space-y-3 text-sm text-slate-300 border-r border-white/10 pr-4 sm:pr-6 max-h-[55vh] overflow-y-scroll overscroll-contain select-none"
                 style={{
                   scrollbarWidth: "none",
@@ -450,7 +448,7 @@ export default function ArabicNavbar() {
             </div>
 
             {/* الشريط السفلي للتبديل للإنجليزية */}
-            <div className="max-w-7xl mx-auto w-full pt-3 pb-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
+            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
               <p className="text-[10px] sm:text-xs">© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
             </div>
           </motion.div>
