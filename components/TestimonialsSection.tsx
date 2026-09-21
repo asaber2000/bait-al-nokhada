@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 mb-10 text-center space-y-2">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Client Endorsements</span>
+          <span>Client Testimonials</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
           Behind Every Structure Is A{" "}
