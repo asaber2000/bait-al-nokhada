@@ -13,7 +13,7 @@ const projects = [
     coveredArea: "15500 m²",
     category: "TECHNOLOGY & EXHIBITION TENTS",
     desc: "For GITEX Global 2025, Bait Al Nokhada delivered purpose-built exhibition structures for one of the region’s leading technology events. The project was designed to support large-scale visitor environments while maintaining the high-impact presence required for a major international exhibition.",
-    img: "/webp/gitex2025.webp",
+    img: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
   },
   {
     id: "gulfood",
