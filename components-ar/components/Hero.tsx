@@ -1,31 +1,57 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
 export default function ArabicHero() {
+
+  const containerRef = useRef<HTMLElement>(null);
+
+  // مراقبة سكرول الهيرو بدقة
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // الفيديو يتحرك للأسفل ببطء أثناء النزول بنسبة 35% لإعطاء عمق الـ Parallax
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+
+  // المحتوى يصعد للأعلى بسرعة أكبر مع تلاشي الشفافية بنعومة
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
-    <section 
-      dir="rtl" 
+    <section
+      ref={containerRef}
       className="relative w-full min-h-[100dvh] flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
     >
-      
+
       {/* خلفية الفيديو - تم تثبيتها بـ fixed لمنع أي اهتزاز أثناء السكرول على الموبايل */}
-      <div className="fixed inset-0 w-full h-[100dvh] z-0 overflow-hidden pointer-events-none transform-gpu">
+      {/* 1. خلفية الفيديو بطبقة Parallax محسوبة */}
+      <motion.div
+        style={{ y: videoY }}
+        className="absolute inset-x-0 -top-[10%] w-full h-[125%] z-0 overflow-hidden pointer-events-none will-change-transform"
+      >
         <video
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover opacity-75 filter brightness-105 transform-gpu"
+          disablePictureInPicture
+          className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
           <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-linear-to-b from-[#070B14]/80 via-transparent to-[#070B14]/90" />
-      </div>
-
+        <div className="absolute inset-0 bg-black/30 z-10" />
+      </motion.div>
+      
+      <motion.div 
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 max-w-4xl mx-auto w-full text-center space-y-6 px-6 pt-12 will-change-transform"
+      ></motion.div>
 
     </section>
   );

@@ -145,7 +145,7 @@ export default function SolutionsSection() {
               href="/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0"
             >
-              <span>View All 13 Lines</span>
+              <span>View All 11 Lines</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>

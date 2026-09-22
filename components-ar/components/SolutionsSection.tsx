@@ -1,183 +1,271 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpLeft, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const solutions = [
   {
-    title: "خيام الأعراس والمناسبات",
-    desc: "قاعات ملكية مخصصة للفعاليات الخارجية في الإمارات والسعودية، توفر أجواء فخمة ومصممة حسب الطلب.",
-    tag: "مواقع فاخرة",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85",
-    href: "/ar/solutions/wedding-tents",
+    id: "٠١",
+    title: "خيام وصالات المعارض",
+    desc: "أجنحة وهياكل ضخمة مخصصة للمعارض الدولية، الفعاليات التجارية، وعروض الطيران الكبرى عبر دول الخليج.",
+    tag: "تجاري ومعارض",
+    specs: "بحور مفتوحة تصل إلى ٦٠ متراً • مقاومة عالية للرياح",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    href: "/ar/solutions/exhibition-tents",
   },
   {
-    title: "الخيام والملاعب الرياضية",
-    desc: "هياكل هندسية توفر تحكماً مناخياً وسلامة معتمدة للملاعب، الأكاديميات، والفعاليات الرياضية الكبرى.",
-    tag: "بحور واسعة",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85",
-    href: "/ar/solutions/sports-tents",
-  },
-  {
-    title: "المستودعات والخيام الصناعية",
-    desc: "خيام تخزين مؤقتة ودائمة ذات بحور مفتوحة عالية التحمل للعمليات اللوجستية والمشاريع الصناعية.",
-    tag: "صناعي ولوجستي",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
-    href: "/ar/solutions/warehouse-tents",
-  },
-  {
-    title: "خيام الفعاليات والقمم العملاقة",
-    desc: "قاعات مؤتمرات وقمم دولية مجهزة بإضاءة ذكية، عزل صوتي، وأنظمة تكييف مركزي متكاملة.",
-    tag: "قمم عالمية",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85",
+    id: "٠٢",
+    title: "خيام الفعاليات والمؤتمرات",
+    desc: "قاعات مؤتمرات وقمم حكومية مجهزة بأحدث تقنيات الإضاءة الذكية، العزل الصوتي، والتكييف المركزي المتكامل.",
+    tag: "قمم دولية",
+    specs: "منصات متعددة المستويات • أنظمة تكييف فائقة القدرة",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=90",
     href: "/ar/solutions/event-tents",
   },
   {
+    id: "٠٣",
+    title: "خيام مراكز المبيعات",
+    desc: "هياكل معمارية شبه دائمة مخصصة لإطلاق المشاريع العقارية الكبرى وتوفير صالات استقبال فخمة للمستثمرين.",
+    tag: "مشاريع عقارية",
+    specs: "واجهات زجاجية بانورامية • تشطيب داخلي فاخر",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/sales-center-tents",
+  },
+  {
+    id: "٠٤",
+    title: "المستودعات والخيام الصناعية",
+    desc: "مستودعات تخزين مؤقتة ودائمة ذات بحور مفتوحة عالية التحمل ومصممة للعمليات اللوجستية والمواقع الصناعية.",
+    tag: "صناعي ولوجستي",
+    specs: "سرعة في التوريد والتركيب • معايير السلامة الألمانية DIN",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/warehouse-tents",
+  },
+  {
+    id: "٠٥",
+    title: "خيام استراحة العمال",
+    desc: "مظلات واستراحات مجهزة بأنظمة تبريد عالية الكفاءة لتأمين راحة الكوادر الميدانية وفق اشتراطات السلامة والرفاهية.",
+    tag: "رعاية العمال",
+    specs: "أنسجة PVC عازلة للحرارة • معتمدة من الدفاع المدني",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/labour-break-tents",
+  },
+  {
+    id: "٠٦",
+    title: "الخيام والملاعب الرياضية",
+    desc: "هياكل بحور واسعة توفر عزلاً حرارياً متطوراً للملاعب الرياضية، ملاعب البادل، والصالات الأكاديمية الأولمبية.",
+    tag: "منشآت رياضية",
+    specs: "أسقف عازلة حرارياً • مطابقة لمعايير FIFA الرياضية",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/sports-tents",
+  },
+  {
+    id: "٠٧",
     title: "الخيام والمجالس الرمضانية",
-    desc: "هياكل تراثية عربية أصيلة مدمجة بالأناقة الحديثة لتجمعات الإفطار والمجالس الملكية.",
-    tag: "تراث وعراقة",
-    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1200&q=85",
+    desc: "أجواء تراثية عربية أصيلة مدمجة باللمسات المعمارية الحديثة لبوفيهات الإفطار المؤسسية والمجالس الملكية.",
+    tag: "تراث وأصالة",
+    specs: "فرش داخلي ومجالس تفصيل • مقاومة للحريق Class A",
+    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=90",
     href: "/ar/solutions/ramadan-tents",
   },
   {
-    title: "صالات المعارض التجارية",
-    desc: "أجنحة وصالات ضخمة مخصصة للمعارض الدولية، الفعاليات التجارية، وعروض الطيران عبر منطقة الخليج.",
-    tag: "تجاري ومعارض",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=85",
-    href: "/ar/solutions/exhibition-tents",
+    id: "٠٨",
+    title: "خيام العزاء والمناسبات",
+    desc: "قاعات مؤقتة مجهزة بالكامل تُشيد بسرعة فائقة وتوفر تكييفاً وخدمات لوجستية ملائمة لكافة المناسبات.",
+    tag: "مناسبات مجتمعية",
+    specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/funeral-tents",
+  },
+  {
+    id: "٠٩",
+    title: "خيام المصليات والمساجد",
+    desc: "مصليات مؤقتة واسعة مجهزة بفرش معقم، عزل صوتي نقي، مناطق وضوء ملحقة، ومحاريب دقيقة التوجيه.",
+    tag: "منشآت دينية",
+    specs: "سجاد مضاد للبكتيريا • تدفق هواء مكيف عالي السعة",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/mosque-tents",
+  },
+  {
+    id: "١٠",
+    title: "خيام مواقع الإنشاءات",
+    desc: "منشآت عمليات ميدانية متينة تشمل مكاتب المشاريع الهندسية، ملاجئ المعدات، وخيام العزل المناخي في المواقع.",
+    tag: "بنية تحتية",
+    specs: "مقاومة للرياح والعواصف الترابية • سهولة الفك وإعادة النقل",
+    image: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1600&q=90",
+    href: "/ar/solutions/construction-tents",
+  },
+  {
+    id: "١١",
+    title: "خيام الأعراس الملكية",
+    desc: "قاعات ملكية فخمة مصممة لحفلات الزفاف الخارجية في الإمارات والسعودية بأحدث الديكورات والإضاءات البانورامية.",
+    tag: "أعراس ملكية",
+    specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    href: "/ar/solutions/wedding-tents",
   },
 ];
 
 export default function ArabicSolutionsSection() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // دالة التحريك متوافقة مع اتجاه الـ RTL (العكس في الـ scrollLeft)
-  const scrollCard = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const cardElement = scrollContainerRef.current.querySelector("div") as HTMLElement;
-      const cardWidth = cardElement ? cardElement.clientWidth : 440;
-      const gap = 32; // gap-8
-      const shiftAmount = cardWidth + gap;
-
-      scrollContainerRef.current.scrollBy({
-        left: direction === "right" ? -shiftAmount : shiftAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const activeItem = solutions[selectedIdx];
 
   return (
-    <section dir="rtl" className="relative py-28 bg-[#070B14] border-t border-white/10 overflow-hidden text-right">
-      
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+    <section dir="rtl" className="relative pt-12 pb-24 bg-[#040811] border-t border-white/5 overflow-hidden text-right font-sans">
+      {/* خلفية هندسية خافتة */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+      />
+      <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
-      {/* الهيدر مع مسافات جانبية أوسع متطابقة تماماً للإنجليزي */}
-      <div className="w-full px-12 sm:px-16 lg:px-32 mb-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-2xl">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20 shadow-inner">
-              حلول معمارية تسليم مفتاح
+      {/* الهيدر العلوي */}
+      <div className="w-full px-6 sm:px-12 lg:px-24 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-8">
+          <div className="space-y-3 max-w-2xl">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20">
+              حلول معمارية وهندسية متكاملة
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight font-heading leading-tight">
-              هياكل ومظلات مصممة خصيصاً <br />
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              هياكل ومظلات مخصصة <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
-                لتلائم رؤيتك وتطلعاتك
+                صُممت لتجسيد أدق تطلعاتك
               </span>
             </h2>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
-            <p className="text-slate-400 text-sm sm:text-base max-w-md font-light">
-              نقدم هياكل نسيجية من الألومنيوم وأقمشة PVC المطابقة للمواصفات الألمانية، والمصممة لمواجهة قسوة مناخ الشرق الأوسط.
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <p className="text-slate-400 text-sm max-w-md font-light leading-relaxed">
+              استكشف باقتنا المتكاملة من الخيام المعيارية ذات البحور الواسعة، الهياكل النسيجية المشدودة، وقاعات المؤتمرات والفعاليات.
             </p>
             
             <Link
               href="/ar/solutions"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 text-xs font-bold uppercase tracking-widest shadow-xl shrink-0"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0"
             >
-              <span>عرض كل الحلول</span>
-              <ArrowUpRight className="w-4 h-4 rotate-180" />
+              <span>عرض كل الحلول الـ ١١</span>
+              <ArrowUpLeft className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* حاوية الكروت العريضة والواضحة */}
-      <div className="w-full px-12 sm:px-16 lg:px-32 overflow-hidden mb-12">
-        <div 
-          ref={scrollContainerRef}
-          className="flex gap-8 overflow-x-auto scrollbar-none pb-4 pt-2 scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {solutions.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative rounded-[2.5rem] overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-500 flex flex-col w-[360px] sm:w-[440px] lg:w-[480px] shrink-0 shadow-2xl backdrop-blur-xl"
-            >
-              <div className="relative h-72 sm:h-80 w-full overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 1024px) 440px, 480px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-95 group-hover:brightness-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-[#0D1527]/30 to-transparent z-10 pointer-events-none" />
-                
-                <span className="absolute top-5 right-5 z-20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30 shadow-lg">
-                  {item.tag}
+      {/* شاشة العرض التفاعلية المنقسمة */}
+      <div className="w-full px-6 sm:px-12 lg:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          {/* الجانب الأيمن: شاشة عرض الصورة السينمائية */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative h-[420px] sm:h-[500px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#070B14]">
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <Image
+                    src={activeItem.image}
+                    alt={activeItem.title}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* شريط معلومات فوق الصورة */}
+              <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
+                <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
+                  {activeItem.tag}
+                </span>
+                <span className="font-mono text-xs tracking-widest text-white/90 bg-black/50 backdrop-blur-md px-3 py-1 rounded-lg">
+                  {activeItem.id} / ١١
                 </span>
               </div>
 
-              <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
-                <div className="space-y-3">
-                  <h3 className="text-2xl font-black text-white group-hover:text-[#D4AF37] transition-colors font-heading tracking-wide">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-light">
-                    {item.desc}
-                  </p>
+              {/* شريط المواصفات التقنية في الأسفل */}
+              <div className="absolute bottom-5 left-5 right-5 p-3.5 rounded-xl bg-[#070B14]/85 backdrop-blur-md border border-white/10 z-20 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
+                  <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" />
+                  <span>{activeItem.specs}</span>
                 </div>
-
                 <Link
-                  href={item.href}
-                  className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest text-[#D4AF37] group-hover:text-white transition-colors pt-2"
+                  href={activeItem.href}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:text-white transition-colors"
                 >
-                  <span>استكشاف الحل</span>
-                  <ArrowUpRight className="w-4 h-4 rotate-180 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>تفاصيل الحل</span>
+                  <ArrowUpLeft className="w-3.5 h-3.5" />
                 </Link>
               </div>
-            </motion.div>
-          ))}
+
+            </div>
+          </div>
+
+          {/* الجانب الأيسر: قائمة الحلول الـ ١١ التفاعلية مع دعم السكرول الحر بالماوس */}
+          <div
+            data-lenis-prevent
+            className="lg:col-span-6 flex flex-col divide-y divide-white/10 max-h-[500px] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-[#D4AF37]/40 pl-2"
+          >
+            {solutions.map((item, idx) => {
+              const isSelected = selectedIdx === idx;
+              return (
+                <div
+                  key={item.id}
+                  onMouseEnter={() => setSelectedIdx(idx)}
+                  onClick={() => setSelectedIdx(idx)}
+                  className={`group py-4 transition-all duration-300 cursor-pointer flex flex-col justify-center px-4 rounded-xl ${
+                    isSelected ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-baseline gap-4">
+                      <span className={`font-mono text-sm font-bold transition-colors ${
+                        isSelected ? "text-[#D4AF37]" : "text-slate-600 group-hover:text-slate-400"
+                      }`}>
+                        {item.id}
+                      </span>
+                      <h3 className={`text-lg sm:text-xl font-bold tracking-wide transition-colors ${
+                        isSelected ? "text-white" : "text-slate-400 group-hover:text-white"
+                      }`}>
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <div className={`p-1.5 rounded-full border transition-all ${
+                      isSelected 
+                        ? "border-[#D4AF37] bg-[#D4AF37] text-[#070B14] -rotate-45" 
+                        : "border-white/10 text-slate-500 group-hover:border-white/30 group-hover:text-white"
+                    }`}>
+                      <ArrowUpLeft className="w-3.5 h-3.5 transition-transform duration-300" />
+                    </div>
+                  </div>
+
+                  {isSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden pr-8 pt-2"
+                    >
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light">
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
         </div>
       </div>
-
-      {/* أزرار التحريك في المنتصف بالأسفل */}
-      <div className="flex items-center justify-center gap-4 w-full">
-        <button
-          onClick={() => scrollCard("left")}
-          className="p-4 rounded-2xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 shadow-2xl cursor-pointer"
-          aria-label="Previous Card"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => scrollCard("right")}
-          className="p-4 rounded-2xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 shadow-2xl cursor-pointer"
-          aria-label="Next Card"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-      </div>
-
     </section>
   );
 }
