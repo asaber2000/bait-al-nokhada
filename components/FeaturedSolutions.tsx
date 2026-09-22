@@ -1,239 +1,321 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-const projects = [
+const megaProjects = [
   {
-    id: "gitex",
+    id: "01",
     title: "GITEX Global 2025",
-    client: "DUBAI WORLD TRADE CENTER",
-    location: "Dubai, UAE",
-    year: "2025",
-    coveredArea: "15500 m²",
     category: "TECHNOLOGY & EXHIBITION TENTS",
-    desc: "For GITEX Global 2025, Bait Al Nokhada delivered purpose-built exhibition structures for one of the region’s leading technology events. The project was designed to support large-scale visitor environments while maintaining the high-impact presence required for a major international exhibition.",
-    img: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
-  },
-  {
-    id: "gulfood",
-    title: "GULFOOD 2026",
-    client: "DUBAI WORLD TRADE CENTER",
+    client: "DUBAI WORLD TRADE CENTRE",
     location: "Dubai, UAE",
-    year: "2026",
-    coveredArea: "35000 m²",
-    category: "EVENT & EXHIBITION TENTS",
-    desc: "For Gulfood 2026, Bait Al Nokhada delivered large-scale event structures designed to support a major international food and hospitality exhibition. The project combined functional covered space with a strong presence suited to a high-profile exhibition environment.",
-    img: "/webp/gulfood2026.webp",
+    area: "15,500 m²",
+    year: "2025",
+    desc: "A massive custom modular pavilion structure built to house high-density international tech exhibits with integrated climate flow and heavy-load truss systems.",
+    image: "https://baitalnokhada.com/wp-content/uploads/2025/08/exhibition-tents-UAE.webp",
+    slug: "gitex-global",
   },
   {
-    id: "driftx",
-    title: "DRIFTx Event 2026",
-    client: "WORLDWIDE EVENTS",
+    id: "02",
+    title: "Dubai Airshow VIP Arena",
+    category: "AVIATION & GOVERNMENT VENUE",
+    client: "DUBAI AVIATION CITY CORP",
+    location: "DWC, Dubai, UAE",
+    area: "18,200 m²",
+    year: "2025",
+    desc: "Royal clear-span reception arenas constructed with acoustic barrier double linings, acoustic glass curtain walls, and presidential protocol fit-outs.",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    slug: "dubai-airshow",
+  },
+  {
+    id: "03",
+    title: "ADIPEC Energy Pavilion",
+    category: "INDUSTRIAL & ENERGY SUMMIT",
+    client: "ADNOC / ADNEC",
     location: "Abu Dhabi, UAE",
-    year: "2025",
-    coveredArea: "10000 m²",
-    category: "MOBILITY & TECHNOLOGY EVENT",
-    desc: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
-    img: "/webp/driftx.webp",
+    area: "22,000 m²",
+    year: "2024",
+    desc: "Engineered ultra-span tensile structures designed to accommodate multi-ton energy machinery exhibits with complete Eurocode wind-load certified safety.",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=90",
+    slug: "adipec-exhibition",
   },
   {
-    id: "netflix",
-    title: "Netflix: Stranger Things The Experience",
-    client: "MIRAL DESTINATION ",
-    location: "Abu Dhabi, UAE",
-    year: "2025",
-    coveredArea: "5000 m²",
-    category: "IMMERSIVE ENTERTAINMENT STRUCTURE",
-    desc: "For Netflix’s Stranger Things: The Experience, Bait Al Nokhada delivered a distinctive event environment designed around an immersive visitor journey. The project demonstrates how our structures can combine scale, visual impact and flexibility for branded entertainment experiences.",
-    img: "/webp/netflix-stranger-things.webp",
-  },
-  {
-    id: "airshow",
-    title: "Dubai Airshow 2025",  
-    client: "GOVERNMENT SECTOR", 
+    id: "04",
+    title: "Gulfood Culinary Arenas",
+    category: "COMMERCIAL FOOD & HOSPITALITY",
+    client: "DWTC HOSPITALITY",
     location: "Dubai, UAE",
-    year: "2026",
-    coveredArea: "15000 m²",
-    category: "AVIATION & EXHIBITION TENTS",
-    desc: "For Dubai Airshow 2025, Bait Al Nokhada delivered large-scale temporary structures supporting one of the region’s leading aviation events. The project reflects our experience in creating professional event environments for high-profile exhibitions and demanding project requirements.",
-    img: "/webp/airshow.webp",
+    area: "12,800 m²",
+    year: "2024",
+    desc: "Climate-controlled specialized event structures featuring German DIN fire-resistant membranes and integrated heavy-tonnage ventilation networks.",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=90",
+    slug: "gulfood",
   },
   {
-    id: "amaal",
-    title: "Amaal × Mansory",
-    client: "SALES GALLERY",
+    id: "05",
+    title: "World Defense Show Pavilion",
+    category: "DEFENSE & INFRASTRUCTURE",
+    client: "GAMI AUTHORITY",
+    location: "Riyadh, KSA",
+    area: "25,000 m²",
+    year: "2024",
+    desc: "Reinforced modular structures built for extreme desert climate resistance, desert sandstorm baffling, and rapid tactical deployment capabilities.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=90",
+    slug: "world-defense-show",
+  },
+  {
+    id: "06",
+    title: "COP28 Climate Summit Facilities",
+    category: "SUSTAINABLE GLOBAL SUMMIT",
+    client: "EXPO CITY DUBAI",
     location: "Dubai, UAE",
-    year: "2025",
-    coveredArea: "2,500 m²",
-    category: "SALES GALLERY",
-    desc: "For Amaal × Mansory, Bait Al Nokhada delivered a purpose-built environment designed to support a premium sales and customer experience. The structure provided a prominent branded space tailored to the needs of the development and its visitors.",
-    img: "/webp/amaal2025.webp",
-  }
+    area: "16,400 m²",
+    year: "2023",
+    desc: "Eco-certified temporary architectural enclosures built using 100% recyclable membranes, solar reflectivity fabric, and zero-impact anchoring systems.",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=90",
+    slug: "cop28-facilities",
+  },
 ];
 
-export default function FeaturedSolutions() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function FeaturedProjects() {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const active = megaProjects[currentIdx];
 
-  const prevProject = () => {
-    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIdx((prev) => (prev + 1) % megaProjects.length);
   };
 
-  const nextProject = () => {
-    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIdx((prev) => (prev - 1 + megaProjects.length) % megaProjects.length);
   };
-
-  const activeProject = projects[currentIndex];
-  // تجهيز رابط الصورة التالية لتنزيلها بالخلفية بدون إثقال المعالج
-  const nextProjectIndex = (currentIndex + 1) % projects.length;
-
 
   return (
-    <section className="relative w-full -mt-10 sm:-mt-16 pt-0 pb-12 sm:pb-20 px-4 sm:px-12 lg:px-20 bg-[#070B14] text-white z-20 overflow-hidden">
-      
-      {/* هيدر القسم الرئيسي */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4 border-b border-white/10 pb-6 max-w-7xl mx-auto">
-        <div>
-          <span className="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-2">
-            Portfolio Showcase
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight font-heading">
-            Featured Projects.
-          </h2>
+    <section className="relative bg-[#040811] py-20 px-6 sm:px-12 lg:px-24 border-t border-white/5 overflow-hidden">
+
+      {/* شبكة إحداثيات رادارية معمارية خلفية */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+      />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+
+        {/* 1. الهيدر المعماري الفاخر */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-white/10 pb-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#D4AF37]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>PORTFOLIO SHOWCASE</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              Featured Projects<span className="text-[#D4AF37]">.</span>
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-400 max-w-md font-light leading-relaxed">
+            Proven Engineering at Scale: Precision modular architecture and clear-span structures deployed across royal venues and international summits.
+          </p>
         </div>
-        <p className="text-slate-400 text-sm max-w-md font-light leading-relaxed">
-          Proven Engineering at Scale: Discover how our custom clear-span tents and heavy-duty structural enclosures deliver reliable covered spaces across the UAE & GCC.
-        </p>
-      </div>
 
-      {/* شريط التحكم الموحد */}
-      <div className="max-w-7xl mx-auto mb-8">
-        <div className="flex items-center justify-between bg-[#0F172A] sm:bg-[#0F172A]/90 border border-white/10 rounded-2xl p-3 sm:px-6 sm:py-4 sm:backdrop-blur-md">
-          {/* المؤشرات التفاعلية النقاط */}
-          <div className="flex items-center gap-1 pl-2">
-        {projects.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className="py-3 px-1.5 inline-flex items-center justify-center cursor-pointer focus:outline-none"
-            aria-label={`Go to project ${idx + 1}`}
-          >
-            <span
-              className={`h-2 rounded-full transition-all duration-300 ${
-                currentIndex === idx
-                  ? "w-8 sm:w-10 bg-[#D4AF37]"
-                  : "w-2 bg-white/20 hover:bg-white/40"
-              }`}
-            />
-          </button>
-        ))}
-      </div>
+        {/* 2. شريط التحكم والترقيم التفاعلي */}
+        <div className="flex items-center justify-between gap-4">
 
-          {/* العداد وأزرار الأسهم */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            <span className="text-xs sm:text-sm font-mono text-slate-400 select-none">
-              <span className="text-white font-bold text-sm sm:text-base">0{currentIndex + 1}</span> / 0{projects.length}
+          {/* مؤشرات الانتقال بالضغط */}
+          <div className="flex items-center gap-2">
+            {megaProjects.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setDirection(i > currentIdx ? 1 : -1);
+                  setCurrentIdx(i);
+                }}
+                className={`h-2 rounded-full transition-all duration-500 relative overflow-hidden ${currentIdx === i ? "w-12 bg-[#D4AF37]" : "w-3 bg-white/15 hover:bg-white/30"
+                  }`}
+                aria-label={`Go to slide ${i + 1}`}
+              >
+                {currentIdx === i && (
+                  <motion.div
+                    layoutId="activeBarGlow"
+                    className="absolute inset-0 bg-white/40"
+                    transition={{ duration: 0.5 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* عداد رقمي مع أسهم النقر ثلاثية الأبعاد */}
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs sm:text-sm tracking-widest text-[#D4AF37] bg-white/[0.03] px-3 py-1.5 rounded-xl border border-white/10">
+              <span className="text-white font-bold">{active.id}</span> / 06
             </span>
-            
             <div className="flex items-center gap-2">
               <button
-                onClick={prevProject}
-                className="p-2.5 sm:p-3 rounded-xl bg-white/5 active:scale-95 hover:bg-white/10 border border-white/10 text-white transition-all cursor-pointer"
+                onClick={handlePrev}
+                className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-transform active:scale-90"
                 aria-label="Previous Project"
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-                </svg>
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
-                onClick={nextProject}
-                className="p-2.5 sm:p-3 rounded-xl bg-[#D4AF37] active:scale-95 hover:brightness-110 text-black font-bold transition-all cursor-pointer shadow-lg shadow-[#D4AF37]/20"
+                onClick={handleNext}
+                className="p-3 rounded-2xl bg-[#D4AF37] hover:brightness-110 text-[#070B14] transition-transform active:scale-90 font-bold shadow-lg shadow-[#D4AF37]/20"
                 aria-label="Next Project"
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                </svg>
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* تفاصيل المشروع بالكامل بأنيميشن CSS فائق السرعة */}
-      <div 
-        key={activeProject.id}
-        className="flex flex-col gap-6 w-full max-w-7xl mx-auto transition-opacity duration-300 animate-fadeIn"
-      >
-        {/* كروت المعلومات السريعة بدون blur على الموبايل */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#0F172A] sm:bg-[#0F172A]/80 border border-white/10 sm:backdrop-blur-md">
-            <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-widest block mb-1 truncate">
-              CLIENT NAME
-            </span>
-            <p className="text-xs sm:text-base font-bold text-white truncate">{activeProject.client}</p>
-          </div>
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#0F172A] sm:bg-[#0F172A]/80 border border-white/10 sm:backdrop-blur-md">
-            <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-widest block mb-1">
-              Location
-            </span>
-            <p className="text-xs sm:text-base font-bold text-[#D4AF37] truncate">{activeProject.location}</p>
-          </div>
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#0F172A] sm:bg-[#0F172A]/80 border border-white/10 sm:backdrop-blur-md">
-            <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-widest block mb-1">
-              Covered Area
-            </span>
-            <p className="text-xs sm:text-base font-bold text-white truncate">{activeProject.coveredArea}</p>
-          </div>
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#0F172A] sm:bg-[#0F172A]/80 border border-white/10 sm:backdrop-blur-md">
-            <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-widest block mb-1">
-              YEAR DELIVERED
-            </span>
-            <p className="text-xs sm:text-base font-bold text-white truncate">{activeProject.year}</p>
-          </div>
+        {/* 3. شريط المواصفات الهندسية الأربعة مع انيميشن هولوغرام */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: "CLIENT NAME", value: active.client, isGold: false },
+            { label: "LOCATION", value: active.location, isGold: true },
+            { label: "COVERED AREA", value: active.area, isGold: false },
+            { label: "YEAR DELIVERED", value: active.year, isGold: false },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-2xl bg-white/[0.02] border border-white/10 relative overflow-hidden backdrop-blur-md"
+            >
+              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block mb-1">
+                {item.label}
+              </span>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={active.id + item.label}
+                  initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className={`text-xs sm:text-sm font-bold tracking-wide truncate ${item.isGold ? "text-[#D4AF37]" : "text-white"
+                    }`}
+                >
+                  {item.value}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
 
-        {/* حاوية الصورة والاسم */}
-        <div className="relative w-full aspect-[16/9] sm:aspect-[16/9] lg:aspect-[21/10] rounded-3xl overflow-hidden bg-neutral-900 border border-white/15 shadow-xl">
-          <Image  
-            src={activeProject.img}
-            alt={`${activeProject.title} - ${activeProject.category} by Bait Al Nokhada Tents`}
-            fill
-            quality={80}
-            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 800px"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
-          
-          <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 flex flex-col gap-1 sm:gap-2">
-            <span className="text-[10px] sm:text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase">
-              {activeProject.category}
+        {/* 4. مسرح العرض المعماري: انفجار العدسة المركزية (Iris Shockwave Burst) */}
+        <div className="relative h-[420px] sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#03060D] perspective-[1200px]">
+
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={active.id}
+              custom={direction}
+              // تأثير انفجار العدسة من المنتصف مع فلاش ضوئي وزووم سينمائي
+              initial={{
+                clipPath: "circle(0% at 50% 50%)",
+                scale: 1.35,
+                filter: "brightness(2.2) contrast(1.1)",
+              }}
+              animate={{
+                clipPath: "circle(150% at 50% 50%)",
+                scale: 1.0,
+                filter: "brightness(1) contrast(1)",
+              }}
+              exit={{
+                scale: 0.88,
+                opacity: 0,
+                filter: "brightness(0.5) blur(8px)",
+              }}
+              transition={{
+                duration: 0.45, // زمن سريع وانفجاري بدل 0.85
+                ease: [0.16, 1, 0.3, 1], // منحنى تسارع حاد ورشيق
+              }}
+              className="absolute inset-0 w-full h-full will-change-transform"
+            >
+              {/* صورة المشروع مع حركة كين-بيرنز الهادئة المستمرة */}
+              <motion.div
+                animate={{ scale: [1, 1.05] }}
+                transition={{ duration: 7, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={active.image}
+                  alt={active.title}
+                  fill
+                  unoptimized
+                  priority
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* تظليل سينمائي ناعم يبرز العنوان */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040811] via-black/30 to-transparent pointer-events-none" />
+
+              {/* بادج الموقع والنوع في أعلى الصورة */}
+              <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20 pointer-events-none">
+                <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-black/70 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
+                  {active.category}
+                </span>
+                <div className="flex items-center gap-2 text-xs font-mono text-white/90 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10">
+                  <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>{active.location}</span>
+                </div>
+              </div>
+
+              {/* العنوان الكبير ينطلق مع الانفجار */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.6 }}
+                className="absolute bottom-8 left-8 right-8 z-20 space-y-2"
+              >
+                <span className="text-xs font-mono font-bold tracking-widest text-[#D4AF37] uppercase">
+                  PROJECT HIGHLIGHT 0{active.id}
+                </span>
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-wide">
+                  {active.title}
+                </h3>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* حلقة الموجة الارتدادية الذهبية (Shockwave Ring Effect) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`shockwave-${active.id}`}
+              initial={{ scale: 0.1, opacity: 1, borderWidth: "5px" }}
+              animate={{ scale: 2.5, opacity: 0, borderWidth: "1px" }}
+              transition={{ duration: 0.4, ease: "easeOut" }} // قللها إلى 0.4 ثانية
+              className="pointer-events-none absolute inset-0 m-auto w-44 h-44 rounded-full border border-[#D4AF37]/80 z-30"
+            />
+          </AnimatePresence>
+        </div>
+
+        {/* 5. شريط نبذة المشروع وزر دراسة الحالة */}
+        <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-3xl">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#D4AF37] font-bold">
+              ENGINEERING SUMMARY
             </span>
-            <h3 className="text-base sm:text-4xl font-bold font-heading text-white leading-tight">
-              {activeProject.title}
-            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+              {active.desc}
+            </p>
           </div>
+
+          <Link
+            href={`/projects/${active.slug}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0 group"
+          >
+            <span>Explore Case Study</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* المواصفات الفنية والنظرة العامة */}
-        <div className="bg-[#0F172A] sm:bg-[#0F172A]/60 border border-white/10 p-5 sm:p-8 rounded-3xl sm:backdrop-blur-xl flex flex-col gap-2 sm:gap-3">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37] block">
-            PROJECT HIGHLIGHTS
-          </span>
-          <p className="text-slate-200 text-sm sm:text-lg font-light leading-relaxed">
-            {activeProject.desc}
-          </p>
-        </div>
       </div>
-      <div className="sr-only">
-        {projects.map((p) => (
-          <article key={p.id}>
-            <h3>{p.title} - {p.category}</h3>
-            <p>{p.desc}</p>
-            <span>{p.location} - {p.coveredArea}</span>
-          </article>
-        ))}
-      </div>
-
     </section>
   );
 }
