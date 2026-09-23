@@ -28,7 +28,7 @@ const solutions = [
     title: "Sales Center Tents",
     desc: "Architectural semi-permanent structures customized for prime real estate launches and immersive client lounges.",
     specs: "Panoramic Glass Façades • Luxury Interior Fit-Out",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AL%20MARWAN3.webp",
     href: "/solutions/sales-center-tents",
   },
   {
@@ -36,7 +36,7 @@ const solutions = [
     title: "Warehouse Tents",
     desc: "Heavy-duty clear-span temporary and permanent storage tents engineered for logistics and industrial operations.",
     specs: "Rapid Deployment • German DIN Safety Standards",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/warehouse/warehouse.webp",
     href: "/solutions/warehouse-tents",
   },
   {
@@ -44,7 +44,7 @@ const solutions = [
     title: "Labour Break Time Tents",
     desc: "Compliant shaded rest pavilions with heavy-duty cooling systems designed for workforce welfare in extreme heat.",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labourtent.webp",
     href: "/solutions/labour-break-tents",
   },
   {
@@ -52,7 +52,7 @@ const solutions = [
     title: "Sports Tents",
     desc: "Engineered high-span structures providing climate control and certified safety for stadiums, padel courts, and academies.",
     specs: "Thermal Roof Insulation • FIFA / Sports Specs",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Sports/2.webp",
     href: "/solutions/sports-tents",
   },
   {
@@ -60,7 +60,7 @@ const solutions = [
     title: "Ramadan Tents",
     desc: "Authentic Arabic heritage marquees merged with modern luxury for corporate Iftar banquets and royal majlis gatherings.",
     specs: "Custom Interior Majlis • Fire Retardant Class A",
-    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Ramadan/large-ramadan-tents-UAE.webp",
     href: "/solutions/ramadan-tents",
   },
   {
@@ -80,19 +80,11 @@ const solutions = [
     href: "/solutions/mosque-tents",
   },
   {
-    id: "10",
-    title: "Construction Site Tents",
-    desc: "Rugged on-site operations facilities including site offices, equipment shelters, and weatherproofing structures.",
-    specs: "Heavy Wind & Dust Proof • Fast Relocation",
-    image: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1600&q=90",
-    href: "/solutions/construction-tents",
-  },
-  {
     id: "11",
     title: "Wedding Tents",
     desc: "Bespoke royal marquees crafted for outdoor ceremonies in UAE & KSA, offering customized luxury ambiance.",
     specs: "Acoustic Glass Walls • Royal Drapery & Chandeliers",
-    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
     href: "/solutions/wedding-tents",
   },
 ];
