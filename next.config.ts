@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'd3g07f5oxrfvni.cloudfront.net',
       },
+      {
+      protocol: "https",
+      hostname: "baitalnokhada-landing-media.s3.us-east-1.amazonaws.com",
+      },
     ],
   },
 };

@@ -40,7 +40,7 @@ export default function Hero() {
           disablePictureInPicture
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
-          <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
+          <source src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Videoo.mp4" type="video/mp4" />
         </video>
 
         {/* تظليل خفيف جداً وشفاف لضمان وضوح النصوص وبقاء الفيديو ساطعاً */}
