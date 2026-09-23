@@ -254,18 +254,8 @@ export default function FeaturedProjects() {
               </motion.div>
 
               {/* تظليل سينمائي ناعم يبرز العنوان */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#040811] via-black/30 to-transparent pointer-events-none" />
+             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#040811]/90 via-[#040811]/40 to-transparent pointer-events-none z-10" />
 
-              {/* بادج الموقع والنوع في أعلى الصورة */}
-              <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20 pointer-events-none">
-                <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-black/70 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
-                  {active.category}
-                </span>
-                <div className="flex items-center gap-2 text-xs font-mono text-white/90 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10">
-                  <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>{active.location}</span>
-                </div>
-              </div>
 
               {/* العنوان الكبير ينطلق مع الانفجار */}
               <motion.div
@@ -274,10 +264,11 @@ export default function FeaturedProjects() {
                 transition={{ delay: 0.25, duration: 0.6 }}
                 className="absolute bottom-8 left-8 right-8 z-20 space-y-2"
               >
-                <span className="text-xs font-mono font-bold tracking-widest text-[#D4AF37] uppercase">
-                  PROJECT HIGHLIGHT 0{active.id}
+                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#D4AF37] uppercase bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-2.5 py-1 rounded-md">
+                  {active.category}
                 </span>
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-wide">
+
+                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
                   {active.title}
                 </h3>
               </motion.div>
