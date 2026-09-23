@@ -11,25 +11,22 @@ const solutions = [
     id: "01",
     title: "Exhibition Tents",
     desc: "Custom large-scale pavilions for international expos, trade fairs, and airshows across the GCC region.",
-    tag: "Commercial",
     specs: "Up to 60m Clear-Span • High Wind Load",
-    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Gitex-exhibition-tents.webp",
     href: "/solutions/exhibition-tents",
   },
   {
     id: "02",
     title: "Event Tents",
     desc: "Iconic corporate venues and summits setups featuring smart lighting, acoustic insulation, and full HVAC.",
-    tag: "Corporate Summits",
     specs: "Multi-Tiered Staging • Heavy-Duty HVAC Integration",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=90",
+    image:"https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Luxury-Tents-for-Events.webp",
     href: "/solutions/event-tents",
   },
   {
     id: "03",
     title: "Sales Center Tents",
     desc: "Architectural semi-permanent structures customized for prime real estate launches and immersive client lounges.",
-    tag: "Real Estate",
     specs: "Panoramic Glass Façades • Luxury Interior Fit-Out",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/sales-center-tents",
@@ -38,7 +35,6 @@ const solutions = [
     id: "04",
     title: "Warehouse Tents",
     desc: "Heavy-duty clear-span temporary and permanent storage tents engineered for logistics and industrial operations.",
-    tag: "Industrial",
     specs: "Rapid Deployment • German DIN Safety Standards",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/warehouse-tents",
@@ -47,7 +43,6 @@ const solutions = [
     id: "05",
     title: "Labour Break Time Tents",
     desc: "Compliant shaded rest pavilions with heavy-duty cooling systems designed for workforce welfare in extreme heat.",
-    tag: "Site Welfare",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/labour-break-tents",
@@ -56,7 +51,6 @@ const solutions = [
     id: "06",
     title: "Sports Tents",
     desc: "Engineered high-span structures providing climate control and certified safety for stadiums, padel courts, and academies.",
-    tag: "High-Span",
     specs: "Thermal Roof Insulation • FIFA / Sports Specs",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/sports-tents",
@@ -65,7 +59,6 @@ const solutions = [
     id: "07",
     title: "Ramadan Tents",
     desc: "Authentic Arabic heritage marquees merged with modern luxury for corporate Iftar banquets and royal majlis gatherings.",
-    tag: "Heritage Craft",
     specs: "Custom Interior Majlis • Fire Retardant Class A",
     image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/ramadan-tents",
@@ -74,7 +67,6 @@ const solutions = [
     id: "08",
     title: "Funeral Tents",
     desc: "Dignified, fully equipped temporary mourning halls deployed promptly with complete climate control and catering setup.",
-    tag: "Community",
     specs: "24/7 Rapid Installation • Acoustic & Thermal Comfort",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/funeral-tents",
@@ -83,7 +75,6 @@ const solutions = [
     id: "09",
     title: "Mosque Tents",
     desc: "Spacious temporary prayer structures featuring acoustic balance, dedicated ablution annexes, and mihrab orientation.",
-    tag: "Religious Facilities",
     specs: "Anti-Bacterial Carpeting • High-Volume Climate Flow",
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/mosque-tents",
@@ -92,7 +83,6 @@ const solutions = [
     id: "10",
     title: "Construction Site Tents",
     desc: "Rugged on-site operations facilities including site offices, equipment shelters, and weatherproofing structures.",
-    tag: "Infrastructure",
     specs: "Heavy Wind & Dust Proof • Fast Relocation",
     image: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1600&q=90",
     href: "/solutions/construction-tents",
@@ -101,7 +91,6 @@ const solutions = [
     id: "11",
     title: "Wedding Tents",
     desc: "Bespoke royal marquees crafted for outdoor ceremonies in UAE & KSA, offering customized luxury ambiance.",
-    tag: "Luxury Venues",
     specs: "Acoustic Glass Walls • Royal Drapery & Chandeliers",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
     href: "/solutions/wedding-tents",
@@ -182,9 +171,6 @@ export default function SolutionsSection() {
 
               {/* شريط معلومات فوق الصورة */}
               <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-                <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
-                  {activeItem.tag}
-                </span>
                 <span className="font-mono text-xs tracking-widest text-white/90 bg-black/50 backdrop-blur-md px-3 py-1 rounded-lg">
                   {activeItem.id} / 11
                 </span>

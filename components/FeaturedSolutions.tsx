@@ -57,7 +57,7 @@ const megaProjects = [
   },
   {
     id: "05",
-    title: "Dubai Airshow 2025", 
+    title: "Dubai Airshow 2025",
     category: "AVIATION & EXHIBITION TENTS",
     client: "GOVERNMENT SECTOR",
     location: "Dubai, UAE",
@@ -209,7 +209,7 @@ export default function FeaturedProjects() {
         </div>
 
         {/* 4. مسرح العرض المعماري: انفجار العدسة المركزية (Iris Shockwave Burst) */}
-        <div className="relative h-[420px] sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#03060D] perspective-[1200px]">
+        <div className="relative aspect-[4/3] sm:aspect-auto sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#03060D] perspective-[1200px]">
 
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -247,7 +247,7 @@ export default function FeaturedProjects() {
                   src={active.image}
                   alt={active.title}
                   fill
-                  unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1200px"
                   priority
                   className="object-cover"
                 />
