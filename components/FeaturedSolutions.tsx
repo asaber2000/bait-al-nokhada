@@ -16,7 +16,7 @@ const megaProjects = [
     area: "15,500 m²",
     year: "2025",
     desc: "For GITEX Global 2025, Bait Al Nokhada delivered purpose-built exhibition structures for one of the region’s leading technology events. The project was designed to support large-scale visitor environments while maintaining the high-impact presence required for a major international exhibition.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/gitex2025.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gitex2025.webp",
     slug: "gitex-global",
   },
   {
@@ -28,7 +28,7 @@ const megaProjects = [
     area: "35000 m²",
     year: "2026",
     desc: "For Gulfood 2026, Bait Al Nokhada delivered large-scale event structures designed to support a major international food and hospitality exhibition. The project combined functional covered space with a strong presence suited to a high-profile exhibition environment.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/gulfood2026.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gulfood2026.webp",
     slug: "gulfood2026",
   },
   {
@@ -40,7 +40,7 @@ const megaProjects = [
     area: "25,000 m²",
     year: "2025",
     desc: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/driftx.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/driftx.webp",
     slug: "driftx2026",
   },
   {
@@ -52,7 +52,7 @@ const megaProjects = [
     area: "5000 m²",
     year: "2025",
     desc: "For Netflix’s Stranger Things: The Experience, Bait Al Nokhada delivered a distinctive event environment designed around an immersive visitor journey. The project demonstrates how our structures can combine scale, visual impact and flexibility for branded entertainment experiences.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/netflix-stranger-things.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/netflix-stranger-things.webp",
     slug: "netflix",
   },
   {
@@ -64,7 +64,7 @@ const megaProjects = [
     area: "15000 m²",
     year: "2026",
     desc: "For Dubai Airshow 2025, Bait Al Nokhada delivered large-scale temporary structures supporting one of the region’s leading aviation events. The project reflects our experience in creating professional event environments for high-profile exhibitions and demanding project requirements.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/airshow.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/airshow.webp",
     slug: "airshow",
   },
 
@@ -77,7 +77,7 @@ const megaProjects = [
     area: "2,500 m²",
     year: "2025",
     desc: "For Amaal × Mansory, Bait Al Nokhada delivered a purpose-built environment designed to support a premium sales and customer experience. The structure provided a prominent branded space tailored to the needs of the development and its visitors.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured+Projects/amaal2025.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/amaal2025.webp",
     slug: "amaal",
   },
 ];
