@@ -127,7 +127,7 @@ function PillarCardAr({ pillar, idx }: { pillar: any; idx: number }) {
 
 const pillars = [
   {
-    num: "٠١",
+    num: "01",
     title: "الاحترافية الهندسية",
     desc: "هندسة تصنيع متقدمة تخضع لمعايير الأمان الألمانية DIN وخبرة عريقة تمتد لأكثر من ٢٩ عاماً.",
     icon: Wrench,
@@ -136,7 +136,7 @@ const pillars = [
     statSuffix: "+ عاماً",
   },
   {
-    num: "٠٢",
+    num: "02",
     title: "أفضل قيمة وأسعار المصنع",
     desc: "أسعار تنافسية مباشرة من المصنع، مع حلول تأجير متكاملة وعائد استثماري مرتفع للشركات.",
     icon: Coins,
@@ -145,9 +145,9 @@ const pillars = [
     statSuffix: " م²",
   },
   {
-    num: "٠٣",
+    num: "03",
     title: "موثوقية وسجل إنجازات معتمد",
-    desc: "هياكل شد إنشائية مستدامة تم تركيبها في أكثر من ٥,٠٠٠ مشروع ضخم في الإمارات ودول الخليج.",
+    desc: "هياكل شد إنشائية مستدامة تم تركيبها في أكثر من 5,٠٠٠ مشروع ضخم في الإمارات ودول الخليج.",
     icon: ShieldIcon,
     statLabel: "المشاريع المنفذة",
     statValue: 5000,
@@ -186,7 +186,7 @@ export default function FeatureShowcaseAr() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/25 text-[#D4AF37] text-xs font-mono font-bold tracking-widest uppercase shadow-inner"
             >
               <Award className="w-3.5 h-3.5" />
-              <span>رواد تصنيع وتأجير الخيام في الإمارات والسعودية – منذ عام ١٩٩٧</span>
+              <span>رواد تصنيع وتأجير الخيام في الإمارات والسعودية — منذ عام 1997</span>
             </motion.div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.25]">
