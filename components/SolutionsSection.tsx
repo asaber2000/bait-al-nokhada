@@ -12,7 +12,7 @@ const solutions = [
     title: "Exhibition Tents",
     desc: "Custom large-scale pavilions for international expos, trade fairs, and airshows across the GCC region.",
     specs: "Up to 60m Clear-Span • High Wind Load",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Gitex-exhibition-tents.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
     href: "/solutions/exhibition-tents",
   },
   {
@@ -52,7 +52,7 @@ const solutions = [
     title: "Labour Break Time Tents",
     desc: "Compliant shaded rest pavilions with heavy-duty cooling systems designed for workforce welfare in extreme heat.",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labourtent.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labour-tent-for-sale.webp",
     href: "/solutions/labour-break-tents",
   },
   {
@@ -141,13 +141,13 @@ export default function SolutionsSection() {
           <div className="lg:col-span-6 relative">
             <div className="relative h-[380px] sm:h-[460px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#070B14]">
 
-              <AnimatePresence mode="wait">
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={activeItem.id}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15, ease: "linear" }}
                   className="absolute inset-0 w-full h-full"
                 >
                   <Image

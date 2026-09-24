@@ -209,40 +209,36 @@ export default function FeaturedProjects() {
         </div>
 
         {/* 4. مسرح العرض المعماري: انفجار العدسة المركزية (Iris Shockwave Burst) */}
-        <div className="relative aspect-[4/3] sm:aspect-auto sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#03060D] perspective-[1200px]">
+        {/* 4. مسرح العرض المعماري: انتقال Cross-fade فوري وسلس */}
+        <div className="relative aspect-[4/3] sm:aspect-auto sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#03060D]">
 
-          <AnimatePresence mode="wait" custom={direction}>
+          <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={active.id}
               custom={direction}
-              // تأثير انفجار العدسة من المنتصف مع فلاش ضوئي وزووم سينمائي
-              initial={{
-                clipPath: "circle(0% at 50% 50%)",
-                scale: 1.35,
-                filter: "brightness(2.2) contrast(1.1)",
-              }}
-              animate={{
-                clipPath: "circle(150% at 50% 50%)",
-                scale: 1.0,
-                filter: "brightness(1) contrast(1)",
-              }}
-              exit={{
-                scale: 0.88,
+              initial={{ 
+                x: direction > 0 ? 120 : -120, // تبدأ من إزاحة واضحة لليمين أو اليسار
                 opacity: 0,
-                filter: "brightness(0.5) blur(8px)",
+                scale: 0.95
               }}
-              transition={{
-                duration: 0.45, // زمن سريع وانفجاري بدل 0.85
-                ease: [0.16, 1, 0.3, 1], // منحنى تسارع حاد ورشيق
+              animate={{ 
+                x: 0, 
+                opacity: 1,
+                scale: 1 
+              }}
+              exit={{ 
+                x: direction > 0 ? -120 : 120, // تخرج باتجاه معاكس واضح
+                opacity: 0,
+                scale: 0.95
+              }}
+              transition={{ 
+                duration: 0.35, 
+                ease: [0.16, 1, 0.3, 1] // توقيت حاد وسريع يعطي انطلاقة قوية
               }}
               className="absolute inset-0 w-full h-full will-change-transform"
             >
-              {/* صورة المشروع مع حركة كين-بيرنز الهادئة المستمرة */}
-              <motion.div
-                animate={{ scale: [1, 1.05] }}
-                transition={{ duration: 7, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                className="relative w-full h-full"
-              >
+              {/* صورة المشروع */}
+              <div className="relative w-full h-full">
                 <Image
                   src={active.image}
                   alt={active.title}
@@ -251,20 +247,19 @@ export default function FeaturedProjects() {
                   priority
                   className="object-cover"
                 />
-              </motion.div>
+              </div>
 
               {/* تظليل سينمائي ناعم يبرز العنوان */}
-             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#040811]/90 via-[#040811]/40 to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#040811]/95 via-[#040811]/50 to-transparent pointer-events-none z-10" />
 
-
-              {/* العنوان الكبير ينطلق مع الانفجار */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
+              {/* العنوان والكاتجوري ينزلقان بشكل مستقل ليعطيا تأثيراً ثلاثي الأبعاد */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.6 }}
+                transition={{ duration: 0.3, delay: 0.08 }}
                 className="absolute bottom-8 left-8 right-8 z-20 space-y-2"
               >
-                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#D4AF37] uppercase bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-2.5 py-1 rounded-md">
+                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#D4AF37] uppercase bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-2.5 py-1 rounded-md backdrop-blur-md">
                   {active.category}
                 </span>
 
