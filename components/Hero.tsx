@@ -38,11 +38,11 @@ export default function Hero() {
             playsInline
             preload="metadata"
             disablePictureInPicture
-            poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/hero-poster.webp"
+            poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
             className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
           >
             <source
-              src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/videos/Hero-Video-For-Bait-Al-Nokhada-Tents.mp4"
+              src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
               type="video/mp4"
             />
           </video>
