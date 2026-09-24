@@ -32,20 +32,20 @@ export default function Hero() {
         className="absolute inset-x-0 -top-[10%] w-full h-[125%] z-0 overflow-hidden pointer-events-none will-change-transform"
       >
         <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            disablePictureInPicture
-            poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
-            className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
-          >
-            <source
-              src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
-              type="video/mp4"
-            />
-          </video>
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          disablePictureInPicture
+          poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
+          className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
+        >
+          <source
+            src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
+            type="video/mp4"
+          />
+        </video>
 
         {/* تظليل خفيف جداً وشفاف لضمان وضوح النصوص وبقاء الفيديو ساطعاً */}
         <div className="absolute inset-0 bg-black/30 z-10" />
