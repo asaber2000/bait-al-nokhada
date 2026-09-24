@@ -2,109 +2,90 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpLeft, CheckCircle2 } from "lucide-react";
+import { ArrowUpLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const solutions = [
   {
-    id: "٠١",
+    id: "01",
     title: "خيام وصالات المعارض",
     desc: "أجنحة وهياكل ضخمة مخصصة للمعارض الدولية، الفعاليات التجارية، وعروض الطيران الكبرى عبر دول الخليج.",
-    tag: "تجاري ومعارض",
-    specs: "بحور مفتوحة تصل إلى ٦٠ متراً • مقاومة عالية للرياح",
-    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    specs: "بحور مفتوحة تصل إلى 60 متراً • مقاومة عالية للرياح",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
     href: "/ar/solutions/exhibition-tents",
   },
   {
-    id: "٠٢",
+    id: "02",
     title: "خيام الفعاليات والمؤتمرات",
     desc: "قاعات مؤتمرات وقمم حكومية مجهزة بأحدث تقنيات الإضاءة الذكية، العزل الصوتي، والتكييف المركزي المتكامل.",
-    tag: "قمم دولية",
     specs: "منصات متعددة المستويات • أنظمة تكييف فائقة القدرة",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Luxury-Tents-for-Events.webp",
     href: "/ar/solutions/event-tents",
   },
   {
-    id: "٠٣",
+    id: "03",
+    title: "خيام الأعراس الملكية",
+    desc: "قاعات ملكية فخمة مصممة لحفلات الزفاف الخارجية في الإمارات والسعودية، توفر أجواء راقية وخاصة.",
+    specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
+    href: "/ar/solutions/wedding-tents",
+  },
+  {
+    id: "04",
     title: "خيام مراكز المبيعات",
     desc: "هياكل معمارية شبه دائمة مخصصة لإطلاق المشاريع العقارية الكبرى وتوفير صالات استقبال فخمة للمستثمرين.",
-    tag: "مشاريع عقارية",
     specs: "واجهات زجاجية بانورامية • تشطيب داخلي فاخر",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AL%20MARWAN3.webp",
     href: "/ar/solutions/sales-center-tents",
   },
   {
-    id: "٠٤",
+    id: "05",
     title: "المستودعات والخيام الصناعية",
     desc: "مستودعات تخزين مؤقتة ودائمة ذات بحور مفتوحة عالية التحمل ومصممة للعمليات اللوجستية والمواقع الصناعية.",
-    tag: "صناعي ولوجستي",
     specs: "سرعة في التوريد والتركيب • معايير السلامة الألمانية DIN",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/warehouse/warehouse.webp",
     href: "/ar/solutions/warehouse-tents",
   },
   {
-    id: "٠٥",
+    id: "06",
     title: "خيام استراحة العمال",
     desc: "مظلات واستراحات مجهزة بأنظمة تبريد عالية الكفاءة لتأمين راحة الكوادر الميدانية وفق اشتراطات السلامة والرفاهية.",
-    tag: "رعاية العمال",
     specs: "أنسجة PVC عازلة للحرارة • معتمدة من الدفاع المدني",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labour-tent-for-sale.webp",
     href: "/ar/solutions/labour-break-tents",
   },
   {
-    id: "٠٦",
+    id: "07",
     title: "الخيام والملاعب الرياضية",
     desc: "هياكل بحور واسعة توفر عزلاً حرارياً متطوراً للملاعب الرياضية، ملاعب البادل، والصالات الأكاديمية الأولمبية.",
-    tag: "منشآت رياضية",
     specs: "أسقف عازلة حرارياً • مطابقة لمعايير FIFA الرياضية",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Sports/2.webp",
     href: "/ar/solutions/sports-tents",
   },
   {
-    id: "٠٧",
+    id: "08",
     title: "الخيام والمجالس الرمضانية",
     desc: "أجواء تراثية عربية أصيلة مدمجة باللمسات المعمارية الحديثة لبوفيهات الإفطار المؤسسية والمجالس الملكية.",
-    tag: "تراث وأصالة",
     specs: "فرش داخلي ومجالس تفصيل • مقاومة للحريق Class A",
-    image: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Ramadan/large-ramadan-tents-UAE.webp",
     href: "/ar/solutions/ramadan-tents",
   },
   {
-    id: "٠٨",
-    title: "خيام العزاء والمناسبات",
-    desc: "قاعات مؤقتة مجهزة بالكامل تُشيد بسرعة فائقة وتوفر تكييفاً وخدمات لوجستية ملائمة لكافة المناسبات.",
-    tag: "مناسبات مجتمعية",
-    specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=90",
-    href: "/ar/solutions/funeral-tents",
-  },
-  {
-    id: "٠٩",
+    id: "09",
     title: "خيام المصليات والمساجد",
     desc: "مصليات مؤقتة واسعة مجهزة بفرش معقم، عزل صوتي نقي، مناطق وضوء ملحقة، ومحاريب دقيقة التوجيه.",
-    tag: "منشآت دينية",
     specs: "سجاد مضاد للبكتيريا • تدفق هواء مكيف عالي السعة",
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=90",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Mosque+Tents/mosque-img2.webp",
     href: "/ar/solutions/mosque-tents",
   },
   {
-    id: "١٠",
-    title: "خيام مواقع الإنشاءات",
-    desc: "منشآت عمليات ميدانية متينة تشمل مكاتب المشاريع الهندسية، ملاجئ المعدات، وخيام العزل المناخي في المواقع.",
-    tag: "بنية تحتية",
-    specs: "مقاومة للرياح والعواصف الترابية • سهولة الفك وإعادة النقل",
-    image: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1600&q=90",
-    href: "/ar/solutions/construction-tents",
-  },
-  {
-    id: "١١",
-    title: "خيام الأعراس الملكية",
-    desc: "قاعات ملكية فخمة مصممة لحفلات الزفاف الخارجية في الإمارات والسعودية بأحدث الديكورات والإضاءات البانورامية.",
-    tag: "أعراس ملكية",
-    specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
-    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
-    href: "/ar/solutions/wedding-tents",
+    id: "10",
+    title: "خيام العزاء والمناسبات",
+    desc: "قاعات مؤقتة مجهزة بالكامل تُشيد بسرعة فائقة وتوفر تكييفاً وخدمات لوجستية متكاملة لراحة الحضور.",
+    specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Funeral+Tents/Funeral-Tents.webp",
+    href: "/ar/solutions/funeral-tents",
   },
 ];
 
@@ -113,10 +94,10 @@ export default function ArabicSolutionsSection() {
   const activeItem = solutions[selectedIdx];
 
   return (
-    <section dir="rtl" className="relative pt-12 pb-24 bg-[#040811] border-t border-white/5 overflow-hidden text-right font-sans">
+    <section dir="rtl" className="relative pt-12 pb-24 bg-[#040811] border-t border-white/5 overflow-hidden text-right">
       {/* خلفية هندسية خافتة */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
       />
       <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
@@ -135,17 +116,17 @@ export default function ArabicSolutionsSection() {
               </span>
             </h2>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <p className="text-slate-400 text-sm max-w-md font-light leading-relaxed">
               استكشف باقتنا المتكاملة من الخيام المعيارية ذات البحور الواسعة، الهياكل النسيجية المشدودة، وقاعات المؤتمرات والفعاليات.
             </p>
-            
+
             <Link
               href="/ar/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0"
             >
-              <span>عرض كل الحلول الـ ١١</span>
+              <span>عرض كل الحلول الـ ١٠</span>
               <ArrowUpLeft className="w-4 h-4" />
             </Link>
           </div>
@@ -155,26 +136,26 @@ export default function ArabicSolutionsSection() {
       {/* شاشة العرض التفاعلية المنقسمة */}
       <div className="w-full px-6 sm:px-12 lg:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* الجانب الأيمن: شاشة عرض الصورة السينمائية */}
+
+          {/* الجانب الأيمن في RTL: شاشة عرض الصورة السينمائية */}
           <div className="lg:col-span-6 relative">
-            <div className="relative h-[420px] sm:h-[500px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#070B14]">
-              
-              <AnimatePresence mode="wait">
+            <div className="relative h-[380px] sm:h-[460px] w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-[#070B14]">
+
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={activeItem.id}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15, ease: "linear" }}
                   className="absolute inset-0 w-full h-full"
                 >
                   <Image
                     src={activeItem.image}
                     alt={activeItem.title}
                     fill
-                    unoptimized
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-center"
                     priority
                   />
                 </motion.div>
@@ -182,25 +163,18 @@ export default function ArabicSolutionsSection() {
 
               {/* شريط معلومات فوق الصورة */}
               <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-                <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
-                  {activeItem.tag}
-                </span>
                 <span className="font-mono text-xs tracking-widest text-white/90 bg-black/50 backdrop-blur-md px-3 py-1 rounded-lg">
-                  {activeItem.id} / ١١
+                  {activeItem.id} / 10
                 </span>
               </div>
-
-              {/* شريط المواصفات التقنية في الأسفل */}
-              <div className="absolute bottom-5 left-5 right-5 p-3.5 rounded-xl bg-[#070B14]/85 backdrop-blur-md border border-white/10 z-20 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" />
-                  <span>{activeItem.specs}</span>
-                </div>
+              
+              {/* زر استكشف فقط مطابق للإنجليزية */}
+              <div className="absolute bottom-5 left-5 z-20">
                 <Link
                   href={activeItem.href}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#070B14]/85 hover:bg-[#D4AF37] backdrop-blur-md border border-white/10 hover:border-[#D4AF37] text-[#D4AF37] hover:text-[#070B14] transition-all text-xs font-bold uppercase tracking-widest shadow-lg"
                 >
-                  <span>تفاصيل الحل</span>
+                  <span>استكشف المزيد</span>
                   <ArrowUpLeft className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -208,11 +182,10 @@ export default function ArabicSolutionsSection() {
             </div>
           </div>
 
-          {/* الجانب الأيسر: قائمة الحلول الـ ١١ التفاعلية مع دعم السكرول الحر بالماوس */}
+          {/* الجانب الأيسر في RTL: قائمة الحلول */}
           <div
             data-lenis-prevent
-            className="lg:col-span-6 flex flex-col divide-y divide-white/10 max-h-[500px] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-[#D4AF37]/40 pl-2"
-          >
+            className="lg:col-span-6 flex flex-col divide-y divide-white/10 max-h-[520px] overflow-y-auto scrollbar-thin scrollbar-thumb-[#D4AF37]/30 pl-2">
             {solutions.map((item, idx) => {
               const isSelected = selectedIdx === idx;
               return (
@@ -239,8 +212,8 @@ export default function ArabicSolutionsSection() {
                     </div>
 
                     <div className={`p-1.5 rounded-full border transition-all ${
-                      isSelected 
-                        ? "border-[#D4AF37] bg-[#D4AF37] text-[#070B14] -rotate-45" 
+                      isSelected
+                        ? "border-[#D4AF37] bg-[#D4AF37] text-[#070B14] -rotate-45"
                         : "border-white/10 text-slate-500 group-hover:border-white/30 group-hover:text-white"
                     }`}>
                       <ArrowUpLeft className="w-3.5 h-3.5 transition-transform duration-300" />

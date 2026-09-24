@@ -38,17 +38,19 @@ export default function ArabicHero() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
+          poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
-          <source src="/Dubai Harbor Short Video.mp4" type="video/mp4" />
+          {/* مسار الفيديو (يفضل استخدام رابط CloudFront/S3 مثل الإنجليزي بمجرد رفعه) */}
+          <source src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-black/30 z-10" />
       </motion.div>
-      
-      <motion.div 
+
+      <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 max-w-4xl mx-auto w-full text-center space-y-6 px-6 pt-12 will-change-transform"
       ></motion.div>

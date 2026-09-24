@@ -18,7 +18,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
   {
     id: "1",
     slug: "warehouse-tent",
-    name: "Industrial Warehouse & Storage Tents",
+    name: "Warehouse Tents",
     tagline: "Rapid-Deploy Heavy-Duty Logistics Hubs & On-Site Storage in UAE & KSA",
     badge: "Industrial Grade • Fast Assembly",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",

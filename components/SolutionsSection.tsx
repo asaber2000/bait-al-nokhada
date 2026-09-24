@@ -84,7 +84,7 @@ const solutions = [
     title: "Funeral Tents",
     desc: "Dignified, fully equipped temporary mourning halls deployed promptly with complete climate control and catering setup.",
     specs: "24/7 Rapid Installation • Acoustic & Thermal Comfort",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Funeral+Tents/funaral-tent2.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Funeral+Tents/Funeral-Tents.webp",
     href: "/solutions/funeral-tents",
   },
 ];
@@ -126,7 +126,7 @@ export default function SolutionsSection() {
               href="/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0"
             >
-              <span>View All 11 Lines</span>
+              <span>View All 10 Lines</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
