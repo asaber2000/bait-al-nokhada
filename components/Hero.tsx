@@ -21,13 +21,13 @@ export default function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative w-full min-h-[100dvh] flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
-    > 
+    >
 
       {/* 1. Background Video Layer (Crystal Clear & Full Screen without mobile bar jumps) */}
-      <motion.div 
+      <motion.div
         style={{ y: videoY }}
         className="absolute inset-x-0 -top-[10%] w-full h-[125%] z-0 overflow-hidden pointer-events-none will-change-transform"
       >
@@ -36,11 +36,15 @@ export default function Hero() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
+          poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
-          <source src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Videoo.mp4" type="video/mp4" />
+          <source
+            src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
+            type="video/mp4"
+          />
         </video>
 
         {/* تظليل خفيف جداً وشفاف لضمان وضوح النصوص وبقاء الفيديو ساطعاً */}
@@ -48,7 +52,7 @@ export default function Hero() {
       </motion.div>
 
       {/* 2. Hero Content (Floating & Fading on Scroll) */}
-      <motion.div 
+      <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 max-w-4xl mx-auto w-full text-center space-y-6 px-6 pt-12 will-change-transform"
       >

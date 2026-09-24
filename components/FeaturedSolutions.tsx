@@ -52,7 +52,7 @@ const megaProjects = [
     area: "5000 m²",
     year: "2025",
     desc: "For Netflix’s Stranger Things: The Experience, Bait Al Nokhada delivered a distinctive event environment designed around an immersive visitor journey. The project demonstrates how our structures can combine scale, visual impact and flexibility for branded entertainment experiences.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/netflix-stranger-things.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/netflix-stranger-thing.webp",
     slug: "netflix",
   },
   {
