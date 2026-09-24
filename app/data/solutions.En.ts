@@ -17,7 +17,7 @@ export interface SolutionItemEn {
 export const solutionsDatabase: SolutionItemEn[] = [
   {
     id: "1",
-    slug: "warehouse-tent",
+    slug: "warehouse-tents",
     name: "Warehouse Tents",
     tagline: "Rapid-Deploy Heavy-Duty Logistics Hubs & On-Site Storage in UAE & KSA",
     badge: "Industrial Grade • Fast Assembly",
@@ -56,8 +56,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "2",
-    slug: "wedding-tent",
-    name: "Luxury Royal Wedding Tents",
+    slug: "wedding-tents",
+    name: "Wedding Tents",
     tagline: "Turnkey Bespoke Ballrooms & Clear-Span Bridal Marquees across the GCC",
     badge: "Bespoke Royal Luxury • VIP Fit-Out",
     heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
@@ -85,8 +85,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "3",
-    slug: "event-tent",
-    name: "Corporate Event & Conference Tents",
+    slug: "event-tents",
+    name: "Event Tents",
     tagline: "High-Profile Brand Activations, Summits & Temporary Corporate Arenas",
     badge: "Corporate Turnkey • Heavy Rigging",
     heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
@@ -108,8 +108,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "4",
-    slug: "exhibition-tent",
-    name: "Mega Exhibition & Trade Show Tents",
+    slug: "exhibition-tents",
+    name: "Exhibition Tents",
     tagline: "Modular Multi-Bay Arenas for International Defense & Trade Expos",
     badge: "Mega Clear-Span • High Traffic",
     heroImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1800&q=80",
@@ -130,8 +130,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "5",
-    slug: "sports-tent",
-    name: "Indoor Sports & Padel Arena Tents",
+    slug: "sports-tents",
+    name: "Sports Tents",
     tagline: "All-Weather High-Apex Covered Arenas for Tennis, Padel & Multi-Sport Courts",
     badge: "High-Apex Clearance • Acoustic Liners",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
@@ -152,8 +152,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "6",
-    slug: "ramadan-tent",
-    name: "Ramadan Iftar & Suhoor Hospitality Tents",
+    slug: "ramadan-tents",
+    name: "Ramadan Iftar Tents",
     tagline: "Authentic Arabic Hospitality Shelters Engineered with Modern Luxury Finishes",
     badge: "Heritage Styling • Turnkey Catering Ready",
     heroImage: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=80",
@@ -174,8 +174,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "7",
-    slug: "aircraft-hangar-tent",
-    name: "Temporary Aircraft Hangar & MRO Tents",
+    slug: "aircraft-hangar-tents",
+    name: "Aircraft Hangar Tents",
     tagline: "High-Clearance TFS Curve Structures for Aviation Maintenance & Storage",
     badge: "Aviation TFS • 130 km/h Wind Load",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
@@ -197,8 +197,8 @@ export const solutionsDatabase: SolutionItemEn[] = [
   },
   {
     id: "8",
-    slug: "premium-royal-tent",
-    name: "Bespoke Royal & Diplomatic Protocol Tents",
+    slug: "royal-tent",
+    name: "Royal Tents",
     tagline: "VVIP Dignitary Lounges Engineered for Royal Protocol & Heads of State",
     badge: "VVIP Protocol • Maximum Security",
     heroImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1800&q=80",

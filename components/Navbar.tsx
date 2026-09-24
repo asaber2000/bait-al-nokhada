@@ -23,6 +23,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
   const pathname = usePathname() || "/";
   const isArabic = pathname.startsWith("/ar");
 
@@ -50,16 +61,14 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5 group">
             <span
-              className={`font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
-                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-              }`}
+              className={`font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+                }`}
             >
               Bait Al
             </span>
             <span
-              className={`text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${
-                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-              }`}
+              className={`text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+                }`}
             >
               Nokhada
             </span>
@@ -95,11 +104,12 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            data-lenis-prevent
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-y-contain flex flex-col text-left will-change-transform"
+            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
@@ -146,20 +156,7 @@ export default function Navbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي مع منع انتشار التمرير للخارج */}
               <div
-                className="lg:col-span-4 space-y-3 text-sm text-slate-300 lg:border-l lg:border-white/10 pl-0 lg:pl-6 max-h-none lg:max-h-[55vh] lg:overflow-y-auto select-none"
-                style={{
-                  scrollbarWidth: "none",
-                  msOverflowStyle: "none",
-                  WebkitOverflowScrolling: "touch",
-                }}
-              >
-                <style jsx>{`
-                  div::-webkit-scrollbar {
-                    display: none !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                  }
-                `}</style>
+                className="lg:col-span-4 space-y-4 text-sm text-slate-300 lg:border-l lg:border-white/10 pl-0 lg:pl-6">
 
                 {/* Products */}
                 <div className="space-y-2 bg-white/[0.04] p-3.5 rounded-2xl border border-white/10 shadow-lg">
@@ -334,7 +331,7 @@ export default function Navbar() {
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     </a>
-                    
+
                     {/* TikTok */}
                     <a
                       href="https://tiktok.com"

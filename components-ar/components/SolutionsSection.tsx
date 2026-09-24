@@ -126,7 +126,7 @@ export default function ArabicSolutionsSection() {
               href="/ar/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all text-xs font-bold uppercase tracking-widest shrink-0"
             >
-              <span>عرض كل الحلول الـ ١٠</span>
+              <span>عرض جميع الحلول</span>
               <ArrowUpLeft className="w-4 h-4" />
             </Link>
           </div>

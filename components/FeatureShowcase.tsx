@@ -259,7 +259,7 @@ export default function FeatureShowcase() {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative h-[300px] sm:h-[370px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl group"
+            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl group"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
@@ -267,7 +267,7 @@ export default function FeatureShowcase() {
                 alt="Bait Al Nokhada Exhibition Tents"
                 fill
                 unoptimized
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-[70%_center] group-hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
           </motion.div>

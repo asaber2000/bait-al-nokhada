@@ -17,8 +17,8 @@ export interface SolutionItemAr {
 export const solutionsDatabase: SolutionItemAr[] = [
   {
     id: "1",
-    slug: "warehouse-tent",
-    name: "خيام المستودعات والتخزين الصناعي",
+    slug: "warehouse-tents",
+    name: "خيام المستودعات",
     tagline: "مراكز لوجستية سريعة التركيب ومستودعات تخزين شاقة في الإمارات والسعودية",
     badge: "معايير صناعية • تركيب سريع",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
@@ -56,8 +56,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "2",
-    slug: "wedding-tent",
-    name: "خيام الأعراس والمناسبات الملكية الفاخرة",
+    slug: "wedding-tents",
+    name: "خيام الزفاف والأعراس",
     tagline: "قاعات احتفالات ملكية مجهزة بالكامل وخيام أعراس فاخرة بدون أعمدة في دول الخليج",
     badge: "فخامة ملكية • تجهيز VIP متكامل",
     heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
@@ -85,8 +85,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "3",
-    slug: "event-tent",
-    name: "خيام الفعاليات والمؤتمرات المؤسسية",
+    slug: "event-tents",
+    name: "خيام الفعاليات والمناسبات",
     tagline: "إطلاق المنتجات، القمم الحكومية، والصالات المؤقتة للشركات الكبرى",
     badge: "تجهيز مؤسسي • تحمل أوزان الإضاءة",
     heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
@@ -108,8 +108,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "4",
-    slug: "exhibition-tent",
-    name: "خيام وصالات المعارض التجارية الكبرى",
+    slug: "exhibition-tents",
+    name: "خيام المعارض",
     tagline: "مجمعات وقاعات معارض معيارية لمعارض الدفاع والطيران والتجارة الدولية",
     badge: "بحور مفتوحة عملاقة • استيعاب جماهيري ضخم",
     heroImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1800&q=80",
@@ -130,8 +130,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "5",
-    slug: "sports-tent",
-    name: "تغطيات وخيام الملاعب الرياضية والبادل",
+    slug: "sports-tents",
+    name: "خيام رياضية",
     tagline: "صالات رياضية مغطاة بارتفاعات حرة لملاعب البادل والتنس والمسابح على مدار العام",
     badge: "ارتفاع حر شاهق • بطانات عازلة للصوت",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
@@ -152,8 +152,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "6",
-    slug: "ramadan-tent",
-    name: "الخيام الرمضانية ومجالس الإفطار والسحور",
+    slug: "ramadan-tents",
+    name: "خيام رمضانية",
     tagline: "أجواء ضيافة عربية أصيلة بتشطيبات فاخرة وتجهيزات متكاملة لخدمات البوفيه",
     badge: "طابع تراثي أصيل • جاهزة لخدمات الضيافة",
     heroImage: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=80",
@@ -174,8 +174,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "7",
-    slug: "aircraft-hangar-tent",
-    name: "هناجر وصيانة الطائرات المؤقتة (TFS)",
+    slug: "aircraft-hangar-tents",
+    name: "خيام حظائر الطائرات",
     tagline: "هياكل مقوسة شاهقة الارتفاع لصيانة وتخزين الطائرات والمروحيات",
     badge: "هياكل TFS للطيران • مقاومة رياح 130 كم/س",
     heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
@@ -197,8 +197,8 @@ export const solutionsDatabase: SolutionItemAr[] = [
   },
   {
     id: "8",
-    slug: "premium-royal-tent",
-    name: "خيام البروتوكول الدبلوماسي والمجالس الملكية",
+    slug: "premium-royal-tents",
+    name: "خيام ملكية",
     tagline: "أجنحة وقاعات VIP مخصصة للبروتوكولات الرسمية واستقبال قادة الدول",
     badge: "بروتوكول رسمي VVIP • خصوصية وأمان تام",
     heroImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1800&q=80",
