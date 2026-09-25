@@ -142,7 +142,7 @@ const pillars = [
     icon: Coins,
     statLabel: "المجمع الصناعي",
     statValue: 40000,
-    statSuffix: "m²",
+    statSuffix: " m²",
   },
   {
     num: "03",
