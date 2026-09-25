@@ -41,7 +41,7 @@ const journeyMilestones = [
     desc: "Upgraded manufacturing plants to ICAD-1 (Industrial City of Abu Dhabi) spanning over 40,000 sqm, incorporating German automated CNC cutting and high-frequency HF welding.",
     highlight: "Achieved ISO 9001:2015 and DIN safety compliance certifications.",
     stats: { label: "Manufacturing Hub", value: "40,000 m²" },
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=85",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
   },
   {
     year: "2015",
@@ -172,13 +172,13 @@ export default function AboutPage() {
         {/* منظومة أوتار الشد والسنوات مع كابلات الربط الحية */}
         <div className="relative max-w-5xl mx-auto">
           
-          {/* كابل الشد الأفقي الرئيسي */}
-          <div className="relative py-8 mb-6">
-            <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-[1px] bg-white/10 pointer-events-none" />
+          {/* كابل الشد الأفقي الرئيسي ومحطات الأعوام */}
+          <div className="relative pt-6 pb-2">
+            <div className="absolute top-[38px] left-4 right-4 h-[1px] bg-white/10 pointer-events-none" />
             
             {/* خط الطاقة المتوهج المشدود */}
             <motion.div 
-              className="absolute top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent pointer-events-none filter drop-shadow-[0_0_8px_#D4AF37]"
+              className="absolute top-[38px] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent pointer-events-none filter drop-shadow-[0_0_8px_#D4AF37]"
               animate={{ 
                 left: `${(activeMilestone / (journeyMilestones.length - 1)) * 80}%`,
                 width: "20%" 
@@ -219,7 +219,7 @@ export default function AboutPage() {
                       {/* شارة السنة */}
                       <div className={`mt-3 px-4 py-1.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all duration-300 ${
                         isSelected
-                          ? "bg-[#D4AF37] text-[#070B14] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/25 -translate-y-1 font-black"
+                          ? "bg-[#D4AF37] text-[#070B14] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/25 -translate-y-0.5 font-black"
                           : "bg-[#090F1C]/80 text-slate-400 border-white/10 group-hover:text-white group-hover:border-white/30"
                       }`}>
                         {item.year}
@@ -231,26 +231,50 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* خط التوصيل الليزري المائل المتجه مباشرة إلى كرت المواصفات */}
-          <div className="relative h-12 w-full overflow-visible pointer-events-none hidden sm:block">
-            <svg className="w-full h-full">
+          {/* خط التوصيل الليزري المائل المتصل مباشرة من أسفل الزر إلى قمة الكرت */}
+          <div className="relative h-16 w-full pointer-events-none hidden sm:block overflow-visible -mt-1">
+            <svg className="w-full h-full overflow-visible">
               <motion.line
-                x1={`${10 + (activeMilestone / (journeyMilestones.length - 1)) * 80}%`}
-                y1="0"
-                x2="50%"
-                y2="100%"
+                animate={{
+                  x1: `${[
+                    "calc(3rem + 26px)",
+                    "calc(25% + 1.5rem)",
+                    "50%",
+                    "calc(75% - 1.5rem)",
+                    "calc(100% - 3rem - 26px)"
+                  ][activeMilestone]}`,
+                  y1: "0px",
+                  x2: "50%",
+                  y2: "100%"
+                }}
                 stroke="#D4AF37"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-                className="opacity-60"
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                strokeWidth="2"
+                strokeDasharray="5 5"
+                className="opacity-80 filter drop-shadow-[0_0_6px_#D4AF37]"
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.circle
+                animate={{
+                  cx: `${[
+                    "calc(3rem + 26px)",
+                    "calc(25% + 1.5rem)",
+                    "50%",
+                    "calc(75% - 1.5rem)",
+                    "calc(100% - 3rem - 26px)"
+                  ][activeMilestone]}`,
+                  cy: "0px"
+                }}
+                r="3.5"
+                fill="#D4AF37"
+                className="filter drop-shadow-[0_0_8px_#D4AF37]"
+                transition={{ duration: 0.45 }}
+              />
+              <circle
                 cx="50%"
                 cy="100%"
-                r="3"
+                r="4"
                 fill="#D4AF37"
-                transition={{ duration: 0.5 }}
+                className="filter drop-shadow-[0_0_8px_#D4AF37]"
               />
             </svg>
           </div>
@@ -258,14 +282,6 @@ export default function AboutPage() {
           {/* مسرح الكرت المعماري المطور */}
           <div className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/30 bg-[#070B14]/90 backdrop-blur-2xl shadow-2xl p-6 sm:p-12 min-h-[460px] flex items-center">
             
-            {/* مؤشرات الزوايا الهندسية التقنية (Truss Corner Brackets) */}
-            <div className="absolute top-4 left-4 font-mono text-[9px] text-[#D4AF37]/60 flex items-center gap-1 select-none">
-              <span className="w-1.5 h-1.5 bg-[#D4AF37]/60 rounded-full" />
-              <span>TENSION ANCHOR // REF-{(activeMilestone + 1) * 102}</span>
-            </div>
-            <div className="absolute top-4 right-4 font-mono text-[9px] text-slate-500 select-none">
-              LOAD CAPACITY: 94.8%
-            </div>
 
             {/* رقم السنة كعلامة مائية متحركة وضخمة */}
             <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[210px] font-black font-mono text-white/[0.025] leading-none z-0">
@@ -282,7 +298,7 @@ export default function AboutPage() {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full relative z-10"
               >
                 {/* الجانب المرئي: الصورة المعمارية مع حدود ليزرية */}
-                <div className="lg:col-span-5 relative h-[260px] sm:h-[340px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl group bg-[#090F1C]">
+                <div className="lg:col-span-6 relative h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl group bg-[#090F1C]">
                   <Image
                     src={active.image}
                     alt={active.title}
@@ -292,15 +308,10 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent pointer-events-none" />
                   
-                  {/* شريط الإحصائية السفلي */}
-                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between font-mono text-xs">
-                    <span className="text-slate-400">{active.stats.label}</span>
-                    <span className="text-[#D4AF37] font-bold text-sm tracking-wider">{active.stats.value}</span>
-                  </div>
                 </div>
 
                 {/* الجانب التفصيلي: البيانات وقصة التطور */}
-                <div className="lg:col-span-7 space-y-5 text-left">
+                <div className="lg:col-span-6 space-y-5 text-left">
                   
                   <div className="space-y-2">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[#D4AF37] text-[11px] font-mono font-bold uppercase tracking-wider">
