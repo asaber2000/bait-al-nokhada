@@ -54,7 +54,7 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3 border-b border-white/5"
+          ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3"
           : "bg-transparent py-8"
           }`}
       >

@@ -42,8 +42,8 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   }, [isInView, value]);
 
   return (
-    <span ref={ref} className="font-mono tabular-nums">
-      {count.toLocaleString("ar-EG")}{suffix}
+    <span ref={ref} className="font-mono tabular-nums inline-block" dir="ltr">
+      {count.toLocaleString("en-US")}{suffix}
     </span>
   );
 }
@@ -129,7 +129,7 @@ const pillars = [
   {
     num: "01",
     title: "الاحترافية الهندسية",
-    desc: "هندسة تصنيع متقدمة تخضع لمعايير الأمان الألمانية DIN وخبرة عريقة تمتد لأكثر من ٢٩ عاماً.",
+    desc: "هندسة تصنيع متقدمة تخضع لمعايير الأمان الألمانية DIN وخبرة عريقة تمتد لأكثر من 29 عاماً.",
     icon: Wrench,
     statLabel: "الخبرة الهندسية",
     statValue: 29,
@@ -147,7 +147,7 @@ const pillars = [
   {
     num: "03",
     title: "موثوقية وسجل إنجازات معتمد",
-    desc: "هياكل شد إنشائية مستدامة تم تركيبها في أكثر من 5,٠٠٠ مشروع ضخم في الإمارات ودول الخليج.",
+    desc: "هياكل شد إنشائية مستدامة تم تركيبها في أكثر من 5,000 مشروع ضخم في الإمارات ودول الخليج.",
     icon: ShieldIcon,
     statLabel: "المشاريع المنفذة",
     statValue: 5000,
@@ -284,7 +284,7 @@ export default function FeatureShowcaseAr() {
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#D4AF37]">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>المعيار الذهبي في الهندسة الإنشائية منذ عام ١٩٩٧</span>
+                <span>المعيار الذهبي في الهندسة الإنشائية منذ عام 1997</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
                 لماذا يختار رواد الصناعة <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#C5A880]">بيت النوخذة؟</span>

@@ -1,5 +1,6 @@
 "use client";
 
+import { fontBodyAr } from "@/app/fonts";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -61,24 +62,26 @@ export default function ArabicNavbar() {
     <>
       <header
         dir="rtl"
-        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3 border-b border-white/5"
-          : "bg-transparent py-8"
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
+          ? "bg-[#040811]/80 backdrop-blur-md py-3 shadow-none border-b-0"
+          : "bg-transparent py-5 border-b-0"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           {/* اللوجو العربي */}
           {/* اللوجو العربي بجانب بعض */}
-          <Link href="/ar" className="flex items-center gap-2 group">
+          <Link href="/ar" className={`flex items-center gap-2 group ${fontBodyAr.className}`}>
             <span
-              className={`font-black text-white font-heading drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
-                }`}
+              className={`font-black text-white drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
+              }`}
             >
               بيت
             </span>
             <span
-              className={`text-[#D4AF37] font-black drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
-                }`}
+              className={`text-[#D4AF37] font-black drop-shadow transition-all duration-300 leading-none ${
+                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
+              }`}
             >
               النوخذة
             </span>
