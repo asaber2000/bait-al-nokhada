@@ -138,7 +138,7 @@ const pillars = [
     desc: "Dedicated engineering adhering to German DIN safety benchmarks with decades of elite Middle Eastern craftsmanship.",
     icon: Wrench,
     statLabel: "Engineering Legacy",
-    statValue: 29,
+    statValue: 30,
     statSuffix: "+ Years",
   },
   {

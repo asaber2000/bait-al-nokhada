@@ -132,7 +132,7 @@ const pillars = [
     desc: "هندسة تصنيع متقدمة تخضع لمعايير الأمان الألمانية DIN وخبرة عريقة تمتد لأكثر من 29 عاماً.",
     icon: Wrench,
     statLabel: "الخبرة الهندسية",
-    statValue: 29,
+    statValue: 30,
     statSuffix: "+ عاماً",
   },
   {
@@ -142,7 +142,7 @@ const pillars = [
     icon: Coins,
     statLabel: "المجمع الصناعي",
     statValue: 40000,
-    statSuffix: " م²",
+    statSuffix: "m²",
   },
   {
     num: "03",
