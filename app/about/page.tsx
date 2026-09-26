@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Sparkles, 
-  Target, 
-  Compass, 
-  Quote, 
-  CheckCircle2, 
-  Award, 
-  Users, 
+import {
+  Sparkles,
+  Target,
+  Compass,
+  Quote,
+  CheckCircle2,
+  Award,
+  Users,
   Building,
   Calendar,
   Layers,
@@ -30,8 +30,7 @@ const journeyMilestones = [
     tagline: "The Inception of Quality Craftsmanship",
     desc: "Bait Al Nokhada was established in Abu Dhabi, pioneering the manufacturing of traditional Arabic majlis tents and luxury tensile shade systems for the UAE market.",
     highlight: "First production facility established in Abu Dhabi.",
-    stats: { label: "Initial Workspace", value: "2,500 m²" },
-    image: "https://baitalnokhada.com/wp-content/uploads/2025/08/exhibition-tents-UAE.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
   },
   {
     year: "2005",
@@ -40,8 +39,8 @@ const journeyMilestones = [
     tagline: "Advanced German Engineering Standards",
     desc: "Upgraded manufacturing plants to ICAD-1 (Industrial City of Abu Dhabi) spanning over 40,000 sqm, incorporating German automated CNC cutting and high-frequency HF welding.",
     highlight: "Achieved ISO 9001:2015 and DIN safety compliance certifications.",
-    stats: { label: "Manufacturing Hub", value: "40,000 m²" },
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
+    imagePosition: "object-[center_60%]"
   },
   {
     year: "2015",
@@ -50,8 +49,7 @@ const journeyMilestones = [
     tagline: "Leader in Diplomatic & Defense Arenas",
     desc: "Became the premier turnkey modular structure contractor for major events including IDEX, NAVDEX, Dubai Airshow, and global state receptions.",
     highlight: "Over 3,000 mega structures successfully deployed across UAE.",
-    stats: { label: "Completed Deployments", value: "3,000+ Units" },
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1400&q=85",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-old.webp",
   },
   {
     year: "2022",
@@ -60,18 +58,18 @@ const journeyMilestones = [
     tagline: "Cross-Border Architectural Deployments",
     desc: "Expanded direct operations and project offices across Saudi Arabia (Riyadh & Jeddah) to cater to massive entertainment seasons and industrial logistics parks.",
     highlight: "Turnkey delivery for high-span industrial & royal pavilions in KSA.",
-    stats: { label: "Active GCC Hubs", value: "UAE & KSA" },
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
+    imagePosition: "object-[75%_center]",
   },
   {
-    year: "2026",
+    year: "Now",
     badge: "FUTURE MODULAR ARCHITECTURE",
     title: "Next-Gen Sustainable Tensile Architecture",
     tagline: "Futuristic Modular Engineering",
     desc: "Integrating solar-ready tensile membranes, smart insulated acoustic panels, and sustainable double-decker pavilions for futuristic GCC landmark projects.",
     highlight: "Over 6,000+ completed projects with 100% turnkey capabilities.",
-    stats: { label: "Total Completed", value: "6,000+ Projects" },
-    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/wedding-tents-rental.webp",
+    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
+    imagePosition: "object-[95%_center]",
   },
 ];
 
@@ -112,9 +110,8 @@ export default function AboutPage() {
 
       {/* 1. Hero Banner */}
       <section className="relative pt-36 pb-8 px-6 sm:px-12 lg:px-24 border-b border-white/5 overflow-hidden">
-        {/* خلفية الإضاءة الهندسية */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
         />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
@@ -153,9 +150,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. Company Journey Interactive Timeline (Dynamic Rigging Cables) */}
+      {/* 2. Company Journey Interactive Timeline */}
       <section className="pt-10 pb-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5 relative overflow-hidden">
-        
+
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
             <Compass className="w-3.5 h-3.5" />
@@ -169,24 +166,21 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* منظومة أوتار الشد والسنوات مع كابلات الربط الحية */}
-        <div className="relative max-w-5xl mx-auto">
-          
-          {/* كابل الشد الأفقي الرئيسي ومحطات الأعوام */}
+        {/* منظومة أوتار الشد والسنوات */}
+        <div className="relative w-full max-w-7xl mx-auto">
+
           <div className="relative pt-6 pb-2">
             <div className="absolute top-[38px] left-4 right-4 h-[1px] bg-white/10 pointer-events-none" />
-            
-            {/* خط الطاقة المتوهج المشدود */}
-            <motion.div 
+
+            <motion.div
               className="absolute top-[38px] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent pointer-events-none filter drop-shadow-[0_0_8px_#D4AF37]"
-              animate={{ 
+              animate={{
                 left: `${(activeMilestone / (journeyMilestones.length - 1)) * 80}%`,
-                width: "20%" 
+                width: "20%"
               }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
             />
 
-            {/* محطات الأعوام الخمسة */}
             <div className="relative flex justify-between items-center px-4 sm:px-12">
               {journeyMilestones.map((item, idx) => {
                 const isSelected = activeMilestone === idx;
@@ -197,31 +191,25 @@ export default function AboutPage() {
                       className="group relative flex flex-col items-center focus:outline-none cursor-pointer"
                       aria-label={`Milestone ${item.year}`}
                     >
-                      {/* بكرة التثبيت (Rigging Node) */}
-                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-500 relative ${
-                        isSelected 
-                          ? "bg-[#070B14] border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,1)] scale-110" 
-                          : "bg-[#040811] border-white/20 group-hover:border-white/50"
-                      }`}>
-                        <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          isSelected ? "bg-[#D4AF37] scale-125" : "bg-white/20 group-hover:bg-white/60"
-                        }`} />
-                        
-                        {/* هالة رادارية تدور حول السنة المحددة */}
+                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-500 relative ${isSelected
+                        ? "bg-[#070B14] border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,1)] scale-110"
+                        : "bg-[#040811] border-white/20 group-hover:border-white/50"
+                        }`}>
+                        <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isSelected ? "bg-[#D4AF37] scale-125" : "bg-white/20 group-hover:bg-white/60"
+                          }`} />
+
                         {isSelected && (
-                          <motion.div 
+                          <motion.div
                             layoutId="nodeRadar"
                             className="absolute -inset-1.5 rounded-full border border-[#D4AF37]/40 animate-ping pointer-events-none"
                           />
                         )}
                       </div>
 
-                      {/* شارة السنة */}
-                      <div className={`mt-3 px-4 py-1.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all duration-300 ${
-                        isSelected
-                          ? "bg-[#D4AF37] text-[#070B14] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/25 -translate-y-0.5 font-black"
-                          : "bg-[#090F1C]/80 text-slate-400 border-white/10 group-hover:text-white group-hover:border-white/30"
-                      }`}>
+                      <div className={`mt-3 px-4 py-1.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all duration-300 ${isSelected
+                        ? "bg-[#D4AF37] text-[#070B14] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/25 -translate-y-0.5 font-black"
+                        : "bg-[#090F1C]/80 text-slate-400 border-white/10 group-hover:text-white group-hover:border-white/30"
+                        }`}>
                         {item.year}
                       </div>
                     </button>
@@ -231,7 +219,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* خط التوصيل الليزري المائل المتصل مباشرة من أسفل الزر إلى قمة الكرت */}
           <div className="relative h-16 w-full pointer-events-none hidden sm:block overflow-visible -mt-1">
             <svg className="w-full h-full overflow-visible">
               <motion.line
@@ -251,7 +238,7 @@ export default function AboutPage() {
                 strokeWidth="2"
                 strokeDasharray="5 5"
                 className="opacity-80 filter drop-shadow-[0_0_6px_#D4AF37]"
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
               />
               <motion.circle
                 animate={{
@@ -279,62 +266,61 @@ export default function AboutPage() {
             </svg>
           </div>
 
-          {/* مسرح الكرت المعماري المطور */}
-          <div className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/30 bg-[#070B14]/90 backdrop-blur-2xl shadow-2xl p-6 sm:p-12 min-h-[460px] flex items-center">
-            
+          {/* مسرح الكرت المعماري الموسع بتصميم مطابق لكروت الإحصائيات */}
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 sm:p-10 lg:p-12 min-h-[480px] flex items-center">
 
-            {/* رقم السنة كعلامة مائية متحركة وضخمة */}
-            <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[210px] font-black font-mono text-white/[0.025] leading-none z-0">
+            <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[200px] lg:text-[240px] font-black font-mono text-white/[0.02] leading-none z-0">
               {active.year}
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.year}
-                initial={{ opacity: 0, scale: 0.97, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97, y: -15 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full relative z-10"
-              >
-                {/* الجانب المرئي: الصورة المعمارية مع حدود ليزرية */}
-                <div className="lg:col-span-6 relative h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl group bg-[#090F1C]">
-                  <Image
-                    src={active.image}
-                    alt={active.title}
-                    fill
-                    unoptimized
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent pointer-events-none" />
-                  
+            <AnimatePresence mode="wait" initial={false}>
+  <motion.div
+    key={active.year}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, transition: { duration: 0.12, ease: "easeOut" } }}
+    exit={{ opacity: 0, transition: { duration: 0.05, ease: "easeIn" } }}
+    className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10"
+  >
+                {/* بوكس الصورة موسع ويأخذ 7 أعمدة من أصل 12 وبارتفاع كبير */}
+                <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl rounded-2xl group border border-white/10">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#070B14]">
+                    <Image
+                      src={active.image}
+                      alt={active.title}
+                      fill
+                      unoptimized
+                      priority
+                      className={`object-cover ${active.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-700 ease-out`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                  </div>
                 </div>
 
-                {/* الجانب التفصيلي: البيانات وقصة التطور */}
-                <div className="lg:col-span-6 space-y-5 text-left">
-                  
+
+                {/* جانب النصوص تم تقليصه لـ 5 أعمدة ليتسع بوكس الصورة براحته */}
+                <div className="lg:col-span-5 space-y-5 text-left">
                   <div className="space-y-2">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[#D4AF37] text-[11px] font-mono font-bold uppercase tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-[11px] font-mono font-bold uppercase tracking-wider">
                       <Calendar className="w-3.5 h-3.5" />
                       <span>{active.badge}</span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-4xl font-black text-white font-heading tracking-wide">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-heading tracking-tight leading-tight">
                       {active.title}
                     </h3>
-                    
-                    <p className="text-xs sm:text-sm font-mono text-[#D4AF37] font-medium">
-                      // {active.tagline}
+
+                    <p className="text-xs sm:text-sm font-mono text-[#D4AF37] font-medium tracking-wide">
+        // {active.tagline}
                     </p>
                   </div>
 
-                  <p className="text-slate-300 text-sm sm:text-base font-light leading-relaxed">
+                  <p className="text-slate-300 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
                     {active.desc}
                   </p>
 
-                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5" />
-                    <p className="text-xs sm:text-sm text-slate-200 font-light">
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
                       {active.highlight}
                     </p>
                   </div>
@@ -347,10 +333,10 @@ export default function AboutPage() {
 
       </section>
 
-      {/* 3. Vision & Mission (Architectural Prism Grid) */}
+      {/* 3. Vision & Mission */}
       <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           <div className="p-8 sm:p-10 rounded-3xl bg-[#090F1C]/80 border border-white/10 hover:border-[#D4AF37]/30 transition-colors space-y-4 relative overflow-hidden backdrop-blur-md group">
             <div className="w-12 h-12 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
               <Compass className="w-6 h-6" />
@@ -374,9 +360,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Core Capabilities (Full-Spectrum Engineering Services) */}
+      {/* 4. Core Capabilities */}
       <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5 space-y-16">
-        
+
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
             Full-Spectrum Services
@@ -405,7 +391,7 @@ export default function AboutPage() {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#090F1C] via-[#090F1C]/30 to-transparent pointer-events-none" />
-                
+
                 <div className="absolute top-4 right-4 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37]">
                   <item.icon className="w-5 h-5" />
                 </div>
@@ -456,7 +442,7 @@ export default function AboutPage() {
       {/* 6. Historical Numbers Strip */}
       <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-white/10 bg-[#070B14]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-          
+
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
             <div className="flex items-center justify-center gap-2 text-[#D4AF37]">
               <Award className="w-6 h-6" />
