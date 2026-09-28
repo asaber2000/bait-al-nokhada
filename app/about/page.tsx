@@ -440,7 +440,7 @@ export default function AboutPage() {
             </p>
 
             <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 text-xs font-mono text-slate-400">
-              <span>Executive Management • Bait Al Nokhada Tents & Fabric Structures</span>
+              <span>Executive Management • Bait Al Nokhada Tents Factory</span>
               <div className="flex items-center gap-1.5 text-[#D4AF37] font-bold">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Certified Engineering Standards</span>
