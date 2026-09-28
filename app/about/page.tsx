@@ -129,9 +129,9 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15] font-heading"
           >
-            Engineering Landmark Shelters & <br />
+            Pioneering Custom Tents & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
-              Architectural Tensile Structures
+              Architectural Solutions
             </span>
           </motion.h1>
 
@@ -141,7 +141,7 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto font-light leading-relaxed"
           >
-            For nearly three decades, Bait Al Nokhada has engineered clear-span event marquees, royal summit pavilions, and heavy-duty industrial warehouses built to withstand the harshest desert climates across the UAE and GCC.
+            For three decades, Bait Al Nokhada has designed and manufactured premium event marquees, royal summit halls, and heavy-duty industrial warehouses across the UAE and GCC.
           </motion.p>
         </div>
       </section>
