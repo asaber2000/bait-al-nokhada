@@ -9,7 +9,7 @@ export interface ProjectItemEn {
   area: string;
   span: string;
   coverImage: string;
-  youtubeVideoId: string;
+  videoUrl: string;
   summary: string;
   description: string;
   challengeAndSolution: string;
@@ -21,18 +21,18 @@ export interface ProjectItemEn {
 
 export const projectsDatabase: ProjectItemEn[] = [
   {
-    slug: "emirates-agriculture-conference-exhibition-2026",
-    title: "Emirates Agriculture Conference & Exhibition 2026",
+    slug: "DRIFTx-Event-2026",
+    title: "DRIFTx Event 2026",
     client: "Ministry of Climate Change & Environment",
     category: "Exhibitions & Summits",
     country: "UAE",
-    city: "Al Ain",
-    year: "2026",
-    area: "12,500 m²",
+    city: "Abu Dhabi",
+    year: "2025",
+    area: "10000 m²",
     span: "40m Clear Span",
     coverImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
-    youtubeVideoId: "dQw4w9WgXcQ",
-    summary: "Manufactured and installed high-span insulated exhibition structures engineered with turnkey climate control and branding facades.",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
+    summary: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
     description: "A comprehensive agricultural exhibition setup providing climate-controlled indoor pavilions for international exhibitors, heavy machinery staging, and keynote conference halls.",
     challengeAndSolution: "The desert climate in Al Ain required extreme thermal insulation to protect sensitive agricultural exhibits. Deployed dual-layer 850g/m² blackout PVC combined with 1,000 tons of whisper-quiet package HVAC units.",
     specs: [
@@ -67,7 +67,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "3,800 m²",
     span: "25m Curved Arch Span",
     coverImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
-    youtubeVideoId: "dQw4w9WgXcQ",
+    videoUrl: "dQw4w9WgXcQ",
     summary: "Bespoke royal pavilion featuring customized architectural glass walling, automated luxury double doors, and premium interior drapery.",
     description: "An ultra-luxurious private marquee designed for state dignitaries and royal weddings, featuring panoramic glass facades, integrated parquet flooring, and crystal chandeliers.",
     challengeAndSolution: "Required 100% soundproof acoustic privacy and immediate luxury fit-out. Integrated acoustic insulated roof linings and custom cassette flooring with sub-floor cable ducting.",
@@ -101,7 +101,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "8,200 m²",
     span: "35m High-Apex Polygon",
     coverImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80",
-    youtubeVideoId: "dQw4w9WgXcQ",
+    videoUrl: "dQw4w9WgXcQ",
     summary: "Turnkey multi-span sports arena designed to accommodate heavy athletic equipment, high spectator capacity, and global broadcast lighting.",
     description: "An international-standard temporary sports venue housing 8 parallel competition courts, spectator grandstands, warm-up zones, and anti-doping medical lounges.",
     challengeAndSolution: "The international federation required a minimum of 8.5 meters vertical clearance and flicker-free 1,500 lux lighting for 4K global broadcast cameras without internal pillars.",
@@ -131,7 +131,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "22,000 m²",
     span: "50m Heavy Clear Span",
     coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
-    youtubeVideoId: "dQw4w9WgXcQ",
+    videoUrl: "dQw4w9WgXcQ",
     summary: "Engineered ultra-clear span temporary pavilions meeting stringent medical sector sanitation and structural safety benchmarks.",
     description: "A massive medical healthcare exhibition complex featuring clean-room display halls, heavy diagnostic equipment demonstration bays, and international conference auditoriums.",
     challengeAndSolution: "Accommodating heavy multi-ton imaging machinery and delicate medical equipment with zero vibration and hospital-grade air filtration across a 22,000 sqm temporary venue.",

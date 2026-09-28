@@ -11,7 +11,7 @@ interface ProjectsGridProps {
   isArabic?: boolean;
 }
 
-export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = false }: ProjectsGridProps) {
+export default function ProjectsGrid({ initialProjects, filterTabs }: ProjectsGridProps) {
   const [activeTab, setActiveTab] = useState(filterTabs[0]);
   const [searchQuery] = useState("");
   const [playingVideoSlug, setPlayingVideoSlug] = useState<string | null>(null);
@@ -45,40 +45,49 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
         ))}
       </div>
 
-      {/* Projects Grid - تم توسيع العرض إلى max-w-7xl ليصبح الكارت عريضاً وفخماً */}
+      {/* Projects Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 gap-14">
           {filteredProjects.map((project, idx) => {
-            const youtubeId = project.youtubeVideoId || (project.videoUrl && project.videoUrl.includes("v=") ? project.videoUrl.split("v=")[1] : null);
             const isPlaying = playingVideoSlug === project.slug;
+            
+            // رابط الفيديو السحابي (أو رابط افتراضي للفحص إن كان قادماً من Sanity بدون فيديو)
+            const videoSource =
+              project.videoUrl ||
+              "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4";
 
             return (
               <div
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 flex flex-col justify-between shadow-2xl"
               >
-                {/* Media Container: مشغل يوتيوب تفاعلي مدمج */}
-                <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
-                  {isPlaying && youtubeId ? (
-                    <div className="relative w-full h-full">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
-                        title={project.title}
-                        className="w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                {/* Media Box - Full Cover & Instant Launch */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                  {isPlaying ? (
+                    <div className="relative w-full h-full bg-black">
+                      <video
+                        src={videoSource}
+                        controls
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={videoSource} type="video/webm" />
+                        Your browser does not support video playback.
+                      </video>
+
                       {/* زر إغلاق الفيديو والعودة للصورة */}
-                      <button 
+                      <button
                         onClick={() => setPlayingVideoSlug(null)}
-                        className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#D4AF37] hover:text-[#070B14] transition-all shadow-xl cursor-pointer"
+                        className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#D4AF37] hover:text-[#070B14] transition-all shadow-xl cursor-pointer"
                         aria-label="Close Video"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
                   ) : (
-                    <div 
+                    <div
                       onClick={() => setPlayingVideoSlug(project.slug)}
                       className="relative w-full h-full cursor-pointer group"
                     >
@@ -86,6 +95,7 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
                         src={project.coverImage}
                         alt={project.title || "Engineering Project"}
                         fill
+                        priority={idx === 0}
                         sizes="(max-width: 1280px) 100vw, 1400px"
                         className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                       />
@@ -95,7 +105,7 @@ export default function ProjectsGrid({ initialProjects, filterTabs, isArabic = f
                         {project.category}
                       </span>
 
-                      {/* زر التشغيل الذهبي */}
+                      {/* زر التشغيل الذهبي المتطابق في كل الكروت */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-20 h-20 rounded-full bg-[#D4AF37] hover:bg-white text-[#070B14] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/50 group-hover:scale-110 transition-transform duration-300">
                           <Play className="w-8 h-8 fill-current ml-1" />
