@@ -25,18 +25,18 @@ import Footer from "../../components/Footer";
 const journeyMilestones = [
   {
     year: "1997",
-    badge: "THE FOUNDATION",
+    badge: "ESTABLISHED IN ABU DHABI",
     title: "Foundation in Abu Dhabi",
-    tagline: "The Inception of Quality Craftsmanship",
+    tagline: "30+ Years of Engineering Heritage",
     desc: "Bait Al Nokhada was established in Abu Dhabi, pioneering the manufacturing of traditional Arabic majlis tents and luxury tensile shade systems for the UAE market.",
     highlight: "First production facility established in Abu Dhabi.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
   },
   {
     year: "2005",
-    badge: "INDUSTRIAL EXPANSION",
+    badge: "ICAD-1 INDUSTRIAL FACILITY",
     title: "Industrial & Factory Expansion",
-    tagline: "Advanced German Engineering Standards",
+    tagline: "40,000+ SQM Manufacturing Capacity & ISO Certified",
     desc: "Upgraded manufacturing plants to ICAD-1 (Industrial City of Abu Dhabi) spanning over 40,000 sqm, incorporating German automated CNC cutting and high-frequency HF welding.",
     highlight: "Achieved ISO 9001:2015 and DIN safety compliance certifications.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
@@ -44,28 +44,28 @@ const journeyMilestones = [
   },
   {
     year: "2015",
-    badge: "GLOBAL SUMMITS",
-    title: "Mega International Summits Era",
-    tagline: "Leader in Diplomatic & Defense Arenas",
+    badge: "GLOBAL EVENTS & EXPOS",
+    title: "Large-Scale Structures for International Summits",
+    tagline: "Engineering Large-Scale Event Structures Across the UAE",
     desc: "Became the premier turnkey modular structure contractor for major events including IDEX, NAVDEX, Dubai Airshow, and global state receptions.",
     highlight: "Over 3,000 mega structures successfully deployed across UAE.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-old.webp",
   },
   {
     year: "2022",
-    badge: "REGIONAL SCALING",
-    title: "GCC & Saudi Arabia Expansion",
-    tagline: "Cross-Border Architectural Deployments",
-    desc: "Expanded direct operations and project offices across Saudi Arabia (Riyadh & Jeddah) to cater to massive entertainment seasons and industrial logistics parks.",
-    highlight: "Turnkey delivery for high-span industrial & royal pavilions in KSA.",
+    badge: "GCC STRATEGIC GROWTH",
+    title: "Cross-Border Delivery Across Saudi Arabia & GCC",
+    tagline: "Major Infrastructure & Entertainment Deployments",
+    desc: "Expanded direct operations and project offices across Saudi Arabia to cater to massive entertainment seasons and industrial logistics parks.",
+    highlight: "Reliable execution of high-span industrial and royal tent projects across KSA, GCC",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
     imagePosition: "object-[75%_center]",
   },
   {
     year: "Now",
-    badge: "FUTURE MODULAR ARCHITECTURE",
-    title: "Next-Gen Sustainable Tensile Architecture",
-    tagline: "Futuristic Modular Engineering",
+    badge: "NEXT-GEN INNOVATION",
+    title: "Modular Structures & Sustainable Tent Systems",
+    tagline: "6,000+ Completed Projects Across the GCC",
     desc: "Integrating solar-ready tensile membranes, smart insulated acoustic panels, and sustainable double-decker pavilions for futuristic GCC landmark projects.",
     highlight: "Over 6,000+ completed projects with 100% turnkey capabilities.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
@@ -76,26 +76,22 @@ const journeyMilestones = [
 const expertiseList = [
   {
     title: "Design, Engineering & Production",
-    desc: "Specialized tailoring of clear-span structural systems seamlessly integrating innovation with luxury. Every phase is managed using premium European materials and German DIN safety standards.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+    desc: "Custom-built aluminum and steel clear-span structures manufactured in our factory. Every project follows German DIN safety standards and uses premium European fire-retardant fabrics.",
     icon: Cpu,
   },
   {
-    title: "Turnkey Tent Rental & Leasing",
-    desc: "A massive inventory of modular structures available for rapid deployment across Dubai, Abu Dhabi, Riyadh, and Jeddah for diplomatic summits, corporate exhibitions, and private galas.",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
+    title: "Commercial Tent Rental & Leasing",
+    desc: "Extensive inventory of modular clear-span structures available for immediate deployment across Dubai, Abu Dhabi, Riyadh for major exhibitions, corporate events, and temporary storage.",
     icon: Layers,
   },
   {
-    title: "Luxury Fit-Out & Royal Drapery",
-    desc: "Opulent Arabic majlis linings, crystal chandeliers, glass walling, automatic sensor double doors, and integrated cassette flooring engineered for VIP prestige.",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+    title: "VIP Fit-Out & Royal Interior Styling",
+    desc: "High-end Arabic majlis linings, crystal lighting, double-glazed glass walls, automatic sliding doors, and integrated raised cassette flooring for elite private and corporate gatherings.",
     icon: Sparkles,
   },
   {
-    title: "High-Tonnage HVAC Climate Control",
-    desc: "Quiet, high-capacity cooling packages engineered to maintain an ambient 21°C inside the marquee even during 50°C peak Arabian Gulf summers.",
-    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80",
+    title: "Heavy-Duty HVAC Cooling & Climate Control",
+    desc: "High-capacity, low-noise industrial cooling systems designed to maintain a comfortable 21°C interior climate even during peak 50°C summer conditions in the Gulf region.",
     icon: ShieldCheck,
   },
 ];
@@ -373,13 +369,13 @@ export default function AboutPage() {
       <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-white/5 relative">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
-            Full-Spectrum Services
+            INTEGRATED SERVICES
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
             End-to-End Structural Capabilities
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-light">
-            Comprehensive in-house manufacturing, structural analysis, and rapid turnkey deployment.
+            In-house manufacturing, precision structural engineering, and fast on-site installation across the UAE & KSA.
           </p>
         </div>
 
