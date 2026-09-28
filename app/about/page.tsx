@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   Sparkles,
   Target,
@@ -274,13 +274,13 @@ export default function AboutPage() {
             </div>
 
             <AnimatePresence mode="wait" initial={false}>
-  <motion.div
-    key={active.year}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1, transition: { duration: 0.12, ease: "easeOut" } }}
-    exit={{ opacity: 0, transition: { duration: 0.05, ease: "easeIn" } }}
-    className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10"
-  >
+              <motion.div
+                key={active.year}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.12, ease: "easeOut" } }}
+                exit={{ opacity: 0, transition: { duration: 0.05, ease: "easeIn" } }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10"
+              >
                 {/* بوكس الصورة موسع ويأخذ 7 أعمدة من أصل 12 وبارتفاع كبير */}
                 <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl rounded-2xl group border border-white/10">
                   <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#070B14]">
@@ -288,8 +288,8 @@ export default function AboutPage() {
                       src={active.image}
                       alt={active.title}
                       fill
-                      unoptimized
                       priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
                       className={`object-cover ${active.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-700 ease-out`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -360,10 +360,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Core Capabilities */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5 space-y-16">
-
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+      {/* 4. Core Capabilities - كروت مندمجة وتفرد مع السكرول مثل الفيديو */}
+      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-white/5 relative">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
             Full-Spectrum Services
           </span>
@@ -375,37 +374,44 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* حاوية الكروت المتراكبة */}
+        <div className="relative flex flex-col items-center gap-4">
           {expertiseList.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="group rounded-3xl overflow-hidden bg-[#090F1C] border border-white/10 hover:border-[#D4AF37]/40 transition-all duration-300 flex flex-col justify-between shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="w-full sticky top-28 rounded-2xl p-6 sm:p-8 bg-[#090F1C]/95 backdrop-blur-xl border border-white/10 hover:border-[#D4AF37]/50 shadow-2xl transition-all duration-300"
+              style={{
+                top: `calc(100px + ${idx * 25}px)`,
+                zIndex: idx + 1,
+              }}
             >
-              <div className="relative h-64 w-full overflow-hidden bg-[#070B14]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090F1C] via-[#090F1C]/30 to-transparent pointer-events-none" />
-
-                <div className="absolute top-4 right-4 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37]">
-                  <item.icon className="w-5 h-5" />
+              <div className="flex items-start sm:items-center justify-between gap-6">
+                <div className="flex items-start sm:items-center gap-5 sm:gap-6">
+                  <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/20 flex items-center justify-center shrink-0 text-[#D4AF37]">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1.5 text-left">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs font-mono text-[#D4AF37] font-semibold">0{idx + 1}.</span>
+                      <h3 className="text-lg sm:text-xl font-bold text-white font-heading">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-2xl">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+                <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full border border-white/10 text-slate-400">
+                  <span className="text-xs font-mono">↗</span>
                 </div>
               </div>
-
-              <div className="p-8 space-y-3">
-                <h3 className="text-xl font-bold text-white group-hover:text-[#D4AF37] transition-colors font-heading">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
