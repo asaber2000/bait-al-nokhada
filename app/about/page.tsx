@@ -273,32 +273,34 @@ export default function AboutPage() {
               {active.year}
             </div>
 
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active.year}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.12, ease: "easeOut" } }}
-                exit={{ opacity: 0, transition: { duration: 0.05, ease: "easeIn" } }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10"
-              >
-                {/* بوكس الصورة موسع ويأخذ 7 أعمدة من أصل 12 وبارتفاع كبير */}
-                <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl rounded-2xl group border border-white/10">
-                  <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#070B14]">
-                    <Image
-                      src={active.image}
-                      alt={active.title}
-                      fill
-                      priority
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
-                      className={`object-cover ${active.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-700 ease-out`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                  </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10">
+
+              {/* بوكس الصورة ثابت خارج AnimatePresence حتى لا يختفي إطلاقاً */}
+              <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl rounded-2xl group border border-white/10">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#070B14]">
+                  <Image
+                    key={active.image}
+                    src={active.image}
+                    alt={active.title}
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw"
+                    className={`object-cover ${active.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-700 ease-out`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 </div>
+              </div>
 
-
-                {/* جانب النصوص تم تقليصه لـ 5 أعمدة ليتسع بوكس الصورة براحته */}
-                <div className="lg:col-span-5 space-y-5 text-left">
+              {/* جانب النصوص هو فقط المحاط بـ AnimatePresence ليتحرك بسرعة */}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active.year}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.12, ease: "easeOut" }}
+                  className="lg:col-span-5 space-y-5 text-left"
+                >
                   <div className="space-y-2">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-[11px] font-mono font-bold uppercase tracking-wider">
                       <Calendar className="w-3.5 h-3.5" />
@@ -310,7 +312,7 @@ export default function AboutPage() {
                     </h3>
 
                     <p className="text-xs sm:text-sm font-mono text-[#D4AF37] font-medium tracking-wide">
-        // {active.tagline}
+          // {active.tagline}
                     </p>
                   </div>
 
@@ -324,10 +326,17 @@ export default function AboutPage() {
                       {active.highlight}
                     </p>
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
 
+            </div>
+
+            {/* التحميل المسبق خارج الكارت وخارج الحركة ليعمل في خلفية الصفحة دوماً */}
+            <div className="hidden pointer-events-none" aria-hidden="true">
+              {journeyMilestones.map((item) => (
+                <Image key={item.year} src={item.image} alt="preload" width={20} height={20} priority />
+              ))}
+            </div>
           </div>
         </div>
 
