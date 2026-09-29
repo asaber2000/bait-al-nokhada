@@ -30,7 +30,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     year: "2025",
     area: "10000 m²",
     span: "40m Clear Span",
-    coverImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/COVER+PAGE+(1).webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
     summary: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
     description: "A comprehensive agricultural exhibition setup providing climate-controlled indoor pavilions for international exhibitors, heavy machinery staging, and keynote conference halls.",
