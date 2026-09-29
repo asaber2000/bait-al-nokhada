@@ -1,27 +1,39 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // التأكد من أن الكود يعمل في متصفح العميل وأن الشاشة ليست موبايل (أكبر من 768px)
+    // تشغيل السموث سكرول على الديسكتوب فقط وتجاهل الموبايل تماماً للحفاظ على سلاسة اللمس الأصلية
     if (typeof window === "undefined" || window.innerWidth < 768) {
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      autoRaf: true,
+    let lenisInstance: any = null;
+    let rafId: number;
+
+    // استيراد Lenis ديناميكياً بعد تحميل الصفحة الأساسية لعدم حجز خيط المعالجة الأولي
+    import("lenis").then(({ default: Lenis }) => {
+      lenisInstance = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      });
+
+      function raf(time: number) {
+        lenisInstance?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+
+      rafId = requestAnimationFrame(raf);
     });
 
     return () => {
-      lenis.destroy();
+      if (rafId) cancelAnimationFrame(rafId);
+      lenisInstance?.destroy();
     };
   }, []);
 

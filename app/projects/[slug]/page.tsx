@@ -88,7 +88,7 @@ export default function ProjectDetailPage() {
                 acSystem: "High-Capacity Centralized HVAC"
               },
               coverImage: localMatch.coverImage,
-              videoUrl: `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}`,
+              videoUrl: `https://www.youtube.com/watch?v=${localMatch.videoUrl}`,
               galleryImages: localMatch.galleryImages,
               comparison: localMatch.beforeAfter ? {
                 before: localMatch.beforeAfter.before,

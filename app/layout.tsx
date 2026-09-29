@@ -4,7 +4,6 @@ import { fontHeadingEn, fontBodyEn, fontHeadingAr, fontBodyAr } from "./fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
-
 export const metadata: Metadata = {
   title: "Bait Al Nokhada Tents Factory",
   description: "Premier manufacturer & supplier of bespoke luxury event tents, heavy-duty industrial warehouses, and architectural fabric shades across the UAE & GCC.",
