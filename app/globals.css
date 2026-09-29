@@ -8,7 +8,7 @@
 }
 
 html {
-  scroll-behavior: auto !important;
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -76,3 +76,4 @@ section {
   transform: translateZ(0);
   will-change: transform;
 }
+

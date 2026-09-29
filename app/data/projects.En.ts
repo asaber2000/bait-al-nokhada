@@ -66,7 +66,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     year: "2026",
     area: "3,800 m²",
     span: "25m Curved Arch Span",
-    coverImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/COVER+PAGE+(1).webp",
     videoUrl: "dQw4w9WgXcQ",
     summary: "Bespoke royal pavilion featuring customized architectural glass walling, automated luxury double doors, and premium interior drapery.",
     description: "An ultra-luxurious private marquee designed for state dignitaries and royal weddings, featuring panoramic glass facades, integrated parquet flooring, and crystal chandeliers.",

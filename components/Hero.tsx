@@ -36,13 +36,13 @@ export default function Hero() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           disablePictureInPicture
-          poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
+          poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/hero-poster.webp"
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
           <source
-            src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
+            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
             type="video/mp4"
           />
         </video>
