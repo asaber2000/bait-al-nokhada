@@ -71,14 +71,14 @@ export default async function ProjectsCatalogPage() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-            Iconic Global Summits & <br />
+            Engineering Landmark Projects & <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
-              Turnkey Structural Venues
+              Custom Event Structures
             </span>
           </h1>
 
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
-            Explore our precision-built temporary pavilions, high-span exhibition halls, and luxury royal marquees across the UAE and GCC.
+            Showcasing our completed large-scale venues, royal event halls, and commercial installations across the region.
           </p>
         </div>
       </section>
