@@ -2,7 +2,7 @@ export interface ProjectItemEn {
   slug: string;
   title: string;
   client: string;
-  category: "Exhibitions & Summits" | "Sports & Arenas" | "VIP & Royal Majlis" | "Warehouses & Logistics";
+  category: "Exhibitions & Summits" | "Sports & Arenas" | "VIP & Royal Majlis" | "Warehouses & Logistics" | "Sales Gallery";
   country: "UAE" | "KSA" | "Qatar" | "International";
   city: string;
   year: string;
@@ -23,17 +23,17 @@ export const projectsDatabase: ProjectItemEn[] = [
   {
     slug: "DRIFTx-Event-2026",
     title: "DRIFTx Event 2026",
-    client: "Ministry of Climate Change & Environment",
+    client: "WORLDWIDE EVENTS",
     category: "Exhibitions & Summits",
     country: "UAE",
     city: "Abu Dhabi",
     year: "2025",
     area: "10000 m²",
     span: "40m Clear Span",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/COVER+PAGE+(1).webp",
-    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/drift-x-thumbnail.webp",
+    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/DriftX.webm",
     summary: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
-    description: "A comprehensive agricultural exhibition setup providing climate-controlled indoor pavilions for international exhibitors, heavy machinery staging, and keynote conference halls.",
+    description: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting",
     challengeAndSolution: "The desert climate in Al Ain required extreme thermal insulation to protect sensitive agricultural exhibits. Deployed dual-layer 850g/m² blackout PVC combined with 1,000 tons of whisper-quiet package HVAC units.",
     specs: [
       { label: "Covered Floor Area", value: "12,500 sqm" },
@@ -57,22 +57,22 @@ export const projectsDatabase: ProjectItemEn[] = [
     ]
   },
   {
-    slug: "luxury-vip-hospitality-marquee",
-    title: "Luxury VIP Hospitality Marquee",
-    client: "Royal Protocol & Private Hospitality",
-    category: "VIP & Royal Majlis",
+    slug: "Amaal-sales-gallery",
+    title: "Amaal × Mansory",
+    client: "SALES GALLERY",
+    category: "Sales Gallery",
     country: "UAE",
     city: "Dubai",
     year: "2026",
-    area: "3,800 m²",
+    area: "2,500 m²",
     span: "25m Curved Arch Span",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/COVER+PAGE+(1).webp",
-    videoUrl: "dQw4w9WgXcQ",
-    summary: "Bespoke royal pavilion featuring customized architectural glass walling, automated luxury double doors, and premium interior drapery.",
-    description: "An ultra-luxurious private marquee designed for state dignitaries and royal weddings, featuring panoramic glass facades, integrated parquet flooring, and crystal chandeliers.",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/Ammal-thumbnail.webp",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
+    summary: "For Amaal × Mansory, Bait Al Nokhada delivered a purpose-built environment designed to support a premium sales and customer experience. The structure provided a prominent branded space tailored to the needs of the development and its visitors.",
+    description: "For Amaal × Mansory, Bait Al Nokhada delivered a purpose-built environment designed to support a premium sales and customer experience. The structure provided a prominent branded space tailored to the needs of the development and its visitors.",
     challengeAndSolution: "Required 100% soundproof acoustic privacy and immediate luxury fit-out. Integrated acoustic insulated roof linings and custom cassette flooring with sub-floor cable ducting.",
     specs: [
-      { label: "Usable Footprint", value: "3,800 sqm" },
+      { label: "Usable Footprint", value: "2,500 sqm" },
       { label: "Wall System", value: "Double-Glazed Panoramic Glass Cassettes" },
       { label: "Ceiling Finish", value: "Acoustic Fire-Retardant Royal Sateen Drapery" },
       { label: "HVAC Temperature", value: "Constant 20°C with Concealed Diffusers" }
@@ -91,19 +91,19 @@ export const projectsDatabase: ProjectItemEn[] = [
     ]
   },
   {
-    slug: "fujairah-open-international-taekwondo-championship-g2",
-    title: "Fujairah Open International Taekwondo Championship G2",
-    client: "Fujairah Martial Arts Club / World Taekwondo",
-    category: "Sports & Arenas",
+    slug: "adipec-exhibition-2025",
+    title: "ADIPEC Exhibition 2025",
+    client: "ADNEC Centre",
+    category: "Exhibitions & Summits",
     country: "UAE",
-    city: "Fujairah",
-    year: "2026",
-    area: "8,200 m²",
-    span: "35m High-Apex Polygon",
-    coverImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80",
-    videoUrl: "dQw4w9WgXcQ",
-    summary: "Turnkey multi-span sports arena designed to accommodate heavy athletic equipment, high spectator capacity, and global broadcast lighting.",
-    description: "An international-standard temporary sports venue housing 8 parallel competition courts, spectator grandstands, warm-up zones, and anti-doping medical lounges.",
+    city: "Abu Dhabi",
+    year: "2025",
+    area: "4,200 m²",
+    span: "35m High-Apex Arch",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/Adipec-thambnail.webp",
+    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/Adipec-2025.webm",
+    summary: "Bait Al Nokhada proudly manufactured and installed the full tent structure for the prestigious ADIPEC 2025 event. We delivered a high-quality Exhibition Tent solution, specializing in Event tent and Tent Rental services.",
+    description: "Bait Al Nokhada proudly manufactured and installed the full tent structure for the prestigious ADIPEC 2025 event. We delivered a high-quality Exhibition Tent solution, specializing in Event tent and Tent Rental services.",
     challengeAndSolution: "The international federation required a minimum of 8.5 meters vertical clearance and flicker-free 1,500 lux lighting for 4K global broadcast cameras without internal pillars.",
     specs: [
       { label: "Total Arena Space", value: "8,200 sqm" },
@@ -121,22 +121,22 @@ export const projectsDatabase: ProjectItemEn[] = [
     ]
   },
   {
-    slug: "world-health-expo-whx-dubai-2026",
-    title: "World Health Expo (WHX) Dubai 2026",
-    client: "Dubai Health Authority & Exhibition Partner",
+    slug: "north-star-2025",
+    title: "North Star 2025",
+    client: "Trade Center World",
     category: "Exhibitions & Summits",
     country: "UAE",
-    city: "Dubai Exhibition Centre",
-    year: "2026",
-    area: "22,000 m²",
+    city: "Dubai",
+    year: "2025",
+    area: "5,000 m²",
     span: "50m Heavy Clear Span",
-    coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
-    videoUrl: "dQw4w9WgXcQ",
-    summary: "Engineered ultra-clear span temporary pavilions meeting stringent medical sector sanitation and structural safety benchmarks.",
-    description: "A massive medical healthcare exhibition complex featuring clean-room display halls, heavy diagnostic equipment demonstration bays, and international conference auditoriums.",
+    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/North-star-thambnail.webp",
+    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/North-Star.webm",
+    summary: "Bait Al Nokhada proudly manufactured and installed a stunning tent structure for the prestigious North Star 2025 event. As a leading Tent Manufacturer, we deliver top-quality Tents for event solutions.",
+    description: "Bait Al Nokhada proudly manufactured and installed a stunning tent structure for the prestigious North Star 2025 event. As a leading Tent Manufacturer, we deliver top-quality Tents for event solutions.",
     challengeAndSolution: "Accommodating heavy multi-ton imaging machinery and delicate medical equipment with zero vibration and hospital-grade air filtration across a 22,000 sqm temporary venue.",
     specs: [
-      { label: "Total Exhibition Space", value: "22,000 sqm (3 Connected Halls)" },
+      { label: "Total Exhibition Space", value: "5,000 sqm" },
       { label: "Floor Load Capacity", value: "1,500 kg/sqm Reinforced Cassette Deck" },
       { label: "Clear Span Width", value: "50 meters" },
       { label: "Safety Compliance", value: "Medical Grade Clean Air & DIN 4102 B1" }
