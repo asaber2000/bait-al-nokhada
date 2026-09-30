@@ -31,7 +31,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "10000 m²",
     span: "40m Clear Span",
     coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/drift-x-thumbnail.webp",
-    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/DriftX.webm",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/DriftX.webm",
     summary: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
     description: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting",
     challengeAndSolution: "The desert climate in Al Ain required extreme thermal insulation to protect sensitive agricultural exhibits. Deployed dual-layer 850g/m² blackout PVC combined with 1,000 tons of whisper-quiet package HVAC units.",
@@ -78,12 +78,14 @@ export const projectsDatabase: ProjectItemEn[] = [
       { label: "HVAC Temperature", value: "Constant 20°C with Concealed Diffusers" }
     ],
     galleryImages: [
-      { url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
-      { url: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1200&q=80", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "interior" }
+      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+2.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
+      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+3.webp", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "exterior" },
+      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Amaal-Inrtior2.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "interior" },
+      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL-interior1.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "interior" },
     ],
     beforeAfter: {
-      before: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      after: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+      before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL-6.webp",
+      after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Amaal-Sales-Gallery.webp"
     },
     relatedProducts: [
       { name: "Arabic Majlis Tent", slug: "arabic-majlis-tent" },
@@ -101,7 +103,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "4,200 m²",
     span: "35m High-Apex Arch",
     coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/Adipec-thambnail.webp",
-    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/Adipec-2025.webm",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Adipec-2025.webm",
     summary: "Bait Al Nokhada proudly manufactured and installed the full tent structure for the prestigious ADIPEC 2025 event. We delivered a high-quality Exhibition Tent solution, specializing in Event tent and Tent Rental services.",
     description: "Bait Al Nokhada proudly manufactured and installed the full tent structure for the prestigious ADIPEC 2025 event. We delivered a high-quality Exhibition Tent solution, specializing in Event tent and Tent Rental services.",
     challengeAndSolution: "The international federation required a minimum of 8.5 meters vertical clearance and flicker-free 1,500 lux lighting for 4K global broadcast cameras without internal pillars.",
@@ -131,7 +133,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     area: "5,000 m²",
     span: "50m Heavy Clear Span",
     coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/North-star-thambnail.webp",
-    videoUrl: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Projects-Videos/North-Star.webm",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/North-Star.webm",
     summary: "Bait Al Nokhada proudly manufactured and installed a stunning tent structure for the prestigious North Star 2025 event. As a leading Tent Manufacturer, we deliver top-quality Tents for event solutions.",
     description: "Bait Al Nokhada proudly manufactured and installed a stunning tent structure for the prestigious North Star 2025 event. As a leading Tent Manufacturer, we deliver top-quality Tents for event solutions.",
     challengeAndSolution: "Accommodating heavy multi-ton imaging machinery and delicate medical equipment with zero vibration and hospital-grade air filtration across a 22,000 sqm temporary venue.",
