@@ -4,20 +4,19 @@ export const projectEn = {
   type: 'document',
   fields: [
     // --- 1. Slug & Core Title ---
-    { 
-      name: 'slug', 
-      title: 'URL Slug', 
-      type: 'slug', 
-      options: { source: 'titleEn', maxLength: 96 } 
+    {
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      options: { source: 'titleEn', maxLength: 96 }
     },
     { name: 'titleEn', title: 'Project Title (English)', type: 'string' },
-    { 
-      name: 'image', 
-      title: 'Hero Image', 
-      type: 'image', 
-      options: { hotspot: true } 
+    {
+      name: 'heroImageUrl',
+      title: 'Hero Image URL (CloudFront / S3 / WebP)',
+      type: 'url',
+      description: 'Paste direct image URL from AWS S3 or CloudFront',
     },
-
     // --- 2. Meta Badges ---
     { name: 'clientEn', title: 'Client / Official Authority', type: 'string' },
     { name: 'locationEn', title: 'Location (e.g., Dubai, UAE)', type: 'string' },
@@ -26,17 +25,17 @@ export const projectEn = {
     { name: 'categoryEn', title: 'Category (e.g., VIP & Royal Majlis)', type: 'string' },
 
     // --- 3. Scope & Challenge ---
-    { 
-      name: 'scopeOfWorkEn', 
-      title: 'Scope of Work & Execution (Summary)', 
+    {
+      name: 'scopeOfWorkEn',
+      title: 'Scope of Work & Execution (Summary)',
       type: 'text',
-      rows: 3 
+      rows: 3
     },
-    { 
-      name: 'engineeringChallengeEn', 
-      title: 'Engineering Challenge & Implemented Field Solution', 
+    {
+      name: 'engineeringChallengeEn',
+      title: 'Engineering Challenge & Implemented Field Solution',
       type: 'text',
-      rows: 4 
+      rows: 4
     },
 
     // --- 4. Tents & Structures Used ---
@@ -61,10 +60,11 @@ export const projectEn = {
     },
 
     // --- 6. Field & Visual Documentation ---
-    { 
-      name: 'videoUrl', 
-      title: 'YouTube Video URL', 
-      type: 'url' 
+    {
+      name: 'videoUrl',
+      title: 'Video Direct URL (CloudFront / S3 / YouTube)',
+      type: 'url',
+      description: 'Paste direct .mp4 CloudFront URL or video link',
     },
     {
       name: 'projectGallery',

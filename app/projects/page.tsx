@@ -23,7 +23,8 @@ async function getSanityEnglishProjects() {
       categoryEn,
       scopeOfWorkEn,
       "slug": slug.current,
-      "coverImage": image.asset->url
+"coverImage": coalesce(heroImageUrl, image.asset->url),
+videoUrl
     }`;
 
     const sanityData = await client.fetch(query, {}, { cache: 'no-store' });
@@ -36,6 +37,7 @@ async function getSanityEnglishProjects() {
       return {
         slug: item.slug,
         coverImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        videoUrl: item.videoUrl || null,
         year: item.year || "2026",
         category: item.categoryEn || "VIP & Royal Majlis",
         title: item.titleEn,
