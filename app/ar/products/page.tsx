@@ -174,7 +174,10 @@ export default async function ArabicProductsCatalogPage() {
                       src={product.heroImage}
                       alt={arInfo.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+                      quality={75}
+                      priority={idx < 3}
+                      loading={idx < 3 ? undefined : "lazy"}
                       className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />

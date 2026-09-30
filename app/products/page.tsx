@@ -1,4 +1,4 @@
-import { Sparkles, ArrowUpRight, Search, ShieldCheck, Wind, Building2, Send, Download } from "lucide-react";
+import { Sparkles, ArrowUpRight, Search, ShieldCheck, Wind } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import { productsDatabase } from "@/app/data/products.En";
 import { client } from "@/app/lib/sanity";
 
-// دالة لجلب منتجات سانتي وصورتها الأصلية مباشرة من السيرفر (تظهر فوراً مع الداتا المحلية)
 async function getSanityProducts() {
   try {
     const query = `*[_type == "productsEn"]{
@@ -15,9 +14,9 @@ async function getSanityProducts() {
       summaryEn,
       topBadges,
       "slug": slug.current,
-      "coverImage": coverImage.asset->url
+      "coverImage": coalesce(heroImageUrl, coverImage.asset->url)
     }`;
-    // استخدام cache مع revalidate لضمان السرعة الفورية الخارقة وعدم حدوث أي تأخير
+
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     return (sanityData || []).map((item: any) => ({
@@ -25,7 +24,7 @@ async function getSanityProducts() {
       name: item.titleEn || "Custom Product",
       tagline: item.summaryEn || "Engineered architectural tent solution.",
       category: item.categoryEn || "Mega Arenas & Expos",
-      heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      heroImage: item.coverImage || "https://d3g07f5oxrfvni.cloudfront.net/media-images/default-fallback.webp",
       windSpeed: "120 km/h Wind",
       badge: item.topBadges?.[0] || "DIN 4102 B1",
       models: ["Model 1", "Model 2"]
@@ -38,8 +37,6 @@ async function getSanityProducts() {
 
 export default async function ProductsCatalogPage() {
   const sanityProducts = await getSanityProducts();
-  
-  // دمج منتجات سانتي (بصورها الحقيقية) مع المنتجات المحلية على السيرفر ككتلة واحدة سريعة جداً
   const allProducts = [...sanityProducts, ...productsDatabase];
 
   return (
@@ -81,65 +78,68 @@ export default async function ProductsCatalogPage() {
         </div>
       </section>
 
-      {/* Products Grid (تحميل فوري وسريع من السيرفر بدون أي تأخير أو وميض) */}
+      {/* Modern High-End Products Grid */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {allProducts.map((product, idx) => (
             <div
               key={product.slug || idx}
-              className="group rounded-3xl overflow-hidden bg-[#0D1527]/80 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-500 flex flex-col justify-between shadow-2xl relative"
+              className="group relative rounded-3xl bg-[#0A0F1D] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 flex flex-col justify-between shadow-xl hover:shadow-[#D4AF37]/10 hover:-translate-y-1.5 overflow-hidden"
             >
-              <div>
-                <div className="relative h-72 w-full overflow-hidden bg-gradient-to-b from-[#0B1120] to-[#070B14]">
-                  <Image
-                    src={product.heroImage}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
+              {/* توهج ضوئي خافت عند التمرير */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* 
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                    <span className="px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
-                      {product.badge ? product.badge.split("•")[0] : "DIN 4102 B1"}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white/10 backdrop-blur-md text-slate-300">
-                      {product.models ? product.models.length : "3"} Models
-                    </span>
+              <div>
+                {/* إطار الصورة الزجاجي النقي - بدون أي تدرج معتم */}
+                <div className="p-3.5 pb-0">
+                  <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-[#050811] border border-white/5">
+                    <Image
+                      src={product.heroImage}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      quality={85}
+                      priority={idx < 3}
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+
+                    {/* شارة هندسية طافية بدون حجب تفاصيل الهيكل */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30 shadow-lg">
+                        {product.category || "Modular Structure"}
+                      </span>
+                    </div>
                   </div>
-*/}
                 </div>
 
-                <div className="p-7 space-y-4">
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-black text-white group-hover:text-[#D4AF37] transition-colors font-heading">
-                      {product.name}
-                    </h2>
-                  </div>
+                {/* تفاصيل المنتج والمعايير الفنية */}
+                <div className="p-6 space-y-3.5">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#D4AF37] transition-colors font-heading tracking-tight">
+                    {product.name}
+                  </h2>
 
-                  <p className="text-xs sm:text-sm text-slate-300 font-light line-clamp-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300/80 font-light line-clamp-2 leading-relaxed min-h-[2.5rem]">
                     {product.tagline}
                   </p>
 
                   <div className="pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2">
+                    <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-2 group-hover:border-[#D4AF37]/20 transition-colors">
                       <Wind className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                      <span className="text-slate-200 font-medium truncate">{product.windSpeed} */</span>
+                      <span className="text-slate-200 font-medium truncate">{product.windSpeed}</span>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2">
+                    <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-2 group-hover:border-[#D4AF37]/20 transition-colors">
                       <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                      <span className="text-slate-200 font-medium truncate">DIN 4102 B1</span>
+                      <span className="text-slate-200 font-medium truncate">{product.badge || "DIN 4102 B1"}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="p-7 pt-0">
+              {/* زر استعراض المواصفات */}
+              <div className="p-6 pt-0 relative z-10">
                 <Link
                   href={`/products/${product.slug}`}
-                  className="w-full py-4 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#C5A880] text-white hover:text-[#070B14] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 border border-white/10 hover:border-transparent transition-all shadow-md group/btn"
+                  className="w-full py-3.5 rounded-xl bg-white/[0.04] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#C5A880] text-slate-200 hover:text-[#070B14] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 hover:border-transparent transition-all duration-300 group/btn shadow-md"
                 >
                   <span>View Specifications & 3D Sizes</span>
                   <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
