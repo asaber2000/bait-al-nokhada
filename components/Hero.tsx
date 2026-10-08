@@ -38,12 +38,12 @@ export default function Hero() {
           playsInline
           preload="auto"
           disablePictureInPicture
-          poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/hero-poster.webp"
+          poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp"
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
           <source
-            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4"
-            type="video/mp4"
+            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Home-Page-video.webm"
+            type="video/webm"
           />
         </video>
 
