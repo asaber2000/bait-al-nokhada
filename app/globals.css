@@ -1,10 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #070b14;
-  --foreground: #ffffff;
+  --background: #ffffff;      /* أبيض ناصع صريح مثل اللاندينج بيج تماماً */
+  --surface: #ffffff;
+  --foreground: #090d16;      /* أسود كحلي عميق للنصوص والعناوين */
+  --muted: #4b5563;           /* رمادي واضح ومريح للقراءة */
+  --border: #e5e7eb;          /* خطوط رمادية ناعمة */
+  --gold: #c99a2c;
+  --gold-dark: #a87e1f;
   --font-heading: var(--font-heading-en), var(--font-heading-ar), serif;
   --font-body: var(--font-body-en), var(--font-body-ar), sans-serif;
+}
+
+.bg-background {
+  background-color: var(--background);
+}
+.bg-surface {
+  background-color: var(--surface);
+}
+.text-foreground {
+  color: var(--foreground);
+}
+.text-muted {
+  color: var(--muted);
+}
+.border-border {
+  border-color: var(--border);
+}
+.text-gold {
+  color: var(--gold);
+}
+/* تأثير التدرج الذهبي الفخم للنصوص */
+.text-gold-gradient {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* شريط الهيدر الزجاجي الفاتح المتناسق مع الخلفية البيضاء */
+.force-transparent-bar {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* كروت النماذج والاستفسارات الزجاجية الفاتحة */
+.inquiry-glass {
+  background: #ffffff !important;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 html {

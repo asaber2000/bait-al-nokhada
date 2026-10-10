@@ -54,46 +54,52 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-[#070B14]/90 backdrop-blur-md shadow-xl py-3"
+          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200/80 py-3"
           : "bg-transparent py-8"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5 group">
-            <span
-              className={`font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-                }`}
-            >
-              Bait Al
-            </span>
-            <span
-              className={`text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-                }`}
-            >
-              Nokhada
-            </span>
-          </Link>
+  <span
+    className={`font-black tracking-tight drop-shadow-xs transition-all duration-300 leading-none ${
+      isScrolled ? "text-[#0B1220] text-base sm:text-lg" : "text-[#0B1220] text-xl sm:text-2xl"
+    } group-hover:text-[#C99A2C]`}
+  >
+    Bait Al
+  </span>
+  <span
+    className={`text-[#C99A2C] font-black tracking-tight transition-all duration-300 leading-none ${
+      isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl"
+    }`}
+  >
+    Nokhada
+  </span>
+</Link>
           {/* أزرار الهيدر الإنجليزي: زر التحويل للعربية + زر القائمة */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center p-1 rounded-full bg-white/80 backdrop-blur-xl border border-slate-900/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+            {/* زر اللغة */}
             <Link
               href={targetLanguageUrl}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white/[0.05] hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 shadow-md group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold text-slate-700 hover:text-[#C99A2C] transition-colors"
             >
-              <Globe className="w-4 h-4 text-[#D4AF37] group-hover:text-[#070B14] transition-colors" />
-              <span className="text-xs font-black tracking-wider uppercase">AR</span>
+              <Globe className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#C99A2C]" />
+              <span className="tracking-wide">AR</span>
             </Link>
 
+            {/* فاصل معماري رفيع وناعم */}
+            <span className="w-[1px] h-4 bg-slate-200 shrink-0" />
+
+            {/* زر القائمة MENU بتصميم أنيق */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className={`flex items-center gap-3 text-white group cursor-pointer rounded-2xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl ${isScrolled ? "py-2 px-4" : "py-2.5 px-5"
-                }`}
+              className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full text-slate-900 hover:text-[#C99A2C] transition-colors cursor-pointer group"
               aria-label="Open Menu"
             >
-              <div className="flex flex-col gap-1.5 items-end">
-                <span className="w-5 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-3 transition-all duration-300" />
-                <span className="w-3 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-5 transition-all duration-300" />
+              <div className="flex flex-col gap-[3px] items-end justify-center w-3.5">
+                <span className="w-3.5 h-[1.5px] bg-slate-900 group-hover:bg-[#C99A2C] rounded-full transition-all duration-300 group-hover:w-2" />
+                <span className="w-2 h-[1.5px] bg-[#C99A2C] rounded-full transition-all duration-300 group-hover:w-3.5" />
               </div>
-              <span className="font-extrabold uppercase text-xs sm:text-sm tracking-[0.25em] text-white group-hover:text-[#D4AF37] transition-colors">
+              <span className="font-extrabold text-[11px] tracking-[0.18em] uppercase leading-none">
                 MENU
               </span>
             </button>
@@ -109,7 +115,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="fixed inset-0 z-[99999] bg-white/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
@@ -123,7 +129,7 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 transition-all cursor-pointer group"
+                className="p-2.5 rounded-xl bg-slate-100 hover:bg-[#C99A2C] text-slate-800 hover:text-white border border-slate-200 transition-all cursor-pointer group shadow-xs"
                 aria-label="Close Menu"
               >
                 <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
@@ -145,10 +151,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-2 text-2xl sm:text-4xl font-extrabold text-white hover:text-[#D4AF37] transition-all font-heading"
+                      className="group flex items-center justify-between py-2 text-2xl sm:text-4xl font-extrabold text-[#0B1220] hover:text-[#C99A2C] transition-all font-heading"
                     >
                       <span className="group-hover:translate-x-2 transition-transform duration-200">{link.title}</span>
-                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 text-[#D4AF37] transition-all -translate-x-2 group-hover:translate-x-0" />
+                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 text-[#C99A2C] transition-all -translate-x-2 group-hover:translate-x-0" />
                     </Link>
                   </motion.div>
                 ))}
@@ -156,14 +162,14 @@ export default function Navbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي مع منع انتشار التمرير للخارج */}
               <div
-                className="lg:col-span-4 space-y-4 text-sm text-slate-300 lg:border-l lg:border-white/10 pl-0 lg:pl-6">
+                className="lg:col-span-4 space-y-4 text-sm text-slate-700 lg:border-l lg:border-slate-200 pl-0 lg:pl-6">
 
                 {/* Products */}
-                <div className="space-y-2 bg-white/[0.04] p-3.5 rounded-2xl border border-white/10 shadow-lg">
+                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between w-full">
                     <button
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
                     >
                       <span>Products ({productsDatabase.length})</span>
                       <ChevronDown
@@ -173,22 +179,22 @@ export default function Navbar() {
                     <Link
                       href="/products"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                      className="text-xs text-slate-500 hover:text-[#C99A2C] underline flex items-center gap-1 font-semibold"
                     >
                       View All <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                   {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-white/10 mt-2">
+                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
                       {productsDatabase.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/products/${item.slug}`}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 rounded-xl transition-all"
+                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#C99A2C] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                         >
                           <span>{item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A2C]" />
                         </Link>
                       ))}
                     </div>
@@ -196,11 +202,11 @@ export default function Navbar() {
                 </div>
 
                 {/* Solutions */}
-                <div className="space-y-2 bg-white/[0.04] p-3.5 rounded-2xl border border-white/10 shadow-lg">
+                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between w-full">
                     <button
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
                     >
                       <span>Solutions ({solutionsDatabase.length})</span>
                       <ChevronDown
@@ -210,22 +216,22 @@ export default function Navbar() {
                     <Link
                       href="/solutions"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                      className="text-xs text-slate-500 hover:text-[#C99A2C] underline flex items-center gap-1 font-semibold"
                     >
                       View All <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                   {mobileSolutionsOpen && (
-                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-white/10 mt-2">
+                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
                       {solutionsDatabase.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/solutions/${item.slug}`}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 rounded-xl transition-all"
+                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#C99A2C] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
                         >
                           <span>{item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A2C]" />
                         </Link>
                       ))}
                     </div>
@@ -234,75 +240,75 @@ export default function Navbar() {
               </div>
 
               {/* العمود الثالث */}
-              <div className="lg:col-span-4 space-y-5 text-sm text-slate-300 border-l border-white/10 pl-6 sm:pl-8 bg-white/[0.03] p-6 sm:p-7 rounded-3xl border border-white/10 shadow-2xl">
-                <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#D4AF37] mb-3">
+              <div className="lg:col-span-4 space-y-5 text-sm text-slate-700 border-l border-slate-200 pl-6 sm:pl-8 bg-slate-50 p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#C99A2C] mb-3">
                   Direct Contact & Info
                 </h4>
 
                 <div className="space-y-3.5">
-                  <a href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <a href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group">
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
+                      <Phone className="w-4 h-4 text-[#C99A2C] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">+971 55 885 0631</span>
+                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">+971 55 885 0631</span>
                   </a>
 
-                  <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <MessageCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group">
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
+                      <MessageCircle className="w-4 h-4 text-[#C99A2C] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">+971 4 344 4091</span>
+                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">+971 4 344 4091</span>
                   </a>
 
                   <a
                     href="mailto:info@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate"
+                    className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group truncate"
                   >
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
+                      <Mail className="w-4 h-4 text-[#C99A2C] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">
+                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">
                       info@baitalnokhada.com
                     </span>
                   </a>
 
                   <a
                     href="mailto:info.Ksa@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate"
+                    className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group truncate"
                   >
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
+                      <Mail className="w-4 h-4 text-[#C99A2C] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200">
+                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">
                       info.Ksa@baitalnokhada.com
                     </span>
                   </a>
 
-                  <div className="flex items-start gap-3.5 pt-1 ">
+                  <div className="flex items-start gap-3.5 pt-1">
                     <a
                       href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer"
+                      className="flex items-start gap-3.5 pt-1 hover:text-[#C99A2C] transition group cursor-pointer"
                     >
-                      <div className="p-2 rounded-xl bg-white/5 mt-0.5 group-hover:bg-[#D4AF37]/20 transition">
-                        <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                      <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs mt-0.5 group-hover:border-[#C99A2C] transition">
+                        <MapPin className="w-4 h-4 text-[#C99A2C] shrink-0" />
                       </div>
-                      <span className="text-slate-300 leading-relaxed text-xs font-medium group-hover:text-white transition-colors">
+                      <span className="text-slate-800 leading-relaxed text-xs font-semibold group-hover:text-[#C99A2C] transition-colors">
                         Land No. TP 010102 - Technopark - Mina Jebel Ali - National Industries Park - Dubai, UAE
                       </span>
                     </a>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/10">
-                  <p className="text-[11px] uppercase tracking-wider text-slate-400 mb-3 font-bold">Follow Us</p>
+                <div className="pt-4 border-t border-slate-200">
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-3 font-bold">Follow Us</p>
                   <div className="flex items-center gap-3 flex-wrap">
                     <a
                       href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="Facebook"
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -313,7 +319,7 @@ export default function Navbar() {
                       href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="Instagram"
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -324,72 +330,62 @@ export default function Navbar() {
                       href="https://linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="LinkedIn"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     </a>
-
-                    {/* TikTok */}
                     <a
                       href="https://tiktok.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="TikTok"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
                       </svg>
                     </a>
-
-                    {/* YouTube */}
                     <a
                       href="https://youtube.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="YouTube"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                       </svg>
                     </a>
-
-                    {/* X (Twitter) */}
                     <a
                       href="https://x.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="X"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
                     </a>
-
-                    {/* Pinterest */}
                     <a
                       href="https://pinterest.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="Pinterest"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                         <path d="M12 0a12 12 0 0 0-4.37 23.17c-.07-.63-.13-1.6.03-2.29l1.1-4.66s-.28-.56-.28-1.39c0-1.3.75-2.27 1.7-2.27.8 0 1.19.6 1.19 1.32 0 .81-.51 2.01-.78 3.13-.22.94.47 1.71 1.4 1.71 1.68 0 2.97-1.77 2.97-4.32 0-2.26-1.62-3.84-3.94-3.84-2.69 0-4.26 2.02-4.26 4.1 0 .81.31 1.68.7 2.16.08.1.09.18.06.3-.08.33-.26 1.06-.3 1.2-.05.2-.16.24-.37.15-1.38-.64-2.24-2.65-2.24-4.27 0-3.48 2.53-6.67 7.29-6.67 3.83 0 6.8 2.73 6.8 6.38 0 3.8-2.4 6.87-5.73 6.87-1.12 0-2.17-.58-2.53-1.27l-.69 2.63c-.25.96-.92 2.16-1.37 2.89A12 12 0 1 0 12 0z" />
                       </svg>
                     </a>
-
-                    {/* Behance */}
                     <a
                       href="https://behance.net"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
                       aria-label="Behance"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -400,11 +396,10 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-
             {/* Footer */}
-            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
-              <p className="text-[10px] sm:text-xs">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
-            </div>
+<div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 shrink-0 relative z-10">
+  <p className="text-[10px] sm:text-xs font-medium">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
+</div>
           </motion.div>
         )}
       </AnimatePresence>
