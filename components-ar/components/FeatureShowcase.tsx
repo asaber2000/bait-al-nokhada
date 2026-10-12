@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { motion, useInView, useMotionTemplate, useMotionValue } from "framer-motion";
 import Image from "next/image";
-import { 
-  Award, 
-  Sparkles, 
-  Wrench, 
-  Coins, 
+import {
+  Award,
+  Sparkles,
+  Wrench,
+  Coins,
   ShieldCheck as ShieldIcon,
   PhoneCall,
   Mail
@@ -60,25 +60,25 @@ function PillarCardAr({ pillar, idx }: { pillar: any; idx: number }) {
   }
 
   // في الـ RTL: الكرت 01 يندفع من اليمين (90)، الكرت 03 يندفع من اليسار (-90)، والأوسط يصعد من الأسفل
-  const initialMotion = 
-    idx === 0 
-      ? { opacity: 0, x: 90, y: 30 } 
-      : idx === 2 
-      ? { opacity: 0, x: -90, y: 30 } 
-      : { opacity: 0, scale: 0.8, y: 60 };
+  const initialMotion =
+    idx === 0
+      ? { opacity: 0, x: 90, y: 30 }
+      : idx === 2
+        ? { opacity: 0, x: -90, y: 30 }
+        : { opacity: 0, scale: 0.8, y: 60 };
 
   return (
     <motion.div
       initial={initialMotion}
       whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
       viewport={{ amount: 0.2 }}
-      transition={{ 
-        duration: 0.85, 
-        delay: idx * 0.1, 
-        ease: [0.16, 1, 0.3, 1] 
+      transition={{
+        duration: 0.85,
+        delay: idx * 0.1,
+        ease: [0.16, 1, 0.3, 1]
       }}
       onMouseMove={handleMouseMove}
-      className="group relative p-7 rounded-3xl bg-[#090F1C] border border-white/10 hover:border-[#D4AF37]/50 transition-colors duration-500 shadow-2xl flex flex-col justify-between overflow-hidden text-right"
+      className="group relative p-7 rounded-3xl bg-slate-50/70 hover:bg-white border border-slate-200/80 hover:border-[#e6b224]/50 transition-all duration-500 shadow-xs hover:shadow-xl flex flex-col justify-between overflow-hidden text-right"
     >
       {/* هالة تفاعلية حول الماوس */}
       <motion.div
@@ -96,28 +96,28 @@ function PillarCardAr({ pillar, idx }: { pillar: any; idx: number }) {
 
       <div className="space-y-4 relative z-10">
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-black text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-mono transition-colors">
+          <span className="text-3xl font-black text-[#df9d17] font-mono transition-colors">
             {pillar.num}
           </span>
-          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 group-hover:text-[#D4AF37] group-hover:border-[#D4AF37]/30 transition-all duration-300">
+          <div className="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 group-hover:text-[#df9d17] group-hover:border-[#df9d17]/40 shadow-xs transition-all duration-300">
             <pillar.icon className="w-5 h-5" />
           </div>
         </div>
 
-        <h3 className="text-base font-black tracking-wider text-white group-hover:text-[#D4AF37] transition-colors font-heading">
+        <h3 className="text-base font-black tracking-wider text-[#0B1220] group-hover:text-[#df9d17] transition-colors font-heading">
           {pillar.title}
         </h3>
 
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed font-light">
           {pillar.desc}
         </p>
       </div>
 
-      <div className="pt-6 mt-6 border-t border-white/5 flex items-baseline justify-between relative z-10">
+      <div className="pt-6 mt-6 border-t border-slate-200/80 flex items-baseline justify-between relative z-10">
         <span className="text-[11px] font-mono tracking-widest text-slate-500">
           {pillar.statLabel}
         </span>
-        <span className="text-lg font-black text-[#F3E5AB]">
+        <span className="text-lg font-black text-[#0B1220]">
           <Counter value={pillar.statValue} suffix={pillar.statSuffix} />
         </span>
       </div>
@@ -157,44 +157,44 @@ const pillars = [
 
 export default function FeatureShowcaseAr() {
   return (
-    <section dir="rtl" className="relative z-20 bg-[#040811] pt-12 pb-8 px-6 lg:px-16 overflow-hidden border-t border-white/5 text-right font-sans">
-      
+    <section dir="rtl" className="relative z-20 bg-white pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-100 text-right font-sans">
+
       {/* إضاءات وشبكة إحداثيات خلفية */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-        style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(#e6b224 1px, transparent 1px)", backgroundSize: "36px 36px" }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-20 relative z-10">
-        
+
         {/* 1. الصف العلوي: النص يندفع من اليمين والصورة تندفع من اليسار ويصطدمان بسلاسة */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          
+
           {/* النص من أقصى اليمين */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 120 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-6 text-right"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/25 text-[#D4AF37] text-xs font-mono font-bold tracking-widest uppercase shadow-inner"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#b87d0e] text-xs sm:text-[13px] font-extrabold tracking-normal shadow-xs"
             >
-              <Award className="w-3.5 h-3.5" />
+              <Award className="w-4 h-4 text-[#df9d17] shrink-0" />
               <span>رواد تصنيع وتأجير الخيام في الإمارات والسعودية — منذ عام 1997</span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.25]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.25]">
               خبراء توريد، تأجير، <br />
-              وتصنيع <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">الخيام والهياكل الإنشائية</span>
+              وتصنيع <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">الخيام والهياكل الإنشائية</span>
             </h1>
 
-            <p className="text-slate-300 text-sm sm:text-base font-light leading-relaxed max-w-2xl">
+            <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-2xl">
               تُعد شركة بيت النوخذة رائدة صناعة الخيام والهياكل النسيجية في دبي، أبوظبي، وكافة مناطق الإمارات والمملكة العربية السعودية. نصمم وننفذ خيام الفعاليات الكبرى، المستودعات التخزينية الصناعية، والتجهيزات المتطورة المعتمدة لأعلى معايير السلامة العالمية.
             </p>
 
@@ -209,7 +209,7 @@ export default function FeatureShowcaseAr() {
                 onClick={() => {
                   track("WhatsApp Click", { location: "Arabic Homepage Hero" });
                 }}
-                className="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-emerald-950/40 border border-white/15 hover:border-emerald-500/50 text-white font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg hover:scale-105"
+                className="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-500/60 text-[#0B1220] font-semibold text-xs sm:text-sm transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
               >
                 <svg
                   className="w-4 h-4 sm:w-5 sm:h-5 fill-[#25D366] shrink-0"
@@ -226,9 +226,9 @@ export default function FeatureShowcaseAr() {
                 onClick={() => {
                   track("Phone Call Click", { location: "Arabic Homepage Hero" });
                 }}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-amber-950/40 border border-white/15 hover:border-[#D4AF37]/50 text-white font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg hover:scale-105"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-amber-50/60 border border-slate-200 hover:border-[#df9d17]/60 text-[#0B1220] font-semibold text-xs sm:text-sm transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
               >
-                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] shrink-0" />
+                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#df9d17] shrink-0" />
                 <span>اتصل بنا الآن</span>
               </a>
 
@@ -241,7 +241,7 @@ export default function FeatureShowcaseAr() {
                     source: "Arabic Homepage Hero CTA",
                   });
                 }}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-sky-950/40 border border-white/15 hover:border-sky-400/50 text-white font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg hover:scale-105"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-sky-50/60 border border-slate-200 hover:border-sky-500/60 text-[#0B1220] font-semibold text-xs sm:text-sm transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400 shrink-0" />
                 <span>راسلنا عبر الإيميل</span>
@@ -251,12 +251,12 @@ export default function FeatureShowcaseAr() {
           </motion.div>
 
           {/* الصورة تندفع من أقصى اليسار */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -120, scale: 0.95 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl group"
+            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-xl p-2 rounded-3xl bg-slate-100/80 border border-slate-200/80 group"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
@@ -272,9 +272,9 @@ export default function FeatureShowcaseAr() {
         </div>
 
         {/* 2. قسم الركائز: الكروت تندمج وتضم على بعضها */}
-        <div className="pt-10 border-t border-white/10 space-y-10">
-          
-          <motion.div 
+        <div className="pt-10 border-t border-slate-200/80 space-y-10">
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.3 }}
@@ -282,15 +282,15 @@ export default function FeatureShowcaseAr() {
             className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
           >
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#D4AF37]">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#df9d17]">
+                <Sparkles className="w-3.5 h-3.5 text-[#fbc200]" />
                 <span>المعيار الذهبي في الهندسة الإنشائية منذ عام 1997</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-                لماذا يختار رواد الصناعة <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#C5A880]">بيت النوخذة؟</span>
+              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight">
+                لماذا يختار رواد الصناعة <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">بيت النوخذة؟</span>
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-md font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-md font-light leading-relaxed">
               دقة في الحسابات الإنشائية وسرعة تركيب ميدانية معتمدة بأعلى مقاييس الأمان الهيكلي الأوروبي.
             </p>
           </motion.div>

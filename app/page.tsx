@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main className="min-h-screen bg-white text-[#090D16] selection:bg-[#C99A2C] selection:text-white">
       <Navbar />
       <Hero />
       <FeatureShowcase />

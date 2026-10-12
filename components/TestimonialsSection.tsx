@@ -41,20 +41,20 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section className="relative py-16 bg-[#070B14] border-t border-white/5 overflow-hidden">
-      
+    <section className="relative py-16 bg-white border-t border-slate-100 overflow-hidden">
+
       {/* توهج خفيف في الخلفية */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[220px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[220px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
       {/* Header مصغر وفخم */}
       <div className="max-w-7xl mx-auto px-6 mb-10 text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#e6b224]/10 text-[#df9d17] border border-[#e6b224]/30 shadow-xs">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Client Testimonials</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] tracking-tight">
           Behind Every Structure Is A{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#C5A880]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f3be21] via-[#e6b224] to-[#c3922e]">
             Relationship Built On Trust
           </span>
         </h2>
@@ -76,24 +76,24 @@ export default function TestimonialsSection() {
           {repeatedTestimonials.map((item, idx) => (
             <div
               key={idx}
-              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/50 hover:bg-white/[0.05] transition-colors duration-300 flex flex-col justify-between shrink-0 shadow-xl group"
+              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#e6b224]/50 hover:bg-white transition-all duration-300 flex flex-col justify-between shrink-0 shadow-xs hover:shadow-md group"
             >
               <div className="space-y-3">
-                <Quote className="w-5 h-5 text-[#D4AF37]/70 group-hover:text-[#D4AF37] transition-colors shrink-0" />
-                <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed line-clamp-3 italic">
+                <Quote className="w-5 h-5 text-[#e6b224] group-hover:text-[#df9d17] transition-colors shrink-0" />
+                <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed line-clamp-3 italic">
                   “{item.quote}”
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-3 border-t border-white/5">
-                <div className="p-2 rounded-xl bg-[#D4AF37]/10 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#070B14] transition-all duration-300 shrink-0">
+              <div className="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                <div className="p-2 rounded-xl bg-white border border-slate-200/90 text-[#df9d17] group-hover:bg-[#df9d17] group-hover:text-white group-hover:border-[#df9d17] shadow-xs transition-all duration-300 shrink-0">
                   <item.icon className="w-4 h-4" />
                 </div>
                 <div className="truncate">
-                  <h4 className="text-sm font-bold text-white group-hover:text-[#D4AF37] transition-colors truncate">
+                  <h4 className="text-sm font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors truncate">
                     {item.client}
                   </h4>
-                  <p className="text-[11px] text-[#D4AF37] font-semibold tracking-wider uppercase truncate">
+                  <p className="text-[11px] text-[#df9d17] font-bold tracking-wider uppercase truncate">
                     {item.role}
                   </p>
                 </div>

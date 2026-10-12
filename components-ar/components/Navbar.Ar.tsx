@@ -3,6 +3,7 @@
 import { fontBodyAr } from "@/app/fonts";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   ChevronDown,
@@ -62,53 +63,53 @@ export default function ArabicNavbar() {
     <>
       <header
         dir="rtl"
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
-          ? "bg-[#040811]/80 backdrop-blur-md py-3 shadow-none border-b-0"
-          : "bg-transparent py-5 border-b-0"
+        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b-0 py-3"
+          : "bg-transparent py-8"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           {/* اللوجو العربي */}
-          {/* اللوجو العربي بجانب بعض */}
-          <Link href="/ar" className={`flex items-center gap-2 group ${fontBodyAr.className}`}>
-            <span
-              className={`font-black text-white drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${
-                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
-              }`}
-            >
-              بيت
-            </span>
-            <span
-              className={`text-[#D4AF37] font-black drop-shadow transition-all duration-300 leading-none ${
-                isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-3xl"
-              }`}
-            >
-              النوخذة
-            </span>
-          </Link>
+          <Link href="/ar" className="flex items-center group transition-transform duration-300">
+  <div className="relative overflow-visible flex items-center justify-end">
+    <Image
+      src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+      alt="بيت النوخذة"
+      width={280}
+      height={80}
+      priority
+      className={`w-auto object-contain transition-all duration-300 origin-right scale-[2.2] sm:scale-[2.6] ${
+        isScrolled ? "h-12" : "h-15"
+      }`}
+    />
+  </div>
+</Link>
 
           {/* الأزرار العلوية */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center p-1 rounded-full bg-white/80 backdrop-blur-xl border border-slate-900/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
+            {/* زر التحويل للإنجليزية EN */}
             <Link
               href={targetLanguageUrl}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white/[0.05] hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 shadow-md group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold text-slate-700 hover:text-[#df9d17] transition-colors group"
             >
-              <Globe className="w-4 h-4 text-[#D4AF37] group-hover:text-[#070B14] transition-colors" />
-              <span className="text-xs font-black tracking-wider uppercase">EN</span>
+              <Globe className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#df9d17] transition-colors" />
+              <span className="tracking-wide font-sans">EN</span>
             </Link>
+
+            {/* فاصل معماري ناعم */}
+            <span className="w-[1px] h-4 bg-slate-200 shrink-0" />
 
             {/* زر القائمة العربي */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className={`flex items-center gap-3 text-white group cursor-pointer rounded-2xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl ${isScrolled ? "py-2 px-5 h-9 sm:h-10" : "py-2.5 px-6 h-11 sm:h-12"
-                }`}
+              className="flex items-center gap-2 pr-3 pl-4 py-1.5 rounded-full text-slate-900 hover:text-[#df9d17] transition-colors cursor-pointer group"
               aria-label="فتح القائمة"
             >
-              <div className="flex flex-col gap-1.5 items-start">
-                <span className="w-5 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-3 transition-all duration-300" />
-                <span className="w-3 h-0.5 bg-[#D4AF37] rounded-full group-hover:w-5 transition-all duration-300" />
+              <div className="flex flex-col gap-[3px] items-start justify-center w-3.5">
+                <span className="w-3.5 h-[1.5px] bg-slate-900 group-hover:bg-[#df9d17] rounded-full transition-all duration-300 group-hover:w-2" />
+                <span className="w-2 h-[1.5px] bg-[#e6b224] rounded-full transition-all duration-300 group-hover:w-3.5" />
               </div>
-              <span className="font-extrabold text-xs sm:text-base text-white group-hover:text-[#D4AF37] transition-colors">
+              <span className="font-extrabold text-[12px] tracking-wider leading-none">
                 القائمة
               </span>
             </button>
@@ -126,22 +127,22 @@ export default function ArabicNavbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#070B14]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-right will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="fixed inset-0 z-[99999] bg-white/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-right will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {/* إضاءة خلفية ذهبية ناعمة */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
             {/* الهيدر العلوي للمنيو */}
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0 relative z-10 border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0 relative z-10 border-b border-slate-200 pb-4">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold">
+                <Sparkles className="w-4 h-4 text-[#e6b224]" />
+                <span className="text-[11px] uppercase tracking-[0.2em] text-[#df9d17] font-bold">
                   دليل تصفح الموقع
                 </span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] border border-white/10 transition-all cursor-pointer group"
+                className="p-2.5 rounded-xl bg-slate-100 hover:bg-[#df9d17] text-slate-800 hover:text-white border border-slate-200 transition-all cursor-pointer group shadow-xs"
                 aria-label="إغلاق القائمة"
               >
                 <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
@@ -163,10 +164,10 @@ export default function ArabicNavbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-2 text-2xl sm:text-4xl font-extrabold text-white hover:text-[#D4AF37] transition-all"
+                      className="group flex items-center justify-between py-2 text-2xl sm:text-4xl font-extrabold text-[#0B1220] hover:text-[#df9d17] transition-all font-heading"
                     >
                       <span className="group-hover:-translate-x-2 transition-transform duration-200">{link.title}</span>
-                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 text-[#D4AF37] transition-all translate-x-2 group-hover:translate-x-0 rotate-[-90deg]" />
+                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 text-[#df9d17] transition-all translate-x-2 group-hover:translate-x-0 rotate-[-90deg]" />
                     </Link>
                   </motion.div>
                 ))}
@@ -174,10 +175,10 @@ export default function ArabicNavbar() {
 
               {/* العمود الثاني: السكرول المستقل المحمي */}
               <div
-                className="lg:col-span-4 space-y-4 text-sm text-slate-300 lg:border-r lg:border-white/10 pr-0 lg:pr-6">
+                className="lg:col-span-4 space-y-4 text-sm text-slate-300 lg:border-r lg:border-slate-200 text-slate-700 pr-0 lg:pr-6">
 
                 {/* المنتجات */}
-                <div className="space-y-2 bg-white/[0.04] p-3.5 rounded-2xl border border-white/10 shadow-lg">
+                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between w-full">
                     <button
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
@@ -191,7 +192,7 @@ export default function ArabicNavbar() {
                     <Link
                       href="/ar/products"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                      className="text-xs text-slate-500 hover:text-[#df9d17] underline flex items-center gap-1 font-semibold"
                     >
                       عرض الكل <ArrowUpRight className="w-3.5 h-3.5 rotate-[-90deg]" />
                     </Link>
@@ -203,7 +204,7 @@ export default function ArabicNavbar() {
                           key={item.slug}
                           href={`/ar/products/${item.slug}`}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 rounded-xl transition-all"
+                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#df9d17] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl rounded-xl transition-all"
                         >
                           <span>{item.ar ? item.ar.name : item.name}</span>
                           <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] rotate-[-90deg]" />
@@ -214,11 +215,11 @@ export default function ArabicNavbar() {
                 </div>
 
                 {/* الحلول والخدمات */}
-                <div className="space-y-2 bg-white/[0.04] p-3.5 rounded-2xl border border-white/10 shadow-lg">
+                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between w-full">
                     <button
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center gap-2 text-base font-extrabold text-[#df9d17] cursor-pointer"
                     >
                       <span>الحلول والخدمات ({solutionsDatabase.length})</span>
                       <ChevronDown
@@ -228,7 +229,7 @@ export default function ArabicNavbar() {
                     <Link
                       href="/ar/solutions"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-400 hover:text-[#D4AF37] underline flex items-center gap-1 font-semibold"
+                      className="text-xs text-slate-400 hover:text-[#df9d17] underline flex items-center gap-1 font-semibold"
                     >
                       عرض الكل <ArrowUpRight className="w-3.5 h-3.5 rotate-[-90deg]" />
                     </Link>
@@ -252,39 +253,39 @@ export default function ArabicNavbar() {
               </div>
 
               {/* العمود الثالث - معلومات التواصل المباشر ومواقع التواصل */}
-              <div className="lg:col-span-4 space-y-5 text-sm text-slate-300 border-r border-white/10 pr-6 sm:pr-8 bg-white/[0.03] p-6 sm:p-7 rounded-3xl border border-white/10 shadow-2xl text-right">
-                <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#D4AF37] mb-3">
+              <div className="lg:col-span-4 space-y-5 text-sm text-slate-700 border-r border-slate-200 pr-6 sm:pr-8 bg-slate-50 p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm text-right">
+                <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#df9d17] mb-3">
                   التواصل المباشر والمعلومات
                 </h4>
 
                 <div className="space-y-3.5">
                   {/* رقم الاتصال المباشر (Call) */}
                   <a
-                    href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group justify-start">
+                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition">
+                      <Phone className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">+971 55 885 0631</span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">+971 55 885 0631</span>
                   </a>
 
                   {/* رقم الواتساب المباشر (WhatsApp) */}
                   <a
-                    href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group justify-start">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <MessageCircle className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group justify-start">
+                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition">
+                      <MessageCircle className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">+971 4 344 4091</span>
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">+971 4 344 4091</span>
                   </a>
 
                   {/* البريد الإلكتروني العام */}
                   <a
                     href="mailto:info@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate justify-start"
+                    className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate justify-start"
                   >
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#df9d17] transition">
+                      <Mail className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">
                       info@baitalnokhada.com
                     </span>
                   </a>
@@ -292,12 +293,12 @@ export default function ArabicNavbar() {
                   {/* بريد فرع السعودية */}
                   <a
                     href="mailto:info.Ksa@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate justify-start"
+                    className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate justify-start"
                   >
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition">
-                      <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#df9d17] transition">
+                      <Mail className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
-                    <span className="font-medium text-xs sm:text-sm truncate text-slate-200" dir="ltr">
+                    <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">
                       info.Ksa@baitalnokhada.com
                     </span>
                   </a>
@@ -308,12 +309,12 @@ export default function ArabicNavbar() {
                       href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer justify-start"
+                      className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer justify-start"
                     >
-                      <div className="p-2 rounded-xl bg-white/5 mt-0.5 group-hover:bg-[#D4AF37]/20 transition">
-                        <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                      <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs mt-0.5 group-hover:border-[#df9d17] transition shrink-0">
+                        <MapPin className="w-4 h-4 text-[#df9d17] shrink-0" />
                       </div>
-                      <span className="text-slate-300 leading-relaxed text-xs font-medium group-hover:text-white transition-colors text-right">
+                      <span className="text-slate-800 leading-relaxed text-xs font-semibold group-hover:text-[#df9d17] transition-colors text-right">
                         قطعة رقم TP 010102 - تكنوبارك - ميناء جبل علي - مجمع الصناعات الوطنية - دبي، الإمارات
                       </span>
                     </a>
@@ -323,13 +324,13 @@ export default function ArabicNavbar() {
                 {/* Social Media Icons (8 Platforms - Matches Arabic exactly) */}
                 <div className="pt-4 border-t border-white/10">
                   <p className="text-[11px] uppercase tracking-wider text-slate-400 mb-3 font-bold">تابعنا علي </p>
-                  <div className="flex items-center gap-2 flex-nowrap overflow-x-auto select-none">
+                  <div className="flex items-center gap-3 flex-wrap">
                     {/* Facebook */}
                     <a
                       href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="Facebook"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -342,7 +343,7 @@ export default function ArabicNavbar() {
                       href="https://linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="LinkedIn"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -355,7 +356,7 @@ export default function ArabicNavbar() {
                       href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="Instagram"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -368,7 +369,7 @@ export default function ArabicNavbar() {
                       href="https://tiktok.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="TikTok"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -381,7 +382,7 @@ export default function ArabicNavbar() {
                       href="https://youtube.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="YouTube"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -394,7 +395,7 @@ export default function ArabicNavbar() {
                       href="https://x.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="X"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -407,7 +408,7 @@ export default function ArabicNavbar() {
                       href="https://pinterest.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="Pinterest"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -420,7 +421,7 @@ export default function ArabicNavbar() {
                       href="https://behance.net"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#070B14] text-white transition shadow-md shrink-0"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#df9d17] hover:text-white text-slate-700 shadow-xs transition shadow-md shrink-0"
                       aria-label="Behance"
                     >
                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">

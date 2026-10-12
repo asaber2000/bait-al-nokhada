@@ -95,27 +95,27 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#070B14] text-white border-t border-white/10 pt-16 pb-12">
+    <footer className="bg-white text-slate-800 border-t border-slate-200/90 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
 
         {/* Brand Column (4 Cols) */}
         <div className="lg:col-span-4 space-y-5">
           <Link href="/" className="flex items-center gap-1.5 group">
             <span
-              className={`font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+              className={`font-black text-[#0B1220] font-heading tracking-tight group-hover:text-[#df9d17] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
                 }`}
             >
               Bait Al
             </span>
             <span
-              className={`text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
+              className={`text-[#e6b224] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
                 }`}
             >
               Nokhada
             </span>
           </Link>
 
-          <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
+          <p className="text-xs text-slate-600 font-normal leading-relaxed max-w-sm">
             Pioneers in high-span modular marquees, luxury wedding pavilions, and certified architectural tensile structures across UAE, KSA, and global markets.
           </p>
 
@@ -127,7 +127,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-slate-300 hover:text-[#070B14] flex items-center justify-center transition-all duration-300 border border-white/10"
+                className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs"
                 aria-label={social.name}
                 title={social.name}
               >
@@ -141,11 +141,11 @@ export default function Footer() {
 
         {/* Quick Links (2 Cols) */}
         <div className="lg:col-span-2 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Quick Links</h4>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Quick Links</h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             {quickLinks.map((link, idx) => (
               <li key={idx}>
-                <Link href={link.href} className="text-xs text-slate-300 hover:text-[#D4AF37] transition-colors">
+                <Link href={link.href} className="text-xs text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
                   {link.name}
                 </Link>
               </li>
@@ -155,11 +155,11 @@ export default function Footer() {
 
         {/* Featured Solutions (3 Cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Featured Solutions</h4>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Featured Solutions</h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             {featuredSolutions.map((sol, idx) => (
               <li key={idx}>
-                <Link href={sol.href} className="text-xs text-slate-300 hover:text-[#D4AF37] transition-colors">
+                <Link href={sol.href} className="text-xs text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
                   {sol.name}
                 </Link>
               </li>
@@ -169,29 +169,29 @@ export default function Footer() {
 
         {/* Headquarters (3 Cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Headquarters</h4>
-          <ul className="space-y-3 text-xs text-slate-300">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Headquarters</h4>
+          <ul className="space-y-3 text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors">
             {/* 1. العنوان */}
             <a
               href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer"
+              className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-white/5 mt-0.5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
-                <MapPin className="w-4 h-4 text-[#D4AF37]" />
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#e6b224]/50 group-hover:bg-[#e6b224]/10 transition shrink-0 shadow-xs">
+                <MapPin className="w-4 h-4 text-[#df9d17]" />
               </div>
-              <span className="text-xs text-slate-300 leading-relaxed group-hover:text-[#D4AF37] transition-colors">
+              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#df9d17] transition-colors">
                 Land No. TP 010102 - Technopark - Mina Jebel Ali - National Industries Park - Dubai, UAE
               </span>
             </a>
 
             {/* 2. رقم الهاتف */}
-            <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group">
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
-                <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
+            <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group">
+              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+                <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
-              <span className="text-xs text-slate-300 group-hover:text-[#D4AF37] transition-colors">
+              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
                 +971 4 344 4091
               </span>
             </a>
@@ -199,12 +199,12 @@ export default function Footer() {
             {/* 3. البريد الإلكتروني */}
             <a
               href="mailto:info@baitalnokhada.com"
-              className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate"
+              className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
-                <Mail className="w-4 h-4 text-[#D4AF37]" />
+              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+                <Mail className="w-4 h-4 text-[#df9d17]" />
               </div>
-              <span className="text-xs text-slate-300 truncate group-hover:text-[#D4AF37] transition-colors">
+              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate group-hover:text-[#df9d17] transition-colors">
                 info@baitalnokhada.com
               </span>
             </a>
@@ -212,7 +212,7 @@ export default function Footer() {
           <div className="pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#df9d17] hover:text-[#0B1220] transition-colors"
             >
               <span>Request Quotation</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -223,11 +223,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <div className="max-w-7xl mx-auto px-6 pt-8 mt-12 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
         <p>© 2026 Bait Al Nokhada Tents. All Rights Reserved.</p>
         <div className="flex items-center gap-6">
-          <Link href="/contact" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
-          <Link href="/contact" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+          <Link href="/contact" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
+          <Link href="/contact" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

@@ -19,13 +19,13 @@ const clients = [
 
 export default function ClientsTickerAr() {
   return (
-    <section dir="rtl" className="relative py-20 bg-[#070B14] border-t border-white/5 overflow-hidden font-sans">
-      
+    <section dir="rtl" className="relative py-20 bg-white border-t border-slate-100 overflow-hidden font-sans">
+
       {/* توهج خلفي محيطي خفيف */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-full px-6 mb-12 text-center">
-        <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/25 px-5 py-2 rounded-full shadow-sm">
+        <span className="text-xs font-bold text-[#b87d0e] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs tracking-normal">
           تحظى بثقة كبرى المؤسسات العالمية والجهات الحكومية
         </span>
       </div>
@@ -40,7 +40,7 @@ export default function ClientsTickerAr() {
           {[...clients, ...clients].map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/50 hover:bg-white/[0.06] transition-all duration-300 group shrink-0 shadow-xl"
+              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#e6b224]/50 hover:bg-white transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
             >
               {/* حاوية اللوجو - نفس المقاسات والفلاتر بالضبط */}
               <div className="relative w-full h-[65px] flex items-center justify-center">
@@ -49,12 +49,10 @@ export default function ClientsTickerAr() {
                   alt={client.name}
                   fill
                   sizes="200px"
-                  className={`object-contain transition-all duration-300 group-hover:scale-110 ${
-                    client.filterType === "invert"
-                      ? "invert brightness-200 opacity-90 group-hover:opacity-100"
-                      : client.filterType === "mubadala"
-                      ? "opacity-75 brightness-90 contrast-125 mix-blend-screen group-hover:opacity-100 transition-opacity"
-                      : "opacity-90 group-hover:opacity-100"
+                  className={`object-contain transition-all duration-300 group-hover:scale-105 ${
+                    client.name === "إعمار" || client.name === "Emaar" || client.logo.includes("-w")
+                      ? "brightness-0 opacity-80 group-hover:opacity-100"
+                      : "opacity-95 group-hover:opacity-100"
                   }`}
                 />
               </div>

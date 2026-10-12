@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { ChevronDown, Globe, X, ArrowUpRight, Mail, Phone, MapPin, Sparkles, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { productsDatabase } from "@/app/data/products.En";
@@ -54,27 +55,23 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200/80 py-3"
+          ? "bg-white/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b-0 py-3"
           : "bg-transparent py-8"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1.5 group">
-  <span
-    className={`font-black tracking-tight drop-shadow-xs transition-all duration-300 leading-none ${
-      isScrolled ? "text-[#0B1220] text-base sm:text-lg" : "text-[#0B1220] text-xl sm:text-2xl"
-    } group-hover:text-[#C99A2C]`}
-  >
-    Bait Al
-  </span>
-  <span
-    className={`text-[#C99A2C] font-black tracking-tight transition-all duration-300 leading-none ${
-      isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl"
-    }`}
-  >
-    Nokhada
-  </span>
-</Link>
+          <Link href="/" className="flex items-center group transition-transform duration-300 hover:scale-[1.02]">
+            <div className={`relative transition-all duration-300 ${isScrolled ? "h-9 w-36 sm:h-10 sm:w-40" : "h-11 w-44 sm:h-12 sm:w-48"
+              }`}>
+              <Image
+                src="/icons/bait-al-nokhada-final-logo.svg"
+                alt="Bait Al Nokhada"
+                fill
+                priority
+                className="object-contain object-left"
+              />
+            </div>
+          </Link>
           {/* أزرار الهيدر الإنجليزي: زر التحويل للعربية + زر القائمة */}
           <div className="flex items-center p-1 rounded-full bg-white/80 backdrop-blur-xl border border-slate-900/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
             {/* زر اللغة */}
@@ -397,9 +394,9 @@ export default function Navbar() {
               </div>
             </div>
             {/* Footer */}
-<div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 shrink-0 relative z-10">
-  <p className="text-[10px] sm:text-xs font-medium">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
-</div>
+            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 shrink-0 relative z-10">
+              <p className="text-[10px] sm:text-xs font-medium">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

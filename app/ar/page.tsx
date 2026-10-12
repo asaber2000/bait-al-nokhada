@@ -15,7 +15,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 
 export default function ArabicHome() {
   return (
-    <main dir="rtl" className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main dir="rtl" className="min-h-screen bg-white text-[#0B1220] selection:bg-[#df9d17] selection:text-white">
       <Navbar />
       <Hero />
       <FeatureShowcase />

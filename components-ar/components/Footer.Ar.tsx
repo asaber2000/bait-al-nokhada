@@ -83,20 +83,20 @@ export default function FooterAr() {
     },
   ];
   return (
-    <footer className="bg-[#070B14] text-slate-300 border-t border-white/10 pt-16 pb-12 px-6 text-right" dir="rtl">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10">
+    <footer className="bg-white text-slate-800 border-t border-slate-200/90 pt-16 pb-12 px-6 text-right" dir="rtl">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-slate-200/80">
 
         {/* العمود الرابع: معلومات الشركة والنبذة */}
         <div className="space-y-4">
           <Link href="/ar" className="flex items-center gap-1.5 group">
-            <span className="font-black text-white font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
+            <span className="font-black text-[#0B1220] group-hover:text-[#df9d17] font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
               بيت
             </span>
-            <span className="text-[#D4AF37] font-black tracking-tight drop-shadow transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
+            <span className="text-[#e6b224] font-black tracking-tight drop-shadow transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
               النوخذة
             </span>
           </Link>
-          <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
+          <p className="text-xs text-slate-600 font-normal leading-relaxed max-w-sm">
             الرواد في تصنيع وتركيب الهياكل المعمارية واسعة البحور، خيام الأعراس الفاخرة، والهياكل النسيجية المعتمدة في الإمارات، السعودية، والأسواق العالمية.
           </p>
           <div className="flex flex-wrap items-center gap-2 pt-2">
@@ -106,7 +106,7 @@ export default function FooterAr() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-slate-300 hover:text-[#070B14] flex items-center justify-center transition-all duration-300 border border-white/10"
+                className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs"
                 aria-label={social.name}
                 title={social.name}
               >
@@ -120,11 +120,11 @@ export default function FooterAr() {
 
         {/* العمود الثالث: روابط سريعة */}
         <div className="space-y-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">روابط سريعة</h3>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">روابط سريعة</h3>
           <ul className="space-y-2 text-xs">
             {quickLinks.map((item, idx) => (
               <li key={idx}>
-                <Link href={item.href} className="hover:text-[#D4AF37] transition-colors">
+                <Link href={item.href} className="text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
                   {item.name}
                 </Link>
               </li>
@@ -138,7 +138,7 @@ export default function FooterAr() {
           <ul className="space-y-2 text-xs">
             {featuredSolutions.map((item, idx) => (
               <li key={idx}>
-                <Link href={item.href} className="hover:text-[#D4AF37] transition-colors">
+                <Link href={item.href} className="text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
                   {item.name}
                 </Link>
               </li>
@@ -161,10 +161,10 @@ export default function FooterAr() {
               rel="noopener noreferrer"
               className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-white/5 mt-0.5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#e6b224]/50 group-hover:bg-[#e6b224]/10 transition shrink-0 shadow-xs">
                 <MapPin className="w-4 h-4 text-[#D4AF37]" />
               </div>
-              <span className="text-xs text-slate-300 leading-relaxed group-hover:text-[#D4AF37] transition-colors">
+              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#D4AF37] transition-colors">
                 قطعة رقم TP 010102 - تكنوبارك - ميناء جبل علي - مجمع الصناعات الوطنية - دبي، الإمارات
               </span>
             </a>
@@ -172,12 +172,12 @@ export default function FooterAr() {
             {/* 2. رقم الهاتف */}
             <a
               href="//wa.me/97143444091"
-              className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group"
+              className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
-                <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
+              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+                <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
-              <span dir="ltr" className="text-xs text-slate-300 group-hover:text-[#D4AF37] transition-colors">
+              <span dir="ltr" className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
                 +971 4 344 4091
               </span>
             </a>
@@ -185,12 +185,12 @@ export default function FooterAr() {
             {/* 3. البريد الإلكتروني */}
             <a
               href="mailto:info@baitalnokhada.com"
-              className="flex items-center gap-3.5 hover:text-[#D4AF37] transition group truncate"
+              className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 transition shrink-0">
-                <Mail className="w-4 h-4 text-[#D4AF37]" />
+              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+                <Mail className="w-4 h-4 text-[#df9d17]" />
               </div>
-              <span className="text-xs text-slate-300 truncate group-hover:text-[#D4AF37] transition-colors">
+              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate group-hover:text-[#df9d17] transition-colors">
                 info@baitalnokhada.com
               </span>
             </a>
@@ -198,7 +198,7 @@ export default function FooterAr() {
           <div className="pt-2">
             <Link
               href="/ar/contact"
-              className="inline-flex items-center gap-2 text-xs font-bold text-[#D4AF37] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-bold text-[#df9d17] hover:text-[#0B1220] transition-colors"
             >
               <span>طلب عرض سعر واستشارة</span>
               <ArrowUpLeft className="w-4 h-4" />
@@ -213,8 +213,8 @@ export default function FooterAr() {
       {/* حقوق النشر السفلية */}
       <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
         <div className="flex gap-6">
-          <Link href="/ar/terms" className="hover:text-white transition-colors">شروط الاستخدام</Link>
-          <Link href="/ar/privacy" className="hover:text-white transition-colors">سياسة الخصوصية</Link>
+          <Link href="/ar/terms" className="hover:text-slate-900 transition-colors">شروط الاستخدام</Link>
+          <Link href="/ar/privacy" className="hover:text-slate-900 transition-colors">سياسة الخصوصية</Link>
         </div>
         <p>© 2026 بيت النوخذة للخيام. جميع الحقوق محفوظة.</p>
       </div>
