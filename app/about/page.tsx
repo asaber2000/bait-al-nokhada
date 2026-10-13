@@ -30,7 +30,7 @@ const journeyMilestones = [
     tagline: "30+ Years of Engineering Heritage",
     desc: "Bait Al Nokhada was established in Abu Dhabi, pioneering the manufacturing of traditional Arabic majlis tents and luxury tensile shade systems for the UAE market.",
     highlight: "First production facility established in Abu Dhabi.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
   },
   {
     year: "2005",
@@ -39,7 +39,7 @@ const journeyMilestones = [
     tagline: "40,000+ SQM Manufacturing Capacity & ISO Certified",
     desc: "Upgraded manufacturing plants to ICAD-1 (Industrial City of Abu Dhabi) spanning over 40,000 sqm, incorporating German automated CNC cutting and high-frequency HF welding.",
     highlight: "Achieved ISO 9001:2015 and DIN safety compliance certifications.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
     imagePosition: "object-[center_60%]"
   },
   {
@@ -49,7 +49,7 @@ const journeyMilestones = [
     tagline: "Engineering Large-Scale Event Structures Across the UAE",
     desc: "Became the premier turnkey modular structure contractor for major events including IDEX, NAVDEX, Dubai Airshow, and global state receptions.",
     highlight: "Over 3,000 mega structures successfully deployed across UAE.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-old.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-old.webp",
   },
   {
     year: "2022",
@@ -58,7 +58,7 @@ const journeyMilestones = [
     tagline: "Major Infrastructure & Entertainment Deployments",
     desc: "Expanded direct operations and project offices across Saudi Arabia to cater to massive entertainment seasons and industrial logistics parks.",
     highlight: "Reliable execution of high-span industrial and royal tent projects across KSA, GCC",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
     imagePosition: "object-[75%_center]",
   },
   {
@@ -68,7 +68,7 @@ const journeyMilestones = [
     tagline: "6,000+ Completed Projects Across the GCC",
     desc: "Integrating solar-ready tensile membranes, smart insulated acoustic panels, and sustainable double-decker pavilions for futuristic GCC landmark projects.",
     highlight: "Over 6,000+ completed projects with 100% turnkey capabilities.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
     imagePosition: "object-[95%_center]",
   },
 ];
