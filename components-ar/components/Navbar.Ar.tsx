@@ -64,7 +64,7 @@ export default function ArabicNavbar() {
       <header
         dir="rtl"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b-0 py-3"
+          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b border-slate-200/60 py-3"
           : "bg-transparent py-8"
           }`}
       >
@@ -126,7 +126,7 @@ export default function ArabicNavbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-white/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-right will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="fixed inset-0 z-[99999] bg-[#FDFCF7]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-right will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {/* إضاءة خلفية ذهبية ناعمة */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
@@ -181,7 +181,7 @@ export default function ArabicNavbar() {
                   <div className="flex items-center justify-between w-full">
                     <button
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#D4AF37] cursor-pointer"
+                      className="flex items-center gap-2 text-base font-extrabold text-[#df9d17] cursor-pointer"
                     >
                       <span>المنتجات ({productsDatabase.length})</span>
                       <ChevronDown
@@ -197,7 +197,7 @@ export default function ArabicNavbar() {
                     </Link>
                   </div>
                   {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-white/10 mt-2">
+                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
                       {productsDatabase.map((item) => (
                         <Link
                           key={item.slug}
@@ -206,7 +206,7 @@ export default function ArabicNavbar() {
                           className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#df9d17] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl rounded-xl transition-all"
                         >
                           <span>{item.ar ? item.ar.name : item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] rotate-[-90deg]" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#df9d17] rotate-[-90deg]" />
                         </Link>
                       ))}
                     </div>
@@ -243,7 +243,7 @@ export default function ArabicNavbar() {
                           className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-200 hover:text-[#D4AF37] bg-white/[0.02] hover:bg-[#D4AF37]/10 border border-white/5 rounded-xl transition-all"
                         >
                           <span>{item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37] rotate-[-90deg]" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#df9d17] rotate-[-90deg]" />
                         </Link>
                       ))}
                     </div>
@@ -261,7 +261,7 @@ export default function ArabicNavbar() {
                   {/* رقم الاتصال المباشر (Call) */}
                   <a
                     href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group justify-start">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition">
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#df9d17] transition">
                       <Phone className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
                     <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">+971 55 885 0631</span>
@@ -270,7 +270,7 @@ export default function ArabicNavbar() {
                   {/* رقم الواتساب المباشر (WhatsApp) */}
                   <a
                     href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group justify-start">
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition">
+                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#df9d17] transition">
                       <MessageCircle className="w-4 h-4 text-[#df9d17] shrink-0" />
                     </div>
                     <span className="font-medium text-xs sm:text-sm truncate text-slate-800 font-semibold" dir="ltr">+971 4 344 4091</span>
@@ -321,7 +321,7 @@ export default function ArabicNavbar() {
                 </div>
 
                 {/* Social Media Icons (8 Platforms - Matches Arabic exactly) */}
-                <div className="pt-4 border-t border-white/10">
+                <div className="pt-4 border-t border-slate-200">
                   <p className="text-[11px] uppercase tracking-wider text-slate-400 mb-3 font-bold">تابعنا علي </p>
                   <div className="flex items-center gap-3 flex-wrap">
                     {/* Facebook */}
@@ -435,7 +435,7 @@ export default function ArabicNavbar() {
             </div>
 
             {/* الشريط السفلي للتبديل للإنجليزية */}
-            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 shrink-0 relative z-10">
+            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 shrink-0 relative z-10">
               <p className="text-[10px] sm:text-xs">© 2026 بيت النوخذة. جميع الحقوق محفوظة.</p>
             </div>
           </motion.div>

@@ -78,7 +78,7 @@ function PillarCardAr({ pillar, idx }: { pillar: any; idx: number }) {
         ease: [0.16, 1, 0.3, 1]
       }}
       onMouseMove={handleMouseMove}
-      className="group relative p-7 rounded-3xl bg-slate-50/70 hover:bg-white border border-slate-200/80 hover:border-[#e6b224]/50 transition-all duration-500 shadow-xs hover:shadow-xl flex flex-col justify-between overflow-hidden text-right"
+      className="group relative p-7 rounded-3xl bg-white hover:bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 shadow-xs hover:shadow-md flex flex-col justify-between overflow-hidden text-right"
     >
       {/* هالة تفاعلية حول الماوس */}
       <motion.div
@@ -87,7 +87,7 @@ function PillarCardAr({ pillar, idx }: { pillar: any; idx: number }) {
           background: useMotionTemplate`
             radial-gradient(
               320px circle at ${mouseX}px ${mouseY}px,
-              rgba(212, 175, 55, 0.16),
+              rgba(223, 157, 23, 0.14),
               transparent 80%
             )
           `,
@@ -157,7 +157,7 @@ const pillars = [
 
 export default function FeatureShowcaseAr() {
   return (
-    <section dir="rtl" className="relative z-20 bg-white pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-100 text-right font-sans">
+    <section dir="rtl" className="relative z-20 bg-[#FDFCF7] pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-200/60 text-right font-sans">
 
       {/* إضاءات وشبكة إحداثيات خلفية */}
       <div
@@ -256,7 +256,7 @@ export default function FeatureShowcaseAr() {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-xl p-2 rounded-3xl bg-slate-100/80 border border-slate-200/80 group"
+            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-md p-2 rounded-3xl bg-white border border-slate-200/80 group"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
