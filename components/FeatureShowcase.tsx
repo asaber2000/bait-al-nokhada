@@ -84,7 +84,7 @@ function PillarCard({ pillar, idx }: { pillar: any; idx: number }) {
         ease: [0.16, 1, 0.3, 1]
       }}
       onMouseMove={handleMouseMove}
-      className="group relative p-7 rounded-3xl bg-slate-50/70 hover:bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 shadow-xs hover:shadow-xl flex flex-col justify-between overflow-hidden"
+      className="group relative p-7 rounded-3xl bg-white hover:bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 shadow-xs hover:shadow-md flex flex-col justify-between overflow-hidden"
     >
       {/* هالة تفاعلية حول الماوس */}
       <motion.div
@@ -164,7 +164,7 @@ const pillars = [
 
 export default function FeatureShowcase() {
   return (
-    <section className="relative z-20 bg-white pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-100">
+    <section className="relative z-20 bg-[#FDFCF7] pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-100">
 
       {/* إضاءات وشبكة إحداثيات خلفية */}
       <div
@@ -231,7 +231,7 @@ export default function FeatureShowcase() {
                 href="tel:+971558850631"
                 className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-amber-50/60 border border-slate-200 hover:border-[#df9d17]/50 text-[#0B1220] font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg hover:scale-105"
               >
-                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] shrink-0" />
+                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#df9d17] shrink-0" />
                 <span>Call Now</span>
               </a>
 
@@ -259,7 +259,7 @@ export default function FeatureShowcase() {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-xl p-2 rounded-3xl bg-slate-100/80 border border-slate-200/80 group"
+            className="lg:col-span-5 relative h-[290px] sm:h-[320px] shadow-md p-2 rounded-3xl bg-white border border-slate-200/80 group"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image

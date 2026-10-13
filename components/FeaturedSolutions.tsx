@@ -98,7 +98,7 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <section className="relative bg-white py-20 px-6 sm:px-12 lg:px-24 border-t border-slate-100 overflow-hidden">
+    <section className="relative bg-[#FDFCF7] py-20 px-6 sm:px-12 lg:px-24 border-t border-slate-200/60 overflow-hidden">
 
       {/* شبكة إحداثيات رادارية معمارية خلفية */}
       <div
@@ -112,12 +112,12 @@ export default function FeaturedProjects() {
         {/* 1. الهيدر المعماري الفاخر */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#b87d0e] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
               <span>PORTFOLIO SHOWCASE</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight">
-              eatured Projects<span className="text-[#df9d17]">.</span>
+              Featured Projects<span className="text-[#df9d17]">.</span>
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
@@ -154,7 +154,7 @@ export default function FeaturedProjects() {
 
           {/* عداد رقمي مع أسهم النقر ثلاثية الأبعاد */}
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs sm:text-sm tracking-widest text-[#df9d17] bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+            <span className="font-mono text-xs sm:text-sm tracking-widest text-[#df9d17] bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
               <span className="text-[#0B1220] font-bold">{active.id}</span> / 06
             </span>
             <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ export default function FeaturedProjects() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 relative overflow-hidden shadow-xs"
+              className="p-4 rounded-2xl bg-white border border-slate-200/80 relative overflow-hidden shadow-xs"
             >
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block mb-1">
                 {item.label}
@@ -283,7 +283,7 @@ export default function FeaturedProjects() {
         </div>
 
         {/* 5. شريط نبذة المشروع وزر دراسة الحالة */}
-        <div className="p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs">
+        <div className="p-6 rounded-2xl bg-white border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs">
           <div className="space-y-1.5 max-w-3xl">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#df9d17] font-bold">
               ENGINEERING SUMMARY

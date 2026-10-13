@@ -58,7 +58,7 @@ export default async function ProjectsCatalogPage() {
   const allProjects = [...sanityProjects, ...projectsDatabase];
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main className="min-h-screen bg-white text-slate-800 selection:bg-[#df9d17] selection:text-white">
       <Navbar />
 
       <section className="relative pt-44 pb-16 px-6 border-b border-white/10 overflow-hidden">

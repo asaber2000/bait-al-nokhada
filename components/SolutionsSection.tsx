@@ -94,7 +94,7 @@ export default function SolutionsSection() {
   const activeItem = solutions[selectedIdx];
 
   return (
-    <section className="relative pt-12 pb-24 bg-white border-t border-slate-100 overflow-hidden">
+    <section className="relative pt-12 pb-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -105,7 +105,7 @@ export default function SolutionsSection() {
       <div className="w-full px-6 sm:px-12 lg:px-24 mb-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#b87d0e] border border-[#df9d17]/30 shadow-xs">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               Turnkey Architectural Solutions
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
@@ -184,7 +184,7 @@ export default function SolutionsSection() {
           {/* الجانب الأيمن: قائمة الحلول الستة */}
           <div
             data-lenis-prevent
-            className="lg:col-span-6 flex flex-col p-4 sm:p-6 rounded-3xl bg-slate-50/70 border border-slate-200/80 shadow-xs max-h-[520px] overflow-y-auto divide-y divide-slate-200/60 pr-3">
+            className="lg:col-span-6 flex flex-col p-4 sm:p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-h-[520px] overflow-y-auto divide-y divide-slate-100 pr-3">
             {solutions.map((item, idx) => {
               const isSelected = selectedIdx === idx;
               return (

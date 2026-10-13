@@ -96,7 +96,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-white text-slate-800 border-t border-slate-200/90 pt-16 pb-12">
+    <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
 
         {/* Brand Column (4 Cols) */}
@@ -124,7 +124,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs"
+                className="w-8 h-8 rounded-xl bg-white hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs hover:border-[#df9d17]"
                 aria-label={social.name}
                 title={social.name}
               >
@@ -175,7 +175,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MapPin className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#df9d17] transition-colors">
@@ -185,7 +185,7 @@ export default function Footer() {
 
             {/* 2. رقم الهاتف */}
             <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group">
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
@@ -198,7 +198,7 @@ export default function Footer() {
               href="mailto:info@baitalnokhada.com"
               className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <Mail className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate group-hover:text-[#df9d17] transition-colors">

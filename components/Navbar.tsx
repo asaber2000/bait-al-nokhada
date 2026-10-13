@@ -55,7 +55,7 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b-0 py-3"
+          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b border-slate-200/60 py-3"
           : "bg-transparent py-8"
           }`}
       >
@@ -112,12 +112,12 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-white/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="fixed inset-0 z-[99999] bg-[#FDFCF7]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
             {/* Header */}
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0 relative z-10 border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0 relative z-10 border-b border-slate-200/60 pb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#D4AF37]" />
                 <span className="text-[11px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">

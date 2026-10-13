@@ -41,14 +41,14 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section className="relative py-16 bg-white border-t border-slate-100 overflow-hidden">
+    <section className="relative py-16 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
 
       {/* توهج خفيف في الخلفية */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[220px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
 
       {/* Header مصغر وفخم */}
       <div className="max-w-7xl mx-auto px-6 mb-10 text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#b87d0e] border border-[#df9d17]/30 shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
           <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
           <span>Client Testimonials</span>
         </div>
@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
           {repeatedTestimonials.map((item, idx) => (
             <div
               key={idx}
-              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 flex flex-col justify-between shrink-0 shadow-xs hover:shadow-md group"
+              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shrink-0 shadow-xs hover:shadow-md group"
             >
               <div className="space-y-3">
                 <Quote className="w-5 h-5 text-[#df9d17] group-hover:text-[#b87d0e] transition-colors shrink-0" />
