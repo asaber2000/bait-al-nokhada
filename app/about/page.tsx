@@ -101,23 +101,23 @@ export default function AboutPage() {
   const active = journeyMilestones[activeMilestone];
 
   return (
-    <main className="min-h-screen bg-[#040811] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main className="min-h-screen bg-white text-slate-800 selection:bg-[#df9d17] selection:text-white">
       <Navbar />
 
       {/* 1. Hero Banner */}
-      <section className="relative pt-36 pb-8 px-6 sm:px-12 lg:px-24 border-b border-white/5 overflow-hidden">
+      <section className="relative pt-36 pb-14 px-6 sm:px-12 lg:px-24 border-b border-slate-100 overflow-hidden bg-white">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
         />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/30 shadow-inner"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Established 1997 • Engineering Legacy</span>
@@ -127,10 +127,10 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15] font-heading"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-[1.15] font-heading"
           >
             Pioneering Custom Tents & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               Architectural Solutions
             </span>
           </motion.h1>
@@ -139,7 +139,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto font-light leading-relaxed"
+            className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed"
           >
             For three decades, Bait Al Nokhada has designed and manufactured premium event marquees, royal summit halls, and heavy-duty industrial warehouses across the UAE and GCC.
           </motion.p>
@@ -150,14 +150,14 @@ export default function AboutPage() {
       <section className="pt-10 pb-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5 relative overflow-hidden">
 
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Compass className="w-3.5 h-3.5" />
             <span>Our Heritage & Milestones</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
-            Company <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">Journey</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
+            Company <span className="text-[#df9d17]">Journey</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light max-w-md mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-md mx-auto leading-relaxed">
             Tracing our continuous evolution from artisanal desert tent crafting to a multinational engineering powerhouse.
           </p>
         </div>
@@ -166,17 +166,16 @@ export default function AboutPage() {
         <div className="relative w-full max-w-7xl mx-auto">
 
           <div className="relative pt-6 pb-2">
-            <div className="absolute top-[38px] left-4 right-4 h-[1px] bg-white/10 pointer-events-none" />
+            <div className="absolute top-[38px] left-4 right-4 h-[2px] bg-slate-200 pointer-events-none" />
 
             <motion.div
-              className="absolute top-[38px] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent pointer-events-none filter drop-shadow-[0_0_8px_#D4AF37]"
+              className="absolute top-[38px] h-[2px] bg-[#df9d17] pointer-events-none"
               animate={{
                 left: `${(activeMilestone / (journeyMilestones.length - 1)) * 80}%`,
                 width: "20%"
               }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
             />
-
             <div className="relative flex justify-between items-center px-4 sm:px-12">
               {journeyMilestones.map((item, idx) => {
                 const isSelected = activeMilestone === idx;
@@ -187,24 +186,24 @@ export default function AboutPage() {
                       className="group relative flex flex-col items-center focus:outline-none cursor-pointer"
                       aria-label={`Milestone ${item.year}`}
                     >
-                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-500 relative ${isSelected
-                        ? "bg-[#070B14] border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,1)] scale-110"
-                        : "bg-[#040811] border-white/20 group-hover:border-white/50"
+                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 relative ${isSelected
+                        ? "bg-white border-[#df9d17] shadow-[0_0_15px_rgba(223,157,23,0.35)] scale-110"
+                        : "bg-white border-slate-300 group-hover:border-slate-400"
                         }`}>
-                        <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isSelected ? "bg-[#D4AF37] scale-125" : "bg-white/20 group-hover:bg-white/60"
+                        <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isSelected ? "bg-[#df9d17] scale-125" : "bg-slate-300 group-hover:bg-slate-400"
                           }`} />
 
                         {isSelected && (
                           <motion.div
                             layoutId="nodeRadar"
-                            className="absolute -inset-1.5 rounded-full border border-[#D4AF37]/40 animate-ping pointer-events-none"
+                            className="absolute -inset-1.5 rounded-full border border-[#df9d17]/40 animate-ping pointer-events-none"
                           />
                         )}
                       </div>
 
                       <div className={`mt-3 px-4 py-1.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all duration-300 ${isSelected
-                        ? "bg-[#D4AF37] text-[#070B14] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/25 -translate-y-0.5 font-black"
-                        : "bg-[#090F1C]/80 text-slate-400 border-white/10 group-hover:text-white group-hover:border-white/30"
+                        ? "bg-[#df9d17] text-white border-[#df9d17] shadow-md shadow-[#df9d17]/25 -translate-y-0.5 font-black"
+                        : "bg-slate-50 text-slate-600 border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-900"
                         }`}>
                         {item.year}
                       </div>
@@ -263,17 +262,17 @@ export default function AboutPage() {
           </div>
 
           {/* مسرح الكرت المعماري الموسع بتصميم مطابق لكروت الإحصائيات */}
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 sm:p-10 lg:p-12 min-h-[480px] flex items-center">
+          <div className="relative rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/70 p-6 sm:p-10 lg:p-12 min-h-[480px] flex items-center shadow-xs mt-6">
 
-            <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[200px] lg:text-[240px] font-black font-mono text-white/[0.02] leading-none z-0">
+            <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[200px] lg:text-[240px] font-black font-mono text-slate-200/50 leading-none z-0">
               {active.year}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full relative z-10">
 
               {/* بوكس الصورة ثابت خارج AnimatePresence حتى لا يختفي إطلاقاً */}
-              <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-2xl p-2 bg-[#090F1C]/70 backdrop-blur-xl rounded-2xl group border border-white/10">
-                <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#070B14]">
+              <div className="lg:col-span-7 relative h-[320px] sm:h-[355px] shadow-md p-2 bg-white rounded-2xl group border border-slate-200/80">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-100">
                   <Image
                     key={active.image}
                     src={active.image}
@@ -298,27 +297,27 @@ export default function AboutPage() {
                   className="lg:col-span-5 space-y-5 text-left"
                 >
                   <div className="space-y-2">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-[11px] font-mono font-bold uppercase tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-[11px] font-mono font-bold uppercase tracking-wider">
                       <Calendar className="w-3.5 h-3.5" />
                       <span>{active.badge}</span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-heading tracking-tight leading-tight">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] font-heading tracking-tight leading-tight">
                       {active.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm font-mono text-[#D4AF37] font-medium tracking-wide">
-          // {active.tagline}
+                    <p className="text-xs sm:text-sm font-mono text-[#df9d17] font-semibold tracking-wide">
+// {active.tagline}
                     </p>
                   </div>
 
-                  <p className="text-slate-300 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm lg:text-base font-normal leading-relaxed">
                     {active.desc}
                   </p>
 
-                  <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] shrink-0 mt-0.5" />
-                    <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200/80 flex items-start gap-3 shadow-xs">
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#df9d17] shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
                       {active.highlight}
                     </p>
                   </div>
@@ -339,25 +338,25 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Vision & Mission */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-100 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#090F1C]/80 border border-white/10 hover:border-[#D4AF37]/30 transition-colors space-y-4 relative overflow-hidden backdrop-blur-md group">
-            <div className="w-12 h-12 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+          <div className="p-8 sm:p-10 rounded-3xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
+            <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
               <Compass className="w-6 h-6" />
             </div>
-            <h3 className="text-2xl font-black text-white font-heading">Our Vision</h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+            <h3 className="text-2xl font-black text-[#0B1220] font-heading">Our Vision</h3>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
               We aim to set new standards in efficiency, durability, and architectural design through our advanced shelter systems. As a leading tent supplier in the UAE and KSA, our goal is to be the preferred choice for high-span modular structures throughout the GCC.
             </p>
           </div>
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#090F1C]/80 border border-white/10 hover:border-[#D4AF37]/30 transition-colors space-y-4 relative overflow-hidden backdrop-blur-md group">
-            <div className="w-12 h-12 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+          <div className="p-8 sm:p-10 rounded-3xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
+            <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
               <Target className="w-6 h-6" />
             </div>
-            <h3 className="text-2xl font-black text-white font-heading">Our Mission</h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+            <h3 className="text-2xl font-black text-[#0B1220] font-heading">Our Mission</h3>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
               Our mission is to redefine excellence as the trusted UAE tent provider and an authority in tensile fabric engineering. We engineer turn-key structures combining rapid deployment, certified German safety, and sustainable longevity.
             </p>
           </div>
@@ -366,15 +365,15 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Core Capabilities - كروت مندمجة وتفرد مع السكرول مثل الفيديو */}
-      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-white/5 relative">
+      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-slate-100 relative bg-white">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">
-            INTEGRATED SERVICES
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
+            <span>INTEGRATED SERVICES</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
             End-to-End Structural Capabilities
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal">
             In-house manufacturing, precision structural engineering, and fast on-site installation across the UAE & KSA.
           </p>
         </div>
@@ -387,9 +386,9 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className="w-full sticky top-28 rounded-2xl p-6 sm:p-8 bg-[#090F1C]/95 backdrop-blur-xl border border-white/10 hover:border-[#D4AF37]/50 shadow-2xl transition-all duration-300"
+              transition={{ duration: 0.2, delay: idx * 0.1 }}
+              whileHover={{ y: -3 }}
+              className="w-full sticky top-28 rounded-2xl p-6 sm:p-8 bg-white border border-slate-200/90 hover:border-[#df9d17]/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] transition-all duration-300 group antialiased"
               style={{
                 top: `calc(100px + ${idx * 25}px)`,
                 zIndex: idx + 1,
@@ -397,22 +396,22 @@ export default function AboutPage() {
             >
               <div className="flex items-start sm:items-center justify-between gap-6">
                 <div className="flex items-start sm:items-center gap-5 sm:gap-6">
-                  <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/20 flex items-center justify-center shrink-0 text-[#D4AF37]">
+                  <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 text-[#df9d17] group-hover:bg-[#df9d17] group-hover:text-white group-hover:border-[#df9d17] transition-all shadow-xs">
                     <item.icon className="w-6 h-6" />
                   </div>
                   <div className="space-y-1.5 text-left">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-xs font-mono text-[#D4AF37] font-semibold">0{idx + 1}.</span>
-                      <h3 className="text-lg sm:text-xl font-bold text-white font-heading">
+                      <span className="text-xs font-mono text-[#df9d17] font-bold">0{idx + 1}.</span>
+                      <h3 className="text-lg sm:text-xl font-bold text-[#0B1220] font-heading group-hover:text-[#df9d17] transition-colors">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-2xl">
+                    <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed max-w-2xl antialiased">
                       {item.desc}
                     </p>
                   </div>
                 </div>
-                <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full border border-white/10 text-slate-400">
+                <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 text-slate-400 group-hover:border-[#df9d17] group-hover:text-[#df9d17] transition-all">
                   <span className="text-xs font-mono">↗</span>
                 </div>
               </div>
@@ -422,26 +421,26 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Executive Message Banner */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/30 bg-gradient-to-br from-[#090F1C] via-[#070B14] to-[#090F1C] p-8 sm:p-14 shadow-2xl">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto bg-white">
+        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-slate-50/80 p-8 sm:p-14 shadow-sm">
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-3.5">
-              <div className="p-3 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/25">
+              <div className="p-3 rounded-2xl bg-white text-[#df9d17] border border-slate-200 shadow-xs">
                 <Quote className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D4AF37]">Executive Message</span>
-                <h4 className="text-lg font-black text-white font-heading">Leadership Greetings</h4>
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Executive Message</span>
+                <h4 className="text-lg font-black text-[#0B1220] font-heading">Leadership Greetings</h4>
               </div>
             </div>
 
-            <p className="text-slate-300 text-sm sm:text-base font-light leading-relaxed italic">
+            <p className="text-slate-700 text-sm sm:text-base font-medium leading-relaxed italic">
               {`"At Bait Al Nokhada, we proudly blend modern modular architecture with our rich royal traditions. Every project we craft is engineered to set international benchmarks in the tensile structures industry. Our mission is simple: to deliver high-capacity shelters that combine structural integrity, aesthetic prestige, and German-certified safety across the UAE, KSA, and the GCC."`}
             </p>
 
-            <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10 text-xs font-mono text-slate-400">
+            <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-200 text-xs font-mono text-slate-500">
               <span>Executive Management • Bait Al Nokhada Tents Factory</span>
-              <div className="flex items-center gap-1.5 text-[#D4AF37] font-bold">
+              <div className="flex items-center gap-1.5 text-[#df9d17] font-bold">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Certified Engineering Standards</span>
               </div>
@@ -451,34 +450,34 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Historical Numbers Strip */}
-      <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-white/10 bg-[#070B14]">
+      <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-slate-100 bg-slate-50/60">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#D4AF37]">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
               <Award className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-white font-mono">30+</span>
+              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">30+</span>
             </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200">Years Experience</p>
-            <p className="text-xs text-slate-400 font-light">Pioneering modular architecture in the GCC since 1997.</p>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Years Experience</p>
+            <p className="text-xs text-slate-600 font-normal">Pioneering modular architecture in the GCC since 1997.</p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#D4AF37]">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
               <Users className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-white font-mono">3,000+</span>
+              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">3,000+</span>
             </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200">Corporate & Gov Partners</p>
-            <p className="text-xs text-slate-400 font-light">Long-term partnerships across landmark summits & ministries.</p>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Corporate & Gov Partners</p>
+            <p className="text-xs text-slate-600 font-normal">Long-term partnerships across landmark summits & ministries.</p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#D4AF37]">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
               <Building className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-white font-mono">6,000+</span>
+              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">6,000+</span>
             </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200">Completed Projects</p>
-            <p className="text-xs text-slate-400 font-light">High-span temporary marquees and permanent industrial shades.</p>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Completed Projects</p>
+            <p className="text-xs text-slate-600 font-normal">High-span temporary marquees and permanent industrial shades.</p>
           </div>
 
         </div>

@@ -42,7 +42,7 @@ export default function Hero() {
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
           <source
-            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Home-Page-video.webm"
+            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm"
             type="video/webm"
           />
         </video>

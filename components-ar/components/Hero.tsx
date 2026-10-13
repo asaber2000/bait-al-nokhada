@@ -40,11 +40,11 @@ export default function ArabicHero() {
           playsInline
           preload="metadata"
           disablePictureInPicture
-          poster="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/hero-poster.webp"
+          poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp"
           className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
         >
           {/* مسار الفيديو (يفضل استخدام رابط CloudFront/S3 مثل الإنجليزي بمجرد رفعه) */}
-          <source src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-videos/Hero-video-for-bait-al-nokhada-tents.mp4" type="video/mp4" />
+          <source src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm" type="video/webm" />
         </video>
 
         <div className="absolute inset-0 bg-black/30 z-10" />
