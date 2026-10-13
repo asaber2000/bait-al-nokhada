@@ -22,10 +22,10 @@ export default function ClientsTicker() {
     <section className="relative py-20 bg-white border-t border-slate-100 overflow-hidden">
 
       {/* توهج خلفي محيطي خفيف */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-full px-6 mb-12 text-center">
-        <span className="text-xs uppercase tracking-[0.35em] font-bold text-[#df9d17] bg-[#e6b224]/10 border border-[#e6b224]/30 px-5 py-2 rounded-full shadow-xs">
+        <span className="text-xs uppercase tracking-[0.25em] font-bold text-[#b87d0e] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs">
           Trusted by Global Enterprises & Government Entities
         </span>
       </div>
@@ -40,7 +40,7 @@ export default function ClientsTicker() {
           {[...clients, ...clients].map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#e6b224]/50 hover:bg-white transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
+              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
             >
               {/* حاوية اللوجو - تكبير المساحة لـ h-[65px] وبروز ممتاز */}
               <div className="relative w-full h-[65px] flex items-center justify-center">

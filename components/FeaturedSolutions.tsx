@@ -112,12 +112,12 @@ export default function FeaturedProjects() {
         {/* 1. الهيدر المعماري الفاخر */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#df9d17]">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#b87d0e] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
               <span>PORTFOLIO SHOWCASE</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight">
-              Featured Projects<span className="text-[#e6b224]">.</span>
+              eatured Projects<span className="text-[#df9d17]">.</span>
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
@@ -137,7 +137,7 @@ export default function FeaturedProjects() {
                   setDirection(i > currentIdx ? 1 : -1);
                   setCurrentIdx(i);
                 }}
-                className={`h-2 rounded-full transition-all duration-500 relative overflow-hidden ${currentIdx === i ? "w-12 bg-[#e6b224]" : "w-3 bg-slate-200 hover:bg-slate-300"}
+                className={`h-2 rounded-full transition-all duration-500 relative overflow-hidden ${currentIdx === i ? "w-12 bg-[#df9d17]" : "w-3 bg-slate-200 hover:bg-slate-300"}
                   }`}
                 aria-label={`Go to slide ${i + 1}`}
               >
@@ -167,7 +167,7 @@ export default function FeaturedProjects() {
               </button>
               <button
                 onClick={handleNext}
-                className="p-3 rounded-2xl bg-[#e6b224] hover:bg-[#df9d17] text-white transition-all shadow-md active:scale-90 font-bold"
+                className="p-3 rounded-2xl bg-[#df9d17] hover:bg-[#b87d0e] text-white transition-all shadow-md active:scale-90 font-bold"
                 aria-label="Next Project"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -216,23 +216,23 @@ export default function FeaturedProjects() {
             <motion.div
               key={active.id}
               custom={direction}
-              initial={{ 
+              initial={{
                 x: direction > 0 ? 120 : -120, // تبدأ من إزاحة واضحة لليمين أو اليسار
                 opacity: 0,
                 scale: 0.95
               }}
-              animate={{ 
-                x: 0, 
+              animate={{
+                x: 0,
                 opacity: 1,
-                scale: 1 
+                scale: 1
               }}
-              exit={{ 
+              exit={{
                 x: direction > 0 ? -120 : 120, // تخرج باتجاه معاكس واضح
                 opacity: 0,
                 scale: 0.95
               }}
-              transition={{ 
-                duration: 0.35, 
+              transition={{
+                duration: 0.35,
                 ease: [0.16, 1, 0.3, 1] // توقيت حاد وسريع يعطي انطلاقة قوية
               }}
               className="absolute inset-0 w-full h-full will-change-transform"
@@ -253,13 +253,13 @@ export default function FeaturedProjects() {
               <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
               {/* العنوان والكاتجوري ينزلقان بشكل مستقل ليعطيا تأثيراً ثلاثي الأبعاد */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.08 }}
                 className="absolute bottom-8 left-8 right-8 z-20 space-y-2"
               >
-                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#f3be21] uppercase bg-black/40 border border-[#e6b224]/30 px-2.5 py-1 rounded-md backdrop-blur-md">
+                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#fbc200] uppercase bg-black/40 border border-[#fbc200]/30 px-2.5 py-1 rounded-md backdrop-blur-md">
                   {active.category}
                 </span>
 
@@ -277,7 +277,7 @@ export default function FeaturedProjects() {
               initial={{ scale: 0.1, opacity: 1, borderWidth: "5px" }}
               animate={{ scale: 2.5, opacity: 0, borderWidth: "1px" }}
               transition={{ duration: 0.4, ease: "easeOut" }} // قللها إلى 0.4 ثانية
-              className="pointer-events-none absolute inset-0 m-auto w-44 h-44 rounded-full border border-[#e6b224]/80 z-30"
+              className="pointer-events-none absolute inset-0 m-auto w-44 h-44 rounded-full border border-[#df9d17]/80 z-30"
             />
           </AnimatePresence>
         </div>

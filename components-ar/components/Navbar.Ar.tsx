@@ -71,19 +71,18 @@ export default function ArabicNavbar() {
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           {/* اللوجو العربي */}
           <Link href="/ar" className="flex items-center group transition-transform duration-300">
-  <div className="relative overflow-visible flex items-center justify-end">
-    <Image
-      src="/icons/bait-al-nokhada-final-arabic-logo.svg"
-      alt="بيت النوخذة"
-      width={280}
-      height={80}
-      priority
-      className={`w-auto object-contain transition-all duration-300 origin-right scale-[2.2] sm:scale-[2.6] ${
-        isScrolled ? "h-12" : "h-15"
-      }`}
-    />
-  </div>
-</Link>
+            <div className="relative overflow-visible flex items-center justify-end">
+              <Image
+                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                alt="بيت النوخذة"
+                width={280}
+                height={80}
+                priority
+                className={`w-auto object-contain transition-all duration-300 origin-right scale-[2.2] sm:scale-[2.6] ${isScrolled ? "h-12" : "h-15"
+                  }`}
+              />
+            </div>
+          </Link>
 
           {/* الأزرار العلوية */}
           <div className="flex items-center p-1 rounded-full bg-white/80 backdrop-blur-xl border border-slate-900/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">

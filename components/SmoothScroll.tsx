@@ -5,7 +5,14 @@ import { useEffect } from "react";
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // تشغيل السموث سكرول على الديسكتوب فقط وتجاهل الموبايل تماماً للحفاظ على سلاسة اللمس الأصلية
-    if (typeof window === "undefined" || window.innerWidth < 768) {
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth < 1024);
+
+    if (isTouchDevice) {
       return;
     }
 
@@ -21,6 +28,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         gestureOrientation: "vertical",
         smoothWheel: true,
         wheelMultiplier: 0.9,
+        syncTouch: false,
       });
 
       function raf(time: number) {

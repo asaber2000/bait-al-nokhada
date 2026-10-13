@@ -98,20 +98,19 @@ export default function SolutionsSection() {
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+        style={{ backgroundImage: "radial-gradient(#e6b224 1px, transparent 1px)", backgroundSize: "36px 36px" }}
       />
-      <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
-
+      <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
       {/* الهيدر العلوي */}
       <div className="w-full px-6 sm:px-12 lg:px-24 mb-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#C99A2C]/10 text-[#A87E1F] border border-[#C99A2C]/30 shadow-xs">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#b87d0e] border border-[#df9d17]/30 shadow-xs">
               Turnkey Architectural Solutions
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
               Bespoke Structures <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f3be21] via-[#e6b224] to-[#c3922e]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
                 Tailored For Every Vision
               </span>
             </h2>
@@ -193,12 +192,12 @@ export default function SolutionsSection() {
                   key={item.id}
                   onMouseEnter={() => setSelectedIdx(idx)}
                   onClick={() => setSelectedIdx(idx)}
-                  className={`group py-4 transition-all duration-300 cursor-pointer flex flex-col justify-center px-4 rounded-xl ${isSelected ? "bg-white border border-[#e6b224]/40 shadow-sm" : "hover:bg-white/60"}
+                  className={`group py-4 transition-all duration-300 cursor-pointer flex flex-col justify-center px-4 rounded-xl ${isSelected ? "bg-white border border-[#df9d17]/40 shadow-sm" : "hover:bg-white/60"}
                     }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-baseline gap-4">
-                      <span className={`font-mono text-sm font-bold transition-colors ${isSelected ? "text-[#A87E1F]" : "text-slate-400 group-hover:text-slate-600"}
+                      <span className={`font-mono text-sm font-bold transition-colors ${isSelected ? "text-[#df9d17]" : "text-slate-400 group-hover:text-slate-600"}
                         }`}>
                         {item.id}
                       </span>
@@ -209,7 +208,7 @@ export default function SolutionsSection() {
                     </div>
 
                     <div className={`p-1.5 rounded-full border transition-all ${isSelected
-                      ? "border-[#e6b224] bg-[#e6b224]/15 text-[#df9d17] rotate-45"
+                      ? "border-[#df9d17] bg-[#df9d17]/15 text-[#df9d17] rotate-45"
                       : "border-slate-200 bg-white text-slate-400 group-hover:text-slate-600"
                       }`}>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300" />

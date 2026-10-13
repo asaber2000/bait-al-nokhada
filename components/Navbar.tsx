@@ -77,10 +77,10 @@ export default function Navbar() {
             {/* زر اللغة */}
             <Link
               href={targetLanguageUrl}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold text-slate-700 hover:text-[#C99A2C] transition-colors"
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold text-slate-700 hover:text-[#df9d17] transition-colors"
             >
-              <Globe className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#C99A2C]" />
-              <span className="tracking-wide">AR</span>
+              <Globe className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#df9d17] transition-colors" />
+              <span className="tracking-wide transition-colors">AR</span>
             </Link>
 
             {/* فاصل معماري رفيع وناعم */}

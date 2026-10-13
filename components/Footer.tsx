@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { MapPin, Mail, ArrowUpRight, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const quickLinks = [
@@ -100,19 +101,15 @@ export default function Footer() {
 
         {/* Brand Column (4 Cols) */}
         <div className="lg:col-span-4 space-y-5">
-          <Link href="/" className="flex items-center gap-1.5 group">
-            <span
-              className={`font-black text-[#0B1220] font-heading tracking-tight group-hover:text-[#df9d17] transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-                }`}
-            >
-              Bait Al
-            </span>
-            <span
-              className={`text-[#e6b224] font-black tracking-tight drop-shadow transition-all duration-300 leading-none ${isScrolled ? "text-base sm:text-lg" : "text-xl sm:text-2xl md:text-2xl"
-                }`}
-            >
-              Nokhada
-            </span>
+          <Link href="/" className="inline-block group transition-transform duration-300 hover:scale-[1.02]">
+            <div className="relative h-11 w-44 sm:h-12 sm:w-48">
+              <Image
+                src="/icons/bait-al-nokhada-final-logo.svg"
+                alt="Bait Al Nokhada"
+                fill
+                className="object-contain object-left"
+              />
+            </div>
           </Link>
 
           <p className="text-xs text-slate-600 font-normal leading-relaxed max-w-sm">
@@ -141,7 +138,7 @@ export default function Footer() {
 
         {/* Quick Links (2 Cols) */}
         <div className="lg:col-span-2 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Quick Links</h4>
+          <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#df9d17]">Quick Links</h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             {quickLinks.map((link, idx) => (
               <li key={idx}>
@@ -155,7 +152,7 @@ export default function Footer() {
 
         {/* Featured Solutions (3 Cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Featured Solutions</h4>
+          <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#df9d17]">Featured Solutions</h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             {featuredSolutions.map((sol, idx) => (
               <li key={idx}>
@@ -169,7 +166,7 @@ export default function Footer() {
 
         {/* Headquarters (3 Cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">Headquarters</h4>
+          <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#df9d17]">Headquarters</h4>
           <ul className="space-y-3 text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors">
             {/* 1. العنوان */}
             <a
@@ -178,7 +175,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#e6b224]/50 group-hover:bg-[#e6b224]/10 transition shrink-0 shadow-xs">
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MapPin className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#df9d17] transition-colors">
@@ -188,7 +185,7 @@ export default function Footer() {
 
             {/* 2. رقم الهاتف */}
             <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#df9d17] transition group">
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">

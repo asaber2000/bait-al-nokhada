@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MapPin, Mail, ArrowUpLeft, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function FooterAr() {
   const quickLinks = [
@@ -88,13 +89,16 @@ export default function FooterAr() {
 
         {/* العمود الرابع: معلومات الشركة والنبذة */}
         <div className="space-y-4">
-          <Link href="/ar" className="flex items-center gap-1.5 group">
-            <span className="font-black text-[#0B1220] group-hover:text-[#df9d17] font-heading tracking-tight drop-shadow-md group-hover:text-[#D4AF37] transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
-              بيت
-            </span>
-            <span className="text-[#e6b224] font-black tracking-tight drop-shadow transition-all duration-300 leading-none text-lg sm:text-xl md:text-2xl">
-              النوخذة
-            </span>
+          <Link href="/ar" className="inline-block group transition-transform duration-300">
+            <div className="relative overflow-visible flex items-center justify-start h-14 w-56">
+              <Image
+                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                alt="بيت النوخذة"
+                width={320}
+                height={90}
+                className="w-auto h-14 object-contain origin-right scale-[2.7] -translate-x-3"
+              />
+            </div>
           </Link>
           <p className="text-xs text-slate-600 font-normal leading-relaxed max-w-sm">
             الرواد في تصنيع وتركيب الهياكل المعمارية واسعة البحور، خيام الأعراس الفاخرة، والهياكل النسيجية المعتمدة في الإمارات، السعودية، والأسواق العالمية.
@@ -120,7 +124,7 @@ export default function FooterAr() {
 
         {/* العمود الثالث: روابط سريعة */}
         <div className="space-y-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">روابط سريعة</h3>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">روابط سريعة</h4>
           <ul className="space-y-2 text-xs">
             {quickLinks.map((item, idx) => (
               <li key={idx}>
@@ -134,7 +138,7 @@ export default function FooterAr() {
 
         {/* العمود الثاني: حلول مميزة */}
         <div className="space-y-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">أبرز الحلول والخدمات</h3>
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#df9d17]">أبرز الحلول والخدمات</h4>
           <ul className="space-y-2 text-xs">
             {featuredSolutions.map((item, idx) => (
               <li key={idx}>
@@ -150,9 +154,7 @@ export default function FooterAr() {
 
         {/* العمود الأول: المقر الرئيسي */}
         <div className="space-y-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-            المقر الرئيسي
-          </h3>
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#df9d17]">المقر الرئيسي</h4>
           <ul className="space-y-3 text-xs text-slate-300">
             {/* 1. العنوان */}
             <a
@@ -161,8 +163,8 @@ export default function FooterAr() {
               rel="noopener noreferrer"
               className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#e6b224]/50 group-hover:bg-[#e6b224]/10 transition shrink-0 shadow-xs">
-                <MapPin className="w-4 h-4 text-[#D4AF37]" />
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+                <MapPin className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#D4AF37] transition-colors">
                 قطعة رقم TP 010102 - تكنوبارك - ميناء جبل علي - مجمع الصناعات الوطنية - دبي، الإمارات
@@ -174,7 +176,7 @@ export default function FooterAr() {
               href="//wa.me/97143444091"
               className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span dir="ltr" className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
@@ -198,7 +200,7 @@ export default function FooterAr() {
           <div className="pt-2">
             <Link
               href="/ar/contact"
-              className="inline-flex items-center gap-2 text-xs font-bold text-[#df9d17] hover:text-[#0B1220] transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-bold text-[#df9d17] hover:text-[#0B1220] transition-colors group"
             >
               <span>طلب عرض سعر واستشارة</span>
               <ArrowUpLeft className="w-4 h-4" />
