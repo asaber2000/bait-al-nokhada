@@ -34,14 +34,14 @@ const repeatedTestimonials = [
 
 export default function TestimonialsSectionAr() {
   return (
-    <section dir="rtl" className="relative py-16 bg-white border-t border-slate-100 overflow-hidden font-sans text-right">
+    <section dir="rtl" className="relative py-16 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans text-right">
 
       {/* توهج خفيف في الخلفية */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[220px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
       {/* Header مصغر وفخم */}
       <div className="max-w-7xl mx-auto px-6 mb-10 text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-normal uppercase bg-[#df9d17]/10 text-[#b87d0e] border border-[#df9d17]/30 shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-normal uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
           <Sparkles className="w-3.5 h-3.5" />
           <span>آراء العملاء والشركاء</span>
         </div>
@@ -69,10 +69,10 @@ export default function TestimonialsSectionAr() {
           {repeatedTestimonials.map((item, idx) => (
             <div
               key={idx}
-              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#e6b224]/50 hover:bg-white transition-all duration-300 flex flex-col justify-between shrink-0 shadow-xs hover:shadow-md group text-right"
+              className="w-[360px] sm:w-[420px] h-[205px] p-6 rounded-2xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shrink-0 shadow-xs hover:shadow-md group text-right"
             >
               <div className="space-y-3">
-                <Quote className="w-5 h-5 text-[#e6b224] group-hover:text-[#df9d17] transition-colors shrink-0 rotate-180" />
+                <Quote className="w-5 h-5 text-[#df9d17] group-hover:text-[#b87d0e] transition-colors shrink-0 rotate-180" />
                 <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed line-clamp-3 italic">
                   «{item.quote}»
                 </p>

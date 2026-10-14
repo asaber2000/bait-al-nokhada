@@ -94,7 +94,7 @@ export default function ArabicSolutionsSection() {
   const activeItem = solutions[selectedIdx];
 
   return (
-    <section dir="rtl" className="relative pt-12 pb-24 bg-white border-t border-slate-100 overflow-hidden text-right">
+    <section dir="rtl" className="relative pt-12 pb-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden text-right">
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -104,9 +104,9 @@ export default function ArabicSolutionsSection() {
 
       {/* الهيدر العلوي */}
       <div className="w-full px-6 sm:px-12 lg:px-24 mb-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[#df9d17]/10 text-[#b87d0e] border border-[#df9d17]/30 shadow-xs">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               حلول معمارية وهندسية متكاملة
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
@@ -172,7 +172,7 @@ export default function ArabicSolutionsSection() {
               <div className="absolute bottom-5 left-5 z-20">
                 <Link
                   href={activeItem.href}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#070B14]/85 hover:bg-[#D4AF37] backdrop-blur-md border border-white/10 hover:border-[#D4AF37] text-[#D4AF37] hover:text-[#070B14] transition-all text-xs font-bold uppercase tracking-widest shadow-lg"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 hover:bg-[#df9d17] backdrop-blur-md border border-slate-200 hover:border-[#df9d17] text-slate-900 hover:text-white transition-all text-xs font-bold uppercase tracking-widest shadow-md"
                 >
                   <span>استكشف المزيد</span>
                   <ArrowUpLeft className="w-3.5 h-3.5" />
@@ -185,7 +185,7 @@ export default function ArabicSolutionsSection() {
           {/* الجانب الأيسر في RTL: قائمة الحلول */}
           <div
             data-lenis-prevent
-            className="lg:col-span-6 flex flex-col p-4 sm:p-6 rounded-3xl bg-slate-50/70 border border-slate-200/80 shadow-xs max-h-[520px] overflow-y-auto divide-y divide-slate-200/60 pl-3">
+            className="lg:col-span-6 flex flex-col p-4 sm:p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-h-[520px] overflow-y-auto divide-y divide-slate-100 pl-3">
             {solutions.map((item, idx) => {
               const isSelected = selectedIdx === idx;
               return (
@@ -193,7 +193,7 @@ export default function ArabicSolutionsSection() {
                   key={item.id}
                   onMouseEnter={() => setSelectedIdx(idx)}
                   onClick={() => setSelectedIdx(idx)}
-                  className={`group py-4 transition-all duration-300 cursor-pointer flex flex-col justify-center px-4 rounded-xl ${isSelected ? "bg-white border border-[#e6b224]/40 shadow-sm" : "hover:bg-white/60"
+                  className={`group py-4 transition-all duration-300 cursor-pointer flex flex-col justify-center px-4 rounded-xl ${isSelected ? "bg-white border border-[#df9d17]/40 shadow-sm" : "hover:bg-slate-50/80"}
                     }`}
                 >
                   <div className="flex items-center justify-between">
@@ -209,7 +209,7 @@ export default function ArabicSolutionsSection() {
                     </div>
 
                     <div className={`p-1.5 rounded-full border transition-all ${isSelected
-                      ? "border-[#e6b224] bg-[#e6b224]/15 text-[#df9d17] -rotate-45"
+                      ? "border-[#df9d17] bg-[#df9d17]/15 text-[#df9d17] -rotate-45"
                       : "border-slate-200 bg-white text-slate-400 group-hover:text-slate-600"
                       }`}>
                       <ArrowUpLeft className="w-3.5 h-3.5 transition-transform duration-300" />

@@ -19,13 +19,13 @@ const clients = [
 
 export default function ClientsTickerAr() {
   return (
-    <section dir="rtl" className="relative py-20 bg-white border-t border-slate-100 overflow-hidden font-sans">
+    <section dir="rtl" className="relative py-20 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans">
 
       {/* توهج خلفي محيطي خفيف */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-full px-6 mb-12 text-center">
-        <span className="text-xs font-bold text-[#b87d0e] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs tracking-normal">
+        <span className="text-xs font-bold text-[#df9d17] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs tracking-normal">
           تحظى بثقة كبرى المؤسسات العالمية والجهات الحكومية
         </span>
       </div>
@@ -40,7 +40,7 @@ export default function ClientsTickerAr() {
           {[...clients, ...clients].map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-[#e6b224]/50 hover:bg-white transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
+              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
             >
               {/* حاوية اللوجو - نفس المقاسات والفلاتر بالضبط */}
               <div className="relative w-full h-[65px] flex items-center justify-center">

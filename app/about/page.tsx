@@ -101,11 +101,11 @@ export default function AboutPage() {
   const active = journeyMilestones[activeMilestone];
 
   return (
-    <main className="min-h-screen bg-white text-slate-800 selection:bg-[#df9d17] selection:text-white">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
       <Navbar />
 
       {/* 1. Hero Banner */}
-      <section className="relative pt-36 pb-14 px-6 sm:px-12 lg:px-24 border-b border-slate-100 overflow-hidden bg-white">
+      <section className="relative pt-36 pb-14 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "36px 36px" }}
@@ -147,7 +147,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Company Journey Interactive Timeline */}
-      <section className="pt-10 pb-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-white/5 relative overflow-hidden">
+      <section className="pt-10 pb-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60 relative overflow-hidden">
 
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
@@ -214,55 +214,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="relative h-16 w-full pointer-events-none hidden sm:block overflow-visible -mt-1">
-            <svg className="w-full h-full overflow-visible">
-              <motion.line
-                animate={{
-                  x1: `${[
-                    "calc(3rem + 26px)",
-                    "calc(25% + 1.5rem)",
-                    "50%",
-                    "calc(75% - 1.5rem)",
-                    "calc(100% - 3rem - 26px)"
-                  ][activeMilestone]}`,
-                  y1: "0px",
-                  x2: "50%",
-                  y2: "100%"
-                }}
-                stroke="#D4AF37"
-                strokeWidth="2"
-                strokeDasharray="5 5"
-                className="opacity-80 filter drop-shadow-[0_0_6px_#D4AF37]"
-                transition={{ duration: 0.15, ease: "easeOut" }}
-              />
-              <motion.circle
-                animate={{
-                  cx: `${[
-                    "calc(3rem + 26px)",
-                    "calc(25% + 1.5rem)",
-                    "50%",
-                    "calc(75% - 1.5rem)",
-                    "calc(100% - 3rem - 26px)"
-                  ][activeMilestone]}`,
-                  cy: "0px"
-                }}
-                r="3.5"
-                fill="#D4AF37"
-                className="filter drop-shadow-[0_0_8px_#D4AF37]"
-                transition={{ duration: 0.45 }}
-              />
-              <circle
-                cx="50%"
-                cy="100%"
-                r="4"
-                fill="#D4AF37"
-                className="filter drop-shadow-[0_0_8px_#D4AF37]"
-              />
-            </svg>
-          </div>
 
           {/* مسرح الكرت المعماري الموسع بتصميم مطابق لكروت الإحصائيات */}
-          <div className="relative rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/70 p-6 sm:p-10 lg:p-12 min-h-[480px] flex items-center shadow-xs mt-6">
+          <div className="relative rounded-3xl overflow-hidden border border-slate-200/80 bg-white p-6 sm:p-10 lg:p-12 min-h-[480px] flex items-center shadow-xs mt-6">
 
             <div className="absolute right-6 bottom-0 select-none pointer-events-none text-[120px] sm:text-[200px] lg:text-[240px] font-black font-mono text-slate-200/50 leading-none z-0">
               {active.year}
@@ -315,7 +269,7 @@ export default function AboutPage() {
                     {active.desc}
                   </p>
 
-                  <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200/80 flex items-start gap-3 shadow-xs">
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-[#FDFCF7] border border-slate-200/80 flex items-start gap-3 shadow-xs">
                     <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#df9d17] shrink-0 mt-0.5" />
                     <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
                       {active.highlight}
@@ -338,10 +292,10 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Vision & Mission */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-100 bg-white">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
             <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
               <Compass className="w-6 h-6" />
             </div>
@@ -351,7 +305,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-slate-50/80 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-white transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
             <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
               <Target className="w-6 h-6" />
             </div>
@@ -365,7 +319,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Core Capabilities - كروت مندمجة وتفرد مع السكرول مثل الفيديو */}
-      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-slate-100 relative bg-white">
+      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-slate-200/60 relative bg-[#FDFCF7]">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <span>INTEGRATED SERVICES</span>
@@ -421,8 +375,8 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Executive Message Banner */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto bg-white">
-        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-slate-50/80 p-8 sm:p-14 shadow-sm">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto bg-[#FDFCF7]">
+        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white p-8 sm:p-14 shadow-sm">
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-3.5">
               <div className="p-3 rounded-2xl bg-white text-[#df9d17] border border-slate-200 shadow-xs">
@@ -450,7 +404,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Historical Numbers Strip */}
-      <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-slate-100 bg-slate-50/60">
+      <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-slate-200/60 bg-[#FDFCF7]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
 
           <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">

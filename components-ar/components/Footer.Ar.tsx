@@ -84,7 +84,7 @@ export default function FooterAr() {
     },
   ];
   return (
-    <footer className="bg-white text-slate-800 border-t border-slate-200/90 pt-16 pb-12 px-6 text-right" dir="rtl">
+    <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12 px-6 text-right" dir="rtl">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-slate-200/80">
 
         {/* العمود الرابع: معلومات الشركة والنبذة */}
@@ -110,7 +110,7 @@ export default function FooterAr() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs"
+                className="w-8 h-8 rounded-xl bg-white hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs hover:border-[#df9d17]"
                 aria-label={social.name}
                 title={social.name}
               >
@@ -161,9 +161,9 @@ export default function FooterAr() {
               href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3.5 pt-1 hover:text-[#D4AF37] transition group cursor-pointer"
+              className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
             >
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MapPin className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#D4AF37] transition-colors">
@@ -176,7 +176,7 @@ export default function FooterAr() {
               href="//wa.me/97143444091"
               className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
             >
-              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/80 group-hover:border-[#df9d17]/50 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <MessageCircle className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span dir="ltr" className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
@@ -189,7 +189,7 @@ export default function FooterAr() {
               href="mailto:info@baitalnokhada.com"
               className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
             >
-              <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#df9d17]/20 transition shrink-0">
+              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
                 <Mail className="w-4 h-4 text-[#df9d17]" />
               </div>
               <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate group-hover:text-[#df9d17] transition-colors">
