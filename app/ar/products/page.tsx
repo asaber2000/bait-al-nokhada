@@ -129,7 +129,7 @@ export default async function ArabicProductsCatalogPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]" dir="rtl">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
@@ -137,23 +137,27 @@ export default async function ArabicProductsCatalogPage() {
 
       <Navbar />
 
-      <section className="relative pt-44 pb-20 px-6 border-b border-white/10 overflow-hidden text-right">
-        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[800px] h-[350px] bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
+      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+        />
+        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
         <div className="max-w-6xl mx-auto text-center space-y-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/30">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>أكثر من 30 عاماً من الريادة في التصنيع • 13 خطاً هندسياً</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight font-heading">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
             خيام معمارية وحدات متنقلة <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               وهياكل نسيجية عالية التحمل
             </span>
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed">
             تم هندستها في مصنعنا بأبوظبي على مساحة 40,000 متر مربع. تجمع بين معايير السلامة الألمانية DIN EN 13782، الهياكل المصنوعة من الألومنيوم الفضائي، والأغشية الملحومة بتردد عالٍ والمصممة خصيصاً لتحمل قسوة مناخ الخليج.
           </p>
         </div>
@@ -166,21 +170,21 @@ export default async function ArabicProductsCatalogPage() {
             return (
               <div
                 key={product.slug || idx}
-                className="group rounded-3xl overflow-hidden bg-[#0D1527]/80 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-500 flex flex-col justify-between shadow-2xl relative text-right"
+                className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5 relative text-right"
               >
                 <div>
-                  <div className="relative h-72 w-full overflow-hidden bg-gradient-to-b from-[#0B1120] to-[#070B14]">
+                  <div className="relative h-72 w-full overflow-hidden bg-slate-100">
                     <Image
                       src={product.heroImage}
                       alt={arInfo.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
-                      quality={75}
+                      quality={85}
                       priority={idx < 3}
                       loading={idx < 3 ? undefined : "lazy"}
-                      className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
                     {/* 
                     <div className="absolute top-4 right-4 left-4 flex items-center justify-between pointer-events-none">
@@ -196,23 +200,23 @@ export default async function ArabicProductsCatalogPage() {
 
                   <div className="p-7 space-y-4">
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-black text-white group-hover:text-[#D4AF37] transition-colors font-heading">
+                      <h2 className="text-xl sm:text-2xl font-black text-[#0B1220] group-hover:text-[#df9d17] transition-colors font-heading tracking-tight">
                         {arInfo.name}
                       </h2>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-300 font-light line-clamp-2 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 font-normal line-clamp-2 leading-relaxed min-h-[2.5rem]">
                       {arInfo.tagline}
                     </p>
 
-                    <div className="pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-xs">
-                      <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2 justify-start">
-                        <Wind className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                        <span className="text-slate-200 font-medium truncate">رياح 120 كم/س</span>
+                    <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs">
+                      <div className="p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/70 flex items-center gap-2 justify-start group-hover:border-[#df9d17]/40 transition-colors">
+                        <Wind className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
+                        <span className="text-slate-700 font-medium truncate">رياح 120 كم/س</span>
                       </div>
-                      <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2 justify-start">
-                        <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                        <span className="text-slate-200 font-medium truncate">DIN 4102 B1</span>
+                      <div className="p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/70 flex items-center gap-2 justify-start group-hover:border-[#df9d17]/40 transition-colors">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
+                        <span className="text-slate-700 font-medium truncate">DIN 4102 B1</span>
                       </div>
                     </div>
                   </div>
@@ -221,7 +225,7 @@ export default async function ArabicProductsCatalogPage() {
                 <div className="p-7 pt-0">
                   <Link
                     href={`/ar/products/${product.slug}`}
-                    className="w-full py-4 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#C5A880] text-white hover:text-[#070B14] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 border border-white/10 hover:border-transparent transition-all shadow-md group/btn"
+                    className="w-full py-3.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200/80 hover:border-[#df9d17] transition-all duration-300 group/btn shadow-xs hover:shadow-md"
                   >
                     <span>عرض المواصفات والمقاسات</span>
                     <ArrowUpLeft className="w-4 h-4 group-hover/btn:-translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

@@ -223,7 +223,7 @@ export default async function ArabicProductDetailPage({
   const schemaData = generateProductGraphSchema(product, arData);
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]" dir="rtl">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -232,7 +232,7 @@ export default async function ArabicProductDetailPage({
       <Navbar />
 
       {/* 1. Grand Hero Section: معدل بتوزيع ثنائي وصورة بارزة لملء الفراغ */}
-      <section className="relative pt-44 pb-20 px-6 border-b border-white/10 overflow-hidden text-right">
+      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
         <div className="absolute inset-0 z-0">
           <Image
             src={product.heroImage}
@@ -240,16 +240,16 @@ export default async function ArabicProductDetailPage({
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-20 brightness-50 scale-105"
+            className="object-cover opacity-10 brightness-95 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070B14]/90 via-[#070B14]/95 to-[#070B14]" />
-          <div className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#D4AF37]/15 blur-[160px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
+          <div className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <Link
             href="/ar/products"
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-[#D4AF37] hover:text-white transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[#df9d17] hover:text-black transition-colors mb-8"
           >
             <ArrowRight className="w-4 h-4" />
             <span>العودة إلى كتالوج المنتجات بالكامل</span>
@@ -258,23 +258,23 @@ export default async function ArabicProductDetailPage({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* جهة النصوص والأزرار */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/25">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{arData.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight font-heading">
+              <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
                 {arData.name}
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
                 {arData.tagline}
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-3">
                 <Link
                   href="/ar/contact"
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-black text-xs uppercase tracking-wider hover:scale-105 shadow-xl shadow-[#D4AF37]/20 transition-all flex items-center gap-2"
+                  className="px-7 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
                 >
                   <span>طلب دراسة فنية وعرض سعر</span>
                   <Send className="w-4 h-4 rotate-180" />
@@ -284,9 +284,9 @@ export default async function ArabicProductDetailPage({
                   href="https://wa.me/971505932598"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-xl bg-[#0D1527] hover:bg-white/10 text-white font-bold text-xs tracking-wider border border-white/15 transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 hover:text-[#df9d17] font-bold text-xs tracking-wider border border-slate-200/80 shadow-xs transition-all flex items-center gap-2"
                 >
-                  <PhoneCall className="w-4 h-4 text-[#D4AF37]" />
+                  <PhoneCall className="w-4 h-4 text-[#df9d17]" />
                   <span>استشارة هندسية فورية عبر الواتساب</span>
                 </a>
               </div>
@@ -294,7 +294,7 @@ export default async function ArabicProductDetailPage({
 
             {/* بطاقة صورة المنتج لملء الفراغ الجانبي */}
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-tr from-[#0D1527] to-white/5 shadow-2xl group">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
                   src={product.heroImage}
                   alt={arData.name}
@@ -303,9 +303,9 @@ export default async function ArabicProductDetailPage({
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs">
-                  <span className="text-slate-400 font-sans">بيت النوخذة</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
+                  <span className="text-white/80 font-sans tracking-wider text-[11px]">بيت النوخذة</span>
                 </div>
               </div>
             </div>
@@ -313,102 +313,68 @@ export default async function ArabicProductDetailPage({
         </div>
       </section>
 
-      {/* 2. Engineering Specifications & Dimensions Matrix */}
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-white/10 text-right">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* 2. Engineering Specifications & Features Grid */}
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60 font-sans text-right" dir="rtl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-          {/* العمود الأيمن: النظرة العامة + المميزات + بطاقة المعايير الإنشائية لملء الفراغ */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* الجانب الأيمن: النصوص التوضيحية + شبكة المميزات (2x2) */}
+          <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-                نظرة هندسية عامة
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                قدرات وخبرات إنشائية معتمدة
               </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-white font-heading">
-                {arData.overviewTitle || "التصميم الإنشائي ومعايير جودة المواد"}
+              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
+                {arData.overviewTitle || `لماذا تتصدر منتجاتنا السوق الإقليمي`}
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {arData.description}
               </p>
             </div>
 
-            {/* المميزات الهندسية */}
-            <div className="p-7 rounded-3xl bg-[#0D1527] border border-[#D4AF37]/30 space-y-4 shadow-xl">
-              <h3 className="text-sm font-bold tracking-wider text-[#D4AF37] flex items-center gap-2 justify-start">
-                <ShieldCheck className="w-5 h-5" />
-                <span>المميزات الهندسية واعتمادات مقاومة المناخ</span>
-              </h3>
-              <ul className="space-y-3 text-xs sm:text-sm text-slate-200">
-                {arData.features.map((feat: any, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3 justify-start">
-                    <CheckCircle2 className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">{feat}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* شبكة كروت المميزات الثنائية تماماً كالصورة المطلوبة */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {arData.features.map((feat: any, idx: number) => {
+                const title = typeof feat === "string" ? feat.split(" - ")[0] || feat : feat.title || feat;
+                const desc = typeof feat === "string" && feat.includes(" - ") ? feat.split(" - ")[1] : feat.desc || "مصممة وفق أعلى معايير الجودة العالمية ومقاومة العوامل الجوية.";
 
-            {/* بطاقة ضمان الجودة والمعايير المعتمدة لملء الفراغ الكبير */}
-            <div className="p-7 rounded-3xl bg-[#0D1527]/80 border border-white/10 shadow-xl space-y-5">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2.5">
-                  <Award className="w-5 h-5 text-[#D4AF37]" />
-                  <h4 className="text-sm font-bold tracking-wider text-white">
-                    معايير الجودة ومطابقة الأكواد الإنشائية الخليجية
-                  </h4>
-                </div>
-                <span className="text-[10px] text-[#D4AF37] font-mono uppercase bg-[#D4AF37]/10 px-2.5 py-1 rounded-md border border-[#D4AF37]/20">
-                  ISO 9001:2015
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <Clock className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-white font-bold mb-0.5">جاهزية وسرعة التركيب</strong>
-                    <span className="text-slate-400 leading-normal">أنظمة تركيب مسبقة الصنع تضمن الإنجاز في الجداول الزمنية الحرجة للمشاريع.</span>
+                return (
+                  <div
+                    key={idx}
+                    className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5"
+                  >
+                    <h3 className="text-sm font-bold text-[#0B1220] flex items-center gap-2 justify-start">
+                      <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
+                      <span>{title}</span>
+                    </h3>
+                    <p className="text-xs text-slate-600 font-normal leading-relaxed pr-6">
+                      {desc}
+                    </p>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <Layers className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-white font-bold mb-0.5">عزل حراري متعدد الطبقات</strong>
-                    <span className="text-slate-400 leading-normal">كفاءة تبريد قصوى تقلل استهلاك الطاقة وتتحمل حرارة الصيف حتى 55 درجة مئوية.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-white/5">
-                <span className="text-slate-400 font-light">هل تحتاج لحسابات إنشائية مخصصة لموقعك؟</span>
-                <Link
-                  href="/ar/contact"
-                  className="text-[#D4AF37] hover:underline font-bold flex items-center gap-1"
-                >
-                  استشر مهندسينا الإنشائيين <FileText className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* العمود الأيسر: المقاسات وجدول البيانات */}
+          {/* الجانب الأيسر: كرت المقاسات + كرت المواصفات الفنية المعتمدة */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-7 rounded-3xl bg-[#0D1527] border border-white/10 space-y-5 shadow-2xl">
-              <h3 className="text-sm font-bold tracking-wider text-white flex items-center gap-2 justify-start">
-                <Maximize2 className="w-4 h-4 text-[#D4AF37]" />
+
+            {/* 1. كرت المقاسات وسعة الحضور */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold tracking-wider text-[#df9d17] flex items-center gap-2 justify-start">
+                <Maximize2 className="w-4 h-4" />
                 <span>المقاسات المتاحة وسعة الحضور التقديرية</span>
               </h3>
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {arData.models.map((mod: any, idx: number) => (
                   <div
                     key={idx}
-                    className="p-3.5 rounded-2xl border transition-all flex items-center justify-between bg-white/[0.02] border-white/5 text-slate-400 hover:bg-white/[0.05]"
+                    className="p-3 rounded-xl border flex items-center justify-between bg-[#FDFCF7] border-slate-200/70 text-slate-700"
                   >
-                    <div>
-                      <strong className="block text-sm font-bold text-white">{mod.name}</strong>
-                      <span className="text-xs text-[#D4AF37] font-medium">{mod.size}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
+                      <strong className="text-xs font-bold text-[#0B1220]">{mod.name}</strong>
                     </div>
-                    <span className="text-xs font-semibold px-3 py-1 rounded-lg bg-white/5 text-slate-300 border border-white/5">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200/80 shadow-xs text-slate-800">
                       {mod.capacity}
                     </span>
                   </div>
@@ -416,20 +382,22 @@ export default async function ArabicProductDetailPage({
               </div>
             </div>
 
-            <div className="p-7 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4 shadow-xl">
-              <h3 className="text-xs font-bold tracking-wider text-slate-400 flex items-center gap-2 justify-start">
-                <Boxes className="w-4 h-4 text-[#D4AF37]" />
-                <span>جدول البيانات الهندسية المعتمدة</span>
+            {/* 2. كرت جدول البيانات الفنية المعتمدة */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2 justify-start">
+                <Boxes className="w-4 h-4 text-[#df9d17]" />
+                <span>أبرز المواصفات الفنية</span>
               </h3>
-              <div className="divide-y divide-white/10 text-xs sm:text-sm">
+              <div className="divide-y divide-slate-100 text-xs">
                 {arData.specs.map((spec: any, idx: number) => (
-                  <div key={idx} className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-400 font-medium">{spec.label}</span>
-                    <span className="text-white font-bold">{spec.value}</span>
+                  <div key={idx} className="py-2.5 flex justify-between items-center gap-4">
+                    <span className="text-slate-500 font-medium">{spec.label}</span>
+                    <span className="text-[#0B1220] text-left font-bold">{spec.value}</span>
                   </div>
                 ))}
               </div>
             </div>
+
           </div>
 
         </div>
@@ -439,21 +407,29 @@ export default async function ArabicProductDetailPage({
       <ProductGalleryLightboxAr images={galleryImages} />
 
       {/* 4. Technical RFQ Call to Action */}
-      <section className="py-24 px-6 max-w-5xl mx-auto text-center space-y-6">
-        <h3 className="text-3xl sm:text-5xl font-black text-white font-heading">
-          هل تخطط لتنفيذ مشروع بمواصفات خاصة؟
-        </h3>
-        <p className="text-sm sm:text-base text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-          تواصل مع الإدارة الهندسية في أبوظبي ودبي للحصول على مخططات CAD ثلاثية الأبعاد وعروض أسعار المصنع مباشرة.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 pt-4">
-          <Link
-            href="/ar/contact"
-            className="inline-flex items-center gap-2 px-9 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-black text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
-          >
-            <span>طلب دراسة فنية وعرض سعر متكامل</span>
-            <Send className="w-4 h-4 rotate-180" />
-          </Link>
+      <section className="pb-24 pt-6 px-6 max-w-5xl mx-auto">
+        <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
+          <div className="space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+              دراسة فنية وعرض سعر تسليم مفتاح
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
+              هل تخطط لتنفيذ مشروع بمواصفات خاصة؟
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
+              تواصل مع الإدارة الهندسية في أبوظبي ودبي للحصول على مخططات CAD ثلاثية الأبعاد وعروض أسعار المصنع مباشرة.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <Link
+              href="/ar/contact"
+              className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
+            >
+              <span>طلب دراسة فنية وعرض سعر متكامل</span>
+              <Send className="w-4 h-4 rotate-180" />
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -28,14 +28,14 @@ export default function ProductGalleryLightbox({ images }: { images: string[] })
   return (
     <>
       <section className="py-24 px-6 max-w-7xl mx-auto border-b border-white/10 space-y-12">
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+        <div className="text-center space-y-2 mb-12">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             Visual Engineering Gallery
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white font-heading">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
             Site Staging & Installed Structures
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
             Click any project to preview high-resolution structural details and internal installations.
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function ProductGalleryLightbox({ images }: { images: string[] })
                 className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
-              
+
               <div className="absolute bottom-4 right-4 p-2.5 rounded-xl bg-[#D4AF37] text-[#070B14] shadow-lg group-hover:scale-110 transition-transform">
                 <Eye className="w-4 h-4" />
               </div>

@@ -27,15 +27,15 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
 
   return (
     <>
-      <section dir="rtl" className="py-24 px-6 max-w-7xl mx-auto border-b border-white/10 space-y-12 font-sans text-right">
+      <section dir="rtl" className="py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60 space-y-12 font-sans text-right">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             معرض الصور والأعمال الهندسية
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white font-heading">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
             تنفيذ المواقع والمشاريع الميدانية
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
             اضغط على أي صورة لاستعراض التفاصيل الإنشائية عالية الدقة والتجهيزات الداخلية للقاعات والخيام.
           </p>
         </div>
@@ -45,19 +45,19 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
             <div
               key={idx}
               onClick={() => openLightbox(idx)}
-              className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#D4AF37] transition-all duration-300 shadow-xl bg-black"
+              className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#df9d17] transition-all duration-300 shadow-xs hover:shadow-md bg-slate-100"
             >
               <Image
                 src={img}
                 alt={`صورة المشروع ${idx + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
-              
-              {/* أيقونة المعاينة موضوعة في الركن السفلي الأيسر للمحاذاة العربية */}
-              <div className="absolute bottom-4 left-4 p-2.5 rounded-xl bg-[#D4AF37] text-[#070B14] shadow-lg group-hover:scale-110 transition-transform">
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+
+              {/* أيقونة المعاينة المعتمدة بهوية العلامة التجارية */}
+              <div className="absolute bottom-4 left-4 p-2.5 rounded-xl bg-[#df9d17] text-white shadow-md group-hover:bg-black group-hover:scale-110 transition-all">
                 <Eye className="w-4 h-4" />
               </div>
             </div>
@@ -75,10 +75,10 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
             onClick={closeLightbox}
             className="fixed inset-0 z-[999999] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-10 select-none cursor-zoom-out"
           >
-            {/* زر الإغلاق في الركن الأيسر العلوي */}
+            {/* زر الإغلاق */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 left-6 p-3 rounded-full bg-white/10 hover:bg-[#D4AF37] text-white hover:text-black transition-all cursor-pointer z-50 shadow-2xl"
+              className="absolute top-6 left-6 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
               aria-label="إغلاق المعاينة"
             >
               <X className="w-6 h-6" />
@@ -87,7 +87,7 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
             {/* سهم السابق */}
             <button
               onClick={prevImage}
-              className="absolute left-6 p-3 rounded-full bg-white/10 hover:bg-[#D4AF37] text-white hover:text-black transition-all cursor-pointer z-50 shadow-2xl"
+              className="absolute left-6 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
               aria-label="الصورة السابقة"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -96,7 +96,7 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
             {/* سهم التالي */}
             <button
               onClick={nextImage}
-              className="absolute right-6 p-3 rounded-full bg-white/10 hover:bg-[#D4AF37] text-white hover:text-black transition-all cursor-pointer z-50 shadow-2xl"
+              className="absolute right-6 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
               aria-label="الصورة التالية"
             >
               <ChevronRight className="w-6 h-6" />
