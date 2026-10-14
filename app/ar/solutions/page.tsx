@@ -25,11 +25,11 @@ async function getSanitySolutions() {
     const formattedSanitySolutions = (sanityData || []).map((item: any) => ({
       slug: item.slug,
       heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-        name: item.titleAr,
-        badge: item.badgeAr || "Industrial Grade",
-        tagline: item.summaryAr || "",
-        overview: item.overviewDescAr1 || item.summaryAr || "",
-        industryApplications: item.targetSectors || []
+      name: item.titleAr,
+      badge: item.badgeAr || "Industrial Grade",
+      tagline: item.summaryAr || "",
+      overview: item.overviewDescAr1 || item.summaryAr || "",
+      industryApplications: item.targetSectors || []
     }));
 
     // دمج داتا سانتي مع الداتا المحلية تماماً مثل المشاريع
@@ -44,27 +44,31 @@ export default async function ArabicSolutionsCatalogPage() {
   const allSolutions = await getSanitySolutions();
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]" dir="rtl">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-44 pb-16 px-6 border-b border-white/10 overflow-hidden text-right">
-        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-200 h-87.5 bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
+      <section className="relative pt-44 pb-16 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+        />
+        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/30">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>حلول هندسية متكاملة تسليم مفتاح • قطاعات متخصصة</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight font-heading">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
             حلول وتطبيقات الخيام المتطورة في <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               الإمارات والمملكة العربية السعودية
             </span>
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
             من مستودعات التخزين اللوجستي الشاقة وهناجر الطائرات إلى قاعات الأعراس الملكية الفاخرة وصالات المعارض الدولية. مصممة للتركيب السريع ومقاومة أعلى الظروف المناخية.
           </p>
         </div>
@@ -79,44 +83,44 @@ export default async function ArabicSolutionsCatalogPage() {
             return (
               <div
                 key={solution.slug || idx}
-                className="group rounded-3xl overflow-hidden bg-[#0D1527]/80 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 flex flex-col justify-between shadow-2xl text-right"
+                className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
               >
                 <div>
-                  <div className="relative h-64 w-full overflow-hidden bg-black">
+                  <div className="relative h-64 w-full overflow-hidden bg-slate-100">
                     <Image
                       src={solution.heroImage}
                       alt={arData.name || "حل هندسي"}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority={idx < 3}
-                      className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-[#0D1527] via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-                    <span className="absolute top-4 right-4 z-10 px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
+                    <span className="absolute top-4 right-4 z-10 px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">
                       {arData.badge || "Industrial Grade"}
                     </span>
 
-                    <span className="absolute top-4 left-4 z-10 p-2 rounded-xl bg-black/80 backdrop-blur-md text-white flex items-center gap-1 text-[10px] font-semibold">
-                      <Video className="w-3 h-3 text-[#D4AF37]" />
+                    <span className="absolute top-4 left-4 z-10 px-2.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md text-slate-800 flex items-center gap-1.5 text-[10px] font-semibold border border-slate-200/80 shadow-xs">
+                      <Video className="w-3 h-3 text-[#df9d17]" />
                       <span>فيديو</span>
                     </span>
                   </div>
 
                   <div className="p-7 space-y-4">
-                    <h2 className="text-xl font-bold text-white group-hover:text-[#D4AF37] transition-colors leading-snug">
+                    <h2 className="text-xl font-black text-[#0B1220] group-hover:text-[#df9d17] transition-colors leading-snug font-heading">
                       {arData.name}
                     </h2>
 
-                    <p className="text-xs sm:text-sm text-slate-300 font-light line-clamp-2 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 font-normal line-clamp-2 leading-relaxed">
                       {arData.tagline || arData.overview}
                     </p>
 
                     {arData.industryApplications?.length > 0 && (
-                      <div className="space-y-1.5 pt-2 border-t border-white/10 text-xs text-slate-400">
+                      <div className="space-y-1.5 pt-3 border-t border-slate-100 text-xs text-slate-600 font-medium">
                         {arData.industryApplications.slice(0, 2).map((app: string, aIdx: number) => (
                           <div key={aIdx} className="flex items-center gap-2 truncate justify-start">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
                             <span className="truncate">{app}</span>
                           </div>
                         ))}
@@ -128,7 +132,7 @@ export default async function ArabicSolutionsCatalogPage() {
                 <div className="p-7 pt-0">
                   <Link
                     href={`/ar/solutions/${solution.slug}`}
-                    className="w-full py-3.5 rounded-xl bg-white/5 hover:bg-linear-to-r hover:from-[#D4AF37] hover:to-[#C5A880] text-white hover:text-[#070B14] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 border border-white/10 hover:border-transparent transition-all shadow-md group/btn"
+                    className="w-full py-3.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200/80 hover:border-[#df9d17] transition-all shadow-xs hover:shadow-md group/btn"
                   >
                     <span>استعراض الحل والفيديو</span>
                     <ArrowUpLeft className="w-4 h-4 group-hover/btn:-translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
