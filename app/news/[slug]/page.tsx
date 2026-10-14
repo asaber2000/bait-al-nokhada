@@ -122,9 +122,9 @@ export default function ArticleDetailPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#070B14] text-white flex items-center justify-center">
+      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-[#D4AF37] animate-pulse">Loading article...</p>
+          <p className="text-[#df9d17] font-semibold animate-pulse">Loading article...</p>
         </div>
       </main>
     );
@@ -132,10 +132,10 @@ export default function ArticleDetailPage() {
 
   if (!article) {
     return (
-      <main className="min-h-screen bg-[#070B14] text-white flex items-center justify-center">
+      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex items-center justify-center">
         <div className="text-center space-y-4">
-          <h1 className="text-2xl font-bold">Article not found</h1>
-          <Link href="/news" className="text-[#D4AF37] underline">Back to News</Link>
+          <h1 className="text-2xl font-black text-[#0B1220] font-heading">Article not found</h1>
+          <Link href="/news" className="text-[#df9d17] hover:underline font-bold">Back to News</Link>
         </div>
       </main>
     );
@@ -146,11 +146,11 @@ export default function ArticleDetailPage() {
   const faqsList = article.faqs || [];
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-44 pb-16 px-6 border-b border-white/10 overflow-hidden">
+      <section className="relative pt-44 pb-16 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
             src={article.heroImage}
@@ -158,16 +158,16 @@ export default function ArticleDetailPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-25 brightness-75 scale-105"
+            className="object-cover opacity-10 brightness-95 scale-105"
           />
-          <div className="absolute inset-0 bg-linear-to-b from-[#070B14] via-[#070B14]/90 to-[#070B14]" />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-200 h-87.5 bg-[#D4AF37]/15 blur-[180px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6 relative z-10">
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#D4AF37] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17] hover:text-black transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to All Insights & News</span>
@@ -175,36 +175,36 @@ export default function ArticleDetailPage() {
 
           <div className="space-y-4">
             {article.category && (
-              <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
+              <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 {article.category}
               </span>
             )}
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
               {article.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2 border-t border-white/10">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-3 border-t border-slate-200/80">
               {article.author && (
-                <span className="flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span className="flex items-center gap-1.5 font-medium">
+                  <User className="w-3.5 h-3.5 text-[#df9d17]" />
                   {article.author}
                 </span>
               )}
               {article.date && (
                 <>
-                  <span>•</span>
+                  <span className="text-slate-300">•</span>
                   <span className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <Calendar className="w-3.5 h-3.5 text-[#df9d17]" />
                     {article.date}
                   </span>
                 </>
               )}
               {article.readTime && (
                 <>
-                  <span>•</span>
+                  <span className="text-slate-300">•</span>
                   <span className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <Clock className="w-3.5 h-3.5 text-[#df9d17]" />
                     {article.readTime}
                   </span>
                 </>
@@ -214,26 +214,26 @@ export default function ArticleDetailPage() {
         </div>
       </section>
 
-{/* Mobile Table of Contents - يظهر فقط على الموبايل في أول المقال */}
-{tocList.length > 0 && (
-  <div className="block lg:hidden my-6 p-5 rounded-2xl bg-[#0D1527] border border-white/10 space-y-3 shadow-lg">
-    <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
-      <BookOpen className="w-4 h-4" />
-      <span>Table of Contents</span>
-    </p>
-    <div className="space-y-2 text-xs">
-      {tocList.map((item: any) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1 hover:underline"
-        >
-          {item.label}
-        </a>
-      ))}
-    </div>
-  </div>
-)}
+      {/* Mobile Table of Contents */}
+      {tocList.length > 0 && (
+        <div className="block lg:hidden my-6 p-5 rounded-2xl bg-white border border-slate-200/80 space-y-3 shadow-xs">
+          <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            <span>Table of Contents</span>
+          </p>
+          <div className="space-y-2 text-xs">
+            {tocList.map((item: any) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="block text-slate-700 hover:text-[#df9d17] transition-colors py-1 font-medium"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       {/* Main Content Layout */}
       <section className="py-16 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -241,7 +241,7 @@ export default function ArticleDetailPage() {
           {/* Main Article Body */}
           <div className="lg:col-span-8 space-y-10">
             {article.desc && (
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-light border-l-2 border-[#D4AF37] pl-4 italic">
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-normal border-l-2 border-[#df9d17] pl-4 italic">
                 {article.desc}
               </p>
             )}
@@ -250,19 +250,19 @@ export default function ArticleDetailPage() {
             <div className="space-y-10">
               {contentSections.map((section: any, sIdx: number) => (
                 <div key={section.id || sIdx} id={section.id} className="space-y-4 scroll-mt-28">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white font-heading">
+                  <h2 className="text-xl sm:text-2xl font-black text-[#0B1220] font-heading">
                     {section.heading}
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed whitespace-pre-line">
+                  <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed whitespace-pre-line">
                     {section.body}
                   </p>
 
                   {section.points && section.points.length > 0 && (
                     <ul className="space-y-2.5 pt-2">
                       {section.points.map((pt: string, pIdx: number) => (
-                        <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                          <CheckCircle2 className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
-                          <span>{pt}</span>
+                        <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                          <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0 mt-0.5" />
+                          <span className="font-medium">{pt}</span>
                         </li>
                       ))}
                     </ul>
@@ -272,9 +272,9 @@ export default function ArticleDetailPage() {
                     <div className="pt-4">
                       <Link
                         href={section.sectionButton.btnUrl || "/contact"}
-                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-transform hover:scale-105 shadow-lg ${section.sectionButton.btnStyle === 'outline'
-                            ? 'bg-transparent text-[#D4AF37] border border-[#D4AF37]/50 hover:bg-[#D4AF37]/10'
-                            : 'bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14]'
+                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
+                          ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
+                          : 'bg-[#df9d17] hover:bg-black text-white shadow-[#df9d17]/20'
                           }`}
                       >
                         <span>{section.sectionButton.btnText}</span>
@@ -284,7 +284,7 @@ export default function ArticleDetailPage() {
                   )}
                   {section.sectionImageUrl && (
                     <div className="pt-4">
-                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
                         <Image
                           src={section.sectionImageUrl}
                           alt={section.heading || "Section Image"}
@@ -299,7 +299,7 @@ export default function ArticleDetailPage() {
                   {/* عرض الفيديو لو موجود */}
                   {section.sectionVideoUrl && (
                     <div className="pt-4">
-                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                      <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
                         <video
                           autoPlay
                           loop
@@ -319,25 +319,25 @@ export default function ArticleDetailPage() {
 
             {/* FAQs */}
             {faqsList.length > 0 && (
-              <div className="pt-8 border-t border-white/10 space-y-4">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-[#D4AF37]" />
+              <div className="pt-8 border-t border-slate-200/60 space-y-4">
+                <h3 className="text-lg font-bold text-[#0B1220] flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-[#df9d17]" />
                   <span>Frequently Asked Questions</span>
                 </h3>
                 <div className="space-y-3">
                   {faqsList.map((faq: any, fIdx: number) => {
                     const isOpen = openFaq === fIdx;
                     return (
-                      <div key={fIdx} className="rounded-2xl bg-[#0D1527] border border-white/10 overflow-hidden">
+                      <div key={fIdx} className="rounded-2xl bg-white border border-slate-200/80 shadow-xs overflow-hidden transition-colors">
                         <button
                           onClick={() => setOpenFaq(isOpen ? null : fIdx)}
-                          className="w-full p-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-white hover:text-[#D4AF37] transition-colors cursor-pointer"
+                          className="w-full p-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-[#0B1220] hover:text-[#df9d17] transition-colors cursor-pointer"
                         >
                           <span>{faq.q}</span>
-                          <ChevronDown className={`w-4 h-4 text-[#D4AF37] transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                          <ChevronDown className={`w-4 h-4 text-[#df9d17] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
                         </button>
                         {isOpen && (
-                          <div className="px-4 pb-4 text-xs text-slate-300 font-light leading-relaxed border-t border-white/5 pt-2">
+                          <div className="px-4 pb-4 text-xs text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-2">
                             {faq.a}
                           </div>
                         )}
@@ -350,35 +350,35 @@ export default function ArticleDetailPage() {
           </div>
 
           {/* Sidebar Table of Contents */}
-<div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
-  {tocList.length > 0 && (
-    <div className="p-6 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4 shadow-xl">
-      <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-2">
-        <BookOpen className="w-4 h-4" />
-        <span>Table of Contents</span>
-      </p>
-      <div className="space-y-2 text-xs">
-        {tocList.map((item: any) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className="block text-slate-300 hover:text-[#D4AF37] transition-colors py-1 hover:underline"
-          >
-            {item.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  )}
+          <div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
+            {tocList.length > 0 && (
+              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Table of Contents</span>
+                </p>
+                <div className="space-y-2 text-xs">
+                  {tocList.map((item: any) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="block text-slate-600 hover:text-[#df9d17] transition-colors py-1 font-medium"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Quick Contact Box */}
-            <div className="p-6 rounded-3xl bg-linear-to-r from-[#0D1527] to-[#070B14] border border-[#D4AF37]/30 space-y-4 text-center">
-              <Sparkles className="w-6 h-6 text-[#D4AF37] mx-auto" />
-              <h4 className="text-sm font-bold text-white">Need a Rapid Rental Quote?</h4>
-              <p className="text-xs text-slate-300 font-light">Get turnkey rates with HVAC & setup across Dubai & UAE.</p>
+            <div className="p-6 rounded-3xl bg-white border border-slate-200/90 space-y-4 text-center shadow-xs">
+              <Sparkles className="w-6 h-6 text-[#df9d17] mx-auto" />
+              <h4 className="text-sm font-bold text-[#0B1220]">Need a Rapid Rental Quote?</h4>
+              <p className="text-xs text-slate-600 font-normal">Get turnkey rates with HVAC & setup across Dubai & UAE.</p>
               <Link
                 href="/contact"
-                className="w-full py-3 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-bold text-xs flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-3 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md shadow-[#df9d17]/20 transition-all hover:scale-105"
               >
                 <span>Get A Quote</span>
                 <Send className="w-3.5 h-3.5" />
