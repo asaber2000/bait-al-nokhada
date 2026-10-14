@@ -35,17 +35,16 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
 
   return (
     <>
-      {/* أزرار الفلترة - نفس تصميم الإنجليزي */}
+      {/* أزرار الفلترة - بتصميم الأوف وايت المعتمد */}
       <div className="pt-6 flex flex-wrap items-center justify-center gap-2.5">
         {filterTabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-              activeTab === tab
-                ? "bg-gradient-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] shadow-lg shadow-[#D4AF37]/25 font-black scale-105"
-                : "bg-[#0D1527] text-slate-300 border border-white/10 hover:bg-white/5"
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeTab === tab
+              ? "bg-[#df9d17] text-white shadow-md shadow-[#df9d17]/25 font-black scale-105"
+              : "bg-white text-slate-700 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-slate-50 shadow-xs"
+              }`}
           >
             {tab}
           </button>
@@ -63,7 +62,7 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
             return (
               <div
                 key={project.slug || idx}
-                className="group rounded-3xl overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 flex flex-col justify-between shadow-2xl text-right"
+                className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
               >
                 {/* Media Container: نفس الأبعاد العريضة ومشغل الفيديو التفاعلي المدمج */}
                 <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
@@ -77,16 +76,16 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                         allowFullScreen
                       />
                       {/* زر إغلاق الفيديو */}
-                      <button 
+                      <button
                         onClick={() => setPlayingVideoSlug(null)}
-                        className="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#D4AF37] hover:text-[#070B14] transition-all shadow-xl cursor-pointer"
+                        className="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#df9d17] transition-all shadow-xl cursor-pointer"
                         aria-label="إغلاق الفيديو"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
                   ) : (
-                    <div 
+                    <div
                       onClick={() => setPlayingVideoSlug(project.slug)}
                       className="relative w-full h-full cursor-pointer group"
                     >
@@ -101,13 +100,13 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                       <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-black/20 to-transparent pointer-events-none" />
 
                       {/* شارة التصنيف على اليمين */}
-                      <span className="absolute top-5 right-5 z-10 px-4 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/30">
+                      <span className="absolute top-5 right-5 z-10 px-4 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">
                         {arData.category || project.category}
                       </span>
 
                       {/* زر التشغيل الذهبي الكبير بنفس حجم وموضع الإنجليزي */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full bg-[#D4AF37] hover:bg-white text-[#070B14] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/50 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-20 h-20 rounded-full bg-[#df9d17] hover:bg-black text-white flex items-center justify-center shadow-xl shadow-[#df9d17]/40 group-hover:scale-110 transition-all duration-300">
                           <Play className="w-8 h-8 fill-current -translate-x-0.5" />
                         </div>
                       </div>
@@ -117,12 +116,12 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
 
                 {/* تفاصيل المشروع بنفس المسافات الفخمة p-8 sm:p-10 */}
                 <div className="p-8 sm:p-10 space-y-4">
-                  <div className="flex items-center gap-3 text-sm text-slate-400 font-medium">
-                    <span className="flex items-center gap-1.5 text-[#D4AF37]">
+                  <div className="flex items-center gap-3 text-sm text-slate-500 font-medium">
+                    <span className="flex items-center gap-1.5 text-[#df9d17] font-semibold">
                       <MapPin className="w-4 h-4" />
                       {arData.city || project.city}، {arData.country || project.country}
                     </span>
-                    <span>•</span>
+                    <span className="text-slate-300">•</span>
                     <span className="flex items-center gap-1.5 font-mono">
                       <Calendar className="w-4 h-4" />
                       {project.year}
@@ -130,19 +129,19 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                   </div>
 
                   <Link href={`/ar/projects/${project.slug}`} className="block">
-                    <h2 className="text-2xl sm:text-3xl font-black text-white group-hover:text-[#D4AF37] transition-colors leading-snug">
+                    <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] group-hover:text-[#df9d17] transition-colors leading-snug font-heading tracking-tight">
                       {arData.title || project.title}
                     </h2>
                   </Link>
 
-                  <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed max-w-4xl">
+                  <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-4xl">
                     {arData.summary || project.summary || arData.desc || project.desc}
                   </p>
 
-                  <div className="pt-5 border-t border-white/10 flex items-center justify-between text-sm">
+                  <div className="pt-5 border-t border-slate-100 flex items-center justify-between text-sm">
                     <button
                       onClick={() => setPlayingVideoSlug(project.slug)}
-                      className="text-[#D4AF37] font-bold uppercase tracking-wider flex items-center gap-2 hover:underline cursor-pointer"
+                      className="text-[#df9d17] hover:text-black font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
                     >
                       <Play className="w-4 h-4 fill-current" />
                       <span>مشاهدة الفيديو ودراسة المشروع مباشرة</span>
@@ -150,7 +149,7 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
 
                     <Link
                       href={`/ar/projects/${project.slug}`}
-                      className="text-slate-400 hover:text-white font-medium flex items-center gap-1.5 transition-colors group/link"
+                      className="text-slate-600 hover:text-[#df9d17] font-semibold flex items-center gap-1.5 transition-colors group/link"
                     >
                       <span>التفاصيل الهندسية الكاملة</span>
                       <ArrowUpLeft className="w-4 h-4 group-hover/link:-translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />

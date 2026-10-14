@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { 
-  ArrowRight, 
-  Send, 
-  Video, 
+import {
+  ArrowRight,
+  Send,
+  Video,
   Eye,
   Boxes,
   ArrowLeft
@@ -20,7 +20,7 @@ import { client } from "@/app/lib/sanity";
 export default function ArabicProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  
+
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -110,10 +110,10 @@ export default function ArabicProjectDetailPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#070B14] text-white flex flex-col justify-between">
+      <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
         <Navbar />
         <div className="text-center space-y-4 py-32">
-          <p className="text-[#D4AF37] animate-pulse">جاري تحميل تفاصيل المشروع من لوحة التحكم...</p>
+          <p className="text-[#df9d17] font-semibold animate-pulse">جاري تحميل تفاصيل المشروع من لوحة التحكم...</p>
         </div>
         <Footer />
       </main>
@@ -122,11 +122,11 @@ export default function ArabicProjectDetailPage() {
 
   if (!project) {
     return (
-      <main className="min-h-screen bg-[#070B14] text-white flex flex-col justify-between">
+      <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
         <Navbar />
         <div className="text-center space-y-4 py-32">
-          <h1 className="text-2xl font-bold">المشروع غير موجود</h1>
-          <Link href="/ar/projects" className="text-[#D4AF37] underline">العودة لكافة المشاريع المنفذة</Link>
+          <h1 className="text-2xl font-black text-[#0B1220] font-heading">المشروع غير موجود</h1>
+          <Link href="/ar/projects" className="text-[#df9d17] hover:underline font-bold">العودة لكافة المشاريع المنفذة</Link>
         </div>
         <Footer />
       </main>
@@ -134,11 +134,11 @@ export default function ArabicProjectDetailPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]">
+    <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right">
       <Navbar />
 
       {/* 1. Hero Banner */}
-      <section className="relative pt-44 pb-20 px-6 border-b border-white/10 overflow-hidden">
+      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
             src={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
@@ -146,16 +146,16 @@ export default function ArabicProjectDetailPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-20 brightness-75 scale-105"
+            className="object-cover opacity-10 brightness-95 scale-105"
           />
-          <div className="absolute inset-0 bg-linear-to-b from-[#070B14] via-[#070B14]/90 to-[#070B14]" />
-          <div className="absolute top-1/3 right-1/2 translate-x-1/2 w-200 h-87.5 bg-[#D4AF37]/15 blur-[180px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
+          <div className="absolute top-1/3 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
         <div className="max-w-6xl mx-auto space-y-6 relative z-10 text-right">
           <Link
             href="/ar/projects"
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-[#D4AF37] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[#df9d17] hover:text-black transition-colors"
           >
             <ArrowRight className="w-4 h-4" />
             <span>العودة لكافة المشاريع المنفذة</span>
@@ -164,75 +164,74 @@ export default function ArabicProjectDetailPage() {
           <div className="space-y-4 max-w-4xl">
             <div className="flex flex-wrap items-center gap-2 justify-start">
               {project.categoryAr && (
-                <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                   {project.categoryAr}
                 </span>
               )}
               {project.locationAr && (
-                <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-300">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200/80 text-slate-700 shadow-xs">
                   {project.locationAr}
                 </span>
               )}
               {project.year && (
-                <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-300">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200/80 text-slate-700 shadow-xs">
                   سنة الإنجاز {project.year}
                 </span>
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
               {project.titleAr}
             </h1>
-
           </div>
 
           {/* 2. Modern Engineering HUD Dashboard */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-5 rounded-3xl bg-[#0D1527]/90 border border-white/10 shadow-2xl backdrop-blur-xl max-w-6xl text-right">
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">العميل</span>
-              <p className="text-xs sm:text-sm font-bold text-white truncate">{project.clientAr}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-w-6xl text-right">
+            <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">العميل</span>
+              <p className="text-xs sm:text-sm font-bold text-[#0B1220] truncate">{project.clientAr}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">الموقع</span>
-              <p className="text-xs sm:text-sm font-bold text-[#D4AF37] truncate">{project.locationAr}</p>
+            <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">الموقع</span>
+              <p className="text-xs sm:text-sm font-bold text-[#df9d17] truncate">{project.locationAr}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">سنة التنفيذ</span>
-              <p className="text-xs sm:text-sm font-bold text-white">{project.year}</p>
+            <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">سنة التنفيذ</span>
+              <p className="text-xs sm:text-sm font-bold text-[#0B1220]">{project.year}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">المساحة المغطاة</span>
-              <p className="text-xs sm:text-sm font-black text-[#D4AF37]">{project.coveredArea}</p>
+            <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">المساحة المغطاة</span>
+              <p className="text-xs sm:text-sm font-black text-[#df9d17]">{project.coveredArea}</p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">التصنيف</span>
-              <p className="text-xs sm:text-sm font-bold text-[#D4AF37] truncate">{project.categoryAr}</p>
+            <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">التصنيف</span>
+              <p className="text-xs sm:text-sm font-bold text-[#df9d17] truncate">{project.categoryAr}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. Project Overview & Challenge */}
-      <section className="py-20 px-6 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-right">
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">نطاق العمل والإنجاز</span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white font-heading">مراحل التنفيذ وتسليم المشروع</h2>
-              <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">نطاق العمل والإنجاز</span>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">مراحل التنفيذ وتسليم المشروع</h2>
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {project.scopeOfWorkAr}
               </p>
             </div>
 
-            <div className="p-6 rounded-3xl bg-[#0D1527] border border-[#D4AF37]/30 space-y-3">
-              <h3 className="text-sm font-bold tracking-wider text-[#D4AF37]">
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <h3 className="text-sm font-bold tracking-wider text-[#df9d17]">
                 التحدي الهندسي والحل الميداني المنفذ
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                 {project.engineeringChallengeAr}
               </p>
             </div>
@@ -240,13 +239,14 @@ export default function ArabicProjectDetailPage() {
             {/* Related Tents / Structures Used */}
             {project.tentsUsedAr && project.tentsUsedAr.length > 0 && (
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">الخيام والهياكل المنفذة في المشروع</h4>
-                <div className="flex flex-wrap gap-3">
+                <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">الخيام والهياكل المنفذة في المشروع</h4>
+                <div className="flex flex-wrap gap-2.5">
                   {project.tentsUsedAr.map((tentName: string, idx: number) => (
                     <div
                       key={idx}
-                      className="px-4 py-2.5 rounded-xl bg-white/5 text-white text-xs font-bold border border-white/10 flex items-center gap-2"
+                      className="px-4 py-2 rounded-xl bg-white text-slate-800 text-xs font-bold border border-slate-200/80 shadow-xs flex items-center gap-2 hover:border-[#df9d17]/50 transition-all"
                     >
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#df9d17]" />
                       <span>{tentName}</span>
                     </div>
                   ))}
@@ -256,34 +256,34 @@ export default function ArabicProjectDetailPage() {
           </div>
 
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-3xl bg-[#0D1527] border border-white/10 space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2 justify-start">
-                <Boxes className="w-4 h-4 text-[#D4AF37]" />
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#0B1220] flex items-center gap-2 justify-start">
+                <Boxes className="w-4 h-4 text-[#df9d17]" />
                 <span>المواصفات الهندسية والتقنية</span>
               </h3>
-              <div className="divide-y divide-white/10 text-xs">
+              <div className="divide-y divide-slate-100 text-xs">
                 {project.specs?.netArea && (
                   <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-400 font-medium">المساحة الصافية</span>
-                    <span className="text-white font-bold text-left">{project.specs.netArea}</span>
+                    <span className="text-slate-500 font-medium">المساحة الصافية</span>
+                    <span className="text-[#0B1220] font-bold text-left">{project.specs.netArea}</span>
                   </div>
                 )}
                 {project.specs?.wallSystem && (
                   <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-400 font-medium">نظام الجدران</span>
-                    <span className="text-white font-bold text-left">{project.specs.wallSystem}</span>
+                    <span className="text-slate-500 font-medium">نظام الجدران</span>
+                    <span className="text-[#0B1220] font-bold text-left">{project.specs.wallSystem}</span>
                   </div>
                 )}
                 {project.specs?.roofFinish && (
                   <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-400 font-medium">تشطيب السقف</span>
-                    <span className="text-white font-bold text-left">{project.specs.roofFinish}</span>
+                    <span className="text-slate-500 font-medium">تشطيب السقف</span>
+                    <span className="text-[#0B1220] font-bold text-left">{project.specs.roofFinish}</span>
                   </div>
                 )}
                 {project.specs?.acSystem && (
                   <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-400 font-medium">نظام التكييف</span>
-                    <span className="text-white font-bold text-left">{project.specs.acSystem}</span>
+                    <span className="text-slate-500 font-medium">نظام التكييف</span>
+                    <span className="text-[#0B1220] font-bold text-left">{project.specs.acSystem}</span>
                   </div>
                 )}
               </div>
@@ -293,11 +293,11 @@ export default function ArabicProjectDetailPage() {
       </section>
 
       {/* 4. Rich Media & Video Gallery */}
-      <section className="py-20 px-6 max-w-7xl mx-auto space-y-12 border-b border-white/10">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto space-y-12 border-b border-slate-200/60">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">التوثيق الميداني والمرئي</span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white font-heading">معرض الصور وفيديو المشروع</h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">التوثيق الميداني والمرئي</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">معرض الصور وفيديو المشروع</h2>
+          <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
             اضغط على أي صورة لتكبيرها وفحص تفاصيل الهيكل والتشطيبات الإنشائية.
           </p>
         </div>
@@ -305,11 +305,11 @@ export default function ArabicProjectDetailPage() {
         {/* Video Tour */}
         {project.videoUrl && (
           <div className="max-w-4xl mx-auto space-y-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#D4AF37] justify-start">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] justify-start">
               <Video className="w-4 h-4" />
               <span>فيديو التايم لابس والتوثيق التشغيلي للحدث</span>
             </div>
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-[#D4AF37]/30 shadow-2xl bg-black">
+            <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
               <iframe
                 className="w-full h-full"
                 src={project.videoUrl.replace("watch?v=", "embed/")}
@@ -327,26 +327,26 @@ export default function ArabicProjectDetailPage() {
               <div
                 key={idx}
                 onClick={() => setSelectedImage(img.url)}
-                className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#D4AF37]/60 transition-all shadow-xl bg-black"
+                className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#df9d17] transition-all shadow-xs hover:shadow-md bg-slate-100"
               >
                 <Image
                   src={img.url}
                   alt={img.caption}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
                 <div className="absolute top-4 right-4">
-                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-black/80 text-[#D4AF37] border border-[#D4AF37]/30">
+                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-white/95 text-[#df9d17] border border-slate-200/80 shadow-xs">
                     {img.type}
                   </span>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                   <p className="text-xs font-semibold text-white leading-snug">{img.caption}</p>
-                  <div className="w-8 h-8 rounded-full bg-[#D4AF37] text-[#070B14] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#df9d17] text-white flex items-center justify-center shrink-0 shadow-md group-hover:bg-black transition-colors">
                     <Eye className="w-4 h-4" />
                   </div>
                 </div>
@@ -359,18 +359,18 @@ export default function ArabicProjectDetailPage() {
         {project.comparison?.before && project.comparison?.after && (
           <div className="pt-10 space-y-6 max-w-4xl mx-auto">
             <div className="text-center space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">التحول الإنشائي للموقع</span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">مقارنة الموقع قبل وبعد سرعة التركيب والتسليم</h3>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">التحول الإنشائي للموقع</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0B1220] font-heading">مقارنة الموقع قبل وبعد سرعة التركيب والتسليم</h3>
             </div>
 
-            <div className="relative h-80 sm:h-96 w-full rounded-3xl overflow-hidden border border-white/15 select-none shadow-2xl">
+            <div className="relative h-80 sm:h-96 w-full rounded-3xl overflow-hidden border border-slate-200/80 select-none shadow-md">
               <Image
                 src={project.comparison.after}
                 alt="بعد الإنجاز والتشغيل"
                 fill
                 className="object-cover"
               />
-              <span className="absolute top-4 right-4 px-3 py-1 rounded-lg bg-black/80 text-xs font-bold text-[#D4AF37] z-10">
+              <span className="absolute top-4 right-4 px-3 py-1 rounded-lg bg-white/95 text-xs font-mono font-bold text-[#df9d17] border border-slate-200/80 shadow-xs z-10">
                 الهيكل بعد اكتمال التنفيذ
               </span>
 
@@ -385,7 +385,7 @@ export default function ArabicProjectDetailPage() {
                   className="object-cover max-w-none"
                   style={{ width: "100%" }}
                 />
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/80 text-xs font-bold text-white z-10">
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/80 text-xs font-mono font-bold text-white z-10">
                   أرض الموقع قبل البناء
                 </span>
               </div>
@@ -400,10 +400,10 @@ export default function ArabicProjectDetailPage() {
               />
 
               <div
-                className="absolute top-0 bottom-0 w-1 bg-[#D4AF37] pointer-events-none z-20 shadow-[0_0_10px_#D4AF37]"
+                className="absolute top-0 bottom-0 w-1 bg-[#df9d17] pointer-events-none z-20 shadow-[0_0_10px_#df9d17]"
                 style={{ left: `${sliderPosition}%` }}
               >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#D4AF37] text-[#070B14] font-bold text-xs flex items-center justify-center shadow-lg">
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#df9d17] text-white font-bold text-xs flex items-center justify-center shadow-lg">
                   ↔
                 </div>
               </div>
@@ -430,18 +430,30 @@ export default function ArabicProjectDetailPage() {
       )}
 
       {/* Bottom CTA */}
-      <section className="py-20 px-6 max-w-5xl mx-auto text-center space-y-6">
-        <h3 className="text-2xl sm:text-4xl font-black text-white font-heading">هل تخطط لتنفيذ مشروع هندسي مماثل؟</h3>
-        <p className="text-xs sm:text-sm text-slate-300 font-light max-w-xl mx-auto">
-          تواصل مع الإدارة الهندسية في أبوظبي ودبي للحصول على مخططات موقع مخصصة، دراسات CAD ثلاثية الأبعاد، وعروض أسعار المصنع مباشرة.
-        </p>
-        <Link
-          href="/ar/contact"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-black text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-xl shadow-[#D4AF37]/20"
-        >
-          <span>طلب استشارة فنية وهندسية</span>
-          <Send className="w-4 h-4 rotate-180" />
-        </Link>
+      <section className="pb-24 pt-6 px-6 max-w-5xl mx-auto">
+        <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
+          <div className="space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+              استشارات هندسية متكاملة
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
+              هل تخطط لتنفيذ مشروع هندسي مماثل؟
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
+              تواصل مع الإدارة الهندسية في أبوظبي ودبي للحصول على مخططات موقع مخصصة، دراسات CAD ثلاثية الأبعاد، وعروض أسعار المصنع مباشرة.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <Link
+              href="/ar/contact"
+              className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
+            >
+              <span>طلب استشارة فنية وهندسية</span>
+              <Send className="w-4 h-4 rotate-180" />
+            </Link>
+          </div>
+        </div>
       </section>
 
       <Footer />
