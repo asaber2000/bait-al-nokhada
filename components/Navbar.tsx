@@ -64,7 +64,7 @@ export default function Navbar() {
             <div className={`relative transition-all duration-300 ${isScrolled ? "h-9 w-36 sm:h-10 sm:w-40" : "h-11 w-44 sm:h-12 sm:w-48"
               }`}>
               <Image
-                src="/icons/bait-al-nokhada-final-logo.svg"
+                src="/bait-alnokhada-final-g.svg"
                 alt="Bait Al Nokhada"
                 fill
                 priority
