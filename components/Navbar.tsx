@@ -66,7 +66,7 @@ export default function Navbar() {
               <Image
                 src="/bait-alnokhada-final-g.svg"
                 alt="Bait Al Nokhada"
-                fill
+                fill 
                 priority
                 className="object-contain object-left"
               />
