@@ -6,8 +6,7 @@ import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 import { client } from "@/app/lib/sanity";
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getSanitySolutionsEn() {
   try {
@@ -21,7 +20,7 @@ async function getSanitySolutionsEn() {
       "coverImage": coverImage.asset->url
     }`;
 
-    const sanityData = await client.fetch(query, {}, { cache: 'force-cache' });
+    const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     const formattedSanitySolutions = (sanityData || []).map((item: any) => ({
       slug: item.slug,

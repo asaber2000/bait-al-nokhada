@@ -6,7 +6,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
 import { client } from "@/app/lib/sanity";
 
-export const revalidate = 60;
+export const revalidate = 60; // كاش مدته دقيقة واحدة فقط
 
 async function getSanitySolutions() {
   try {

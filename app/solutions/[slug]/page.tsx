@@ -44,7 +44,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const sanity = await getSolutionDetailEn(slug);
   const local = solutionsDatabase.find((s) => s.slug === slug);
 
-  const solution = sanity ? {
+  const solution: any = sanity ? {
     slug: slug,
     name: sanity.titleEn || local?.name,
     overviewTitle: sanity.overviewTitleEn || `Why Our ${sanity.titleEn || local?.name} Lead the Market`,
@@ -57,7 +57,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     technicalSpecs: sanity.technicalHighlightsEn || local?.technicalSpecs || [],
     faqs: sanity.faqsEn ? sanity.faqsEn.map((f: any) => ({ q: f.question, a: f.answer })) : local?.faqs || [],
     heroImage: sanity.coverImage || local?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-    youtubeVideoId: sanity.youtubeUrlEn ? (sanity.youtubeUrlEn.split("v=")[1] || sanity.youtubeUrlEn.split("/").pop()) : local?.youtubeVideoId
+    videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "", 
   } : (local || solutionsDatabase[0]);
 
   return (
@@ -94,7 +94,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
           {/* تقسيم الهيرو لعمودين: نصوص على اليسار + كرت الصورة على اليمين */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-            {/* 1. جانب النصوص */}
+            {/* جانب النصوص */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -242,14 +242,37 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         </div>
 
         <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-          <iframe
-            className="w-full h-full"
-            src={`https://www.youtube.com/embed/${solution.youtubeVideoId}?rel=0&modestbranding=1`}
-            title={solution.name}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+  {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
+    <iframe
+      className="w-full h-full"
+      src={
+        solution.videoUrl.includes("embed/")
+          ? solution.videoUrl
+          : `https://www.youtube.com/embed/${
+              solution.videoUrl.split("v=")[1]?.split("&")[0] ||
+              solution.videoUrl.split("/").pop()?.split("?")[0]
+            }?rel=0&modestbranding=1`
+      }
+      title={solution.name}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  ) : (
+    <video
+      className="w-full h-full object-cover"
+      controls
+      playsInline
+      preload="metadata"
+    >
+      <source
+        src={solution.videoUrl}
+        type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+      />
+      <source src={solution.videoUrl} />
+      Your browser does not support the video tag.
+    </video>
+  )}
+</div>
       </section>
 
       {/* FAQs */}
