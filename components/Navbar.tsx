@@ -17,9 +17,19 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // 1. إيقاف تذكر المتصفح لمكان السكرول القديم عند الريفريش
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // 2. إرجاع الصفحة لأعلى نقطة فوراً عند تحميل أو ريفريش الصفحة
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -55,7 +65,7 @@ export default function Navbar() {
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b border-slate-200/60 py-3"
+          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] py-3"
           : "bg-transparent py-8"
           }`}
       >
@@ -86,15 +96,15 @@ export default function Navbar() {
             {/* فاصل معماري رفيع وناعم */}
             <span className="w-[1px] h-4 bg-slate-200 shrink-0" />
 
-            {/* زر القائمة MENU بتصميم أنيق */}
+            {/* زر القائمة MENU بتصميم أنيق وموحد على ذهبي الهوية #df9d17 */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full text-slate-900 hover:text-[#C99A2C] transition-colors cursor-pointer group"
+              className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full text-slate-900 hover:text-[#df9d17] transition-colors cursor-pointer group"
               aria-label="Open Menu"
             >
               <div className="flex flex-col gap-[3px] items-end justify-center w-3.5">
-                <span className="w-3.5 h-[1.5px] bg-slate-900 group-hover:bg-[#C99A2C] rounded-full transition-all duration-300 group-hover:w-2" />
-                <span className="w-2 h-[1.5px] bg-[#C99A2C] rounded-full transition-all duration-300 group-hover:w-3.5" />
+                <span className="w-3.5 h-[1.5px] bg-slate-900 group-hover:bg-[#df9d17] rounded-full transition-all duration-300 group-hover:w-2" />
+                <span className="w-2 h-[1.5px] bg-[#df9d17] rounded-full transition-all duration-300 group-hover:w-3.5" />
               </div>
               <span className="font-extrabold text-[11px] tracking-[0.18em] uppercase leading-none">
                 MENU

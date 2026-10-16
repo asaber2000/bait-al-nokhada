@@ -59,27 +59,31 @@ export default function ArabicContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white selection:bg-[#D4AF37] selection:text-[#070B14]" dir="rtl">
+    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">
       <Navbar />
 
       {/* Header Banner */}
-      <section className="relative pt-44 pb-20 px-6 border-b border-white/10 overflow-hidden text-right">
-        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-175 h-87.5 bg-[#D4AF37]/10 blur-[180px] rounded-full pointer-events-none" />
+      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden text-right bg-[#FDFCF7]">
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+        />
+        <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center space-y-5 relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/30">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>استشارات ودراسات هندسية تسليم مفتاح</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight font-heading">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
             تواصل مباشرة مع <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A880]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               مهندسينا واستشاريي المشاريع
             </span>
           </h1>
 
-          <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
             اطلب عرض أسعار هندسي فوري، أو حدد موعداً لمعاينة الموقع الإنشائي، أو استفسر عن جداول التصنيع والتأجير.
           </p>
         </div>
@@ -90,19 +94,19 @@ export default function ArabicContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-right">
           
           {/* Quote & RFP Form */}
-          <div className="lg:col-span-7 rounded-3xl bg-[#0D1527]/80 border border-white/10 p-8 sm:p-12 shadow-2xl backdrop-blur-md">
+          <div className="lg:col-span-7 rounded-3xl bg-white border border-slate-200/80 p-8 sm:p-12 shadow-xs">
             {submitted ? (
               <div className="text-center py-16 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full bg-[#df9d17]/10 text-[#df9d17] flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-black text-white font-heading">تم استلام طلب المشروع بنجاح</h3>
-                <p className="text-sm text-slate-300 max-w-md mx-auto font-light">
+                <h3 className="text-2xl font-black text-[#0B1220] font-heading">تم استلام طلب المشروع بنجاح</h3>
+                <p className="text-sm text-slate-600 max-w-md mx-auto font-normal">
                   يقوم فريقنا الهندسي بدراسة متطلباتكم وسيتواصل معكم بمسودة المواصفات والأسعار المبدئية خلال 24 ساعة.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white cursor-pointer"
+                  className="mt-4 px-6 py-2.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-black hover:bg-slate-200 transition-colors cursor-pointer"
                 >
                   إرسال طلب آخر
                 </button>
@@ -110,53 +114,53 @@ export default function ArabicContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-black text-white font-heading">طلب دراسة فنية وعرض سعر</h2>
-                  <p className="text-xs text-slate-400 mt-1">يرجى تعبئة تفاصيل مشروعك الإنشائي.</p>
+                  <h2 className="text-2xl font-black text-[#0B1220] font-heading">طلب دراسة فنية وعرض سعر</h2>
+                  <p className="text-xs text-slate-500 mt-1">يرجى تعبئة تفاصيل مشروعك الإنشائي.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">الاسم الكامل *</label>
+                    <label className="text-xs font-semibold text-slate-700">الاسم الكامل *</label>
                     <input
                       required
                       type="text"
                       placeholder="أحمد صابر"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors text-right"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors text-right placeholder:text-slate-400"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">اسم الشركة / الجهة</label>
+                    <label className="text-xs font-semibold text-slate-700">اسم الشركة / الجهة</label>
                     <input
                       type="text"
                       placeholder="جهة حكومية / شركة خاصة"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors text-right"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors text-right placeholder:text-slate-400"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">البريد الإلكتروني *</label>
+                    <label className="text-xs font-semibold text-slate-700">البريد الإلكتروني *</label>
                     <input
                       required
                       type="email"
                       placeholder="name@organization.ae"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors text-right"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors text-right placeholder:text-slate-400"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">رقم التواصل / الواتساب *</label>
+                    <label className="text-xs font-semibold text-slate-700">رقم التواصل / الواتساب *</label>
                     <input
                       required
                       type="tel"
                       placeholder="+971 50 000 0000"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors text-right"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors text-right placeholder:text-slate-400"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">نوع الخدمة الإنشائية</label>
-                    <select className="w-full px-4 py-3 rounded-xl bg-[#070B14] border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors cursor-pointer text-right">
+                    <label className="text-xs font-semibold text-slate-700">نوع الخدمة الإنشائية</label>
+                    <select className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors cursor-pointer text-right">
                       <option>تأجير خيام فعاليات ومناسبات مؤقتة</option>
                       <option>تصنيع وشراء دائم للمنشآت</option>
                       <option>تأجير تشغيلي طويل الأجل للمستودعات</option>
@@ -165,8 +169,8 @@ export default function ArabicContactPage() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">نوع المنتج المطلوب</label>
-                    <select className="w-full px-4 py-3 rounded-xl bg-[#070B14] border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors cursor-pointer text-right">
+                    <label className="text-xs font-semibold text-slate-700">نوع المنتج المطلوب</label>
+                    <select className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors cursor-pointer text-right">
                       <option>خيام الأعراس والمناسبات الملكية</option>
                       <option>قاعات المعارض والقمم الدولية</option>
                       <option>مستودعات وخيام التخزين اللوجستي</option>
@@ -179,17 +183,17 @@ export default function ArabicContactPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300">أبعاد وموقع ومواصفات المشروع</label>
+                  <label className="text-xs font-semibold text-slate-700">أبعاد وموقع ومواصفات المشروع</label>
                   <textarea
                     rows={4}
                     placeholder="حدد الأبعاد التقريبية (مثال: 30م × 60م)، المدينة، تاريخ التركيب المطلوب، واحتياجات التكييف أو الأرضيات الخاصة..."
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#D4AF37] text-white text-sm outline-none transition-colors resize-none text-right"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FDFCF7] border border-slate-200 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-colors resize-none text-right placeholder:text-slate-400"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-linear-to-r from-[#D4AF37] to-[#C5A880] text-[#070B14] font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:scale-[1.01] shadow-xl shadow-[#D4AF37]/20 transition-all cursor-pointer"
+                  className="w-full py-4 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:scale-[1.01] shadow-md shadow-[#df9d17]/20 transition-all cursor-pointer"
                 >
                   <span>إرسال طلب الدراسة الفنية للمهندسين</span>
                   <Send className="w-4 h-4 rotate-180" />
@@ -201,10 +205,10 @@ export default function ArabicContactPage() {
           {/* Regional Hubs Directory */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
                 التواصل المباشر
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white font-heading">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">
                 المصانع والمكاتب الإقليمية
               </h2>
             </div>
@@ -213,25 +217,25 @@ export default function ArabicContactPage() {
               {branches.map((branch, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-[#0D1527]/50 border border-white/10 space-y-3 hover:border-[#D4AF37]/30 transition-all text-right"
+                  className="p-6 rounded-2xl bg-white border border-slate-200/80 space-y-3 hover:border-[#df9d17]/50 shadow-xs transition-all text-right"
                 >
-                  <div className="flex items-center gap-2 text-[#D4AF37] font-bold text-sm justify-start">
+                  <div className="flex items-center gap-2 text-[#df9d17] font-bold text-sm justify-start">
                     <Building2 className="w-4 h-4" />
-                    <span>{branch.city}</span>
+                    <span className="text-[#0B1220] font-heading">{branch.city}</span>
                   </div>
 
-                  <div className="space-y-2 text-xs text-slate-300">
+                  <div className="space-y-2 text-xs text-slate-600">
                     <div className="flex items-start gap-2.5 justify-start">
-                      <MapPin className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 mt-0.5" />
+                      <MapPin className="w-3.5 h-3.5 text-[#df9d17] shrink-0 mt-0.5" />
                       <span>{branch.address}</span>
                     </div>
 
                     {/* اتصال هاتف */}
                     <div className="flex items-center gap-2.5 justify-start">
-                      <Phone className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+                      <Phone className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
                       <a 
                         href={`tel:${branch.phone.replace(/\s+/g, '')}`} 
-                        className="hover:text-[#D4AF37] transition-colors"
+                        className="hover:text-[#df9d17] font-medium transition-colors"
                         dir="ltr"
                       >
                         {branch.phone}
@@ -241,12 +245,12 @@ export default function ArabicContactPage() {
                     {/* واتساب */}
                     {branch.whatsapp && (
                       <div className="flex items-center gap-2.5 justify-start">
-                        <MessageCircle className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+                        <MessageCircle className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
                         <a 
                           href={`https://wa.me/${branch.whatsapp.replace(/[^0-9]/g, '')}`} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="hover:text-[#D4AF37] transition-colors"
+                          className="hover:text-[#df9d17] font-medium transition-colors"
                           dir="ltr"
                         >
                           {branch.whatsapp}
@@ -255,14 +259,14 @@ export default function ArabicContactPage() {
                     )}
 
                     <div className="flex items-center gap-2.5 justify-start">
-                      <Mail className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                      <a href={`mailto:${branch.email}`} className="hover:text-[#D4AF37] transition-colors">
+                      <Mail className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
+                      <a href={`mailto:${branch.email}`} className="hover:text-[#df9d17] font-medium transition-colors">
                         {branch.email}
                       </a>
                     </div>
 
-                    <div className="flex items-center gap-2.5 text-slate-400 pt-1 justify-start">
-                      <Clock className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+                    <div className="flex items-center gap-2.5 text-slate-500 pt-1 border-t border-slate-100 justify-start">
+                      <Clock className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
                       <span>{branch.timing}</span>
                     </div>
                   </div>
@@ -274,17 +278,17 @@ export default function ArabicContactPage() {
         </div>
       </section>
 
-      {/* Interactive Regional Branch Maps Grid (النسخة العربية) */}
-      <section className="py-16 pb-28 px-6 max-w-7xl mx-auto border-t border-white/10 space-y-12 text-right">
+      {/* Interactive Regional Branch Maps Grid */}
+      <section className="py-16 pb-28 px-6 max-w-7xl mx-auto border-t border-slate-200/60 space-y-12 text-right">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#D4AF37]">
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#df9d17]">
             <Navigation className="w-3.5 h-3.5" />
             <span>المواقع والمرافق الميدانية</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white font-heading">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
             تفضل بزيارة مصانعنا ومراكزنا الإقليمية
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-light">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal">
             يمكنك الوصول مباشرة إلى مجمعاتنا التصنيعية، ومكاتبنا الإقليمية، وصالات استقبال العملاء عبر خرائط جوجل.
           </p>
         </div>
@@ -293,36 +297,36 @@ export default function ArabicContactPage() {
           {branches.map((branch, idx) => (
             <div
               key={idx}
-              className="rounded-3xl overflow-hidden bg-[#0D1527]/90 border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 flex flex-col justify-between shadow-2xl group"
+              className="rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/50 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md group"
             >
               {/* Google Map Embed iFrame */}
-              <div className="relative w-full h-64 bg-black/40">
+              <div className="relative w-full h-64 bg-slate-100">
                 <iframe
                   src={branch.embedUrl}
                   title={`خريطة ${branch.city}`}
                   loading="lazy"
-                  className="w-full h-full border-0 grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                  className="w-full h-full border-0 grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                 />
               </div>
 
               {/* Card Meta & External Map Link */}
               <div className="p-6 space-y-4 flex flex-col justify-between grow">
                 <div className="space-y-2">
-                  <h3 className="text-base font-bold text-white group-hover:text-[#D4AF37] transition-colors flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <h3 className="text-base font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors flex items-center gap-2 font-heading">
+                    <Building2 className="w-4 h-4 text-[#df9d17] shrink-0" />
                     <span>{branch.city}</span>
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed font-light">
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
                     {branch.address}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/5">
+                <div className="pt-4 border-t border-slate-100">
                   <a
                     href={branch.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#070B14] text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 hover:border-[#D4AF37] transition-all shadow-md group/btn"
+                    className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200 hover:border-[#df9d17] transition-all shadow-xs group/btn"
                   >
                     <span>فتح الموقع عبر خرائط جوجل</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover/btn:-translate-x-0.5 transition-transform" />

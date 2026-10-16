@@ -27,9 +27,18 @@ export default function ArabicNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // 1. إيقاف تذكر المتصفح لمكان السكرول القديم
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // 2. إرجاع الصفحة لأعلى نقطة فوراً عند عمل ريفريش
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -64,7 +73,7 @@ export default function ArabicNavbar() {
       <header
         dir="rtl"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
-          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] border-b border-slate-200/60 py-3"
+          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] py-3"
           : "bg-transparent py-8"
           }`}
       >
