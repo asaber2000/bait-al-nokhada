@@ -30,8 +30,7 @@ async function getSolutionDetail(slug: string) {
       videoSectionTitle, 
       youtubeUrl,
       faqs[]{question, answer}, 
-      "solutionGallery": solutionGallery[]{
-        "url": asset->url
+      "gallery": solutionGallery[].asset->url,
       },
       "coverImage": coverImage.asset->url
     }`;
@@ -48,11 +47,12 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
   const localSolution = solutionsDatabase.find((s) => s.slug === slug);
 
   // دمج بيانات سانتي مع البيانات المحلية كـ fallback
-  const solution = sanitySolution ? {
+  const solution: any = sanitySolution ? {
     slug: slug,
     heroImage: sanitySolution.coverImage || localSolution?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     youtubeVideoId: sanitySolution.youtubeUrl ? sanitySolution.youtubeUrl.split("v=")[1] || "dQw4w9WgXcQ" : "dQw4w9WgXcQ",
     name: sanitySolution.titleAr || localSolution?.name,
+    overviewTitle: sanitySolution.overviewTitleAr || `لماذا تتصدر ${sanitySolution.titleAr || localSolution?.name} السوق الإقليمي`,
     badge: sanitySolution.badgeAr || localSolution?.badge || "Industrial Grade",
     tagline: sanitySolution.summaryAr || localSolution?.tagline,
     overview: sanitySolution.overviewDescAr1 || localSolution?.overview,
@@ -155,7 +155,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
                 قدرات وخبرات إنشائية معتمدة
               </span>
               <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
-                {sanitySolution?.overviewTitleAr || `لماذا تتصدر ${arData.name} السوق الإقليمي`}
+                {solution.overviewTitle}
               </h2>
             </div>
 
@@ -275,7 +275,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       </section>
 
       {/* Solution Gallery Section */}
-      {sanitySolution?.solutionGallery?.length > 0 && (
+      {sanitySolution?.gallery?.length > 0 && (
         <section className="py-24 px-6 max-w-7xl mx-auto space-y-12 border-t border-slate-200/60">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
@@ -286,14 +286,12 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sanitySolution.solutionGallery.map((img: any, idx: number) => {
-              const imageUrl = img?.url || img;
-              if (!imageUrl) return null;
-
+            {sanitySolution.gallery.map((url: string, idx: number) => {
+              if (!url) return null;
               return (
                 <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
                   <Image
-                    src={imageUrl}
+                    src={url}
                     alt="صورة ميدانية للحل"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

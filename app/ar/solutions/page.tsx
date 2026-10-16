@@ -6,13 +6,13 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
 import { client } from "@/app/lib/sanity";
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getSanitySolutions() {
   try {
     const query = `*[_type == "solution" && defined(titleAr)] | order(_createdAt desc){
       titleAr,
+      targetSectors,
       badgeAr,
       summaryAr,
       overviewDescAr1,
@@ -20,26 +20,28 @@ async function getSanitySolutions() {
       "coverImage": coverImage.asset->url
     }`;
 
-    const sanityData = await client.fetch(query, {}, { cache: 'force-cache' });
+    const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     const formattedSanitySolutions = (sanityData || []).map((item: any) => ({
       slug: item.slug,
       heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
       name: item.titleAr,
-      badge: item.badgeAr || "Industrial Grade",
+      badge: item.badgeAr || "هياكل معمارية معتمدة",
       tagline: item.summaryAr || "",
       overview: item.overviewDescAr1 || item.summaryAr || "",
       industryApplications: item.targetSectors || []
     }));
 
-    // دمج داتا سانتي مع الداتا المحلية تماماً مثل المشاريع
-    return [...formattedSanitySolutions, ...solutionsDatabase];
+    const localFiltered = solutionsDatabase.filter(
+      (localItem) => !formattedSanitySolutions.some((s: any) => s.slug === localItem.slug)
+    );
+
+    return [...formattedSanitySolutions, ...localFiltered];
   } catch (error) {
-    console.error("Error fetching solutions from Sanity:", error);
+    console.error("Error fetching English solutions from Sanity:", error);
     return solutionsDatabase;
   }
 }
-
 export default async function ArabicSolutionsCatalogPage() {
   const allSolutions = await getSanitySolutions();
 
