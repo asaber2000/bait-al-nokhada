@@ -47,6 +47,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const solution = sanity ? {
     slug: slug,
     name: sanity.titleEn || local?.name,
+    overviewTitle: sanity.overviewTitleEn || `Why Our ${sanity.titleEn || local?.name} Lead the Market`,
     badge: sanity.badgeEn || local?.badge || "Industrial Grade",
     tagline: sanity.summaryEn || local?.tagline,
     overview: sanity.overviewDescEn1 || local?.overview,
@@ -129,7 +130,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                 </a>
               </div>
             </div>
-            
+
 
             {/* جهة الصورة البارزة المتطابقة مع المنتجات بدون فريم */}
             <div className="lg:col-span-5 relative">
@@ -150,192 +151,192 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
             </div>
           </div>
         </div>
-          </section>
+      </section>
 
-          {/* Main Content & Benefits */}
-          <section className="py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-              <div className="lg:col-span-7 space-y-6">
-                <div className="space-y-2">
-                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                    Proven Structural Capabilities
-                  </span>
-                  <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
-                    Why Our {solution.name} Lead the Market
-                  </h2>
-                </div>
+      {/* Main Content & Benefits */}
+      <section className="py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                Proven Structural Capabilities
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
+                {(solution as any).overviewTitle || solution.name}
+              </h2>
+            </div>
 
-                <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                  {solution.overview}
-                </p>
+            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+              {solution.overview}
+            </p>
 
-                {solution.whyChooseText && (
-                  <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                    {solution.whyChooseText}
+            {solution.whyChooseText && (
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                {solution.whyChooseText}
+              </p>
+            )}
+
+            {/* Key Benefits Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              {solution.keyBenefits.map((b: any, idx: number) => (
+                <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
+                  <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
+                    <span>{b.title}</span>
+                  </h4>
+                  <p className="text-xs text-slate-600 font-normal leading-relaxed">
+                    {b.desc || b.description}
                   </p>
-                )}
+                </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Key Benefits Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  {solution.keyBenefits.map((b: any, idx: number) => (
-                    <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
-                      <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
-                        <span>{b.title}</span>
-                      </h4>
-                      <p className="text-xs text-slate-600 font-normal leading-relaxed">
-                        {b.desc || b.description}
-                      </p>
+          <div className="lg:col-span-5 space-y-6">
+            <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
+                <Building2 className="w-4 h-4" />
+                <span>Target Industry Sectors</span>
+              </h3>
+              <ul className="space-y-2 text-xs text-slate-700">
+                {solution.industryApplications.map((app: any, idx: number) => (
+                  <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
+                    <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
+                    <span>{app}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Technical Specs Table */}
+            {solution.technicalSpecs?.length > 0 && (
+              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Technical Highlights</h3>
+                <div className="divide-y divide-slate-100 text-xs">
+                  {solution.technicalSpecs.map((spec: any, idx: number) => (
+                    <div key={idx} className="py-2.5 flex justify-between gap-4">
+                      <span className="text-slate-500 font-medium">{spec.label}</span>
+                      <span className="text-[#0B1220] text-right font-bold">{spec.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
+            )}
+          </div>
+        </div>
+      </section>
 
-              <div className="lg:col-span-5 space-y-6">
-                <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    <span>Target Industry Sectors</span>
-                  </h3>
-                  <ul className="space-y-2 text-xs text-slate-700">
-                    {solution.industryApplications.map((app: any, idx: number) => (
-                      <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
-                        <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
-                        <span>{app}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      {/* Featured Video Section */}
+      <section className="py-20 px-6 max-w-5xl mx-auto space-y-8">
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+            <Video className="w-4 h-4" />
+            <span>Real Project Showcase Video</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
+            Featured Case Study: {solution.name}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto">
+            Watch our structural assembly, fit-out precision, and operational deployment in action across client sites.
+          </p>
+        </div>
 
-                {/* Technical Specs Table */}
-                {solution.technicalSpecs?.length > 0 && (
-                  <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Technical Highlights</h3>
-                    <div className="divide-y divide-slate-100 text-xs">
-                      {solution.technicalSpecs.map((spec: any, idx: number) => (
-                        <div key={idx} className="py-2.5 flex justify-between gap-4">
-                          <span className="text-slate-500 font-medium">{spec.label}</span>
-                          <span className="text-[#0B1220] text-right font-bold">{spec.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+        <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${solution.youtubeVideoId}?rel=0&modestbranding=1`}
+            title={solution.name}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-16 px-6 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60">
+        <div className="text-center space-y-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+            Questions & Answers
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {solution.faqs?.map((faq: any, idx: number) => (
+            <details
+              key={idx}
+              className="rounded-2xl bg-white border border-slate-200/80 shadow-xs overflow-hidden transition-colors group cursor-pointer"
+            >
+              <summary className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-[#0B1220] group-hover:text-[#df9d17] transition-colors">
+                <span>{faq.q}</span>
+                <ChevronDown className="w-5 h-5 text-[#df9d17] group-open:rotate-180 transition-transform duration-300 shrink-0" />
+              </summary>
+              <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-3">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      {sanity?.gallery?.length > 0 && (
+        <section className="py-24 px-6 max-w-7xl mx-auto space-y-12 border-t border-slate-200/60">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+              Project Gallery
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
+              Field Installation & Execution Showcase
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {sanity.gallery.map((url: string, idx: number) => (
+              <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
+                {url && (
+                  <Image
+                    src={url}
+                    alt="Project Gallery Image"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 )}
               </div>
-            </div>
-          </section>
+            ))}
+          </div>
+        </section>
+      )}
+      {/* Bottom CTA */}
+      <section className="pb-24 px-6 max-w-5xl mx-auto">
+        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
+          <div className="space-y-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+              Get Full Turnkey Quotation
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
+              Consult with Our Engineers on Your Next Project
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal">
+              We provide comprehensive site inspection, 3D CAD staging diagrams, and turnkey rental or supply proposals.
+            </p>
+          </div>
 
-          {/* Featured Video Section */}
-          <section className="py-20 px-6 max-w-5xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                <Video className="w-4 h-4" />
-                <span>Real Project Showcase Video</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                Featured Case Study: {solution.name}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto">
-                Watch our structural assembly, fit-out precision, and operational deployment in action across client sites.
-              </p>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="px-8 py-4 rounded-xl bg-[#df9d17] hover:bg-[#000000] text-white font-black text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
+            >
+              <span>Submit Project Requirements</span>
+              <Send className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${solution.youtubeVideoId}?rel=0&modestbranding=1`}
-                title={solution.name}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </section>
-
-          {/* FAQs */}
-          <section className="py-16 px-6 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60">
-            <div className="text-center space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                Questions & Answers
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {solution.faqs?.map((faq: any, idx: number) => (
-                <details
-                  key={idx}
-                  className="rounded-2xl bg-white border border-slate-200/80 shadow-xs overflow-hidden transition-colors group cursor-pointer"
-                >
-                  <summary className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-[#0B1220] group-hover:text-[#df9d17] transition-colors">
-                    <span>{faq.q}</span>
-                    <ChevronDown className="w-5 h-5 text-[#df9d17] group-open:rotate-180 transition-transform duration-300 shrink-0" />
-                  </summary>
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-3">
-                    {faq.a}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </section>
-
-          {/* Gallery Section */}
-          {sanity?.gallery?.length > 0 && (
-            <section className="py-24 px-6 max-w-7xl mx-auto space-y-12 border-t border-slate-200/60">
-              <div className="text-center max-w-3xl mx-auto space-y-3">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  Project Gallery
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                  Field Installation & Execution Showcase
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {sanity.gallery.map((url: string, idx: number) => (
-                  <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                    {url && (
-                      <Image
-                        src={url}
-                        alt="Project Gallery Image"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-          {/* Bottom CTA */}
-          <section className="pb-24 px-6 max-w-5xl mx-auto">
-            <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
-              <div className="space-y-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  Get Full Turnkey Quotation
-                </span>
-                <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                  Consult with Our Engineers on Your Next Project
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal">
-                  We provide comprehensive site inspection, 3D CAD staging diagrams, and turnkey rental or supply proposals.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="px-8 py-4 rounded-xl bg-[#df9d17] hover:bg-[#000000] text-white font-black text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
-                >
-                  <span>Submit Project Requirements</span>
-                  <Send className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          <Footer />
-        </main>
-        );
+      <Footer />
+    </main>
+  );
 }

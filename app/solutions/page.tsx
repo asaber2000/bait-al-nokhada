@@ -13,6 +13,7 @@ async function getSanitySolutionsEn() {
   try {
     const query = `*[_type == "solutionEn" && defined(titleEn)] | order(_createdAt desc){
       titleEn,
+      targetSectorsEn,
       badgeEn,
       summaryEn,
       overviewDescEn1,
@@ -29,7 +30,7 @@ async function getSanitySolutionsEn() {
       badge: item.badgeEn || "Industrial Grade",
       tagline: item.summaryEn || "",
       overview: item.overviewDescEn1 || item.summaryAr || "",
-      industryApplications: ["Rapid Deployment", "German Certified Standards"]
+      industryApplications: item.targetSectorsEn || ["Rapid Deployment", "German Certified Standards"]
     }));
 
     return [...formattedSanitySolutions, ...solutionsDatabase];
