@@ -29,10 +29,10 @@ async function getSolutionDetail(slug: string) {
       keyFeaturesGrid[]{title, description}, 
       videoSectionTitle, 
       youtubeUrl,
-      faqs[]{question, answer}, 
-      "gallery": solutionGallery[].asset->url,
-      },
-      "coverImage": coverImage.asset->url
+      youtubeUrlAr,
+faqs[]{question, answer}, 
+"gallery": solutionGallery[].asset->url,
+"coverImage": coverImage.asset->url
     }`;
     return await client.fetch(query, { slug }, { cache: 'no-store' });
   } catch (error) {
@@ -50,7 +50,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
   const solution: any = sanitySolution ? {
     slug: slug,
     heroImage: sanitySolution.coverImage || localSolution?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-    youtubeVideoId: sanitySolution.youtubeUrl ? sanitySolution.youtubeUrl.split("v=")[1] || "dQw4w9WgXcQ" : "dQw4w9WgXcQ",
+    videoUrl: sanitySolution.youtubeUrlAr || sanitySolution.youtubeUrl || (localSolution as any)?.videoUrl || (localSolution as any)?.youtubeVideoId || "",
     name: sanitySolution.titleAr || localSolution?.name,
     overviewTitle: sanitySolution.overviewTitleAr || `لماذا تتصدر ${sanitySolution.titleAr || localSolution?.name} السوق الإقليمي`,
     badge: sanitySolution.badgeAr || localSolution?.badge || "Industrial Grade",
@@ -87,7 +87,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
           {/* تقسيم الهيرو لعمودين: نصوص على اليمين + صورة بارزة على اليسار */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-            {/* 1. جانب النصوص */}
+            {/* جانب النصوص */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -124,7 +124,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               </div>
             </div>
 
-            {/* 2. جهة الصورة البارزة المتطابقة تماماً بدون فريم أبيض مزدوج */}
+            {/* جهة الصورة البارزة المتطابقة تماماً بدون فريم أبيض مزدوج */}
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
@@ -235,13 +235,35 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         </div>
 
         <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-          <iframe
-            className="w-full h-full"
-            src={sanitySolution?.youtubeUrl ? sanitySolution.youtubeUrl.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/") : `https://www.youtube.com/embed/${solution.youtubeVideoId}`}
-            title={arData.name}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
+            <iframe
+              className="w-full h-full"
+              src={
+                solution.videoUrl.includes("embed/")
+                  ? solution.videoUrl
+                  : `https://www.youtube.com/embed/${solution.videoUrl.split("v=")[1]?.split("&")[0] ||
+                  solution.videoUrl.split("/").pop()?.split("?")[0]
+                  }?rel=0&modestbranding=1`
+              }
+              title={arData.name}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <video
+              className="w-full h-full object-cover"
+              controls
+              playsInline
+              preload="metadata"
+            >
+              <source
+                src={solution.videoUrl}
+                type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+              />
+              <source src={solution.videoUrl} />
+              متصفحك لا يدعم تشغيل هذا الفيديو.
+            </video>
+          )}
         </div>
       </section>
 
