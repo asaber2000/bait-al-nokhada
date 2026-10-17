@@ -27,10 +27,10 @@ export default function ArabicNavbar() {
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-const [solutionsList, setSolutionsList] = useState<any[]>(solutionsDatabase);
-const [productsList, setProductsList] = useState<any[]>(productsDatabase);
+  const [solutionsList, setSolutionsList] = useState<any[]>(solutionsDatabase);
+  const [productsList, setProductsList] = useState<any[]>(productsDatabase);
 
-useEffect(() => {
+  useEffect(() => {
     async function fetchLiveNavDataAr() {
       try {
         const sanitySolutions: any[] = await client.fetch(
@@ -47,10 +47,10 @@ useEffect(() => {
         }
 
         const sanityProducts: any[] = await client.fetch(
-          `*[_type == "productAr" && defined(slug.current)]{
-            "name": titleAr,
-            "slug": slug.current
-          }`
+          `*[_type in ["product", "productAr", "productsAr"] && defined(slug.current)]{
+    "name": coalesce(titleAr, name),
+    "slug": slug.current
+  }`
         );
 
         if (sanityProducts && sanityProducts.length > 0) {
@@ -69,7 +69,7 @@ useEffect(() => {
   useEffect(() => {
     // إيقاف تذكر المتصفح لمكان السكرول القديم
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-      window.history    .scrollRestoration = "manual";
+      window.history.scrollRestoration = "manual";
     }
 
     // إرجاع الصفحة لأعلى نقطة فوراً عند عمل ريفريش

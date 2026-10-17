@@ -5,8 +5,7 @@ import Navbar from "../../../components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { productsDatabase } from "../../data/products.Ar";
 import { client } from "@/app/lib/sanity";
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 60;
 
 // خريطة الترجمة الذكية لأسماء ووصف المنتجات بالعربية حسب الـ Slug
 const arabicTranslations: Record<string, { name: string; tagline: string }> = {
@@ -75,30 +74,28 @@ const filterCategories = [
 // دالة جلب منتجات سانتي العربية مباشرة على السيرفر (تحميل فوري مع الداتا المحلية)
 async function getSanityArabicProducts() {
   try {
-    const query = `*[_type == "product"]{
+    const query = `*[_type in ["product", "productAr", "productsAr"] && defined(slug.current)]{
       titleAr,
       summaryAr,
       topBadges,
+      "windSpeed": coalesce(engineeringDataSheet.windLoad, "120 كم/س"),
       "slug": slug.current,
-      "coverImage": coverImage.asset->url
+      "coverImage": coalesce(heroImageUrl, coverImage.asset->url)
     }`;
 
-    // استخدمنا هنا options تضمن التخزين المؤقت واستجابة فورية بدون انتظار
-    const sanityData = await client.fetch(query, {}, {
-      cache: 'force-cache', // تخزين دائم في الذاكرة المؤقتة لسرعة خرافية
-    });
+    const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     return (sanityData || []).map((item: any) => ({
-      slug: item.slug || "custom-product",
+      slug: item.slug,
       name: item.titleAr || "منتج مخصص",
       tagline: item.summaryAr || "حلول خيام معمارية مبتكرة.",
       heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-      windSpeed: "120 كم/س",
+      windSpeed: item.windSpeed || "120 كم/س",
       badge: item.topBadges?.[0] || "DIN 4102 B1",
       models: ["1", "2"]
     }));
   } catch (error) {
-    console.error("Error fetching Sanity:", error);
+    console.error("Error fetching Sanity Arabic products:", error);
     return [];
   }
 }
@@ -106,7 +103,10 @@ async function getSanityArabicProducts() {
 export default async function ArabicProductsCatalogPage() {
   // جلب داتا سانتي مباشرة مع الداتا المحلية على السيرفر ككتلة واحدة (بدون أي تأخير أو وميض)
   const sanityProducts = await getSanityArabicProducts();
-  const liveProducts = [...sanityProducts, ...productsDatabase];
+  const sanitySlugs = new Set(sanityProducts.map((p: any) => p.slug));
+  const remainingLocal = productsDatabase.filter((lp: any) => !sanitySlugs.has(lp.slug));
+  const liveProducts = [...sanityProducts, ...remainingLocal];
+
 
   const filteredProducts = liveProducts;
 
@@ -212,7 +212,7 @@ export default async function ArabicProductsCatalogPage() {
                     <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs">
                       <div className="p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/70 flex items-center gap-2 justify-start group-hover:border-[#df9d17]/40 transition-colors">
                         <Wind className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
-                        <span className="text-slate-700 font-medium truncate">رياح 120 كم/س</span>
+                        <span className="text-slate-700 font-medium truncate">رياح {product.windSpeed || "120 كم/س"}</span>
                       </div>
                       <div className="p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/70 flex items-center gap-2 justify-start group-hover:border-[#df9d17]/40 transition-colors">
                         <ShieldCheck className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />

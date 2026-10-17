@@ -20,7 +20,7 @@ import { productsDatabase } from "@/app/data/products.Ar";
 import { client } from "@/app/lib/sanity";
 import ProductGalleryLightboxAr from "@/components-ar/components/ProductGalleryLightbox";
 
-// 1. توليد الـ Slugs ثابتاً للسرعة الخارقة (SSG)
+// توليد الـ Slugs ثابتاً للسرعة الخارقة (SSG)
 export async function generateStaticParams() {
   try {
     const query = `*[_type == "product" && defined(slug.current)]{ "slug": slug.current }`;
@@ -34,7 +34,7 @@ export async function generateStaticParams() {
 // 2. دالة جلب بيانات منتج واحد من سانتي بناءً على الـ slug
 async function getSanityProductBySlug(slug: string) {
   try {
-    const query = `*[_type == "product" && slug.current == $slug][0]{
+    const query = `*[_type in ["product", "productAr", "productsAr"] && slug.current == $slug][0]{
       titleAr,
       summaryAr,
       topBadges,
@@ -58,7 +58,7 @@ async function getSanityProductBySlug(slug: string) {
         "url": asset->url
       }
     }`;
-    return await client.fetch(query, { slug }, { next: { revalidate: 60 } });
+    return await client.fetch(query, { slug }, { cache: 'no-store' });
   } catch (error) {
     return null;
   }
@@ -166,43 +166,49 @@ export default async function ArabicProductDetailPage({
 }) {
   const { slug } = await params;
 
-  // 1. نبحث أولاً في الداتا المحلية
-  let product: any = productsDatabase.find((p) => p.slug === slug);
-  let arData: any = product ? product.ar : null;
-
-  // 2. إذا لم يكن موجوداً محلياً، نجلبه مباشرة من سانتي!
+// الأولوية لبيانات سانتي المحدثة
   const sanityProduct = await getSanityProductBySlug(slug);
+  const localMatch: any = productsDatabase.find((p) => p.slug === slug);
+
+  let product: any = null;
+  let arData: any = null;
 
   if (sanityProduct) {
     product = {
       slug: sanityProduct.slug,
-      heroImage: sanityProduct.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      heroImage: sanityProduct.coverImage || localMatch?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     };
     arData = {
-      name: sanityProduct.titleAr || "منتج مخصص",
-      badge: sanityProduct.topBadges?.[0] || "DIN 4102 B1",
-      tagline: sanityProduct.summaryAr || "حلول خيام معمارية مبتكرة.",
-      overviewTitle: sanityProduct.overviewTitleAr || "التصميم الإنشائي ومعايير جودة المواد",
-      description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || "",
-      features: sanityProduct.engineeredAdvantages || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
+      name: sanityProduct.titleAr || localMatch?.ar?.name || "منتج مخصص",
+      badge: sanityProduct.topBadges?.[0] || localMatch?.ar?.badge || "DIN 4102 B1",
+      tagline: sanityProduct.summaryAr || localMatch?.ar?.tagline || "حلول خيام معمارية مبتكرة.",
+      overviewTitle: sanityProduct.overviewTitleAr || localMatch?.ar?.overviewTitle || "التصميم الإنشائي ومعايير جودة المواد",
+      description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || localMatch?.ar?.description || "",
+      features: sanityProduct.engineeredAdvantages || localMatch?.ar?.features || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
       models: sanityProduct.availableProfiles?.length > 0
         ? sanityProduct.availableProfiles.map((prof: any) => ({
-          name: prof.sizeName || "طراز قياسي",
-          size: prof.dimensions || "مواصفات خاصة",
-          capacity: prof.capacity || "حسب الطلب"
-        }))
-        : [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
+            name: prof.sizeName || "طراز قياسي",
+            size: prof.dimensions || "مواصفات خاصة",
+            capacity: prof.capacity || "حسب الطلب"
+          }))
+        : localMatch?.ar?.models || [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
       specs: [
-        { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || "ألومنيوم فضاء معالج 6061/T6" },
-        { label: "المكونات الفولاذية", value: sanityProduct.engineeringDataSheet?.steelComponents || "صلب مجلفن على الساخن" },
-        { label: "مقاومة الرياح القصوى", value: sanityProduct.engineeringDataSheet?.windLoad || "120 كم/ساعة" },
-        { label: "درجات الحرارة التشغيلية", value: sanityProduct.engineeringDataSheet?.operatingTemp || "-30°C إلى +70°C" },
-        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || "DIN 4102 B1, M2" },
-        { label: "غطاء السقف والغشاء", value: sanityProduct.engineeringDataSheet?.roofCovering || "بي في سي عالي الكثافة معتم/شبه شفاف" },
-        { label: "خيارات الجدران الجانبية", value: sanityProduct.engineeringDataSheet?.wallOptions || "زجاج مقسى، ساندويتش بانل، ABS" },
-        { label: "البحور القياسية المتاحة", value: sanityProduct.engineeringDataSheet?.standardSpans || "من 10م حتى 60م بحر مفتوح" }
+        { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || localMatch?.ar?.specs?.[0]?.value || "ألومنيوم فضاء معالج 6061/T6" },
+        { label: "المكونات الفولاذية", value: sanityProduct.engineeringDataSheet?.steelComponents || localMatch?.ar?.specs?.[1]?.value || "صلب مجلفن على الساخن" },
+        { label: "مقاومة الرياح القصوى", value: sanityProduct.engineeringDataSheet?.windLoad || localMatch?.ar?.specs?.[2]?.value || "120 كم/ساعة" },
+        { label: "درجات الحرارة التشغيلية", value: sanityProduct.engineeringDataSheet?.operatingTemp || localMatch?.ar?.specs?.[3]?.value || "-30°C إلى +70°C" },
+        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || localMatch?.ar?.specs?.[4]?.value || "DIN 4102 B1, M2" },
+        { label: "غطاء السقف والغشاء", value: sanityProduct.engineeringDataSheet?.roofCovering || localMatch?.ar?.specs?.[5]?.value || "بي في سي عالي الكثافة معتم/شبه شفاف" },
+        { label: "خيارات الجدران الجانبية", value: sanityProduct.engineeringDataSheet?.wallOptions || localMatch?.ar?.specs?.[6]?.value || "زجاج مقسى، ساندويتش بانل، ABS" },
+        { label: "البحور القياسية المتاحة", value: sanityProduct.engineeringDataSheet?.standardSpans || localMatch?.ar?.specs?.[7]?.value || "من 10م حتى 60م بحر مفتوح" }
       ]
     };
+  } else if (localMatch) {
+    product = localMatch;
+    arData = localMatch.ar;
+  } else {
+    product = productsDatabase[0];
+    arData = productsDatabase[0].ar;
   }
 
   // Fallback لو المنتج مش موجود خالص
@@ -231,7 +237,7 @@ export default async function ArabicProductDetailPage({
 
       <Navbar />
 
-      {/* 1. Grand Hero Section: معدل بتوزيع ثنائي وصورة بارزة لملء الفراغ */}
+      {/* Grand Hero Section */}
       <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
         <div className="absolute inset-0 z-0">
           <Image
