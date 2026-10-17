@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ChevronDown, Globe, X, ArrowUpRight, Mail, Phone, MapPin, Sparkles, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { client } from "@/app/lib/sanity";
 import { productsDatabase } from "@/app/data/products.En";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 
@@ -15,6 +16,45 @@ export default function Navbar() {
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+const [solutionsList, setSolutionsList] = useState(solutionsDatabase);
+const [productsList, setProductsList] = useState(productsDatabase);
+
+useEffect(() => {
+    async function fetchLiveNavData() {
+      try {
+        const sanitySolutions: any[] = await client.fetch(
+          `*[_type == "solutionEn" && defined(slug.current)]{
+            "name": titleEn,
+            "slug": slug.current
+          }`
+        );
+
+        if (sanitySolutions && sanitySolutions.length > 0) {
+          const sanitySlugs = new Set(sanitySolutions.map((s) => s.slug));
+          const remainingLocal = solutionsDatabase.filter((l) => !sanitySlugs.has(l.slug));
+          setSolutionsList([...sanitySolutions, ...remainingLocal]);
+        }
+
+        const sanityProducts: any[] = await client.fetch(
+          `*[_type == "productEn" && defined(slug.current)]{
+            "name": titleEn,
+            "slug": slug.current
+          }`
+        );
+
+        if (sanityProducts && sanityProducts.length > 0) {
+          const sanityProductSlugs = new Set(sanityProducts.map((p) => p.slug));
+          const remainingLocalProducts = productsDatabase.filter((lp) => !sanityProductSlugs.has(lp.slug));
+          setProductsList([...sanityProducts, ...remainingLocalProducts]);
+        }
+      } catch (err) {
+        // Fallback silently to local database
+      }
+    }
+
+    fetchLiveNavData();
+  }, []);
 
   useEffect(() => {
     // 1. إيقاف تذكر المتصفح لمكان السكرول القديم عند الريفريش
@@ -178,7 +218,7 @@ export default function Navbar() {
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
                       className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
                     >
-                      <span>Products ({productsDatabase.length})</span>
+                      <span>Products ({productsList.length})</span>
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`}
                       />
@@ -193,7 +233,7 @@ export default function Navbar() {
                   </div>
                   {mobileProductsOpen && (
                     <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {productsDatabase.map((item) => (
+                      {productsList.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/products/${item.slug}`}
@@ -215,7 +255,7 @@ export default function Navbar() {
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
                       className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
                     >
-                      <span>Solutions ({solutionsDatabase.length})</span>
+                      <span>Solutions ({solutionsList.length})</span>
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${mobileSolutionsOpen ? "rotate-180" : ""}`}
                       />
@@ -230,7 +270,7 @@ export default function Navbar() {
                   </div>
                   {mobileSolutionsOpen && (
                     <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {solutionsDatabase.map((item) => (
+                      {solutionsList.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/solutions/${item.slug}`}
