@@ -57,12 +57,12 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-    // 1. إيقاف تذكر المتصفح لمكان السكرول القديم عند الريفريش
+    // إيقاف تذكر المتصفح لمكان السكرول القديم
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
-    // 2. إرجاع الصفحة لأعلى نقطة فوراً عند تحميل أو ريفريش الصفحة
+    // إرجاع الصفحة لأعلى نقطة فوراً عند عمل ريفريش
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
