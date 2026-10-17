@@ -19,6 +19,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { productsDatabase } from "@/app/data/products.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
+import { client } from "@/app/lib/sanity";
 
 export default function ArabicNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,10 +27,49 @@ export default function ArabicNavbar() {
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+const [solutionsList, setSolutionsList] = useState<any[]>(solutionsDatabase);
+const [productsList, setProductsList] = useState<any[]>(productsDatabase);
+
+useEffect(() => {
+    async function fetchLiveNavDataAr() {
+      try {
+        const sanitySolutions: any[] = await client.fetch(
+          `*[_type == "solutionAr" && defined(slug.current)]{
+            "name": titleAr,
+            "slug": slug.current
+          }`
+        );
+
+        if (sanitySolutions && sanitySolutions.length > 0) {
+          const sanitySlugs = new Set(sanitySolutions.map((s) => s.slug));
+          const remainingLocal = solutionsDatabase.filter((l) => !sanitySlugs.has(l.slug));
+          setSolutionsList([...sanitySolutions, ...remainingLocal]);
+        }
+
+        const sanityProducts: any[] = await client.fetch(
+          `*[_type == "productAr" && defined(slug.current)]{
+            "name": titleAr,
+            "slug": slug.current
+          }`
+        );
+
+        if (sanityProducts && sanityProducts.length > 0) {
+          const sanityProductSlugs = new Set(sanityProducts.map((p) => p.slug));
+          const remainingLocalProducts = productsDatabase.filter((lp) => !sanityProductSlugs.has(lp.slug));
+          setProductsList([...sanityProducts, ...remainingLocalProducts]);
+        }
+      } catch (err) {
+        // Fallback silently to local database
+      }
+    }
+
+    fetchLiveNavDataAr();
+  }, []);
+
   useEffect(() => {
     // 1. إيقاف تذكر المتصفح لمكان السكرول القديم
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
+      window.history    .scrollRestoration = "manual";
     }
 
     // 2. إرجاع الصفحة لأعلى نقطة فوراً عند عمل ريفريش
@@ -192,7 +232,7 @@ export default function ArabicNavbar() {
                       onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
                       className="flex items-center gap-2 text-base font-extrabold text-[#df9d17] cursor-pointer"
                     >
-                      <span>المنتجات ({productsDatabase.length})</span>
+                      <span>المنتجات ({productsList.length})</span>
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`}
                       />
@@ -207,7 +247,7 @@ export default function ArabicNavbar() {
                   </div>
                   {mobileProductsOpen && (
                     <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {productsDatabase.map((item) => (
+                      {productsList.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/ar/products/${item.slug}`}
@@ -229,7 +269,7 @@ export default function ArabicNavbar() {
                       onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
                       className="flex items-center gap-2 text-base font-extrabold text-[#df9d17] cursor-pointer"
                     >
-                      <span>الحلول والخدمات ({solutionsDatabase.length})</span>
+                      <span>الحلول والخدمات ({solutionsList.length})</span>
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${mobileSolutionsOpen ? "rotate-180" : ""}`}
                       />
@@ -244,7 +284,7 @@ export default function ArabicNavbar() {
                   </div>
                   {mobileSolutionsOpen && (
                     <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {solutionsDatabase.map((item) => (
+                      {solutionsList.map((item) => (
                         <Link
                           key={item.slug}
                           href={`/ar/solutions/${item.slug}`}
