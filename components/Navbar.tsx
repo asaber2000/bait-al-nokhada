@@ -17,10 +17,10 @@ export default function Navbar() {
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-const [solutionsList, setSolutionsList] = useState(solutionsDatabase);
-const [productsList, setProductsList] = useState(productsDatabase);
+  const [solutionsList, setSolutionsList] = useState(solutionsDatabase);
+  const [productsList, setProductsList] = useState(productsDatabase);
 
-useEffect(() => {
+  useEffect(() => {
     async function fetchLiveNavData() {
       try {
         const sanitySolutions: any[] = await client.fetch(
@@ -37,10 +37,10 @@ useEffect(() => {
         }
 
         const sanityProducts: any[] = await client.fetch(
-          `*[_type == "productEn" && defined(slug.current)]{
-            "name": titleEn,
-            "slug": slug.current
-          }`
+          `*[_type in ["productsEn", "productEn"] && defined(slug.current)]{
+    "name": titleEn,
+    "slug": slug.current
+  }`
         );
 
         if (sanityProducts && sanityProducts.length > 0) {
@@ -116,7 +116,7 @@ useEffect(() => {
               <Image
                 src="/bait-alnokhada-final-g.svg"
                 alt="Bait Al Nokhada"
-                fill 
+                fill
                 priority
                 className="object-contain object-left"
               />

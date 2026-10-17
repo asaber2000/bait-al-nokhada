@@ -7,11 +7,12 @@ import ProductsCatalogClient from "@/components/ProductsCatalogClient";
 
 async function getSanityProducts() {
   try {
-    const query = `*[_type == "productsEn"]{
+    const query = `*[_type in ["productsEn", "productEn"] && defined(slug.current)]{
       titleEn,
       categoryEn,
       summaryEn,
       topBadges,
+      "windSpeed": coalesce(engineeringDataSheet.windLoad, "120 km/h Wind"),
       "slug": slug.current,
       "coverImage": coalesce(heroImageUrl, coverImage.asset->url)
     }`;
@@ -19,12 +20,12 @@ async function getSanityProducts() {
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     return (sanityData || []).map((item: any) => ({
-      slug: item.slug || "custom-product",
+      slug: item.slug,
       name: item.titleEn || "Custom Product",
       tagline: item.summaryEn || "Engineered architectural tent solution.",
       category: item.categoryEn || "Mega Arenas & Expos",
       heroImage: item.coverImage || "https://d3g07f5oxrfvni.cloudfront.net/media-images/default-fallback.webp",
-      windSpeed: "120 km/h Wind",
+      windSpeed: item.windSpeed || "120 km/h Wind",
       badge: item.topBadges?.[0] || "DIN 4102 B1",
       models: ["Model 1", "Model 2"]
     }));
@@ -36,7 +37,11 @@ async function getSanityProducts() {
 
 export default async function ProductsCatalogPage() {
   const sanityProducts = await getSanityProducts();
-  const allProducts = [...sanityProducts, ...productsDatabase];
+  
+  // فلترة المنتجات المحلية لمنع التكرار وعرض نسخة سانتي المحدثة
+  const sanitySlugs = new Set(sanityProducts.map((p: any) => p.slug));
+  const remainingLocal = productsDatabase.filter((lp) => !sanitySlugs.has(lp.slug));
+  const allProducts = [...sanityProducts, ...remainingLocal];
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">

@@ -21,11 +21,8 @@ import { client } from "@/app/lib/sanity";
 import ProductGalleryLightbox from "@/components/ProductGalleryLightbox";
 
 async function getProduct(slug: string) {
-  const localMatch = productsDatabase.find((p) => p.slug === slug);
-  if (localMatch) return localMatch;
-
   try {
-    const query = `*[_type == "productsEn" && slug.current == $slug][0]{
+    const query = `*[_type in ["productsEn", "productEn"] && slug.current == $slug][0]{
       titleEn,
       summaryEn,
       summaryAr,
@@ -99,6 +96,8 @@ async function getProduct(slug: string) {
   } catch (error) {
     console.error("Error fetching product detail from Sanity:", error);
   }
+  const localMatch = productsDatabase.find((p) => p.slug === slug);
+  if (localMatch) return localMatch;
 
   return productsDatabase[0];
 }
