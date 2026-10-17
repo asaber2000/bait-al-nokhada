@@ -34,7 +34,7 @@ useEffect(() => {
     async function fetchLiveNavDataAr() {
       try {
         const sanitySolutions: any[] = await client.fetch(
-          `*[_type == "solutionAr" && defined(slug.current)]{
+          `*[_type in ["solution", "solutionAr"] && defined(titleAr) && defined(slug.current)]{
             "name": titleAr,
             "slug": slug.current
           }`
