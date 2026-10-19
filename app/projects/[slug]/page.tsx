@@ -1,129 +1,161 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import {
-  ArrowRight,
-  Send,
-  Video,
-  Eye,
-  Boxes,
-  ArrowLeft
-} from "lucide-react";
+import type { Metadata } from "next";
+import { ArrowLeft, Video, Boxes, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../../components/Navbar";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { projectsDatabase } from "@/app/data/projects.En";
-import Footer from "../../../components/Footer";
 import { client } from "@/app/lib/sanity";
+import ProjectInteractiveMedia from "@/components/ProjectInteractiveMedia";
 
-export default function ProjectDetailPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
+export const revalidate = 60; // Instant Cache & ISR
 
-  const [project, setProject] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [sliderPosition, setSliderPosition] = useState(50);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    const fetchProject = async () => {
-      try {
-        const query = `*[_type == "projectEn" && slug.current == $slug][0]{
-          titleEn,
-          clientEn,
-          locationEn,
-          year,
-          coveredArea,
-          categoryEn,
-          scopeOfWorkEn,
-          engineeringChallengeEn,
-          tentsUsedEn,
-          specs {
-            netArea,
-            wallSystem,
-            roofFinish,
-            acSystem
-          },
-          "coverImage": image.asset->url,
-          videoUrl,
-          "galleryImages": projectGallery[]{
-            "url": asset->url,
-            "caption": "Field Documentation",
-            "type": "Structural VENUE"
-          },
-          comparison {
-            "before": beforeImage.asset->url,
-            "after": afterImage.asset->url
-          }
-        }`;
-
-        const data = await client.fetch(query, { slug });
-
-        if (data) {
-          setProject(data);
-        } else {
-          // البحث في الملف المحلي كـ Fallback
-          const localMatch = projectsDatabase.find(
-            (p) => p.slug.toLowerCase().trim() === slug.toLowerCase().trim()
-          );
-
-          if (localMatch) {
-            setProject({
-              titleEn: localMatch.title,
-              clientEn: localMatch.client,
-              locationEn: `${localMatch.city}, ${localMatch.country}`,
-              year: localMatch.year,
-              coveredArea: localMatch.area,
-              categoryEn: localMatch.category,
-              scopeOfWorkEn: localMatch.description,
-              engineeringChallengeEn: localMatch.challengeAndSolution,
-              tentsUsedEn: localMatch.relatedProducts.map(p => p.name),
-              specs: {
-                netArea: localMatch.area,
-                wallSystem: "Modular Aluminum Frame & Wall Panels",
-                roofFinish: "Dual-Layer Insulated PVC Membrane",
-                acSystem: "High-Capacity Centralized HVAC"
-              },
-              coverImage: localMatch.coverImage,
-              videoUrl: `https://www.youtube.com/watch?v=${localMatch.videoUrl}`,
-              galleryImages: localMatch.galleryImages,
-              comparison: localMatch.beforeAfter ? {
-                before: localMatch.beforeAfter.before,
-                after: localMatch.beforeAfter.after
-              } : null
-            });
-          }
+async function getProjectData(slug: string) {
+  try {
+    const query = `*[_type in ["projectEn", "projectsEn"] && slug.current == $slug][0]{
+      titleEn,
+      clientEn,
+      locationEn,
+      year,
+      coveredArea,
+      categoryEn,
+      scopeOfWorkEn,
+      engineeringChallengeEn,
+      tentsUsedEn,
+      specs {
+        netArea,
+        wallSystem,
+        roofFinish,
+        acSystem
+      },
+      "coverImage": coalesce(heroImageUrl, image.asset->url),
+      videoUrl,
+      "galleryImages": projectGallery[]{
+        "url": asset->url,
+        "caption": coalesce(caption, "Field Documentation"),
+        "type": coalesce(type, "Structural Venue")
+      },
+      comparison {
+        "before": beforeImage.asset->url,
+        "after": afterImage.asset->url
+      },
+      seo {
+        metaTitle,
+        metaDescription,
+        breadcrumbTitle,
+        canonicalUrl,
+        robots {
+          noIndex,
+          noFollow
         }
-      } catch (error) {
-        console.error("Error fetching project details:", error);
-      } finally {
-        setLoading(false);
       }
-    };
+    }`;
 
-    fetchProject();
-  }, [slug]);
+    const sanityItem = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
 
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between">
-        <Navbar />
-        <div className="text-center space-y-4 py-32">
-          <p className="text-[#df9d17] font-semibold animate-pulse">Loading project details from control panel...</p>
-        </div>
-        <Footer />
-      </main>
-    );
+    if (sanityItem) {
+      return {
+        titleEn: sanityItem.titleEn,
+        clientEn: sanityItem.clientEn || "Official Authority",
+        locationEn: sanityItem.locationEn || "UAE",
+        year: sanityItem.year || "2026",
+        coveredArea: sanityItem.coveredArea || "Custom Area",
+        categoryEn: sanityItem.categoryEn || "Landmark Venues",
+        scopeOfWorkEn: sanityItem.scopeOfWorkEn || "Turnkey engineering design, fabrication, and rapid on-site erection.",
+        engineeringChallengeEn: sanityItem.engineeringChallengeEn || "Engineered to withstand harsh desert weather conditions while maintaining rapid deployment standards.",
+        tentsUsedEn: sanityItem.tentsUsedEn || [],
+        specs: {
+          netArea: sanityItem.specs?.netArea || sanityItem.coveredArea || "As Specified",
+          wallSystem: sanityItem.specs?.wallSystem || "Modular Aluminum Frame & Wall Panels",
+          roofFinish: sanityItem.specs?.roofFinish || "Dual-Layer Insulated PVC Membrane",
+          acSystem: sanityItem.specs?.acSystem || "High-Capacity Centralized HVAC"
+        },
+        coverImage: sanityItem.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        videoUrl: sanityItem.videoUrl || "",
+        galleryImages: sanityItem.galleryImages || [],
+        comparison: sanityItem.comparison?.before && sanityItem.comparison?.after ? sanityItem.comparison : null,
+        seo: sanityItem.seo || null
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching English project from Sanity:", error);
   }
+
+  // Fallback to local dataset
+  const cleanSlug = slug.toLowerCase().trim();
+  const localMatch = projectsDatabase.find((p) => p.slug.toLowerCase().trim() === cleanSlug);
+
+  if (localMatch) {
+    return {
+      titleEn: localMatch.title,
+      clientEn: localMatch.client,
+      locationEn: `${localMatch.city}, ${localMatch.country}`,
+      year: localMatch.year,
+      coveredArea: localMatch.area,
+      categoryEn: localMatch.category,
+      scopeOfWorkEn: localMatch.description,
+      engineeringChallengeEn: localMatch.challengeAndSolution,
+      tentsUsedEn: localMatch.relatedProducts ? localMatch.relatedProducts.map((p: any) => p.name) : [],
+      specs: {
+        netArea: localMatch.area,
+        wallSystem: "Modular Aluminum Frame & Wall Panels",
+        roofFinish: "Dual-Layer Insulated PVC Membrane",
+        acSystem: "High-Capacity Centralized HVAC"
+      },
+      coverImage: localMatch.coverImage,
+      videoUrl: localMatch.videoUrl ? (localMatch.videoUrl.startsWith("http") ? localMatch.videoUrl : `https://www.youtube.com/watch?v=${localMatch.videoUrl}`) : "",
+      galleryImages: localMatch.galleryImages || [],
+      comparison: localMatch.beforeAfter ? {
+        before: localMatch.beforeAfter.before,
+        after: localMatch.beforeAfter.after
+      } : null,
+      seo: null
+    };
+  }
+
+  return null;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectData(slug);
+
+  if (!project) {
+    return { title: "Project Not Found | Bait Al Nokhada" };
+  }
+
+  const metaTitle = project.seo?.metaTitle || `${project.titleEn} | Engineering Case Study | Bait Al Nokhada`;
+  const metaDescription = project.seo?.metaDescription || project.scopeOfWorkEn?.slice(0, 160) || "Explore engineering landmark case studies and turnkey deployment by Bait Al Nokhada.";
+  const canonicalUrl = project.seo?.canonicalUrl || `https://baitalnokhada.com/projects/${slug}`;
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: !project.seo?.robots?.noIndex,
+      follow: !project.seo?.robots?.noFollow,
+    },
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      url: canonicalUrl,
+      images: [{ url: project.coverImage }],
+    },
+  };
+}
+
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = await getProjectData(slug);
 
   if (!project) {
     return (
       <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between">
         <Navbar />
-        <div className="text-center space-y-4 py-32">
+        <div className="text-center space-y-4 py-44">
           <h1 className="text-2xl font-black text-[#0B1220] font-heading">Project Not Found</h1>
           <Link href="/projects" className="text-[#df9d17] hover:underline font-bold">Back to All Projects</Link>
         </div>
@@ -132,16 +164,70 @@ export default function ProjectDetailPage() {
     );
   }
 
+  const currentUrl = `https://baitalnokhada.com/projects/${slug}`;
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://baitalnokhada.com/#organization",
+        "name": "Bait Al Nokhada Tents & Fabric Structures",
+        "url": "https://baitalnokhada.com",
+        "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${currentUrl}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://baitalnokhada.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://baitalnokhada.com/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.seo?.breadcrumbTitle || project.titleEn,
+            "item": currentUrl
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": `${currentUrl}#article`,
+        "headline": project.seo?.metaTitle || project.titleEn,
+        "description": project.seo?.metaDescription || project.scopeOfWorkEn,
+        "image": [project.coverImage],
+        "inLanguage": "en-US",
+        "mainEntityOfPage": currentUrl,
+        "publisher": {
+          "@id": "https://baitalnokhada.com/#organization"
+        }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <Navbar />
 
       {/* 1. Hero Banner */}
       <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
-            src={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
-            alt={project.titleEn || "Project"}
+            src={project.coverImage}
+            alt={project.titleEn}
             fill
             priority
             sizes="100vw"
@@ -235,7 +321,6 @@ export default function ProjectDetailPage() {
               </p>
             </div>
 
-            {/* Related Tents / Structures Used */}
             {project.tentsUsedEn && project.tentsUsedEn.length > 0 && (
               <div className="space-y-3">
                 <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Structures Implemented</h4>
@@ -291,7 +376,7 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* 4. Rich Media & Video Gallery */}
+      {/* 4. Rich Media & Universal Video Player */}
       <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto space-y-12 border-b border-slate-200/60">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Visual & Field Documentation</span>
@@ -301,7 +386,7 @@ export default function ProjectDetailPage() {
           </p>
         </div>
 
-        {/* Video Tour */}
+        {/* Universal Video Player: S3 & YouTube */}
         {project.videoUrl && (
           <div className="max-w-4xl mx-auto space-y-4">
             <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] justify-start">
@@ -309,124 +394,45 @@ export default function ProjectDetailPage() {
               <span>Operational Video & Timelapse Tour</span>
             </div>
             <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-              <iframe
-                className="w-full h-full"
-                src={project.videoUrl.replace("watch?v=", "embed/")}
-                title={project.titleEn}
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Photo Grid */}
-        {project.galleryImages && project.galleryImages.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-            {project.galleryImages.map((img: any, idx: number) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(img.url)}
-                className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#df9d17] transition-all shadow-xs hover:shadow-md bg-slate-100"
-              >
-                <Image
-                  src={img.url}
-                  alt={img.caption}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+              {project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be") ? (
+                <iframe
+                  className="w-full h-full"
+                  src={
+                    project.videoUrl.includes("embed/")
+                      ? project.videoUrl
+                      : `https://www.youtube.com/embed/${
+                          project.videoUrl.split("v=")[1]?.split("&")[0] ||
+                          project.videoUrl.split("/").pop()?.split("?")[0]
+                        }?rel=0&modestbranding=1`
+                  }
+                  title={project.titleEn}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-
-                <div className="absolute top-4 left-4">
-                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-white/95 text-[#df9d17] border border-slate-200/80 shadow-xs">
-                    {img.type}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                  <p className="text-xs font-semibold text-white leading-snug">{img.caption}</p>
-                  <div className="w-8 h-8 rounded-full bg-[#df9d17] text-white flex items-center justify-center shrink-0 shadow-md group-hover:bg-black transition-colors">
-                    <Eye className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Before / After Slider */}
-        {project.comparison?.before && project.comparison?.after && (
-          <div className="pt-10 space-y-6 max-w-4xl mx-auto">
-            <div className="text-center space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Site Transformation</span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0B1220] font-heading">Before and After Rapid Deployment</h3>
-            </div>
-
-            <div className="relative h-80 sm:h-96 w-full rounded-3xl overflow-hidden border border-slate-200/80 select-none shadow-md">
-              <Image
-                src={project.comparison.after}
-                alt="After Delivery"
-                fill
-                className="object-cover"
-              />
-              <span className="absolute top-4 right-4 px-3 py-1 rounded-lg bg-white/95 text-xs font-mono font-bold text-[#df9d17] border border-slate-200/80 shadow-xs z-10">
-                After Completion
-              </span>
-
-              <div
-                className="absolute inset-0 overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
-              >
-                <Image
-                  src={project.comparison.before}
-                  alt="Before Construction"
-                  fill
-                  className="object-cover max-w-none"
-                  style={{ width: "100%" }}
-                />
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/80 text-xs font-mono font-bold text-white z-10">
-                  Bare Site Ground
-                </span>
-              </div>
-
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPosition}
-                onChange={(e) => setSliderPosition(Number(e.target.value))}
-                className="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30"
-              />
-
-              <div
-                className="absolute top-0 bottom-0 w-1 bg-[#df9d17] pointer-events-none z-20 shadow-[0_0_10px_#df9d17]"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#df9d17] text-white font-bold text-xs flex items-center justify-center shadow-lg">
-                  ↔
-                </div>
-              </div>
+              ) : (
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                >
+                  <source
+                    src={project.videoUrl}
+                    type={project.videoUrl.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
           </div>
         )}
+
+        {/* Interactive Gallery & Comparison Slider */}
+        <ProjectInteractiveMedia
+          galleryImages={project.galleryImages}
+          comparison={project.comparison}
+        />
       </section>
-
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div
-          onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-6 cursor-zoom-out"
-        >
-          <div className="relative max-w-5xl max-h-[85vh] w-full h-full">
-            <Image
-              src={selectedImage}
-              alt="Expanded view"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-      )}
 
       {/* Bottom CTA */}
       <section className="pb-24 pt-6 px-6 max-w-5xl mx-auto">
