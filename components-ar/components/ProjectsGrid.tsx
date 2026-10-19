@@ -64,7 +64,7 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
               >
-                {/* Media Container: مشغل فيديو هجين يدعم ملفات S3 ويوتيوب مباشرة */}
+                {/* Media Container: نفس الأبعاد العريضة ومشغل الفيديو التفاعلي المدمج */}
                 <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
                   {isPlaying && (project.videoUrl || youtubeId) ? (
                     <div className="relative w-full h-full">
@@ -130,7 +130,7 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                         {arData.category || project.category}
                       </span>
 
-                      {/* زر التشغيل الذهبي الكبير بنفس حجم وموضع الإنجليزي */}
+                      {/* زر التشغيل الذهبي */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-20 h-20 rounded-full bg-[#df9d17] hover:bg-black text-white flex items-center justify-center shadow-xl shadow-[#df9d17]/40 group-hover:scale-110 transition-all duration-300">
                           <Play className="w-8 h-8 fill-current -translate-x-0.5" />
