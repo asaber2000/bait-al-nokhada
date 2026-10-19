@@ -64,21 +64,47 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
               >
-                {/* Media Container: نفس الأبعاد العريضة ومشغل الفيديو التفاعلي المدمج */}
+                {/* Media Container: مشغل فيديو هجين يدعم ملفات S3 ويوتيوب مباشرة */}
                 <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
-                  {isPlaying && youtubeId ? (
+                  {isPlaying && (project.videoUrl || youtubeId) ? (
                     <div className="relative w-full h-full">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
-                        title={arData.title || project.title}
-                        className="w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                      {project.videoUrl && (project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be")) ? (
+                        <iframe
+                          src={
+                            project.videoUrl.includes("embed/")
+                              ? `${project.videoUrl}?autoplay=1&rel=0`
+                              : `https://www.youtube.com/embed/${
+                                  project.videoUrl.split("v=")[1]?.split("&")[0] ||
+                                  project.videoUrl.split("/").pop()?.split("?")[0]
+                                }?autoplay=1&rel=0&modestbranding=1`
+                          }
+                          title={arData.title || project.title}
+                          className="w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <video
+                          className="w-full h-full object-cover"
+                          controls
+                          autoPlay
+                          playsInline
+                        >
+                          <source
+                            src={project.videoUrl}
+                            type={project.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+                          />
+                          متصفحك لا يدعم تشغيل هذا الفيديو.
+                        </video>
+                      )}
+
                       {/* زر إغلاق الفيديو */}
                       <button
-                        onClick={() => setPlayingVideoSlug(null)}
-                        className="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#df9d17] transition-all shadow-xl cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setPlayingVideoSlug(null);
+                        }}
+                        className="absolute top-4 left-4 z-30 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#df9d17] transition-all shadow-xl cursor-pointer"
                         aria-label="إغلاق الفيديو"
                       >
                         <X className="w-5 h-5" />
