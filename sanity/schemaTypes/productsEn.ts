@@ -1,4 +1,4 @@
-// كائن موحد لخصائص ووصف السيو الخاص بالصورة
+// Unified SEO image fields
 const imageWithSeoFields = {
   type: 'image',
   options: { hotspot: true },
@@ -55,10 +55,9 @@ export const productsEn = {
       type: 'string' 
     },
     { 
-      name: 'summaryAr', // حافظنا على توافق التسمية أو summaryEn
-      nameEn: 'summaryEn',
+      name: 'summaryEn', 
       title: 'Short Summary', 
-      type: 'text',
+      type: 'text', 
       rows: 2 
     },
 
