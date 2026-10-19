@@ -42,6 +42,16 @@ async function getProjectData(slug: string) {
         "before": beforeImage.asset->url,
         "after": afterImage.asset->url
       }
+        seo {
+        metaTitle,
+        metaDescription,
+        breadcrumbTitle,
+        canonicalUrl,
+        robots {
+          noIndex,
+          noFollow
+        }
+      }
     }`;
 
     const sanityItem = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
@@ -66,7 +76,8 @@ async function getProjectData(slug: string) {
         coverImage: sanityItem.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
         videoUrl: sanityItem.videoUrlAr || sanityItem.videoUrl || sanityItem.youtubeUrl || "",
         galleryImages: sanityItem.galleryImages || [],
-        comparison: sanityItem.comparison?.before && sanityItem.comparison?.after ? sanityItem.comparison : null
+        comparison: sanityItem.comparison?.before && sanityItem.comparison?.after ? sanityItem.comparison : null,
+        seo: sanityItem.seo || null
       };
     }
   } catch (error) {
@@ -107,7 +118,7 @@ async function getProjectData(slug: string) {
   return null;
 }
 
-// توليد الميتا داتا والـ SEO ديناميكياً لجوجل
+// توليد الميتا داتا والـ SEO ديناميكياً بناءً على ما يُكتب في Sanity
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectData(slug);
@@ -116,12 +127,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "المشروع غير موجود | بيت النوخذة" };
   }
 
+  const metaTitle = project.seo?.metaTitle || `${project.titleAr} | دراسة حالة وتنفيذ ميداني | بيت النوخذة`;
+  const metaDescription = project.seo?.metaDescription || project.scopeOfWorkAr?.slice(0, 160) || "استكشف تفاصيل المشروع الهندسي ومراحل التنفيذ من بيت النوخذة.";
+  const canonicalUrl = project.seo?.canonicalUrl || `https://baitalnokhada.com/ar/projects/${slug}`;
+
   return {
-    title: `${project.titleAr} | دراسة حالة وتنفيذ ميداني | بيت النوخذة`,
-    description: project.scopeOfWorkAr?.slice(0, 160) || "استكشف تفاصيل المشروع الهندسي ومراحل التنفيذ من بيت النوخذة.",
+    title: metaTitle,
+    description: metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: !project.seo?.robots?.noIndex,
+      follow: !project.seo?.robots?.noFollow,
+    },
     openGraph: {
-      title: project.titleAr,
-      description: project.scopeOfWorkAr,
+      title: metaTitle,
+      description: metaDescription,
+      url: canonicalUrl,
       images: [{ url: project.coverImage }],
     },
   };
@@ -144,25 +167,54 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
     );
   }
 
-  // Schema Markup (Case Study / Article)
+  const currentUrl = `https://baitalnokhada.com/ar/projects/${slug}`;
   const projectSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": project.titleAr,
-    "image": [project.coverImage],
-    "description": project.scopeOfWorkAr,
-    "author": {
-      "@type": "Organization",
-      "name": "بيت النوخذة للخيام"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "بيت النوخذة للخيام",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://baitalnokhada.com/#organization",
+        "name": "بيت النوخذة للخيام والمظلات",
+        "url": "https://baitalnokhada.com",
+        "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${currentUrl}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": "https://baitalnokhada.com/ar"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "المشاريع المنفذة",
+            "item": "https://baitalnokhada.com/ar/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.seo?.breadcrumbTitle || project.titleAr,
+            "item": currentUrl
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": `${currentUrl}#article`,
+        "headline": project.seo?.metaTitle || project.titleAr,
+        "description": project.seo?.metaDescription || project.scopeOfWorkAr,
+        "image": [project.coverImage],
+        "inLanguage": "ar-AE",
+        "mainEntityOfPage": currentUrl,
+        "publisher": {
+          "@id": "https://baitalnokhada.com/#organization"
+        }
       }
-    }
+    ]
   };
 
   return (
