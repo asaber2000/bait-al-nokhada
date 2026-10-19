@@ -5,6 +5,8 @@ import { projectsDatabase } from "../data/projects.En";
 import { client } from "@/app/lib/sanity";
 import ProjectsGrid from "@/components/ProjectsGrid";
 
+export const revalidate = 60; // Instant Cache & ISR
+
 const filterTabs = [
   "ALL PROJECTS",
   "EXHIBITIONS & SUMMITS",
@@ -14,7 +16,7 @@ const filterTabs = [
 
 async function getSanityEnglishProjects() {
   try {
-    const query = `*[_type == "projectEn" && defined(titleEn)] | order(_createdAt desc){
+    const query = `*[_type in ["projectEn", "projectsEn"] && defined(titleEn)] | order(_createdAt desc){
       titleEn,
       clientEn,
       locationEn,
@@ -23,11 +25,11 @@ async function getSanityEnglishProjects() {
       categoryEn,
       scopeOfWorkEn,
       "slug": slug.current,
-"coverImage": coalesce(heroImageUrl, image.asset->url),
-videoUrl
+      "coverImage": coalesce(heroImageUrl, image.asset->url),
+      videoUrl
     }`;
 
-    const sanityData = await client.fetch(query, {}, { cache: 'no-store' });
+    const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
     return (sanityData || []).map((item: any) => {
       const locationParts = (item.locationEn || "Dubai, UAE").split(",");
@@ -55,7 +57,11 @@ videoUrl
 
 export default async function ProjectsCatalogPage() {
   const sanityProjects = await getSanityEnglishProjects();
-  const allProjects = [...sanityProjects, ...projectsDatabase];
+
+  // Deduplicate against local dataset by slug
+  const sanitySlugs = new Set(sanityProjects.map((p: any) => p.slug));
+  const remainingLocal = projectsDatabase.filter((lp: any) => !sanitySlugs.has(lp.slug));
+  const allProjects = [...sanityProjects, ...remainingLocal];
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
@@ -92,4 +98,4 @@ export default async function ProjectsCatalogPage() {
       <Footer />
     </main>
   );
-} 
+}
