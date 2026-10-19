@@ -41,7 +41,7 @@ async function getProjectData(slug: string) {
       comparison {
         "before": beforeImage.asset->url,
         "after": afterImage.asset->url
-      }
+      },
         seo {
         metaTitle,
         metaDescription,
@@ -111,7 +111,8 @@ async function getProjectData(slug: string) {
       comparison: localMatch.beforeAfter ? {
         before: localMatch.beforeAfter.before,
         after: localMatch.beforeAfter.after
-      } : null
+      } : null,
+      seo: null
     };
   }
 
