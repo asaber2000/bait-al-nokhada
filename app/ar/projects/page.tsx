@@ -26,7 +26,8 @@ async function getSanityArabicProjects() {
       categoryAr,
       scopeOfWorkAr,
       "slug": slug.current,
-      "coverImage": image.asset->url
+      "coverImage": image.asset->url,
+      videoUrl
     }`;
 
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
@@ -39,6 +40,7 @@ async function getSanityArabicProjects() {
       return {
         slug: item.slug,
         coverImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        videoUrl: item.videoUrl || null, // <--- أضف هذا السطر هنا
         year: item.year || "2026",
         category: item.categoryAr || "المجالس الملكية وVIP",
         title: item.titleAr,
