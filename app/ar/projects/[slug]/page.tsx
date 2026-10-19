@@ -1,130 +1,141 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import {
-  ArrowRight,
-  Send,
-  Video,
-  Eye,
-  Boxes,
-  ArrowLeft
-} from "lucide-react";
+import type { Metadata } from "next";
+import { ArrowRight, Video, Boxes } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
-import { projectsDatabase } from "@/app/data/projects.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
+import { projectsDatabase } from "@/app/data/projects.Ar";
 import { client } from "@/app/lib/sanity";
+import ProjectInteractiveMedia from "@/components-ar/components/ProjectInteractiveMedia";
 
-export default function ArabicProjectDetailPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
+export const revalidate = 60; // كاش سريع جداً ومحدث كل دقيقة
 
-  const [project, setProject] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [sliderPosition, setSliderPosition] = useState(50);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    const fetchProject = async () => {
-      try {
-        // 1. نبحث أولاً في الداتا المحلية (Static) لضمان سرعة عملها للمشاريع القديمة
-        const cleanSlug = slug.toLowerCase().trim();
-        const localMatch = projectsDatabase.find(
-          (p) => p.slug.toLowerCase().trim() === cleanSlug
-        );
-
-        if (localMatch) {
-          setProject({
-            titleAr: localMatch.title,
-            clientAr: localMatch.client,
-            locationAr: `${localMatch.city}, ${localMatch.country}`,
-            year: localMatch.year,
-            coveredArea: localMatch.area,
-            categoryAr: localMatch.category,
-            scopeOfWorkAr: localMatch.description,
-            engineeringChallengeAr: localMatch.challengeAndSolution,
-            tentsUsedAr: localMatch.relatedProducts.map(p => p.name),
-            specs: {
-              netArea: localMatch.area,
-              wallSystem: "هياكل ألمنيوم معيارية وألواح حماية",
-              roofFinish: "أقمشة PVC مزدوجة الطبقات عازلة",
-              acSystem: "تكييف مركزي عالي الكفاءة"
-            },
-            coverImage: localMatch.coverImage,
-            videoUrl: `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}`,
-            galleryImages: localMatch.galleryImages,
-            comparison: localMatch.beforeAfter ? {
-              before: localMatch.beforeAfter.before,
-              after: localMatch.beforeAfter.after
-            } : null
-          });
-          setLoading(false);
-          return;
-        }
-
-        // 2. لو لم تكن موجودة محلياً، نبحث عنها في سانتي (مع تعديل الـ _type إلى projectAr أو project حسب المتاح)
-        const query = `*[_type in ["project", "projectAr"] && slug.current == $slug][0]{
-          titleAr,
-          clientAr,
-          locationAr,
-          year,
-          coveredArea,
-          categoryAr,
-          scopeOfWorkAr,
-          engineeringChallengeAr,
-          tentsUsedAr,
-          specs {
-            netArea,
-            wallSystem,
-            roofFinish,
-            acSystem
-          },
-          "coverImage": image.asset->url,
-          videoUrl,
-          "galleryImages": projectGallery[]{
-            "url": asset->url,
-            "caption": "توثيق ميداني",
-            "type": "هيكل إنشائي"
-          },
-          comparison {
-            "before": beforeImage.asset->url,
-            "after": afterImage.asset->url
-          }
-        }`;
-
-        const data = await client.fetch(query, { slug });
-        setProject(data);
-      } catch (error) {
-        console.error("Error fetching project details:", error);
-      } finally {
-        setLoading(false);
+// دالة جلب المشروع من سانتي أو البيانات المحلية كـ Server Component
+async function getProjectData(slug: string) {
+  try {
+    const query = `*[_type in ["project", "projectAr", "projectsAr"] && slug.current == $slug][0]{
+      titleAr,
+      clientAr,
+      locationAr,
+      year,
+      coveredArea,
+      categoryAr,
+      scopeOfWorkAr,
+      engineeringChallengeAr,
+      tentsUsedAr,
+      specs {
+        netArea,
+        wallSystem,
+        roofFinish,
+        acSystem
+      },
+      "coverImage": image.asset->url,
+      videoUrl,
+      videoUrlAr,
+      youtubeUrl,
+      "galleryImages": projectGallery[]{
+        "url": asset->url,
+        "caption": coalesce(caption, "توثيق ميداني"),
+        "type": coalesce(type, "هيكل إنشائي")
+      },
+      comparison {
+        "before": beforeImage.asset->url,
+        "after": afterImage.asset->url
       }
-    };
+    }`;
 
-    fetchProject();
-  }, [slug]);
+    const sanityItem = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
 
-  if (loading) {
-    return (
-      <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
-        <Navbar />
-        <div className="text-center space-y-4 py-32">
-          <p className="text-[#df9d17] font-semibold animate-pulse">جاري تحميل تفاصيل المشروع من لوحة التحكم...</p>
-        </div>
-        <Footer />
-      </main>
-    );
+    if (sanityItem) {
+      return {
+        titleAr: sanityItem.titleAr,
+        clientAr: sanityItem.clientAr || "جهة معتمدة",
+        locationAr: sanityItem.locationAr || "الإمارات",
+        year: sanityItem.year || "2026",
+        coveredArea: sanityItem.coveredArea || "مساحة مخصصة",
+        categoryAr: sanityItem.categoryAr || "مشاريع معمارية كبرى",
+        scopeOfWorkAr: sanityItem.scopeOfWorkAr || "توريد وتركيب وتسليم تسليم مفتاح.",
+        engineeringChallengeAr: sanityItem.engineeringChallengeAr || "تم تنفيذ المشروع وفق أعلى المعايير الهندسية ومعايير السلامة العالمية.",
+        tentsUsedAr: sanityItem.tentsUsedAr || [],
+        specs: {
+          netArea: sanityItem.specs?.netArea || sanityItem.coveredArea || "حسب المخطط",
+          wallSystem: sanityItem.specs?.wallSystem || "هياكل ألمنيوم معيارية وألواح حماية",
+          roofFinish: sanityItem.specs?.roofFinish || "أقمشة PVC مزدوجة الطبقات عازلة",
+          acSystem: sanityItem.specs?.acSystem || "أنظمة تكييف متكاملة"
+        },
+        coverImage: sanityItem.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        videoUrl: sanityItem.videoUrlAr || sanityItem.videoUrl || sanityItem.youtubeUrl || "",
+        galleryImages: sanityItem.galleryImages || [],
+        comparison: sanityItem.comparison?.before && sanityItem.comparison?.after ? sanityItem.comparison : null
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching project from Sanity:", error);
   }
+
+  // البحث في المحلي عند عدم العثور عليه في سانتي
+  const cleanSlug = slug.toLowerCase().trim();
+  const localMatch = projectsDatabase.find((p) => p.slug.toLowerCase().trim() === cleanSlug);
+
+  if (localMatch) {
+    return {
+      titleAr: localMatch.title,
+      clientAr: localMatch.client,
+      locationAr: `${localMatch.city}، ${localMatch.country}`,
+      year: localMatch.year,
+      coveredArea: localMatch.area,
+      categoryAr: localMatch.category,
+      scopeOfWorkAr: localMatch.description,
+      engineeringChallengeAr: localMatch.challengeAndSolution,
+      tentsUsedAr: localMatch.relatedProducts ? localMatch.relatedProducts.map((p: any) => p.name) : [],
+      specs: {
+        netArea: localMatch.area,
+        wallSystem: "هياكل ألمنيوم معيارية وألواح حماية",
+        roofFinish: "أقمشة PVC مزدوجة الطبقات عازلة",
+        acSystem: "تكييف مركزي عالي الكفاءة"
+      },
+      coverImage: localMatch.coverImage,
+      videoUrl: localMatch.youtubeVideoId ? `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}` : "",
+      galleryImages: localMatch.galleryImages || [],
+      comparison: localMatch.beforeAfter ? {
+        before: localMatch.beforeAfter.before,
+        after: localMatch.beforeAfter.after
+      } : null
+    };
+  }
+
+  return null;
+}
+
+// توليد الميتا داتا والـ SEO ديناميكياً لجوجل
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectData(slug);
+
+  if (!project) {
+    return { title: "المشروع غير موجود | بيت النوخذة" };
+  }
+
+  return {
+    title: `${project.titleAr} | دراسة حالة وتنفيذ ميداني | بيت النوخذة`,
+    description: project.scopeOfWorkAr?.slice(0, 160) || "استكشف تفاصيل المشروع الهندسي ومراحل التنفيذ من بيت النوخذة.",
+    openGraph: {
+      title: project.titleAr,
+      description: project.scopeOfWorkAr,
+      images: [{ url: project.coverImage }],
+    },
+  };
+}
+
+export default async function ArabicProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = await getProjectData(slug);
 
   if (!project) {
     return (
       <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
         <Navbar />
-        <div className="text-center space-y-4 py-32">
+        <div className="text-center space-y-4 py-44">
           <h1 className="text-2xl font-black text-[#0B1220] font-heading">المشروع غير موجود</h1>
           <Link href="/ar/projects" className="text-[#df9d17] hover:underline font-bold">العودة لكافة المشاريع المنفذة</Link>
         </div>
@@ -133,16 +144,41 @@ export default function ArabicProjectDetailPage() {
     );
   }
 
+  // Schema Markup (Case Study / Article)
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": project.titleAr,
+    "image": [project.coverImage],
+    "description": project.scopeOfWorkAr,
+    "author": {
+      "@type": "Organization",
+      "name": "بيت النوخذة للخيام"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "بيت النوخذة للخيام",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+      }
+    }
+  };
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <Navbar />
 
       {/* 1. Hero Banner */}
       <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
-            src={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
-            alt={project.titleAr || "Project"}
+            src={project.coverImage}
+            alt={project.titleAr}
             fill
             priority
             sizes="100vw"
@@ -292,7 +328,7 @@ export default function ArabicProjectDetailPage() {
         </div>
       </section>
 
-      {/* 4. Rich Media & Video Gallery */}
+      {/* 4. Rich Media & Universal Video Player */}
       <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto space-y-12 border-b border-slate-200/60">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">التوثيق الميداني والمرئي</span>
@@ -302,7 +338,7 @@ export default function ArabicProjectDetailPage() {
           </p>
         </div>
 
-        {/* Video Tour */}
+        {/* Universal Video Player: يدعم S3 ويوتيوب تلقائياً */}
         {project.videoUrl && (
           <div className="max-w-4xl mx-auto space-y-4">
             <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] justify-start">
@@ -310,124 +346,45 @@ export default function ArabicProjectDetailPage() {
               <span>فيديو التايم لابس والتوثيق التشغيلي للحدث</span>
             </div>
             <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-              <iframe
-                className="w-full h-full"
-                src={project.videoUrl.replace("watch?v=", "embed/")}
-                title={project.titleAr}
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Photo Grid */}
-        {project.galleryImages && project.galleryImages.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-            {project.galleryImages.map((img: any, idx: number) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(img.url)}
-                className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#df9d17] transition-all shadow-xs hover:shadow-md bg-slate-100"
-              >
-                <Image
-                  src={img.url}
-                  alt={img.caption}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+              {project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be") ? (
+                <iframe
+                  className="w-full h-full"
+                  src={
+                    project.videoUrl.includes("embed/")
+                      ? project.videoUrl
+                      : `https://www.youtube.com/embed/${
+                          project.videoUrl.split("v=")[1]?.split("&")[0] ||
+                          project.videoUrl.split("/").pop()?.split("?")[0]
+                        }?rel=0&modestbranding=1`
+                  }
+                  title={project.titleAr}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-
-                <div className="absolute top-4 right-4">
-                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-white/95 text-[#df9d17] border border-slate-200/80 shadow-xs">
-                    {img.type}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                  <p className="text-xs font-semibold text-white leading-snug">{img.caption}</p>
-                  <div className="w-8 h-8 rounded-full bg-[#df9d17] text-white flex items-center justify-center shrink-0 shadow-md group-hover:bg-black transition-colors">
-                    <Eye className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Before / After Slider */}
-        {project.comparison?.before && project.comparison?.after && (
-          <div className="pt-10 space-y-6 max-w-4xl mx-auto">
-            <div className="text-center space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">التحول الإنشائي للموقع</span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0B1220] font-heading">مقارنة الموقع قبل وبعد سرعة التركيب والتسليم</h3>
-            </div>
-
-            <div className="relative h-80 sm:h-96 w-full rounded-3xl overflow-hidden border border-slate-200/80 select-none shadow-md">
-              <Image
-                src={project.comparison.after}
-                alt="بعد الإنجاز والتشغيل"
-                fill
-                className="object-cover"
-              />
-              <span className="absolute top-4 right-4 px-3 py-1 rounded-lg bg-white/95 text-xs font-mono font-bold text-[#df9d17] border border-slate-200/80 shadow-xs z-10">
-                الهيكل بعد اكتمال التنفيذ
-              </span>
-
-              <div
-                className="absolute inset-0 overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
-              >
-                <Image
-                  src={project.comparison.before}
-                  alt="أرض الموقع قبل التركيب"
-                  fill
-                  className="object-cover max-w-none"
-                  style={{ width: "100%" }}
-                />
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/80 text-xs font-mono font-bold text-white z-10">
-                  أرض الموقع قبل البناء
-                </span>
-              </div>
-
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPosition}
-                onChange={(e) => setSliderPosition(Number(e.target.value))}
-                className="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30"
-              />
-
-              <div
-                className="absolute top-0 bottom-0 w-1 bg-[#df9d17] pointer-events-none z-20 shadow-[0_0_10px_#df9d17]"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#df9d17] text-white font-bold text-xs flex items-center justify-center shadow-lg">
-                  ↔
-                </div>
-              </div>
+              ) : (
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                >
+                  <source
+                    src={project.videoUrl}
+                    type={project.videoUrl.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+                  />
+                  متصفحك لا يدعم تشغيل هذا الفيديو.
+                </video>
+              )}
             </div>
           </div>
         )}
+
+        {/* المكون التفاعلي للصور والمقارنة */}
+        <ProjectInteractiveMedia
+          galleryImages={project.galleryImages}
+          comparison={project.comparison}
+        />
       </section>
-
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div
-          onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-6 cursor-zoom-out"
-        >
-          <div className="relative max-w-5xl max-h-[85vh] w-full h-full">
-            <Image
-              src={selectedImage}
-              alt="عرض موسع للمشروع"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-      )}
 
       {/* Bottom CTA */}
       <section className="pb-24 pt-6 px-6 max-w-5xl mx-auto">
@@ -447,10 +404,9 @@ export default function ArabicProjectDetailPage() {
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/ar/contact"
-              className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
+              className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all"
             >
               <span>طلب استشارة فنية وهندسية</span>
-              <Send className="w-4 h-4 rotate-180" />
             </Link>
           </div>
         </div>

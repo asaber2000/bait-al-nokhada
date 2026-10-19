@@ -13,9 +13,11 @@ const filterTabs = [
   "المجالس الملكية وVIP"
 ];
 
+export const revalidate = 60; // تفعيل الكاش اللحظي فائق السرعة
+
 async function getSanityArabicProjects() {
   try {
-    const query = `*[_type == "project" && defined(titleAr)] | order(_createdAt desc){
+    const query = `*[_type in ["project", "projectAr", "projectsAr"] && defined(titleAr)] | order(_createdAt desc){
       titleAr,
       clientAr,
       locationAr,
@@ -27,9 +29,8 @@ async function getSanityArabicProjects() {
       "coverImage": image.asset->url
     }`;
 
-    const sanityData = await client.fetch(query, {}, { cache: 'no-store' });
+    const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
-    // مطابقة هيكلة البيانات لتكون مسطحة ومباشرة تماماً مثل النسخة الإنجليزية
     return (sanityData || []).map((item: any) => {
       const locationParts = (item.locationAr || "دبي، الإمارات").split("،");
       const city = locationParts[0]?.trim() || "دبي";
@@ -55,7 +56,11 @@ async function getSanityArabicProjects() {
 
 export default async function ArabicProjectsCatalogPage() {
   const sanityProjects = await getSanityArabicProjects();
-  const allProjects = [...sanityProjects, ...projectsDatabase];
+  
+  // فلترة المحلي لمنع تكرار الكروت مع مشاريع سانتي
+  const sanitySlugs = new Set(sanityProjects.map((p: any) => p.slug));
+  const remainingLocal = projectsDatabase.filter((lp: any) => !sanitySlugs.has(lp.slug));
+  const allProjects = [...sanityProjects, ...remainingLocal];
 
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white text-right font-sans">
