@@ -1,4 +1,4 @@
-// كائن موحد لخصائص ووصف السيو الخاص بالصور
+// كائن موحد لخصائص ووصف السيو الخاص بالصورة
 const imageWithSeoFields = {
   type: 'image',
   options: { hotspot: true },
@@ -19,179 +19,144 @@ const imageWithSeoFields = {
       type: 'string',
     },
     {
-      name: 'type',
-      title: 'نوع العنصر (مثال: هيكل إنشائي / تشطيب داخلي / واجهة زجاجية)',
-      type: 'string',
+      name: 'description',
+      title: 'Description (وصف الصورة التفصيلي)',
+      type: 'text',
+      rows: 2,
     },
   ],
 };
 
-export const projects = {
-  name: 'project',
-  title: 'Projects (المشاريع)',
+export const products = {
+  name: 'product',
+  title: 'Products (المنتجات)',
   type: 'document',
   fields: [
     // --- 1. معلومات الروابط والعنوان الأساسي ---
-    {
-      name: 'slug',
-      title: 'URL Slug (الرابط الدائم للمشروع)',
-      type: 'slug',
-      options: { source: 'titleAr', maxLength: 96 },
-      validation: (Rule: any) => Rule.required(),
+    { 
+      name: 'slug', 
+      title: 'URL Slug (الرابط الدائم للمنتج)', 
+      type: 'slug', 
+      options: { source: 'titleAr', maxLength: 96 } 
     },
-    {
-      name: 'titleAr',
-      title: 'عنوان المشروع بالعربية (مثل: مهرجان العين للفروسية)',
-      type: 'string',
-      validation: (Rule: any) => Rule.required(),
-    },
-
-    // --- 2. صورة الغلاف الرئيسية ---
-    {
-      name: 'image',
-      title: 'صورة الغلاف الرئيسية للمشروع (Cover Image)',
-      ...imageWithSeoFields,
+    { name: 'titleAr', title: 'اسم المنتج (بالعربية - مثل: Pyramid Tent)', type: 'string' },
+    
+    // --- صورة الغلاف مع حقول السيو الكاملة ---
+    { 
+      name: 'coverImage', 
+      title: 'صورة الغلاف الرئيسية (Hero Image)', 
+      ...imageWithSeoFields 
     },
 
-    // --- 3. بيانات الهوية والتنفيذ ---
-    {
-      name: 'clientAr',
-      title: 'اسم العميل / الجهة المنظمة (مثل: نادي العين للفروسية)',
-      type: 'string',
+    // --- 2. التصنيف والوصف المختصر ---
+    { 
+      name: 'categoryAr', 
+      title: 'التصنيف (مثال: Luxury & Hospitality)', 
+      type: 'string' 
     },
-    {
-      name: 'locationAr',
-      title: 'موقع المشروع (مثل: العين، أبوظبي / الرياض، السعودية)',
-      type: 'string',
-    },
-    {
-      name: 'year',
-      title: 'سنة الإنجاز والتسليم (مثل: 2026)',
-      type: 'string',
-    },
-    {
-      name: 'coveredArea',
-      title: 'إجمالي المساحة المغطاة (مثل: 3,200 م²)',
-      type: 'string',
-    },
-    {
-      name: 'categoryAr',
-      title: 'تصنيف المشروع',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'المعارض والقمم الدولية', value: 'المعارض والقمم الدولية' },
-          { title: 'المنشآت والملاعب الرياضية', value: 'المنشآت والملاعب الرياضية' },
-          { title: 'المجالس الملكية وVIP', value: 'المجالس الملكية وVIP' },
-        ],
-      },
-    },
-
-    // --- 4. التفاصيل الهندسية ونطاق العمل ---
-    {
-      name: 'scopeOfWorkAr',
-      title: 'نطاق العمل ومراحل التنفيذ (Scope of Work)',
+    { 
+      name: 'summaryAr', 
+      title: 'الوصف المختصر تحت العنوان', 
       type: 'text',
-      rows: 4,
+      rows: 2 
     },
+
+    // --- 3. شريط البادجات العلوي ---
     {
-      name: 'engineeringChallengeAr',
-      title: 'التحدي الهندسي والحل الميداني المنفذ',
+      name: 'topBadges',
+      title: 'البادجات العلوية البارزة',
+      type: 'array',
+      of: [{ type: 'string' }]
+    },
+
+    // --- 4. النبذة التقنية ---
+    { name: 'overviewTitleAr', title: 'عنوان القسم التقني', type: 'string' },
+    { 
+      name: 'overviewDescAr', 
+      title: 'النص التفصيلي للقسم التقني', 
       type: 'text',
-      rows: 3,
+      rows: 4 
     },
+
+    // --- 5. المميزات الهندسية ---
     {
-      name: 'tentsUsedAr',
-      title: 'الخيام والهياكل المنفذة في المشروع',
+      name: 'engineeredAdvantages',
+      title: 'قائمة المميزات الهندسية والشهادات (نقطة بنقطة)',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{ type: 'string' }]
     },
 
-    // --- 5. جدول المواصفات الهندسية المعتمدة ---
+    // --- 6. جدول المقاسات وسعات الضيوف ---
     {
-      name: 'specs',
-      title: 'جدول المواصفات الفنية والهندسية',
-      type: 'object',
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        { name: 'netArea', title: 'المساحة الصافية', type: 'string' },
-        { name: 'wallSystem', title: 'نظام الجدران والألواح', type: 'string' },
-        { name: 'roofFinish', title: 'تشطيب السقف والأغشية', type: 'string' },
-        { name: 'acSystem', title: 'نظام التكييف والعزل الحراري', type: 'string' },
-      ],
-    },
-
-    // --- 6. التوثيق المرئي والفيديو الشامل (S3 / YouTube) ---
-    {
-      name: 'videoUrl',
-      title: 'رابط فيديو المشروع (يدعم AWS S3 بصيغة MP4/WebM أو رابط YouTube المباشر)',
-      type: 'url',
-      description: 'ضع رابط الفيديو المباشر من سيرفر S3 السحابي أو رابط يوتيوب.',
-    },
-    {
-      name: 'videoUrlAr',
-      title: 'رابط فيديو مخصص للنسخة العربية (اختياري)',
-      type: 'url',
-    },
-
-    // --- 7. معرض الصور الميداني للمشروع ---
-    {
-      name: 'projectGallery',
-      title: 'معرض صور مراحل التركيب والتشغيل الميداني',
+      name: 'availableProfiles',
+      title: 'جدول المقاسات وسعات الضيوف (Profiles)',
       type: 'array',
-      of: [imageWithSeoFields],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'sizeName', title: 'اسم المقاس (مثل: Pyramid PT 3x3)', type: 'string' },
+            { name: 'dimensions', title: 'الأبعاد والمواصفات', type: 'string' },
+            { name: 'capacity', title: 'سعة الضيوف', type: 'string' }
+          ]
+        }
+      ]
     },
 
-    // --- 8. صور مقارنة قبل وبعد الإنجاز (Before & After) ---
+    // --- 7. جدول المواصفات التقنية الرسمية ---
     {
-      name: 'comparison',
-      title: 'مقارنة الموقع قبل وبعد سرعة التركيب والتسليم',
+      name: 'engineeringDataSheet',
+      title: 'جدول المواصفات التقنية الرسمية (Data Sheet)',
       type: 'object',
-      options: { collapsible: true, collapsed: true },
       fields: [
-        {
-          name: 'beforeImage',
-          title: 'صورة أرض الموقع قبل التركيب (Before)',
-          type: 'image',
-          options: { hotspot: true },
-        },
-        {
-          name: 'afterImage',
-          title: 'صورة الهيكل بعد اكتمال التنفيذ والتشغيل (After)',
-          type: 'image',
-          options: { hotspot: true },
-        },
-      ],
+        { name: 'mainFrame', title: 'Main Frame Structure', type: 'string' },
+        { name: 'steelComponents', title: 'Steel Components', type: 'string' },
+        { name: 'windLoad', title: 'Wind Load Tolerance', type: 'string' },
+        { name: 'operatingTemp', title: 'Operating Temperature', type: 'string' },
+        { name: 'fabricFire', title: 'Fabric Fire Retardancy', type: 'string' },
+        { name: 'roofCovering', title: 'Roof Covering', type: 'string' },
+        { name: 'wallOptions', title: 'Side Wall Options', type: 'string' },
+        { name: 'standardSpans', title: 'Available Standard Spans', type: 'string' }
+      ]
     },
 
-    // --- 9. قسم السيو المتقدم (مطابق لـ RankMath) ---
+    // --- 8. معرض الصور الهندسي مع حقول السيو لكل صورة ---
+    {
+      name: 'productGallery',
+      title: 'معرض صور التركيبات الميدانية للمنتج',
+      type: 'array',
+      of: [imageWithSeoFields]
+    },
+
+    // --- 9. قسم السيو المتقدم (مطابق تماماً لـ RankMath في WordPress) ---
     {
       name: 'seo',
       title: 'إعدادات السيو المتقدمة (Advanced SEO & RankMath Options)',
       type: 'object',
       options: { collapsible: true, collapsed: false },
       fields: [
-        {
-          name: 'metaTitle',
-          title: 'Snippet Title (عنوان المعاينة في جوجل - أقصى 60 حرف)',
-          type: 'string',
+        { 
+          name: 'metaTitle', 
+          title: 'Snippet Title (عنوان المعاينة في جوجل - أقصى 60 حرف)', 
+          type: 'string' 
         },
-        {
-          name: 'metaDescription',
-          title: 'Snippet Description (وصف المعاينة في جوجل - أقصى 160 حرف)',
+        { 
+          name: 'metaDescription', 
+          title: 'Snippet Description (وصف المعاينة في جوجل - أقصى 160 حرف)', 
           type: 'text',
-          rows: 3,
+          rows: 3 
         },
-        {
-          name: 'breadcrumbTitle',
-          title: 'Breadcrumb Title (عنوان المسار التفاعلي)',
-          type: 'string',
+        { 
+          name: 'breadcrumbTitle', 
+          title: 'Breadcrumb Title (عنوان المسار التفاعلي)', 
+          type: 'string' 
         },
-        {
-          name: 'canonicalUrl',
-          title: 'Canonical URL (الرابط المرجعي الثابت)',
-          type: 'url',
+        { 
+          name: 'canonicalUrl', 
+          title: 'Canonical URL (الرابط المرجعي الثابت)', 
+          type: 'url' 
         },
+        // خيارات الروبوتات (Robots Meta)
         {
           name: 'robots',
           title: 'إعدادات روبوتات البحث (Robots Meta)',
@@ -200,10 +165,32 @@ export const projects = {
             { name: 'noIndex', title: 'No Index (منع الأرشفة)', type: 'boolean', initialValue: false },
             { name: 'noFollow', title: 'No Follow (منع تتبع الروابط)', type: 'boolean', initialValue: false },
             { name: 'noArchive', title: 'No Archive (منع النسخ المخبأة)', type: 'boolean', initialValue: false },
-            { name: 'noImageIndex', title: 'No Image Index (منع أرشفة الصور)', type: 'boolean', initialValue: false },
-          ],
+            { name: 'noImageIndex', title: 'No Image Index (منع أرشفة الصور)', type: 'boolean', initialValue: false }
+          ]
         },
-      ],
-    },
-  ],
+        // إعدادات إعادة التوجيه (Redirect Options)
+        {
+          name: 'redirect',
+          title: 'إعادة التوجيه (Redirects)',
+          type: 'object',
+          fields: [
+            { name: 'enableRedirect', title: 'تفعيل إعادة التوجيه لهذه الصفحة', type: 'boolean', initialValue: false },
+            { 
+              name: 'redirectType', 
+              title: 'نوع التوجيه (Redirect Type)', 
+              type: 'string',
+              options: {
+                list: [
+                  { title: '301 Permanent Move (نقل دائم)', value: '301' },
+                  { title: '302 Temporary Move (نقل مؤقت)', value: '302' },
+                  { title: '410 Content Deleted (محتوى محذوف)', value: '410' }
+                ]
+              }
+            },
+            { name: 'destinationUrl', title: 'رابط الوجهة المقصودة (Destination URL)', type: 'url' }
+          ]
+        }
+      ]
+    }
+  ]
 };

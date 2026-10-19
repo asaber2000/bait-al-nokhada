@@ -1,3 +1,44 @@
+const seoFields = {
+  name: 'seo',
+  title: 'إعدادات السيو المتقدمة (Advanced SEO & RankMath Options)',
+  type: 'object',
+  options: { collapsible: true, collapsed: false },
+  fields: [
+    {
+      name: 'metaTitle',
+      title: 'Snippet Title (عنوان المعاينة في جوجل - أقصى 60 حرف)',
+      type: 'string',
+    },
+    {
+      name: 'metaDescription',
+      title: 'Snippet Description (وصف المعاينة في جوجل - أقصى 160 حرف)',
+      type: 'text',
+      rows: 3,
+    },
+    {
+      name: 'breadcrumbTitle',
+      title: 'Breadcrumb Title (عنوان المسار التفاعلي)',
+      type: 'string',
+    },
+    {
+      name: 'canonicalUrl',
+      title: 'Canonical URL (الرابط المرجعي الثابت)',
+      type: 'url',
+    },
+    {
+      name: 'robots',
+      title: 'إعدادات روبوتات البحث (Robots Meta)',
+      type: 'object',
+      fields: [
+        { name: 'noIndex', title: 'No Index (منع الأرشفة)', type: 'boolean', initialValue: false },
+        { name: 'noFollow', title: 'No Follow (منع تتبع الروابط)', type: 'boolean', initialValue: false },
+        { name: 'noArchive', title: 'No Archive (منع النسخ المخبأة)', type: 'boolean', initialValue: false },
+        { name: 'noImageIndex', title: 'No Image Index (منع أرشفة الصور)', type: 'boolean', initialValue: false },
+      ],
+    },
+  ],
+};
+
 export const project = {
   name: 'project',
   title: 'Projects (المشاريع)',
@@ -63,7 +104,8 @@ export const project = {
     // --- 6. التوثيق الميداني والمرئي (فيديو ومعرض صور) ---
     { 
       name: 'videoUrl', 
-      title: 'رابط فيديو المشروع (YouTube URL)', 
+      title: 'رابط فيديو المشروع (AWS S3 مباشر MP4/WebM أو رابط YouTube)', 
+      description: 'يقبل رابط ملف فيديو سحابي مباشر من S3 أو رابط فيديو من يوتيوب.',
       type: 'url' 
     },
     {
@@ -170,6 +212,8 @@ export const projectEn = {
         { name: 'beforeImage', title: 'Before Execution Image', type: 'image', options: { hotspot: true } },
         { name: 'afterImage', title: 'After Delivery Image', type: 'image', options: { hotspot: true } }
       ]
-    }
+    },
+    seoFields
   ]
 };
+
