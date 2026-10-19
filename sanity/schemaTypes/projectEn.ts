@@ -54,12 +54,6 @@ export const projectEn = {
     },
     { name: 'titleEn', title: 'Project Title (English)', type: 'string' },
     {
-      name: 'heroImageUrl',
-      title: 'Hero Image URL (CloudFront / S3 / WebP)',
-      type: 'url',
-      description: 'Paste direct image URL from AWS S3 or CloudFront',
-    },
-    {
       name: 'image',
       title: 'Hero Image (Direct Upload)',
       type: 'image',
