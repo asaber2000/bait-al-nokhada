@@ -98,9 +98,6 @@ export const articleEnglish = {
       name: 'contentSectionsEn',
       title: 'Article Content Sections (Page Builder)',
       type: 'array',
-      options: {
-        modal: { type: 'fold' }, // <--- هذا السطر يمنع فتح النافذة المنبثقة للسكشن ويفتحه في نفس الصفحة
-      },
       of: [
         {
           type: 'object',
