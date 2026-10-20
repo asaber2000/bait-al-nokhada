@@ -1,152 +1,252 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import type { Metadata } from "next";
 import {
   ArrowLeft,
   Calendar,
   Clock,
   User,
-  ChevronDown,
-  HelpCircle,
   BookOpen,
   CheckCircle2,
   Send,
-  Sparkles
+  Sparkles,
+  Tag
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-import { articlesDatabase } from "../../data/articlesEn";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { articlesDatabase } from "@/app/data/articlesEn";
 import { client } from "@/app/lib/sanity";
+import ArticleFaqAccordion from "@/components/ArticleFaqAccordion";
 
-export default function ArticleDetailPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [article, setArticle] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 60; // سرعة فورية مع كاش ذكي يتجدد تلقائياً
 
-  useEffect(() => {
-    const fetchArticleData = async () => {
-      try {
-        // 1. البحث أولاً في المقالات الثابتة القديمة
-        const staticArticle = articlesDatabase.find((a) => a.slug === slug);
-        if (staticArticle) {
-          setArticle(staticArticle);
-          setLoading(false);
-          return;
+async function getArticleData(slug: string) {
+  try {
+    const query = `*[_type == "articleEnglish" && slug.current == $slug][0]{
+      titleEn,
+      descEn,
+      categoryEn,
+      tags,
+      "slug": slug.current,
+      "heroImage": image.asset->url,
+      "heroImageAlt": image.alt,
+      tocEn,
+      contentSectionsEn[]{
+        id,
+        heading,
+        body[]{
+          ...,
+          _type == "inlineImage" => {
+            "url": asset->url,
+            alt,
+            caption
+          }
+        },
+        points,
+        "sectionImageUrl": sectionImage.asset->url,
+        "sectionImageAlt": sectionImage.alt,
+        "sectionVideoUrl": sectionVideoFile.asset->url,
+        sectionButton
+      },
+      faqsEn[]{question, answer},
+      seo {
+        metaTitle,
+        metaDescription,
+        breadcrumbTitle,
+        canonicalUrl,
+        robots {
+          noIndex,
+          noFollow
         }
+      },
+      _createdAt
+    }`;
 
-        // 2. البحث في سحابة Sanity للقسم الإنجليزي articleEnglish
-        const query = `*[_type == "articleEnglish" && slug.current == $slug][0]{
-          titleEn,
-          descEn,
-          "slug": slug.current,
-          "heroImage": image.asset->url,
-          seoTitle,
-          seoDesc,
-          canonicalUrl,
-          tocEn,
-          contentSectionsEn[]{
-            id,
-            heading,
-            body,
-            points,
-            "sectionImageUrl": sectionImage.asset->url,
-            "sectionVideoUrl": sectionVideoFile.asset->url,
-            sectionButton
-          },
-          faqsEn[]{question, answer},
-          _createdAt
-        }`;
+    const sanityData = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
 
-        const sanityData = await client.fetch(query, { slug });
-
-        if (sanityData) {
-          // تحويل البيانات ليتناسب مع هيكل العرض في الصفحة
-          const formattedSections = (sanityData.contentSectionsEn || []).map((sec: any, idx: number) => ({
-            id: sec.id || `section-${idx}`,
-            heading: sec.heading || "",
-            body: Array.isArray(sec.body)
-              ? sec.body.map((block: any) => block.children?.map((c: any) => c.text).join('')).join('\n')
-              : (sec.body || ""),
-            points: sec.points || [],
-            sectionImageUrl: sec.sectionImageUrl || null,
-            sectionVideoUrl: sec.sectionVideoUrl || null,
-            sectionButton: sec.sectionButton || null
-          }));
-
-          const formattedToc = (sanityData.tocEn || []).map((toc: any) => ({
-            id: toc.id || "overview",
-            label: toc.label || "Section"
-          }));
-
-          const formattedFaqs = (sanityData.faqsEn || []).map((faq: any) => ({
-            q: faq.question,
-            a: faq.answer
-          }));
-
-          setArticle({
-            title: sanityData.titleEn,
-            desc: sanityData.descEn,
-            heroImage: sanityData.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
-            category: "Industry Insights",
-            date: new Date(sanityData._createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-            readTime: "5 min read",
-            author: "Bait Al Nokhada Editorial",
-            contentSections: formattedSections.length > 0 ? formattedSections : [
-              {
-                id: "overview",
-                heading: sanityData.titleEn,
-                body: sanityData.descEn,
-                points: []
-              }
-            ],
-            faqs: formattedFaqs,
-            toc: formattedToc.length > 0 ? formattedToc : [{ id: "overview", label: "Overview" }]
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching English article details:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (slug) {
-      fetchArticleData();
+    if (sanityData) {
+      return {
+        title: sanityData.titleEn,
+        desc: sanityData.descEn,
+        heroImage: sanityData.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        heroImageAlt: sanityData.heroImageAlt || sanityData.titleEn,
+        category: sanityData.categoryEn || "Industry Insights",
+        tags: sanityData.tags || [],
+        date: new Date(sanityData._createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        readTime: "5 min read",
+        author: "Bait Al Nokhada Editorial",
+        contentSections: (sanityData.contentSectionsEn || []).map((sec: any, idx: number) => ({
+          id: sec.id || `section-${idx}`,
+          heading: sec.heading || "",
+          rawBody: sec.body, // الكائن الغني بكل تفاصيله
+          bodyText: Array.isArray(sec.body)
+            ? sec.body
+                .filter((b: any) => b._type === 'block')
+                .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
+            : (sec.body || ""),
+          inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
+          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineImage') : [],
+          points: sec.points || [],
+          sectionImageUrl: sec.sectionImageUrl || null,
+          sectionImageAlt: sec.sectionImageAlt || sec.heading,
+          sectionVideoUrl: sec.sectionVideoUrl || null,
+          sectionButton: sec.sectionButton || null
+        })),
+        faqs: (sanityData.faqsEn || []).map((f: any) => ({ q: f.question, a: f.answer })),
+        toc: sanityData.tocEn && sanityData.tocEn.length > 0
+          ? sanityData.tocEn.map((t: any) => ({ id: t.id || "overview", label: t.label || "Section" }))
+          : [{ id: "overview", label: "Overview" }],
+        seo: sanityData.seo || null
+      };
     }
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <p className="text-[#df9d17] font-semibold animate-pulse">Loading article...</p>
-        </div>
-      </main>
-    );
+  } catch (error) {
+    console.error("Error fetching English article from Sanity:", error);
   }
+
+  // البحث في المحلي كـ Fallback
+  const cleanSlug = slug.toLowerCase().trim();
+  const staticMatch = articlesDatabase.find((a) => a.slug.toLowerCase().trim() === cleanSlug);
+
+  if (staticMatch) {
+    return {
+      title: staticMatch.title,
+      desc: staticMatch.desc,
+      heroImage: staticMatch.heroImage,
+      heroImageAlt: staticMatch.title,
+      category: staticMatch.category || "Industry Insights",
+      tags: [],
+      date: staticMatch.date,
+      readTime: staticMatch.readTime,
+      author: staticMatch.author || "Bait Al Nokhada Editorial",
+      contentSections: staticMatch.contentSections || [],
+      faqs: staticMatch.faqs || [],
+      toc: staticMatch.toc || [{ id: "overview", label: "Overview" }],
+      seo: null
+    };
+  }
+
+  return null;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleData(slug);
+
+  if (!article) {
+    return { title: "Article Not Found | Bait Al Nokhada" };
+  }
+
+  const metaTitle = article.seo?.metaTitle || `${article.title} | Bait Al Nokhada Insights`;
+  const metaDescription = article.seo?.metaDescription || article.desc?.slice(0, 160) || "Read authoritative industry insights and engineering articles by Bait Al Nokhada.";
+  const canonicalUrl = article.seo?.canonicalUrl || `https://baitalnokhada.com/news/${slug}`;
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: !article.seo?.robots?.noIndex,
+      follow: !article.seo?.robots?.noFollow,
+    },
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      url: canonicalUrl,
+      images: [{ url: article.heroImage }],
+    },
+  };
+}
+
+export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await getArticleData(slug);
 
   if (!article) {
     return (
-      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <h1 className="text-2xl font-black text-[#0B1220] font-heading">Article not found</h1>
-          <Link href="/news" className="text-[#df9d17] hover:underline font-bold">Back to News</Link>
+      <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between">
+        <Navbar />
+        <div className="text-center space-y-4 py-44">
+          <h1 className="text-2xl font-black text-[#0B1220] font-heading">Article Not Found</h1>
+          <Link href="/news" className="text-[#df9d17] hover:underline font-bold">Back to All Articles</Link>
         </div>
+        <Footer />
       </main>
     );
   }
 
-  const tocList = article.toc || [];
-  const contentSections = article.contentSections || [];
-  const faqsList = article.faqs || [];
+  const currentUrl = `https://baitalnokhada.com/news/${slug}`;
+
+  // السكيما المزدوجة المتوافقة مع RankMath (Article + FAQ + Breadcrumb)
+  const articleSchema: any = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${currentUrl}#article`,
+        "headline": article.seo?.metaTitle || article.title,
+        "description": article.seo?.metaDescription || article.desc,
+        "image": [article.heroImage],
+        "datePublished": article.date,
+        "inLanguage": "en-US",
+        "mainEntityOfPage": currentUrl,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Bait Al Nokhada Tents & Fabric Structures",
+          "url": "https://baitalnokhada.com",
+          "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${currentUrl}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://baitalnokhada.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "News & Insights",
+            "item": "https://baitalnokhada.com/news"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": article.seo?.breadcrumbTitle || article.title,
+            "item": currentUrl
+          }
+        ]
+      }
+    ]
+  };
+
+  // حقن سكيما الأسئلة الشائعة FAQ Schema تلقائياً لجوجل
+  if (article.faqs && article.faqs.length > 0) {
+    articleSchema["@graph"].push({
+      "@type": "FAQPage",
+      "@id": `${currentUrl}#faq`,
+      "mainEntity": article.faqs.map((f: any) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a
+        }
+      }))
+    });
+  }
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Navbar />
 
       {/* Hero Header */}
@@ -154,7 +254,7 @@ export default function ArticleDetailPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={article.heroImage}
-            alt={article.title || "Article"}
+            alt={article.heroImageAlt || article.title}
             fill
             priority
             sizes="100vw"
@@ -214,26 +314,6 @@ export default function ArticleDetailPage() {
         </div>
       </section>
 
-      {/* Mobile Table of Contents */}
-      {tocList.length > 0 && (
-        <div className="block lg:hidden my-6 p-5 rounded-2xl bg-white border border-slate-200/80 space-y-3 shadow-xs">
-          <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
-            <BookOpen className="w-4 h-4" />
-            <span>Table of Contents</span>
-          </p>
-          <div className="space-y-2 text-xs">
-            {tocList.map((item: any) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className="block text-slate-700 hover:text-[#df9d17] transition-colors py-1 font-medium"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
       {/* Main Content Layout */}
       <section className="py-16 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -247,16 +327,55 @@ export default function ArticleDetailPage() {
             )}
 
             {/* Content Sections */}
-            <div className="space-y-10">
-              {contentSections.map((section: any, sIdx: number) => (
-                <div key={section.id || sIdx} id={section.id} className="space-y-4 scroll-mt-28">
-                  <h2 className="text-xl sm:text-2xl font-black text-[#0B1220] font-heading">
-                    {section.heading}
-                  </h2>
-                  <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed whitespace-pre-line">
-                    {section.body}
-                  </p>
+            <div className="space-y-12">
+              {article.contentSections.map((section: any, sIdx: number) => (
+                <div key={section.id || sIdx} id={section.id} className="space-y-5 scroll-mt-28">
+                  {section.heading && (
+                    <h2 className="text-xl sm:text-2xl font-black text-[#0B1220] font-heading">
+                      {section.heading}
+                    </h2>
+                  )}
 
+                  {/* نص الفقرة */}
+                  {section.bodyText && (
+                    <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed whitespace-pre-line">
+                      {section.bodyText}
+                    </p>
+                  )}
+
+                  {/* صور مدمجة داخل الفقرة */}
+                  {section.inlineImages && section.inlineImages.map((img: any, iIdx: number) => (
+                    <figure key={iIdx} className="my-6 space-y-2">
+                      <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
+                        <Image
+                          src={img.url}
+                          alt={img.alt || "Article illustration"}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      {img.caption && (
+                        <figcaption className="text-xs text-center text-slate-500 italic">
+                          {img.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+
+                  {/* أزرار CTA مدمجة بين الفقرات بنفس ديزاينك المعتمد */}
+                  {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
+                    <div key={cIdx} className="py-3 flex justify-center">
+                      <Link
+                        href={cta.btnUrl || "/contact"}
+                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-[#df9d17]/25 hover:scale-105 cursor-pointer"
+                      >
+                        <Send className="w-4 h-4 -rotate-45" />
+                        <span>{cta.btnText || "GET A QUOTE"}</span>
+                      </Link>
+                    </div>
+                  ))}
+
+                  {/* النقاط البارزة */}
                   {section.points && section.points.length > 0 && (
                     <ul className="space-y-2.5 pt-2">
                       {section.points.map((pt: string, pIdx: number) => (
@@ -267,27 +386,14 @@ export default function ArticleDetailPage() {
                       ))}
                     </ul>
                   )}
-                  {/* عرض زر الـ CTA الخاص بالقسم لو موجود */}
-                  {section.sectionButton && section.sectionButton.btnText && (
-                    <div className="pt-4">
-                      <Link
-                        href={section.sectionButton.btnUrl || "/contact"}
-                        className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
-                          ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
-                          : 'bg-[#df9d17] hover:bg-black text-white shadow-[#df9d17]/20'
-                          }`}
-                      >
-                        <span>{section.sectionButton.btnText}</span>
-                        <Send className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
-                  )}
+
+                  {/* الصورة الكبيرة الرئيسية للسكشن */}
                   {section.sectionImageUrl && (
-                    <div className="pt-4">
+                    <div className="pt-2">
                       <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
                         <Image
                           src={section.sectionImageUrl}
-                          alt={section.heading || "Section Image"}
+                          alt={section.sectionImageAlt || section.heading}
                           fill
                           sizes="(max-width: 768px) 100vw, 60vw"
                           className="object-cover"
@@ -296,9 +402,9 @@ export default function ArticleDetailPage() {
                     </div>
                   )}
 
-                  {/* عرض الفيديو لو موجود */}
+                  {/* فيديو السكشن */}
                   {section.sectionVideoUrl && (
-                    <div className="pt-4">
+                    <div className="pt-2">
                       <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
                         <video
                           autoPlay
@@ -313,52 +419,63 @@ export default function ArticleDetailPage() {
                       </div>
                     </div>
                   )}
+
+                  {/* زر نهاية السكشن */}
+                  {section.sectionButton && section.sectionButton.btnText && (
+                    <div className="pt-4 flex justify-center sm:justify-start">
+                      <Link
+                        href={section.sectionButton.btnUrl || "/contact"}
+                        className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${
+                          section.sectionButton.btnStyle === 'outline'
+                            ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
+                            : 'bg-[#df9d17] hover:bg-black text-white shadow-[#df9d17]/20'
+                        }`}
+                      >
+                        <Send className="w-3.5 h-3.5 -rotate-45" />
+                        <span>{section.sectionButton.btnText}</span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
 
-            {/* FAQs */}
-            {faqsList.length > 0 && (
-              <div className="pt-8 border-t border-slate-200/60 space-y-4">
-                <h3 className="text-lg font-bold text-[#0B1220] flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-[#df9d17]" />
-                  <span>Frequently Asked Questions</span>
-                </h3>
-                <div className="space-y-3">
-                  {faqsList.map((faq: any, fIdx: number) => {
-                    const isOpen = openFaq === fIdx;
-                    return (
-                      <div key={fIdx} className="rounded-2xl bg-white border border-slate-200/80 shadow-xs overflow-hidden transition-colors">
-                        <button
-                          onClick={() => setOpenFaq(isOpen ? null : fIdx)}
-                          className="w-full p-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-[#0B1220] hover:text-[#df9d17] transition-colors cursor-pointer"
-                        >
-                          <span>{faq.q}</span>
-                          <ChevronDown className={`w-4 h-4 text-[#df9d17] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
-                        </button>
-                        {isOpen && (
-                          <div className="px-4 pb-4 text-xs text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-2">
-                            {faq.a}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+            {/* Tags Section */}
+            {article.tags && article.tags.length > 0 && (
+              <div className="pt-8 border-t border-slate-200/60 space-y-3">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                  <Tag className="w-3.5 h-3.5 text-[#df9d17]" />
+                  <span>Article Tags & Topics</span>
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {article.tags.map((tag: string, tIdx: number) => (
+                    <span
+                      key={tIdx}
+                      className="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200/80 shadow-xs"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             )}
+
+            {/* FAQs Accordion */}
+            {article.faqs && article.faqs.length > 0 && (
+              <ArticleFaqAccordion faqs={article.faqs} />
+            )}
           </div>
 
-          {/* Sidebar Table of Contents */}
+          {/* Sidebar Table of Contents & Quick Contact */}
           <div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
-            {tocList.length > 0 && (
+            {article.toc && article.toc.length > 0 && (
               <div className="p-6 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
                 <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
                   <span>Table of Contents</span>
                 </p>
                 <div className="space-y-2 text-xs">
-                  {tocList.map((item: any) => (
+                  {article.toc.map((item: any) => (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
@@ -371,7 +488,6 @@ export default function ArticleDetailPage() {
               </div>
             )}
 
-            {/* Quick Contact Box */}
             <div className="p-6 rounded-3xl bg-white border border-slate-200/90 space-y-4 text-center shadow-xs">
               <Sparkles className="w-6 h-6 text-[#df9d17] mx-auto" />
               <h4 className="text-sm font-bold text-[#0B1220]">Need a Rapid Rental Quote?</h4>
@@ -381,7 +497,7 @@ export default function ArticleDetailPage() {
                 className="w-full py-3 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md shadow-[#df9d17]/20 transition-all hover:scale-105"
               >
                 <span>Get A Quote</span>
-                <Send className="w-3.5 h-3.5" />
+                <Send className="w-3.5 h-3.5 -rotate-45" />
               </Link>
             </div>
           </div>

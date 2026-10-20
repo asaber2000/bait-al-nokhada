@@ -54,6 +54,13 @@
 
       // --- English Section ---
       { name: 'titleEn', title: 'Article Title (English)', type: 'string' },
+      {
+      name: 'isFeatured',
+      title: 'Set as Top Featured Article (Hero Banner)',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Turn this ON to pin this article at the very top of the news catalog as the Hero Banner story.',
+    },
       { 
         name: 'categoryEn', 
         title: 'Category', 
