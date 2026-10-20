@@ -1,33 +1,78 @@
+  const seoFieldsEn = {
+  name: 'seo',
+  title: 'Advanced SEO & RankMath Options',
+  type: 'object',
+  options: { collapsible: true, collapsed: false },
+  fields: [
+    {
+      name: 'metaTitle',
+      title: 'Snippet Title (Google preview - max 60 chars)',
+      type: 'string',
+      validation: (Rule: any) => Rule.max(60).warning('Optimal length is under 60 characters.')
+    },
+    {
+      name: 'metaDescription',
+      title: 'Snippet Description (Google preview - max 160 chars)',
+      type: 'text',
+      rows: 3,
+      validation: (Rule: any) => Rule.max(160).error('Exceeded maximum length of 160 characters.')
+    },
+    { name: 'breadcrumbTitle', title: 'Breadcrumb Title', type: 'string' },
+    { name: 'canonicalUrl', title: 'Canonical URL', type: 'url' },
+    {
+      name: 'robots',
+      title: 'Robots Meta Settings',
+      type: 'object',
+      fields: [
+        { name: 'noIndex', title: 'No Index', type: 'boolean', initialValue: false },
+        { name: 'noFollow', title: 'No Follow', type: 'boolean', initialValue: false },
+        { name: 'noArchive', title: 'No Archive', type: 'boolean', initialValue: false },
+        { name: 'noImageIndex', title: 'No Image Index', type: 'boolean', initialValue: false },
+      ],
+    },
+  ],
+};
+  
   export const articleEnglish = {
     name: 'articleEnglish', // <--- غير دي لـ articleEnglish
     title: 'Articles & Pages (English)',
     type: 'document',
     fields: [
       { name: 'slug', title: 'URL Slug', type: 'slug', options: { source: 'titleEn', maxLength: 96 } },
-      { name: 'image', title: 'Featured Hero Image', type: 'image', options: { hotspot: true } },
+      { 
+        name: 'image', 
+        title: 'Featured Hero Image', 
+        type: 'image', 
+        options: { hotspot: true },
+        fields: [
+          { name: 'alt', title: 'Alt Text (SEO)', type: 'string' },
+          { name: 'caption', title: 'Image Caption', type: 'string' }
+        ]
+      },
 
-      // --- SEO Fields ---
-      {
-        name: 'seoTitle',
-        title: 'SEO Title',
-        type: 'string',
-        validation: (Rule: any) => Rule.max(60).warning('Optimal length is under 60 characters.')
-      },
-      {
-        name: 'seoDesc',
-        title: 'Meta Description',
-        type: 'text',
-        rows: 3,
-        validation: (Rule: any) => Rule.max(160).error('Exceeded maximum length of 160 characters.')
-      },
-      {
-        name: 'canonicalUrl',
-        title: 'Canonical URL',
-        type: 'url'
-      },
+      seoFieldsEn,
 
       // --- English Section ---
       { name: 'titleEn', title: 'Article Title (English)', type: 'string' },
+      { 
+        name: 'categoryEn', 
+        title: 'Category', 
+        type: 'string',
+        options: {
+          list: [
+            { title: 'Tent Rental & Events', value: 'Tent Rental & Events' },
+            { title: 'Commercial & Warehouses', value: 'Commercial & Warehouses' },
+            { title: 'VIP & Royal Majlis', value: 'VIP & Royal Majlis' },
+            { title: 'Fabric Architecture & Engineering', value: 'Fabric Architecture & Engineering' },
+          ]
+        }
+      },
+      {
+        name: 'tags',
+        title: 'Tags (Keywords for Related Filtering)',
+        type: 'array',
+        of: [{ type: 'string' }]
+      },
       { name: 'descEn', title: 'Short Summary (English)', type: 'text' },
       {
         name: 'tocEn',
@@ -100,8 +145,13 @@
                 }, 
                   { 
                     type: 'image',
+                    name: 'inlineImage',
+                    title: 'Inline Image (Between Paragraphs)',
                     options: { hotspot: true },
-                    title: 'Inline Image'
+                    fields: [
+                      { name: 'alt', title: 'Alt Text (SEO)', type: 'string' },
+                      { name: 'caption', title: 'Caption (Displayed under image)', type: 'string' }
+                    ]
                   },
                   {
                     type: 'object',
