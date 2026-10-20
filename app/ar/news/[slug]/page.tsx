@@ -17,8 +17,53 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { articlesArDatabase } from "@/app/data/articlesAr";
 import { client } from "@/app/lib/sanity";
 import ArticleFaqAccordionAr from "@/components-ar/components/ArticleFaqAccordionAr";
+import { PortableText } from "@portabletext/react";
 
 export const revalidate = 60; // سرعة فورية مع كاش ذكي
+
+// --- مكونات وتنسيقات النصوص والعناوين العربية H2 / H3 / H4 ---
+const portableTextComponentsAr = {
+  block: {
+    h2: ({ children }: any) => (
+      <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading mt-8 mb-4">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: any) => (
+      <h3 className="text-xl sm:text-2xl font-bold text-[#0B1220] font-heading mt-6 mb-3">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }: any) => (
+      <h4 className="text-lg font-bold text-[#df9d17] mt-4 mb-2">
+        {children}
+      </h4>
+    ),
+    normal: ({ children }: any) => (
+      <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed mb-4">
+        {children}
+      </p>
+    ),
+    blockquote: ({ children }: any) => (
+      <blockquote className="border-r-4 border-[#df9d17] pr-4 my-4 italic text-slate-700 bg-slate-50/60 p-3 rounded-l-xl">
+        {children}
+      </blockquote>
+    ),
+  },
+  marks: {
+    strong: ({ children }: any) => <strong className="font-bold text-slate-900">{children}</strong>,
+    link: ({ value, children }: any) => (
+      <a
+        href={value?.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#df9d17] underline hover:text-black transition-colors"
+      >
+        {children}
+      </a>
+    ),
+  },
+};
 
 async function getArabicArticleData(slug: string) {
   try {
@@ -82,6 +127,7 @@ async function getArabicArticleData(slug: string) {
         contentSections: (sanityData.contentSectionsAr || []).map((sec: any, idx: number) => ({
           id: sec.id || `section-${idx}`,
           heading: sec.heading || "",
+          rawBody: sec.body, // المحتوى الغني بـ H2/H3/H4
           bodyText: Array.isArray(sec.body)
             ? sec.body
                 .filter((b: any) => b._type === 'block')
@@ -338,11 +384,16 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
                     </h2>
                   )}
 
-                  {section.bodyText && (
+                  {/* محرر الفقرات المتقدم والعناوين H2/H3 الحقيقية بالعربية */}
+                  {section.rawBody ? (
+                    <div className="space-y-1">
+                      <PortableText value={section.rawBody} components={portableTextComponentsAr} />
+                    </div>
+                  ) : section.bodyText ? (
                     <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed whitespace-pre-line">
                       {section.bodyText}
                     </p>
-                  )}
+                  ) : null}
 
                   {/* صور داخل النص */}
                   {section.inlineImages && section.inlineImages.map((img: any, iIdx: number) => (
