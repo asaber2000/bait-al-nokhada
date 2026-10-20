@@ -154,16 +154,19 @@ export const articleEnglish = {
                 },
                 {
                   type: 'image',
-                  title: 'Inline Image (Between Paragraphs)',
+                  name: 'image',
+                  title: 'Inline Image',
                   options: {
+                    modal: { type: 'dialog', width: 'medium' },
                     hotspot: true,
+                    storeOriginalFilename: true,
                   },
                   fields: [
                     {
                       name: 'alt',
                       type: 'string',
                       title: 'Alt Text (SEO)',
-                      description: 'Important for Google Image Search and SEO',
+                      description: 'Important for Google SEO and image rankings',
                     },
                     {
                       name: 'caption',
