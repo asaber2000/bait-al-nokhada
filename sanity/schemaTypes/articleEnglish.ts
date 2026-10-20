@@ -209,7 +209,10 @@ export const articleEnglish = {
               name: 'sectionImage',
               title: 'Section Image',
               type: 'image',
-              options: { hotspot: true }
+              options: { hotspot: true },
+              fields: [
+                { name: 'alt', title: 'Alt Text (SEO)', type: 'string' }
+              ]
             },
             {
               name: 'sectionButton',

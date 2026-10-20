@@ -40,6 +40,18 @@ async function getArticleData(slug: string) {
             "url": asset->url,
             alt,
             caption
+          },
+          _type == "customVideoBlock" => {
+            "fileUrl": sectionVideoFile.asset->url,
+            videoCaption
+          },
+          _type == "videoBlock" => {
+            videoUrl,
+            videoCaption
+          },
+          _type == "tableBlock" => {
+            tableCaption,
+            rows
           }
         },
         points,
@@ -86,6 +98,8 @@ async function getArticleData(slug: string) {
             : (sec.body || ""),
           inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
           inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineImage') : [],
+          inlineTables: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'tableBlock') : [],
+          inlineVideos: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'videoBlock' || b._type === 'customVideoBlock') : [],
           points: sec.points || [],
           sectionImageUrl: sec.sectionImageUrl || null,
           sectionImageAlt: sec.sectionImageAlt || sec.heading,
@@ -372,6 +386,47 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                         <Send className="w-4 h-4 -rotate-45" />
                         <span>{cta.btnText || "GET A QUOTE"}</span>
                       </Link>
+                    </div>
+                  ))}
+
+                  {/* عرض الجداول المدمجة لو موجودة في المقال */}
+                  {section.inlineTables && section.inlineTables.map((tbl: any, tIdx: number) => (
+                    <div key={tIdx} className="my-6 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                      {tbl.tableCaption && (
+                        <div className="bg-slate-50 px-4 py-2 font-bold text-xs text-slate-700 border-b border-slate-200">
+                          {tbl.tableCaption}
+                        </div>
+                      )}
+                      <table className="w-full text-left text-xs text-slate-600">
+                        <tbody>
+                          {tbl.rows?.map((row: any, rIdx: number) => (
+                            <tr key={rIdx} className="border-b border-slate-100 last:border-none hover:bg-slate-50/50">
+                              {row.cell1 && <td className="p-3.5 font-semibold text-slate-800">{row.cell1}</td>}
+                              {row.cell2 && <td className="p-3.5">{row.cell2}</td>}
+                              {row.cell3 && <td className="p-3.5">{row.cell3}</td>}
+                              {row.cell4 && <td className="p-3.5">{row.cell4}</td>}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ))}
+
+                  {/* عرض الفيديوهات المدمجة داخل النص (يوتيوب أو ملف مرفوع) */}
+                  {section.inlineVideos && section.inlineVideos.map((vid: any, vIdx: number) => (
+                    <div key={vIdx} className="my-6 rounded-2xl overflow-hidden border border-slate-200 shadow-xs bg-black aspect-video relative">
+                      {vid.videoUrl ? (
+                        <iframe
+                          src={vid.videoUrl.includes('embed') ? vid.videoUrl : `https://www.youtube.com/embed/${vid.videoUrl.split('v=')[1]?.split('&')[0] || vid.videoUrl.split('/').pop()}`}
+                          className="w-full h-full border-0"
+                          allowFullScreen
+                          title={vid.videoCaption || "Article Video"}
+                        />
+                      ) : vid.fileUrl ? (
+                        <video controls className="w-full h-full object-cover">
+                          <source src={vid.fileUrl} type="video/mp4" />
+                        </video>
+                      ) : null}
                     </div>
                   ))}
 
