@@ -153,39 +153,30 @@ export const articleEnglish = {
                   ]
                 },
                 {
-                  type: 'object',
-                  name: 'articleInlineImage',
+                  type: 'image',
+                  name: 'image',
                   title: 'Inline Image',
+                  options: {
+                    hotspot: true,
+                  },
                   fields: [
                     {
-                      name: 'image',
-                      title: 'Image File',
-                      type: 'image',
-                      options: { hotspot: true },
-                    },
-                    {
                       name: 'alt',
-                      title: 'Alt Text (SEO)',
                       type: 'string',
-                      description: 'Important for Google SEO and image rankings',
+                      title: 'Alt Text (SEO)',
+                      options: {
+                        isHighlighted: true // يجعل الحقل يظهر مباشرة فوق الصورة بدون نافذة منبثقة
+                      }
                     },
                     {
                       name: 'caption',
-                      title: 'Caption',
                       type: 'string',
+                      title: 'Caption',
+                      options: {
+                        isHighlighted: true // يجعل الحقل يظهر مباشرة بجانب الصورة دون الحاجة لفتح نافذة
+                      }
                     },
                   ],
-                  preview: {
-                    select: {
-                      media: 'image',
-                    },
-                    prepare({ media }: any) {
-                      return {
-                        title: 'Article Inline Image',
-                        media: media,
-                      };
-                    },
-                  },
                 },
                 {
                   type: 'object',
