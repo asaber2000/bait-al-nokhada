@@ -153,27 +153,39 @@ export const articleEnglish = {
                   ]
                 },
                 {
-                  type: 'image',
-                  name: 'image',
+                  type: 'object',
+                  name: 'articleInlineImage',
                   title: 'Inline Image',
-                  options: {
-                    modal: { type: 'dialog', width: 'medium' },
-                    hotspot: true,
-                    storeOriginalFilename: true,
-                  },
                   fields: [
                     {
+                      name: 'image',
+                      title: 'Image File',
+                      type: 'image',
+                      options: { hotspot: true },
+                    },
+                    {
                       name: 'alt',
-                      type: 'string',
                       title: 'Alt Text (SEO)',
+                      type: 'string',
                       description: 'Important for Google SEO and image rankings',
                     },
                     {
                       name: 'caption',
-                      type: 'string',
                       title: 'Caption',
+                      type: 'string',
                     },
                   ],
+                  preview: {
+                    select: {
+                      media: 'image',
+                    },
+                    prepare({ media }: any) {
+                      return {
+                        title: 'Article Inline Image',
+                        media: media,
+                      };
+                    },
+                  },
                 },
                 {
                   type: 'object',
