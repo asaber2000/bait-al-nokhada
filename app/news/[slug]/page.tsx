@@ -81,11 +81,11 @@ async function getArticleData(slug: string) {
         heading,
         body[]{
           ...,
-          _type == "inlineImage" => {
-            "url": asset->url,
-            alt,
-            caption
-          },
+          _type == "image" => {
+         "url": asset->url,
+         alt,
+         caption
+       },
           _type == "customVideoBlock" => {
             "fileUrl": sectionVideoFile.asset->url,
             videoCaption
@@ -142,7 +142,7 @@ async function getArticleData(slug: string) {
                 .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
           inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
-          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineImage') : [],
+          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'image') : [],
           inlineTables: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'tableBlock') : [],
           inlineVideos: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'videoBlock' || b._type === 'customVideoBlock') : [],
           points: sec.points || [],
