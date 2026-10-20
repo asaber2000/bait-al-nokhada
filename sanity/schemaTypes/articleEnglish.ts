@@ -153,42 +153,24 @@ export const articleEnglish = {
                   ]
                 },
                 {
-                  type: 'object',
-                  name: 'articleInlineImage',
+                  type: 'image',
                   title: 'Inline Image (Between Paragraphs)',
+                  options: {
+                    hotspot: true,
+                  },
                   fields: [
                     {
-                      name: 'image',
-                      title: 'Image File',
-                      type: 'image',
-                      options: { hotspot: true },
-                    },
-                    {
                       name: 'alt',
-                      title: 'Alt Text (SEO)',
                       type: 'string',
-                      description: 'Important for Google SEO and image rankings',
+                      title: 'Alt Text (SEO)',
+                      description: 'Important for Google Image Search and SEO',
                     },
                     {
                       name: 'caption',
-                      title: 'Caption (Displayed under image)',
                       type: 'string',
+                      title: 'Caption',
                     },
                   ],
-                  preview: {
-                    select: {
-                      media: 'image',
-                      caption: 'caption',
-                      alt: 'alt',
-                    },
-                    prepare({ media, caption, alt }: any) {
-                      return {
-                        title: caption || alt || 'Inline Article Image',
-                        subtitle: alt ? `Alt: ${alt}` : 'No Alt text',
-                        media: media,
-                      };
-                    },
-                  },
                 },
                 {
                   type: 'object',

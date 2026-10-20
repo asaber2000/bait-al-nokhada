@@ -23,6 +23,31 @@ export const revalidate = 60; // سرعة فورية مع كاش ذكي يتجد
 
 // --- مكونات وتنسيقات النصوص والعناوين H2 / H3 / H4 ---
 const portableTextComponents = {
+  types: {
+    image: ({ value }: any) => {
+      if (!value?.asset?._ref && !value?.url) return null;
+      // توليد رابط الصورة من Sanity CDN أو من القيمة المباشرة
+      const imageUrl = value.url || `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'yaxh1z-placeholder'}/${process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}/${value.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}`;
+
+      return (
+        <figure className="my-6 space-y-2">
+          <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
+            <Image
+              src={imageUrl}
+              alt={value.alt || "Article illustration"}
+              fill
+              className="object-cover"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-xs text-center text-slate-500 italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
   block: {
     h2: ({ children }: any) => (
       <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading mt-8 mb-4">
@@ -81,7 +106,7 @@ async function getArticleData(slug: string) {
         heading,
         body[]{
           ...,
-          _type == "articleInlineImage" => {
+          _type == "image" => {
             "url": image.asset->url,
             alt,
             caption
@@ -142,7 +167,7 @@ async function getArticleData(slug: string) {
               .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
           inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
-          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'articleInlineImage') : [],
+          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'image') : [],
           inlineTables: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'tableBlock') : [],
           inlineVideos: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'videoBlock' || b._type === 'customVideoBlock') : [],
           points: sec.points || [],
