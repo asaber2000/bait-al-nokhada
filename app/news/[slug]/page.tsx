@@ -81,11 +81,11 @@ async function getArticleData(slug: string) {
         heading,
         body[]{
           ...,
-          _type == "image" => {
-         "url": asset->url,
-         alt,
-         caption
-       },
+          _type == "articleInlineImage" => {
+            "url": image.asset->url,
+            alt,
+            caption
+          },
           _type == "customVideoBlock" => {
             "fileUrl": sectionVideoFile.asset->url,
             videoCaption
@@ -138,11 +138,11 @@ async function getArticleData(slug: string) {
           rawBody: sec.body, // الكائن الغني بكل تفاصيله
           bodyText: Array.isArray(sec.body)
             ? sec.body
-                .filter((b: any) => b._type === 'block')
-                .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
+              .filter((b: any) => b._type === 'block')
+              .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
           inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
-          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'image') : [],
+          inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'articleInlineImage') : [],
           inlineTables: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'tableBlock') : [],
           inlineVideos: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'videoBlock' || b._type === 'customVideoBlock') : [],
           points: sec.points || [],
@@ -407,7 +407,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                   ) : null}
 
                   {/* صور مدمجة داخل الفقرة */}
-                  {section.inlineImages && section.inlineImages.map((img: any, iIdx: number) => (
+                  {section.inlineImages && section.inlineImages.filter((img: any) => img.url).map((img: any, iIdx: number) => (
                     <figure key={iIdx} className="my-6 space-y-2">
                       <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
                         <Image
@@ -529,11 +529,10 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     <div className="pt-4 flex justify-center sm:justify-start">
                       <Link
                         href={section.sectionButton.btnUrl || "/contact"}
-                        className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${
-                          section.sectionButton.btnStyle === 'outline'
+                        className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
                             ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
                             : 'bg-[#df9d17] hover:bg-black text-white shadow-[#df9d17]/20'
-                        }`}
+                          }`}
                       >
                         <Send className="w-3.5 h-3.5 -rotate-45" />
                         <span>{section.sectionButton.btnText}</span>

@@ -152,36 +152,43 @@ export const articleEnglish = {
                     { name: 'videoCaption', title: 'Video Caption', type: 'string' }
                   ]
                 },
-                { 
-                  type: 'image',
+                {
+                  type: 'object',
+                  name: 'articleInlineImage',
                   title: 'Inline Image (Between Paragraphs)',
-                  options: { hotspot: true },
                   fields: [
-                    { 
-                      name: 'alt', 
-                      title: 'Alt Text (SEO)', 
-                      type: 'string',
-                      description: 'Important for Google SEO and accessibility'
+                    {
+                      name: 'image',
+                      title: 'Image File',
+                      type: 'image',
+                      options: { hotspot: true },
                     },
-                    { 
-                      name: 'caption', 
-                      title: 'Caption (Displayed under image)', 
-                      type: 'string' 
-                    }
+                    {
+                      name: 'alt',
+                      title: 'Alt Text (SEO)',
+                      type: 'string',
+                      description: 'Important for Google SEO and image rankings',
+                    },
+                    {
+                      name: 'caption',
+                      title: 'Caption (Displayed under image)',
+                      type: 'string',
+                    },
                   ],
                   preview: {
                     select: {
-                      imageUrl: 'asset.url',
-                      title: 'caption',
-                      alt: 'alt'
+                      media: 'image',
+                      caption: 'caption',
+                      alt: 'alt',
                     },
-                    prepare({ imageUrl, title, alt }: any) {
+                    prepare({ media, caption, alt }: any) {
                       return {
-                        title: title || alt || 'Inline Article Image',
-                        media: imageUrl ? undefined : () => '🖼️'
+                        title: caption || alt || 'Inline Article Image',
+                        subtitle: alt ? `Alt: ${alt}` : 'No Alt text',
+                        media: media,
                       };
-                    }
-                  }
+                    },
+                  },
                 },
                 {
                   type: 'object',
