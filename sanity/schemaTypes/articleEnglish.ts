@@ -152,15 +152,36 @@ export const articleEnglish = {
                     { name: 'videoCaption', title: 'Video Caption', type: 'string' }
                   ]
                 },
-                {
+                { 
                   type: 'image',
-                  name: 'inlineImage',
                   title: 'Inline Image (Between Paragraphs)',
                   options: { hotspot: true },
                   fields: [
-                    { name: 'alt', title: 'Alt Text (SEO)', type: 'string' },
-                    { name: 'caption', title: 'Caption (Displayed under image)', type: 'string' }
-                  ]
+                    { 
+                      name: 'alt', 
+                      title: 'Alt Text (SEO)', 
+                      type: 'string',
+                      description: 'Important for Google SEO and accessibility'
+                    },
+                    { 
+                      name: 'caption', 
+                      title: 'Caption (Displayed under image)', 
+                      type: 'string' 
+                    }
+                  ],
+                  preview: {
+                    select: {
+                      imageUrl: 'asset.url',
+                      title: 'caption',
+                      alt: 'alt'
+                    },
+                    prepare({ imageUrl, title, alt }: any) {
+                      return {
+                        title: title || alt || 'Inline Article Image',
+                        media: imageUrl ? undefined : () => '🖼️'
+                      };
+                    }
+                  }
                 },
                 {
                   type: 'object',
