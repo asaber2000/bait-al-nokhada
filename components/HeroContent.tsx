@@ -7,16 +7,16 @@ import { ArrowUpRight, Sparkles, Building2 } from "lucide-react";
 export default function HeroContent() {
   return (
     <div className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-36 pb-12 pointer-events-none select-none">
-      {/* 1. Top Bar: Luxury Pill with Ambient Shimmer */}
+      {/* 1. Top Bar: Luxury Pill without heavy black shadow */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="pointer-events-auto"
       >
-        <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-          <span className="flex h-2 w-2 rounded-full bg-[#df9d17] animate-pulse" />
-          <span className="text-[11px] font-mono tracking-[0.25em] uppercase text-white/80">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15">
+          <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17] animate-pulse" />
+          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-white/90">
             EST. 1997 • ARCHITECTURAL MEMBRANES & EVENT VENUES
           </span>
         </div>
