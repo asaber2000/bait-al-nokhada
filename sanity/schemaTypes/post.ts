@@ -197,7 +197,15 @@ export const article = {
               name: 'sectionImage',
               title: 'صورة القسم (تظهر أسفل النص)',
               type: 'image',
-              options: { hotspot: true }
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: 'alt',
+                  title: 'النص البديل للصورة (SEO Alt Text)',
+                  type: 'string',
+                  description: 'ضروري جداً لتحسين السيو وتصدر الصور في بحث جوجل',
+                },
+              ],
             },
             {
               name: 'sectionButton',
