@@ -63,7 +63,95 @@ const portableTextComponentsAr = {
       </a>
     ),
   },
+  types: {
+    articleInlineImage: ({ value }: any) => {
+      const src = value?.url || value?.image?.asset?.url;
+      if (!src) return null;
+      return (
+        <figure className="my-6 space-y-2">
+          <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
+            <img
+              src={src}
+              alt={value.alt || "بيت النوخذة للخيام"}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-xs text-center text-slate-500 italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+    inlineImage: ({ value }: any) => {
+      const src = value?.url || value?.asset?.url;
+      if (!src) return null;
+      return (
+        <figure className="my-6 space-y-2">
+          <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
+            <img
+              src={src}
+              alt={value.alt || "بيت النوخذة للخيام"}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-xs text-center text-slate-500 italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+    videoBlock: ({ value }: any) => {
+      if (!value?.videoUrl) return null;
+      const getEmbedUrl = (url: string) => {
+        if (url.includes('youtube.com/watch?v=')) return url.replace('watch?v=', 'embed/');
+        if (url.includes('youtu.be/')) return url.replace('youtu.be/', 'www.youtube.com/embed/');
+        return url;
+      };
+      return (
+        <figure className="my-8">
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+            <iframe
+              src={getEmbedUrl(value.videoUrl)}
+              title={value.videoCaption || "فيديو توضيحي"}
+              className="w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.videoCaption && (
+            <figcaption className="text-center text-sm text-slate-500 mt-2">
+              {value.videoCaption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+    customVideoBlock: ({ value }: any) => {
+      if (!value?.fileUrl) return null;
+      return (
+        <figure className="my-8">
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-black">
+            <video
+              src={value.fileUrl}
+              controls
+              className="w-full h-full object-contain"
+            />
+          </div>
+          {value.videoCaption && (
+            <figcaption className="text-center text-sm text-slate-500 mt-2">
+              {value.videoCaption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
 };
+
 
 async function getArabicArticleData(slug: string) {
   try {
@@ -83,12 +171,25 @@ async function getArabicArticleData(slug: string) {
         heading,
         body[]{
           ...,
-          _type == "inlineImage" => {
-            "url": asset->url,
-            alt,
-            caption
-          }
-        },
+          _type == "articleInlineImage" => {
+        "url": image.asset->url,
+        alt,
+        caption
+      },
+      _type == "inlineImage" => {
+        "url": coalesce(image.asset->url, asset->url),
+        alt,
+        caption
+      },
+      _type == "videoBlock" => {
+        videoUrl,
+        videoCaption
+      },
+      _type == "customVideoBlock" => {
+        "fileUrl": sectionVideoFile.asset->url,
+        videoCaption
+      }
+    },
         points,
         "sectionImageUrl": sectionImage.asset->url,
         "sectionImageAlt": sectionImage.alt,
