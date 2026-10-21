@@ -73,6 +73,41 @@ const portableTextComponents = {
         </figure>
       );
     },
+    videoBlock: ({ value }: any) => {
+      if (!value?.videoUrl) return null;
+
+      const getYoutubeId = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+      };
+
+      const videoId = getYoutubeId(value.videoUrl);
+
+      return (
+        <figure className="my-8">
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-900">
+            {videoId ? (
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                title={value.videoCaption || "Video explanation"}
+                loading="lazy"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <p className="text-center text-white py-12">Invalid video link</p>
+            )}
+          </div>
+          {value.caption && (
+            <figcaption className="text-center text-sm text-slate-500 mt-2">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
   },
   block: {
     h2: ({ children }: any) => (
@@ -367,11 +402,11 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             alt={article.heroImageAlt || article.title}
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+            quality={75}
             className="object-cover opacity-10 brightness-95 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6 relative z-10">
@@ -457,13 +492,14 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     </p>
                   ) : null}
 
-                
+
                   {/* أزرار CTA مدمجة بين الفقرات بنفس ديزاينك المعتمد */}
                   {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
                     <div key={cIdx} className="py-3 flex justify-center">
                       <Link
                         href={cta.btnUrl || "/contact"}
-                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-[#df9d17]/25 hover:scale-105 cursor-pointer"
+                        aria-label={cta.btnText || "Get a quote"}
+                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-[#df9d17]/25 hover:scale-105 cursor-pointer"
                       >
                         <Send className="w-4 h-4 -rotate-45" />
                         <span>{cta.btnText || "GET A QUOTE"}</span>
@@ -491,24 +527,6 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                           ))}
                         </tbody>
                       </table>
-                    </div>
-                  ))}
-
-                  {/* عرض الفيديوهات المدمجة داخل النص (يوتيوب أو ملف مرفوع) */}
-                  {section.inlineVideos && section.inlineVideos.map((vid: any, vIdx: number) => (
-                    <div key={vIdx} className="my-6 rounded-2xl overflow-hidden border border-slate-200 shadow-xs bg-black aspect-video relative">
-                      {vid.videoUrl ? (
-                        <iframe
-                          src={vid.videoUrl.includes('embed') ? vid.videoUrl : `https://www.youtube.com/embed/${vid.videoUrl.split('v=')[1]?.split('&')[0] || vid.videoUrl.split('/').pop()}`}
-                          className="w-full h-full border-0"
-                          allowFullScreen
-                          title={vid.videoCaption || "Article Video"}
-                        />
-                      ) : vid.fileUrl ? (
-                        <video controls className="w-full h-full object-cover">
-                          <source src={vid.fileUrl} type="video/mp4" />
-                        </video>
-                      ) : null}
                     </div>
                   ))}
 
@@ -562,9 +580,10 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     <div className="pt-4 flex justify-center sm:justify-start">
                       <Link
                         href={section.sectionButton.btnUrl || "/contact"}
-                        className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
-                            ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
-                            : 'bg-[#df9d17] hover:bg-black text-white shadow-[#df9d17]/20'
+                        aria-label={section.sectionButton.btnText || "Get a quote"}
+                        className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
+                          ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
+                          : 'bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white shadow-[#df9d17]/20'
                           }`}
                       >
                         <Send className="w-3.5 h-3.5 -rotate-45" />
@@ -630,7 +649,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
               <p className="text-xs text-slate-600 font-normal">Get turnkey rates with HVAC & setup across Dubai & UAE.</p>
               <Link
                 href="/contact"
-                className="w-full py-3 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md shadow-[#df9d17]/20 transition-all hover:scale-105"
+                aria-label="Request a rapid rental quote"
+                className="w-full py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all hover:scale-105"
               >
                 <span>Get A Quote</span>
                 <Send className="w-3.5 h-3.5 -rotate-45" />
