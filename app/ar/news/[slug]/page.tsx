@@ -496,25 +496,6 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
                     </p>
                   ) : null}
 
-                  {/* صور داخل النص */}
-                  {section.inlineImages && section.inlineImages.map((img: any, iIdx: number) => (
-                    <figure key={iIdx} className="my-6 space-y-2">
-                      <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
-                        <Image
-                          src={img.url}
-                          alt={img.alt || "صورة توضيحية"}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      {img.caption && (
-                        <figcaption className="text-xs text-center text-slate-500 italic">
-                          {img.caption}
-                        </figcaption>
-                      )}
-                    </figure>
-                  ))}
-
                   {/* أزرار CTA بين الفقرات */}
                   {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
                     <div key={cIdx} className="py-3 flex justify-center">
