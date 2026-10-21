@@ -152,15 +152,6 @@ export const article = {
                 },
                 {
                   type: 'object',
-                  name: 'inlineCta',
-                  title: 'زر طلب عرض سعر مباشر بين الفقرات (CTA Button)',
-                  fields: [
-                    { name: 'btnText', title: 'نص الزر', type: 'string', initialValue: 'احصل على عرض سعر' },
-                    { name: 'btnUrl', title: 'رابط الزر (URL)', type: 'string', initialValue: '/ar/contact' }
-                  ]
-                },
-                {
-                  type: 'object',
                   name: 'tableBlock',
                   title: 'إدراج جدول بيانات (Table)',
                   fields: [

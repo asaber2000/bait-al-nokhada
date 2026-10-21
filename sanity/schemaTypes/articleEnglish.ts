@@ -188,15 +188,6 @@ export const articleEnglish = {
                 },
                 {
                   type: 'object',
-                  name: 'inlineCta',
-                  title: 'Inline CTA Button',
-                  fields: [
-                    { name: 'btnText', title: 'Button Text', type: 'string', initialValue: 'Get A Quote' },
-                    { name: 'btnUrl', title: 'Button Link (URL)', type: 'string', initialValue: '/contact' }
-                  ]
-                },
-                {
-                  type: 'object',
                   name: 'tableBlock',
                   title: 'Insert Table',
                   fields: [

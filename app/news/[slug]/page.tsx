@@ -227,7 +227,6 @@ async function getArticleData(slug: string) {
               .filter((b: any) => b._type === 'block')
               .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
-          inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
           inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'image') : [],
           inlineTables: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'tableBlock') : [],
           inlineVideos: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'videoBlock' || b._type === 'customVideoBlock') : [],
@@ -492,20 +491,6 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     </p>
                   ) : null}
 
-
-                  {/* أزرار CTA مدمجة بين الفقرات بنفس ديزاينك المعتمد */}
-                  {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
-                    <div key={cIdx} className="py-3 flex justify-center">
-                      <Link
-                        href={cta.btnUrl || "/contact"}
-                        aria-label={cta.btnText || "Get a quote"}
-                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-[#df9d17]/25 hover:scale-105 cursor-pointer"
-                      >
-                        <Send className="w-4 h-4 -rotate-45" />
-                        <span>{cta.btnText || "GET A QUOTE"}</span>
-                      </Link>
-                    </div>
-                  ))}
 
                   {/* عرض الجداول المدمجة لو موجودة في المقال */}
                   {section.inlineTables && section.inlineTables.map((tbl: any, tIdx: number) => (

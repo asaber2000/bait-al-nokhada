@@ -253,7 +253,6 @@ async function getArabicArticleData(slug: string) {
               .filter((b: any) => b._type === 'block')
               .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
-          inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
           inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineImage') : [],
           points: sec.points || [],
           sectionImageUrl: sec.sectionImageUrl || null,
@@ -514,19 +513,6 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
                       {section.bodyText}
                     </p>
                   ) : null}
-
-                  {/* أزرار CTA بين الفقرات */}
-                  {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
-                    <div key={cIdx} className="py-3 flex justify-center">
-                      <Link
-                        href={cta.btnUrl || "/ar/contact"}
-                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-[#df9d17]/25 hover:scale-105 cursor-pointer"
-                      >
-                        <Send className="w-4 h-4 rotate-180" />
-                        <span>{cta.btnText || "احصل على عرض سعر"}</span>
-                      </Link>
-                    </div>
-                  ))}
 
                   {/* النقاط المميزة */}
                   {section.points && section.points.length > 0 && (
