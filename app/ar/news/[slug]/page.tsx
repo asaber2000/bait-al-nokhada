@@ -116,21 +116,30 @@ const portableTextComponentsAr = {
     },
     videoBlock: ({ value }: any) => {
       if (!value?.videoUrl) return null;
-      const getEmbedUrl = (url: string) => {
-        if (url.includes('youtube.com/watch?v=')) return url.replace('watch?v=', 'embed/');
-        if (url.includes('youtu.be/')) return url.replace('youtu.be/', 'www.youtube.com/embed/');
-        return url;
+
+      const getYoutubeId = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
       };
+
+      const videoId = getYoutubeId(value.videoUrl);
+
       return (
         <figure className="my-8">
-          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200">
-            <iframe
-              src={getEmbedUrl(value.videoUrl)}
-              title={value.videoCaption || "فيديو توضيحي"}
-              className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-900">
+            {videoId ? (
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                title={value.videoCaption || "فيديو توضيحي"}
+                loading="lazy"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <p className="text-center text-white py-12">رابط الفيديو غير صالح</p>
+            )}
           </div>
           {value.caption && (
             <figcaption className="text-center text-sm text-slate-500 mt-2">
@@ -241,8 +250,8 @@ async function getArabicArticleData(slug: string) {
           rawBody: sec.body, // المحتوى الغني بـ H2/H3/H4
           bodyText: Array.isArray(sec.body)
             ? sec.body
-                .filter((b: any) => b._type === 'block')
-                .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
+              .filter((b: any) => b._type === 'block')
+              .map((b: any) => b.children?.map((c: any) => c.text).join('')).join('\n\n')
             : (sec.body || ""),
           inlineCtas: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineCta') : [],
           inlineImages: Array.isArray(sec.body) ? sec.body.filter((b: any) => b._type === 'inlineImage') : [],
@@ -423,7 +432,6 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
             className="object-cover opacity-10 brightness-95 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
-          <div className="absolute top-1/3 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6 relative z-10 text-right">
@@ -552,7 +560,8 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
                     <div className="pt-3 text-center">
                       <Link
                         href={section.sectionButton.btnUrl || "/ar/contact"}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-[#df9d17]/20 hover:scale-105 transition-all duration-300"
+                        aria-label={section.sectionButton.btnText || "طلب عرض سعر"}
+                        className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider shadow-md transition-all duration-300"
                       >
                         <span>{section.sectionButton.btnText}</span>
                         <Send className="w-4 h-4 rotate-180" />
@@ -617,7 +626,8 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
               <p className="text-xs text-slate-600 font-normal">احصل على دراسة فنية شاملة مع التكييف والتجهيزات في كافة أنحاء الإمارات.</p>
               <Link
                 href="/ar/contact"
-                className="w-full py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md shadow-[#df9d17]/20 transition-all hover:scale-105"
+                aria-label="طلب عرض سعر فوري للتأجير أو الشراء"
+                className="w-full py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all"
               >
                 <span>طلب عرض سعر فوري</span>
                 <Send className="w-3.5 h-3.5 rotate-180" />
