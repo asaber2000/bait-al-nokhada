@@ -47,6 +47,28 @@ const portableTextComponents = {
         </figure>
       );
     },
+    // 2. المعالج الجديد الخاص بـ articleInlineImage (المسؤول عن إظهار الصورة الآن)
+    articleInlineImage: ({ value }: any) => {
+      const src = value?.url || value?.image?.asset?.url;
+      if (!src) return null;
+
+      return (
+        <figure className="my-6 space-y-2">
+          <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
+            <img
+              src={src}
+              alt={value.alt || "Bait Al Nokhada Tents"}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-xs text-center text-slate-500 italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
   },
   block: {
     h2: ({ children }: any) => (
@@ -106,7 +128,7 @@ async function getArticleData(slug: string) {
         heading,
         body[]{
           ...,
-          _type == "image" => {
+          _type == "articleInlineImage" => {
             "url": image.asset->url,
             alt,
             caption
