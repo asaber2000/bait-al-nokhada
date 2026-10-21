@@ -55,10 +55,14 @@ const portableTextComponents = {
       return (
         <figure className="my-6 space-y-2">
           <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
-            <img
+            <Image
               src={src}
               alt={value.alt || "Bait Al Nokhada Tents"}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+              quality={80}
+              loading="lazy"
+              className="object-cover"
             />
           </div>
           {value.caption && (
@@ -453,25 +457,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     </p>
                   ) : null}
 
-                  {/* صور مدمجة داخل الفقرة */}
-                  {section.inlineImages && section.inlineImages.filter((img: any) => img.url).map((img: any, iIdx: number) => (
-                    <figure key={iIdx} className="my-6 space-y-2">
-                      <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
-                        <Image
-                          src={img.url}
-                          alt={img.alt || "Article illustration"}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      {img.caption && (
-                        <figcaption className="text-xs text-center text-slate-500 italic">
-                          {img.caption}
-                        </figcaption>
-                      )}
-                    </figure>
-                  ))}
-
+                
                   {/* أزرار CTA مدمجة بين الفقرات بنفس ديزاينك المعتمد */}
                   {section.inlineCtas && section.inlineCtas.map((cta: any, cIdx: number) => (
                     <div key={cIdx} className="py-3 flex justify-center">

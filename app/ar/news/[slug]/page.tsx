@@ -67,13 +67,18 @@ const portableTextComponentsAr = {
     articleInlineImage: ({ value }: any) => {
       const src = value?.url || value?.image?.asset?.url;
       if (!src) return null;
+
       return (
         <figure className="my-6 space-y-2">
           <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
-            <img
+            <Image
               src={src}
               alt={value.alt || "بيت النوخذة للخيام"}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+              quality={80}
+              loading="lazy"
+              className="object-cover"
             />
           </div>
           {value.caption && (
@@ -87,13 +92,18 @@ const portableTextComponentsAr = {
     inlineImage: ({ value }: any) => {
       const src = value?.url || value?.asset?.url;
       if (!src) return null;
+
       return (
         <figure className="my-6 space-y-2">
           <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100">
-            <img
+            <Image
               src={src}
               alt={value.alt || "بيت النوخذة للخيام"}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+              quality={80}
+              loading="lazy"
+              className="object-cover"
             />
           </div>
           {value.caption && (
@@ -122,9 +132,9 @@ const portableTextComponentsAr = {
               allowFullScreen
             />
           </div>
-          {value.videoCaption && (
+          {value.caption && (
             <figcaption className="text-center text-sm text-slate-500 mt-2">
-              {value.videoCaption}
+              {value.caption}
             </figcaption>
           )}
         </figure>
@@ -408,7 +418,8 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
             alt={article.heroImageAlt || article.title}
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+            quality={75}
             className="object-cover opacity-10 brightness-95 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
