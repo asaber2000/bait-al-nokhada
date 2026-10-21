@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import HeroContent from "@/components/HeroContent";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -57,6 +57,7 @@ export default function Hero() {
         className="relative z-10 max-w-4xl mx-auto w-full text-center space-y-6 px-6 pt-12 will-change-transform"
       >
         {/* أضف نصوص وأزرار الهيرو هنا */}
+        <HeroContent lang="en" />
       </motion.div>
 
     </section>
