@@ -2,59 +2,57 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import HeroContentAr from "@/components-ar/components/HeroContentAr";
 
 export default function ArabicHero() {
-
   const containerRef = useRef<HTMLElement>(null);
 
-  // مراقبة سكرول الهيرو بدقة
+  // تتبع سكرول الهيرو الطبيعي أثناء خروجه من الشاشة
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // الفيديو يتحرك للأسفل ببطء أثناء النزول بنسبة 35% لإعطاء عمق الـ Parallax
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  // تلاشي الشفافية بنعومة من 1 إلى 0 في أول 60% من سكرول الهيرو
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  // المحتوى يصعد للأعلى بسرعة أكبر مع تلاشي الشفافية بنعومة
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // صعود خفيف جداً وهادئ للأعلى أثناء النزول
+  const y = useTransform(scrollYProgress, [0, 0.6], [0, -40]);
 
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[100dvh] flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden bg-[#070B14] text-center transform-gpu"
+      className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden bg-[#070B14] flex items-center justify-center transform-gpu"
     >
-
-      {/* خلفية الفيديو - تم تثبيتها بـ fixed لمنع أي اهتزاز أثناء السكرول على الموبايل */}
-      {/* 1. خلفية الفيديو بطبقة Parallax محسوبة */}
-      <motion.div
-        style={{ y: videoY }}
-        className="absolute inset-x-0 -top-[10%] w-full h-[125%] z-0 overflow-hidden pointer-events-none will-change-transform"
-      >
+      {/* 1. Background Video Layer */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           disablePictureInPicture
           poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp"
-          className="w-full h-full object-cover opacity-90 filter brightness-110 pointer-events-none"
+          className="w-full h-full object-cover opacity-90 filter brightness-105 pointer-events-none"
         >
-          {/* مسار الفيديو (يفضل استخدام رابط CloudFront/S3 مثل الإنجليزي بمجرد رفعه) */}
-          <source src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm" type="video/webm" />
+          <source
+            src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm"
+            type="video/webm"
+          />
         </video>
 
-        <div className="absolute inset-0 bg-black/30 z-10" />
-      </motion.div>
+        {/* تظليل سينمائي خفيف لضمان وضوح النصوص */}
+        <div className="absolute inset-0 bg-black/35 z-10" />
+      </div>
 
+      {/* 2. Hero Content Layer مع تلاشي وصعود هادئ فقط */}
       <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 max-w-4xl mx-auto w-full text-center space-y-6 px-6 pt-12 will-change-transform"
-      ></motion.div>
-
+        style={{ opacity, y }}
+        className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none will-change-transform"
+      >
+        <HeroContentAr />
+      </motion.div>
     </section>
   );
 }
