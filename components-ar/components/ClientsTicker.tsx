@@ -4,17 +4,20 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const clients = [
-  { name: "تسلا", logo: "/images/Tesla-Logo (1).svg", filterType: "normal" },
-  { name: "أبوظبي للإعلام", logo: "/images/ADM-logo.svg", filterType: "invert" },
-  { name: "أدنوك", logo: "/images/adnoc-logo-updated (1).svg", filterType: "normal" },
-  { name: "إعمار", logo: "/images/emaar-logo-w (1).svg", filterType: "normal" },
-  { name: "قطارات الاتحاد", logo: "/images/Etihad-Rail-UAE (1).svg", filterType: "invert" },
-  { name: "فيرمونت", logo: "/images/Fairmont-Hotel-Logo-Vector.svg- (1).svg", filterType: "invert" },
-  { name: "حكومة الشارقة", logo: "/images/Government-of-Sharjah-Agriculture-Livestock-Department.svg", filterType: "invert" },
-  { name: "جرانديوس", logo: "/images/Grandiose-Logo_Sept2_637446820117728624 (1).svg", filterType: "normal" },
-  { name: "شعار الشريك", logo: "/images/HeaderLogo (1).svg", filterType: "invert" },
-  { name: "يونيسف", logo: "/images/logo (1).svg", filterType: "invert" },
-  { name: "مبادلة", logo: "/images/mubadala-investment-company-vector-logo (1).svg", filterType: "mubadala" },
+  { name: "نتفليكس", logo: "/images/netflix.svg", filterType: "normal", scale: 2 },
+  { name: "جزيرة ياس", logo: "/images/yas-island-logo.avif", filterType: "invert", scale: 1.20 },
+  { name: "أدنوك", logo: "/images/adnoc-logo-updated.svg", filterType: "normal", scale: 1.40 },
+  { name: "القرية العالمية", logo: "/images/global-village-logoo.png", filterType: "normal", scale: 1.52 },
+  { name: "إعمار", logo: "/images/emaar-logoooo.svg", filterType: "normal", scale: 1 },
+  { name: "مدينة إكسبو دبي", logo: "/images/expo.svg", filterType: "normal", scale: 1.55 },
+  { name: "مركز دبي التجاري العالمي", logo: "/images/hq-dwtc-logo.png", filterType: "invert", scale: 1.25 },
+  { name: "دي بي ورلد", logo: "/images/db-world-new.svg", filterType: "invert", scale: 1 },
+  { name: "شرطة دبي", logo: "/images/dubai-police-logo.svg", filterType: "normal", scale: 1.20 },
+  { name: "جيتكس جلوبال", logo: "/images/gitex_global.png", filterType: "normal", scale: 1.20, mobileOnly: true },
+  { name: "حكومة الشارقة", logo: "/images/Government-of-Sharjah-Agriculture-Livestock-Department.svg", filterType: "normal", scale: 1.20 },
+  { name: "قطارات الاتحاد", logo: "/images/Etihad-Rail-UAE (1).svg", filterType: "normal", scale: 1.20 },
+  { name: "أبوظبي للإعلام", logo: "/images/ADM-logo.svg", filterType: "normal", scale: 1.20 },
+  { name: "تسلا", logo: "/images/Tesla-Logo (1).svg", filterType: "normal", scale: 1.80 },
 ];
 
 export default function ClientsTickerAr() {
@@ -49,11 +52,13 @@ export default function ClientsTickerAr() {
                   alt={client.name}
                   fill
                   sizes="200px"
-                  className={`object-contain transition-all duration-300 group-hover:scale-105 ${
-                    client.name === "إعمار" || client.name === "Emaar" || client.logo.includes("-w")
-                      ? "brightness-0 opacity-80 group-hover:opacity-100"
-                      : "opacity-95 group-hover:opacity-100"
-                  }`}
+                  style={{ transform: `scale(${client.scale || 1})` }}
+                  className={`object-contain transition-all duration-300 group-hover:scale-105 ${client.filterType === "invert"
+                      ? "invert opacity-80 group-hover:opacity-100"
+                      : client.name === "إعمار" || client.name === "Emaar" || client.logo.includes("-w")
+                        ? "brightness-0 opacity-80 group-hover:opacity-100"
+                        : "opacity-95 group-hover:opacity-100"
+                    }`}
                 />
               </div>
             </div>
