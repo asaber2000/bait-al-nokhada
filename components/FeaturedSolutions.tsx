@@ -17,7 +17,7 @@ const megaProjects = [
     year: "2025",
     desc: "For GITEX Global 2025, Bait Al Nokhada delivered purpose-built exhibition structures for one of the region’s leading technology events. The project was designed to support large-scale visitor environments while maintaining the high-impact presence required for a major international exhibition.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gitex2025.webp",
-    slug: "gitex-global",
+    slug: "gitex-global-2025",
   },
   {
     id: "02",
