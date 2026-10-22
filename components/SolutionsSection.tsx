@@ -53,7 +53,7 @@ const solutions = [
     desc: "Compliant shaded rest pavilions with heavy-duty cooling systems designed for workforce welfare in extreme heat.",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labour-tent-for-sale.webp",
-    href: "/solutions/labour-break-tents",
+    href: "/solutions/labour-break-time-tents/",
   },
   {
     id: "07",

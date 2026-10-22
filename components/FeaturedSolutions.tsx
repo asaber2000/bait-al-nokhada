@@ -17,7 +17,7 @@ const megaProjects = [
     year: "2025",
     desc: "For GITEX Global 2025, Bait Al Nokhada delivered purpose-built exhibition structures for one of the region’s leading technology events. The project was designed to support large-scale visitor environments while maintaining the high-impact presence required for a major international exhibition.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gitex2025.webp",
-    slug: "gitex-global-2025",
+    slug: "/projects/gitex-global-2025",
   },
   {
     id: "02",
@@ -41,7 +41,7 @@ const megaProjects = [
     year: "2025",
     desc: "For DRIFTx 2026 in Abu Dhabi, Bait Al Nokhada delivered a large-scale event environment supporting a technology and mobility-focused experience. The project brought together multiple tent solutions to create a functional and engaging environment for a complex event setting.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/driftx.webp",
-    slug: "driftx2026",
+    slug: "/projects/DRIFTx-Event-2026",
   },
   {
     id: "04",
@@ -78,7 +78,7 @@ const megaProjects = [
     year: "2025",
     desc: "For Amaal × Mansory, Bait Al Nokhada delivered a purpose-built environment designed to support a premium sales and customer experience. The structure provided a prominent branded space tailored to the needs of the development and its visitors.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/amaal2025.webp",
-    slug: "amaal",
+    slug: "/projects/Amaal-sales-gallery",
   },
 ];
 
