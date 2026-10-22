@@ -6,7 +6,7 @@ import { ArrowUpRight, Sparkles, Building2 } from "lucide-react";
 
 export default function HeroContent() {
     return (
-        <div className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-36 pb-12 pointer-events-none select-none">
+        <div className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-36 pb-12 pointer-events-none">
             {/* 1. Top Bar: Luxury Pill without heavy black shadow */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -17,7 +17,7 @@ export default function HeroContent() {
                 <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15">
                     <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17] animate-pulse" />
                     <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-white/90">
-                        EST. 1997 • ARCHITECTURAL MEMBRANES & EVENT VENUES
+                        EST. 1997 • PREMIER TENT MANUFACTURERS IN UAE
                     </span>
                 </div>
             </motion.div>
@@ -31,12 +31,12 @@ export default function HeroContent() {
                     className="space-y-2"
                 >
                     <span className="block text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.3em] uppercase text-[#df9d17] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                        PIONEERING SPATIAL ENGINEERING
+                        ENGINEERED SOLUTIONS FOR MEGA PROJECTS & EVENTS
                     </span>
                     <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-heading tracking-tight leading-[1.1] uppercase drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-                        Engineering Space, <br />
+                        TENTS SALE & RENTAL <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                            Crafting Prestige
+                            FOR MAJOR EVENTS
                         </span>
                     </h1>
                 </motion.div>
@@ -47,7 +47,7 @@ export default function HeroContent() {
                     transition={{ duration: 0.9, delay: 0.25 }}
                     className="max-w-xl mx-auto text-xs sm:text-sm text-slate-100 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
                 >
-                    Turnkey monumental structures, bespoke royal pavilions, and high-performance architectural tensile membranes across the UAE & GCC.
+                    Precision-engineered exhibition tents, sales centers, and industrial storage solutions built to international standards. Offering premium tents for sale and rental with full on-site deployment across the UAE, KSA, GCC, and worldwide.
                 </motion.p>
                 {/* 3. Floating Glass CTA Bar */}
                 <motion.div
@@ -60,7 +60,7 @@ export default function HeroContent() {
                         href="/contact"
                         className="group inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#df9d17] hover:bg-white text-[#0B1220] font-bold text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105 shadow-md"
                     >
-                        <span>Request Proposal</span>
+                        <span>REQUEST INSTANT QUOTE</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
 
@@ -69,7 +69,7 @@ export default function HeroContent() {
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full hover:bg-white/10 text-white/90 hover:text-white font-medium text-xs uppercase tracking-widest transition-all duration-300"
                     >
                         <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
-                        <span>Iconic Works</span>
+                        <span>EXPLORE PROJECTS</span>
                     </Link>
                 </motion.div>
             </div>

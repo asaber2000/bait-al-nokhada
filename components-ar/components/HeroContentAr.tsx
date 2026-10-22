@@ -8,7 +8,7 @@ export default function HeroContentAr() {
   return (
     <div
       dir="rtl"
-      className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-36 pb-12 pointer-events-none select-none"
+      className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-36 pb-12 pointer-events-none"
     >
       {/* 1. البادج العلوية */}
       <motion.div
@@ -20,7 +20,7 @@ export default function HeroContentAr() {
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15">
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17] animate-pulse" />
           <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-white/90">
-            تأسس 1997 • رواد الهياكل الإنشائية والخيام الملكية
+            المصنع الرائد لتصنيع وتأجير الخيام والهياكل الإنشائية • منذ 1997
           </span>
         </div>
       </motion.div>
@@ -34,13 +34,13 @@ export default function HeroContentAr() {
           className="space-y-3"
         >
           <span className="block text-xs sm:text-sm md:text-base font-mono font-bold tracking-widest uppercase text-[#df9d17] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-            ريادة الهندسة الإنشائية والمعمارية
+            حلول هندسية متطورة لكبرى المشاريع والفعاليات 
           </span>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white font-heading tracking-tight leading-[1.2] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-            نبتكر الفضاءات، <br />
+           رواد صناعة وتأجير الخيام <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              لنصنع هيبة المكان
+             شريكك المعتمد لكبرى الفعاليات 
             </span>
           </h1>
         </motion.div>
@@ -51,7 +51,7 @@ export default function HeroContentAr() {
           transition={{ duration: 0.9, delay: 0.25 }}
           className="max-w-xl mx-auto text-xs sm:text-sm text-slate-100 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
         >
-          حلول متكاملة لتصميم وتصنيع وتأجير خيام المعارض الكبرى والقصور والمشاريع التنموية في الإمارات والخليج بأعلى المعايير العالمية.
+         نصمم ونصنع خيام المعارض، ومراكز المبيعات، ومستودعات التخزين، والفعاليات الكبرى وفق أعلى المعايير الهندسية العالمية، مع توفير خيام للبيع والتأجير وخدمات تنفيذ ميدانية متكاملة في الإمارات والسعودية ودول مجلس التعاون والعالم.
         </motion.p>
 
         {/* 3. شريط الأزرار العائم */}
@@ -74,7 +74,7 @@ export default function HeroContentAr() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full hover:bg-white/10 text-white/90 hover:text-white font-medium text-xs uppercase tracking-wider transition-all duration-300"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
-            <span>معرض الأعمال</span>
+            <span>استكشف مشاريعنا</span>
           </Link>
         </motion.div>
       </div>
