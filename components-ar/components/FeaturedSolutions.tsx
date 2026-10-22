@@ -17,7 +17,7 @@ const megaProjectsAr = [
     year: "2025",
     desc: "لمعرض جيتكس جلوبال، نفذت بيت النوخذة هياكل وقاعات مخصصة لأحد أضخم الفعاليات التقنية عالمياً؛ صُممت لاستيعاب التدفق الجماهيري العالي وتوفير مساحات عرض متطورة بأعلى معايير الأمان.",
     image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gitex2025.webp",
-    slug: "gitex-global",
+    slug: "/ar/projects/gitex-global-2025",
   },
   {
     id: "02",

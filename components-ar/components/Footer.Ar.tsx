@@ -17,12 +17,12 @@ export default function FooterAr() {
 
   const featuredSolutions = [
     { name: "تأجير وتوريد الخيام", href: "/ar/news/tent-rental-guide-uae" },
-    { name: "خيام الأعراس الملكية", href: "/ar/solutions/wedding-tent" },
-    { name: "صالات المعارض والقمم", href: "/ar/solutions/exhibition-tent" },
-    { name: "القباب والملاعب الرياضية", href: "/ar/solutions/sports-tent" },
-    { name: "المستودعات والخيام الصناعية", href: "/ar/solutions/warehouse-tent" },
-    { name: "هناجر الطائرات", href: "/ar/solutions/aircraft-hangar-tent" },
-    { name: "خيام الضيافة الرمضانية", href: "/ar/solutions/ramadan-tent" },
+    { name: "خيام الأعراس الملكية", href: "/ar/solutions/wedding-tents" },
+    { name: "صالات المعارض والقمم", href: "/ar/solutions/exhibition-tents" },
+    { name: "القباب والملاعب الرياضية", href: "/ar/solutions/sports-tents" },
+    { name: "المستودعات والخيام الصناعية", href: "/ar/solutions/warehouse-tents" },
+    { name: "هناجر الطائرات", href: "/ar/solutions/aircraft-hangar-tents" },
+    { name: "خيام الضيافة الرمضانية", href: "/ar/solutions/ramadan-tents" },
   ];
 
   const socialLinks = [
