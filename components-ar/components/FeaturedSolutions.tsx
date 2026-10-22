@@ -16,7 +16,7 @@ const megaProjectsAr = [
     area: "15,500 م²",
     year: "2025",
     desc: "لمعرض جيتكس جلوبال، نفذت بيت النوخذة هياكل وقاعات مخصصة لأحد أضخم الفعاليات التقنية عالمياً؛ صُممت لاستيعاب التدفق الجماهيري العالي وتوفير مساحات عرض متطورة بأعلى معايير الأمان.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gitex2025.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/gitex2025.webp",
     slug: "/gitex-global-2025",
   },
   {
@@ -28,7 +28,7 @@ const megaProjectsAr = [
     area: "35,000 م²",
     year: "2026",
     desc: "منشآت عملاقة مغطاة ومجهزة بالكامل بأنظمة التكييف والتحكم المناخي المتطورة لاستيعاب أكبر حدث دولي للأغذية والضيافة في الشرق الأوسط.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/gulfood2026.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/gulfood2026.webp",
     slug: "gulfood2026",
   },
   {
@@ -40,8 +40,8 @@ const megaProjectsAr = [
     area: "25,000 م²",
     year: "2025",
     desc: "بيئة متكاملة لفعاليات قطاع التنقل الذكي شملت حلولاً هندسية متقدمة لتوفير مساحات تفاعلية تجمع بين الأداء العملي والمظهر المستقبلي الجريء.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/driftx.webp",
-    slug: "driftx2026",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/driftx.webp",
+    slug: "/DRIFTx-Event-2026",
   },
   {
     id: "04",
@@ -52,7 +52,7 @@ const megaProjectsAr = [
     area: "5,000 م²",
     year: "2025",
     desc: "قبة ومنشأة مخصصة لدعم تجربة بصرية تفاعلية فريدة، مؤكدة مرونة هياكلنا الإنشائية وقدرتها على استضافة أضخم إنتاجات الترفيه العالمية.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/netflix-stranger-thing.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/netflix-stranger-thing.webp",
     slug: "netflix",
   },
   {
@@ -64,7 +64,7 @@ const megaProjectsAr = [
     area: "15,000 م²",
     year: "2026",
     desc: "صالات استقبال ملكية وأجنحة ضيافة مطابقة للمواصفات الألمانية ومعايير الطيران الصارمة، مع عزل حراري وصوتي استثنائي في أقسى الظروف المناخية.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/airshow.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/airshow.webp",
     slug: "airshow",
   },
   {
@@ -76,8 +76,8 @@ const megaProjectsAr = [
     area: "2,500 م²",
     year: "2025",
     desc: "تعاون نوعي لتوفير صالة عرض معمارية فاخرة مصممة خصيصاً لعلامة تجارية راقية، تعكس الفخامة المطلقة وتلبي متطلبات تجربة كبار الشخصيات.",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Featured%20Projects/amaal2025.webp",
-    slug: "amaal",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/amaal2025.webp",
+    slug: "/Amaal-sales-gallery",
   },
 ];
 

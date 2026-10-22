@@ -263,7 +263,7 @@ export default function FeatureShowcase() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
-                src="https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/exhibition-tents-UAE.webp"
+                src="https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp"
                 alt="Bait Al Nokhada Exhibition Tents"
                 fill
                 unoptimized

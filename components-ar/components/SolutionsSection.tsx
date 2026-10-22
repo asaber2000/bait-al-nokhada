@@ -12,7 +12,7 @@ const solutions = [
     title: "خيام المعارض",
     desc: "أجنحة وهياكل ضخمة مخصصة للمعارض الدولية، الفعاليات التجارية، وعروض الطيران الكبرى عبر دول الخليج.",
     specs: "بحور مفتوحة تصل إلى 60 متراً • مقاومة عالية للرياح",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
     href: "/ar/solutions/exhibition-tents",
   },
   {
@@ -20,7 +20,7 @@ const solutions = [
     title: "خيام الفعاليات والمناسبات",
     desc: "قاعات مؤتمرات وقمم حكومية مجهزة بأحدث تقنيات الإضاءة الذكية، العزل الصوتي، والتكييف المركزي المتكامل.",
     specs: "منصات متعددة المستويات • أنظمة تكييف فائقة القدرة",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Luxury-Tents-for-Events.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
     href: "/ar/solutions/event-tents",
   },
   {
@@ -28,7 +28,7 @@ const solutions = [
     title: "خيام الزفاف والأعراس",
     desc: "قاعات ملكية فخمة مصممة لحفلات الزفاف الخارجية في الإمارات والسعودية، توفر أجواء راقية وخاصة.",
     specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
     href: "/ar/solutions/wedding-tents",
   },
   {
@@ -36,7 +36,7 @@ const solutions = [
     title: "خيام مراكز المبيعات",
     desc: "هياكل معمارية شبه دائمة مخصصة لإطلاق المشاريع العقارية الكبرى وتوفير صالات استقبال فخمة للمستثمرين.",
     specs: "واجهات زجاجية بانورامية • تشطيب داخلي فاخر",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AL%20MARWAN3.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AL%20MARWAN3.webp",
     href: "/ar/solutions/sales-center-tents",
   },
   {
@@ -44,7 +44,7 @@ const solutions = [
     title: "خيام المستودعات",
     desc: "مستودعات تخزين مؤقتة ودائمة ذات بحور مفتوحة عالية التحمل ومصممة للعمليات اللوجستية والمواقع الصناعية.",
     specs: "سرعة في التوريد والتركيب • معايير السلامة الألمانية DIN",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/warehouse/warehouse.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse.webp",
     href: "/ar/solutions/warehouse-tents",
   },
   {
@@ -52,15 +52,15 @@ const solutions = [
     title: "خيام استراحة العمال",
     desc: "مظلات واستراحات مجهزة بأنظمة تبريد عالية الكفاءة لتأمين راحة الكوادر الميدانية وفق اشتراطات السلامة والرفاهية.",
     specs: "أنسجة PVC عازلة للحرارة • معتمدة من الدفاع المدني",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/labour/labour-tent-for-sale.webp",
-    href: "/ar/solutions/labour-break-tents",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/labour/labour-tent-for-sale.webp",
+    href: "/ar/solutions/labour-break-time-tents",
   },
   {
     id: "07",
     title: "خيام رياضية",
     desc: "هياكل بحور واسعة توفر عزلاً حرارياً متطوراً للملاعب الرياضية، ملاعب البادل، والصالات الأكاديمية الأولمبية.",
     specs: "أسقف عازلة حرارياً • مطابقة لمعايير FIFA الرياضية",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Sports/2.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/2.webp",
     href: "/ar/solutions/sports-tents",
   },
   {
@@ -68,7 +68,7 @@ const solutions = [
     title: "خيام رمضانية",
     desc: "أجواء تراثية عربية أصيلة مدمجة باللمسات المعمارية الحديثة لبوفيهات الإفطار المؤسسية والمجالس الملكية.",
     specs: "فرش داخلي ومجالس تفصيل • مقاومة للحريق Class A",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Ramadan/large-ramadan-tents-UAE.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/large-ramadan-tents-UAE.webp",
     href: "/ar/solutions/ramadan-tents",
   },
   {
@@ -76,7 +76,7 @@ const solutions = [
     title: "خيام المساجد",
     desc: "مصليات مؤقتة واسعة مجهزة بفرش معقم، عزل صوتي نقي، مناطق وضوء ملحقة، ومحاريب دقيقة التوجيه.",
     specs: "سجاد مضاد للبكتيريا • تدفق هواء مكيف عالي السعة",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Mosque+Tents/mosque-img2.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Mosque+Tents/mosque-img2.webp",
     href: "/ar/solutions/mosque-tents",
   },
   {
@@ -84,7 +84,7 @@ const solutions = [
     title: "خيام العزاء",
     desc: "قاعات مؤقتة مجهزة بالكامل تُشيد بسرعة فائقة وتوفر تكييفاً وخدمات لوجستية متكاملة لراحة الحضور.",
     specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
-    image: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Funeral+Tents/Funeral-Tents.webp",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Funeral+Tents/Funeral-Tents.webp",
     href: "/ar/solutions/funeral-tents",
   },
 ];
