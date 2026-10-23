@@ -157,8 +157,7 @@ const pillars = [
 
 export default function FeatureShowcaseAr() {
   return (
-    <section dir="rtl" className="relative z-20 bg-[#FDFCF7] pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-200/60 text-right font-sans">
-
+    <section dir="rtl" className="relative z-20 bg-[#FDFCF7] py-20 lg:py-24 overflow-hidden border-t border-slate-200/60 text-right font-sans">
       {/* إضاءات وشبكة إحداثيات خلفية */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -166,7 +165,7 @@ export default function FeatureShowcaseAr() {
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+      <div className="site-container relative z-10 space-y-20">
 
         {/* 1. الصف العلوي: النص يندفع من اليمين والصورة تندفع من اليسار ويصطدمان بسلاسة */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
@@ -189,9 +188,11 @@ export default function FeatureShowcaseAr() {
               <span>رواد تصنيع وتأجير الخيام في الإمارات والسعودية — منذ عام 1997</span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.25]">
-              خبراء توريد، تأجير، <br />
-              وتصنيع <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">الخيام والهياكل الإنشائية</span>
+            <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
+              خبراء تصنيع وتوريد وتأجير{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
+                الخيام والقاعات الإنشائية الكبرى
+              </span>
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-2xl">

@@ -94,7 +94,7 @@ export default function SolutionsSection() {
   const activeItem = solutions[selectedIdx];
 
   return (
-    <section className="relative pt-12 pb-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
+    <section className="relative py-20 lg:py-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -102,14 +102,14 @@ export default function SolutionsSection() {
       />
       <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
       {/* الهيدر العلوي */}
-      <div className="w-full px-6 sm:px-12 lg:px-24 mb-12">
+      <div className="site-container mb-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
             <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               Turnkey Architectural Solutions
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight leading-tight">
-              Bespoke Structures <br />
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] tracking-tight leading-snug">
+              Bespoke Structures,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
                 Tailored For Every Vision
               </span>
@@ -133,12 +133,12 @@ export default function SolutionsSection() {
       </div>
 
       {/* شاشة العرض التفاعلية المنقسمة */}
-      <div className="w-full px-6 sm:px-12 lg:px-24">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
           {/* الجانب الأيسر: شاشة عرض الصورة السينمائية */}
           <div className="lg:col-span-6 relative">
-            <div className="relative h-[380px] sm:h-[460px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-100">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden border border-slate-200/80 shadow-xl bg-slate-900 group">
 
               <AnimatePresence initial={false}>
                 <motion.div
@@ -154,7 +154,7 @@ export default function SolutionsSection() {
                     alt={activeItem.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-center"
+                    className="object-cover object-center scale-[1.02] group-hover:scale-105 transition-transform duration-700 ease-out"
                     priority
                   />
                 </motion.div>
@@ -184,7 +184,7 @@ export default function SolutionsSection() {
           {/* الجانب الأيمن: قائمة الحلول الستة */}
           <div
             data-lenis-prevent
-            className="lg:col-span-6 flex flex-col p-4 sm:p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-h-[520px] overflow-y-auto divide-y divide-slate-100 pr-3">
+            className="lg:col-span-6 flex flex-col p-3 sm:p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-h-[540px] overflow-y-auto no-scrollbar divide-y divide-slate-100">
             {solutions.map((item, idx) => {
               const isSelected = selectedIdx === idx;
               return (

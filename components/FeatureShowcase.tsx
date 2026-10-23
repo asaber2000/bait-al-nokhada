@@ -164,7 +164,7 @@ const pillars = [
 
 export default function FeatureShowcase() {
   return (
-    <section className="relative z-20 bg-[#FDFCF7] pt-12 pb-12 px-6 lg:px-16 overflow-hidden border-t border-slate-100">
+    <section className="relative z-20 bg-[#FDFCF7] py-20 lg:py-24 border-t border-slate-200/60 overflow-hidden">
 
       {/* إضاءات وشبكة إحداثيات خلفية */}
       <div
@@ -173,7 +173,7 @@ export default function FeatureShowcase() {
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+      <div className="site-container relative z-10 space-y-20">
 
         {/* 1. الصف العلوي: النص يندفع بقوة من اليسار والصورة تندفع من اليمين ويصطدمان بسلاسة */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
@@ -196,11 +196,12 @@ export default function FeatureShowcase() {
               <span>Pioneering Modular Architecture Since 1997</span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.12]">
-              Tent Rental, Supplier & <br />
-              Manufacturing <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">Experts</span>
+            <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
+              Tent Rental, Supplier & Manufacturing{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
+                Experts
+              </span>
             </h1>
-
             <p className="text-slate-600 font-normal text-sm sm:text-base font-light leading-relaxed max-w-2xl">
               Bait Al Nokhada is a premier tent manufacturing powerhouse serving Dubai, Abu Dhabi, UAE, and KSA. We engineer clear-span event marquees, high-tonnage industrial warehouses, and custom tensile membrane structures built to withstand the harshest desert climates.
             </p>

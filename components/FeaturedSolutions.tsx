@@ -98,8 +98,7 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <section className="relative bg-[#FDFCF7] py-20 px-6 sm:px-12 lg:px-24 border-t border-slate-200/60 overflow-hidden">
-
+    <section className="relative bg-[#FDFCF7] py-20 lg:py-24 border-t border-slate-200/60 overflow-hidden">
       {/* شبكة إحداثيات رادارية معمارية خلفية */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -107,7 +106,7 @@ export default function FeaturedProjects() {
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+      <div className="site-container space-y-8 relative z-10">
 
         {/* 1. الهيدر المعماري الفاخر */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-6">
@@ -210,7 +209,7 @@ export default function FeaturedProjects() {
 
         {/* 4. مسرح العرض المعماري: انفجار العدسة المركزية (Iris Shockwave Burst) */}
         {/* 4. مسرح العرض المعماري: انتقال Cross-fade فوري وسلس */}
-        <div className="relative aspect-[4/3] sm:aspect-auto sm:h-[500px] lg:h-[560px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-100">
+        <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-900">
 
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -257,13 +256,13 @@ export default function FeaturedProjects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.08 }}
-                className="absolute bottom-8 left-8 right-8 z-20 space-y-2"
+                className="absolute bottom-6 left-6 right-6 z-20 space-y-1.5"
               >
                 <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#fbc200] uppercase bg-black/40 border border-[#fbc200]/30 px-2.5 py-1 rounded-md backdrop-blur-md">
                   {active.category}
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
                   {active.title}
                 </h3>
               </motion.div>

@@ -22,10 +22,10 @@ const clients = [
 
 export default function ClientsTickerAr() {
   return (
-    <section dir="rtl" className="relative py-20 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans">
+    <section dir="rtl" className="relative py-16 lg:py-20 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans">
 
       {/* توهج خلفي محيطي خفيف */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="w-full px-6 mb-12 text-center">
         <span className="text-xs font-bold text-[#df9d17] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs tracking-normal">
@@ -33,34 +33,32 @@ export default function ClientsTickerAr() {
         </span>
       </div>
 
-      {/* شريط السكرول المتواصل بحجم أكبر وأوضح */}
-      <div className="flex overflow-hidden select-none w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      {/* شريط شعارات انسيابي عائم بدون كروت بيضاء */}
+      <div className="flex overflow-hidden select-none w-full [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <motion.div
           animate={{ x: ["0%", "50%"] }}
-          transition={{ ease: "linear", duration: 45, repeat: Infinity }}
-          className="flex items-center gap-8 whitespace-nowrap shrink-0"
+          transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+          className="flex items-center gap-14 sm:gap-20 whitespace-nowrap shrink-0 py-4"
         >
           {[...clients, ...clients].map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex items-center justify-center w-[220px] h-[110px] px-7 rounded-2xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 group shrink-0 shadow-xs hover:shadow-md"
+              className="relative flex items-center justify-center w-[160px] sm:w-[190px] h-[60px] shrink-0 transition-all duration-300 group opacity-75 hover:opacity-100 hover:scale-105"
             >
-              {/* حاوية اللوجو - نفس المقاسات والفلاتر بالضبط */}
-              <div className="relative w-full h-[65px] flex items-center justify-center">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  fill
-                  sizes="200px"
-                  style={{ transform: `scale(${client.scale || 1})` }}
-                  className={`object-contain transition-all duration-300 group-hover:scale-105 ${client.filterType === "invert"
-                      ? "invert opacity-80 group-hover:opacity-100"
-                      : client.name === "إعمار" || client.name === "Emaar" || client.logo.includes("-w")
-                        ? "brightness-0 opacity-80 group-hover:opacity-100"
-                        : "opacity-95 group-hover:opacity-100"
-                    }`}
-                />
-              </div>
+              <Image
+                src={client.logo}
+                alt={client.name}
+                fill
+                sizes="200px"
+                style={{ transform: `scale(${client.scale || 1})` }}
+                className={`object-contain transition-all duration-300 ${
+                  client.filterType === "invert"
+                    ? "invert"
+                    : client.name === "Emaar" || client.name === "إعمار" || client.logo.includes("-w")
+                    ? "brightness-0"
+                    : ""
+                }`}
+              />
             </div>
           ))}
         </motion.div>

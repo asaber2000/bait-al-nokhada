@@ -123,3 +123,78 @@ section {
   will-change: transform;
 }
 
+/* ===================================================
+   UNIFIED DESIGN SYSTEM & LAYOUT SIZING (Layout Resize)
+   =================================================== */
+
+/* الحاوية الموحدة لجميع السكاشن */
+.site-container {
+  width: 100%;
+  max-width: 80rem; /* max-w-7xl (1280px) */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: 3rem; /* sm:px-12 */
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 6rem; /* lg:px-24 - سر راحة العين في المشاريع */
+    padding-right: 6rem;
+  }
+}
+
+/* حاوية العناوين والنصوص المحصورة الفخمة */
+.site-text-container {
+  max-width: 64rem; /* max-w-5xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* الأبعاد والنسب الموحدة للوسائط (Images & Videos) */
+.media-card-ratio {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem; /* rounded-2xl */
+}
+
+.media-banner-ratio {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem; /* rounded-3xl */
+}
+
+/* توحيد الأزرار الأساسية عبر الصفحات */
+.btn-primary-unified {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--gold);
+  color: #090d16;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-unified:hover {
+  background-color: var(--gold-dark);
+  transform: translateY(-1px);
+}
+
+
