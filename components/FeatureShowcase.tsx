@@ -66,25 +66,19 @@ function PillarCard({ pillar, idx }: { pillar: any; idx: number }) {
 
   // حركة الضم والاندماج:
   // الكرت 01 يندفع من اليسار، الكرت 03 يندفع من اليمين، والوسط يصعد من الأسفل ويكبر
-  const initialMotion =
-    idx === 0
-      ? { opacity: 0, x: -90, y: 30 }
-      : idx === 2
-        ? { opacity: 0, x: 90, y: 30 }
-        : { opacity: 0, scale: 0.8, y: 60 };
-
   return (
     <motion.div
-      initial={initialMotion}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      viewport={{ amount: 0.2 }}
+      initial={{ opacity: 0, scale: 0.94, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.85,
-        delay: idx * 0.1,
-        ease: [0.16, 1, 0.3, 1]
+        duration: 0.45,
+        delay: idx * 0.12,
+        ease: [0.16, 1, 0.3, 1], // استجابة سريعة وانسيابية
       }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
       onMouseMove={handleMouseMove}
-      className="group relative p-7 rounded-3xl bg-white hover:bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 shadow-xs hover:shadow-md flex flex-col justify-between overflow-hidden"
+      className="group relative p-7 rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-colors duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between overflow-hidden"
     >
       {/* هالة تفاعلية حول الماوس */}
       <motion.div
