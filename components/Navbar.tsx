@@ -4,21 +4,42 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { ChevronDown, Globe, X, ArrowUpRight, Mail, Phone, MapPin, Sparkles, MessageCircle } from "lucide-react";
+import {
+  Globe,
+  X,
+  ArrowUpRight,
+  Mail,
+  Phone,
+  MapPin,
+  Sparkles,
+  MessageCircle,
+  Building,
+  Layers,
+  ChevronRight,
+  ArrowLeft,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { client } from "@/app/lib/sanity";
 import { productsDatabase } from "@/app/data/products.En";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 
-
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [menuView, setMenuView] = useState<"main" | "products" | "solutions">("main");
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [solutionsList, setSolutionsList] = useState(solutionsDatabase);
   const [productsList, setProductsList] = useState(productsDatabase);
+
+  // صورة المعاينة السينمائية الافتراضية
+  const defaultPreview = {
+    title: "Bait Al Nokhada",
+    subtitle: "Pioneering Modular Architecture Since 1997",
+    category: "ROYAL PAVILIONS & TENT STRUCTURES",
+    image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
+  };
+
+  const [preview, setPreview] = useState(defaultPreview);
 
   useEffect(() => {
     async function fetchLiveNavData() {
@@ -26,7 +47,8 @@ export default function Navbar() {
         const sanitySolutions: any[] = await client.fetch(
           `*[_type == "solutionEn" && defined(slug.current)]{
             "name": titleEn,
-            "slug": slug.current
+            "slug": slug.current,
+            "image": mainImage.asset->url
           }`
         );
 
@@ -38,9 +60,10 @@ export default function Navbar() {
 
         const sanityProducts: any[] = await client.fetch(
           `*[_type in ["productsEn", "productEn"] && defined(slug.current)]{
-    "name": titleEn,
-    "slug": slug.current
-  }`
+            "name": titleEn,
+            "slug": slug.current,
+            "image": mainImage.asset->url
+          }`
         );
 
         if (sanityProducts && sanityProducts.length > 0) {
@@ -49,7 +72,7 @@ export default function Navbar() {
           setProductsList([...sanityProducts, ...remainingLocalProducts]);
         }
       } catch (err) {
-        // Fallback silently to local database
+        // Fallback silently
       }
     }
 
@@ -57,12 +80,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    // إيقاف تذكر المتصفح لمكان السكرول القديم
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
-    // إرجاع الصفحة لأعلى نقطة فوراً عند عمل ريفريش
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
@@ -77,6 +98,8 @@ export default function Navbar() {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      setMenuView("main");
+      setPreview(defaultPreview);
     } else {
       document.body.style.overflow = "unset";
     }
@@ -92,16 +115,9 @@ export default function Navbar() {
     ? pathname.replace(/^\/ar/, "") || "/"
     : `/ar${pathname === "/" ? "" : pathname}`;
 
-  const navLinks = [
-    { title: "Home", href: "/" },
-    { title: "About Us", href: "/about" },
-    { title: "Projects", href: "/projects" },
-    { title: "News", href: "/news" },
-    { title: "Contact", href: "/contact" },
-  ];
-
   return (
     <>
+      {/* الترويسة الرئيسية للموقع */}
       <header
         dir="ltr"
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-6 sm:px-10 ${isScrolled
@@ -111,8 +127,10 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           <Link href="/" className="flex items-center group transition-transform duration-300 hover:scale-[1.02]">
-            <div className={`relative transition-all duration-300 ${isScrolled ? "h-9 w-36 sm:h-10 sm:w-40" : "h-11 w-44 sm:h-12 sm:w-48"
-              }`}>
+            <div
+              className={`relative transition-all duration-300 ${isScrolled ? "h-9 w-36 sm:h-10 sm:w-40" : "h-11 w-44 sm:h-12 sm:w-48"
+                }`}
+            >
               <Image
                 src="/bait-alnokhada-final-g.svg"
                 alt="Bait Al Nokhada"
@@ -122,9 +140,8 @@ export default function Navbar() {
               />
             </div>
           </Link>
-          {/* أزرار الهيدر الإنجليزي: زر التحويل للعربية + زر القائمة */}
+
           <div className="flex items-center p-1 rounded-full bg-white/80 backdrop-blur-xl border border-slate-900/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300">
-            {/* زر اللغة */}
             <Link
               href={targetLanguageUrl}
               className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold text-slate-700 hover:text-[#df9d17] transition-colors"
@@ -133,10 +150,8 @@ export default function Navbar() {
               <span className="tracking-wide transition-colors">AR</span>
             </Link>
 
-            {/* فاصل معماري رفيع وناعم */}
             <span className="w-[1px] h-4 bg-slate-200 shrink-0" />
 
-            {/* زر القائمة MENU بتصميم أنيق وموحد على ذهبي الهوية #df9d17 */}
             <button
               onClick={() => setMobileMenuOpen(true)}
               className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full text-slate-900 hover:text-[#df9d17] transition-colors cursor-pointer group"
@@ -154,298 +169,481 @@ export default function Navbar() {
         </div>
       </header>
 
+      {/* المنيو السينمائي الداكن الفاخر (Midnight Architectural Fullscreen) */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             data-lenis-prevent
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed inset-0 z-[99999] bg-[#FDFCF7]/98 backdrop-blur-xl px-6 sm:px-16 py-6 h-[100dvh] overflow-y-auto overscroll-contain flex flex-col text-left will-change-transform [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[99999] bg-[#FDFCF7]/98 backdrop-blur-2xl text-[#0B1220] flex flex-col justify-between overflow-y-auto lg:overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
+            {/* خطوط شبكية هندسية خافتة في الخلفية */}
+            <div
+              className="absolute inset-0 opacity-[0.035] pointer-events-none"
+              style={{
+                backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)",
+                backgroundSize: "32px 32px",
+              }}
+            />
+            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#df9d17]/5 blur-[200px] rounded-full pointer-events-none" />
 
-            {/* Header */}
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full shrink-0 relative z-10 border-b border-slate-200/60 pb-4">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#D4AF37] font-bold">
-                  Navigation Directory
-                </span>
+            {/* الهيدر العلوي */}
+            <div className="w-full px-6 sm:px-12 lg:px-16 pt-7 pb-5 border-b border-slate-200/80 flex items-center justify-between shrink-0 relative z-20">
+              <div className="flex items-center gap-3">
+                <div className="relative h-9 w-40 sm:h-10 sm:w-44">
+                  <Image
+                    src="/bait-alnokhada-final-g.svg"
+                    alt="Bait Al Nokhada"
+                    fill
+                    className="object-contain object-left"
+                  />
+                </div>
               </div>
+
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-[#C99A2C] text-slate-800 hover:text-white border border-slate-200 transition-all cursor-pointer group shadow-xs"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-[#df9d17] text-[#0B1220] transition-all cursor-pointer border border-slate-200/80 hover:border-[#df9d17] group"
                 aria-label="Close Menu"
               >
-                <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-[#0B1220] transition-all cursor-pointer border border-slate-200 shadow-xs group">ESC</span>
+                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
               </button>
             </div>
 
-            {/* Grid Content */}
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 py-6 pb-12 items-start relative z-10 flex-1">
+            {/* المسرح الرئيسي: تقسيم 50% / 50% مطابق لصورة موقع الطيران */}
+            <div className="w-full flex-1 px-6 sm:px-12 lg:px-16 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 overflow-hidden">
 
-              {/* العمود الأول */}
-              <div className="lg:col-span-4 space-y-2">
-                {navLinks.map((link, idx) => (
-                  <motion.div
-                    key={link.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: idx * 0.04 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-2 text-2xl sm:text-4xl font-extrabold text-[#0B1220] hover:text-[#C99A2C] transition-all font-heading"
+              {/* النصف الأيسر: الروابط المعمارية الشاهقة */}
+              <div className="lg:col-span-6 flex flex-col justify-center h-full max-h-[540px] border-b lg:border-b-0 lg:border-r border-slate-200/80 pr-0 lg:pr-12">
+                <AnimatePresence mode="wait">
+                  {menuView === "main" && (
+                    <motion.div
+                      key="main-nav"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-1.5 sm:space-y-2.5 divide-y divide-white/[0.06]"
                     >
-                      <span className="group-hover:translate-x-2 transition-transform duration-200">{link.title}</span>
-                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 text-[#C99A2C] transition-all -translate-x-2 group-hover:translate-x-0" />
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* العمود الثاني: السكرول المستقل المحمي مع منع انتشار التمرير للخارج */}
-              <div
-                className="lg:col-span-4 space-y-4 text-sm text-slate-700 lg:border-l lg:border-slate-200 pl-0 lg:pl-6">
-
-                {/* Products */}
-                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                  <div className="flex items-center justify-between w-full">
-                    <button
-                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
-                    >
-                      <span>Products ({productsList.length})</span>
-                      <ChevronDown
-                        className={`w-5 h-5 transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    <Link
-                      href="/products"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-500 hover:text-[#C99A2C] underline flex items-center gap-1 font-semibold"
-                    >
-                      View All <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                  {mobileProductsOpen && (
-                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {productsList.map((item) => (
+                      {/* HOME */}
+                      <div className="pt-2">
                         <Link
-                          key={item.slug}
-                          href={`/products/${item.slug}`}
+                          href="/"
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#C99A2C] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
+                          onMouseEnter={() =>
+                            setPreview({
+                              title: "Global Headquarters",
+                              subtitle: "Mega Manufacturing Complex in Dubai & Abu Dhabi",
+                              category: "BAIT AL NOKHADA DIRECTORY",
+                              image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
+                            })
+                          }
+                          className="group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase"
                         >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A2C]" />
+                          <span className="group-hover:translate-x-3 transition-transform duration-200">
+                            Home
+                          </span>
+                          <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17] tracking-widest">
+                            01
+                          </span>
                         </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Solutions */}
-                <div className="space-y-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                  <div className="flex items-center justify-between w-full">
-                    <button
-                      onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                      className="flex items-center gap-2 text-base font-extrabold text-[#C99A2C] cursor-pointer"
-                    >
-                      <span>Solutions ({solutionsList.length})</span>
-                      <ChevronDown
-                        className={`w-5 h-5 transition-transform duration-300 ${mobileSolutionsOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    <Link
-                      href="/solutions"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-500 hover:text-[#C99A2C] underline flex items-center gap-1 font-semibold"
-                    >
-                      View All <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                  {mobileSolutionsOpen && (
-                    <div className="grid grid-cols-1 gap-1.5 pt-3 border-t border-slate-200 mt-2">
-                      {solutionsList.map((item) => (
-                        <Link
-                          key={item.slug}
-                          href={`/solutions/${item.slug}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between py-1.5 px-3 text-xs text-slate-800 hover:text-[#C99A2C] bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
-                        >
-                          <span>{item.name}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#C99A2C]" />
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* العمود الثالث */}
-              <div className="lg:col-span-4 space-y-5 text-sm text-slate-700 border-l border-slate-200 pl-6 sm:pl-8 bg-slate-50 p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm">
-                <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#C99A2C] mb-3">
-                  Direct Contact & Info
-                </h4>
-
-                <div className="space-y-3.5">
-                  <a href="tel:+971558850631" className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group">
-                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
-                      <Phone className="w-4 h-4 text-[#C99A2C] shrink-0" />
-                    </div>
-                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">+971 55 885 0631</span>
-                  </a>
-
-                  <a href="//wa.me/97143444091" className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group">
-                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
-                      <MessageCircle className="w-4 h-4 text-[#C99A2C] shrink-0" />
-                    </div>
-                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">+971 4 344 4091</span>
-                  </a>
-
-                  <a
-                    href="mailto:info@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group truncate"
-                  >
-                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
-                      <Mail className="w-4 h-4 text-[#C99A2C] shrink-0" />
-                    </div>
-                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">
-                      info@baitalnokhada.com
-                    </span>
-                  </a>
-
-                  <a
-                    href="mailto:info.Ksa@baitalnokhada.com"
-                    className="flex items-center gap-3.5 hover:text-[#C99A2C] transition group truncate"
-                  >
-                    <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:border-[#C99A2C] transition">
-                      <Mail className="w-4 h-4 text-[#C99A2C] shrink-0" />
-                    </div>
-                    <span className="font-semibold text-xs sm:text-sm truncate text-slate-800">
-                      info.Ksa@baitalnokhada.com
-                    </span>
-                  </a>
-
-                  <div className="flex items-start gap-3.5 pt-1">
-                    <a
-                      href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-start gap-3.5 pt-1 hover:text-[#C99A2C] transition group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-xs mt-0.5 group-hover:border-[#C99A2C] transition">
-                        <MapPin className="w-4 h-4 text-[#C99A2C] shrink-0" />
                       </div>
-                      <span className="text-slate-800 leading-relaxed text-xs font-semibold group-hover:text-[#C99A2C] transition-colors">
-                        Land No. TP 010102 - Technopark - Mina Jebel Ali - National Industries Park - Dubai, UAE
-                      </span>
-                    </a>
-                  </div>
-                </div>
 
-                <div className="pt-4 border-t border-slate-200">
-                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-3 font-bold">Follow Us</p>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <a
-                      href="https://facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="Facebook"
+                      {/* PRODUCTS - يفتح الاستعراض الكامل */}
+                      <div className="pt-2">
+                        <button
+                          onClick={() => setMenuView("products")}
+                          onMouseEnter={() =>
+                            setPreview({
+                              title: "Modular Tent Products",
+                              subtitle: "German DIN Certified Aluminum & Steel Marquees",
+                              category: "14 CUSTOM FABRICATIONS",
+                              image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
+                            })
+                          }
+                          className="w-full group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase text-left cursor-pointer"
+                        >
+                          <span className="group-hover:translate-x-3 transition-transform duration-200 flex items-center gap-3">
+                            Products
+                            <span className="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-white/10 text-[#df9d17]">
+                              {productsList.length}
+                            </span>
+                          </span>
+                          <ChevronRight className="w-6 h-6 text-[#0B1220]/30 group-hover:text-[#df9d17] group-hover:translate-x-1 transition-all" />
+                        </button>
+                      </div>
+
+                      {/* SOLUTIONS - يفتح استعراض الحلول */}
+                      <div className="pt-2">
+                        <button
+                          onClick={() => setMenuView("solutions")}
+                          onMouseEnter={() =>
+                            setPreview({
+                              title: "Architectural Solutions",
+                              subtitle: "Turnkey Clear-Span Venues & Military Enclosures",
+                              category: "12 SPECIALIZED DIVISIONS",
+                              image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp",
+                            })
+                          }
+                          className="w-full group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase text-left cursor-pointer"
+                        >
+                          <span className="group-hover:translate-x-3 transition-transform duration-200 flex items-center gap-3">
+                            Solutions
+                            <span className="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-white/10 text-[#df9d17]">
+                              {solutionsList.length}
+                            </span>
+                          </span>
+                          <ChevronRight className="w-6 h-6 text-[#0B1220]/30 group-hover:text-[#df9d17] group-hover:translate-x-1 transition-all" />
+                        </button>
+                      </div>
+
+                      {/* PROJECTS */}
+                      <div className="pt-2">
+                        <Link
+                          href="/projects"
+                          onClick={() => setMobileMenuOpen(false)}
+                          onMouseEnter={() =>
+                            setPreview({
+                              title: "Featured Case Studies",
+                              subtitle: "Government Summits, IDEX, Airshows & Royal Marquees",
+                              category: "5,000+ DEPLOYED STRUCTURES",
+                              image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
+                            })
+                          }
+                          className="group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase"
+                        >
+                          <span className="group-hover:translate-x-3 transition-transform duration-200">
+                            Projects
+                          </span>
+                          <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17] tracking-widest">
+                            04
+                          </span>
+                        </Link>
+                      </div>
+
+                      {/* ABOUT US */}
+                      <div className="pt-2">
+                        <Link
+                          href="/about"
+                          onClick={() => setMobileMenuOpen(false)}
+                          onMouseEnter={() =>
+                            setPreview({
+                              title: "Our Engineering Heritage",
+                              subtitle: "30+ Years of Middle Eastern Craftsmanship & Scale",
+                              category: "40,000 SQM FACILITY",
+                              image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
+                            })
+                          }
+                          className="group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase"
+                        >
+                          <span className="group-hover:translate-x-3 transition-transform duration-200">
+                            About Us
+                          </span>
+                          <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17] tracking-widest">
+                            05
+                          </span>
+                        </Link>
+                      </div>
+
+                      {/* CONTACT */}
+                      <div className="pt-2">
+                        <Link
+                          href="/contact"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="group flex items-center justify-between py-2.5 text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-[#0B1220]/90 hover:text-[#df9d17] transition-all font-heading uppercase"
+                        >
+                          <span className="group-hover:translate-x-3 transition-transform duration-200">
+                            Contact
+                          </span>
+                          <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17] tracking-widest">
+                            06
+                          </span>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* قائمة المنتجات الفرعية الشاملة */}
+                  {menuView === "products" && (
+                    <motion.div
+                      key="products-nav"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-4"
                     >
-                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="Instagram"
+                      <button
+                        onClick={() => setMenuView("main")}
+                        className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#df9d17] hover:text-[#0B1220] uppercase tracking-wider mb-2 cursor-pointer transition-colors"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                        <span>Back to Main Menu</span>
+                      </button>
+
+                      <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+                        <h3 className="text-xl sm:text-2xl font-bold font-heading uppercase text-[#0B1220] flex items-center gap-2">
+                          <Building className="w-5 h-5 text-[#df9d17]" />
+                          <span>All Tent Products ({productsList.length})</span>
+                        </h3>
+                        <Link
+                          href="/products"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-xs font-mono text-[#df9d17] hover:underline"
+                        >
+                          VIEW CATALOG
+                        </Link>
+                      </div>
+
+                      <div className="overflow-y-auto no-scrollbar max-h-[380px] grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1 pr-2">
+                        {productsList.map((item, idx) => (
+                          <Link
+                            key={item.slug}
+                            href={`/products/${item.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            onMouseEnter={() =>
+                              setPreview({
+                                title: item.name,
+                                subtitle: "Engineered High-Span Tensile Architecture",
+                                category: "PRODUCT SPECIFICATION",
+                                image:
+                                  (item as any).image ||
+                                  "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
+                              })
+                            }
+                            className="group flex items-center justify-between py-2 border-b border-slate-200/50 hover:border-[#df9d17] text-slate-800 hover:text-[#df9d17] transition-all"
+                          >
+                            <div className="flex items-center gap-3 truncate">
+                              <span className="text-[11px] font-mono text-slate-400 group-hover:text-[#df9d17]">
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-sm font-semibold truncate tracking-tight">
+                                {item.name}
+                              </span>
+                            </div>
+                            <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-[#df9d17] transition-all" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* قائمة الحلول الفرعية الشاملة */}
+                  {menuView === "solutions" && (
+                    <motion.div
+                      key="solutions-nav"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-4"
                     >
-                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-2xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="LinkedIn"
+                      <button
+                        onClick={() => setMenuView("main")}
+                        className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#df9d17] hover:text-[#0B1220] uppercase tracking-wider mb-2 cursor-pointer transition-colors"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                        <span>Back to Main Menu</span>
+                      </button>
+
+                      <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+                        <h3 className="text-xl sm:text-2xl font-bold font-heading uppercase text-[#0B1220] flex items-center gap-2">
+                          <Layers className="w-5 h-5 text-[#df9d17]" />
+                          <span>Turnkey Solutions ({solutionsList.length})</span>
+                        </h3>
+                        <Link
+                          href="/solutions"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-xs font-mono text-[#df9d17] hover:underline"
+                        >
+                          VIEW ALL
+                        </Link>
+                      </div>
+
+                      <div className="overflow-y-auto no-scrollbar max-h-[380px] grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1 pr-2">
+                        {solutionsList.map((item, idx) => (
+                          <Link
+                            key={item.slug}
+                            href={`/solutions/${item.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            onMouseEnter={() =>
+                              setPreview({
+                                title: item.name,
+                                subtitle: "Custom Turnkey Engineering & Climate Control",
+                                category: "APPLICATION SOLUTION",
+                                image:
+                                  (item as any).image ||
+                                  "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
+                              })
+                            }
+                            className="group flex items-center justify-between py-2 border-b border-slate-200/50 hover:border-[#df9d17] text-slate-800 hover:text-[#df9d17] transition-all"
+                          >
+                            <div className="flex items-center gap-3 truncate">
+                              <span className="text-[11px] font-mono text-slate-400 group-hover:text-[#df9d17]">
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-sm font-semibold truncate tracking-tight">
+                                {item.name}
+                              </span>
+                            </div>
+                            <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-[#df9d17] transition-all" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* النصف الأيمن: الشاشة السينمائية بكامل العرض والارتفاع */}
+              <div className="hidden lg:flex lg:col-span-6 w-full h-full items-center justify-center min-w-0">
+                <div className="relative w-full h-[460px] xl:h-[500px] rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-[#0B1220]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={preview.title}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.12, ease: "linear" }}
+                      className="relative w-full h-full will-change-opacity"
                     >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://tiktok.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="TikTok"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://youtube.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="YouTube"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://x.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="X"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://pinterest.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="Pinterest"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 0a12 12 0 0 0-4.37 23.17c-.07-.63-.13-1.6.03-2.29l1.1-4.66s-.28-.56-.28-1.39c0-1.3.75-2.27 1.7-2.27.8 0 1.19.6 1.19 1.32 0 .81-.51 2.01-.78 3.13-.22.94.47 1.71 1.4 1.71 1.68 0 2.97-1.77 2.97-4.32 0-2.26-1.62-3.84-3.94-3.84-2.69 0-4.26 2.02-4.26 4.1 0 .81.31 1.68.7 2.16.08.1.09.18.06.3-.08.33-.26 1.06-.3 1.2-.05.2-.16.24-.37.15-1.38-.64-2.24-2.65-2.24-4.27 0-3.48 2.53-6.67 7.29-6.67 3.83 0 6.8 2.73 6.8 6.38 0 3.8-2.4 6.87-5.73 6.87-1.12 0-2.17-.58-2.53-1.27l-.69 2.63c-.25.96-.92 2.16-1.37 2.89A12 12 0 1 0 12 0z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://behance.net"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-[#C99A2C] hover:text-white text-slate-700 transition shadow-xs"
-                      aria-label="Behance"
-                    >
-                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.171 3-3.405 0-5.555-2.162-5.555-5.38 0-3.329 2.37-5.62 5.4-5.62 3.224 0 4.956 2.18 4.956 5.299 0 .533-.075 1.056-.075 1.056h-7.854c.114 1.822 1.306 2.85 2.899 2.85 1.196 0 2.053-.525 2.541-1.205h2.859zm-2.964-3.646c-.053-1.424-.925-2.314-2.256-2.314-1.341 0-2.21.89-2.367 2.314h4.623zm-14.762 3.646h-3v-12h3c2.757 0 4.5 1.449 4.5 3.5 0 1.456-.837 2.607-2.115 3.097 1.605.429 2.615 1.777 2.615 3.403 0 2.348-1.893 4-5 4zm-1-7h1c1.242 0 2-.636 2-1.5s-.758-1.5-2-1.5h-1v3zm0 5h1c1.381 0 2.5-.724 2.5-1.75s-1.119-1.75-2.5-1.75h-1v3.5z" />
-                      </svg>
-                    </a>
-                  </div>
+                      <Image
+                        src={preview.image}
+                        alt={preview.title}
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+
+                      {/* تدرج خافت وناعم فقط في الأسفل لإبراز العنوان */}
+                      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+                      {/* عنوان نقي وواضح فقط */}
+                      <div className="absolute bottom-6 left-8 right-8 z-10">
+                        <h4 className="text-xl xl:text-2xl font-black text-white drop-shadow-md tracking-tight truncate">
+                          {preview.title}
+                        </h4>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
-            {/* Footer */}
-            <div className="max-w-7xl mx-auto w-full pt-4 pb-6 mt-auto border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 shrink-0 relative z-10">
-              <p className="text-[10px] sm:text-xs font-medium">© 2026 Bait Al Nokhada. All Rights Reserved.</p>
+
+
+            {/* الشريط السفلي: متوازن وفخم */}
+            <div className="w-full px-6 sm:px-12 lg:px-16 pt-4 pb-7 border-t border-slate-200/80 bg-[#FDFCF7] shrink-0 space-y-3.5 relative z-20">
+
+              {/* السطر الأول: قنوات التواصل والعنوان الرسمي بنفس درجة الفونت والبولد */}
+              <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
+                <div className="flex flex-wrap items-center gap-6">
+                  <a href="tel:+971558850631" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                    <Phone className="w-3.5 h-3.5 text-[#df9d17]" />
+                    <span>+971 55 885 0631</span>
+                  </a>
+
+                  <a href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                    <MessageCircle className="w-3.5 h-3.5 text-[#df9d17]" />
+                    <span>+971 4 344 4091</span>
+                  </a>
+
+                  <a href="mailto:info@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
+                    <span>info@baitalnokhada.com</span>
+                  </a>
+
+                  <a href="mailto:info.Ksa@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
+                    <span>info.Ksa@baitalnokhada.com</span>
+                  </a>
+                </div>
+
+                {/* العنوان: الآن واخذ نفس الـ font-semibold و text-slate-800 والحجم الموحد */}
+                <a
+                  href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
+                  <span>Technopark, Mina Jebel Ali, Dubai, UAE</span>
+                </a>
+              </div>
+
+              {/* السطر الثاني: الحقوق + أزرار السوشيال ميديا بتصميم كبسولات فخمة وبارزة */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200/60 text-[11px] text-slate-500">
+                <p className="font-mono text-slate-600">
+                  © 2026 Bait Al Nokhada Tents Factory. All rights reserved.
+                </p>
+
+                {/* أيقونات السوشيال ميديا المحدثة: كبسولات دائرية بحدود وظلال خفيفة وتفاعل راقي */}
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="Facebook"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                  </a>
+
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="Instagram"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+                  </a>
+
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="LinkedIn"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                  </a>
+
+                  <a
+                    href="https://tiktok.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="TikTok"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" /></svg>
+                  </a>
+
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="YouTube"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                  </a>
+
+                  <a
+                    href="https://x.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                    aria-label="X"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </motion.div>
         )}

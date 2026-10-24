@@ -158,15 +158,13 @@ const pillars = [
 
 export default function FeatureShowcase() {
   return (
-    <section className="relative z-20 bg-[#FDFCF7] py-20 lg:py-24 border-t border-slate-200/60 overflow-hidden">
+    <section className="relative z-20 bg-[#FDFCF7] pt-8 lg:pt-12 pb-20 lg:pb-24 overflow-hidden">
 
-      {/* إضاءات وشبكة إحداثيات خلفية */}
+      {/* إضاءات وشبكة إحداثيات متطابقة هندسياً مع الهيرو */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(#e6b224 1px, transparent 1px)", backgroundSize: "36px 36px" }}
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "32px 32px" }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#e6b224]/5 blur-[160px] rounded-full pointer-events-none" />
-
       <div className="site-container relative z-10 space-y-20">
 
         {/* 1. الصف العلوي: النص يندفع بقوة من اليسار والصورة تندفع من اليمين ويصطدمان بسلاسة */}
