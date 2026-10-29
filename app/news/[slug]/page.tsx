@@ -394,7 +394,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-44 pb-16 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
             src={article.heroImage}
@@ -408,7 +408,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF7]/60 via-[#FDFCF7]/90 to-[#FDFCF7]" />
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-6 relative z-10">
+        <div className="site-container max-w-7xl mx-auto w-full space-y-6 relative z-10 text-left">
           <Link
             href="/news"
             className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17] hover:text-black transition-colors"
@@ -424,7 +424,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
               </span>
             )}
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
+            <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
               {article.title}
             </h1>
 
@@ -459,8 +459,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {/* Main Content Layout */}
-      <section className="py-16 px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#FDFCF7]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">
 
           {/* Main Article Body */}
           <div className="lg:col-span-8 space-y-10">

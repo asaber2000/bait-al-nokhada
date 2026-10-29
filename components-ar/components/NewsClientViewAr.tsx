@@ -62,11 +62,10 @@ export default function NewsClientViewAr({ initialArticles }: { initialArticles:
           <button
             key={cat.en}
             onClick={() => setActiveCategory(cat.en)}
-            className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 cursor-pointer ${
-              activeCategory === cat.en
+            className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 cursor-pointer ${activeCategory === cat.en
                 ? "bg-[#df9d17] text-white shadow-md shadow-[#df9d17]/25 font-black scale-105"
                 : "bg-white text-slate-700 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-slate-50 shadow-xs"
-            }`}
+              }`}
           >
             {cat.ar}
           </button>
@@ -75,9 +74,9 @@ export default function NewsClientViewAr({ initialArticles }: { initialArticles:
 
       {/* البانر المميز (Featured Story) */}
       {featuredArticle && activeCategory === "ALL" && !searchQuery && (
-        <section className="py-16 px-6 max-w-7xl mx-auto text-right">
+        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-right">
           <div className="rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all grid grid-cols-1 lg:grid-cols-12 shadow-xs hover:shadow-md">
-            
+
             <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-full min-h-[340px] bg-slate-100">
               <Image
                 src={featuredArticle.heroImage}
@@ -131,7 +130,7 @@ export default function NewsClientViewAr({ initialArticles }: { initialArticles:
       )}
 
       {/* شبكة المقالات */}
-      <section className="py-12 pb-24 px-6 max-w-7xl mx-auto text-right">
+      <section className="pb-20 sm:pb-28 pt-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-right">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.map((art: any) => {
             const arData = art.ar || art;

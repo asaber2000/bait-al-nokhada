@@ -295,6 +295,15 @@ export default function ArabicNavbar() {
                     <span className="text-xs font-mono text-slate-400">01</span>
                   </Link>
 
+                  <Link
+                    href="/ar/about"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading text-slate-900"
+                  >
+                    <span>من نحن</span>
+                    <span className="text-xs font-mono text-slate-400">02</span>
+                  </Link>
+
                   {/* أكورديون المنتجات على الموبايل */}
                   <div className="border-b border-slate-200/70 pb-2">
                     <button
@@ -411,12 +420,12 @@ export default function ArabicNavbar() {
                   </Link>
 
                   <Link
-                    href="/ar/about"
+                    href="/ar/news"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading text-slate-900"
                   >
-                    <span>من نحن</span>
-                    <span className="text-xs font-mono text-slate-400">05</span>
+                    <span>المقالات والأخبار</span>
+                    <span className="text-xs font-mono text-slate-400">06</span>
                   </Link>
 
                   <Link
@@ -434,6 +443,7 @@ export default function ArabicNavbar() {
 
                   {/* العمود الأيمن (4 أعمدة): الروابط الرئيسية العربية */}
                   <div className="col-span-4 flex flex-col justify-center space-y-2 border-l border-slate-200/80 pl-10">
+                    {/* 01 الرئيسية */}
                     <Link
                       href="/ar"
                       onClick={() => setMobileMenuOpen(false)}
@@ -443,7 +453,17 @@ export default function ArabicNavbar() {
                       <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">01</span>
                     </Link>
 
-                    {/* تفعيل المنتجات بمجرد تحويم الماوس */}
+                    {/* 02 من نحن */}
+                    <Link
+                      href="/ar/about"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
+                    >
+                      <span className="group-hover:-translate-x-2 transition-transform duration-200">من نحن</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">02</span>
+                    </Link>
+
+                    {/* 03 المنتجات */}
                     <div
                       onMouseEnter={() => setActiveTab("products")}
                       className="cursor-pointer"
@@ -463,11 +483,11 @@ export default function ArabicNavbar() {
                             {productsList.length}
                           </span>
                         </span>
-                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">02</span>
+                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">03</span>
                       </Link>
                     </div>
 
-                    {/* تفعيل الحلول بمجرد تحويم الماوس */}
+                    {/* 04 الحلول والخدمات */}
                     <div
                       onMouseEnter={() => setActiveTab("solutions")}
                       className="cursor-pointer"
@@ -487,35 +507,38 @@ export default function ArabicNavbar() {
                             {solutionsList.length}
                           </span>
                         </span>
-                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">03</span>
+                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">04</span>
                       </Link>
                     </div>
 
+                    {/* 05 المشاريع */}
                     <Link
                       href="/ar/projects"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
                     >
                       <span className="group-hover:-translate-x-2 transition-transform duration-200">المشاريع</span>
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">04</span>
-                    </Link>
-
-                    <Link
-                      href="/ar/about"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
-                    >
-                      <span className="group-hover:-translate-x-2 transition-transform duration-200">من نحن</span>
                       <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">05</span>
                     </Link>
 
+                    {/* 06 المقالات والأخبار */}
+                    <Link
+                      href="/ar/news"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
+                    >
+                      <span className="group-hover:-translate-x-2 transition-transform duration-200">المقالات والأخبار</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">06</span>
+                    </Link>
+
+                    {/* 07 تواصل معنا */}
                     <Link
                       href="/ar/contact"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
                     >
                       <span className="group-hover:-translate-x-2 transition-transform duration-200">تواصل معنا</span>
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">06</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">07</span>
                     </Link>
                   </div>
 

@@ -223,7 +223,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <Navbar />
 
       {/* 1. Hero Banner */}
-      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
             src={project.coverImage}
@@ -237,7 +237,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-6 relative z-10 text-left">
+        <div className="site-container max-w-7xl mx-auto w-full space-y-8 relative z-10 text-left">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[#df9d17] hover:text-black transition-colors"
@@ -246,7 +246,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <span>Back to All Executed Projects</span>
           </Link>
 
-          <div className="space-y-4 max-w-4xl">
+          {/* البادجات والعنوان بعرض الحاوية الكامل المتناسق */}
+          <div className="space-y-4 w-full">
             <div className="flex flex-wrap items-center gap-2 justify-start">
               {project.categoryEn && (
                 <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
@@ -265,13 +266,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
+            <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
               {project.titleEn}
             </h1>
           </div>
 
-          {/* 2. Modern Engineering HUD Dashboard */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs max-w-6xl text-left">
+          {/* 2. Modern Engineering HUD Dashboard - بعرض الحاوية الكامل لنفس خط المشاريع */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs w-full text-left">
             <div className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 space-y-1">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500">Client</span>
               <p className="text-xs sm:text-sm font-bold text-[#0B1220] truncate">{project.clientEn}</p>
@@ -298,11 +299,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
       {/* 3. Project Overview & Challenge */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">  
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Scope & Execution</span>
@@ -377,7 +378,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {/* 4. Rich Media & Universal Video Player */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto space-y-12 border-b border-slate-200/60">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-b border-slate-200/60 bg-[#FDFCF7]">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Visual & Field Documentation</span>
           <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">Project Gallery & Video</h2>
@@ -400,10 +401,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                   src={
                     project.videoUrl.includes("embed/")
                       ? project.videoUrl
-                      : `https://www.youtube.com/embed/${
-                          project.videoUrl.split("v=")[1]?.split("&")[0] ||
-                          project.videoUrl.split("/").pop()?.split("?")[0]
-                        }?rel=0&modestbranding=1`
+                      : `https://www.youtube.com/embed/${project.videoUrl.split("v=")[1]?.split("&")[0] ||
+                      project.videoUrl.split("/").pop()?.split("?")[0]
+                      }?rel=0&modestbranding=1`
                   }
                   title={project.titleEn}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -435,7 +435,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {/* Bottom CTA */}
-      <section className="pb-24 pt-6 px-6 max-w-5xl mx-auto">
+      <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">

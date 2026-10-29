@@ -127,27 +127,27 @@ section {
    UNIFIED DESIGN SYSTEM & LAYOUT SIZING (Layout Resize)
    =================================================== */
 
-/* الحاوية الموحدة لجميع السكاشن */
+/* الحاوية الموحدة لجميع السكاشن - مطابقة لسيكشن المشاريع */
 .site-container {
   width: 100%;
   max-width: 80rem; /* max-w-7xl (1280px) */
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem; /* px-6 */
-  padding-right: 1.5rem;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
 }
 
 @media (min-width: 640px) {
   .site-container {
-    padding-left: 3rem; /* sm:px-12 */
-    padding-right: 3rem;
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .site-container {
-    padding-left: 6rem; /* lg:px-24 - سر راحة العين في المشاريع */
-    padding-right: 6rem;
+    padding-left: 2rem; /* lg:px-8 - هو السر الحقيقي لتطابق حواف المشاريع */
+    padding-right: 2rem;
   }
 }
 
@@ -167,12 +167,14 @@ section {
   border-radius: 1rem; /* rounded-2xl */
 }
 
+/* كرت الميديا العريض المتطابق مع بطاقة المشروع */
 .media-banner-ratio {
   aspect-ratio: 16 / 9;
   width: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 1.5rem; /* rounded-3xl */
+  background-color: #000000;
 }
 
 /* توحيد الأزرار الأساسية عبر الصفحات */

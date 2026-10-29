@@ -62,20 +62,20 @@ export default async function ArabicNewsCatalogPage() {
       <Navbar />
 
       {/* Hero Header */}
-      <section className="relative pt-44 pb-16 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden text-right bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden text-right bg-[#FDFCF7]">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
         />
         <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
+        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>رؤى معمارية وهندسية • بيت النوخذة</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
+          <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
             الأخبار، المقالات <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               والدراسات الهندسية
@@ -92,7 +92,7 @@ export default async function ArabicNewsCatalogPage() {
       <NewsClientViewAr initialArticles={allArticles} />
 
       {/* Newsletter / CTA */}
-      <section className="pb-24 px-6 max-w-5xl mx-auto text-center space-y-6">
+      <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-6">
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 space-y-4 shadow-xs">
           <BookOpen className="w-8 h-8 text-[#df9d17] mx-auto" />
           <h3 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading tracking-tight">

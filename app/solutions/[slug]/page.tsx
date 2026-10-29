@@ -57,7 +57,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     technicalSpecs: sanity.technicalHighlightsEn || local?.technicalSpecs || [],
     faqs: sanity.faqsEn ? sanity.faqsEn.map((f: any) => ({ q: f.question, a: f.answer })) : local?.faqs || [],
     heroImage: sanity.coverImage || local?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-    videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "", 
+    videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "",
   } : (local || solutionsDatabase[0]);
 
   return (
@@ -65,7 +65,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
       <Navbar />
 
       {/* Hero Banner */}
-      <section className="relative pt-44 pb-20 px-6 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute inset-0 z-0">
           <Image
             src={solution.heroImage}
@@ -79,7 +79,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="site-container max-w-7xl mx-auto w-full relative z-10">
           {/* زر الرجوع لأعلى الهيرو */}
           <div className="mb-8">
             <Link
@@ -101,7 +101,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                 <span>{solution.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-[1.12] font-heading">
+              <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
                 {solution.name}
               </h1>
 
@@ -154,80 +154,83 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
       </section>
 
       {/* Main Content & Benefits */}
-      <section className="py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                Proven Structural Capabilities
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
-                {(solution as any).overviewTitle || solution.name}
-              </h2>
-            </div>
-
-            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-              {solution.overview}
-            </p>
-
-            {solution.whyChooseText && (
-              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                {solution.whyChooseText}
-              </p>
-            )}
-
-            {/* Key Benefits Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {solution.keyBenefits.map((b: any, idx: number) => (
-                <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
-                  <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
-                    <span>{b.title}</span>
-                  </h4>
-                  <p className="text-xs text-slate-600 font-normal leading-relaxed">
-                    {b.desc || b.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                <span>Target Industry Sectors</span>
-              </h3>
-              <ul className="space-y-2 text-xs text-slate-700">
-                {solution.industryApplications.map((app: any, idx: number) => (
-                  <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
-                    <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
-                    <span>{app}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Technical Specs Table */}
-            {solution.technicalSpecs?.length > 0 && (
-              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Technical Highlights</h3>
-                <div className="divide-y divide-slate-100 text-xs">
-                  {solution.technicalSpecs.map((spec: any, idx: number) => (
-                    <div key={idx} className="py-2.5 flex justify-between gap-4">
-                      <span className="text-slate-500 font-medium">{spec.label}</span>
-                      <span className="text-[#0B1220] text-right font-bold">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 bg-[#FDFCF7]">
+        <div className="site-container max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                  Proven Structural Capabilities
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
+                  {(solution as any).overviewTitle || solution.name}
+                </h2>
               </div>
-            )}
+
+
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                {solution.overview}
+              </p>
+
+              {solution.whyChooseText && (
+                <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                  {solution.whyChooseText}
+                </p>
+              )}
+
+              {/* Key Benefits Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {solution.keyBenefits.map((b: any, idx: number) => (
+                  <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
+                      <span>{b.title}</span>
+                    </h4>
+                    <p className="text-xs text-slate-600 font-normal leading-relaxed">
+                      {b.desc || b.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 space-y-6">
+              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
+                  <Building2 className="w-4 h-4" />
+                  <span>Target Industry Sectors</span>
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-700">
+                  {solution.industryApplications.map((app: any, idx: number) => (
+                    <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
+                      <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
+                      <span>{app}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Technical Specs Table */}
+              {solution.technicalSpecs?.length > 0 && (
+                <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Technical Highlights</h3>
+                  <div className="divide-y divide-slate-100 text-xs">
+                    {solution.technicalSpecs.map((spec: any, idx: number) => (
+                      <div key={idx} className="py-2.5 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">{spec.label}</span>
+                        <span className="text-[#0B1220] text-right font-bold">{spec.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Video Section */}
-      <section className="py-20 px-6 max-w-5xl mx-auto space-y-8">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             <Video className="w-4 h-4" />
@@ -242,41 +245,40 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         </div>
 
         <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-  {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
-    <iframe
-      className="w-full h-full"
-      src={
-        solution.videoUrl.includes("embed/")
-          ? solution.videoUrl
-          : `https://www.youtube.com/embed/${
-              solution.videoUrl.split("v=")[1]?.split("&")[0] ||
-              solution.videoUrl.split("/").pop()?.split("?")[0]
-            }?rel=0&modestbranding=1`
-      }
-      title={solution.name}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    />
-  ) : (
-    <video
-      className="w-full h-full object-cover"
-      controls
-      playsInline
-      preload="metadata"
-    >
-      <source
-        src={solution.videoUrl}
-        type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-      />
-      <source src={solution.videoUrl} />
-      Your browser does not support the video tag.
-    </video>
-  )}
-</div>
+          {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
+            <iframe
+              className="w-full h-full"
+              src={
+                solution.videoUrl.includes("embed/")
+                  ? solution.videoUrl
+                  : `https://www.youtube.com/embed/${solution.videoUrl.split("v=")[1]?.split("&")[0] ||
+                  solution.videoUrl.split("/").pop()?.split("?")[0]
+                  }?rel=0&modestbranding=1`
+              }
+              title={solution.name}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <video
+              className="w-full h-full object-cover"
+              controls
+              playsInline
+              preload="metadata"
+            >
+              <source
+                src={solution.videoUrl}
+                type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
+              />
+              <source src={solution.videoUrl} />
+              Your browser does not support the video tag.
+            </video>
+          )}
+        </div>
       </section>
 
       {/* FAQs */}
-      <section className="py-16 px-6 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             Questions & Answers
@@ -306,34 +308,36 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
 
       {/* Gallery Section */}
       {sanity?.gallery?.length > 0 && (
-        <section className="py-24 px-6 max-w-7xl mx-auto space-y-12 border-t border-slate-200/60">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              Project Gallery
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-              Field Installation & Execution Showcase
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sanity.gallery.map((url: string, idx: number) => (
-              <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                {url && (
-                  <Image
-                    src={url}
-                    alt="Project Gallery Image"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
+          <div className="site-container max-w-7xl mx-auto w-full space-y-10">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                Project Gallery
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
+                Field Installation & Execution Showcase
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {sanity.gallery.map((url: string, idx: number) => (
+                <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
+                  {url && (
+                    <Image
+                      src={url}
+                      alt="Project Gallery Image"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+            </div>
         </section>
       )}
       {/* Bottom CTA */}
-      <section className="pb-24 px-6 max-w-5xl mx-auto">
+      <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">

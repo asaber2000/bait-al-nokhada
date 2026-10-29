@@ -27,7 +27,7 @@ export default function ProductGalleryLightbox({ images }: { images: string[] })
 
   return (
     <>
-      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-white/10 space-y-12">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 space-y-10">
         <div className="text-center space-y-2 mb-12">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             Visual Engineering Gallery

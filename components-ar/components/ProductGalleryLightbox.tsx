@@ -27,7 +27,7 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
 
   return (
     <>
-      <section dir="rtl" className="py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60 space-y-12 font-sans text-right">
+      <section dir="rtl" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 space-y-10 font-sans text-right">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             معرض الصور والأعمال الهندسية

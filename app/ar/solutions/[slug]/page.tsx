@@ -69,10 +69,10 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       <Navbar />
 
       {/* Hero Banner */}
-      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div className="absolute top-1/3 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto relative z-10 text-right">
+        <div className="site-container max-w-7xl mx-auto w-full relative z-10 text-right">
           {/* زر الرجوع لأعلى الهيرو */}
           <div className="mb-8">
             <Link
@@ -94,7 +94,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
                 <span>{arData.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
+              <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
                 {arData.name}
               </h1>
 
@@ -147,80 +147,82 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       </section>
 
       {/* Main Content & Benefits */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-right">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                قدرات وخبرات إنشائية معتمدة
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
-                {solution.overviewTitle}
-              </h2>
-            </div>
-
-            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-              {arData.overview}
-            </p>
-
-            {arData.whyChooseText && (
-              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                {arData.whyChooseText}
-              </p>
-            )}
-
-            {/* Key Benefits Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {arData.keyBenefits?.map((b: any, idx: number) => (
-                <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
-                  <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2 justify-start">
-                    <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
-                    <span>{b.title}</span>
-                  </h4>
-                  <p className="text-xs text-slate-600 font-normal leading-relaxed">
-                    {b.desc || b.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2 justify-start">
-                <Building2 className="w-4 h-4" />
-                <span>أبرز القطاعات المستفيدة</span>
-              </h3>
-              <ul className="space-y-2 text-xs text-slate-700">
-                {arData.industryApplications?.map((app: string, idx: number) => (
-                  <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
-                    <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
-                    <span>{app}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Technical Specs Table */}
-            {arData.technicalSpecs?.length > 0 && (
-              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">أبرز المواصفات الفنية</h3>
-                <div className="divide-y divide-slate-100 text-xs">
-                  {arData.technicalSpecs.map((spec: any, idx: number) => (
-                    <div key={idx} className="py-2.5 flex justify-between gap-4">
-                      <span className="text-slate-500 font-medium">{spec.label}</span>
-                      <span className="text-[#0B1220] text-left font-bold">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 bg-[#FDFCF7]">
+        <div className="site-container max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-right">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                  قدرات وخبرات إنشائية معتمدة
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
+                  {solution.overviewTitle}
+                </h2>
               </div>
-            )}
+
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                {arData.overview}
+              </p>
+
+              {arData.whyChooseText && (
+                <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                  {arData.whyChooseText}
+                </p>
+              )}
+
+              {/* Key Benefits Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {arData.keyBenefits?.map((b: any, idx: number) => (
+                  <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 transition-all space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#0B1220] flex items-center gap-2 justify-start">
+                      <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
+                      <span>{b.title}</span>
+                    </h4>
+                    <p className="text-xs text-slate-600 font-normal leading-relaxed">
+                      {b.desc || b.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 space-y-6">
+              <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2 justify-start">
+                  <Building2 className="w-4 h-4" />
+                  <span>أبرز القطاعات المستفيدة</span>
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-700">
+                  {arData.industryApplications?.map((app: string, idx: number) => (
+                    <li key={idx} className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/60 font-medium">
+                      <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
+                      <span>{app}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Technical Specs Table */}
+              {arData.technicalSpecs?.length > 0 && (
+                <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">أبرز المواصفات الفنية</h3>
+                  <div className="divide-y divide-slate-100 text-xs">
+                    {arData.technicalSpecs.map((spec: any, idx: number) => (
+                      <div key={idx} className="py-2.5 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">{spec.label}</span>
+                        <span className="text-[#0B1220] text-left font-bold">{spec.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Video Section */}
-      <section className="py-20 px-6 max-w-5xl mx-auto space-y-8">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             <Video className="w-4 h-4" />
@@ -268,7 +270,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       </section>
 
       {/* FAQs */}
-      <section className="py-16 px-6 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60 text-right">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60 text-right">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             أسئلة وإجابات فنية
@@ -298,36 +300,38 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
 
       {/* Solution Gallery Section */}
       {sanitySolution?.gallery?.length > 0 && (
-        <section className="py-24 px-6 max-w-7xl mx-auto space-y-12 border-t border-slate-200/60">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              معرض الصور الميداني
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-              مشاهد حية من التركيب والتنفيذ الميداني
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sanitySolution.gallery.map((url: string, idx: number) => {
-              if (!url) return null;
-              return (
-                <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                  <Image
-                    src={url}
-                    alt="صورة ميدانية للحل"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              );
-            })}
-          </div>
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
+          <div className="site-container max-w-7xl mx-auto w-full space-y-10">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                معرض الصور الميداني
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
+                مشاهد حية من التركيب والتنفيذ الميداني
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {sanitySolution.gallery.map((url: string, idx: number) => {
+                if (!url) return null;
+                return (
+                  <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
+                    <Image
+                      src={url}
+                      alt="صورة ميدانية للحل"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            </div>
         </section>
       )}
 
       {/* Bottom CTA */}
-      <section className="pb-24 px-6 max-w-5xl mx-auto">
+      <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">

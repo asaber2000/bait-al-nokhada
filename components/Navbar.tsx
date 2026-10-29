@@ -292,6 +292,14 @@ export default function Navbar() {
                     <span>Home</span>
                     <span className="text-xs font-mono text-slate-400">01</span>
                   </Link>
+                  <Link
+                    href="/about"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading uppercase text-slate-900"
+                  >
+                    <span>About Us</span>
+                    <span className="text-xs font-mono text-slate-400">02</span>
+                  </Link>
 
                   {/* اكورديون المنتجات على الموبايل */}
                   <div className="border-b border-slate-200/70 pb-2">
@@ -407,12 +415,12 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/about"
+                    href="/news"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading uppercase text-slate-900"
                   >
-                    <span>About Us</span>
-                    <span className="text-xs font-mono text-slate-400">05</span>
+                    <span>News</span>
+                    <span className="text-xs font-mono text-slate-400">06</span>
                   </Link>
 
                   <Link
@@ -424,12 +432,14 @@ export default function Navbar() {
                     <span className="text-xs font-mono text-slate-400">06</span>
                   </Link>
                 </div>
+                
 
                 {/* 2. تجربة الديسكتوب (Clean Architectural Split with Extended Height) */}
                 <div className="hidden lg:grid grid-cols-12 gap-10 xl:gap-14 items-center min-h-[480px]">
 
                   {/* العمود الأيسر: الروابط الرئيسية */}
                   <div className="col-span-4 flex flex-col justify-center space-y-2 border-r border-slate-200/80 pr-10">
+                    {/* 01 Home */}
                     <Link
                       href="/"
                       onClick={() => setMobileMenuOpen(false)}
@@ -439,6 +449,17 @@ export default function Navbar() {
                       <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">01</span>
                     </Link>
 
+                    {/* 02 About Us */}
+                    <Link
+                      href="/about"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
+                    >
+                      <span className="group-hover:translate-x-2 transition-transform duration-200">About Us</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">02</span>
+                    </Link>
+
+                    {/* 03 Products */}
                     <div
                       onMouseEnter={() => setActiveTab("products")}
                       className="cursor-pointer"
@@ -458,10 +479,11 @@ export default function Navbar() {
                             {productsList.length}
                           </span>
                         </span>
-                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">02</span>
+                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">03</span>
                       </Link>
                     </div>
 
+                    {/* 04 Solutions */}
                     <div
                       onMouseEnter={() => setActiveTab("solutions")}
                       className="cursor-pointer"
@@ -481,35 +503,38 @@ export default function Navbar() {
                             {solutionsList.length}
                           </span>
                         </span>
-                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">03</span>
+                        <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">04</span>
                       </Link>
                     </div>
 
+                    {/* 05 Projects */}
                     <Link
                       href="/projects"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
                     >
                       <span className="group-hover:translate-x-2 transition-transform duration-200">Projects</span>
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">04</span>
-                    </Link>
-
-                    <Link
-                      href="/about"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
-                    >
-                      <span className="group-hover:translate-x-2 transition-transform duration-200">About Us</span>
                       <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">05</span>
                     </Link>
 
+                    {/* 06 News */}
+                    <Link
+                      href="/news"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
+                    >
+                      <span className="group-hover:translate-x-2 transition-transform duration-200">News</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">06</span>
+                    </Link>
+
+                    {/* 07 Contact */}
                     <Link
                       href="/contact"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
                     >
                       <span className="group-hover:translate-x-2 transition-transform duration-200">Contact</span>
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">06</span>
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#df9d17]">07</span>
                     </Link>
                   </div>
 
