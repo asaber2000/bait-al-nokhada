@@ -4,7 +4,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroContent from "@/components/HeroContent";
 
-export default function Hero() {
+export default function Hero({ sanityData }: { sanityData?: any }) {
+  const videoUrl = sanityData?.videoUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm";
+  const posterUrl = sanityData?.posterUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp";
   const containerRef = useRef<HTMLElement>(null);
 
   // تتبع سكرول الهيرو الطبيعي أثناء خروجه من الشاشة
@@ -46,11 +48,11 @@ export default function Hero() {
               playsInline
               preload="auto"
               disablePictureInPicture
-              poster="https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp"
+              poster={posterUrl}
               className="w-full h-full object-cover opacity-90 filter brightness-105 pointer-events-none"
             >
               <source
-                src="https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm"
+                src={videoUrl}
                 type="video/webm"
               />
             </video>
@@ -64,7 +66,7 @@ export default function Hero() {
             style={{ opacity, y }}
             className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none will-change-transform px-4 sm:px-8"
           >
-            <HeroContent />
+            <HeroContent data={sanityData} />
           </motion.div>
         </div>
 

@@ -4,7 +4,30 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles, Building2 } from "lucide-react";
 
-export default function HeroContent() {
+interface HeroData {
+  topBadge?: string;
+  subHeading?: string;
+  mainHeadingWhite?: string;
+  mainHeadingGradient?: string;
+  description?: string;
+  primaryButtonText?: string;
+  primaryButtonUrl?: string;
+  secondaryButtonText?: string;
+  secondaryButtonUrl?: string;
+}
+
+export default function HeroContent({ data }: { data?: HeroData }) {
+    const topBadge = data?.topBadge || "EST. 1997 • PREMIER TENT MANUFACTURERS IN UAE";
+    const subHeading = data?.subHeading || "ENGINEERED SOLUTIONS FOR MEGA PROJECTS & EVENTS";
+    const mainHeadingWhite = data?.mainHeadingWhite || "TENTS SALE & RENTAL";
+    const mainHeadingGradient = data?.mainHeadingGradient || "FOR MAJOR EVENTS";
+    const description = data?.description || "Precision-engineered exhibition tents, sales centers, and industrial storage solutions built to international standards. Offering premium tents for sale and rental with full on-site deployment across the UAE, KSA, GCC, and worldwide.";
+
+    const primaryBtnText = data?.primaryButtonText || "REQUEST INSTANT QUOTE";
+    const primaryBtnUrl = data?.primaryButtonUrl || "/contact";
+    const secondaryBtnText = data?.secondaryButtonText || "EXPLORE PROJECTS";
+    const secondaryBtnUrl = data?.secondaryButtonUrl || "/projects";
+
     return (
         <div className="relative z-20 w-full h-full flex flex-col justify-between items-center px-6 sm:px-12 lg:px-20 pt-16 sm:pt-20 pb-8 pointer-events-none">
             {/* 1. Top Bar: Luxury Pill without heavy black shadow */}
@@ -17,7 +40,7 @@ export default function HeroContent() {
                 <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15">
                     <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17] animate-pulse" />
                     <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-white/90">
-                        EST. 1997 • PREMIER TENT MANUFACTURERS IN UAE
+                        {topBadge}
                     </span>
                 </div>
             </motion.div>
@@ -31,12 +54,12 @@ export default function HeroContent() {
                     className="space-y-2"
                 >
                     <span className="block text-[11px] sm:text-xs md:text-[12px] font-mono font-bold tracking-[0.3em] uppercase text-[#df9d17] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                        ENGINEERED SOLUTIONS FOR MEGA PROJECTS & EVENTS
+                        {subHeading}
                     </span>
                     <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-black text-white font-heading tracking-tight leading-[1.1] uppercase drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-                        TENTS SALE & RENTAL <br />
+                        {mainHeadingWhite} <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                            FOR MAJOR EVENTS
+                            {mainHeadingGradient}
                         </span>
                     </h1>
                 </motion.div>
@@ -47,7 +70,7 @@ export default function HeroContent() {
                     transition={{ duration: 0.9, delay: 0.25 }}
                     className="max-w-xl mx-auto text-xs sm:text-sm lg:text-[13px] text-slate-100 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
                 >
-                    Precision-engineered exhibition tents, sales centers, and industrial storage solutions built to international standards. Offering premium tents for sale and rental with full on-site deployment across the UAE, KSA, GCC, and worldwide.
+                    {description}
                 </motion.p>
                 {/* 3. Floating Glass CTA Bar - بحجم ملموم ومصغر */}
                 <motion.div
@@ -58,20 +81,20 @@ export default function HeroContent() {
                 >
                     {/* زر Request Instant Quote */}
                     <Link
-                        href="/contact"
+                        href={primaryBtnUrl}
                         className="group inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#df9d17] hover:bg-white text-[#0B1220] font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md"
                     >
-                        <span>REQUEST INSTANT QUOTE</span>
+                        <span>{primaryBtnText}</span>
                         <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
 
                     {/* زر Explore Projects */}
                     <Link
-                        href="/projects"
+                        href={secondaryBtnUrl}
                         className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full hover:bg-white/10 text-white/90 hover:text-white font-medium text-[10px] sm:text-[11px] uppercase tracking-wider transition-all duration-300"
                     >
                         <Sparkles className="w-3 h-3 text-[#df9d17]" />
-                        <span>EXPLORE PROJECTS</span>
+                        <span>{secondaryBtnText}</span>
                     </Link>
                 </motion.div>
             </div>

@@ -7,6 +7,9 @@ import { products } from './products';
 import { productsEn } from './productsEn';
 import { solutions } from './solutions';
 import { solutionsEn } from './solutionsEn';
+import { homeHeroEn, homeHeroAr } from './homeHero';
+import { featureShowcaseEn, featureShowcaseAr } from './featureShowcaseEn';
+
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +21,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     productsEn,
     solutions,
     solutionsEn,
+    homeHeroEn,
+    homeHeroAr,
+    featureShowcaseEn,
+    featureShowcaseAr,
   ],
 };

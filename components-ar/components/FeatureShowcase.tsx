@@ -149,7 +149,36 @@ const pillars = [
   },
 ];
 
-export default function FeatureShowcaseAr() {
+export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) {
+  const badgeText =
+    sanityData?.badgeText || "رواد تصنيع وتأجير الخيام في الإمارات والسعودية — منذ عام 1997";
+  const mainHeadingBlack = sanityData?.mainHeadingBlack || "خبراء تصنيع وتوريد وتأجير";
+  const mainHeadingGradient =
+    sanityData?.mainHeadingGradient || "الخيام والقاعات الإنشائية الكبرى";
+  const description =
+    sanityData?.description ||
+    "تُعد شركة بيت النوخذة رائدة صناعة الخيام والهياكل النسيجية في دبي، أبوظبي، وكافة مناطق الإمارات والمملكة العربية السعودية. نصمم وننفذ خيام الفعاليات الكبرى، المستودعات التخزينية الصناعية، والتجهيزات المتطورة المعتمدة لأعلى معايير السلامة العالمية.";
+  const sideImageUrl =
+    sanityData?.sideImageUrl ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp";
+
+  const pillarsBadge =
+    sanityData?.pillarsSectionBadge || "المعيار الذهبي في الهندسة الإنشائية منذ عام 1997";
+  const pillarsTitleBlack = sanityData?.pillarsSectionTitleBlack || "لماذا يختار رواد الصناعة";
+  const pillarsTitleGradient = sanityData?.pillarsSectionTitleGradient || "بيت النوخذة؟";
+  const pillarsDesc =
+    sanityData?.pillarsSectionDescription ||
+    "دقة في الحسابات الإنشائية وسرعة تركيب ميدانية معتمدة بأعلى مقاييس الأمان الهيكلي الأوروبي.";
+
+  const defaultIcons = [Wrench, Coins, ShieldIcon];
+  const activePillars =
+    sanityData?.pillarsList && sanityData.pillarsList.length > 0
+      ? sanityData.pillarsList.map((item: any, i: number) => ({
+        ...item,
+        icon: defaultIcons[i % defaultIcons.length],
+      }))
+      : pillars;
+
   return (
     <section dir="rtl" className="relative z-20 bg-[#FDFCF7] py-20 lg:py-24 overflow-hidden border-t border-slate-200/60 text-right font-sans">
       {/* إضاءات وشبكة إحداثيات خلفية */}
@@ -179,18 +208,18 @@ export default function FeatureShowcaseAr() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#b87d0e] text-xs sm:text-[13px] font-extrabold tracking-normal shadow-xs"
             >
               <Award className="w-4 h-4 text-[#df9d17] shrink-0" />
-              <span>رواد تصنيع وتأجير الخيام في الإمارات والسعودية — منذ عام 1997</span>
+              <span>{badgeText}</span>
             </motion.div>
 
             <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
-              خبراء تصنيع وتوريد وتأجير{" "}
+              {mainHeadingBlack}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                الخيام والقاعات الإنشائية الكبرى
+                {mainHeadingGradient}
               </span>
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-2xl">
-              تُعد شركة بيت النوخذة رائدة صناعة الخيام والهياكل النسيجية في دبي، أبوظبي، وكافة مناطق الإمارات والمملكة العربية السعودية. نصمم وننفذ خيام الفعاليات الكبرى، المستودعات التخزينية الصناعية، والتجهيزات المتطورة المعتمدة لأعلى معايير السلامة العالمية.
+              {description}
             </p>
 
             {/* شريط أزرار التواصل المماثل للإنجليزي مع ضبط RTL وتحليلات النسخة العربية */}
@@ -255,7 +284,7 @@ export default function FeatureShowcaseAr() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
-                src="https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp"
+                src={sideImageUrl}
                 alt="خيام المعارض والفعاليات - بيت النوخذة"
                 fill
                 unoptimized
@@ -279,20 +308,23 @@ export default function FeatureShowcaseAr() {
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#df9d17]">
                 <Sparkles className="w-3.5 h-3.5 text-[#fbc200]" />
-                <span>المعيار الذهبي في الهندسة الإنشائية منذ عام 1997</span>
+                <span>{pillarsBadge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight">
-                لماذا يختار رواد الصناعة <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">بيت النوخذة؟</span>
+                {pillarsTitleBlack}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
+                  {pillarsTitleGradient}
+                </span>
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-md font-light leading-relaxed">
-              دقة في الحسابات الإنشائية وسرعة تركيب ميدانية معتمدة بأعلى مقاييس الأمان الهيكلي الأوروبي.
+              {pillarsDesc}
             </p>
           </motion.div>
 
           {/* شبكة الكروت المندمجة */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden p-2">
-            {pillars.map((pillar, idx) => (
+            {activePillars.map((pillar: any, idx: number) => (
               <PillarCardAr key={idx} pillar={pillar} idx={idx} />
             ))}
           </div>

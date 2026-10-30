@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroContentAr from "@/components-ar/components/HeroContentAr";
 
-export default function ArabicHero() {
+export default function Hero({ sanityData }: { sanityData?: any }) {
   const containerRef = useRef<HTMLElement>(null);
 
   // تتبع سكرول الهيرو الطبيعي أثناء خروجه من الشاشة

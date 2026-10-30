@@ -156,7 +156,34 @@ const pillars = [
 ];
 
 
-export default function FeatureShowcase() {
+export default function FeatureShowcase({ sanityData }: { sanityData?: any }) {
+  const badgeText = sanityData?.badgeText || "Pioneering Modular Architecture Since 1997";
+  const mainHeadingBlack = sanityData?.mainHeadingBlack || "Tent Rental, Supplier & Manufacturing";
+  const mainHeadingGradient = sanityData?.mainHeadingGradient || "Experts";
+  const description =
+    sanityData?.description ||
+    "Bait Al Nokhada is a premier tent manufacturing powerhouse serving Dubai, Abu Dhabi, UAE, and KSA. We engineer clear-span event marquees, high-tonnage industrial warehouses, and custom tensile membrane structures built to withstand the harshest desert climates.";
+  const sideImageUrl =
+    sanityData?.sideImageUrl ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp";
+
+  const pillarsBadge = sanityData?.pillarsSectionBadge || "The Gold Standard In Tensile Engineering";
+  const pillarsTitleBlack = sanityData?.pillarsSectionTitleBlack || "Why Industry Leaders";
+  const pillarsTitleGradient = sanityData?.pillarsSectionTitleGradient || "Trust Bait Al Nokhada";
+  const pillarsDesc =
+    sanityData?.pillarsSectionDescription ||
+    "Precision manufacturing, rapid desert deployment, and certified European structural safety standards.";
+
+  // دمج كروت الركائز مع الأيقونات الثابتة الأصلية
+  const defaultIcons = [Wrench, Coins, ShieldIcon];
+  const activePillars =
+    sanityData?.pillarsList && sanityData.pillarsList.length > 0
+      ? sanityData.pillarsList.map((item: any, i: number) => ({
+        ...item,
+        icon: defaultIcons[i % defaultIcons.length],
+      }))
+      : pillars;
+
   return (
     <section className="relative z-20 bg-[#FDFCF7] pt-8 lg:pt-12 pb-20 lg:pb-24 overflow-hidden">
 
@@ -185,17 +212,17 @@ export default function FeatureShowcase() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#b87d0e] text-xs font-mono font-bold tracking-wider uppercase shadow-xs"
             >
               <Award className="w-3.5 h-3.5 text-[#df9d17]" />
-              <span>Pioneering Modular Architecture Since 1997</span>
+              <span>{badgeText}</span>
             </motion.div>
 
             <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
-              Tent Rental, Supplier & Manufacturing{" "}
+              {mainHeadingBlack}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                Experts
+                {mainHeadingGradient}
               </span>
             </h1>
             <p className="text-slate-600 font-normal text-sm sm:text-base font-light leading-relaxed max-w-2xl">
-              Bait Al Nokhada is a premier tent manufacturing powerhouse serving Dubai, Abu Dhabi, UAE, and KSA. We engineer clear-span event marquees, high-tonnage industrial warehouses, and custom tensile membrane structures built to withstand the harshest desert climates.
+              {description}
             </p>
 
             <div className="pt-3 flex flex-wrap items-center justify-start gap-3 w-full z-20">
@@ -256,7 +283,7 @@ export default function FeatureShowcase() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#070B14]">
               <Image
-                src="https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp"
+                src={sideImageUrl}
                 alt="Bait Al Nokhada Exhibition Tents"
                 fill
                 unoptimized
@@ -280,20 +307,23 @@ export default function FeatureShowcase() {
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#df9d17]">
                 <Sparkles className="w-3.5 h-3.5 text-[#fbc200]" />
-                <span>The Gold Standard In Tensile Engineering</span>
+                <span>{pillarsBadge}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight">
-                Why Industry Leaders <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">Trust Bait Al Nokhada</span>
+                {pillarsTitleBlack}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
+                  {pillarsTitleGradient}
+                </span>
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-500 font-normal max-w-md font-light leading-relaxed">
-              Precision manufacturing, rapid desert deployment, and certified European structural safety standards.
+              {pillarsDesc}
             </p>
           </motion.div>
 
           {/* شبكة الكروت المندمجة */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden p-2">
-            {pillars.map((pillar, idx) => (
+            {activePillars.map((pillar: any, idx: number) => (
               <PillarCard key={idx} pillar={pillar} idx={idx} />
             ))}
           </div>
