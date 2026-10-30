@@ -64,20 +64,20 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Header Banner */}
-      <section className="relative pt-44 pb-20 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
         />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto text-center space-y-5 relative z-10">
+        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Turnkey Engineering Consultation</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
+          <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
             Connect With Our <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               Structural Engineers
@@ -91,8 +91,8 @@ export default function ContactPage() {
       </section>
 
       {/* Main Grid: Form + Branch Info */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#FDFCF7]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Quote & RFP Form */}
           <div className="lg:col-span-7 rounded-3xl bg-white border border-slate-200/80 p-8 sm:p-12 shadow-xs">
@@ -237,14 +237,14 @@ export default function ContactPage() {
                         {branch.phone}
                       </a>
                     </div>
-                    
+
                     {branch.whatsapp && (
                       <div className="flex items-center gap-2.5">
                         <MessageCircle className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
-                        <a 
-                          href={`https://wa.me/${branch.whatsapp.replace(/[^0-9]/g, '')}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={`https://wa.me/${branch.whatsapp.replace(/[^0-9]/g, '')}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="hover:text-[#df9d17] font-medium transition-colors"
                         >
                           {branch.whatsapp}
@@ -273,62 +273,66 @@ export default function ContactPage() {
       </section>
 
       {/* 3. Interactive Regional Branch Maps Grid */}
-      <section className="py-16 pb-28 px-6 max-w-7xl mx-auto border-t border-slate-200/60 space-y-12">
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#df9d17]">
-            <Navigation className="w-3.5 h-3.5" />
-            <span>Locations & On-Site Facilities</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-            Visit Our Factories & Regional Centers
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-normal">
-            Navigate directly to our main manufacturing complexes, regional hubs, and client lounges via Google Maps.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {branches.map((branch, idx) => (
-            <div
-              key={idx}
-              className="rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/50 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md group"
-            >
-              {/* Google Map Embed iFrame */}
-              <div className="relative w-full h-64 bg-slate-100">
-                <iframe
-                  src={branch.embedUrl}
-                  title={`Map for ${branch.city}`}
-                  loading="lazy"
-                  className="w-full h-full border-0 grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                />
-              </div>
-
-              {/* Card Meta & External Map Link */}
-              <div className="p-6 space-y-4 flex flex-col justify-between grow">
-                <div className="space-y-2">
-                  <h3 className="text-base font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors flex items-center gap-2 font-heading">
-                    <Building2 className="w-4 h-4 text-[#df9d17] shrink-0" />
-                    <span>{branch.city}</span>
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    {branch.address}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100">
-                  <a
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200 hover:border-[#df9d17] transition-all shadow-xs group/btn"
-                  >
-                    <span>Open in Google Maps</span>
-                    <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                  </a>
-                </div>
-              </div>
+      <section className="py-16 sm:py-20 pb-20 sm:pb-28 border-t border-slate-200/60 bg-[#FDFCF7]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-12">
+          
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#df9d17]">
+              <Navigation className="w-3.5 h-3.5" />
+              <span>Locations & On-Site Facilities</span>
             </div>
-          ))}
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
+              Visit Our Factories & Regional Centers
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              Navigate directly to our main manufacturing complexes, regional hubs, and client lounges via Google Maps.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full">
+            {branches.map((branch, idx) => (
+              <div
+                key={idx}
+                className="w-full rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/50 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md group"
+              >
+                {/* ضبط خريطة جوجل بنسبة أبعاد مقيدة 16/10 لتمنع تمدد الكرت */}
+                <div className="relative w-full aspect-[16/10] bg-slate-100 overflow-hidden">
+                  <iframe
+                    src={branch.embedUrl}
+                    title={`Map for ${branch.city}`}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full border-0 grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-auto"
+                  />
+                </div>
+
+                {/* Card Meta & External Map Link */}
+                <div className="p-6 space-y-4 flex flex-col justify-between grow">
+                  <div className="space-y-2">
+                    <h3 className="text-base font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors flex items-center gap-2 font-heading">
+                      <Building2 className="w-4 h-4 text-[#df9d17] shrink-0" />
+                      <span>{branch.city}</span>
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {branch.address}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-100">
+                    <a
+                      href={branch.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200 hover:border-[#df9d17] transition-all shadow-xs group/btn"
+                    >
+                      <span>Open in Google Maps</span>
+                      <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 

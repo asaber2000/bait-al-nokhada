@@ -164,7 +164,7 @@ export default function ArabicNavbar() {
       {/* الترويسة الرئيسية للموقع */}
       <header
         dir="rtl"
-        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-5 sm:px-8 lg:px-12 ${
+        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-4 sm:px-6 lg:px-8 ${
           isScrolled
             ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] py-3"
             : "bg-transparent py-6 sm:py-8"
@@ -259,30 +259,32 @@ export default function ArabicNavbar() {
               <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#df9d17]/5 blur-[200px] rounded-full pointer-events-none" />
 
               {/* الهيدر العلوي في وضع المنيو */}
-              <div className="w-full px-5 sm:px-10 lg:px-16 pt-5 pb-4 border-b border-slate-200/80 flex items-center justify-between shrink-0 relative z-20">
-                <div className="relative overflow-visible flex items-center justify-start">
-                  <Image
-                    src="/icons/bait-al-nokhada-final-arabic-logo.svg"
-                    alt="بيت النوخذة"
-                    width={240}
-                    height={70}
-                    priority
-                    className="w-auto h-12 object-contain origin-right scale-[2.0]"
-                  />
-                </div>
+              <div className="w-full border-b border-slate-200/80 shrink-0 relative z-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-4 flex items-center justify-between w-full">
+                  <div className="relative overflow-visible flex items-center justify-start">
+                    <Image
+                      src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                      alt="بيت النوخذة"
+                      width={240}
+                      height={70}
+                      priority
+                      className="w-auto h-12 object-contain origin-right scale-[2.0]"
+                    />
+                  </div>
 
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-white transition-all cursor-pointer border border-slate-200/90 shadow-2xs hover:shadow-sm group"
-                  aria-label="إغلاق القائمة"
-                >
-                  <span className="text-xs font-bold tracking-wide">إغلاق</span>
-                  <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
-                </button>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-white transition-all cursor-pointer border border-slate-200/90 shadow-2xs hover:shadow-sm group"
+                    aria-label="إغلاق القائمة"
+                  >
+                    <span className="text-xs font-bold tracking-wide">إغلاق</span>
+                    <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
+                  </button>
+                </div>
               </div>
 
               {/* مساحة العرض الرئيسية */}
-              <div className="w-full flex-1 max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 py-6 lg:py-8 relative z-10 flex flex-col justify-center">
+              <div className="w-full flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 relative z-10 flex flex-col justify-center">
 
                 {/* 1. تجربة الموبايل (Native Mobile Accordion العربي) */}
                 <div className="lg:hidden flex flex-col space-y-2 py-4">
@@ -669,8 +671,10 @@ export default function ArabicNavbar() {
               </div>
 
               {/* الشريط السفلي المتناسق */}
-              <div className="w-full px-5 sm:px-10 lg:px-16 pt-4 pb-6 border-t border-slate-200/80 bg-[#FDFCF7] shrink-0 space-y-3 relative z-20">
-                <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
+              {/* الشريط السفلي المتناسق */}
+              <div className="w-full border-t border-slate-200/80 bg-[#FDFCF7] shrink-0 relative z-20">
+                <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 pb-6 space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
                   <div className="flex flex-wrap items-center gap-6">
                     <a href="tel:+971558850631" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
                       <Phone className="w-3.5 h-3.5 text-[#df9d17]" />
@@ -731,6 +735,7 @@ export default function ArabicNavbar() {
                     ))}
                   </div>
                 </div>
+              </div>
               </div>
 
             </motion.div>

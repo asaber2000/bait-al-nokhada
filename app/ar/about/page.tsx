@@ -105,14 +105,14 @@ export default function ArabicAboutPage() {
       <Navbar />
 
       {/* 1. Hero Banner */}
-      <section className="relative pt-36 pb-14 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
+      <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#df9d17 1px, transparent 1px)", backgroundSize: "36px 36px" }}
         />
         <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
+        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ export default function ArabicAboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading"
+            className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading"
           >
             رواد صناعة الخيام العملاقة و <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
@@ -146,7 +146,7 @@ export default function ArabicAboutPage() {
       </section>
 
       {/* 2. Company Journey Interactive Timeline */}
-      <section className="pt-10 pb-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60 relative overflow-hidden bg-[#FDFCF7]">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 relative overflow-hidden bg-[#FDFCF7]">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Compass className="w-3.5 h-3.5" />
@@ -186,8 +186,8 @@ export default function ArabicAboutPage() {
                     >
                       <div
                         className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 relative ${isSelected
-                            ? "bg-white border-[#df9d17] shadow-[0_0_15px_rgba(223,157,23,0.35)] scale-110"
-                            : "bg-white border-slate-300 group-hover:border-slate-400"
+                          ? "bg-white border-[#df9d17] shadow-[0_0_15px_rgba(223,157,23,0.35)] scale-110"
+                          : "bg-white border-slate-300 group-hover:border-slate-400"
                           }`}
                       >
                         <div
@@ -205,8 +205,8 @@ export default function ArabicAboutPage() {
 
                       <div
                         className={`mt-3 px-4 py-1.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all duration-300 ${isSelected
-                            ? "bg-[#df9d17] text-white border-[#df9d17] shadow-md shadow-[#df9d17]/25 -translate-y-0.5 font-black"
-                            : "bg-slate-50 text-slate-600 border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-900"
+                          ? "bg-[#df9d17] text-white border-[#df9d17] shadow-md shadow-[#df9d17]/25 -translate-y-0.5 font-black"
+                          : "bg-slate-50 text-slate-600 border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-900"
                           }`}
                       >
                         {item.year}
@@ -292,7 +292,7 @@ export default function ArabicAboutPage() {
       </section>
 
       {/* 3. Vision & Mission */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
             <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
@@ -317,7 +317,7 @@ export default function ArabicAboutPage() {
       </section>
 
       {/* 4. Core Capabilities */}
-      <section className="py-28 px-6 sm:px-12 lg:px-24 max-w-5xl mx-auto border-b border-slate-200/60 relative bg-[#FDFCF7]">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-b border-slate-200/60 relative bg-[#FDFCF7]">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <span>خدمات متكاملة تسليم مفتاح</span>
@@ -374,7 +374,7 @@ export default function ArabicAboutPage() {
       </section>
 
       {/* 5. Executive Message Banner */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto bg-[#FDFCF7]">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-[#FDFCF7]">
         <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white p-8 sm:p-14 shadow-sm">
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-3.5 justify-start">
@@ -403,33 +403,37 @@ export default function ArabicAboutPage() {
       </section>
 
       {/* 6. Historical Numbers Strip */}
-      <section className="py-16 px-6 sm:px-12 lg:px-24 border-t border-slate-200/60 bg-[#FDFCF7]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
-              <Award className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+30</span>
-            </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">عاماً من الريادة</p>
-            <p className="text-xs text-slate-600 font-normal">تأسست منذ أكثر من ثلاثة عقود رائدة في السوق الخليجي.</p>
-          </div>
+      <section className="py-16 sm:py-20 border-t border-slate-200/60 bg-[#FDFCF7]">
+        <div className="site-container max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
 
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
-              <Users className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+3,000</span>
+            <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="flex items-center justify-center gap-2 text-[#df9d17]">
+                <Award className="w-6 h-6" />
+                <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+30</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">عاماً من الريادة</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">تأسست منذ أكثر من ثلاثة عقود رائدة في السوق الخليجي.</p>
             </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">شريك نجاح مؤسسي وحكومي</p>
-            <p className="text-xs text-slate-600 font-normal">شراكات استراتيجية ممتدة مع كبرى الوزارات والهيئات المنظمة.</p>
-          </div>
 
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-            <div className="flex items-center justify-center gap-2 text-[#df9d17]">
-              <Building className="w-6 h-6" />
-              <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+6,000</span>
+            <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="flex items-center justify-center gap-2 text-[#df9d17]">
+                <Users className="w-6 h-6" />
+                <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+3,000</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">شريك نجاح مؤسسي وحكومي</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">شراكات استراتيجية ممتدة مع كبرى الوزارات والهيئات المنظمة.</p>
             </div>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">مشروع إنشائي منجز</p>
-            <p className="text-xs text-slate-600 font-normal">خيام بحور واسعة وهياكل مشدودة تم تسليمها بنجاح واقتدار.</p>
+
+            <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="flex items-center justify-center gap-2 text-[#df9d17]">
+                <Building className="w-6 h-6" />
+                <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+6,000</span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">مشروع إنشائي منجز</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">خيام بحور واسعة وهياكل مشدودة تم تسليمها بنجاح واقتدار.</p>
+            </div>
+
           </div>
         </div>
       </section>

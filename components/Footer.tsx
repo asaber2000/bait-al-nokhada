@@ -97,7 +97,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
 
         {/* Brand Column (4 Cols) */}
         <div className="lg:col-span-4 space-y-5">
@@ -220,7 +220,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="max-w-7xl mx-auto px-6 pt-8 mt-12 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 mt-12 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
         <p>© 2026 Bait Al Nokhada Tents. All Rights Reserved.</p>
         <div className="flex items-center gap-6">
           <Link href="/contact" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>

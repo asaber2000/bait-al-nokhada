@@ -84,8 +84,8 @@ export default function FooterAr() {
     },
   ];
   return (
-    <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12 px-6 text-right" dir="rtl">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-slate-200/80">
+    <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12 text-right" dir="rtl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-slate-200/80">
 
         {/* العمود الرابع: معلومات الشركة والنبذة */}
         <div className="space-y-4">
@@ -213,7 +213,7 @@ export default function FooterAr() {
       </div>
 
       {/* حقوق النشر السفلية */}
-      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
         <div className="flex gap-6">
           <Link href="/ar/terms" className="hover:text-slate-900 transition-colors">شروط الاستخدام</Link>
           <Link href="/ar/privacy" className="hover:text-slate-900 transition-colors">سياسة الخصوصية</Link>

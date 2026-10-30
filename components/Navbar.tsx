@@ -161,9 +161,9 @@ export default function Navbar() {
       {/* الترويسة الرئيسية للموقع */}
       <header
         dir="ltr"
-        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-5 sm:px-8 lg:px-12 ${isScrolled
-            ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] py-3.5"
-            : "bg-transparent py-6 sm:py-8"
+        className={`fixed top-0 left-0 w-full z-50 flex items-center justify-center transition-all duration-300 transform-gpu px-4 sm:px-6 lg:px-8 ${isScrolled
+          ? "bg-[#FDFCF7]/95 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] py-3.5"
+          : "bg-transparent py-6 sm:py-8"
           }`}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
@@ -210,7 +210,7 @@ export default function Navbar() {
         </div>
       </header>
 
-{/* المنيو الشامل بأنيميشن الستائر المتتالية المتطابقة مع الفيديو */}
+      {/* المنيو الشامل بأنيميشن الستائر المتتالية المتطابقة مع الفيديو */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <div
@@ -259,28 +259,30 @@ export default function Navbar() {
               <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#df9d17]/5 blur-[200px] rounded-full pointer-events-none" />
 
               {/* الهيدر العلوي في وضع المنيو */}
-              <div className="w-full px-5 sm:px-10 lg:px-16 pt-5 pb-4 border-b border-slate-200/80 flex items-center justify-between shrink-0 relative z-20">
-                <div className="relative h-8 w-32 sm:h-9 sm:w-40">
-                  <Image
-                    src="/bait-alnokhada-final-g.svg"
-                    alt="Bait Al Nokhada"
-                    fill
-                    className="object-contain object-left"
-                  />
-                </div>
+              <div className="w-full border-b border-slate-200/80 shrink-0 relative z-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-4 flex items-center justify-between w-full">
+                  <div className="relative h-8 w-32 sm:h-9 sm:w-40">
+                    <Image
+                      src="/bait-alnokhada-final-g.svg"
+                      alt="Bait Al Nokhada"
+                      fill
+                      className="object-contain object-left"
+                    />
+                  </div>
 
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-[#0B1220] transition-all cursor-pointer border border-slate-200/90 shadow-2xs hover:shadow-sm group"
-                  aria-label="Close Menu"
-                >
-                  <span className="text-[11px] font-mono font-bold tracking-wider">ESC</span>
-                  <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
-                </button>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-[#0B1220] transition-all cursor-pointer border border-slate-200/90 shadow-2xs hover:shadow-sm group"
+                    aria-label="Close Menu"
+                  >
+                    <span className="text-[11px] font-mono font-bold tracking-wider">ESC</span>
+                    <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
+                  </button>
+                </div>
               </div>
 
               {/* مساحة العرض الرئيسية */}
-              <div className="w-full flex-1 max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 py-6 lg:py-8 relative z-10 flex flex-col justify-center">
+              <div className="w-full flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 relative z-10 flex flex-col justify-center">
 
                 {/* 1. تجربة الموبايل (Native Mobile Accordion) */}
                 <div className="lg:hidden flex flex-col space-y-2 py-4">
@@ -316,9 +318,8 @@ export default function Navbar() {
                         </span>
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${
-                          mobileAccordion === "products" ? "rotate-180 text-[#df9d17]" : ""
-                        }`}
+                        className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${mobileAccordion === "products" ? "rotate-180 text-[#df9d17]" : ""
+                          }`}
                       />
                     </button>
 
@@ -368,9 +369,8 @@ export default function Navbar() {
                         </span>
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${
-                          mobileAccordion === "solutions" ? "rotate-180 text-[#df9d17]" : ""
-                        }`}
+                        className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${mobileAccordion === "solutions" ? "rotate-180 text-[#df9d17]" : ""
+                          }`}
                       />
                     </button>
 
@@ -432,7 +432,7 @@ export default function Navbar() {
                     <span className="text-xs font-mono text-slate-400">06</span>
                   </Link>
                 </div>
-                
+
 
                 {/* 2. تجربة الديسكتوب (Clean Architectural Split with Extended Height) */}
                 <div className="hidden lg:grid grid-cols-12 gap-10 xl:gap-14 items-center min-h-[480px]">
@@ -467,11 +467,10 @@ export default function Navbar() {
                       <Link
                         href="/products"
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight transition-all font-heading uppercase ${
-                          activeTab === "products"
-                            ? "text-[#df9d17] translate-x-2"
-                            : "text-[#0B1220]/75 hover:text-[#df9d17]"
-                        }`}
+                        className={`group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight transition-all font-heading uppercase ${activeTab === "products"
+                          ? "text-[#df9d17] translate-x-2"
+                          : "text-[#0B1220]/75 hover:text-[#df9d17]"
+                          }`}
                       >
                         <span className="flex items-center gap-3">
                           Products
@@ -491,11 +490,10 @@ export default function Navbar() {
                       <Link
                         href="/solutions"
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight transition-all font-heading uppercase ${
-                          activeTab === "solutions"
-                            ? "text-[#df9d17] translate-x-2"
-                            : "text-[#0B1220]/75 hover:text-[#df9d17]"
-                        }`}
+                        className={`group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight transition-all font-heading uppercase ${activeTab === "solutions"
+                          ? "text-[#df9d17] translate-x-2"
+                          : "text-[#0B1220]/75 hover:text-[#df9d17]"
+                          }`}
                       >
                         <span className="flex items-center gap-3">
                           Solutions
@@ -663,71 +661,73 @@ export default function Navbar() {
               </div>
 
               {/* الشريط السفلي المتناسق */}
-              <div className="w-full px-5 sm:px-10 lg:px-16 pt-4 pb-6 border-t border-slate-200/80 bg-[#FDFCF7] shrink-0 space-y-3 relative z-20">
-                <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
-                  <div className="flex flex-wrap items-center gap-6">
-                    <a href="tel:+971558850631" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
-                      <Phone className="w-3.5 h-3.5 text-[#df9d17]" />
-                      <span>+971 55 885 0631</span>
-                    </a>
-
-                    <a href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
-                      <MessageCircle className="w-3.5 h-3.5 text-[#df9d17]" />
-                      <span>+971 4 344 4091</span>
-                    </a>
-
-                    <a href="mailto:info@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
-                      <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
-                      <span>info@baitalnokhada.com</span>
-                    </a>
-
-                    <a href="mailto:info.Ksa@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
-                      <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
-                      <span>info.Ksa@baitalnokhada.com</span>
-                    </a>
-                  </div>
-
-                  <a
-                    href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors"
-                  >
-                    <MapPin className="w-3.5 h-3.5 text-[#df9d17]" />
-                    <span>Technopark, Mina Jebel Ali, Dubai, UAE</span>
-                  </a>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2.5 border-t border-slate-200/60 text-[11px] text-slate-500">
-                  <p className="font-mono text-slate-600">
-                    © 2026 Bait Al Nokhada Tents Factory. All rights reserved.
-                  </p>
-
-                  <div className="flex items-center gap-2">
-                    {[
-                      { label: "Facebook", href: "https://facebook.com", path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
-                      { label: "Instagram", href: "https://instagram.com", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
-                      { label: "LinkedIn", href: "https://linkedin.com", path: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" },
-                    ].map((s) => (
-                      <a
-                        key={s.label}
-                        href={s.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
-                        aria-label={s.label}
-                      >
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d={s.path} /></svg>
+              <div className="w-full border-t border-slate-200/80 bg-[#FDFCF7] shrink-0 relative z-20">
+                <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 pb-6 space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
+                    <div className="flex flex-wrap items-center gap-6">
+                      <a href="tel:+971558850631" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                        <Phone className="w-3.5 h-3.5 text-[#df9d17]" />
+                        <span>+971 55 885 0631</span>
                       </a>
-                    ))}
+
+                      <a href="https://wa.me/97143444091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                        <MessageCircle className="w-3.5 h-3.5 text-[#df9d17]" />
+                        <span>+971 4 344 4091</span>
+                      </a>
+
+                      <a href="mailto:info@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                        <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
+                        <span>info@baitalnokhada.com</span>
+                      </a>
+
+                      <a href="mailto:info.Ksa@baitalnokhada.com" className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors">
+                        <Mail className="w-3.5 h-3.5 text-[#df9d17]" />
+                        <span>info.Ksa@baitalnokhada.com</span>
+                      </a>
+                    </div>
+
+                    <a
+                      href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 font-semibold text-slate-800 hover:text-[#df9d17] transition-colors"
+                    >
+                      <MapPin className="w-3.5 h-3.5 text-[#df9d17]" />
+                      <span>Technopark, Mina Jebel Ali, Dubai, UAE</span>
+                    </a>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2.5 border-t border-slate-200/60 text-[11px] text-slate-500">
+                    <p className="font-mono text-slate-600">
+                      © 2026 Bait Al Nokhada Tents Factory. All rights reserved.
+                    </p>
+
+                    <div className="flex items-center gap-2">
+                      {[
+                        { label: "Facebook", href: "https://facebook.com", path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
+                        { label: "Instagram", href: "https://instagram.com", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
+                        { label: "LinkedIn", href: "https://linkedin.com", path: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" },
+                      ].map((s) => (
+                        <a
+                          key={s.label}
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-full bg-white border border-slate-200/90 flex items-center justify-center text-slate-700 hover:bg-[#df9d17] hover:border-[#df9d17] hover:text-white transition-all duration-300 shadow-2xs hover:scale-105"
+                          aria-label={s.label}
+                        >
+                          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d={s.path} /></svg>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+                </div>
 
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-          </>
+    </>
   );
 }
