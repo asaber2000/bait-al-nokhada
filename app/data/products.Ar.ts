@@ -26,7 +26,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "1",
     slug: "pyramid-tent",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp",
     windSpeed: "80 - 100 km/h (0.5 kN/m²)",
     ar: {
       name: "الخيام الهرمية (بيراميد)",
@@ -65,7 +65,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "2",
     slug: "dome-tent",
-    heroImage: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/dome-tents.webp",
     windSpeed: "120 km/h Wind Load",
     ar: {
       name: "الخيام القبابية",
@@ -98,7 +98,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "3",
     slug: "capsule-tent",
-    heroImage: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule.webp",
     windSpeed: "100 km/h Wind Load",
     ar: {
       name: "خيام الكبسولة الذكية",
@@ -128,7 +128,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "4",
     slug: "arabic-majlis-tent",
-    heroImage: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tent.webp",
     windSpeed: "110 km/h Wind Load",
     ar: {
       name: "خيام المجالس وبيوت الشعر الملكية",
@@ -158,7 +158,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "5",
     slug: "revolution-tent",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
     windSpeed: "120 km/h Wind Load",
     ar: {
       name: "خيام ريفوليوشن العملاقة",
@@ -188,7 +188,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "6",
     slug: "polygon-tent",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent.webp",
     windSpeed: "120 km/h Wind Load",
     ar: {
       name: "الخيام المضلعة",
@@ -216,7 +216,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "7",
     slug: "arch-tent",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-tent.webp",
     windSpeed: "100 km/h Wind Load",
     ar: {
       name: "خيام الأقواس المنحنية",
@@ -244,7 +244,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "8",
     slug: "double-decker-tent",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/double-Decker.webp",
     windSpeed: "120 km/h Wind Load",
     ar: {
       name: "الخيام المكونة من طابقين",
@@ -272,7 +272,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "9",
     slug: "panoramic-tent",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panaromic-tent.webp",
     windSpeed: "100 km/h Wind Load",
     ar: {
       name: "الخيام البانورامية الزجاجية",
@@ -300,7 +300,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "10",
     slug: "geodesic-tent",
-    heroImage: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Geodesic+/geodesic-dome-tent.webp",
     windSpeed: "120 km/h Wind Load",
     ar: {
       name: "الخيام الجيوديسية التفاعلية",
@@ -327,7 +327,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "11",
     slug: "wave-tent",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wave+Tent/WAVE.webp",
     windSpeed: "110 km/h Wind Load",
     ar: {
       name: "خيام الموجة المعمارية",
@@ -353,7 +353,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "12",
     slug: "pyramid-dome-tent",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid-dome-tent/pyramid-dome-tant.webp",
     windSpeed: "100 km/h Wind Load",
     ar: {
       name: "خيام الهرم المقبب",

@@ -25,7 +25,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Pyramid Tent",
     tagline: "One of the most popular and versatile temporary structure designs offering maximum interior space without center poles.",
     badge: "DIN 4102 B1 • 80-100 km/h Wind Load",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp",
     windSpeed: "80 - 100 km/h (0.5 kN/m²)",
     description: "Pyramid tents are one of the most popular and versatile temporary structure designs. Characterized by their elegant pyramid-shaped roof and robust frame, these tents offer maximum interior space without center poles, ensuring unobstructed usable area. They are designed to withstand severe weather conditions while providing a luxurious aesthetic for various outdoor events, exhibitions, VIP hospitality pavilions, and commercial uses. Multiple pyramid tents can also be seamlessly connected using integrated rain gutters to create expansive multi-bay configurations.",
     models: [
@@ -62,7 +62,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Dome Tent",
     tagline: "Futuristic Geodesic Curved Structures for Exhibitions & Luxury Glamping",
     badge: "Geodesic Sphere • 120 km/h Wind",
-    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Dome/1920X1080.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/dome-tents.webp",
     windSpeed: "120 km/h Wind Load",
     description: "The Geodesic Dome Tent utilizes triangular structural nodes to distribute gravitational and wind stresses equally throughout the sphere. Its aerodynamic profile provides peerless storm resistance and an unmatched curved ceiling for immersive 360° projection mapping.",
     models: [
@@ -93,7 +93,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Capsule Tent",
     tagline: "Modular Futuristic Glamping Pods & VIP Accommodation Units",
     badge: "Smart Pod • Modular Plug & Play",
-    heroImage: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule.webp",
     windSpeed: "100 km/h Wind Load",
     description: "The Capsule Tent offers a sleek aerodynamic form factor engineered for rapid deployment as luxury suites, outdoor lounges, and private retreat units. Built with aerospace composites and thermally broken double-glazed curved glass.",
     models: [
@@ -121,7 +121,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Arabic Majlis Tent",
     tagline: "Authentic Cultural Heritage Tents Engineered with Modern Climate Tech",
     badge: "Heritage Craft • Royal Sadu Interiors",
-    heroImage: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tent.webp",
     windSpeed: "110 km/h Wind Load",
     description: "The Arabic Majlis Tent merges authentic GCC heritage craftsmanship with industrial-grade modular frames. Featuring traditional hand-stitched Sadu fabric patterns treated for fire retardancy, combined with multi-layer desert insulation.",
     models: [
@@ -149,7 +149,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Revolution Tent",
     tagline: "Large-Span High-End Venues for Mega Expos & World Summits",
     badge: "Mega Clear Span • Heavy Rigging",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
     windSpeed: "120 km/h Wind Load",
     description: "The Revolution Tent is an engineered clear-span mammoth structure designed for global expos, trade shows, and international conferences requiring immense overhead rigging for LED arrays and sound rigs.",
     models: [
@@ -177,7 +177,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Polygon Tent",
     tagline: "Heavy-Duty Multi-Angle Clear Span for Industrial & Athletic Arenas",
     badge: "Vaulted Apex • High Clearance",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent.webp",
     windSpeed: "120 km/h Wind Load",
     description: "The Polygon Tent features a distinctive multi-faceted polygonal vaulted roof line that maximizes interior vertical headroom. Ideal for indoor padel arenas, tennis courts, aircraft hangars, and logistics warehousing.",
     models: [
@@ -203,7 +203,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Arch Tent",
     tagline: "Aesthetic Curved Roof Architecture for Sophisticated Outdoor Galas",
     badge: "Curved Elegance • Seamless Drain",
-    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Arch/arch-tent-for-sale.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-tent.webp",
     windSpeed: "100 km/h Wind Load",
     description: "The Arch Tent features a continuous smooth curvature that merges architectural flair with superior aerodynamics, ensuring natural rainwater shedding and rapid sand dispersal.",
     models: [
@@ -229,7 +229,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Double Decker Tent",
     tagline: "Two-Story Maximum Capacity Pavilions for VIP Hospitality & F1 Tracks",
     badge: "Two-Story Structure • VIP Mezzanine",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/double-Decker.webp",
     windSpeed: "120 km/h Wind Load",
     description: "The Double Decker Tent doubles usable event capacity within the same footprint. Engineered with heavy-duty structural steel mezzanine framing, it provides ground-floor expos with upper-level VIP lounges and cantilever balconies.",
     models: [
@@ -255,7 +255,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Panoramic Tent",
     tagline: "360-Degree Transparent Crystal Marquees for Spectacular Outdoor Views",
     badge: "Crystal Clear • 360° Views",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panaromic-tent.webp",
     windSpeed: "100 km/h Wind Load",
     description: "The Panoramic Crystal Marquee delivers 360-degree views using optical-grade transparent PVC and full-perimeter floor-to-ceiling glass walls, blending luxury indoor comfort with surrounding landscapes.",
     models: [
@@ -281,7 +281,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Geodesic Tent",
     tagline: "Spherical Projection Enclosures for Immersive Audio-Visual Experiences",
     badge: "Fulldome VR • Structural Sphere",
-    heroImage: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Geodesic+/geodesic-dome-tent.webp",
     windSpeed: "120 km/h Wind Load",
     description: "Engineered specifically for 360-degree digital mapping and fulldome entertainment venues with zero interior columns, featuring internal negative-pressure projection screens.",
     models: [
@@ -306,7 +306,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Wave Tent",
     tagline: "Dynamic Sinuous High-Tension Fabric Structures for Seaside Lounges",
     badge: "Organic Wave • Tensile Membrane",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wave+Tent/WAVE.webp",
     windSpeed: "110 km/h Wind Load",
     description: "Features a dynamic undulating wave ridge line that mimics natural desert dunes and sea waves, providing an iconic aesthetic statement for beachfront hospitality and VIP outdoor resorts.",
     models: [
@@ -330,7 +330,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Pyramid Dome Tent",
     tagline: "Architectural Fusion of High Apex Peak and Soft Curvature",
     badge: "Hybrid Architecture • High Elegance",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid-dome-tent/pyramid-dome-tant.webp",
     windSpeed: "100 km/h Wind Load",
     description: "A hybrid structure marrying the striking high apex of the pyramid tent with the graceful curve of a dome, providing unique luxury appeal and superior natural chimney ventilation.",
     models: [
@@ -346,32 +346,6 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Apex Height", value: "Up to 8.5m Center Elevation" },
       { label: "Structure Frame", value: "Hard-Pressed 6061/T6 Aluminum" },
       { label: "Wind Rating", value: "100 km/h" },
-    ],
-  },
-  {
-    id: "13",
-    slug: "curve-tent",
-    name: "Curve Tent (TFS)",
-    tagline: "Tactical High-Wind Curved Hangar Enclosures for Aviation & Industrial Storage",
-    badge: "TFS Curved • 130 km/h Wind Load",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
-    windSpeed: "130 km/h Wind Load",
-    description: "The TFS Curved Tent features massive high-tension curved aluminum profiles specifically engineered for severe desert storm zones, private aircraft jet hangars, and heavy equipment maintenance.",
-    models: [
-      { name: "Curve TFS-25", size: "25m Span (8.5m Height)", capacity: "Helicopter & Logistics" },
-      { name: "Curve TFS-30", size: "30m Span (10.0m Height)", capacity: "Private Jet Hangar / Logistics" },
-      { name: "Curve TFS-50", size: "50m Span (14.0m Height)", capacity: "Commercial Aircraft & Heavy Maintenance" },
-    ],
-    features: [
-      "Extreme Wind Resistance Rating Certified up to 130 km/h (Severe Storms)",
-      "Continuous High-Tension Membrane System Preventing Wind Flutter & Flapping Noise",
-      "Heavy Aircraft Sliding Door Compatibility with High Clearances",
-    ],
-    specs: [
-      { label: "Main Profile Beam", value: "300 x 125 x 6.0 mm Heavy Curved Aluminum Box" },
-      { label: "Wind Resistance", value: "130 km/h (1.2 kN/m² Extreme Load)" },
-      { label: "Apex Height", value: "Up to 14.0 meters Clear Vertical Height" },
-      { label: "Membrane System", value: "900g/m² Heavy-Duty Industrial Blockout PVC" },
     ],
   },
 ];
