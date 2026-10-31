@@ -216,7 +216,7 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "7",
     slug: "arch-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-tent.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tents.webp",
     windSpeed: "100 km/h Wind Load",
     ar: {
       name: "خيام الأقواس المنحنية",
