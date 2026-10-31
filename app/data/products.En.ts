@@ -62,7 +62,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Dome Tent",
     tagline: "Futuristic Geodesic Curved Structures for Exhibitions & Luxury Glamping",
     badge: "Geodesic Sphere • 120 km/h Wind",
-    heroImage: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Dome/1920X1080.webp",
     windSpeed: "120 km/h Wind Load",
     description: "The Geodesic Dome Tent utilizes triangular structural nodes to distribute gravitational and wind stresses equally throughout the sphere. Its aerodynamic profile provides peerless storm resistance and an unmatched curved ceiling for immersive 360° projection mapping.",
     models: [
