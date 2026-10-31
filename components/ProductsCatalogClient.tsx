@@ -112,7 +112,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
                       href={`/products/${product.slug}`}
                       className="w-full py-3.5 rounded-xl bg-slate-50 hover:bg-[#df9d17] text-slate-800 hover:text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-slate-200/80 hover:border-[#df9d17] transition-all duration-300 group/btn shadow-xs hover:shadow-md"
                     >
-                      <span>View Specifications & 3D Sizes</span>
+                      <span>View Specifications & Sizes</span>
                       <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                     </Link>
                   </div>
