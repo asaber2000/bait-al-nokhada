@@ -203,7 +203,7 @@ export const productsDatabase: ProductItemEn[] = [
     name: "Arch Tent",
     tagline: "Aesthetic Curved Roof Architecture for Sophisticated Outdoor Galas",
     badge: "Curved Elegance • Seamless Drain",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-tent.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-tents.webp",
     windSpeed: "100 km/h Wind Load",
     description: "The Arch Tent features a continuous smooth curvature that merges architectural flair with superior aerodynamics, ensuring natural rainwater shedding and rapid sand dispersal.",
     models: [
