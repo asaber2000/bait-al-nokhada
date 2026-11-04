@@ -10,7 +10,7 @@ const solutions = [
   {
     id: "01",
     title: "Exhibition Tents",
-    desc: "Custom large-scale pavilions for international expos, trade fairs, and airshows across the GCC region.",
+    desc: "Discover premium exhibition tents for events, trade shows, and promotions. Sale & rental available across UAE & KSA. Trusted tent supplier since 1997.",
     specs: "Up to 60m Clear-Span • High Wind Load",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
     href: "/solutions/exhibition-tents",
@@ -18,7 +18,7 @@ const solutions = [
   {
     id: "02",
     title: "Event Tents",
-    desc: "Iconic corporate venues and summits setups featuring smart lighting, acoustic insulation, and full HVAC.",
+    desc: "Discover our premium event tents for rent across the UAE, KSA, and GCC—featuring complete branding capabilities, elegant customization, and professional on-site setup services tailored to your event's needs.",
     specs: "Multi-Tiered Staging • Heavy-Duty HVAC Integration",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
     href: "/solutions/event-tents",
@@ -26,7 +26,7 @@ const solutions = [
   {
     id: "03",
     title: "Wedding Tents",
-    desc: "Bespoke royal marquees crafted for outdoor ceremonies in UAE & KSA, offering customized luxury ambiance.",
+    desc: "Bait Al Nokhada provides elegant, customized wedding tent rental for outdoor ceremonies in UAE & KSA. Partner with leading outdoor tent experts for your unforgettable celebration in Dubai & Riyadh.",
     specs: "Acoustic Glass Walls • Royal Drapery & Chandeliers",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
     href: "/solutions/wedding-tents",
@@ -34,7 +34,7 @@ const solutions = [
   {
     id: "04",
     title: "Sales Center Tents",
-    desc: "Architectural semi-permanent structures customized for prime real estate launches and immersive client lounges.",
+    desc: "Custom-built temporary sales center tents designed for real estate developers and commercial launches, featuring premium glass walls, luxury interiors, and full climate control.",
     specs: "Panoramic Glass Façades • Luxury Interior Fit-Out",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AL%20MARWAN3.webp",
     href: "/solutions/sales-center-tents",
@@ -42,7 +42,7 @@ const solutions = [
   {
     id: "05",
     title: "Warehouse Tents",
-    desc: "Heavy-duty clear-span temporary and permanent storage tents engineered for logistics and industrial operations.",
+    desc: "Bait Al Nokhada offers secure, efficient warehouse & storage tents for rent & sale in UAE & KSA. 30+ years in tent manufacturing ensure durable, weatherproof solutions for your goods.",
     specs: "Rapid Deployment • German DIN Safety Standards",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse.webp",
     href: "/solutions/warehouse-tents",
@@ -50,7 +50,7 @@ const solutions = [
   {
     id: "06",
     title: "Labour Break Time Tents",
-    desc: "Compliant shaded rest pavilions with heavy-duty cooling systems designed for workforce welfare in extreme heat.",
+    desc: "Heavy-duty, insulated labour rest tents engineered for construction sites and industrial facilities, fully compliant with UAE and regional worker welfare regulations.",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/labour/labour-tent-for-sale.webp",
     href: "/solutions/labour-break-time-tents",
@@ -58,7 +58,7 @@ const solutions = [
   {
     id: "07",
     title: "Sports Tents",
-    desc: "Engineered high-span structures providing climate control and certified safety for stadiums, padel courts, and academies.",
+    desc: "Our sports tents are specifically designed to provide robust shelter and optimal functionality for athletes, enthusiastic spectators, and essential staff in any sporting environment.",
     specs: "Thermal Roof Insulation • FIFA / Sports Specs",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/2.webp",
     href: "/solutions/sports-tents",
@@ -66,7 +66,7 @@ const solutions = [
   {
     id: "08",
     title: "Ramadan Tents",
-    desc: "Authentic Arabic heritage marquees merged with modern luxury for corporate Iftar banquets and royal majlis gatherings.",
+    desc: "Discover luxurious, fully customized Ramadan tents across the UAE and KSA—perfect for Iftar events, suhoor nights, and cultural gatherings. Our traditional and modern tents combine authentic Arab aesthetics with premium comfort and dedicated service.",
     specs: "Custom Interior Majlis • Fire Retardant Class A",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/large-ramadan-tents-UAE.webp",
     href: "/solutions/ramadan-tents",
@@ -74,16 +74,16 @@ const solutions = [
   {
     id: "09",
     title: "Mosque Tents",
-    desc: "Spacious temporary prayer structures featuring acoustic balance, dedicated ablution annexes, and mihrab orientation.",
-    specs: "Anti-Bacterial Carpeting • High-Volume Climate Flow",
+    desc: "Discover spacious and fully equipped temporary mosque tents for daily prayers, Friday gatherings, and Ramadan. Designed with climate control, premium carpeting, and dedicated ablution areas across UAE & KSA.",
+    specs: "Anti-Bacterial Carpeting • Complete Climate Control",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Mosque+Tents/mosque-img2.webp",
     href: "/solutions/mosque-tents",
   },
   {
     id: "10",
     title: "Funeral Tents",
-    desc: "Dignified, fully equipped temporary mourning halls deployed promptly with complete climate control and catering setup.",
-    specs: "24/7 Rapid Installation • Acoustic & Thermal Comfort",
+    desc: "Bait Al Nokhada provides dignified, fully equipped funeral tents with 24/7 rapid setup and installation across UAE & KSA[cite: 14]. Complete with comfortable seating, powerful air conditioning, and respectful lighting[cite: 14].",
+    specs: "24/7 Fast Setup • Full Climate & Seating Setup",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Funeral+Tents/Funeral-Tents.webp",
     href: "/solutions/funeral-tents",
   },
@@ -106,19 +106,19 @@ export default function SolutionsSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
             <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
-              Turnkey Architectural Solutions
+              PREMIER TENT SOLUTIONS
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] tracking-tight leading-snug">
-              Bespoke Structures,{" "}
+                 Our Solutions,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                Tailored For Every Vision
+                 For Every Event
               </span>
             </h2>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <p className="text-slate-600 text-sm max-w-md font-light leading-relaxed">
-              Explore our comprehensive range of high-span modular tents, tensioned fabric membranes, and custom event halls.
+              Explore our comprehensive range of clear-span modular tents, warehouse structures, and custom event halls.
             </p>
 
             <Link

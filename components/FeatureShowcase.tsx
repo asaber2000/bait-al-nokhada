@@ -157,12 +157,16 @@ const pillars = [
 
 
 export default function FeatureShowcase({ sanityData }: { sanityData?: any }) {
-  const badgeText = sanityData?.badgeText || "Pioneering Modular Architecture Since 1997";
+  const badgeText = sanityData?.badgeText || "SINCE 1997 – LEADING TENT MANUFACTURER";
   const mainHeadingBlack = sanityData?.mainHeadingBlack || "Tent Rental, Supplier & Manufacturing";
-  const mainHeadingGradient = sanityData?.mainHeadingGradient || "Experts";
+  const mainHeadingGradient = sanityData?.mainHeadingGradient || " Experts in UAE & KSA";
   const description =
     sanityData?.description ||
-    "Bait Al Nokhada is a premier tent manufacturing powerhouse serving Dubai, Abu Dhabi, UAE, and KSA. We engineer clear-span event marquees, high-tonnage industrial warehouses, and custom tensile membrane structures built to withstand the harshest desert climates.";
+    `Looking for tent rental or tents for sale in UAE or Saudi Arabia? Bait Al Nokhada is a leading tent manufacturing company with over 30 years of experience.
+
+We provide premium modular structures, event tents, and tensile shading solutions tailored for exhibitions, private events, and commercial projects across the GCC.
+
+Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, delivered worldwide.`;
   const sideImageUrl =
     sanityData?.sideImageUrl ||
     "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp";
@@ -221,7 +225,7 @@ export default function FeatureShowcase({ sanityData }: { sanityData?: any }) {
                 {mainHeadingGradient}
               </span>
             </h1>
-            <p className="text-slate-600 font-normal text-sm sm:text-base font-light leading-relaxed max-w-2xl">
+            <p className="text-slate-600 font-normal text-sm sm:text-base font-light leading-relaxed whitespace-pre-line max-w-2xl ">
               {description}
             </p>
 

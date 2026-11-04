@@ -63,7 +63,6 @@ export default async function Home() {
       <Navbar />
       <Hero sanityData={heroData} />
       <FeatureShowcase sanityData={featureShowcaseData} />
-      <FeatureShowcase />
       <SolutionsSection />
       <FeaturedSolutions />
       <ClientsTicker />

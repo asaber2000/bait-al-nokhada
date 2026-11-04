@@ -21,7 +21,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Warehouse Tents",
     tagline: "Rapid-Deploy Heavy-Duty Logistics Hubs & On-Site Storage in UAE & KSA",
     badge: "Industrial Grade • Fast Assembly",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/warehouse.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "A warehouse tent is a large clear-span structure engineered with high-strength aluminum frames and heavy-duty PVC membrane. Designed to provide immediate secure, weather-resistant storage without the long lead times and high capex of permanent civil buildings.",
     whyChooseText: "Built for harsh desert sun, high humidity, sandstorms, and seasonal rain. Fully customizable with high-clearance electric roller doors, industrial grade ventilation, thermal sandwich panel walling, and heavy forklift-rated flooring.",
@@ -60,7 +60,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Wedding Tents",
     tagline: "Turnkey Bespoke Ballrooms & Clear-Span Bridal Marquees across the GCC",
     badge: "Bespoke Royal Luxury • VIP Fit-Out",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/wedding.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "Bait Al Nokhada delivers bespoke wedding tent rental and construction across Dubai, Abu Dhabi, and Riyadh. Transforming open desert or private estates into palace-level climate-controlled ballrooms.",
     whyChooseText: "From crystal clear panoramic ceilings and integrated mood lighting to soundproof VIP lounges and royal interior fabric linings, every detail is engineered for elegance.",
@@ -89,7 +89,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Event Tents",
     tagline: "High-Profile Brand Activations, Summits & Temporary Corporate Arenas",
     badge: "Corporate Turnkey • Heavy Rigging",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/EVENT.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "Engineered temporary conference centers and corporate event pavilions equipped for extensive AV truss rigging, branding skins, and media broadcasting.",
     whyChooseText: "Trusted by government entities, international brand launches, and global summits across the UAE and Saudi Arabia.",
@@ -112,7 +112,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Exhibition Tents",
     tagline: "Modular Multi-Bay Arenas for International Defense & Trade Expos",
     badge: "Mega Clear-Span • High Traffic",
-    heroImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/exhbition.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "Massive clear-span exhibition structures engineered to accommodate heavy display machinery, high visitor flow, and custom exhibitor booth partitions.",
     whyChooseText: "Proven track record delivering temporary expo centers for defense airshows, maritime festivals, and commercial conventions.",
@@ -134,7 +134,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Sports Tents",
     tagline: "All-Weather High-Apex Covered Arenas for Tennis, Padel & Multi-Sport Courts",
     badge: "High-Apex Clearance • Acoustic Liners",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/spots.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "High-clearance structures providing year-round climate-controlled environments for padel courts, football fields, tennis courts, and swimming pool enclosures.",
     whyChooseText: "Ensures sports clubs and private resorts can operate uninterrupted through extreme desert summer months.",
@@ -156,7 +156,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Ramadan Iftar Tents",
     tagline: "Authentic Arabic Hospitality Shelters Engineered with Modern Luxury Finishes",
     badge: "Heritage Styling • Turnkey Catering Ready",
-    heroImage: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/ramadan.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "Specialized temporary Ramadan structures engineered for luxury hotels, government councils, and private estates for Iftar and Suhoor dining.",
     whyChooseText: "Blends authentic Arabian heritage details with industrial strength AC systems and custom buffet/kitchen service areas.",
@@ -178,7 +178,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Aircraft Hangar Tents",
     tagline: "High-Clearance TFS Curve Structures for Aviation Maintenance & Storage",
     badge: "Aviation TFS • 130 km/h Wind Load",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Solutions/aircraft.webp",
     youtubeVideoId: "dQw4w9WgXcQ",
     overview: "Tactical curved roof (TFS) hangars engineered for executive business jets, military aircraft, and commercial helicopter maintenance operations.",
     whyChooseText: "Extreme wind stability, massive door clearance, and zero center columns ensure seamless towing and tool access.",
@@ -195,26 +195,4 @@ export const solutionsDatabase: SolutionItemEn[] = [
       { q: "Can this serve as a permanent aviation hangar?", a: "Yes, with structural engineering anchor plates it meets permanent building codes." }
     ]
   },
-  {
-    id: "8",
-    slug: "royal-tent",
-    name: "Royal Tents",
-    tagline: "VVIP Dignitary Lounges Engineered for Royal Protocol & Heads of State",
-    badge: "VVIP Protocol • Maximum Security",
-    heroImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1800&q=80",
-    youtubeVideoId: "dQw4w9WgXcQ",
-    overview: "Ultra-luxury modular structures designed strictly for government summits, bilateral state banquets, and royal delegation hospitality.",
-    whyChooseText: "Guaranteed privacy, armored panel options, discrete security perimeters, and master-crafted interior suites.",
-    industryApplications: ["State Summits & Diplomatic Forums", "Royal Protocol Banquets", "National Day Dignitary Stages"],
-    keyBenefits: [
-      { title: "Maximum Acoustic Privacy", desc: "Multi-layered sound insulation preventing audio leakage." },
-      { title: "Integrated VIP Amenities", desc: "En-suite luxury restrooms, private holding rooms, and discrete security exits." }
-    ],
-    technicalSpecs: [
-      { label: "Security", value: "Access-controlled automated entryways & camera cable conduits" }
-    ],
-    faqs: [
-      { q: "Is rapid emergency installation available?", a: "Yes, our priority deployment crews operate 24/7 across the GCC." }
-    ]
-  }
 ];

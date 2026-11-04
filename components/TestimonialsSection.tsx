@@ -8,37 +8,37 @@ const allTestimonials = [
   {
     client: "NAVDEX & IDEX Operations",
     role: "Government Event Operations Team",
-    quote: "Bait Al Nokhada delivered excellent temporary structures on time with zero hitches. The main high-span pavilions looked extraordinary, and their engineering team found swift solutions for every technical challenge on site.",
+    quote: "Bait Al Nokhada delivered high-span temporary pavilions strictly on schedule. The execution was flawless, and their on-site engineering team provided rapid, dedicated support throughout the defense exhibition.",
     icon: Building2,
   },
   {
     client: "Dubai Airshow Aerospace Summit",
     role: "Aviation Infrastructure Committee",
-    quote: "The royal hospitality marquees and custom exhibition hangars exceeded international standards. Exceptional climate control performance under high Middle Eastern temperatures.",
+    quote: "The royal hospitality pavilions and large-scale exhibition halls exceeded international standards. The integrated climate control performed exceptionally well under intense regional temperatures.",
     icon: Plane,
   },
   {
     client: "ADIPEC Energy Exhibition",
     role: "Energy Infrastructure Delegation",
-    quote: "Precision engineering, rapid turnkey delivery, and flawless adherence to heavy-duty DIN standards across all temporary exhibition halls.",
+    quote: "Precision engineering, rapid on-site assembly, and full adherence to heavy-duty DIN safety benchmarks across all large-scale exhibition structures and temporary halls.",
     icon: ShieldAlert,
   },
   {
     client: "Global Village Dubai",
     role: "Cultural Pavilion Operations",
-    quote: "Unmatched fabrication quality and structural stability. Their modular setups withstand high footfall and seasonal wind forces effortlessly.",
+    quote: "Outstanding manufacturing quality and exceptional structural stability. Their modular event tents withstood massive visitor footfall and demanding weather conditions seamlessly throughout the season.",
     icon: Building2,
   },
   {
     client: "Sharjah Investment & Dev. (Shurooq)",
     role: "Destinations & Tourism Authority",
-    quote: "Flawless architectural tensile structures delivered with extreme attention to aesthetic finishes, meeting our exact royal hospitality guidelines.",
+    quote: "Flawless modular event structures delivered with meticulous attention to detail and premium interior finishes, fully aligning with our heritage and royal hospitality standards.",
     icon: Sparkles,
   },
   {
     client: "Dubai Police GHQ",
     role: "Special Events & Security Ops",
-    quote: "Turnkey security enclosures and rapid field command centers assembled in record times with certified civil defense compliance.",
+    quote: "Highly reliable operational deployment and secure field setups assembled in record time, meeting full civil defense and regional safety compliance standards.",
     icon: ShieldAlert,
   },
 ];
@@ -135,7 +135,7 @@ export default function TestimonialsCarousel() {
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
-              <span>Partner Endorsements</span>
+              <span>CLIENT TESTIMONIALS</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
               Behind Every Structure Is A{" "}

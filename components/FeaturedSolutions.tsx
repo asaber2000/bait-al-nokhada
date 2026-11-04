@@ -113,14 +113,14 @@ export default function FeaturedProjects() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
-              <span>PORTFOLIO SHOWCASE</span>
+              <span>OUR PORTFOLIO</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight">
               Featured Projects<span className="text-[#df9d17]">.</span>
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
-            Proven Engineering at Scale: Precision modular architecture and clear-span structures deployed across royal venues and international summits.
+            Proven engineering in modular event tents and large clear-span structures, delivered for royal venues and leading international exhibitions across UAE & KSA.
           </p>
         </div>
 

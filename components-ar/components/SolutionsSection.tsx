@@ -10,7 +10,7 @@ const solutions = [
   {
     id: "01",
     title: "خيام المعارض",
-    desc: "أجنحة وهياكل ضخمة مخصصة للمعارض الدولية، الفعاليات التجارية، وعروض الطيران الكبرى عبر دول الخليج.",
+    desc: "خيام المعارض للإيجار بجودة عالية تناسب الفعاليات والمعارض والمؤتمرات في السعودية والإمارات، مصممة لتحمل الظروف الجوية، وتوفر مساحة عرض أنيقة وعملية منذ عام 1997.",
     specs: "بحور مفتوحة تصل إلى 60 متراً • مقاومة عالية للرياح",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
     href: "/ar/solutions/exhibition-tents",
@@ -18,7 +18,7 @@ const solutions = [
   {
     id: "02",
     title: "خيام الفعاليات والمناسبات",
-    desc: "قاعات مؤتمرات وقمم حكومية مجهزة بأحدث تقنيات الإضاءة الذكية، العزل الصوتي، والتكييف المركزي المتكامل.",
+    desc: "نوفر خيمة مناسبات فاخرة للإيجار والبيع في الإمارات والسعودية ودول الخليج، تجمع بين التصميم الأنيق والجودة العالية، مع خدمات تركيب احترافية وتخصيص كامل يناسب كل مناسباتك.",
     specs: "منصات متعددة المستويات • أنظمة تكييف فائقة القدرة",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
     href: "/ar/solutions/event-tents",
@@ -26,7 +26,7 @@ const solutions = [
   {
     id: "03",
     title: "خيام الزفاف والأعراس",
-    desc: "قاعات ملكية فخمة مصممة لحفلات الزفاف الخارجية في الإمارات والسعودية، توفر أجواء راقية وخاصة.",
+    desc: "توفر شركة بيت النوخذة خدمات تأجير خيام أفراح في دبي بتصاميم أنيقة ومخصصة لتناسب حفلات الزفاف الخارجية في الإمارات والسعودية. اختر خيمة زفافك من نخبة الخبراء في خيام المناسبات، واحتفل بلحظة لا تُنسى في أجواء فاخرة سواء في دبي أو الرياض.",
     specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
     href: "/ar/solutions/wedding-tents",
@@ -34,7 +34,7 @@ const solutions = [
   {
     id: "04",
     title: "خيام مراكز المبيعات",
-    desc: "هياكل معمارية شبه دائمة مخصصة لإطلاق المشاريع العقارية الكبرى وتوفير صالات استقبال فخمة للمستثمرين.",
+    desc: "خيام ومقرات مبيعات مؤقتة مجهزة للشركات العقارية والمشاريع الكبرى، مزودة بواجهات زجاجية وتشطيبات داخلية فاخرة وأنظمة تكييف متكاملة لتوفير بيئة استقبال أعمال استثنائية.",
     specs: "واجهات زجاجية بانورامية • تشطيب داخلي فاخر",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AL%20MARWAN3.webp",
     href: "/ar/solutions/sales-center-tents",
@@ -42,7 +42,7 @@ const solutions = [
   {
     id: "05",
     title: "خيام المستودعات",
-    desc: "مستودعات تخزين مؤقتة ودائمة ذات بحور مفتوحة عالية التحمل ومصممة للعمليات اللوجستية والمواقع الصناعية.",
+    desc: "توفر بيت النوخذة خيام المستودعات المتينة والمقاومة للعوامل الجوية للإيجار والبيع في الإمارات والسعودية، ما يضمن حماية مثالية لبضائعك، تتميز هذه الخيام بسهولة التركيب والمرونة، مما يجعلها الحل الأمثل للتخزين الآمن والمستدام.",
     specs: "سرعة في التوريد والتركيب • معايير السلامة الألمانية DIN",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse.webp",
     href: "/ar/solutions/warehouse-tents",
@@ -50,7 +50,7 @@ const solutions = [
   {
     id: "06",
     title: "خيام استراحة العمال",
-    desc: "مظلات واستراحات مجهزة بأنظمة تبريد عالية الكفاءة لتأمين راحة الكوادر الميدانية وفق اشتراطات السلامة والرفاهية.",
+    desc: "خيام استراحة معزولة ومتينة مخصصة لمواقع الإنشاءات والمنشآت الصناعية في الإمارات والسعودية، مطابقة لأعلى معايير الأمن والسلامة ورفاهية العمال.",
     specs: "أنسجة PVC عازلة للحرارة • معتمدة من الدفاع المدني",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/labour/labour-tent-for-sale.webp",
     href: "/ar/solutions/labour-break-time-tents",
@@ -58,7 +58,7 @@ const solutions = [
   {
     id: "07",
     title: "خيام رياضية",
-    desc: "هياكل بحور واسعة توفر عزلاً حرارياً متطوراً للملاعب الرياضية، ملاعب البادل، والصالات الأكاديمية الأولمبية.",
+    desc: "نوفر خيام رياضية عالية الجودة توفر حماية قوية ومساحة مريحة للرياضيين والمشجعين، تتحمل الظروف الجوية المختلفة، وتناسب جميع الفعاليات الرياضية في الملاعب أو المناطق المفتوحة.",
     specs: "أسقف عازلة حرارياً • مطابقة لمعايير FIFA الرياضية",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/2.webp",
     href: "/ar/solutions/sports-tents",
@@ -66,7 +66,7 @@ const solutions = [
   {
     id: "08",
     title: "خيام رمضانية",
-    desc: "أجواء تراثية عربية أصيلة مدمجة باللمسات المعمارية الحديثة لبوفيهات الإفطار المؤسسية والمجالس الملكية.",
+    desc: "خيمة رمضانية فاخرة بتصميم تقليدي أو عصري، مثالية لأمسيات الإفطار والسحور في الإمارات والسعودية، توفر راحة استثنائية، وجواً روحانياً دافئاً يجمع بين الفخامة والضيافة العربية الأصيلة.",
     specs: "فرش داخلي ومجالس تفصيل • مقاومة للحريق Class A",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/large-ramadan-tents-UAE.webp",
     href: "/ar/solutions/ramadan-tents",
@@ -74,7 +74,7 @@ const solutions = [
   {
     id: "09",
     title: "خيام المساجد",
-    desc: "مصليات مؤقتة واسعة مجهزة بفرش معقم، عزل صوتي نقي، مناطق وضوء ملحقة، ومحاريب دقيقة التوجيه.",
+    desc: "خيام ومصليات مؤقتة مجهزة بالكامل للصلوات اليومية وصلاة الجمعة وشهر رمضان المبارك، مزودة بسجاد عالي الجودة وتكييف هواء مركزي ومرافق مخصصة للوضوء.",
     specs: "سجاد مضاد للبكتيريا • تدفق هواء مكيف عالي السعة",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Mosque+Tents/mosque-img2.webp",
     href: "/ar/solutions/mosque-tents",
@@ -82,7 +82,7 @@ const solutions = [
   {
     id: "10",
     title: "خيام العزاء",
-    desc: "قاعات مؤقتة مجهزة بالكامل تُشيد بسرعة فائقة وتوفر تكييفاً وخدمات لوجستية متكاملة لراحة الحضور.",
+    desc: "خدمة توفير وتجهيز خيام العزاء الفاخرة على مدار الساعة (24/7) في الإمارات والسعودية، مجهزة بالكامل بكافة متطلبات الضيافة، التكييف، المقاعد المريحة، والإنارة الهادئة.",
     specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Funeral+Tents/Funeral-Tents.webp",
     href: "/ar/solutions/funeral-tents",
@@ -107,26 +107,26 @@ export default function ArabicSolutionsSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
           <div className="space-y-3 max-w-2xl">
             <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
-              حلول معمارية وهندسية متكاملة
+              حلول الخيام الرائدة 
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] tracking-tight leading-snug">
-              هياكل وقاعات مخصصة،{" "}
+               حلولنا،{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-                صُممت لتجسيد أدق تطلعاتك
+                لكافة الفعاليات والمشاريع 
               </span>
             </h2>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <p className="text-slate-600 text-sm max-w-md font-normal leading-relaxed">
-              استكشف باقتنا المتكاملة من الخيام المعيارية ذات البحور الواسعة، الهياكل النسيجية المشدودة، وقاعات المؤتمرات والفعاليات.
+             استكشف مجموعتنا المتكاملة من خيام القاعات الكبرى، خيام المستودعات، والخيام المخصصة للمعارض والمناسبات.
             </p>
 
             <Link
               href="/ar/solutions"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-[#df9d17] text-slate-800 hover:text-white border border-slate-200 hover:border-[#df9d17] shadow-xs hover:shadow-md transition-all text-xs font-bold uppercase tracking-wider shrink-0"
             >
-              <span>عرض جميع الحلول</span>
+              <span>جميع حلول الخيام</span>
               <ArrowUpLeft className="w-4 h-4" />
             </Link>
           </div>

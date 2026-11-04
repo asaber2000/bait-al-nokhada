@@ -53,7 +53,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     },
     relatedProducts: [
       { name: "Revolution Tent", slug: "revolution-tent" },
-      { name: "Polygon Tent", slug: "polygon-tent" }
+      { name: "Polygon Tent", slug: "polygon-tent" } 
     ]
   },
   {
