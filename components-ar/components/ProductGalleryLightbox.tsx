@@ -5,7 +5,13 @@ import Image from "next/image";
 import { Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function ProductGalleryLightboxAr({ images }: { images: string[] }) {
+export default function ProductGalleryLightboxAr({
+  images,
+  productName = "الخيام"
+}: {
+  images: string[];
+  productName?: string;
+}) {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setActiveImageIndex(index);
@@ -33,10 +39,10 @@ export default function ProductGalleryLightboxAr({ images }: { images: string[] 
             معرض الصور والأعمال الهندسية
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
-            تنفيذ المواقع والمشاريع الميدانية
+            نماذج من مشاريعنا وتنفيذ {productName} على أرض الواقع
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
-            اضغط على أي صورة لاستعراض التفاصيل الإنشائية عالية الدقة والتجهيزات الداخلية للقاعات والخيام.
+            تصفح صور مشاريعنا الميدانية لـ {productName} وتجهيزاتها الداخلية المتكاملة لمختلف الفعاليات والمعارض الكبرى.
           </p>
         </div>
 

@@ -5,7 +5,13 @@ import Image from "next/image";
 import { Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function ProductGalleryLightbox({ images }: { images: string[] }) {
+export default function ProductGalleryLightbox({
+  images,
+  productName = "Tents",
+}: {
+  images: string[];
+  productName?: string;
+}) {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setActiveImageIndex(index);
@@ -33,10 +39,10 @@ export default function ProductGalleryLightbox({ images }: { images: string[] })
             Visual Engineering Gallery
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
-            Site Staging & Installed Structures
+            Real-World Deployments of Our {productName}'s
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
-            Click any project to preview high-resolution structural details and internal installations.
+          <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-2xl mx-auto leading-relaxed">
+            Explore onsite project images of our {productName}'s and and custom interior setups across landmark exhibitions and events.
           </p>
         </div>
 
@@ -112,6 +118,7 @@ export default function ProductGalleryLightbox({ images }: { images: string[] })
                 priority
                 className="object-contain"
               />
+              
             </motion.div>
           </motion.div>
         )}

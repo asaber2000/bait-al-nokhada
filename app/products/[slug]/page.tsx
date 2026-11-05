@@ -219,74 +219,51 @@ export default async function ProductDetailPage({
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-3">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  Technical Overview
+                  MANUFACTURING EXCELLENCE
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
-                  {(product as any).descriptionTitle || "Structural Design & Material Standards"}
+                  {(product as any).overviewTitle || (product as any).descriptionTitle || "Structural Design & Material Standards"}
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                   {product.description}
                 </p>
               </div>
 
-              {/* بطاقة المميزات الهندسية */}
-              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5" />
-                  <span>Engineered Advantages & Climate Certifications</span>
-                </h3>
-                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
-                  {product.features.map((feat: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0 mt-0.5" />
-                      <span className="leading-relaxed font-medium">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* Dual Features Grid (Identical to Arabic Layout) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.features?.map((feat: any, idx: number) => {
+                  const title = typeof feat === "object" ? feat.title : (feat.includes(" - ") ? feat.split(" - ")[0] : feat);
+                  const desc = typeof feat === "object" ? feat.desc : (feat.includes(" - ") ? feat.split(" - ")[1] : "");
+
+                  return (
+                    <div
+                      key={idx}
+                      className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-[#df9d17]/50 hover:shadow-md transition-all duration-300 flex items-start gap-3.5 text-left"
+                    >
+                      {/* Gold Check Icon */}
+                      <div className="mt-0.5 shrink-0">
+                        <CheckCircle2 className="w-5 h-5 text-[#df9d17]" />
+                      </div>
+
+                      <div className="space-y-1.5 flex-1">
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold text-[#0B1220] leading-snug">
+                          {title}
+                        </h3>
+
+                        {/* Subtitle / Description */}
+                        {desc && (
+                          <p className="text-xs text-slate-500 font-normal leading-relaxed">
+                            {desc}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* بطاقة الجودة والاعتمادات */}
-              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-5">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                  <div className="flex items-center gap-2.5">
-                    <Award className="w-5 h-5 text-[#df9d17]" />
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-[#0B1220]">
-                      GCC Deployment & Quality Assurance
-                    </h4>
-                  </div>
-                  <span className="text-[10px] text-[#df9d17] font-mono font-bold uppercase bg-[#df9d17]/10 px-2.5 py-1 rounded-md border border-[#df9d17]/30">
-                    ISO 9001:2015
-                  </span>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                  <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FDFCF7] border border-slate-200/70">
-                    <Clock className="w-4 h-4 text-[#df9d17] shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="block text-[#0B1220] font-bold mb-0.5">Rapid Turnkey Setup</strong>
-                      <span className="text-slate-600 leading-normal">Fast modular assembly engineered for strict event and commercial timelines.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FDFCF7] border border-slate-200/70">
-                    <Layers className="w-4 h-4 text-[#df9d17] shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="block text-[#0B1220] font-bold mb-0.5">Thermal Multi-Layering</strong>
-                      <span className="text-slate-600 leading-normal">Optimized HVAC efficiency ensuring stable internal climate control up to 55°C.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-100">
-                  <span className="text-slate-500 font-normal">Need custom structural calculations for this profile?</span>
-                  <Link
-                    href="/contact"
-                    className="text-[#df9d17] hover:underline font-bold flex items-center gap-1"
-                  >
-                    Consult Structural Engineer <FileText className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
             </div>
 
             {/* الجانب الأيمن (5 أعمدة): المقاسات والداتا شيت */}
@@ -332,6 +309,38 @@ export default async function ProductDetailPage({
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Engineering Gallery & Project Showcase */}
+      <ProductGalleryLightbox
+        images={galleryImages}
+        productName={product.name}
+      />
+      {/* 4. Technical RFQ Call to Action */}
+      <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
+          <div className="space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+              DIRECT FACTORY CONSULTATION & PRICING
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
+              Planning a Specialized Tent Project for Your Event?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
+              Connect directly with our engineering team for site visits, customized 3D structural layouts, and competitive direct-from-factory quotations.
+            </p>
+          </div>
+
+          <div className="pt-2 flex justify-center">
+            <Link
+              href="/contact"
+              className="px-8 py-4 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
+            >
+              <span>Request a Technical Proposal & Quote</span>
+              <Send className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

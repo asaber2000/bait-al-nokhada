@@ -328,7 +328,7 @@ export default async function ArabicProductDetailPage({
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-3">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  قدرات وخبرات إنشائية معتمدة
+                  جودة تصنيع وخبرة معتمدة
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
                   {arData.overviewTitle || "لماذا تتصدر منتجاتنا السوق الإقليمي"}
@@ -410,20 +410,23 @@ export default async function ArabicProductDetailPage({
       </section>
 
       {/* 3. المعرض التفاعلي مع نافذة التكبير الكبرى */}
-      <ProductGalleryLightboxAr images={galleryImages} />
+      <ProductGalleryLightboxAr
+        images={galleryImages}
+        productName={arData.name}
+      />
 
       {/* 4. Technical RFQ Call to Action */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              دراسة فنية وعرض سعر تسليم مفتاح
+             استشارة هندسية وعرض سعر مباشر من المصنع
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
-              هل تخطط لتنفيذ مشروع بمواصفات خاصة؟
+             هل تخطط لتنفيذ مشروع أو فعالية بمواصفات هندسية خاصة؟
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
-              تواصل مع الإدارة الهندسية في أبوظبي ودبي للحصول على مخططات CAD ثلاثية الأبعاد وعروض أسعار المصنع مباشرة.
+             تواصل مباشرة مع خبرائنا للحصول على دراسة للموقع، ومخططات تصميم مخصصة، وعروض أسعار تنافسية مباشرة من مصنعنا.
             </p>
           </div>
 
@@ -432,7 +435,7 @@ export default async function ArabicProductDetailPage({
               href="/ar/contact"
               className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
             >
-              <span>طلب دراسة فنية وعرض سعر متكامل</span>
+              <span>طلب استشارة هندسية ودراسة سعر</span>
               <Send className="w-4 h-4 rotate-180" />
             </Link>
           </div>

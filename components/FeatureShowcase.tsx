@@ -129,7 +129,7 @@ const pillars = [
   {
     num: "01",
     title: "PROFESSIONALISM",
-    desc: "Dedicated engineering adhering to German DIN safety benchmarks with decades of elite Middle Eastern craftsmanship.",
+    desc: "We are professional tent solution experts delivering the highest levels of German DIN engineering safety benchmarks with decades of elite craftsmanship.",
     icon: Wrench,
     statLabel: "Engineering Legacy",
     statValue: 30,
@@ -138,7 +138,7 @@ const pillars = [
   {
     num: "02",
     title: "AFFORDABILITY & VALUE",
-    desc: "Direct-from-factory pricing, turnkey leasing, and high return on investment fabrication from our mega UAE manufacturing complex.",
+    desc: "Affordability is the core of our business; we provide direct-from-factory pricing, flexible leasing options, and high-ROI tent structures from our mega UAE manufacturing complex.",
     icon: Coins,
     statLabel: "Industrial Facility",
     statValue: 40000,
@@ -147,7 +147,7 @@ const pillars = [
   {
     num: "03",
     title: "PROVEN RELIABILITY",
-    desc: "Sustainable tensile membrane structures and royal pavilions deployed across landmark government and corporate summits.",
+    desc: "We offer sustainable, certified tent structures and royal pavilions deployed across landmark government summits, exhibitions, and corporate events..",
     icon: ShieldIcon,
     statLabel: "Projects Deployed",
     statValue: 5000,
@@ -171,12 +171,12 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
     sanityData?.sideImageUrl ||
     "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp";
 
-  const pillarsBadge = sanityData?.pillarsSectionBadge || "The Gold Standard In Tensile Engineering";
+  const pillarsBadge = sanityData?.pillarsSectionBadge || "THE GOLD STANDARD IN TENT MANUFACTURING";
   const pillarsTitleBlack = sanityData?.pillarsSectionTitleBlack || "Why Industry Leaders";
-  const pillarsTitleGradient = sanityData?.pillarsSectionTitleGradient || "Trust Bait Al Nokhada";
+  const pillarsTitleGradient = sanityData?.pillarsSectionTitleGradient || "Choose Bait Al Nokhada";
   const pillarsDesc =
     sanityData?.pillarsSectionDescription ||
-    "Precision manufacturing, rapid desert deployment, and certified European structural safety standards.";
+    "Certified to international safety standards with rapid delivery and expert installation across UAE & KSA.";
 
   // دمج كروت الركائز مع الأيقونات الثابتة الأصلية
   const defaultIcons = [Wrench, Coins, ShieldIcon];

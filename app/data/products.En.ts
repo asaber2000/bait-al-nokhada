@@ -10,6 +10,7 @@ export interface ProductItemEn {
   name: string;
   tagline: string;
   badge: string;
+  overviewTitle?: string;
   heroImage: string;
   windSpeed: string;
   description: string;
@@ -24,10 +25,11 @@ export const productsDatabase: ProductItemEn[] = [
     slug: "pyramid-tent",
     name: "Pyramid Tent",
     tagline: "Elegant, durable, and modular structure with 100% clear-span interior space.",
-    badge: "100% Usable Space",
+    badge: "Engineered for Extreme Weather • International Safety Compliant",
+    overviewTitle: "Why Choose Bait Al Nokhada Pyramid Tents?",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp",
     windSpeed: "Weather Resistant",
-    description: "The Pyramid Tent is a premium modular structure designed to combine luxury, strength, and flexibility. Its iconic sloping shape and high peak create a bold visual statement, making it ideal for weddings, high-end corporate events, exhibitions, and VIP functions. Engineered with reinforced aluminum frames and durable PVC fabric, this tent offers exceptional stability and weather resistance for both short-term and semi-permanent use.",
+    description: "The pyramid tent features a timeless triangular design, seamlessly merging traditional aesthetics with modern functionality. It’s exceptionally versatile and ideal for both formal galas and casual gatherings.",
     models: [
       { name: "Pyramid PT 5x5", size: "5m x 5m (25 m² Area)", capacity: "20 - 30 Guests" },
       { name: "Pyramid PT 6x6", size: "6m x 6m (36 m² Area)", capacity: "35 - 50 Guests" },
@@ -36,30 +38,34 @@ export const productsDatabase: ProductItemEn[] = [
       { name: "Pyramid PT Custom", size: "Modular Length Extensions", capacity: "Custom Event Capacities" },
     ],
     features: [
-      "High-strength reinforced aluminum structure providing 100% unobstructed usable space.",
-      "Weather-resistant PVC fabric built for desert heat, rain, and high wind stability.",
-      "Fully modular design allowing unlimited length extensions and custom configurations.",
-      "Versatile side wall options: Soft/hard PVC panels, glass walls, and solid sandwich panels.",
-      "Full turnkey event support: Integrated HVAC air conditioning, luxury drapery, and custom lighting.",
+      "High-Strength Aluminum Structure - Precision-engineered T6/6061 extruded alloy providing 100% unobstructed usable space without center poles.",
+      "Weather-Resistant PVC Membrane - Heavy-duty dual-coated covers engineered for extreme desert heat, rain protection, and high wind stability.",
+      "Certified Flame-Retardant Standards - Globally certified adhering to international safety benchmarks (DIN 4102 B1, M2, and NFPA 701).",
+      "Fully Modular Expanding System - Continuous expansion and interlocking configurations supported via integrated rain gutters.",
+      "Versatile Walling Configurations - Tempered glass panels, solid ABS sandwich walls, and flexible sliding PVC curtains.",
+      "Complete Turnkey Event Fit-Out - High-tonnage climate control HVAC, luxury interior drapery, and integrated custom lighting.",
+      "Comprehensive Accessories & Decor Fit-Out - Tempered glass walls, solid ABS panels, cassette wooden flooring, luxury linings, and centralized HVAC cooling systems."
     ],
     specs: [
-      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy" },
-      { label: "Weather Durability", value: "Resistant to High Winds, Heat & Rain" },
-      { label: "Cover Material", value: "Heavy-Duty Flame-Retardant PVC Fabric" },
-      { label: "Interior Layout", value: "100% Usable Space (Zero Center Poles)" },
-      { label: "Standard Sizes", value: "5x5m, 6x6m, 8x8m, 10x10m (Modular)" },
-      { label: "Availability", value: "Available for Rental & Permanent Sale" },
+      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
+      { label: "Connecting Components", value: "Heavy-Duty Hot-Dip Galvanized Steel Connectors" },
+      { label: "Weather Durability", value: "Engineered for High Winds, Extreme Heat & Heavy Rain" },
+      { label: "Cover Material", value: "Heavy-Duty, Flame-Retardant German PVC (Blackout / Translucent)" },
+      { label: "Side Wall Options", value: "Tempered Glass, Solid ABS Walls, or Flexible PVC Curtains" },
+      { label: "Standard Sizes", value: "From 3x3m up to 10x10m (Custom Modular Sizing Available)" },
+      { label: "Service Availability", value: "Available for Short-Term Rental & Direct Factory Sale" },
     ],
   },
   {
     id: "2",
     slug: "dome-tent",
     name: "Dome Tent",
-    tagline: "Futuristic geodesic dome structures with panoramic 360° open space for luxury events.",
-    badge: "360° Open Space",
+    tagline: "Distinctive high-peak architectural tents delivering open 360° space and superior structural elegance for VIP events.",
+    badge: "High-Peak Profile • 360° Open Space",
+    overviewTitle: "Why Choose Bait Al Nokhada Dome Tents?",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/dome-tents.webp",
     windSpeed: "Weather Resistant",
-    description: "The Dome Tent is a bold architectural statement, blending futuristic aesthetics with all-weather durability. Its freestanding geodesic design eliminates the need for central poles, unlocking full interior usability for immersive event layouts. With panoramic open space, exceptional wind resistance, and a modular structure that allows multiple domes to be connected, it offers unmatched versatility for indoor-outdoor experiences.",
+    description: "This dome tent, with its unique geometric design, offers superior stability and a spacious interior, making it ideal for exhibitions, sports events, and temporary hospitality. It reflects our commitment as a leading tent supplier in the UAE and KSA.",
     models: [
       { name: "Dome DT 5M", size: "5m Diameter (19.6 m² Area)", capacity: "15 - 20 Guests" },
       { name: "Dome DT 10M", size: "10m Diameter (78.5 m² Area)", capacity: "50 - 70 Guests" },
@@ -67,19 +73,23 @@ export const productsDatabase: ProductItemEn[] = [
       { name: "Dome DT Custom", size: "Custom Large Spans (Up to 35m)", capacity: "Custom Event Capacities" },
     ],
     features: [
-      "Freestanding geodesic framework delivering 100% usable floor space with zero center poles.",
-      "Robust all-weather resistance against high winds, intense desert heat, and rain.",
-      "Panoramic clear/white PVC and transparent panel options ideal for 360° projection mapping.",
-      "Full HVAC integration ensuring efficient cooling and heating performance.",
-      "Modular interconnectivity enabling multi-dome complexes for large exhibitions and VIP summits.",
+      "High-Strength Aluminum Framing - Engineered extruded aluminum alloy structure ensuring 100% unobstructed clear-span interior space without central columns.",
+      "Weather-Resistant Heavy-Duty PVC - Premium durable covers designed for intense desert sun reflection, waterproof sealing, and high wind stability.",
+      "Certified Fire-Retardant Standards - Globally compliant flame-retardant materials adhering to international safety benchmarks (DIN 4102 B1, M2, and NFPA 701).",
+      "Modular Interlocking Configurations - Continuous expansion and multi-tent connection system utilizing integrated rain gutters for large-scale setups.",
+      "Versatile Walling Configurations - Compatible with luxury glass walls, rigid ABS solid paneling, and sliding flexible PVC curtains.",
+      "Complete Event Fit-Out Solutions - Comprehensive integration of high-capacity HVAC cooling, decorative interior linings, and professional lighting.",
+      "Comprehensive Flooring & Accessories - Heavy-duty cassette flooring, VIP carpeting, glass double-doors, and dedicated cable management."
     ],
     specs: [
-      { label: "Main Frame Structure", value: "High-Strength Aluminum & Galvanized Steel Frame" },
-      { label: "Weather Durability", value: "Resistant to High Winds, Heat & Rain" },
-      { label: "Cover Material", value: "Transparent PVC, Solid Panels & Glass Options" },
+      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy" },
+      { label: "Connection Elements", value: "Hot-Dip Galvanized Steel Connectors" },
+      { label: "Weather Durability", value: "Engineered for Extreme Heat, Heavy Rain & High Winds" },
+      { label: "Cover Material", value: "Heavy-Duty Flame-Retardant PVC (White / Translucent / Transparent)" },
       { label: "Interior Layout", value: "100% Usable Space (Zero Center Poles)" },
-      { label: "Standard Sizes", value: "5m, 10m, 15m (Custom Sizes Available)" },
-      { label: "Availability", value: "Available for Rental & Permanent Sale" },
+      { label: "Side Wall Options", value: "Tempered Glass, Solid ABS Panels, or Sliding PVC Curtains" },
+      { label: "Standard Sizes", value: "5x5m, 6x6m, 8x8m, 10x10m (Custom Configurations Available)" },
+      { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" },
     ],
   },
   {
@@ -87,85 +97,98 @@ export const productsDatabase: ProductItemEn[] = [
     slug: "capsule-tent",
     name: "Capsule Tent",
     tagline: "Modular Futuristic Glamping Pods & VIP Accommodation Units",
-    badge: "Smart Pod • Modular Plug & Play",
+    badge: "Futuristic Design • Rapid Deployment",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule.webp",
     windSpeed: "100 km/h Wind Load",
-    description: "The Capsule Tent offers a sleek aerodynamic form factor engineered for rapid deployment as luxury suites, outdoor lounges, and private retreat units. Built with aerospace composites and thermally broken double-glazed curved glass.",
+    description: "The Capsule Tent brings futuristic design and portability together in a bold, sculptural form. With a clean, obstruction-free interior and ultra-modern exterior, it delivers visual sophistication and functional excellence. Engineered for fast setup, all-weather performance, and full customization, it’s the perfect choice for exhibitions, trade shows, corporate lounges, and brand activations across the UAE and KSA.",
     models: [
       { name: "Capsule C-06", size: "6m x 3.5m (21 m²)", capacity: "2 - 4 Guests" },
       { name: "Capsule C-09", size: "9m x 4.0m (36 m²)", capacity: "4 - 6 Guests" },
-      { name: "Capsule C-12", size: "12m x 4.2m (50 m²)", capacity: "6 - 8 Guests Suite" },
+      { name: "Capsule C-12", size: "12m x 4.2m (50 m²)", capacity: "6 - 8 Guests Suite" }
     ],
     features: [
-      "Modular Prefabricated Quick-Lock Aviation Composite Frame",
-      "Full Curved Panoramic Double-Glazed Glass End Walls with Low-E Coating",
-      "Integrated Multi-Zone Climate Control & Smart Ambient Lighting Channels",
-      "Pre-Plumbed and Pre-Wired for Immediate Plug & Play Site Installation",
+      "Futuristic Capsule Form - Sleek, sculptural architectural design creating a strong visual impact for high-profile brand activations.",
+      "Clear-Span Aluminum Frame - Heavy-duty curved aluminum structure providing 100% obstruction-free, fully usable interior space.",
+      "Curved Panoramic Glass Walls - Double-glazed insulated glass ends offering wide panoramic views and superior thermal protection.",
+      "All-Weather Durability - Fully insulated shell built to withstand intense desert heat, wind, dust, and heavy rain.",
+      "Rapid Deployment & Setup - Pre-engineered modular design allowing fast on-site assembly with minimal operational downtime.",
+      "Integrated Climate & Lighting - Pre-configured conduits for high-efficiency HVAC cooling, ambient LED lighting, and safe power distribution."
     ],
     specs: [
-      { label: "Frame Assembly", value: "Aero-Grade Curved Aluminum 6061/T6" },
-      { label: "Shell Insulation", value: "50mm Polyurethane Core (R-Value 16)" },
-      { label: "Wind Resistance", value: "100 km/h Certified" },
-      { label: "Glass Specs", value: "6mm + 12A + 6mm Argon Low-E Tempered Glass" },
-      { label: "Electrical Rating", value: "IP66 Integrated Distribution System" },
-    ],
+      { label: "Main Frame Assembly", value: "Curved Extruded Aluminum Frame (Rust-Proof)" },
+      { label: "Shell Insulation", value: "High-Density Thermal Insulation Core for Extreme Heat" },
+      { label: "Wind Durability", value: "Engineered & Certified for 100 km/h Wind Resistance" },
+      { label: "Glass Specifications", value: "Double-Glazed Panoramic Tempered Safety Glass" },
+      { label: "Electrical & Fit-Out", value: "Integrated Weatherproof Wiring & Power Channels" },
+      { label: "Recommended Use", value: "Trade Shows, VIP Lounges, Pop-Ups & Branded Activations" },
+      { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" }
+    ]
   },
   {
     id: "4",
     slug: "arabic-majlis-tent",
     name: "Arabic Majlis Tent",
     tagline: "Authentic Cultural Heritage Tents Engineered with Modern Climate Tech",
-    badge: "Heritage Craft • Royal Sadu Interiors",
+    badge: "Heritage Craft • Desert Climate Insulation",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tent.webp",
     windSpeed: "110 km/h Wind Load",
-    description: "The Arabic Majlis Tent merges authentic GCC heritage craftsmanship with industrial-grade modular frames. Featuring traditional hand-stitched Sadu fabric patterns treated for fire retardancy, combined with multi-layer desert insulation.",
+    description: "The Arabic Majlis Tent brings the essence of authentic Arabian hospitality to modern event settings. Inspired by Bedouin heritage and engineered with high-performance materials, it offers immersive interiors, cultural elegance, and year-round usability. From VIP corporate lounges to National Day festivals, it is trusted across Dubai, Abu Dhabi, Riyadh, and beyond.",
     models: [
       { name: "Majlis Royal 12", size: "12m x 20m (240 m²)", capacity: "80 - 120 Guests" },
       { name: "Majlis Royal 20", size: "20m x 40m (800 m²)", capacity: "250 - 350 Guests" },
       { name: "Majlis Grand 30", size: "30m x 60m (1,800 m²)", capacity: "600 - 900 Guests" },
+      { name: "Majlis Custom", size: "Modular Length Extensions", capacity: "Custom Event Capacities" }
     ],
     features: [
-      "Traditional Geometric Sadu Interior Fabric Linings (DIN 4102 B1 Flame Retardant)",
-      "Multi-Layer Heavy Thermal Insulation Blanket Eliminating Desert Heat Penetration",
-      "Heavy-Duty Exterior Black & Gold Stripe Traditional Arab Facade Membrane",
-      "Integrated Perimeter Sub-Floor Framing for High-End Carpet & Marble Installation",
+      "High-Strength Aluminum Frame - Heavy-duty extruded structure engineered for full clear-span layout without any internal poles.",
+      "Traditional Geometric Sadu Linings - Authentic interior textiles treated with certified flame-retardant safety standards (DIN 4102 B1).",
+      "Heavy-Duty Exterior Weather Covering - Premium German PVC exterior engineered for extreme sun reflection, heat resistance, and rain protection.",
+      "Multi-Layer Desert Thermal Insulation - Advanced thermal barrier systems preventing heat penetration and optimizing internal AC efficiency.",
+      "Traditional Heritage Exterior Accents - Classic exterior patterns, gold trim details, and optional glass hybrid entrance doors.",
+      "Complete Majlis Fit-Out Support - Integrated sub-flooring for luxury Arabian carpets, low majlis seating, and ambient warm lighting."
     ],
     specs: [
-      { label: "Structural Frame", value: "Reinforced 6061/T6 Extruded Aluminum Alloy" },
-      { label: "Lining Material", value: "Certified Fire-Resistant Arabian Sadu Textiles" },
-      { label: "Wind Resistance", value: "110 km/h Structural Wind Rating" },
-      { label: "Outer Membrane", value: "850g/m² Heavy PVC Blockout with UV Protection" },
-      { label: "Thermal Insulation", value: "Rockwool + Double Aluminum Reflective Foil" },
-    ],
+      { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
+      { label: "Interior Lining Material", value: "Certified Flame-Retardant Traditional Arabian Sadu Textiles" },
+      { label: "Weather Durability", value: "Engineered for 110 km/h Wind Load, Desert Heat & Rain" },
+      { label: "Outer Protective Layer", value: "Heavy-Duty Blackout PVC with Full UV Shielding" },
+      { label: "Thermal Insulation System", value: "Multi-Layer Thermal Core for Maximum AC Efficiency" },
+      { label: "Flooring & Accessories", value: "Sub-Floor Framing for Carpeting, Glass Doors & Majlis Setup" },
+      { label: "Service Availability", value: "Available for Rental & Permanent Custom Manufacturing" }
+    ]
   },
   {
     id: "5",
     slug: "revolution-tent",
     name: "Revolution Tent",
     tagline: "Large-Span High-End Venues for Mega Expos & World Summits",
-    badge: "Mega Clear Span • Heavy Rigging",
-    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
-    windSpeed: "120 km/h Wind Load",
-    description: "The Revolution Tent is an engineered clear-span mammoth structure designed for global expos, trade shows, and international conferences requiring immense overhead rigging for LED arrays and sound rigs.",
-    models: [
-      { name: "Revolution RV-30", size: "30m Span (Infinite 5m Bays)", capacity: "800 - 1,200 Guests" },
-      { name: "Revolution RV-40", size: "40m Span (Infinite 5m Bays)", capacity: "1,400 - 2,200 Guests" },
-      { name: "Revolution RV-50", size: "50m Span (Infinite 5m Bays)", capacity: "2,500 - 4,500 Guests" },
-    ],
-    features: [
-      "Engineered High-Payload Roof Trusses for Heavy AV Lighting & Massive LED Walls",
-      "Up to 50m Clear Span Width with 100% Usable Floor Area and Zero Obstacles",
-      "Multi-Module Continuous Bay Expansion in 5-Meter Increments for Unlimited Length",
-      "Compatible with Heavy-Duty Glass Curtain Walls and Integrated Double Doors",
-    ],
-    specs: [
-      { label: "Main Profile Beam", value: "350 x 120 x 5.0 mm Box-Section Aluminum" },
-      { label: "Wind Resistance", value: "120 km/h (DIN EN 13782 Eurocode)" },
-      { label: "Roof Hanging Load", value: "Up to 50 kg/m linear point load for AV rigs" },
-      { label: "Eave Height", value: "4.0m / 5.0m / 6.0m Industrial Clearance" },
-      { label: "Roof System", value: "Dual Air-Pneumatic Thermal Insulation Membrane" },
-    ],
-  },
+    badge: "Mega Clear Span • Heavy Rigging Capacity",
+  heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
+  windSpeed: "120 km/h Wind Load",
+  description: "The Revolution Tent is a premium, high-capacity tent structure designed for prestigious, large-scale events across the UAE and KSA. Engineered with clear-span architecture (zero internal poles) and towering ceiling heights, it provides a wide, uninterrupted interior ideal for international exhibitions, trade shows, world summits, and high-profile brand activations. Built with high-strength aluminum profiles and heavy-duty flame-retardant PVC covers, it ensures reliable all-weather performance[cite: 37].",
+  models: [
+    { name: "Revolution RV-30", size: "30m Span (Infinite 5m Bays)", capacity: "800 - 1,200 Guests" },
+    { name: "Revolution RV-40", size: "40m Span (Infinite 5m Bays)", capacity: "1,400 - 2,200 Guests" },
+    { name: "Revolution RV-50", size: "50m Span (Infinite 5m Bays)", capacity: "2,500 - 4,500 Guests" }
+  ],
+  features: [
+    "Up to 50m Clear-Span Width - Vast unobstructed interior layout with 100% usable floor area and zero central pillars[cite: 36].",
+    "Engineered High-Payload Roof Trusses - Heavy-duty roof profiles designed to safely support massive AV lighting rigs, sound systems, and LED walls[cite: 36].",
+    "Modular Infinite Bay Expansion - Expandable length configured in 5-meter incremental bays to match any event footprint[cite: 36].",
+    "Compatible with Architectural Façades - Full integration with insulated glass curtain walls, solid wall panels, and automatic entrance doors[cite: 36].",
+    "High-Efficiency Thermal & Sound Insulation - Dual-layer roof membrane systems maintaining optimal indoor AC cooling and exterior noise reduction[cite: 36].",
+    "Comprehensive Large-Scale Event Infrastructure - Fully compatible with heavy equipment access, integrated cable management, and high-tonnage HVAC systems."
+  ],
+  specs: [
+    { label: "Main Profile Structure", value: "High-Strength Box-Section Extruded Aluminum Alloy" },
+    { label: "Wind Load Durability", value: "Certified Resistance for Wind Speeds up to 120 km/h" },
+    { label: "Roof Rigging Payload", value: "Engineered High-Point Rigging Capacity for Staging & AV Systems" },
+    { label: "Eave Height Clearance", value: "Towering 4.0m / 5.0m / 6.0m Clearance for Multi-Level Exhibition Stands" },
+    { label: "Roof Membrane System", value: "Heavy-Duty Flame-Retardant PVC with Dual Thermal Air Insulation" },
+    { label: "Side Wall Systems", value: "Insulated Solid Panels, Panoramic Glass Walls & Double Doors" },
+    { label: "Availability", value: "Available for Short-Term Rental & Permanent Turnkey Manufacturing" }
+  ]
+},
   {
     id: "6",
     slug: "polygon-tent",
@@ -174,7 +197,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Vaulted Apex • High Clearance",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent.webp",
     windSpeed: "120 km/h Wind Load",
-    description: "The Polygon Tent features a distinctive multi-faceted polygonal vaulted roof line that maximizes interior vertical headroom. Ideal for indoor padel arenas, tennis courts, aircraft hangars, and logistics warehousing.",
+    description: "The Polygon Tent brilliantly combines modern architecture with exceptional practical functionality, making it an ideal choice for large event tents, grand exhibitions, or demanding industrial purposes, showcasing our expertise in temporary structures.",
     models: [
       { name: "Polygon PG-20", size: "20m Span (8.5m Apex)", capacity: "2 Padel Courts / Warehousing" },
       { name: "Polygon PG-30", size: "30m Span (11.0m Apex)", capacity: "4 Padel Courts / Logistics" },
@@ -200,7 +223,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Curved Elegance • Seamless Drain",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tents.webp",
     windSpeed: "100 km/h Wind Load",
-    description: "The Arch Tent features a continuous smooth curvature that merges architectural flair with superior aerodynamics, ensuring natural rainwater shedding and rapid sand dispersal.",
+    description: "Modern arch tents, with their distinctive curved roofs, offer an elegant and sophisticated look perfect for corporate events, magnificently enhancing any outdoor setting. Their contemporary design makes them a top choice for upscale gatherings.",
     models: [
       { name: "Arch AT-15", size: "15m Span (Infinite Length)", capacity: "150 - 200 Guests" },
       { name: "Arch AT-25", size: "25m Span (Infinite Length)", capacity: "350 - 500 Guests" },
@@ -226,7 +249,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Two-Story Structure • VIP Mezzanine",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/double-Decker.webp",
     windSpeed: "120 km/h Wind Load",
-    description: "The Double Decker Tent doubles usable event capacity within the same footprint. Engineered with heavy-duty structural steel mezzanine framing, it provides ground-floor expos with upper-level VIP lounges and cantilever balconies.",
+    description: "Revolutionize your event space with the double-decker tent, offering two levels of unparalleled functionality. It's the optimal solution for major exhibitions, corporate events, and elaborate hospitality setups, making it a top choice for tent renta",
     models: [
       { name: "Double Decker DD-15", size: "15m Span (Two Levels)", capacity: "500+ VIPs" },
       { name: "Double Decker DD-20", size: "20m Span (Two Levels)", capacity: "800+ VIPs" },
@@ -252,7 +275,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Crystal Clear • 360° Views",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panaromic-tent.webp",
     windSpeed: "100 km/h Wind Load",
-    description: "The Panoramic Crystal Marquee delivers 360-degree views using optical-grade transparent PVC and full-perimeter floor-to-ceiling glass walls, blending luxury indoor comfort with surrounding landscapes.",
+    description: "The panoramic tent delivers immersive experiences with its breathtaking transparent design, making it perfect for events that truly embrace the surrounding scenery. It’s ideal for dream weddings, vibrant exhibitions, and more, offering unparalleled views.",
     models: [
       { name: "Panoramic PN-15", size: "15m Span (Infinite Length)", capacity: "150 - 200 Guests" },
       { name: "Panoramic PN-20", size: "20m Span (Infinite Length)", capacity: "250 - 350 Guests" },
@@ -278,7 +301,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Fulldome VR • Structural Sphere",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Geodesic+/geodesic-dome-tent.webp",
     windSpeed: "120 km/h Wind Load",
-    description: "Engineered specifically for 360-degree digital mapping and fulldome entertainment venues with zero interior columns, featuring internal negative-pressure projection screens.",
+    description: "The geodesic dome offers an architecturally stunning, dome-shaped design, providing exceptional spaciousness and robust, weather-resistant shelter. It's ideal for captivating events, dynamic exhibitions, or luxurious outdoor stays.",
     models: [
       { name: "Geodesic GD-15", size: "15m Diameter (176 m²)", capacity: "120 - 150 Guests" },
       { name: "Geodesic GD-20", size: "20m Diameter (314 m²)", capacity: "250 - 320 Guests" },
@@ -303,7 +326,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Organic Wave • Tensile Membrane",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wave+Tent/WAVE.webp",
     windSpeed: "110 km/h Wind Load",
-    description: "Features a dynamic undulating wave ridge line that mimics natural desert dunes and sea waves, providing an iconic aesthetic statement for beachfront hospitality and VIP outdoor resorts.",
+    description: "With its graceful, flowing silhouette, the Royal Wave Tent adds a distinctive, modern, and elegant touch. It's ideal for breathtaking beachfront events, stylish pavilions, and sophisticated receptions, defining luxury tent design.",
     models: [
       { name: "Wave WV-15", size: "15m Span (Infinite Length)", capacity: "150 - 200 Guests" },
       { name: "Wave WV-20", size: "20m Span (Infinite Length)", capacity: "300 - 450 Guests" },
@@ -327,7 +350,7 @@ export const productsDatabase: ProductItemEn[] = [
     badge: "Hybrid Architecture • High Elegance",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid-dome-tent/pyramid-dome-tant.webp",
     windSpeed: "100 km/h Wind Load",
-    description: "A hybrid structure marrying the striking high apex of the pyramid tent with the graceful curve of a dome, providing unique luxury appeal and superior natural chimney ventilation.",
+    description: "The pyramid with dome tent presents an innovative fusion of classic pyramid structures with added dynamic flexibility, making it unrivaled for diverse and large event tent requirements.",
     models: [
       { name: "Hybrid PD-15", size: "15m x 15m (225 m²)", capacity: "150 - 180 Guests" },
       { name: "Hybrid PD-20", size: "20m x 20m (400 m²)", capacity: "250 - 320 Guests" },
