@@ -26,6 +26,7 @@ async function getSanityProducts() {
       category: item.categoryEn || "Mega Arenas & Expos",
       heroImage: item.coverImage || "https://d3g07f5oxrfvni.cloudfront.net/media-images/default-fallback.webp",
       windSpeed: item.windSpeed || "120 km/h Wind",
+      catalogBadge: item.catalogBadge || "Clear Span",
       badge: item.topBadges?.[0] || "DIN 4102 B1",
       models: ["Model 1", "Model 2"]
     }));
@@ -57,18 +58,18 @@ export default async function ProductsCatalogPage() {
         <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>30+ Years of Manufacturing Leadership • 13 Engineering Lines</span>
+            <span>Over 30 Years of Excellence in Tent Manufacturing & Supply</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
-            Architectural Modular Tents & <br />
+            Architectural Luxury Tent Solutions <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              Tensile Fabric Structures
+              for Events & Megaprojects
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed">
-            Engineered at our 40,000 m² Abu Dhabi manufacturing facility. Combining German DIN EN 13782 structural safety, aerospace aluminum frames, and high-frequency welded PVC membranes engineered for extreme GCC climates.
+            Backed by over 30 years of manufacturing excellence, Bait Al Nokhada is a premier tent supplier delivering clear-span modular structures for world-class exhibitions, summits, and corporate events across the UAE, Saudi Arabia, and the GCC. Engineered to withstand demanding desert climates, our portfolio spans high-peak pavilions, giant clear-span halls, and futuristic domes available for short-term rental or permanent direct purchase. Explore our engineering collections below.
           </p>
         </div>
       </section>

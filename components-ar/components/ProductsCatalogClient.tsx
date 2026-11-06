@@ -41,7 +41,7 @@ export default function ProductsCatalogClientAr({ initialProducts }: { initialPr
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="ابحث باسم الخيمة، الطراز، أو المواصفات الإنشائية..."
+              placeholder="ابحث باسم الخيمة، الطراز، أو المواصفات..."
               className="w-full pr-11 pl-4 py-3.5 rounded-2xl bg-white border border-slate-200/90 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none shadow-2xs transition-all placeholder:text-slate-400 text-right"
             />
           </div>

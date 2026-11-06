@@ -144,19 +144,18 @@ export default async function ArabicProductsCatalogPage() {
         <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>أكثر من 30 عاماً من الريادة في التصنيع • 13 خطاً هندسياً</span>
+            <span>أكثر من 30 عاماً من الريادة في تصنيع وتوريد الخيام</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
-            خيام معمارية وحدات متنقلة <br />
+            حلول خيام معمارية فاخرة<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              وهياكل نسيجية عالية التحمل
+              للفعاليات الكبرى والمشاريع
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed">
-            تم هندستها في مصنعنا بأبوظبي على مساحة 40,000 متر مربع. تجمع بين معايير السلامة الألمانية DIN EN 13782، الهياكل المصنوعة من الألومنيوم الفضائي، والأغشية الملحومة بتردد عالٍ والمصممة خصيصاً لتحمل قسوة مناخ الخليج.
-          </p>
+            في شركة بيت النوخذة، نجمع بين خبرة تتجاوز 30 عاماً والتميز الهندسي في تصنيع وتوريد وتأجير الخيام الفاخرة لقطاعات الفعاليات والمعارض الكبرى والمشاريع في الإمارات والمملكة العربية السعودية. نوفر تشكيلة متكاملة من خيام الهياكل الصلبة المصممة بمساحات واسعة خالية من الأعمدة، والمقاومة لأقسى الظروف المناخية. سواء كنت تبحث عن استئجار خيام للمؤتمرات العالمية أو شراء حلول مخصصة وطويلة الأمد، يقدم فريقنا الهندسي أعلى معايير الجودة والتنفيذ السريع. استكشف مجموعتنا الهندسية أدناه.</p>
         </div>
       </section>
 

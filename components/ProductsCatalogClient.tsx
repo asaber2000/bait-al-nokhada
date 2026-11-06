@@ -13,6 +13,7 @@ interface Product {
   heroImage: string;
   windSpeed: string;
   badge: string;
+  catalogBadge?: string; // أضف هذا السطر
 }
 
 export default function ProductsCatalogClient({ initialProducts }: { initialProducts: Product[] }) {
@@ -42,7 +43,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by tent model, span width, or engineering line..."
+              placeholder="Search by tent name, model, or specifications..."
               className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-[#FDFCF7] border border-slate-200/90 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none shadow-2xs transition-all placeholder:text-slate-400"
             />
           </div>
@@ -101,7 +102,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
                         </div>
                         <div className="p-2.5 rounded-xl bg-[#FDFCF7] border border-slate-200/70 flex items-center gap-2 group-hover:border-[#df9d17]/40 transition-colors">
                           <ShieldCheck className="w-3.5 h-3.5 text-[#df9d17] shrink-0" />
-                          <span className="text-slate-700 font-medium truncate">{product.badge || "DIN 4102 B1"}</span>
+                          <span className="text-slate-700 font-medium truncate">{product.catalogBadge || product.badge || "DIN 4102 B1"}</span>
                         </div>
                       </div>
                     </div>
