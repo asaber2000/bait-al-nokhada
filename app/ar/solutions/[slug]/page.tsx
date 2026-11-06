@@ -52,7 +52,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
     heroImage: sanitySolution.coverImage || localSolution?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     videoUrl: sanitySolution.youtubeUrlAr || sanitySolution.youtubeUrl || (localSolution as any)?.videoUrl || (localSolution as any)?.youtubeVideoId || "",
     name: sanitySolution.titleAr || localSolution?.name,
-    overviewTitle: sanitySolution.overviewTitleAr || `لماذا تتصدر ${sanitySolution.titleAr || localSolution?.name} السوق الإقليمي`,
+    overviewTitle: sanitySolution.overviewTitleAr || localSolution?.overviewTitle || `لماذا تتصدر ${sanitySolution.titleAr || localSolution?.name} السوق الإقليمي`,
     badge: sanitySolution.badgeAr || localSolution?.badge || "Industrial Grade",
     tagline: sanitySolution.summaryAr || localSolution?.tagline,
     overview: sanitySolution.overviewDescAr1 || localSolution?.overview,

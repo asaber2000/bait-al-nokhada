@@ -47,7 +47,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const solution: any = sanity ? {
     slug: slug,
     name: sanity.titleEn || local?.name,
-    overviewTitle: sanity.overviewTitleEn || `Why Our ${sanity.titleEn || local?.name} Lead the Market`,
+    overviewTitle: sanity.overviewTitleEn || local?.overviewTitle || `Why Our ${sanity.titleEn || local?.name} Lead the Market`,
     badge: sanity.badgeEn || local?.badge || "Industrial Grade",
     tagline: sanity.summaryEn || local?.tagline,
     overview: sanity.overviewDescEn1 || local?.overview,
@@ -163,7 +163,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                   Proven Structural Capabilities
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
-                  {(solution as any).overviewTitle || solution.name}
+                  {solution.overviewTitle || `Why Choose Bait Al Nokhada ${solution.name}?`}
                 </h2>
               </div>
 
@@ -333,7 +333,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                 </div>
               ))}
             </div>
-            </div>
+          </div>
         </section>
       )}
       {/* Bottom CTA */}

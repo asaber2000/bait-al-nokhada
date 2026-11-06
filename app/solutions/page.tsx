@@ -59,18 +59,18 @@ export default async function SolutionsCatalogPage() {
         <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Turnkey Engineering Solutions • Specialized Sectors</span>
+            <span>ENGINEERED TENT SOLUTIONS • SPECIALIZED SECTORS</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
-            Innovative Tent Solutions in <br />
+            INNOVATIVE TENT SOLUTIONS IN <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              UAE & Saudi Arabia
+              UAE & SAUDI ARABIA
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed">
-            From high-performance logistics warehouses and aircraft hangars to bespoke royal wedding palaces and international exhibition arenas. Engineered for rapid site deployment and certified weather safety.
+            Backed by over 30 years of manufacturing excellence, Bait Al Nokhada delivers custom-engineered modular tent solutions across the UAE and Saudi Arabia. From high-performance logistics warehouses, aircraft hangars, and sports arenas to bespoke sales centers and international exhibition venues, our structures are engineered for rapid deployment, climate control, and certified all-weather durability.
           </p>
         </div>
       </section>

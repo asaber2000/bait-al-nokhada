@@ -60,19 +60,18 @@ export default async function ArabicSolutionsCatalogPage() {
         <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>حلول هندسية متكاملة تسليم مفتاح • قطاعات متخصصة</span>
+            <span>حلول هندسية متكاملة • قطاعات متخصصة</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
-            حلول وتطبيقات الخيام المتطورة في <br />
+            حلول وتطبيقات الخيام المبتكرة في<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               الإمارات والمملكة العربية السعودية
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            من مستودعات التخزين اللوجستي الشاقة وهناجر الطائرات إلى قاعات الأعراس الملكية الفاخرة وصالات المعارض الدولية. مصممة للتركيب السريع ومقاومة أعلى الظروف المناخية.
-          </p>
+            انطلاقاً من خبرتنا الممتدة لأكثر من 30 عاماً في التصنيع الهندسي، تقدم شركة بيت النوخذة حلول خيام معيارية متطورة تلبي متطلبات مختلف القطاعات في الإمارات والمملكة العربية السعودية. تشمل حلولنا خيام المستودعات اللوجستية، حظائر الطائرات، الملاعب الرياضية، بالإضافة إلى مراكز المبيعات وقاعات المعارض والمؤتمرات الدولية، والمصممة بمساحات واسعة بدون أعمدة ومقاومة معتمدة لكافة الظروف المناخية مع توفير خيارات البيع والتأجير.          </p>
         </div>
       </section>
 
@@ -111,6 +110,12 @@ export default async function ArabicSolutionsCatalogPage() {
                       <h2 className="text-xl font-black text-[#0B1220] group-hover:text-[#df9d17] transition-colors leading-snug font-heading">
                         {arData.name}
                       </h2>
+
+                      {arData.overviewTitle && (
+                        <h3 className="text-lg font-bold text-[#0B1220]">
+                          {arData.overviewTitle}
+                        </h3>
+                      )}
 
                       <p className="text-xs sm:text-sm text-slate-600 font-normal line-clamp-2 leading-relaxed">
                         {arData.tagline || arData.overview}
