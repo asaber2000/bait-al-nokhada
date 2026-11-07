@@ -108,7 +108,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
                   href="/ar/contact"
                   className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#df9d17]/20 flex items-center gap-2"
                 >
-                  <span>طلب دراسة فنية وعرض سعر</span>
+                  <span>طلب عرض سعر</span>
                   <Send className="w-4 h-4 rotate-180" />
                 </Link>
 
@@ -119,7 +119,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
                   className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 hover:text-[#df9d17] font-bold text-xs uppercase tracking-wider border border-slate-200/80 shadow-xs transition-all flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[#df9d17]" />
-                  <span>الخط الهندسي المباشر</span>
+                  <span>تحدث مع أحد خبرائنا</span>
                 </a>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  قدرات وخبرات إنشائية معتمدة
+                  معايير التصنيع الإنشائي المعتمد 
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
                   {solution.overviewTitle}
@@ -190,7 +190,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2 justify-start">
                   <Building2 className="w-4 h-4" />
-                  <span>أبرز القطاعات المستفيدة</span>
+                  <span>التطبيقات ومجالات الاستخدام</span>
                 </h3>
                 <ul className="space-y-2 text-xs text-slate-700">
                   {arData.industryApplications?.map((app: string, idx: number) => (
@@ -205,7 +205,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               {/* Technical Specs Table */}
               {arData.technicalSpecs?.length > 0 && (
                 <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">أبرز المواصفات الفنية</h3>
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">المواصفات الفنية والهندسية</h3>
                   <div className="divide-y divide-slate-100 text-xs">
                     {arData.technicalSpecs.map((spec: any, idx: number) => (
                       <div key={idx} className="py-2.5 flex justify-between gap-4">
@@ -226,13 +226,13 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             <Video className="w-4 h-4" />
-            <span>فيديو توثيقي للمشاريع المنفذة</span>
+            <span>التنفيذ الميداني والجاهزية الإنشائية</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-            دراسة حالة وتوثيق ميداني: {arData.name}
+            شاهد دقة التنفيذ على أرض الواقع: {arData.name}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto">
-            شاهد مراحل التركيب الإنشائي، الدقة الهندسية في التجهيز، والتشغيل الميداني الفعلي في مواقع عملائنا.
+            توثيق ميداني مباشر يوضح مراحل التركيب الإنشائي السريع، والدقة الهندسية في التجهيز الداخلي بمواقع مشاريعنا.
           </p>
         </div>
 
@@ -273,10 +273,10 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60 text-right">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-            أسئلة وإجابات فنية
+             أسئلة وأجوبة
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-            الأسئلة الشائعة حول هذا الحل
+            الأسئلة الشائعة
           </h2>
         </div>
 
@@ -335,13 +335,13 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              احصل على دراسة فنية وعرض سعر متكامل
+              استشارات هندسية ودراسة للمشاريع 
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-              استشر مهندسينا في مشروعك القادم
+             خطط لمشروعك القادم مع مهندسي بيت النوخذة
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal">
-              نوفر معاينات ميدانية شاملة للموقع، مخططات CAD ثلاثية الأبعاد، وعروض توريد أو تأجير تسليم مفتاح.
+             تواصل مباشرة مع فريقنا الهندسي للحصول على معاينة ميدانية للموقع، ومخططات توزيع ثلاثية الأبعاد (3D CAD)، وعروض أسعار منافسة للتصنيع المباشر أو التأجير.
             </p>
           </div>
 
@@ -350,7 +350,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               href="/ar/contact"
               className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
             >
-              <span>إرسال متطلبات المشروع</span>
+              <span>أرسل متطلبات مشروعك</span>
               <Send className="w-4 h-4 rotate-180" />
             </Link>
           </div>

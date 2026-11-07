@@ -115,7 +115,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                   href="/contact"
                   className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#df9d17]/20 flex items-center gap-2"
                 >
-                  <span>Request Solution Proposal</span>
+                  <span>REQUEST A QUOTE</span>
                   <Send className="w-4 h-4" />
                 </Link>
 
@@ -126,7 +126,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                   className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 hover:text-[#df9d17] font-bold text-xs uppercase tracking-wider border border-slate-200/80 shadow-xs transition-all flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[#df9d17]" />
-                  <span>Direct Engineering Hotline</span>
+                  <span>SPEAK WITH AN EXPERT</span>
                 </a>
               </div>
             </div>
@@ -160,7 +160,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  Proven Structural Capabilities
+                  MANUFACTURING & ENGINEERING EXCELLENCE
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
                   {solution.overviewTitle || `Why Choose Bait Al Nokhada ${solution.name}?`}
@@ -198,7 +198,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
               <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
                   <Building2 className="w-4 h-4" />
-                  <span>Target Industry Sectors</span>
+                  <span>KEY INDUSTRY APPLICATIONS</span>
                 </h3>
                 <ul className="space-y-2 text-xs text-slate-700">
                   {solution.industryApplications.map((app: any, idx: number) => (
@@ -213,7 +213,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
               {/* Technical Specs Table */}
               {solution.technicalSpecs?.length > 0 && (
                 <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Technical Highlights</h3>
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">TECHNICAL DATA & CAPACITIES</h3>
                   <div className="divide-y divide-slate-100 text-xs">
                     {solution.technicalSpecs.map((spec: any, idx: number) => (
                       <div key={idx} className="py-2.5 flex justify-between gap-4">
@@ -237,10 +237,10 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
             <span>Real Project Showcase Video</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-            Featured Case Study: {solution.name}
+            See Our Engineering in Action: {solution.name}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-xl mx-auto">
-            Watch our structural assembly, fit-out precision, and operational deployment in action across client sites.
+            A real look into our on-site structural assembly, interior fit-out precision, and fast deployment across client venues.
           </p>
         </div>
 
@@ -341,13 +341,13 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              Get Full Turnkey Quotation
+              CUSTOM ENGINEERING & PROJECT ESTIMATION
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-              Consult with Our Engineers on Your Next Project
+              Plan Your Next Large-Scale Tent Solution with Us
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal">
-              We provide comprehensive site inspection, 3D CAD staging diagrams, and turnkey rental or supply proposals.
+              Connect with our senior engineering team for comprehensive site inspections, tailored 3D CAD layout planning, and competitive direct manufacturing or rental proposals.
             </p>
           </div>
 

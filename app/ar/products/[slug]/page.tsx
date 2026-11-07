@@ -411,8 +411,8 @@ export default async function ArabicProductDetailPage({
 
       {/* 3. المعرض التفاعلي مع نافذة التكبير الكبرى */}
       <ProductGalleryLightboxAr
-        images={galleryImages}
-        productName={arData.name}
+        images={galleryImages || []}
+        productName={arData?.name || "الخيام"}
       />
 
       {/* 4. Technical RFQ Call to Action */}
