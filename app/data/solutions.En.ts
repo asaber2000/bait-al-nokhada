@@ -5,6 +5,7 @@ export interface SolutionItemEn {
   tagline: string;
   badge: string;
   overviewTitle?: string;
+  catalogImage?: string;
   heroImage: string;
   youtubeVideoId: string;
   overview: string;
@@ -22,6 +23,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Warehouse Tents",
     tagline: "Heavy-duty modular warehouse tents engineered for rapid logistics and industrial storage.",
     badge: "Industrial Storage • Fast Deployment",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     youtubeVideoId: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
     overviewTitle: "Why Choose Bait Al Nokhada Warehouse Tents?",
@@ -79,6 +81,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Wedding Tents",
     tagline: "Custom luxury wedding tent supplier delivering elegant clear-span ballrooms across the GCC.",
     badge: "Bespoke Royal Luxury • Clear Span",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/wedding.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/wedding.webp",
     youtubeVideoId: "https://youtu.be/Pi7cO-l0Qso?si=rOwzO5zYof5gmBA5",
     overviewTitle: "Why Choose Bait Al Nokhada Wedding Tents?",
@@ -135,6 +138,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Event Tents",
     tagline: "Premier event tent supplier delivering clear-span pavilions for global summits and mega expos.",
     badge: "Mega Venues • Heavy Rigging",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/EVENT.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/EVENT.webp",
     youtubeVideoId: "https://youtu.be/nZSEBTHlNkU?si=eUvwYOmtL1jQhjGl",
     overviewTitle: "Why Choose Bait Al Nokhada Event Tents?",
@@ -191,6 +195,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Exhibition Tents",
     tagline: "Custom exhibition tent supplier delivering multi-bay clear-span venues for global trade fairs.",
     badge: "Trade Expos • Mega Spans",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/exhibition.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/exhbition.webp",
     youtubeVideoId: "https://youtu.be/E1Lyk7xdbQ0?si=BEIdqPo0-g7rRmaq",
     overviewTitle: "Why Choose Bait Al Nokhada Exhibition Tents?",
@@ -247,6 +252,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Sports Tents",
     tagline: "Custom sports tent manufacturer delivering high-apex covered courts for padel, tennis & pools.",
     badge: "Sports Arenas • High Apex",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/spots.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/spots.webp",
     youtubeVideoId: "https://youtu.be/rNlZuPIrhW8?si=UthxWjInX0j8NIkl",
     overviewTitle: "Why Choose Bait Al Nokhada Sports Tents?",
@@ -303,6 +309,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Ramadan Tents",
     tagline: "Premier Ramadan tent manufacturer delivering luxury Iftar venues and traditional majlis halls.",
     badge: "Arabic Hospitality • Rapid Setup",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/ramadan.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/ramadan.webp",
     youtubeVideoId: "https://youtu.be/LMaj_grLWhc?si=crM_AUj1xxMpyB5I",
     overviewTitle: "Why Choose Bait Al Nokhada Ramadan Tents?",
@@ -359,6 +366,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
     name: "Aircraft Hangar Tents",
     tagline: "Heavy-duty aircraft hangar manufacturer delivering high-clearance structures for fleet maintenance.",
     badge: "Aviation Hangars • Certified Maintenance",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/aircraft-thumb.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/aircraft.webp",
     youtubeVideoId: "https://youtu.be/JNPXGLXav4M?si=g0GftnAytLgSwPfV",
     overviewTitle: "Why Choose Bait Al Nokhada Aircraft Hangar Tents?",

@@ -25,6 +25,12 @@ export const solutions = {
     { name: 'titleAr', title: 'عنوان الحل الرئيسي (مثال: خيام المستودعات الصناعية)', type: 'string' },
     
     // --- صورة الغلاف الرئيسية ---
+    {
+      name: 'catalogImage',
+      title: 'صورة الكتالوج الخارجي (Catalog Thumbnail Card)',
+      description: 'صورة مخصصة تظهر في بطاقة الحلول بقائمة الكتالوج الخارجي وصفحة الحلول الرئيسية فقط',
+      ...imageWithSeoFields
+    },
     { 
       name: 'coverImage', 
       title: 'صورة الغلاف الرئيسية (Hero Image)', 

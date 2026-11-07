@@ -297,7 +297,7 @@ export default async function ArabicProductDetailPage({
                   href="/ar/contact"
                   className="px-7 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
                 >
-                  <span>طلب دراسة فنية وعرض سعر</span>
+                  <span>طلب عرض سعر</span>
                   <Send className="w-4 h-4 rotate-180" />
                 </Link>
 
@@ -308,7 +308,7 @@ export default async function ArabicProductDetailPage({
                   className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 hover:text-[#df9d17] font-bold text-xs tracking-wider border border-slate-200/80 shadow-xs transition-all flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[#df9d17]" />
-                  <span>استشارة هندسية فورية عبر الواتساب</span>
+                  <span>اتصال مباشر بالفريق</span>
                 </a>
               </div>
             </div>

@@ -5,6 +5,7 @@ export interface SolutionItemAr {
   tagline: string;
   badge: string;
   overviewTitle?: string;
+  catalogImage?: string;
   heroImage: string;
   youtubeVideoId: string;
   overview: string;
@@ -22,6 +23,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام المستودعات",
     tagline: "مستودعات تخزين سريعة التركيب ومراكز لوجستية مؤقتة ودائمة في الإمارات والسعودية.",
     badge: "تخزين صناعي • تركيب فوري",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     youtubeVideoId: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
     overviewTitle: "لماذا تختار خيام المستودعات من بيت النوخذة؟",
@@ -79,6 +81,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام الزفاف والأعراس",
     tagline: "تصنيع وتأجير خيام أعراس فاخرة بقاعات واسعة خالية من الأعمدة للمناسبات الملكية.",
     badge: "أعراس ملكية • مساحات مفتوحة",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/wedding.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/wedding.webp",
     youtubeVideoId: "https://youtu.be/Pi7cO-l0Qso?si=rOwzO5zYof5gmBA5",
     overviewTitle: "لماذا تختار خيام الأعراس من بيت النوخذة؟",
@@ -135,6 +138,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام الفعاليات والمناسبات",
     tagline: "تصنيع وتأجير خيام فعاليات كبرى وقاعات مؤتمرات بمساحات مفتوحة بدون أعمدة.",
     badge: "فعاليات كبرى • قاعات مفتوحة",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/EVENT.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/EVENT.webp",
     youtubeVideoId: "https://youtu.be/nZSEBTHlNkU?si=eUvwYOmtL1jQhjGl",
     overviewTitle: "لماذا تختار خيام الفعاليات من بيت النوخذة؟",
@@ -191,6 +195,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام المعارض",
     tagline: "تصنيع وتأجير خيام معارض معيارية عملاقة وقاعات تجارية للمؤتمرات الدولية.",
     badge: "معارض دولية • مساحات عملاقة",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/exhbition.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/exhbition.webp",
     youtubeVideoId: "https://youtu.be/E1Lyk7xdbQ0?si=BEIdqPo0-g7rRmaq",
     overviewTitle: "لماذا تختار خيام المعارض من بيت النوخذة؟",
@@ -247,6 +252,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام رياضية",
     tagline: "تصنيع وتوريد صالات رياضية مغطاة بارتفاعات حرة لملاعب البادل والتنس والمسابح.",
     badge: "صالات رياضية • ارتفاعات شاهقة",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/spots.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/spots.webp",
     youtubeVideoId: "https://youtu.be/rNlZuPIrhW8?si=UthxWjInX0j8NIkl",
     overviewTitle: "لماذا تختار الخيام الرياضية من بيت النوخذة؟",
@@ -303,6 +309,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام رمضانية",
     tagline: "تصنيع وتأجير خيام رمضانية فاخرة وقاعات إفطار وسحور بتشطيبات تراثية للفنادق والمجالس.",
     badge: "ضيافة رمضانية • قاعات تراثية",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/ramadan.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/ramadan.webp",
     youtubeVideoId: "https://youtu.be/LMaj_grLWhc?si=crM_AUj1xxMpyB5I",
     overviewTitle: "لماذا تختار الخيام الرمضانية من بيت النوخذة؟",
@@ -359,6 +366,7 @@ export const solutionsDatabase: SolutionItemAr[] = [
     name: "خيام حظائر الطائرات",
     tagline: "تصنيع وتوريد حظائر طائرات معيارية شاهقة الارتفاع لصيانة وتخزين الطائرات والمروحيات.",
     badge: "حظائر طيران • صيانة معتمدة",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/aircraft.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/aircraft.webp",
     youtubeVideoId: "https://youtu.be/JNPXGLXav4M?si=g0GftnAytLgSwPfV",
     overviewTitle: "لماذا تختار خيام حظائر الطائرات من بيت النوخذة؟",

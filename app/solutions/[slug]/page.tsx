@@ -131,21 +131,24 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
               </div>
             </div>
 
-
-            {/* جهة الصورة البارزة المتطابقة مع المنتجات بدون فريم */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
+            {/* جهة الصورة البارزة - بدون باك جراوند وبكامل تفاصيل الصورة */}
+            <div className="lg:col-span-5 relative w-full">
+              <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
                   src={solution.heroImage}
                   alt={solution.name}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+                
+                {/* بادج الهوية الأنيق بالأسفل */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
-                  <span className="text-white/80 font-sans tracking-wider text-[11px]">Bait Al Nokhada</span>
+                  <span className="text-white/95 font-sans tracking-wider text-[11px] bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 shadow-sm">
+                    Bait Al Nokhada
+                  </span>
                 </div>
               </div>
             </div>
@@ -307,35 +310,37 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
       </section>
 
       {/* Gallery Section */}
-      {sanity?.gallery?.length > 0 && (
-        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
-          <div className="site-container max-w-7xl mx-auto w-full space-y-10">
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                Project Gallery
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                Field Installation & Execution Showcase
-              </h2>
+      {
+        sanity?.gallery?.length > 0 && (
+          <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
+            <div className="site-container max-w-7xl mx-auto w-full space-y-10">
+              <div className="text-center max-w-3xl mx-auto space-y-3">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
+                  Project Gallery
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
+                  Field Installation & Execution Showcase
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {sanity.gallery.map((url: string, idx: number) => (
+                  <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
+                    {url && (
+                      <Image
+                        src={url}
+                        alt="Project Gallery Image"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {sanity.gallery.map((url: string, idx: number) => (
-                <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                  {url && (
-                    <Image
-                      src={url}
-                      alt="Project Gallery Image"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
       {/* Bottom CTA */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
@@ -364,6 +369,6 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
       </section>
 
       <Footer />
-    </main>
+    </main >
   );
 }

@@ -22,6 +22,12 @@ export const solutionsEn = {
     },
     { name: 'titleEn', title: 'Solution Title', type: 'string' },
     { 
+      name: 'catalogImage', 
+      title: 'Catalog Thumbnail Image (External Card)', 
+      description: 'Custom card image for solutions catalog and home grid',
+      ...imageWithSeoFields 
+    },
+    { 
       name: 'coverImage', 
       title: 'Hero Cover Image', 
       ...imageWithSeoFields 

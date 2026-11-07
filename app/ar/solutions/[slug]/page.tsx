@@ -124,20 +124,24 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               </div>
             </div>
 
-            {/* جهة الصورة البارزة المتطابقة تماماً بدون فريم أبيض مزدوج */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
+            {/* جهة الصورة البارزة - بدون باك جراوند وبكامل تفاصيل الصورة */}
+            <div className="lg:col-span-5 relative w-full">
+              <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
-                  src={solution.heroImage}
-                  alt={arData.name || "حل هندسي"}
+                  src={solution?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                  alt={arData?.name || "حل هندسي"}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+                
+                {/* بادج الهوية الأنيق بالأسفل */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
-                  <span className="text-white/80 font-sans tracking-wider text-[11px]">Bait Al Nokhada</span>
+                  <span className="text-white/95 font-sans tracking-wider text-[11px] bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 shadow-sm">
+                    بيت النوخذة
+                  </span>
                 </div>
               </div>
             </div>

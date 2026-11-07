@@ -173,7 +173,7 @@ export default async function ProductDetailPage({
                   href="/contact"
                   className="px-7 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
                 >
-                  <span>Request Structural Quotation</span>
+                  <span>REQUEST A QUOTE</span>
                   <Send className="w-4 h-4" />
                 </Link>
 
@@ -184,7 +184,7 @@ export default async function ProductDetailPage({
                   className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 hover:text-[#df9d17] font-bold text-xs uppercase tracking-wider border border-slate-200/80 shadow-xs transition-all flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[#df9d17]" />
-                  <span>Engineering WhatsApp Desk</span>
+                  <span>SPEAK WITH AN EXPERT</span>
                 </a>
               </div>
             </div>

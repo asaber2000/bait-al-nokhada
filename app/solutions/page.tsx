@@ -19,6 +19,7 @@ async function getSanitySolutionsEn() {
       summaryEn,
       overviewDescEn1,
       "slug": slug.current,
+      "catalogImage": catalogImage.asset->url,
       "coverImage": coverImage.asset->url
     }`;
 
@@ -88,13 +89,13 @@ export default async function SolutionsCatalogPage() {
                   className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md"
                 >
                   <div>
-                    <div className="relative h-64 w-full overflow-hidden bg-slate-100">
+                    <div className="relative w-full aspect-video overflow-hidden bg-slate-100">
                       <Image
-                        src={solution.heroImage || solution.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                        src={solution.catalogImage || solution.heroImage || solution.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
                         alt={solData.name || "Engineering Solution"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
