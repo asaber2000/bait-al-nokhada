@@ -65,7 +65,7 @@ async function getSanityProductBySlug(slug: string) {
 }
 
 const generateProductGraphSchema = (product: any, arData: any) => {
-  const currentUrl = `https://baitalnokhada.com/ar/products/${product.slug}`;
+  const currentUrl = `https://baitalnokhada.com/ar/products/${product?.slug || ""}`;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -135,7 +135,7 @@ const generateProductGraphSchema = (product: any, arData: any) => {
         "@type": "WebPage",
         "@id": `${currentUrl}#webpage`,
         "url": currentUrl,
-        "name": arData.name,
+        "name": arData?.name || "خيمة من بيت النوخذة",
         "isPartOf": {
           "@id": "https://baitalnokhada.com/#website"
         },
@@ -143,15 +143,15 @@ const generateProductGraphSchema = (product: any, arData: any) => {
       },
       {
         "@type": "Product",
-        "name": arData.name,
-        "description": arData.tagline,
+        "name": arData?.name || "خيمة من بيت النوخذة",
+        "description": arData?.tagline || "",
         "@id": `${currentUrl}#richSnippet`,
         "isPartOf": {
           "@id": `${currentUrl}#webpage`
         },
         "image": {
           "@type": "ImageObject",
-          "url": product.heroImage
+          "url": product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"
         },
         "url": currentUrl
       }
@@ -340,9 +340,14 @@ export default async function ArabicProductDetailPage({
 
               {/* شبكة كروت المميزات الثنائية */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {arData.features.map((feat: any, idx: number) => {
-                  const title = typeof feat === "string" ? feat.split(" - ")[0] || feat : feat.title || feat;
-                  const desc = typeof feat === "string" && feat.includes(" - ") ? feat.split(" - ")[1] : feat.desc || "مصممة وفق أعلى معايير الجودة العالمية ومقاومة العوامل الجوية.";
+                {arData?.features?.map((feat: any, idx: number) => {
+                  const title = typeof feat === "string" 
+                    ? (feat.includes(" - ") ? feat.split(" - ")[0] : feat) 
+                    : (feat.title || feat);
+
+                  const desc = typeof feat === "string" 
+                    ? (feat.includes(" - ") ? feat.split(" - ")[1] : "") 
+                    : (feat.desc || feat.description || "");
 
                   return (
                     <div
@@ -353,9 +358,11 @@ export default async function ArabicProductDetailPage({
                         <CheckCircle2 className="w-4 h-4 text-[#df9d17] shrink-0" />
                         <span className="leading-snug">{title}</span>
                       </h3>
-                      <p className="text-xs text-slate-600 font-normal leading-relaxed pr-6">
-                        {desc}
-                      </p>
+                      {desc && (
+                        <p className="text-xs text-slate-600 font-normal leading-relaxed pr-6">
+                          {desc}
+                        </p>
+                      )}
                     </div>
                   );
                 })}
@@ -411,8 +418,8 @@ export default async function ArabicProductDetailPage({
 
       {/* 3. المعرض التفاعلي مع نافذة التكبير الكبرى */}
       <ProductGalleryLightboxAr
-        images={galleryImages || []}
-        productName={arData?.name || "الخيام"}
+        images={galleryImages}
+        productName={arData.name}
       />
 
       {/* 4. Technical RFQ Call to Action */}
