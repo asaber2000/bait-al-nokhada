@@ -20,18 +20,29 @@ import { productsDatabase } from "@/app/data/products.Ar";
 import { client } from "@/app/lib/sanity";
 import ProductGalleryLightboxAr from "@/components-ar/components/ProductGalleryLightbox";
 
-// توليد الـ Slugs ثابتاً للسرعة الخارقة (SSG)
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   try {
-    const query = `*[_type == "product" && defined(slug.current)]{ "slug": slug.current }`;
-    const slugs = await client.fetch(query);
-    return (slugs || []).map((item: any) => ({ slug: item.slug }));
+    const localSlugs = (productsDatabase || []).map((item) => ({ slug: item.slug }));
+    const query = `*[_type in ["product", "productAr", "productsAr"] && defined(slug.current)]{ "slug": slug.current }`;
+    const sanitySlugs = await client.fetch(query).catch(() => []);
+    
+    const combined = [
+      ...localSlugs,
+      ...(sanitySlugs || []).map((item: any) => ({ slug: item.slug }))
+    ];
+
+    const uniqueSlugs = Array.from(new Set(combined.map((item) => item.slug)))
+      .filter(Boolean)
+      .map((slug) => ({ slug }));
+
+    return uniqueSlugs;
   } catch (error) {
-    return [];
+    return (productsDatabase || []).map((item) => ({ slug: item.slug }));
   }
 }
 
-// 2. دالة جلب بيانات منتج واحد من سانتي بناءً على الـ slug
 async function getSanityProductBySlug(slug: string) {
   try {
     const query = `*[_type in ["product", "productAr", "productsAr"] && slug.current == $slug][0]{
@@ -135,7 +146,7 @@ const generateProductGraphSchema = (product: any, arData: any) => {
         "@type": "WebPage",
         "@id": `${currentUrl}#webpage`,
         "url": currentUrl,
-        "name": arData?.name || "خيمة من بيت النوخذة",
+        "name": arData?.name || "خيام بيت النوخذة",
         "isPartOf": {
           "@id": "https://baitalnokhada.com/#website"
         },
@@ -143,7 +154,7 @@ const generateProductGraphSchema = (product: any, arData: any) => {
       },
       {
         "@type": "Product",
-        "name": arData?.name || "خيمة من بيت النوخذة",
+        "name": arData?.name || "خيام بيت النوخذة",
         "description": arData?.tagline || "",
         "@id": `${currentUrl}#richSnippet`,
         "isPartOf": {
@@ -166,65 +177,69 @@ export default async function ArabicProductDetailPage({
 }) {
   const { slug } = await params;
 
-  // الأولوية لبيانات سانتي المحدثة
-  const sanityProduct = await getSanityProductBySlug(slug);
-  const localMatch: any = productsDatabase.find((p) => p.slug === slug);
+  let sanityProduct = null;
+  try {
+    sanityProduct = await getSanityProductBySlug(slug);
+  } catch (e) {
+    sanityProduct = null;
+  }
+
+  const localMatch = productsDatabase.find((p) => p.slug === slug);
+  const fallbackProduct = productsDatabase[0] || {};
+  const activeProduct = localMatch || fallbackProduct;
+  const activeAr = activeProduct?.ar || activeProduct;
 
   let product: any = null;
   let arData: any = null;
 
   if (sanityProduct) {
     product = {
-      slug: sanityProduct.slug,
-      heroImage: sanityProduct.coverImage || localMatch?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      slug: sanityProduct.slug || slug,
+      heroImage: sanityProduct.coverImage || activeProduct?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     };
     arData = {
-      name: sanityProduct.titleAr || localMatch?.ar?.name || "منتج مخصص",
-      badge: sanityProduct.topBadges?.[0] || localMatch?.ar?.badge || "DIN 4102 B1",
-      tagline: sanityProduct.summaryAr || localMatch?.ar?.tagline || "حلول خيام معمارية مبتكرة.",
-      overviewTitle: sanityProduct.overviewTitleAr || localMatch?.ar?.overviewTitle || "التصميم الإنشائي ومعايير جودة المواد",
-      description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || localMatch?.ar?.description || "",
-      features: sanityProduct.engineeredAdvantages || localMatch?.ar?.features || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
+      name: sanityProduct.titleAr || activeAr?.name || "منتج مخصص",
+      badge: sanityProduct.topBadges?.[0] || activeAr?.badge || "DIN 4102 B1",
+      tagline: sanityProduct.summaryAr || activeAr?.tagline || "حلول خيام معمارية مبتكرة.",
+      overviewTitle: sanityProduct.overviewTitleAr || activeAr?.overviewTitle || "التصميم الإنشائي ومعايير جودة المواد",
+      description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || activeAr?.description || "",
+      features: sanityProduct.engineeredAdvantages || activeAr?.features || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
       models: sanityProduct.availableProfiles?.length > 0
         ? sanityProduct.availableProfiles.map((prof: any) => ({
-          name: prof.sizeName || "طراز قياسي",
-          size: prof.dimensions || "مواصفات خاصة",
-          capacity: prof.capacity || "حسب الطلب"
-        }))
-        : localMatch?.ar?.models || [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
+            name: prof.sizeName || "طراز قياسي",
+            size: prof.dimensions || "مواصفات خاصة",
+            capacity: prof.capacity || "حسب الطلب"
+          }))
+        : activeAr?.models || [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
       specs: [
-        { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || localMatch?.ar?.specs?.[0]?.value || "ألومنيوم فضاء معالج 6061/T6" },
-        { label: "المكونات الفولاذية", value: sanityProduct.engineeringDataSheet?.steelComponents || localMatch?.ar?.specs?.[1]?.value || "صلب مجلفن على الساخن" },
-        { label: "مقاومة الرياح القصوى", value: sanityProduct.engineeringDataSheet?.windLoad || localMatch?.ar?.specs?.[2]?.value || "120 كم/ساعة" },
-        { label: "درجات الحرارة التشغيلية", value: sanityProduct.engineeringDataSheet?.operatingTemp || localMatch?.ar?.specs?.[3]?.value || "-30°C إلى +70°C" },
-        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || localMatch?.ar?.specs?.[4]?.value || "DIN 4102 B1, M2" },
-        { label: "غطاء السقف والغشاء", value: sanityProduct.engineeringDataSheet?.roofCovering || localMatch?.ar?.specs?.[5]?.value || "بي في سي عالي الكثافة معتم/شبه شفاف" },
-        { label: "خيارات الجدران الجانبية", value: sanityProduct.engineeringDataSheet?.wallOptions || localMatch?.ar?.specs?.[6]?.value || "زجاج مقسى، ساندويتش بانل، ABS" },
-        { label: "البحور القياسية المتاحة", value: sanityProduct.engineeringDataSheet?.standardSpans || localMatch?.ar?.specs?.[7]?.value || "من 10م حتى 60م بحر مفتوح" }
+        { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || activeAr?.specs?.[0]?.value || "ألومنيوم فضاء معالج 6061/T6" },
+        { label: "المكونات الفولاذية", value: sanityProduct.engineeringDataSheet?.steelComponents || activeAr?.specs?.[1]?.value || "صلب مجلفن على الساخن" },
+        { label: "مقاومة الرياح القصوى", value: sanityProduct.engineeringDataSheet?.windLoad || activeAr?.specs?.[2]?.value || "120 كم/ساعة" },
+        { label: "درجات الحرارة التشغيلية", value: sanityProduct.engineeringDataSheet?.operatingTemp || activeAr?.specs?.[3]?.value || "-30°C إلى +70°C" },
+        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || activeAr?.specs?.[4]?.value || "DIN 4102 B1, M2" },
+        { label: "غطاء السقف والغشاء", value: sanityProduct.engineeringDataSheet?.roofCovering || activeAr?.specs?.[5]?.value || "بي في سي عالي الكثافة معتم/شبه شفاف" },
+        { label: "خيارات الجدران الجانبية", value: sanityProduct.engineeringDataSheet?.wallOptions || activeAr?.specs?.[6]?.value || "زجاج مقسى، ساندويتش بانل، ABS" },
+        { label: "البحور القياسية المتاحة", value: sanityProduct.engineeringDataSheet?.standardSpans || activeAr?.specs?.[7]?.value || "من 10م حتى 60م بحر مفتوح" }
       ]
     };
-  } else if (localMatch) {
-    product = localMatch;
-    arData = localMatch.ar;
   } else {
-    product = productsDatabase[0];
-    arData = productsDatabase[0].ar;
+    product = activeProduct;
+    arData = activeAr;
   }
 
-  // Fallback لو المنتج مش موجود خالص
   if (!product || !arData) {
-    product = productsDatabase[0];
-    arData = product.ar;
+    product = productsDatabase[0] || {};
+    arData = product?.ar || product || {};
   }
 
   const galleryImages: string[] = sanityProduct?.productGallery?.length > 0
     ? sanityProduct.productGallery.map((img: any) => img.url).filter(Boolean)
     : [
-      product.heroImage,
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-    ];
+        product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+      ];
 
   const schemaData = generateProductGraphSchema(product, arData);
 
@@ -241,8 +256,8 @@ export default async function ArabicProductDetailPage({
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
         <div className="absolute inset-0 z-0">
           <Image
-            src={product.heroImage}
-            alt={arData.name}
+            src={product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+            alt={arData?.name || "خيام بيت النوخذة"}
             fill
             priority
             sizes="100vw"
@@ -266,15 +281,15 @@ export default async function ArabicProductDetailPage({
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{arData.badge}</span>
+                <span>{arData?.badge || "DIN 4102 B1"}</span>
               </div>
 
               <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">
-                {arData.name}
+                {arData?.name}
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
-                {arData.tagline}
+                {arData?.tagline}
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-3">
@@ -298,12 +313,12 @@ export default async function ArabicProductDetailPage({
               </div>
             </div>
 
-            {/* بطاقة صورة المنتج لملء الفراغ الجانبي */}
+            {/* بطاقة صورة المنتج */}
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
-                  src={product.heroImage}
-                  alt={arData.name}
+                  src={product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                  alt={arData?.name || "خيام بيت النوخذة"}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -324,17 +339,16 @@ export default async function ArabicProductDetailPage({
         <div className="site-container max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-            {/* الجانب الأيمن (7 أعمدة): النصوص التوضيحية + شبكة المميزات */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-3">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
                   جودة تصنيع وخبرة معتمدة
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] font-heading tracking-tight leading-[1.2]">
-                  {arData.overviewTitle || "لماذا تتصدر منتجاتنا السوق الإقليمي"}
+                  {arData?.overviewTitle || "لماذا تتصدر منتجاتنا السوق الإقليمي"}
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                  {arData.description}
+                  {arData?.description}
                 </p>
               </div>
 
@@ -369,7 +383,6 @@ export default async function ArabicProductDetailPage({
               </div>
             </div>
 
-            {/* الجانب الأيسر (5 أعمدة): المقاسات وجدول المواصفات */}
             <div className="lg:col-span-5 space-y-6">
               {/* كرت المقاسات */}
               <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
@@ -378,7 +391,7 @@ export default async function ArabicProductDetailPage({
                   <span>المقاسات المتاحة وسعة الحضور التقديرية</span>
                 </h3>
                 <div className="space-y-2">
-                  {arData.models.map((mod: any, idx: number) => (
+                  {arData?.models?.map((mod: any, idx: number) => (
                     <div
                       key={idx}
                       className="p-3 rounded-xl border flex items-center justify-between bg-[#FDFCF7] border-slate-200/70 text-slate-700"
@@ -402,7 +415,7 @@ export default async function ArabicProductDetailPage({
                   <span>أبرز المواصفات الفنية</span>
                 </h3>
                 <div className="divide-y divide-slate-100 text-xs">
-                  {arData.specs.map((spec: any, idx: number) => (
+                  {arData?.specs?.map((spec: any, idx: number) => (
                     <div key={idx} className="py-2.5 flex justify-between items-center gap-4">
                       <span className="text-slate-500 font-medium">{spec.label}</span>
                       <span className="text-[#0B1220] text-left font-bold">{spec.value}</span>
@@ -418,8 +431,8 @@ export default async function ArabicProductDetailPage({
 
       {/* 3. المعرض التفاعلي مع نافذة التكبير الكبرى */}
       <ProductGalleryLightboxAr
-        images={galleryImages}
-        productName={arData.name}
+        images={galleryImages || []}
+        productName={arData?.name || "الخيام"}
       />
 
       {/* 4. Technical RFQ Call to Action */}
@@ -427,13 +440,13 @@ export default async function ArabicProductDetailPage({
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-             استشارة هندسية وعرض سعر مباشر من المصنع
+              استشارة هندسية وعرض سعر مباشر من المصنع
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
-             هل تخطط لتنفيذ مشروع أو فعالية بمواصفات هندسية خاصة؟
+              هل تخطط لتنفيذ مشروع أو فعالية بمواصفات هندسية خاصة؟
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
-             تواصل مباشرة مع خبرائنا للحصول على دراسة للموقع، ومخططات تصميم مخصصة، وعروض أسعار تنافسية مباشرة من مصنعنا.
+              تواصل مباشرة مع خبرائنا للحصول على دراسة للموقع، ومخططات تصميم مخصصة، وعروض أسعار تنافسية مباشرة من مصنعنا.
             </p>
           </div>
 
