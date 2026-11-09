@@ -28,36 +28,36 @@ const journeyMilestones = [
     badge: "مرحلة التأسيس",
     title: "التأسيس في أبوظبي",
     tagline: "أكثر من 30 عاماً من الإرث الهندسي العريق",
-    desc: "تأسست شركة بيت النوخذة في أبوظبي كشركة رائدة في تصنيع خيام المجالس العربية التقليدية ومظلات الشد الإنشائي الفاخرة لسوق دولة الإمارات.",
-    highlight: "إنشاء أول مجمع صناعي متكامل في أبوظبي.",
+    desc: "تأسس مصنع بيت النوخذة في أبوظبي، ليكون من أوائل المنشآت الصناعية الوطنية المتخصصة في تصنيع خيام المجالس العربية والهياكل الإنشائية المعتمدة للمشاريع في أبوظبي",
+    highlight: "بدء التصنيع المحلي للخيام والهياكل في أبوظبي.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
   },
   {
     year: "2005",
-    badge: "التوسع الصناعي (ICAD-1)",
+    badge: "تطور خطوط الإنتاج والتقنيات",
     title: "التوسع الصناعي والمصانع الكبرى",
     tagline: "طاقة إنتاجية تتجاوز 40,000 م² معتمدة بشهادات ISO",
-    desc: "توسيع خطوط الإنتاج ونقل المصانع إلى مدينة أبوظبي الصناعية (ICAD-1) على مساحة تفوق 40,000 متر مربع مع إدخال ماكينات القص الليزري CNC واللحام عالي التردد HF.",
-    highlight: "الحصول على شهادات الجودة العالمية ISO 9001:2015 واعتمادات DIN للسلامة.",
+    desc: "نقل وتوسيع العمليات الإنتاجية إلى مدينة أبوظبي الصناعية (ICAD-1)، مع إدخال خطوط تشكيل مقاطع الألمنيوم المؤتمتة (CNC) وتقنيات اللحام الحراري لإنتاج خيام وهياكل ألمنيوم عالية التحمل للمشاريع الكبرى.",
+    highlight: "اعتماد شهادات الجودة العالمية ومطابقة مواصفات الدفاع المدني.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
     imagePosition: "object-[center_60%]",
   },
   {
     year: "2015",
     badge: "الفعاليات والمعارض العالمية",
-    title: "هياكل عملاقة للقمم والفعاليات الدولية",
+    title: "قاعات معارض للمؤتمرات والقمم الدولية",
     tagline: "ريادة هندسية معتمدة عبر كبرى فعاليات الإمارات",
-    desc: "أصبح بيت النوخذة المقاول الرئيسي للهياكل مسبقة الصنع لكبرى المعارض العالمية مثل IDEX، NAVDEX، معرض دبي للطيران، والاحتفالات والقمم الرسمية.",
-    highlight: "تنفيذ وتركيب أكثر من 3,000 هيكل عملاق بنجاح عبر الإمارات.",
+    desc: "اعتماد بيت النوخذة شريكاً تصنيعياً وتنفيذياً موثوقاً لأضخم المعارض الدولية والقمم الحكومية في الإمارات، وتشييد قاعات عملاقة واسعة البحور بدون أعمدة لمعارض آيدكس (IDEX)، ونافدكس (NAVDEX)، ومعارض الطيران.",
+    highlight: "تنفيذ قاعات ومجمعات معارض متكاملة لصالح القطاعين الحكومي والدفاعي.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-old.webp",
   },
   {
     year: "2022",
-    badge: "التوسع الإقليمي في الخليج",
-    title: "مشاريع استراتيجية عبر السعودية ودول الخليج",
+    badge: "حضور إقليمي وانتشار عالمي",
+    title: "مشاريع استراتيجية والتصدير حول العالم",
     tagline: "تغطية كبرى مشاريع البنية التحتية والترفيه",
-    desc: "توسيع العمليات المباشرة والمكاتب الميدانية في الرياض وجدة بالمملكة العربية السعودية لتلبية متطلبات مواسم الترفيه الكبرى والمناطق اللوجستية.",
-    highlight: "تنفيذ موثوق لمستودعات البحور الواسعة والخيام الملكية في المملكة والخليج.",
+    desc: "توسيع التوريد المباشر وتنفيذ مشاريع الخيام والقاعات الضخمة في المملكة العربية السعودية ودول الخليج دعماً للمشاريع العملاقة ومواسم الفعاليات، إلى جانب تصنيع وتصدير الهياكل المعيارية المخصصة لعملاء ومشاريع تجارية حول العالم (Worldwide).",
+    highlight: "توريد وتنفيذ هياكل الفعاليات والمستودعات في الخليج وتصديرها للأسواق العالمية.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
     imagePosition: "object-[75%_center]",
   },
@@ -66,7 +66,7 @@ const journeyMilestones = [
     badge: "الجيل القادم من الابتكار",
     title: "هياكل معيارية وأنظمة خيام مستدامة",
     tagline: "+6,000 مشروع منجز بنجاح عبر دول الخليج",
-    desc: "دمج أغشية الشد الإنشائي المهيأة للطاقة الشمسية، الألواح العازلة للصوت، والقاعات المكونة من طابقين للمشاريع الخليجية المستقبلية.",
+    desc: "تصنيع وتشييد أحدث القاعات المعيارية المدعمة بواجهات زجاجية بانورامية، وألواح عازلة للصوت، وخيام الطابقين المخصصة لكبرى الفعاليات والمعارض في الإمارات والمنطقة وحول العالم.",
     highlight: "إنجاز أكثر من 6,000 مشروع مع قدرات تسليم مفتاح متكاملة بنسبة 100%.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
     imagePosition: "object-[95%_center]",
@@ -75,23 +75,23 @@ const journeyMilestones = [
 
 const expertiseList = [
   {
-    title: "التصميم، الهندسة والتصنيع",
-    desc: "تفصيل وتصنيع أنظمة الهياكل مسبقة الصنع التي تدمج الابتكار الهندسي بالفخامة، باستخدام خامات أوروبية مطابقة للمواصفات الألمانية DIN.",
+    title: "التصميم والتصنيع الهندسي",
+    desc: "تصنيع وتفصيل هياكل الألمنيوم والفولاذ في مصانعنا وفق أعلى مواصفات الأمان العالمية واشتراطات مقاومة الحريق المعتمدة.",
     icon: Cpu,
   },
   {
-    title: "تأجير وتوريد الخيام تسليم مفتاح",
-    desc: "مخزون ضخم ومتاح للتركيب السريع الفوري في دبي وأبوظبي والرياض وجدة للقمم الدبلوماسية، المعارض التجارية، والاحتفالات الخاصة.",
+    title: "قاعات الفعاليات والمعارض الكبرى",
+    desc: "جاهزية فورية لتشييد مجمعات القاعات المعيارية واسعة البحور بدون أعمدة داخلية للفعاليات والمؤتمرات والمعارض في دبي، وأبوظبي، والرياض.",
     icon: Layers,
   },
   {
-    title: "التجهيز الفاخر والديكورات الملكية",
-    desc: "بطانات مجالس عربية مطرزة، ثريات كريستال، واجهات زجاجية بانورامية، بوابات أوتوماتيكية، وأرضيات كاسيت مجهزة لكبار الشخصيات VIP.",
+    title: "التجهيز الداخلي والديكورات الملكية",
+    desc: "فرش داخلي راقٍ للخيام والمجالس العربية، جدران زجاجية مزدوجة، أبواب أوتوماتيكية، وأرضيات كاسيت مستوية ومرفوعة لتمديدات الخدمات.",
     icon: Sparkles,
   },
   {
     title: "أنظمة التكييف المركزي HVAC عالية القدرة",
-    desc: "وحدات تكييف صامتة ومصممة خصيصاً لضمان ثبات درجة الحرارة عند 21° مئوية داخل الخيمة حتى في درجات حرارة الصيف التي تتجاوز 50° مئوية.",
+    desc: "وحدات تكييف صناعية مركزية عالية الكفاءة ومنخفضة الضجيج، تحافظ على ثبات درجات الحرارة عند 20° مئوية خلال أشد فترات الصيف حرارة.",
     icon: ShieldCheck,
   },
 ];
@@ -129,9 +129,9 @@ export default function ArabicAboutPage() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading"
           >
-            رواد صناعة الخيام العملاقة و <br />
+            رواد صناعة وتوريد<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              مظلات الشد الإنشائي المعمارية
+              الخيام الكبرى والمخصصة
             </span>
           </motion.h1>
           <motion.p
@@ -140,7 +140,7 @@ export default function ArabicAboutPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed"
           >
-            لأكثر من ثلاثة عقود، تواصل صناعات بيت النوخذة مكانتها كأكبر مصنع ومورد موثوق للخيام والهياكل النسيجية في الإمارات، السعودية، وكافة دول الخليج، مقدمة حلولاً متينة تجمع بين الفخامة الهندسية والقدرة على مواجهة أقسى التحديات المناخية.
+            لأكثر من 30 عاماً، يواصل مصنع بيت النوخذة ريادته كأكبر مصنع ومورد للخيام الكبرى، وخيام الفعاليات والمستودعات في الإمارات والسعودية، مع حلول وتصاميم مخصصة للمشاريع الكبرى حول العالم.
           </motion.p>
         </div>
       </section>
@@ -150,13 +150,13 @@ export default function ArabicAboutPage() {
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Compass className="w-3.5 h-3.5" />
-            <span>أصالة التراث ومحطات الإنجاز</span>
+            <span>تاريخنا وإنجازاتنا الميدانية</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
             مسيرة الشركة عبر <span className="text-[#df9d17]">العقود</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-md mx-auto leading-relaxed">
-            نتتبع مسار تطورنا المستمر من صناعة الخيام الحرفية التراثية إلى صرح صناعي وهندسي عالمي متعدد الفروع.
+            محطات تطورنا من مصنع وطني رائد إلى منظومة هندسية معتمدة لتصنيع وتشييد المنشآت المعيارية والخيام الكبرى.
           </p>
         </div>
 
@@ -300,7 +300,7 @@ export default function ArabicAboutPage() {
             </div>
             <h3 className="text-2xl font-black text-[#0B1220] font-heading">رؤيتنا</h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-              نهدف إلى إرساء معايير جديدة في الكفاءة والصلابة والتصميم المعماري من خلال حلول الخيام والهياكل المتقدمة. كمزود رئيسي في الإمارات والسعودية، نسعى لنكون الخيار الأول للمنشآت المؤقتة والدائمة في دول الخليج العربي وخارجها.
+              ترسيخ معايير متقدمة في الكفاءة الهندسية وجودة التصنيع من خلال منشآتنا المعيارية الحديثة. هدفنا أن نكون الشريك المفضل للحلول الإنشائية والقاعات المؤقتة وشبه الدائمة في الإمارات والسعودية والأسواق العالمية.
             </p>
           </div>
 
@@ -310,7 +310,7 @@ export default function ArabicAboutPage() {
             </div>
             <h3 className="text-2xl font-black text-[#0B1220] font-heading">رسالتنا</h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-              إعادة تعريف التميز كشريك موثوق ومبتكر في تقديم الخيام والهياكل مسبقة الصنع في دبي وأبوظبي والمملكة العربية السعودية، مع الجمع بين سرعة الإنجاز، الاستدامة، والموثوقية المطلقة لتمكين عملائنا من تحقيق نجاحاتهم بثقة وأمان.
+              تقديم منشآت معيارية وخيام هندسية عالية الاعتمادية تجمع بين سرعة التشييد الميداني، وأعلى اشتراطات الأمان المعتمدة، والتجهيزات الراقية؛ لتمكين المؤسسات والجهات المنظمة حول العالم من استضافة فعالياتها ومشاريعها بأعلى درجات الثقة والتميز.
             </p>
           </div>
         </div>
@@ -320,13 +320,13 @@ export default function ArabicAboutPage() {
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-b border-slate-200/60 relative bg-[#FDFCF7]">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
-            <span>خدمات متكاملة تسليم مفتاح</span>
+            <span>خدمات شاملة</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] font-heading tracking-tight">
             قدراتنا الهندسية والتصنيعية الشاملة
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal">
-            تصنيع داخلي متكامل، تحليلات إنشائية معتمدة، وقدرات تركيب ميداني سريع على أوسع نطاق عبر الإمارات والسعودية.
+            تصنيع محلي في مصانعنا، دراسات هندسية دقيقة، وتنفيذ ميداني سريع في الإمارات والسعودية وحول العالم.
           </p>
         </div>
 
@@ -382,17 +382,17 @@ export default function ArabicAboutPage() {
                 <Quote className="w-6 h-6 rotate-180" />
               </div>
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">رسالة الإدارة العليا</span>
-                <h4 className="text-lg font-black text-[#0B1220] font-heading">تحية القيادة والتطوير</h4>
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">تحية الإدارة التنفيذية</span>
+                <h4 className="text-lg font-black text-[#0B1220] font-heading">رسالة الإدارة</h4>
               </div>
             </div>
 
             <p className="text-slate-700 text-sm sm:text-base font-normal leading-relaxed italic">
-              {`"في بيت النوخذة، نفتخر بدمج الحداثة المعمارية بأصالة تقاليدنا العريقة. كل مشروع نصنعه مستلهم من تراثنا، ليعكس التزامنا بأعلى معايير الجودة والخيام الفاخرة التي شكلت معياراً يُحتذى به في الصناعة. رسالتنا واضحة: تقديم خيام ومظلات إنشائية تجمع بين الأناقة والصلابة والابتكار الهندسي، ونتطلع بحماس لخوض تحديات وإنجازات كبرى جديدة عبر الإمارات والسعودية والخليج العربي."`}
+              {`"في بيت النوخذة، نفخر بدمج الهندسة المعيارية الحديثة مع تراثنا الأصيل. كل منشأة نشيدها مصممة لتضع معياراً صناعياً يحتذى به في متانة البناء ودقة التنفيذ. التزامنا واضح: تقديم قاعات ومنشآت متطورة تضمن سلامة الأفراد، وتلبي طموحات شركائنا في دولة الإمارات، والمملكة العربية السعودية، ومشاريعنا حول العالم."`}
             </p>
 
             <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-200 text-xs font-mono text-slate-500">
-              <span>الإدارة التنفيذية • بيت النوخذة للخيام والمظلات الإنشائية</span>
+              <span>الإدارة التنفيذية • مصنع بيت النوخذة للخيام</span>
               <div className="flex items-center gap-1.5 text-[#df9d17] font-bold">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>معايير هندسية معتمدة دولياً</span>
@@ -412,8 +412,8 @@ export default function ArabicAboutPage() {
                 <Award className="w-6 h-6" />
                 <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+30</span>
               </div>
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">عاماً من الريادة</p>
-              <p className="text-xs text-slate-600 font-normal leading-relaxed">تأسست منذ أكثر من ثلاثة عقود رائدة في السوق الخليجي.</p>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">عاماً من الخبرة</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">دة تصنيع وتشييد المنشآت والخيام المعيارية في المنطقة منذ عام 1997.</p>
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
@@ -421,8 +421,8 @@ export default function ArabicAboutPage() {
                 <Users className="w-6 h-6" />
                 <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+3,000</span>
               </div>
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">شريك نجاح مؤسسي وحكومي</p>
-              <p className="text-xs text-slate-600 font-normal leading-relaxed">شراكات استراتيجية ممتدة مع كبرى الوزارات والهيئات المنظمة.</p>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">شريك ومؤسسة</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">علاقات وشراكات استراتيجية طويلة الأمد مع جهات حكومية وشركات كبرى.</p>
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
@@ -430,8 +430,8 @@ export default function ArabicAboutPage() {
                 <Building className="w-6 h-6" />
                 <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">+6,000</span>
               </div>
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">مشروع إنشائي منجز</p>
-              <p className="text-xs text-slate-600 font-normal leading-relaxed">خيام بحور واسعة وهياكل مشدودة تم تسليمها بنجاح واقتدار.</p>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">مشروع منجز</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">قاعات معارض، مستودعات، ومنشآت فعاليات كبرى تم تسليمها بنجاح محلياً وحول العالم.</p>
             </div>
 
           </div>

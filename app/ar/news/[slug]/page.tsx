@@ -609,7 +609,7 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
             <div className="p-6 rounded-3xl bg-white border border-slate-200/90 space-y-4 text-center shadow-xs">
               <Sparkles className="w-6 h-6 text-[#df9d17] mx-auto" />
               <h4 className="text-sm font-bold text-[#0B1220]">هل تحتاج لعرض أسعار فوري للتأجير أو الشراء؟</h4>
-              <p className="text-xs text-slate-600 font-normal">احصل على دراسة فنية شاملة مع التكييف والتجهيزات في كافة أنحاء الإمارات.</p>
+              <p className="text-xs text-slate-600 font-normal">نوفر لك استشارة فنية وأسعار المصنع مباشرة حسب المساحة والتصميم المطلوب في أي مكان.</p>
               <Link
                 href="/ar/contact"
                 aria-label="طلب عرض سعر فوري للتأجير أو الشراء"

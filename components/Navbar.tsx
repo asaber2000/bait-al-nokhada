@@ -79,37 +79,39 @@ export default function Navbar() {
   const [mobileAccordion, setMobileAccordion] = useState<"products" | "solutions" | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const [solutionsList, setSolutionsList] = useState(solutionsDatabase);
-  const [productsList, setProductsList] = useState(productsDatabase);
+  const [solutionsList, setSolutionsList] = useState<any[]>(solutionsDatabase);
+  const [productsList, setProductsList] = useState<any[]>(productsDatabase);
 
   useEffect(() => {
     async function fetchLiveNavData() {
       try {
+        // 1. جلب الحلول الإنجليزية فقط من سانتي
         const sanitySolutions: any[] = await client.fetch(
           `*[_type == "solutionEn" && defined(slug.current)]{
             "name": titleEn,
             "slug": slug.current,
-            "image": mainImage.asset->url
+            "image": coalesce(catalogImage.asset->url, coverImage.asset->url)
           }`
         );
 
         if (sanitySolutions && sanitySolutions.length > 0) {
           const sanitySlugs = new Set(sanitySolutions.map((s) => s.slug));
-          const remainingLocal = solutionsDatabase.filter((l) => !sanitySlugs.has(l.slug));
+          const remainingLocal = solutionsDatabase.filter((l: any) => !sanitySlugs.has(l.slug));
           setSolutionsList([...sanitySolutions, ...remainingLocal]);
         }
 
+        // 2. جلب المنتجات الإنجليزية فقط من سانتي
         const sanityProducts: any[] = await client.fetch(
-          `*[_type in ["productsEn", "productEn"] && defined(slug.current)]{
+          `*[_type in ["productEn", "productsEn"] && defined(slug.current)]{
             "name": titleEn,
             "slug": slug.current,
-            "image": mainImage.asset->url
+            "image": coalesce(catalogImage.asset->url, coverImage.asset->url, image.asset->url)
           }`
         );
 
         if (sanityProducts && sanityProducts.length > 0) {
           const sanityProductSlugs = new Set(sanityProducts.map((p) => p.slug));
-          const remainingLocalProducts = productsDatabase.filter((lp) => !sanityProductSlugs.has(lp.slug));
+          const remainingLocalProducts = productsDatabase.filter((lp: any) => !sanityProductSlugs.has(lp.slug));
           setProductsList([...sanityProducts, ...remainingLocalProducts]);
         }
       } catch (err) {
@@ -333,7 +335,7 @@ export default function Navbar() {
                           className="overflow-hidden pt-2 space-y-2"
                         >
                           {productsList.map((item) => {
-                            const itemImg = (item as any).image || DEFAULT_PRODUCT_FALLBACK;
+                            const itemImg = (item as any).image || (item as any).coverImage || (item as any).heroImage || DEFAULT_PRODUCT_FALLBACK;
                             return (
                               <Link
                                 key={item.slug}
@@ -384,7 +386,7 @@ export default function Navbar() {
                           className="overflow-hidden pt-2 space-y-2"
                         >
                           {solutionsList.map((item) => {
-                            const itemImg = (item as any).image || DEFAULT_SOLUTION_FALLBACK;
+                            const itemImg = (item as any).image || (item as any).catalogImage || (item as any).heroImage || (item as any).coverImage || DEFAULT_SOLUTION_FALLBACK;
                             return (
                               <Link
                                 key={item.slug}
@@ -565,7 +567,7 @@ export default function Navbar() {
                           {/* تم ضبط الارتفاع لـ 54vh مع pb-20 لإظهار كامل الصف الأخير */}
                           <div className="overflow-y-auto no-scrollbar max-h-[54vh] grid grid-cols-2 gap-3 pr-2 pb-20">
                             {productsList.map((item) => {
-                              const itemImg = (item as any).image || DEFAULT_PRODUCT_FALLBACK;
+                              const itemImg = (item as any).image || (item as any).coverImage || (item as any).heroImage || DEFAULT_PRODUCT_FALLBACK;
                               return (
                                 <motion.div key={item.slug} variants={itemVariants}>
                                   <Link
@@ -622,7 +624,7 @@ export default function Navbar() {
 
                           <div className="overflow-y-auto no-scrollbar max-h-[54vh] grid grid-cols-2 gap-3 pr-2 pb-20">
                             {solutionsList.map((item) => {
-                              const itemImg = (item as any).image || DEFAULT_SOLUTION_FALLBACK;
+                              const itemImg = (item as any).image || (item as any).catalogImage || (item as any).heroImage || (item as any).coverImage || DEFAULT_SOLUTION_FALLBACK;
                               return (
                                 <motion.div key={item.slug} variants={itemVariants}>
                                   <Link

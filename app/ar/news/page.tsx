@@ -83,7 +83,7 @@ export default async function ArabicNewsCatalogPage() {
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            دليلك الهندسي الشامل لتقنيات تصنيع وتأجير الخيام المسبقة الصنع، معايير العزل والتكييف، ودراسات المشاريع الكبرى في الإمارات والخليج.
+            نشارككم خبرتنا الميدانية في تصنيع وتركيب الخيام الكبرى، معايير السلامة، وكيفية تجهيز المواقع بكفاءة.
           </p>
         </div>
       </section>

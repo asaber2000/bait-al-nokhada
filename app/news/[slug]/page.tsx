@@ -631,8 +631,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
             <div className="p-6 rounded-3xl bg-white border border-slate-200/90 space-y-4 text-center shadow-xs">
               <Sparkles className="w-6 h-6 text-[#df9d17] mx-auto" />
-              <h4 className="text-sm font-bold text-[#0B1220]">Need a Rapid Rental Quote?</h4>
-              <p className="text-xs text-slate-600 font-normal">Get turnkey rates with HVAC & setup across Dubai & UAE.</p>
+              <h4 className="text-sm font-bold text-[#0B1220]">Planning an Engineering Tent Project?</h4>
+              <p className="text-xs text-slate-600 font-normal">Get direct factory rates with custom sizing, HVAC & setup across Dubai & the UAE, KSA.</p>
               <Link
                 href="/contact"
                 aria-label="Request a rapid rental quote"

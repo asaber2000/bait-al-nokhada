@@ -88,31 +88,33 @@ export default function ArabicNavbar() {
   useEffect(() => {
     async function fetchLiveNavDataAr() {
       try {
+        // 1. جلب الحلول العربية فقط من سانتي
         const sanitySolutions: any[] = await client.fetch(
           `*[_type in ["solution", "solutionAr"] && defined(titleAr) && defined(slug.current)]{
             "name": titleAr,
             "slug": slug.current,
-            "image": mainImage.asset->url
+            "image": coalesce(catalogImage.asset->url, coverImage.asset->url, image.asset->url)
           }`
         );
 
         if (sanitySolutions && sanitySolutions.length > 0) {
           const sanitySlugs = new Set(sanitySolutions.map((s) => s.slug));
-          const remainingLocal = solutionsDatabase.filter((l) => !sanitySlugs.has(l.slug));
+          const remainingLocal = solutionsDatabase.filter((l: any) => !sanitySlugs.has(l.slug));
           setSolutionsList([...sanitySolutions, ...remainingLocal]);
         }
 
+        // 2. جلب المنتجات العربية فقط من سانتي
         const sanityProducts: any[] = await client.fetch(
           `*[_type in ["product", "productAr", "productsAr"] && defined(slug.current)]{
-            "name": coalesce(titleAr, name),
+            "name": coalesce(titleAr, nameAr, name),
             "slug": slug.current,
-            "image": mainImage.asset->url
+            "image": coalesce(catalogImage.asset->url, coverImage.asset->url, image.asset->url, heroImage.asset->url)
           }`
         );
 
         if (sanityProducts && sanityProducts.length > 0) {
           const sanityProductSlugs = new Set(sanityProducts.map((p) => p.slug));
-          const remainingLocalProducts = productsDatabase.filter((lp) => !sanityProductSlugs.has(lp.slug));
+          const remainingLocalProducts = productsDatabase.filter((lp: any) => !sanityProductSlugs.has(lp.slug));
           setProductsList([...sanityProducts, ...remainingLocalProducts]);
         }
       } catch (err) {
@@ -338,7 +340,7 @@ export default function ArabicNavbar() {
                         >
                           {productsList.map((item) => {
                             const itemName = item.ar ? item.ar.name : item.name;
-                            const itemImg = (item as any).image || DEFAULT_PRODUCT_FALLBACK;
+                            const itemImg = (item as any).image || (item as any).coverImage || (item as any).catalogImage || (item as any).heroImage || DEFAULT_PRODUCT_FALLBACK;
                             return (
                               <Link
                                 key={item.slug}
@@ -391,7 +393,7 @@ export default function ArabicNavbar() {
                         >
                           {solutionsList.map((item) => {
                             const itemName = item.name;
-                            const itemImg = (item as any).image || DEFAULT_SOLUTION_FALLBACK;
+                            const itemImg = (item as any).image || (item as any).catalogImage || (item as any).coverImage || (item as any).heroImage || DEFAULT_SOLUTION_FALLBACK;
                             return (
                               <Link
                                 key={item.slug}
@@ -574,7 +576,7 @@ export default function ArabicNavbar() {
                           <div className="overflow-y-auto no-scrollbar max-h-[54vh] grid grid-cols-2 gap-3 pl-2 pb-20">
                             {productsList.map((item) => {
                               const itemName = item.ar ? item.ar.name : item.name;
-                              const itemImg = (item as any).image || DEFAULT_PRODUCT_FALLBACK;
+                              const itemImg = (item as any).image || (item as any).coverImage || (item as any).catalogImage || (item as any).heroImage || DEFAULT_PRODUCT_FALLBACK;
                               return (
                                 <motion.div key={item.slug} variants={itemVariants}>
                                   <Link
@@ -632,7 +634,7 @@ export default function ArabicNavbar() {
                           <div className="overflow-y-auto no-scrollbar max-h-[54vh] grid grid-cols-2 gap-3 pl-2 pb-20">
                             {solutionsList.map((item) => {
                               const itemName = item.name;
-                              const itemImg = (item as any).image || DEFAULT_SOLUTION_FALLBACK;
+                              const itemImg = (item as any).image || (item as any).catalogImage || (item as any).coverImage || (item as any).heroImage || DEFAULT_SOLUTION_FALLBACK;
                               return (
                                 <motion.div key={item.slug} variants={itemVariants}>
                                   <Link

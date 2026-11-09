@@ -28,46 +28,46 @@ const journeyMilestones = [
     badge: "ESTABLISHED IN ABU DHABI",
     title: "Foundation in Abu Dhabi",
     tagline: "30+ Years of Engineering Heritage",
-    desc: "Bait Al Nokhada was established in Abu Dhabi, pioneering the manufacturing of traditional Arabic majlis tents and luxury tensile shade systems for the UAE market.",
-    highlight: "First production facility established in Abu Dhabi.",
+    desc: "Bait Al Nokhada was established in Abu Dhabi, pioneering the manufacturing of high-grade aluminum structures, luxury traditional majlis tents, and specialized architectural venue systems for the UAE and regional markets.",
+    highlight: "First industrial manufacturing facility established in Abu Dhabi.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-2005.webp",
   },
   {
     year: "2005",
     badge: "ICAD-1 INDUSTRIAL FACILITY",
     title: "Industrial & Factory Expansion",
-    tagline: "40,000+ SQM Manufacturing Capacity & ISO Certified",
-    desc: "Upgraded manufacturing plants to ICAD-1 (Industrial City of Abu Dhabi) spanning over 40,000 sqm, incorporating German automated CNC cutting and high-frequency HF welding.",
-    highlight: "Achieved ISO 9001:2015 and DIN safety compliance certifications.",
+    tagline: "HIGH-CAPACITY MANUFACTURING & ISO CERTIFIED",
+    desc: "Relocated and expanded large-scale manufacturing operations to ICAD (Industrial City of Abu Dhabi). Integrated automated CNC metal profiling and high-frequency welding lines to manufacture high-capacity aluminum structures",
+    highlight: "Certified ISO manufacturing and regional civil defense standards.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-al-nokhada-old-logo.webp",
     imagePosition: "object-[center_60%]"
   },
   {
     year: "2015",
-    badge: "GLOBAL EVENTS & EXPOS",
+    badge: "MEGA-EVENTS & GLOBAL SUMMITS",
     title: "Large-Scale Structures for International Summits",
     tagline: "Engineering Large-Scale Event Structures Across the UAE",
-    desc: "Became the premier turnkey modular structure contractor for major events including IDEX, NAVDEX, Dubai Airshow, and global state receptions.",
+    desc: "Became the primary modular structure partner for landmark global exhibitions and state summits across the UAE, delivering clear-span pavilions for IDEX, NAVDEX, and major aviation expos.",
     highlight: "Over 3,000 mega structures successfully deployed across UAE.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-old.webp",
   },
   {
     year: "2022",
-    badge: "GCC STRATEGIC GROWTH",
-    title: "Cross-Border Delivery Across Saudi Arabia & GCC",
+    badge: "REGIONAL SCALE & GLOBAL REACH",
+    title: "Cross-Border Delivery & Worldwide Export",
     tagline: "Major Infrastructure & Entertainment Deployments",
-    desc: "Expanded direct operations and project offices across Saudi Arabia to cater to massive entertainment seasons and industrial logistics parks.",
-    highlight: "Reliable execution of high-span industrial and royal tent projects across KSA, GCC",
+    desc: "Expanded direct manufacturing supply across Saudi Arabia and the wider GCC to support giga-projects and entertainment seasons. Scaled operations to engineer and export custom modular structures worldwide for international commercial clients.",
+    highlight: "Delivering high-span industrial and event structures across the GCC and worldwide markets.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/About+Page/Bait-Al-Nokhada-New-Front.webp",
     imagePosition: "object-[75%_center]",
   },
   {
     year: "Now",
     badge: "NEXT-GEN INNOVATION",
-    title: "Modular Structures & Sustainable Tent Systems",
+    title: "MModular Architecture & Worldwide Projects",
     tagline: "6,000+ Completed Projects Across the GCC",
-    desc: "Integrating solar-ready tensile membranes, smart insulated acoustic panels, and sustainable double-decker pavilions for futuristic GCC landmark projects.",
-    highlight: "Over 6,000+ completed projects with 100% turnkey capabilities.",
+    desc: "Deploying sustainable, clear-span pavilions featuring smart glass facades, acoustic insulated panels, and double-decker event structures for high-profile venues worldwide.",
+    highlight: "Trusted international partner delivering modular structures for global brands and landmark destinations.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Tents-for-sale-north-star-exhibition.webp",
     imagePosition: "object-[95%_center]",
   },
@@ -76,22 +76,22 @@ const journeyMilestones = [
 const expertiseList = [
   {
     title: "Design, Engineering & Production",
-    desc: "Custom-built aluminum and steel clear-span structures manufactured in our factory. Every project follows German DIN safety standards and uses premium European fire-retardant fabrics.",
+    desc: "Custom-built aluminum and steel clear-span structures manufactured in our factory. Every project follows strict safety standards and utilizes premium flame-retardant membranes.",
     icon: Cpu,
   },
   {
     title: "Commercial Tent Rental & Leasing",
-    desc: "Extensive inventory of modular clear-span structures available for immediate deployment across Dubai, Abu Dhabi, Riyadh for major exhibitions, corporate events, and temporary storage.",
+    desc: "Extensive inventory of modular clear-span structures available for immediate deployment across Dubai, Abu Dhabi, and Riyadh for major exhibitions, corporate events, and temporary arenas.",
     icon: Layers,
   },
   {
     title: "VIP Fit-Out & Royal Interior Styling",
-    desc: "High-end Arabic majlis linings, crystal lighting, double-glazed glass walls, automatic sliding doors, and integrated raised cassette flooring for elite private and corporate gatherings.",
+    desc: "High-end arabic majlis linings, crystal-lighting double-glazed glass walls, automatic sliding doors, and integrated raised cassette flooring for elite private and corporate gatherings.",
     icon: Sparkles,
   },
   {
     title: "Heavy-Duty HVAC Cooling & Climate Control",
-    desc: "High-capacity, low-noise industrial cooling systems designed to maintain a comfortable 21°C interior climate even during peak 50°C summer conditions in the Gulf region.",
+    desc: "High-capacity, low-noise industrial cooling systems designed to maintain a comfortable 20°C interior climate even during peak summer conditions in the Gulf region.",
     icon: ShieldCheck,
   },
 ];
@@ -129,9 +129,9 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase"
           >
-            Pioneering Custom Tents & <br />
+            LEADING MANUFACTURER OF <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              Architectural Solutions
+              LARGE & CUSTOM TENTS
             </span>
           </motion.h1>
 
@@ -141,7 +141,7 @@ export default function AboutPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-slate-600 text-sm sm:text-base max-w-3xl mx-auto font-normal leading-relaxed"
           >
-            For three decades, Bait Al Nokhada has designed and manufactured premium event marquees, royal summit halls, and heavy-duty industrial warehouses across the UAE and GCC.
+            For over 30 years, Bait Al Nokhada has been the leading manufacturer and supplier of large-scale event tents, industrial storage tents, and custom structures across the UAE, Saudi Arabia, and worldwide.
           </motion.p>
         </div>
       </section>
@@ -158,7 +158,7 @@ export default function AboutPage() {
             Company <span className="text-[#df9d17]">Journey</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-md mx-auto leading-relaxed">
-            Tracing our continuous evolution from artisanal desert tent crafting to a multinational engineering powerhouse.
+            Tracing our progression from a local manufacturing pioneer to an international modular engineering powerhouse.
           </p>
         </div>
 
@@ -301,7 +301,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-2xl font-black text-[#0B1220] font-heading">Our Vision</h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-              We aim to set new standards in efficiency, durability, and architectural design through our advanced shelter systems. As a leading tent supplier in the UAE and KSA, our goal is to be the preferred choice for high-span modular structures throughout the GCC.
+              To set industry benchmarks in durability, engineering precision, and modern design through advanced modular structures. As a premier manufacturer, our goal is to remain the preferred global partner for temporary and semi-permanent venues across the GCC and worldwide.
             </p>
           </div>
 
@@ -311,7 +311,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-2xl font-black text-[#0B1220] font-heading">Our Mission</h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-              Our mission is to redefine excellence as the trusted UAE tent provider and an authority in tensile fabric engineering. We engineer turn-key structures combining rapid deployment, certified German safety, and sustainable longevity.
+              To deliver reliable, high-performance modular structures that unite rapid on-site assembly, certified safety standards, and functional luxury. We engineer bespoke temporary and semi-permanent solutions that empower governments, global brands, and enterprises worldwide to host landmark projects with complete confidence.
             </p>
           </div>
 
@@ -328,7 +328,7 @@ export default function AboutPage() {
             End-to-End Structural Capabilities
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-normal">
-            In-house manufacturing, precision structural engineering, and fast on-site installation across the UAE & KSA.
+            In-house manufacturing, precision structural engineering, and rapid on-site installation across the UAE, KSA, and worldwide.
           </p>
         </div>
 
@@ -422,8 +422,8 @@ export default function AboutPage() {
                 <Users className="w-6 h-6" />
                 <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">3,000+</span>
               </div>
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Corporate & Gov Partners</p>
-              <p className="text-xs text-slate-600 font-normal leading-relaxed">Long-term partnerships across landmark summits & ministries.</p>
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Satisfied Clients</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">We have many returning customers that got to trust us as a solid partner.</p>
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
@@ -432,7 +432,7 @@ export default function AboutPage() {
                 <span className="text-4xl sm:text-5xl font-black text-[#0B1220] font-mono">6,000+</span>
               </div>
               <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800">Completed Projects</p>
-              <p className="text-xs text-slate-600 font-normal leading-relaxed">High-span temporary marquees and permanent industrial shades.</p>
+              <p className="text-xs text-slate-600 font-normal leading-relaxed">High-span temporary structures and semi-permanent venues delivered worldwide.</p>
             </div>
 
           </div>
