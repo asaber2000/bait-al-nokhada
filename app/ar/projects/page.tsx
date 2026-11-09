@@ -79,18 +79,18 @@ export default async function ArabicProjectsCatalogPage() {
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>سجل إنجازات هندسية موثقة • أكثر من 6,000 مشروع منجز</span>
+            <span>سجل إنجازات معتمد • تميز هندسي موثق</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
-            قمم عالمية ومشاريع كبرى <br />
+            ريادة هندسية في تنفيذ المشاريع الكبرى<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              تم تنفيذها تسليم مفتاح
+               والفعاليات العالمية
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            استكشف قاعات المعارض العملاقة، الصالات الرياضية المغطاة، وخيام الفعاليات والقصور الملكية المنجزة في الإمارات ودول الخليج.
+            نوثق هنا نخبة من مشاريعنا الميدانية المنجزة؛ من قاعات المعارض الدولية والمنشآت اللوجستية، إلى مجالس الاستقبال الفاخرة المصنعة محلياً وفق أعلى المعايير الهندسية في الإمارات والمنطقة.
           </p>
         </div>
       </section>

@@ -9,7 +9,7 @@ export const revalidate = 60; // كاش لحظي وتحديث كل 60 ثانية
 
 async function getEnglishArticles() {
   try {
-    const query = `*[_type == "articleEnglish" && defined(titleEn)] | order(_createdAt desc){
+    const query = `*[_type == "articleEnglish" && defined(titleEn)] | order(coalesce(publishedAt, _createdAt) desc){
       _id,
       titleEn,
       "slug": slug.current,
@@ -18,7 +18,7 @@ async function getEnglishArticles() {
       categoryEn,
       tags,
       isFeatured,
-      "date": _createdAt
+      "date": coalesce(publishedAt, _createdAt)
     }`;
 
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
@@ -63,18 +63,19 @@ export default async function NewsPage() {
         <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Knowledge Hub & Technical Articles</span>
+            <span>GUIDES & INDUSTRY INSIGHTS</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">
-            News, Insights & <br />
+            OUR ARTICLES & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              Structural Innovations
+              INSIGHTS
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            Stay informed with the latest trends in modular tent engineering, tensile fabric architecture, and event infrastructure across the GCC.
+            Insights and expertise shaping the future of modular infrastructure.
+            Explore the latest in engineered tents, industrial storage, and custom event venues.
           </p>
         </div>
       </section>

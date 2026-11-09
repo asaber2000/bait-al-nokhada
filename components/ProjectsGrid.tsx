@@ -61,7 +61,7 @@ export default function ProjectsGrid({ initialProjects, filterTabs }: ProjectsGr
                 className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md"
               >
                 {/* Media Box - Full Cover & Instant Launch */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
                   {isPlaying ? (
                     <div className="relative w-full h-full bg-black">
                       <video

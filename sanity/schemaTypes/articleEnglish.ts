@@ -55,6 +55,15 @@ export const articleEnglish = {
     // --- English Section ---
     { name: 'titleEn', title: 'Article Title (English)', type: 'string' },
     {
+      name: 'publishedAt',
+      title: 'Publish Date (تاريخ النشر في الموقع)',
+      type: 'date',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+      },
+      description: 'حدد التاريخ الذي تريده أن يظهر للمستخدمين في الموقع',
+    },
+    {
       name: 'isFeatured',
       title: 'Set as Top Featured Article (Hero Banner)',
       type: 'boolean',

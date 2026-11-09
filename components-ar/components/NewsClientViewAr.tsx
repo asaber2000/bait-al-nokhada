@@ -5,76 +5,48 @@ import { Search, Sparkles, Calendar, Clock, ArrowUpLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const categories = [
-  { en: "ALL", ar: "جميع المقالات" },
-  { en: "Event Solutions", ar: "حلول الفعاليات" },
-  { en: "Engineering & Safety", ar: "الهندسة والسلامة" },
-  { en: "Case Studies", ar: "دراسات المشاريع" },
-  { en: "Industry Insights", ar: "رؤى الصناعة" }
-];
+
 
 export default function NewsClientViewAr({ initialArticles }: { initialArticles: any[] }) {
-  const [activeCategory, setActiveCategory] = useState("ALL");
   const [searchQuery, setSearchQuery] = useState("");
 
   // المقالة المميزة: إما المحددة بـ isFeatured أو الأولى
   const featuredArticle = initialArticles.find((a) => a.featured || a.ar?.featured) || initialArticles[0];
-
   const filteredArticles = initialArticles.filter((art: any) => {
     const title = art.ar?.title || art.title || "";
     const desc = art.ar?.desc || art.desc || "";
-    const category = art.category || art.ar?.category || "";
 
     const matchesSearch =
       title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       desc.toLowerCase().includes(searchQuery.toLowerCase());
 
-    if (activeCategory === "ALL") {
-      const isDefaultView = searchQuery === "" && activeCategory === "ALL";
-      if (isDefaultView && featuredArticle && art.slug === featuredArticle.slug) {
-        return false;
-      }
-      return matchesSearch;
+    const isDefaultView = searchQuery === "";
+    if (isDefaultView && featuredArticle && art.slug === featuredArticle.slug) {
+      return false;
     }
 
-    return matchesSearch && (category === activeCategory || category === categories.find(c => c.en === activeCategory)?.ar);
+    return matchesSearch;
   });
 
   return (
     <>
       {/* صندوق البحث */}
-      <div className="pt-4 max-w-xl mx-auto px-6">
+      <div className="pt-6 sm:pt-8 max-w-xl mx-auto px-6">
         <div className="relative flex items-center">
           <Search className="w-4 h-4 text-slate-400 absolute right-4 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="ابحث في المقالات والمواضيع الهندسية..."
+            placeholder="ابحث في المقالات، أو أنواع الخيام أو الكلمة المفتاحية..."
             className="w-full pr-11 pl-4 py-3.5 rounded-2xl bg-white border border-slate-200/80 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none shadow-xs transition-all text-right placeholder:text-slate-400"
           />
         </div>
       </div>
 
-      {/* أزرار الفلترة */}
-      <div className="pt-4 flex flex-wrap items-center justify-center gap-2.5 px-6">
-        {categories.map((cat) => (
-          <button
-            key={cat.en}
-            onClick={() => setActiveCategory(cat.en)}
-            className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 cursor-pointer ${activeCategory === cat.en
-                ? "bg-[#df9d17] text-white shadow-md shadow-[#df9d17]/25 font-black scale-105"
-                : "bg-white text-slate-700 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-slate-50 shadow-xs"
-              }`}
-          >
-            {cat.ar}
-          </button>
-        ))}
-      </div>
-
       {/* البانر المميز (Featured Story) */}
-      {featuredArticle && activeCategory === "ALL" && !searchQuery && (
-        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-right">
+      {featuredArticle && !searchQuery && (
+        <section className="pt-6 pb-10 sm:pt-8 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-right">
           <div className="rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all grid grid-cols-1 lg:grid-cols-12 shadow-xs hover:shadow-md">
 
             <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-full min-h-[340px] bg-slate-100">

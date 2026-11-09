@@ -96,17 +96,24 @@ async function getProjectData(slug: string) {
       year: localMatch.year,
       coveredArea: localMatch.area,
       categoryAr: localMatch.category,
+      sectionTitleAr: localMatch.sectionTitle || "مراحل التنفيذ وتسليم المشروع",
       scopeOfWorkAr: localMatch.description,
+      challengeTitleAr: localMatch.challengeTitle || "التحدي الهندسي والحل الميداني المنفذ",
       engineeringChallengeAr: localMatch.challengeAndSolution,
+      deliveryHighlightsAr: localMatch.deliveryHighlights || [],
       tentsUsedAr: localMatch.relatedProducts ? localMatch.relatedProducts.map((p: any) => p.name) : [],
-      specs: {
-        netArea: localMatch.area,
-        wallSystem: "هياكل ألمنيوم معيارية وألواح حماية",
-        roofFinish: "أقمشة PVC مزدوجة الطبقات عازلة",
-        acSystem: "تكييف مركزي عالي الكفاءة"
-      },
+      specs: localMatch.specs && localMatch.specs.length > 0
+        ? localMatch.specs
+        : [
+            { label: "المساحة الصافية", value: localMatch.area },
+            { label: "نظام الجدران", value: "هياكل ألمنيوم معيارية وألواح حماية" },
+            { label: "تشطيب السقف", value: "أغشية PVC مزدوجة الطبقات عازلة" },
+            { label: "نظام التكييف", value: "تكييف مركزي عالي الكفاءة" }
+          ],
       coverImage: localMatch.coverImage,
-      videoUrl: localMatch.youtubeVideoId ? `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}` : "",
+      videoUrl: localMatch.videoUrl 
+        ? localMatch.videoUrl 
+        : (localMatch.youtubeVideoId ? `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}` : ""),
       galleryImages: localMatch.galleryImages || [],
       comparison: localMatch.beforeAfter ? {
         before: localMatch.beforeAfter.before,
@@ -310,16 +317,34 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-right">
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
+              {/* نطاق العمل والإنجاز ثابتة في كل المشاريع */}
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">نطاق العمل والإنجاز</span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">مراحل التنفيذ وتسليم المشروع</h2>
+              
+              {/* العنوان أصبح ديناميكياً ليقرأ sectionTitle الخاص بكل مشروع بدلاً من النص الثابت القديم */}
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">
+                {project.sectionTitleAr || "مراحل التنفيذ وتسليم المشروع"}
+              </h2>
+              
               <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {project.scopeOfWorkAr}
               </p>
             </div>
 
+            {/* نقاط الإنجاز الميداني Delivery Highlights إن وجدت */}
+            {project.deliveryHighlightsAr && project.deliveryHighlightsAr.length > 0 && (
+              <div className="space-y-2.5 pt-1">
+                {project.deliveryHighlightsAr.map((point: string, idx: number) => (
+                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#df9d17] mt-2 shrink-0" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
               <h3 className="text-sm font-bold tracking-wider text-[#df9d17]">
-                التحدي الهندسي والحل الميداني المنفذ
+                {project.challengeTitleAr || "التحدي الهندسي والحل الميداني المنفذ"}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                 {project.engineeringChallengeAr}
@@ -345,6 +370,7 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
             )}
           </div>
 
+          {/* Technical Specifications: أصبحت الآن تدعم صيغة المصفوفة specs من ملف البيانات مباشرة */}
           <div className="lg:col-span-5 space-y-6">
             <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
               <h3 className="text-sm font-bold uppercase tracking-wider text-[#0B1220] flex items-center gap-2 justify-start">
@@ -352,29 +378,40 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
                 <span>المواصفات الهندسية والتقنية</span>
               </h3>
               <div className="divide-y divide-slate-100 text-xs">
-                {project.specs?.netArea && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">المساحة الصافية</span>
-                    <span className="text-[#0B1220] font-bold text-left">{project.specs.netArea}</span>
-                  </div>
-                )}
-                {project.specs?.wallSystem && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">نظام الجدران</span>
-                    <span className="text-[#0B1220] font-bold text-left">{project.specs.wallSystem}</span>
-                  </div>
-                )}
-                {project.specs?.roofFinish && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">تشطيب السقف</span>
-                    <span className="text-[#0B1220] font-bold text-left">{project.specs.roofFinish}</span>
-                  </div>
-                )}
-                {project.specs?.acSystem && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">نظام التكييف</span>
-                    <span className="text-[#0B1220] font-bold text-left">{project.specs.acSystem}</span>
-                  </div>
+                {Array.isArray(project.specs) ? (
+                  project.specs.map((item: { label: string; value: string }, idx: number) => (
+                    <div key={idx} className="py-3 flex justify-between gap-4">
+                      <span className="text-slate-500 font-medium">{item.label}</span>
+                      <span className="text-[#0B1220] font-bold text-left">{item.value}</span>
+                    </div>
+                  ))
+                ) : (
+                  <>
+                    {project.specs?.netArea && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">المساحة الصافية</span>
+                        <span className="text-[#0B1220] font-bold text-left">{project.specs.netArea}</span>
+                      </div>
+                    )}
+                    {project.specs?.wallSystem && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">نظام الجدران</span>
+                        <span className="text-[#0B1220] font-bold text-left">{project.specs.wallSystem}</span>
+                      </div>
+                    )}
+                    {project.specs?.roofFinish && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">تشطيب السقف</span>
+                        <span className="text-[#0B1220] font-bold text-left">{project.specs.roofFinish}</span>
+                      </div>
+                    )}
+                    {project.specs?.acSystem && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">نظام التكييف</span>
+                        <span className="text-[#0B1220] font-bold text-left">{project.specs.acSystem}</span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>

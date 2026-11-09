@@ -156,6 +156,7 @@ async function getArticleData(slug: string) {
     const query = `*[_type == "articleEnglish" && slug.current == $slug][0]{
       titleEn,
       descEn,
+      "date": coalesce(publishedAt, _createdAt),
       categoryEn,
       tags,
       "slug": slug.current,

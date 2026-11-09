@@ -93,8 +93,11 @@ async function getProjectData(slug: string) {
       year: localMatch.year,
       coveredArea: localMatch.area,
       categoryEn: localMatch.category,
+      sectionTitleEn: localMatch.sectionTitle || "Project Delivery Phases", 
       scopeOfWorkEn: localMatch.description,
+      challengeTitleEn: localMatch.challengeTitle || "Engineering Challenge & Field Solution",
       engineeringChallengeEn: localMatch.challengeAndSolution,
+      deliveryHighlightsEn: localMatch.deliveryHighlights || [],
       tentsUsedEn: localMatch.relatedProducts ? localMatch.relatedProducts.map((p: any) => p.name) : [],
       specs: {
         netArea: localMatch.area,
@@ -306,16 +309,34 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">  
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
+              {/* Scope & Execution ثابتة في كل المشاريع */}
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Scope & Execution</span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">Project Delivery Phases</h2>
+              
+              {/* العنوان أصبح ديناميكياً ليقرأ sectionTitle الخاص بكل مشروع بدلاً من النص الثابت القديم */}
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">
+                {project.sectionTitleEn || "Project Delivery Phases"}
+              </h2>
+              
               <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {project.scopeOfWorkEn}
               </p>
             </div>
 
+            {/* نقاط الإنجاز الميداني Delivery Highlights إن وجدت */}
+            {project.deliveryHighlightsEn && project.deliveryHighlightsEn.length > 0 && (
+              <div className="space-y-2.5 pt-1">
+                {project.deliveryHighlightsEn.map((point: string, idx: number) => (
+                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#df9d17] mt-2 shrink-0" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
               <h3 className="text-sm font-bold tracking-wider text-[#df9d17]">
-                Engineering Challenge & Field Solution
+                {project.challengeTitleEn || "Engineering Challenge & Field Solution"}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                 {project.engineeringChallengeEn}
@@ -340,6 +361,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             )}
           </div>
 
+          {/* Technical Specifications: أصبحت الآن تدعم صيغة المصفوفة specs من ملف البيانات مباشرة */}
           <div className="lg:col-span-5 space-y-6">
             <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
               <h3 className="text-sm font-bold uppercase tracking-wider text-[#0B1220] flex items-center gap-2 justify-start">
@@ -347,29 +369,40 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 <span>Technical Specifications</span>
               </h3>
               <div className="divide-y divide-slate-100 text-xs">
-                {project.specs?.netArea && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">Net Area</span>
-                    <span className="text-[#0B1220] font-bold text-right">{project.specs.netArea}</span>
-                  </div>
-                )}
-                {project.specs?.wallSystem && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">Wall System</span>
-                    <span className="text-[#0B1220] font-bold text-right">{project.specs.wallSystem}</span>
-                  </div>
-                )}
-                {project.specs?.roofFinish && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">Roof Finish</span>
-                    <span className="text-[#0B1220] font-bold text-right">{project.specs.roofFinish}</span>
-                  </div>
-                )}
-                {project.specs?.acSystem && (
-                  <div className="py-3 flex justify-between gap-4">
-                    <span className="text-slate-500 font-medium">AC System</span>
-                    <span className="text-[#0B1220] font-bold text-right">{project.specs.acSystem}</span>
-                  </div>
+                {Array.isArray(project.specs) ? (
+                  project.specs.map((item: { label: string; value: string }, idx: number) => (
+                    <div key={idx} className="py-3 flex justify-between gap-4">
+                      <span className="text-slate-500 font-medium">{item.label}</span>
+                      <span className="text-[#0B1220] font-bold text-right">{item.value}</span>
+                    </div>
+                  ))
+                ) : (
+                  <>
+                    {project.specs?.netArea && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">Net Area</span>
+                        <span className="text-[#0B1220] font-bold text-right">{project.specs.netArea}</span>
+                      </div>
+                    )}
+                    {project.specs?.wallSystem && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">Wall System</span>
+                        <span className="text-[#0B1220] font-bold text-right">{project.specs.wallSystem}</span>
+                      </div>
+                    )}
+                    {project.specs?.roofFinish && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">Roof Finish</span>
+                        <span className="text-[#0B1220] font-bold text-right">{project.specs.roofFinish}</span>
+                      </div>
+                    )}
+                    {project.specs?.acSystem && (
+                      <div className="py-3 flex justify-between gap-4">
+                        <span className="text-slate-500 font-medium">AC System</span>
+                        <span className="text-[#0B1220] font-bold text-right">{project.specs.acSystem}</span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -439,7 +472,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              Turnkey Engineering Consultation
+              Factory Engineering Consultation
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading tracking-tight">
               Planning a Similar Engineering Project?

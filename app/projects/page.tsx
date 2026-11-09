@@ -77,18 +77,18 @@ export default async function ProjectsCatalogPage() {
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Proven Track Record • Over 6,000 Completed Mega Projects</span>
+            <span>PROVEN TRACK RECORD • CERTIFIED ENGINEERING EXCELLENCE</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#0B1220] leading-tight font-heading">
-            Engineering Landmark Projects & <br />
+              Engineering Landmark Venues & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-              Custom Event Structures
+              Industrial Projects Across the GCC
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            Showcasing our completed large-scale venues, royal event halls, and commercial installations across the region.
+            Explore our proven execution of high-capacity exhibition halls, specialized industrial projects, and custom VIP installations engineered to international standards.
           </p>
         </div>
       </section>

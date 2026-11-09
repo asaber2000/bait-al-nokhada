@@ -5,67 +5,41 @@ import { Search, Tag, Calendar, Clock, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const newsCategories = [
-  "All Articles",
-  "Industry Insights",
-  "Case Studies",
-  "Engineering & Safety",
-  "Event Solutions",
-];
-
 export default function NewsClientView({ initialArticles }: { initialArticles: any[] }) {
-  const [activeCategory, setActiveCategory] = useState("All Articles");
   const [searchQuery, setSearchQuery] = useState("");
 
   const featuredPost = initialArticles.find((a) => a.featured) || initialArticles[0];
 
   const filteredArticles = initialArticles.filter((art) => {
-    const matchesCategory =
-      activeCategory === "All Articles" || art.category === activeCategory;
     const matchesSearch =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (art.desc && art.desc.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    const isDefaultView = searchQuery === "" && activeCategory === "All Articles";
+    const isDefaultView = searchQuery === "";
     if (isDefaultView && featuredPost && art.slug === featuredPost.slug) {
       return false;
     }
 
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   return (
     <>
-      <div className="pt-6 max-w-xl mx-auto px-6">
+      <div className="pt-6 sm:pt-8 max-w-xl mx-auto px-6">
         <div className="relative flex items-center">
           <Search className="w-4 h-4 text-slate-400 absolute left-4 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search articles by title, structure, or keyword..."
+            placeholder="Search articles, engineering guides, or tent models or keyword..."
             className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border border-slate-200/80 focus:border-[#df9d17] text-[#0B1220] text-sm outline-none transition-all shadow-xs placeholder:text-slate-400"
           />
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-2 pt-6 px-6">
-        {newsCategories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeCategory === cat
-                ? "bg-[#df9d17] text-white shadow-md shadow-[#df9d17]/25 scale-105"
-                : "bg-white text-slate-700 border border-slate-200/80 hover:border-[#df9d17]/50 hover:bg-slate-50 shadow-xs"
-              }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {featuredPost && searchQuery === "" && activeCategory === "All Articles" && (
-        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {featuredPost && searchQuery === "" && (
+        <section className="pt-6 pb-10 sm:pt-8 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all grid grid-cols-1 lg:grid-cols-12 shadow-xs hover:shadow-md">
             <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-full min-h-[320px] bg-slate-100">
               <Image
