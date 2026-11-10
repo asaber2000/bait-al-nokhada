@@ -7,6 +7,7 @@ export interface SolutionItemAr {
   overviewTitle?: string;
   catalogImage?: string;
   heroImage: string;
+  gallery?: string[];
   youtubeVideoId: string;
   overview: string;
   whyChooseText: string;
@@ -25,6 +26,12 @@ export const solutionsDatabase: SolutionItemAr[] = [
     badge: "تخزين صناعي • تركيب فوري",
     catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
+    gallery: [
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+    ],
     youtubeVideoId: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
     overviewTitle: "لماذا تختار خيام المستودعات من بيت النوخذة؟",
     overview: "تعتبر خيمة المستودعات هيكلاً واسعاً وعالي التحمل يُبنى باستخدام قطاعات ألمنيوم صلبة وأغطية PVC ثقيلة لتوفير مساحات تخزين آمنة ومقاومة للعوامل الجوية في المناطق المفتوحة أو غير المطورة. وعلى عكس المباني الخرسانية الدائمة، تمنح هذه الخيام مرونة فائقة وسرعة قياسية في التركيب وتكلفة تشغيلية أقل دون أدنى مساومة على المتانة أو معايير الأمان الإنشائي.",

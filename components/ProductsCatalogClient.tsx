@@ -10,6 +10,8 @@ interface Product {
   name: string;
   tagline: string;
   category: string;
+  catalogImage?: string;
+  coverImage?: string;
   heroImage: string;
   windSpeed: string;
   badge: string;
@@ -69,7 +71,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
                     <div className="p-3.5 pb-0">
                       <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/60">
                         <Image
-                          src={product.heroImage}
+                          src={product.catalogImage || product.heroImage || product.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
                           alt={product.name}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"

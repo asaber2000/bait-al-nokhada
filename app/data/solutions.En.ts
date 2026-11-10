@@ -7,6 +7,7 @@ export interface SolutionItemEn {
   overviewTitle?: string;
   catalogImage?: string;
   heroImage: string;
+  gallery?: string[];
   youtubeVideoId: string;
   overview: string;
   whyChooseText: string;
@@ -25,6 +26,12 @@ export const solutionsDatabase: SolutionItemEn[] = [
     badge: "Industrial Storage • Fast Deployment",
     catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Solutions/warehouse.webp",
+    gallery: [
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+    ],
     youtubeVideoId: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
     overviewTitle: "Why Choose Bait Al Nokhada Warehouse Tents?",
     overview: "A warehouse tent is a large clear-span structure engineered with high-strength aluminum frames and heavy-duty PVC covers to provide immediate, secure, weather-resistant storage in open or undeveloped areas. Unlike permanent civil buildings, it offers operational flexibility, rapid installation, and cost efficiency without compromising durability or structural safety.",

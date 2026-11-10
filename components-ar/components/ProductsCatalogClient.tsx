@@ -10,6 +10,8 @@ interface ProductAr {
   name: string;
   tagline: string;
   category?: string;
+  catalogImage?: string;
+  coverImage?: string;
   heroImage: string;
   windSpeed: string;
   badge: string;
@@ -32,7 +34,7 @@ export default function ProductsCatalogClientAr({ initialProducts }: { initialPr
   return (
     <section className="relative z-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FDFCF7]" dir="rtl">
       <div className="site-container max-w-7xl mx-auto w-full space-y-10">
-        
+
         {/* شريط البحث المماثل للإنجليزي */}
         <div className="pt-6 max-w-xl mx-auto w-full">
           <div className="relative">
@@ -65,17 +67,16 @@ export default function ProductsCatalogClientAr({ initialProducts }: { initialPr
                 <div>
                   {/* إطار الصورة الفخم المتطابق مع الإنجليزي */}
                   <div className="p-3.5 pb-0">
-                    <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/60">
-                      <Image
-                        src={product.heroImage}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-                        quality={85}
-                        priority={idx < 3}
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-
+                    <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/60">
+                    <Image
+                      src={product.catalogImage || product.heroImage || product.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                      alt={product.name || "خيمة"}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      quality={85}
+                      priority={idx < 3}
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
                       {/* البادج الزجاجي الداخلي */}
                       <div className="absolute top-3 right-3 z-10">
                         <span className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">

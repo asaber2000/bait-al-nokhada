@@ -14,6 +14,7 @@ import Navbar from "@/components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
 import { client } from "@/app/lib/sanity";
+import ProductGalleryLightboxAr from "@/components-ar/components/ProductGalleryLightbox";
 
 async function getSolutionDetail(slug: string) {
   try {
@@ -31,6 +32,7 @@ async function getSolutionDetail(slug: string) {
       youtubeUrl,
       youtubeUrlAr,
 faqs[]{question, answer}, 
+"catalogImage": catalogImage.asset->url,
 "gallery": solutionGallery[].asset->url,
 "coverImage": coverImage.asset->url
     }`;
@@ -49,7 +51,8 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
   // دمج بيانات سانتي مع البيانات المحلية كـ fallback
   const solution: any = sanitySolution ? {
     slug: slug,
-    heroImage: sanitySolution.coverImage || localSolution?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+    catalogImage: sanitySolution.catalogImage || (localSolution as any)?.catalogImage || sanitySolution.coverImage || localSolution?.heroImage,
+    heroImage: sanitySolution.coverImage || localSolution?.heroImage || sanitySolution.catalogImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     videoUrl: sanitySolution.youtubeUrlAr || sanitySolution.youtubeUrl || (localSolution as any)?.videoUrl || (localSolution as any)?.youtubeVideoId || "",
     name: sanitySolution.titleAr || localSolution?.name,
     overviewTitle: sanitySolution.overviewTitleAr || localSolution?.overviewTitle || `لماذا تتصدر ${sanitySolution.titleAr || localSolution?.name} السوق الإقليمي`,
@@ -62,6 +65,17 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
     technicalSpecs: sanitySolution.technicalHighlights || localSolution?.technicalSpecs || [],
     faqs: sanitySolution.faqs ? sanitySolution.faqs.map((f: any) => ({ q: f.question, a: f.answer })) : localSolution?.faqs || []
   } : (localSolution || solutionsDatabase[0]);
+  const galleryImages: string[] =
+    sanitySolution?.gallery?.length > 0
+      ? sanitySolution.gallery.filter(Boolean)
+      : (localSolution as any)?.gallery && (localSolution as any).gallery.length > 0
+        ? (localSolution as any).gallery
+        : [
+          solution.heroImage,
+          "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+        ];
 
   const arData = solution;
   return (
@@ -135,7 +149,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className="object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                 />
-                
+
                 {/* بادج الهوية الأنيق بالأسفل */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
@@ -157,7 +171,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  معايير التصنيع الإنشائي المعتمد 
+                  معايير التصنيع الإنشائي المعتمد
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] leading-tight font-heading">
                   {solution.overviewTitle}
@@ -277,7 +291,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8 border-t border-slate-200/60 text-right">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-             أسئلة وأجوبة
+            أسئلة وأجوبة
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
             الأسئلة الشائعة
@@ -302,50 +316,23 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         </div>
       </section>
 
-      {/* Solution Gallery Section */}
-      {sanitySolution?.gallery?.length > 0 && (
-        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
-          <div className="site-container max-w-7xl mx-auto w-full space-y-10">
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                معرض الصور الميداني
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                مشاهد حية من التركيب والتنفيذ الميداني
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {sanitySolution.gallery.map((url: string, idx: number) => {
-                if (!url) return null;
-                return (
-                  <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                    <Image
-                      src={url}
-                      alt="صورة ميدانية للحل"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            </div>
-        </section>
-      )}
-
+      {/* معرض صور مشاريع الحل الهندسي */}
+      <ProductGalleryLightboxAr
+        images={galleryImages}
+        productName={arData.name}
+      />
       {/* Bottom CTA */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-              استشارات هندسية ودراسة للمشاريع 
+              استشارات هندسية ودراسة للمشاريع
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-[#0B1220] font-heading">
-             خطط لمشروعك القادم مع مهندسي بيت النوخذة
+              خطط لمشروعك القادم مع مهندسي بيت النوخذة
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-normal">
-             تواصل مباشرة مع فريقنا الهندسي للحصول على معاينة ميدانية للموقع، ومخططات توزيع ثلاثية الأبعاد (3D CAD)، وعروض أسعار منافسة للتصنيع المباشر أو التأجير.
+              تواصل مباشرة مع فريقنا الهندسي للحصول على معاينة ميدانية للموقع، ومخططات توزيع ثلاثية الأبعاد (3D CAD)، وعروض أسعار منافسة للتصنيع المباشر أو التأجير.
             </p>
           </div>
 

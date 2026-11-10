@@ -4,7 +4,6 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
-
 import { client } from "@/app/lib/sanity";
 
 

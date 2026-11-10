@@ -5,6 +5,8 @@ import { productsDatabase } from "@/app/data/products.En";
 import { client } from "@/app/lib/sanity";
 import ProductsCatalogClient from "@/components/ProductsCatalogClient";
 
+export const revalidate = 60;
+
 async function getSanityProducts() {
   try {
     const query = `*[_type in ["productsEn", "productEn"] && defined(slug.current)]{
@@ -14,22 +16,29 @@ async function getSanityProducts() {
       topBadges,
       "windSpeed": coalesce(engineeringDataSheet.windLoad, "120 km/h Wind"),
       "slug": slug.current,
-      "coverImage": coalesce(heroImageUrl, coverImage.asset->url)
+      "catalogImage": catalogImage.asset->url,
+      "coverImage": coverImage.asset->url,
+      "image": coalesce(catalogImage.asset->url, coverImage.asset->url, heroImageUrl)
     }`;
 
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
-    return (sanityData || []).map((item: any) => ({
-      slug: item.slug,
-      name: item.titleEn || "Custom Product",
-      tagline: item.summaryEn || "Engineered architectural tent solution.",
-      category: item.categoryEn || "Mega Arenas & Expos",
-      heroImage: item.coverImage || "https://d3g07f5oxrfvni.cloudfront.net/media-images/default-fallback.webp",
-      windSpeed: item.windSpeed || "120 km/h Wind",
-      catalogBadge: item.catalogBadge || "Clear Span",
-      badge: item.topBadges?.[0] || "DIN 4102 B1",
-      models: ["Model 1", "Model 2"]
-    }));
+    return (sanityData || []).map((item: any) => {
+      const local = productsDatabase.find((p) => p.slug === item.slug);
+
+      return {
+        slug: item.slug,
+        name: item.titleEn || local?.name || "Custom Architectural Structure",
+        tagline: item.summaryEn || local?.tagline || "Engineered architectural tent solution.",
+        category: item.categoryEn || (local as any)?.category || "Mega Arenas & Expos",
+        catalogImage: item.catalogImage || (local as any)?.catalogImage || item.image || local?.heroImage,
+        heroImage: item.coverImage || local?.heroImage || item.image,
+        windSpeed: item.windSpeed || (local as any)?.windSpeed || "120 km/h Wind",
+        catalogBadge: (local as any)?.catalogBadge || "Clear Span",
+        badge: item.topBadges?.[0] || (local as any)?.badge || "DIN 4102 B1",
+        models: (local as any)?.models || ["Model 1", "Model 2"]
+      };
+    });
   } catch (error) {
     console.error("Error fetching Sanity products:", error);
     return [];
@@ -39,13 +48,49 @@ async function getSanityProducts() {
 export default async function ProductsCatalogPage() {
   const sanityProducts = await getSanityProducts();
   
-  // فلترة المنتجات المحلية لمنع التكرار وعرض نسخة سانتي المحدثة
+  // فلترة المنتجات المحلية لمنع التكرار وعرض داتا الكتالوج الإنجليزية النظيفة
   const sanitySlugs = new Set(sanityProducts.map((p: any) => p.slug));
-  const remainingLocal = productsDatabase.filter((lp) => !sanitySlugs.has(lp.slug));
+  const remainingLocal = productsDatabase
+    .filter((lp: any) => !sanitySlugs.has(lp.slug))
+    .map((lp: any) => ({
+      slug: lp.slug,
+      name: lp.name,
+      tagline: lp.tagline,
+      category: lp.category || "Mega Arenas & Expos",
+      catalogImage: (lp as any).catalogImage || lp.heroImage,
+      heroImage: lp.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      windSpeed: lp.windSpeed || "120 km/h Wind",
+      catalogBadge: (lp as any).catalogBadge || "Clear Span",
+      badge: (lp as any).badge || "DIN 4102 B1",
+      models: lp.models || ["Model 1", "Model 2"]
+    }));
+
   const allProducts = [...sanityProducts, ...remainingLocal];
 
+  const catalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Architectural Luxury Tents & Tensile Structures Catalog | Bait Al Nokhada",
+    "url": "https://baitalnokhada.com/products",
+    "description": "Explore our comprehensive catalog of clear-span event tents, geodesic domes, and industrial structures manufactured in the UAE.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": allProducts.map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": product.name,
+        "url": `https://baitalnokhada.com/products/${product.slug}`
+      }))
+    }
+  };
+
   return (
-    <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+    <main dir="ltr" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-left">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
+      />
+
       <Navbar />
 
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
@@ -74,7 +119,7 @@ export default async function ProductsCatalogPage() {
         </div>
       </section>
 
-      {/* المكون التفاعلي للبحث وعرض الكروت فورياً */}
+      {/* المكون التفاعلي للبحث وعرض الكروت */}
       <ProductsCatalogClient initialProducts={allProducts} />
 
       <Footer />

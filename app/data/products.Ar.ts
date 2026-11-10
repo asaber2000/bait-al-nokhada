@@ -8,8 +8,10 @@ export interface ProductItemAr {
   id: string;
   slug: string;
   name?: string;     // أضف هذا السطر
-  tagline?: string;  // وأضف هذا السطر أيضاً
+  tagline?: string; 
+  catalogImage?: string; // وأضف هذا السطر أيضاً
   heroImage: string;
+  gallery?: string[];
   windSpeed: string;
   badge?: string;
   ar: {
@@ -28,7 +30,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "1",
     slug: "pyramid-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp", // صورة الكرت الخارجي
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Luxury-pyramid-tent.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramiid.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-supplier.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-inside.webp",
+    ],
     windSpeed: "تركيب سريع",
     badge: "بدون أعمدة",
     ar: {

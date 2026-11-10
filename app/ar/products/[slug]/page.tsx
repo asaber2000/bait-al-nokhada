@@ -27,7 +27,7 @@ export async function generateStaticParams() {
     const localSlugs = (productsDatabase || []).map((item) => ({ slug: item.slug }));
     const query = `*[_type in ["product", "productAr", "productsAr"] && defined(slug.current)]{ "slug": slug.current }`;
     const sanitySlugs = await client.fetch(query).catch(() => []);
-    
+
     const combined = [
       ...localSlugs,
       ...(sanitySlugs || []).map((item: any) => ({ slug: item.slug }))
@@ -50,6 +50,7 @@ async function getSanityProductBySlug(slug: string) {
       summaryAr,
       topBadges,
       "slug": slug.current,
+      "catalogImage": catalogImage.asset->url,
       "coverImage": coverImage.asset->url,
       overviewTitleAr,
       overviewDescAr,
@@ -195,7 +196,8 @@ export default async function ArabicProductDetailPage({
   if (sanityProduct) {
     product = {
       slug: sanityProduct.slug || slug,
-      heroImage: sanityProduct.coverImage || activeProduct?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      catalogImage: sanityProduct.catalogImage || activeProduct?.catalogImage || sanityProduct.coverImage || activeProduct?.heroImage,
+      heroImage: sanityProduct.coverImage || activeProduct?.heroImage || sanityProduct.catalogImage || activeProduct?.catalogImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     };
     arData = {
       name: sanityProduct.titleAr || activeAr?.name || "منتج مخصص",
@@ -206,10 +208,10 @@ export default async function ArabicProductDetailPage({
       features: sanityProduct.engineeredAdvantages || activeAr?.features || ["معايير ألمانية معتمدة", "مقاومة عالية للرياح"],
       models: sanityProduct.availableProfiles?.length > 0
         ? sanityProduct.availableProfiles.map((prof: any) => ({
-            name: prof.sizeName || "طراز قياسي",
-            size: prof.dimensions || "مواصفات خاصة",
-            capacity: prof.capacity || "حسب الطلب"
-          }))
+          name: prof.sizeName || "طراز قياسي",
+          size: prof.dimensions || "مواصفات خاصة",
+          capacity: prof.capacity || "حسب الطلب"
+        }))
         : activeAr?.models || [{ name: "موديل أساسي", size: "مقاس قياسي", capacity: "متعدد الاستخدام" }],
       specs: [
         { label: "الهيكل الإنشائي الرئيسي", value: sanityProduct.engineeringDataSheet?.mainFrame || activeAr?.specs?.[0]?.value || "ألومنيوم فضاء معالج 6061/T6" },
@@ -234,11 +236,13 @@ export default async function ArabicProductDetailPage({
 
   const galleryImages: string[] = sanityProduct?.productGallery?.length > 0
     ? sanityProduct.productGallery.map((img: any) => img.url).filter(Boolean)
-    : [
-        product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+    : (activeProduct?.gallery && activeProduct.gallery.length > 0)
+      ? activeProduct.gallery
+      : [
+        product?.catalogImage || "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
         "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
       ];
 
   const schemaData = generateProductGraphSchema(product, arData);
@@ -254,9 +258,10 @@ export default async function ArabicProductDetailPage({
 
       {/* Grand Hero Section */}
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
+        {/* خلفية الهيرو الباهتة */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+            src={product?.heroImage || product?.catalogImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
             alt={arData?.name || "خيام بيت النوخذة"}
             fill
             priority
@@ -313,20 +318,22 @@ export default async function ArabicProductDetailPage({
               </div>
             </div>
 
-            {/* بطاقة صورة المنتج */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
+            {/* بطاقة صورة المنتج بالهيرو الداخلي */}
+            <div className="lg:col-span-5 relative w-full">
+              <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-slate-200/80 shadow-md group">
                 <Image
-                  src={product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                  src={product?.heroImage || product?.catalogImage || activeProduct?.heroImage || activeProduct?.catalogImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
                   alt={arData?.name || "خيام بيت النوخذة"}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
-                  <span className="text-white/80 font-sans tracking-wider text-[11px]">بيت النوخذة</span>
+                  <span className="text-white/95 font-sans tracking-wider text-[11px] bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 shadow-sm">
+                    بيت النوخذة
+                  </span>
                 </div>
               </div>
             </div>
@@ -355,12 +362,12 @@ export default async function ArabicProductDetailPage({
               {/* شبكة كروت المميزات الثنائية */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {arData?.features?.map((feat: any, idx: number) => {
-                  const title = typeof feat === "string" 
-                    ? (feat.includes(" - ") ? feat.split(" - ")[0] : feat) 
+                  const title = typeof feat === "string"
+                    ? (feat.includes(" - ") ? feat.split(" - ")[0] : feat)
                     : (feat.title || feat);
 
-                  const desc = typeof feat === "string" 
-                    ? (feat.includes(" - ") ? feat.split(" - ")[1] : "") 
+                  const desc = typeof feat === "string"
+                    ? (feat.includes(" - ") ? feat.split(" - ")[1] : "")
                     : (feat.desc || feat.description || "");
 
                   return (

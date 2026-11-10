@@ -70,20 +70,28 @@ async function getSanityArabicProducts() {
       topBadges,
       "windSpeed": coalesce(engineeringDataSheet.windLoad, "120 كم/س"),
       "slug": slug.current,
-      "coverImage": coalesce(heroImageUrl, coverImage.asset->url)
+      "catalogImage": catalogImage.asset->url,
+      "coverImage": coverImage.asset->url,
+      "image": coalesce(catalogImage.asset->url, coverImage.asset->url, mainImage.asset->url)
     }`;
+    
 
     const sanityData = await client.fetch(query, {}, { next: { revalidate: 60 } });
 
-    return (sanityData || []).map((item: any) => ({
-      slug: item.slug,
-      name: item.titleAr || "منتج مخصص",
-      tagline: item.summaryAr || "حلول خيام معمارية مبتكرة.",
-      category: "هياكل معمارية",
-      heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-      windSpeed: item.windSpeed || "120 كم/س",
-      badge: item.topBadges?.[0] || "DIN 4102 B1"
-    }));
+    return sanityData.map((item: any) => {
+      // البحث عن النسخة المحلية المطابقة للـ fallback
+      const local = productsDatabase.find((p) => p.slug === item.slug);
+
+      return {
+        slug: item.slug,
+        name: item.titleAr || local?.ar?.name || "خيمة معمارية",
+        tagline: item.summaryAr || local?.ar?.tagline || "",
+        catalogImage: item.catalogImage || local?.catalogImage || item.image || local?.heroImage,
+        heroImage: item.coverImage || local?.heroImage || item.image,
+        windSpeed: local?.windSpeed || "120 كم/ساعة",
+        badge: local?.badge || "DIN 4102 B1",
+      };
+    });
   } catch (error) {
     console.error("Error fetching Sanity Arabic products:", error);
     return [];
@@ -100,6 +108,7 @@ export default async function ArabicProductsCatalogPage() {
       name: arabicTranslations[lp.slug]?.name || lp.ar?.name || lp.name,
       tagline: arabicTranslations[lp.slug]?.tagline || lp.ar?.tagline || lp.tagline,
       category: "هياكل معمارية",
+      catalogImage: lp.catalogImage || lp.heroImage,
       heroImage: lp.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
       windSpeed: lp.windSpeed || "120 كم/س",
       badge: lp.badge || "DIN 4102 B1"

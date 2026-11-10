@@ -14,6 +14,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 import { client } from "@/app/lib/sanity";
+import ProductGalleryLightbox from "@/components/ProductGalleryLightbox";
 
 async function getSolutionDetailEn(slug: string) {
   try {
@@ -30,6 +31,7 @@ async function getSolutionDetailEn(slug: string) {
       videoSectionTitleEn, 
       youtubeUrlEn,
       faqsEn[]{question, answer}, 
+      "catalogImage": catalogImage.asset->url,
       "gallery": solutionGalleryEn[].asset->url,
       "coverImage": coverImage.asset->url
     }`;
@@ -59,6 +61,17 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     heroImage: sanity.coverImage || local?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "",
   } : (local || solutionsDatabase[0]);
+  const galleryImages: string[] =
+    sanity?.gallery?.length > 0
+      ? sanity.gallery.filter(Boolean)
+      : (local as any)?.gallery && (local as any).gallery.length > 0
+      ? (local as any).gallery
+      : [
+          solution.heroImage,
+          "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+        ];
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
@@ -309,38 +322,11 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         </div>
       </section>
 
-      {/* Gallery Section */}
-      {
-        sanity?.gallery?.length > 0 && (
-          <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 bg-[#FDFCF7]">
-            <div className="site-container max-w-7xl mx-auto w-full space-y-10">
-              <div className="text-center max-w-3xl mx-auto space-y-3">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
-                  Project Gallery
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-black text-[#0B1220] font-heading">
-                  Field Installation & Execution Showcase
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {sanity.gallery.map((url: string, idx: number) => (
-                  <div key={idx} className="relative h-64 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-100 group">
-                    {url && (
-                      <Image
-                        src={url}
-                        alt="Project Gallery Image"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )
-      }
+      {/* Gallery Showcase with Lightbox */}
+      <ProductGalleryLightbox
+        images={galleryImages}
+        productName={solution.name}
+      />
       {/* Bottom CTA */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 text-center space-y-6 shadow-sm">

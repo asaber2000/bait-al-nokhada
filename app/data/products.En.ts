@@ -11,7 +11,9 @@ export interface ProductItemEn {
   tagline: string;
   badge: string;
   overviewTitle?: string;
+  catalogImage?: string;
   heroImage: string;
+  gallery?: string[];
   windSpeed: string;
   catalogBadge?: string;
   description: string;
@@ -28,7 +30,14 @@ export const productsDatabase: ProductItemEn[] = [
     tagline: "Leading manufacturer of modular pyramid tents for corporate events and premium rentals.",
     badge: "Engineered for Extreme Weather • International Safety Compliant",
     overviewTitle: "Why Choose Bait Al Nokhada Pyramid Tents?",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramid+tent.webp", // صورة الكرت الخارجي
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Luxury-pyramid-tent.webp",
+    gallery: [
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/pyramiid.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tent-supplier.webp",
+      "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/pyramid/Pyramid-tent-inside.webp",
+    ],
     windSpeed: "Weather Resistant",
     catalogBadge: "Clear Span",
     description: "The pyramid tent features a timeless triangular design, seamlessly merging traditional aesthetics with modern functionality. It’s exceptionally versatile and ideal for both formal galas and casual gatherings.",
