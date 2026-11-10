@@ -77,7 +77,15 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "2",
     slug: "dome-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/dome-tents.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/dome-tents.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/Dome-Tents-for-Events+.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/ROYAL-DOME-TENT.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/Dome-tentage.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/DOME-TENT2.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/Dome-tent-for-sale.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Dome/Dome-tents-rental.webp",
+    ],
     windSpeed: "قمة مرتفعة",
     badge: "بدون أعمدة",
     ar: {
@@ -117,7 +125,17 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "3",
     slug: "capsule-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule-tent-for-exhibition.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule-tent-for-events.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule-tent-for-sale.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/Capsule-Tents-for-Rent+.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule-tent-for-event.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/capsule-tent-Dubai.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/Buy-and-Rent-Capsule-Tents+.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Capsule+Tent/Capsule-3D.webp",
+    ],
     windSpeed: "تصميم مستقبلي",
     badge: "عزل متكامل",
     ar: {
@@ -153,7 +171,16 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "4",
     slug: "arabic-majlis-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tent.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tents.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/ARABIC+.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/Majlis-Tents-for-Sale.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/Arabic-majlis-tent.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/13.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/8.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arabic+Majlis+Tent/arabic-tents.webp",
+    ],
     windSpeed: "طابع تراثي",
     badge: "عزل حراري",
     ar: {
@@ -188,7 +215,18 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "5",
     slug: "revolution-tent",
-    heroImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
+    catalogImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Revolution/revalution.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/1.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/71.jpg",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/24.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/Luxury-Revolution-Tents-for-Events-UAE%2CDubai.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/Outdoor-Revolution-Tents.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/Festival-tents.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/exhibition-tent-2026.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/Revolution-tent-rental-in-Riyadh.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Revolution/DSC06877.webp",
+    ],
     windSpeed: "مساحة عملاقة",
     badge: "هيكل صلب",
     ar: {
@@ -224,7 +262,18 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "6",
     slug: "polygon-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/Luxury-polygon-tents-in-Dubai.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/polygon-tent-installation-services-in-Dubai.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/Event-Tents-for-Rent-in-Dubai.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/FIFA+WORLD+CUP2.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/FIFA-WORLD-CUP3.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/Polygon-Tent-KSA.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/tent-rental-MedLab-2025.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/86.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Polygon/14.webp",
+    ],
     windSpeed: "سقف شاهق",
     badge: "مساحات واسعة",
     ar: {
@@ -261,7 +310,19 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "7",
     slug: "arch-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tents.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tents.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Arch-Tents-for-sale.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/NORTH+STAR2.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/Exhibition-Tent-Rental.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/FIA+TENT.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/ADIPEC+4.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/ADIPEC+2.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/22.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tent-supplier.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/11.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Arch/arch-tent-manufacturer.webp",
+    ],
     windSpeed: "تصميم قوسي",
     badge: "واجهات زجاجية",
     ar: {
@@ -297,7 +358,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "8",
     slug: "double-decker-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/double-Decker.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/double-Decker.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/16.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/Tent-Rentals.jpg",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/18.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/luxury-Double-decker-tent-in-Dubai.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Double+Decker+Tent/tent-rental-in-uae.webp",
+    ],
     windSpeed: "طابقان كاملان",
     badge: "منصات علوية",
     ar: {
@@ -334,7 +402,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "9",
     slug: "panoramic-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panaromic-tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panaromic-tent.webp",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/Panoramic-tents-KSA.webp",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/panoramic-Tent-Rental.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/Panoramic-tents-inside.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/Panoramic-tents-3D.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/Panoramic/Panoramic-tents-.webp",
+    ],
     windSpeed: "رؤية كاملة",
     badge: "إطلالة بانورامية",
     ar: {
@@ -370,7 +445,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "10",
     slug: "geodesic-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Geodesic+/geodesic-dome-tent.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Geodesic+/geodesic-dome-tent.webp",
+    heroImage: "",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramiid.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-supplier.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-inside.webp",
+    ],
     windSpeed: "شكل كروي",
     badge: "عروض ضوئية 360°",
     ar: {
@@ -407,7 +489,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "11",
     slug: "wave-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wave+Tent/WAVE.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wave+Tent/WAVE.webp",
+    heroImage: "",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramiid.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-supplier.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-inside.webp",
+    ],
     windSpeed: "تصميم مموج",
     badge: "مقاومة للرطوبة",
     ar: {
@@ -443,7 +532,14 @@ export const productsDatabase: ProductItemAr[] = [
   {
     id: "12",
     slug: "pyramid-dome-tent",
-    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid-dome-tent/pyramid-dome-tant.webp",
+    catalogImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid-dome-tent/pyramid-dome-tant.webp",
+    heroImage: "",
+    gallery: [
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/pyramiid.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tents-1.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-supplier.webp",
+      "https://d3g07f5oxrfvni.cloudfront.net/media-images/pyramid/Pyramid-tent-inside.webp",
+    ],
     windSpeed: "تصميم هجين",
     badge: "سقف مرتفع",
     ar: {
