@@ -15,6 +15,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { solutionsDatabase } from "@/app/data/solutions.Ar";
 import { client } from "@/app/lib/sanity";
 import ProductGalleryLightboxAr from "@/components-ar/components/ProductGalleryLightbox";
+import SmartVideoPlayerAr from "@/components-ar/components/SmartVideoPlayerAr";
 
 async function getSolutionDetail(slug: string) {
   try {
@@ -64,7 +65,14 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
     industryApplications: sanitySolution.targetSectors || localSolution?.industryApplications || [],
     technicalSpecs: sanitySolution.technicalHighlights || localSolution?.technicalSpecs || [],
     faqs: sanitySolution.faqs ? sanitySolution.faqs.map((f: any) => ({ q: f.question, a: f.answer })) : localSolution?.faqs || []
-  } : (localSolution || solutionsDatabase[0]);
+  } : (
+    localSolution
+      ? {
+        ...localSolution,
+        videoUrl: (localSolution as any)?.videoUrl || (localSolution as any)?.youtubeVideoId || "",
+      }
+      : solutionsDatabase[0]
+  );
   const galleryImages: string[] =
     sanitySolution?.gallery?.length > 0
       ? sanitySolution.gallery.filter(Boolean)
@@ -255,35 +263,11 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         </div>
 
         <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-          {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
-            <iframe
-              className="w-full h-full"
-              src={
-                solution.videoUrl.includes("embed/")
-                  ? solution.videoUrl
-                  : `https://www.youtube.com/embed/${solution.videoUrl.split("v=")[1]?.split("&")[0] ||
-                  solution.videoUrl.split("/").pop()?.split("?")[0]
-                  }?rel=0&modestbranding=1`
-              }
-              title={arData.name}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <video
-              className="w-full h-full object-cover"
-              controls
-              playsInline
-              preload="metadata"
-            >
-              <source
-                src={solution.videoUrl}
-                type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-              />
-              <source src={solution.videoUrl} />
-              متصفحك لا يدعم تشغيل هذا الفيديو.
-            </video>
-          )}
+          <SmartVideoPlayerAr
+            url={solution.videoUrl}
+            title={arData.name}
+            poster={solution.heroImage}
+          />
         </div>
       </section>
 

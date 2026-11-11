@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 import { client } from "@/app/lib/sanity";
 import ProductGalleryLightbox from "@/components/ProductGalleryLightbox";
+import SmartVideoPlayer from "@/components/SmartVideoPlayer";
 
 async function getSolutionDetailEn(slug: string) {
   try {
@@ -65,8 +66,8 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     sanity?.gallery?.length > 0
       ? sanity.gallery.filter(Boolean)
       : (local as any)?.gallery && (local as any).gallery.length > 0
-      ? (local as any).gallery
-      : [
+        ? (local as any).gallery
+        : [
           solution.heroImage,
           "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
           "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
@@ -155,7 +156,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className="object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                 />
-                
+
                 {/* بادج الهوية الأنيق بالأسفل */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center text-xs pointer-events-none">
@@ -261,35 +262,11 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         </div>
 
         <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-          {solution.videoUrl?.includes("youtube.com") || solution.videoUrl?.includes("youtu.be") ? (
-            <iframe
-              className="w-full h-full"
-              src={
-                solution.videoUrl.includes("embed/")
-                  ? solution.videoUrl
-                  : `https://www.youtube.com/embed/${solution.videoUrl.split("v=")[1]?.split("&")[0] ||
-                  solution.videoUrl.split("/").pop()?.split("?")[0]
-                  }?rel=0&modestbranding=1`
-              }
-              title={solution.name}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <video
-              className="w-full h-full object-cover"
-              controls
-              playsInline
-              preload="metadata"
-            >
-              <source
-                src={solution.videoUrl}
-                type={solution.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-              />
-              <source src={solution.videoUrl} />
-              Your browser does not support the video tag.
-            </video>
-          )}
+          <SmartVideoPlayer
+            url={solution.videoUrl}
+            title={solution.name}
+            poster={solution.heroImage}
+          />
         </div>
       </section>
 

@@ -8,7 +8,7 @@ export interface SolutionItemEn {
   catalogImage?: string;
   heroImage: string;
   gallery?: string[];
-  youtubeVideoId: string;
+  videoUrl: string;
   overview: string;
   whyChooseText: string;
   industryApplications: string[];
@@ -33,7 +33,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse-tent-supplier.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/Storage.webp",
     ],
-    youtubeVideoId: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
+    videoUrl: "https://youtu.be/JTNHkF3j6DU?si=4-fGv2QmNl2S0uL1",
     overviewTitle: "Why Choose Bait Al Nokhada Warehouse Tents?",
     overview: "A warehouse tent is a large clear-span structure engineered with high-strength aluminum frames and heavy-duty PVC covers to provide immediate, secure, weather-resistant storage in open or undeveloped areas. Unlike permanent civil buildings, it offers operational flexibility, rapid installation, and cost efficiency without compromising durability or structural safety.",
     whyChooseText: "At Bait Al Nokhada, our warehouse tents are custom-built for demanding industrial environments and extreme Middle Eastern climates across the UAE and Saudi Arabia. Featuring modular clear-span profiles, they can be swiftly expanded or relocated, and fully customized with high-speed motorized roller doors, insulated sandwich panels, industrial HVAC systems, and heavy-duty load-bearing flooring.",
@@ -99,7 +99,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tents-supplier.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Affordable-Wedding-tent.webp",
     ],
-    youtubeVideoId: "https://youtu.be/Pi7cO-l0Qso?si=rOwzO5zYof5gmBA5",
+    videoUrl: "https://youtu.be/Pi7cO-l0Qso?si=rOwzO5zYof5gmBA5",
     overviewTitle: "Why Choose Bait Al Nokhada Wedding Tents?",
     overview: "Our wedding tents are elegant, spacious, and fully customizable structures engineered to create stunning venues for celebrations of any scale. Built with high-grade aluminum frames and fire-retardant, waterproof PVC covers, they offer column-free clear-span interiors and seamless climate control to ensure absolute comfort across all Gulf weather conditions.",
     whyChooseText: "Backed by over 30 years of manufacturing excellence, Bait Al Nokhada delivers bespoke wedding structures for private estates, beachfronts, and royal celebrations across the UAE and Saudi Arabia[cite: 38]. Every detail is engineered for grandeur—from panoramic glass facades and crystal-clear ceilings to whisper-quiet ducted HVAC systems and royal chandeliers.",
@@ -168,7 +168,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/event-tent-Dubai.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tents-for-Rent-in-Dubai.webp",
     ],
-    youtubeVideoId: "https://youtu.be/nZSEBTHlNkU?si=eUvwYOmtL1jQhjGl",
+    videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Adipec-2025.webm",
     overviewTitle: "Why Choose Bait Al Nokhada Event Tents?",
     overview: "Bait Al Nokhada event tents transform open spaces into world-class venues for conferences, exhibitions, product launches, and grand corporate gatherings. Combining architectural beauty with advanced structural engineering, our clear-span pavilions eliminate internal columns to provide fully customizable, weather-resistant environments built to impress and endure across all GCC conditions.",
     whyChooseText: "Backed by over 30 years of manufacturing excellence, Bait Al Nokhada is the trusted partner for government entities and multinational enterprises across the UAE and Saudi Arabia. Our modular structures are engineered in-house to accommodate high-resolution corporate branding facades, broadcast-grade acoustic insulation, and heavy-payload roof trusses for giant LED screens and stage lighting.",
@@ -237,7 +237,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/High-Quality-Tent-Rentals-Abu-Dhabi.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Festival-tents-in-UAE.webp",
     ],
-    youtubeVideoId: "https://youtu.be/E1Lyk7xdbQ0?si=BEIdqPo0-g7rRmaq",
+    videoUrl: "https://youtu.be/E1Lyk7xdbQ0?si=BEIdqPo0-g7rRmaq",
     overviewTitle: "Why Choose Bait Al Nokhada Exhibition Tents?",
     overview: "Make an unforgettable impression at trade shows, defense expos, and corporate showcases with high-performance exhibition tents from Bait Al Nokhada. Engineered with modular aluminum framing and flame-retardant covers, our structures deliver unmatched clear-span space, maximum brand visibility, and structural reliability whether for outdoor trade fairs in Dubai or international conventions in Riyadh.",
     whyChooseText: "With over 30 years of manufacturing excellence, Bait Al Nokhada is the trusted tent supplier for government agencies, defense airshows, and global expos. Proven across major international showcases including GITEX, ADIPEC, and Gulfood, our multi-bay structures accommodate heavy display machinery, standardized 3x3m booth grid zoning, automated entry sensor doors, and high-capacity central cooling.",
@@ -302,7 +302,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/FIFA-WORLD-CUP3.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/Sports-tent.webp",
     ],
-    youtubeVideoId: "https://youtu.be/rNlZuPIrhW8?si=UthxWjInX0j8NIkl",
+    videoUrl: "https://youtu.be/rNlZuPIrhW8?si=UthxWjInX0j8NIkl",
     overviewTitle: "Why Choose Bait Al Nokhada Sports Tents?",
     overview: "Sports tents from Bait Al Nokhada provide year-round, climate-controlled environments engineered to protect athletic facilities from extreme sun, rain, and high winds. Built with high-strength structural aluminum profiles and heavy-duty insulated PVC membranes, these column-free clear-span halls deliver high-apex vertical clearances for sports clubs and recreation complexes without civil building delays.",
     whyChooseText: "With over 30 years of manufacturing excellence across the UAE and Saudi Arabia, Bait Al Nokhada delivers specialized indoor sports structures for private clubs, schools, and tournament operators. Fully compliant with international sports federation regulations, our arenas seamlessly integrate whisper-quiet high-capacity HVAC, anti-glare natural lighting, certified acoustic insulation, and heavy spectator seating.",
@@ -367,7 +367,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/Ramadan-tent-rental-UAE.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/Ramadan-Tents-for-sale-Jumerah.webp",
     ],
-    youtubeVideoId: "https://youtu.be/LMaj_grLWhc?si=crM_AUj1xxMpyB5I",
+    videoUrl: "https://youtu.be/LMaj_grLWhc?si=crM_AUj1xxMpyB5I",
     overviewTitle: "Why Choose Bait Al Nokhada Ramadan Tents?",
     overview: "Ramadan tents from Bait Al Nokhada blend rich Arabian heritage with modern engineering to create immersive, climate-controlled venues for Iftar and Suhoor hospitality. Designed for cultural charm and guest comfort, our structures combine clear-span modular aluminum frames with authentic decorative linings, delivering prestigious dining pavilions for luxury hotels and community gatherings across the UAE and Saudi Arabia.",
     whyChooseText: "As a trusted tent manufacturer in the UAE since 1997, Bait Al Nokhada fuses Islamic geometric styling with certified structural engineering. Trusted by luxury 5-star hotels, government entities, and royal estates, our Ramadan pavilions feature dedicated commercial buffet zones, silent high-capacity AC systems, customized Arabic lantern lighting, and fire-certified interior paneling.",
@@ -430,7 +430,7 @@ export const solutionsDatabase: SolutionItemEn[] = [
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Aircraft-hanger-tent/ezgif.com-gif-maker-44-600x325.webp",
       "https://d3g07f5oxrfvni.cloudfront.net/media-images/Aircraft-hanger-tent/Aircraft-Hanger-Tents-EMIRATES-FLIGHT.webp",
     ],
-    youtubeVideoId: "https://youtu.be/JNPXGLXav4M?si=g0GftnAytLgSwPfV",
+    videoUrl: "https://youtu.be/JNPXGLXav4M?si=g0GftnAytLgSwPfV",
     overviewTitle: "Why Choose Bait Al Nokhada Aircraft Hangar Tents?",
   overview: "Aircraft hangar tents from Bait Al Nokhada are large clear-span structures engineered for military, commercial, and private aviation maintenance operations. Built with high-strength extruded aluminum frames and weather-resistant PVC covers, they provide secure environments for fixed-wing airplanes, helicopters, and unmanned aerial vehicles (UAVs) across desert and coastal climates in the UAE and Saudi Arabia.",
   whyChooseText: "Backed by over 30 years of manufacturing excellence, Bait Al Nokhada delivers field-proven hangar installations across the GCC. Designed to meet the demanding requirements of military bases, airport expansions, and Maintenance, Repair & Overhaul (MRO) centers, our structures feature massive bi-folding electric doors, tailored tail-notch openings, and column-free interiors that enable unrestricted maneuvering for ground support vehicles and gantry cranes.",
