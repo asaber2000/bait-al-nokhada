@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MapPin, Calendar, Play, ArrowUpRight, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import ProjectAutoVideo from "@/components/ProjectAutoVideo";
 
 interface ProjectsGridProps {
   initialProjects: any[];
@@ -60,58 +61,29 @@ export default function ProjectsGrid({ initialProjects, filterTabs }: ProjectsGr
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md"
               >
-                {/* Media Box - Full Cover & Instant Launch */}
+                {/* Media Box - Intelligent Scroll Autoplay */}
                 <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
-                  {isPlaying ? (
-                    <div className="relative w-full h-full bg-black">
-                      <video
-                        src={videoSource}
-                        controls
-                        autoPlay
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                      >
-                        <source src={videoSource} type="video/webm" />
-                        Your browser does not support video playback.
-                      </video>
-
-                      {/* زر إغلاق الفيديو والعودة للصورة */}
-                      <button
-                        onClick={() => setPlayingVideoSlug(null)}
-                        className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#df9d17] transition-all shadow-xl cursor-pointer"
-                        aria-label="Close Video"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
+                  {project.videoUrl ? (
+                    <ProjectAutoVideo
+                      videoUrl={project.videoUrl}
+                      poster={project.coverImage}
+                      title={project.title}
+                    />
                   ) : (
-                    <div
-                      onClick={() => setPlayingVideoSlug(project.slug)}
-                      className="relative w-full h-full cursor-pointer group"
-                    >
-                      <Image
-                        src={project.coverImage}
-                        alt={project.title || "Engineering Project"}
-                        fill
-                        priority={idx === 0}
-                        sizes="(max-width: 1280px) 100vw, 1400px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-black/20 to-transparent pointer-events-none" />
-
-                      <span className="absolute top-5 left-5 z-10 px-4 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">
-                        {project.category}
-                      </span>
-
-                      {/* زر التشغيل الذهبي المتطابق في كل الكروت */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full bg-[#df9d17] hover:bg-black text-white flex items-center justify-center shadow-xl shadow-[#df9d17]/40 group-hover:scale-110 transition-all duration-300">
-                          <Play className="w-8 h-8 fill-current ml-1" />
-                        </div>
-                      </div>
-                    </div>
+                    <Image
+                      src={project.coverImage}
+                      alt={project.title || "Engineering Project"}
+                      fill
+                      priority={idx === 0}
+                      sizes="(max-width: 1280px) 100vw, 1400px"
+                      className="object-cover"
+                    />
                   )}
+
+                  {/* شارة التصنيف فوق الفيديو */}
+                  <span className="absolute top-5 left-5 z-10 px-4 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs pointer-events-none">
+                    {project.category}
+                  </span>
                 </div>
 
                 {/* Information Body */}
@@ -139,13 +111,13 @@ export default function ProjectsGrid({ initialProjects, filterTabs }: ProjectsGr
                   </p>
 
                   <div className="pt-5 border-t border-slate-100 flex items-center justify-between text-sm">
-                    <button
-                      onClick={() => setPlayingVideoSlug(project.slug)}
-                      className="text-[#df9d17] hover:text-black font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+                    <Link
+                      href={`/projects/${project.slug}#project-video`}
+                      className="text-[#df9d17] hover:text-black font-bold uppercase tracking-wider flex items-center gap-2 transition-colors"
                     >
                       <Play className="w-4 h-4 fill-current" />
-                      <span>Watch Video Directly</span>
-                    </button>
+                      <span>Watch Full Video Coverage</span>
+                    </Link>
 
                     <Link
                       href={`/projects/${project.slug}`}

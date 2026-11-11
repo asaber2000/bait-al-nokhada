@@ -34,7 +34,7 @@ export const projectsDatabase: ProjectItemAr[] = [
     year: "2025",
     area: "10,000 م²",
     span: "بحر مفتوح 40م",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/drift-x-thumbnail.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Thambnails-images/drift-x-thumbnail.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/DriftX.webm",
     sectionTitle: "صالات معارض عملاقة وقاعات لتقنيات التنقل الذاتي",
     summary: "نفذ مصنع بيت النوخذة أكثر من 10,000 م² من قاعات المعارض المعيارية ببحور حرة 40 متراً لمعرض DRIFTx العالمي للتنقل الذكي في حلبة مرسى ياس بأبوظبي.",
@@ -61,13 +61,13 @@ export const projectsDatabase: ProjectItemAr[] = [
       { label: "مقاومة سرعة الرياح", value: "معتمدة لمقاومة 120 كم/ساعة (DIN EN 13782)" }
     ],
     galleryImages: [
-      { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80", caption: "Main Hall Entrance and Registration Portal", type: "exterior" },
-      { url: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80", caption: "Insulated Conference Stage and Keynote Seating", type: "interior" },
-      { url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80", caption: "Aerial Overview of Interconnected Exhibition Pavilions", type: "drone" }
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/DRIFT-X9.webp", caption: "Main Hall Entrance and Registration Portal", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Exhibition-tent-2026.webp", caption: "Insulated Conference Stage and Keynote Seating", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Event-Tent-Providers-for-Corporate-Events+%E2%80%93+UAE.webp", caption: "Aerial Overview of Interconnected Exhibition Pavilions", type: "drone" }
     ],
     beforeAfter: {
-      before: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      after: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80"
+      before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Event-Tent-Providers-for-Corporate-Events+%E2%80%93+UAE.webp",
+      after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/DraftX.webp"
     },
 
     relatedProducts: [
@@ -85,7 +85,7 @@ export const projectsDatabase: ProjectItemAr[] = [
     year: "2026",
     area: "2,500 م²",
     span: "بحر مقوس 25م",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/Ammal-thumbnail.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Thambnails-images/Ammal-thumbnail.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
     sectionTitle: "قاعة عرض ومركز مبيعات آمال × منصوري",
     summary: "تنفيذ مركز مبيعات وقاعة عرض عقارية فاخرة بمساحة 2,500 م² لمشروع آمال × منصوري في دبي بواجهات زجاجية وتجهيزات VIP.",
@@ -138,7 +138,7 @@ export const projectsDatabase: ProjectItemAr[] = [
     year: "2026",
     area: "35,000 م²",
     span: "بحور مفتوحة 40م – 50م",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/gulfood-2026.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/gulfood-poster.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Gulfood.webm",
 
     // Scopes & Section Headers
@@ -168,15 +168,15 @@ export const projectsDatabase: ProjectItemAr[] = [
     ],
 
     galleryImages: [
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-aerial.webp", caption: "منظر جوي لمجمع قاعات المعارض المؤقتة بمساحة 35 ألف م² في مركز دبي التجاري", type: "drone" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-hall-interior.webp", caption: "أجنحة الدول والممرات الواسعة لتسهيل حركة الحشود من الداخل", type: "interior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-summit-stage.webp", caption: "قاعة مؤتمرات قمة الاقتصاد الغذائي العالمي داخل الهيكل", type: "interior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-facade-night.webp", caption: "الواجهات الزجاجية والبوابات الرئيسية للمجمع ليلاً", type: "exterior" }
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Gulfood+-2026.webp", caption: "منظر جوي لمجمع قاعات المعارض المؤقتة بمساحة 35 ألف م² في مركز دبي التجاري", type: "drone" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Exhibition-Tent-Rental.webp", caption: "أجنحة الدول والممرات الواسعة لتسهيل حركة الحشود من الداخل", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/CAPSULE+(1).webp", caption: "قاعة مؤتمرات قمة الاقتصاد الغذائي العالمي داخل الهيكل", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/88.webp", caption: "الواجهات الزجاجية والبوابات الرئيسية للمجمع ليلاً", type: "exterior" }
     ],
 
     beforeAfter: {
-      before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-before.webp",
-      after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-after.webp"
+      before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Exhibition-Tent-Rental.webp",
+      after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Gulfood+-2026.webp"
     },
 
     relatedProducts: [
@@ -195,8 +195,8 @@ export const projectsDatabase: ProjectItemAr[] = [
   year: "2025",
   area: "5000 م²",
   span: "بحر حر 30م – 40م",
-  coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/stranger-things.webp",
-  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/StrangerThings.webm",
+  coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/netflix-poster.webp",
+  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Netflix.webm",
 
   // Scopes & Section Headers
   sectionTitle: "قاعة ترفيهية معيارية معزولة ضوئياً وصوتياً بالكامل",
@@ -225,15 +225,15 @@ export const projectsDatabase: ProjectItemAr[] = [
   ],
 
   galleryImages: [
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-exterior.webp", caption: "منظر خارجي للقاعة المعيارية المعتمة بمساحة 5,000 م² في جزيرة ياس", type: "exterior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-interior-stage.webp", caption: "مطعم الديكور ومتجر التذكارات التفاعلي داخل القاعة", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-upside-down.webp", caption: "منطقة المؤثرات التفاعلية وعروض الإضاءة السقفية المعلقة", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-facade.webp", caption: "البوابات الرئيسية ومنطقة تنظيم دخول الزوار المجهزة", type: "exterior" }
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/netflix-event.webp", caption: "منظر خارجي للقاعة المعيارية المعتمة بمساحة 5,000 م² في جزيرة ياس", type: "exterior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Large-Scale-Event-Tent-Providers.webp", caption: "مطعم الديكور ومتجر التذكارات التفاعلي داخل القاعة", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Big-Events-for-Stranger-things.webp", caption: "منطقة المؤثرات التفاعلية وعروض الإضاءة السقفية المعلقة", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/24.webp", caption: "البوابات الرئيسية ومنطقة تنظيم دخول الزوار المجهزة", type: "exterior" }
   ],
 
   beforeAfter: {
-    before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-before.webp",
-    after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-after.webp"
+    before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Large-Scale-Event-Tent-Providers.webp",
+    after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/netflix-event.webp"
   },
 
   relatedProducts: [
@@ -252,8 +252,8 @@ export const projectsDatabase: ProjectItemAr[] = [
   year: "2026",
   area: "15,000 م²",
   span: "بحور مفتوحة 30م – 40م",
-  coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/airshow-2025.webp",
-  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/DubaiAirshow.webm",
+  coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/airshow-poster.webp",
+  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Airshow.webm",
 
   // Scopes & Section Headers
   sectionTitle: "قاعات معارض متطورة وأجنحة دولية لصناعات الطيران والدفاع",
@@ -282,15 +282,15 @@ export const projectsDatabase: ProjectItemAr[] = [
   ],
 
   galleryImages: [
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-exterior-pavilions.webp", caption: "أجنحة وشاليهات الدول المشاركة في ساحة العرض الثابت بمطار آل مكتوم", type: "exterior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-interior-exhibit.webp", caption: "القاعة من الداخل مع تعليق المجسمات ومعدات الطيران والدفاع", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-vip-chalet.webp", caption: "مقصورات وقاعات استقبال الوفود الرسمية ومجالس توقيع الصفقات", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-flightline-view.webp", caption: "إطلالة الواجهات الزجاجية المباشرة على مدرج العروض الجوية", type: "exterior" }
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/event-tent-for-air-show-dubai.webp", caption: "أجنحة وشاليهات الدول المشاركة في ساحة العرض الثابت بمطار آل مكتوم", type: "exterior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/exhibition-tent-2026.webp", caption: "القاعة من الداخل مع تعليق المجسمات ومعدات الطيران والدفاع", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/exhibition-tent-rental.webp", caption: "مقصورات وقاعات استقبال الوفود الرسمية ومجالس توقيع الصفقات", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/Air-Show-Project-2026.webp", caption: "إطلالة الواجهات الزجاجية المباشرة على مدرج العروض الجوية", type: "exterior" }
   ],
 
   beforeAfter: {
-    before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-before.webp",
-    after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-after.webp"
+    before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/Tent-Supplier.webp",
+    after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/event-tent-for-air-show-dubai.webp"
   },
 
   relatedProducts: [

@@ -7,6 +7,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { projectsDatabase } from "@/app/data/projects.Ar";
 import { client } from "@/app/lib/sanity";
 import ProjectInteractiveMedia from "@/components-ar/components/ProjectInteractiveMedia";
+import SmartVideoPlayer from "@/components/SmartVideoPlayer";
 
 export const revalidate = 60; // كاش سريع جداً ومحدث كل دقيقة
 
@@ -105,14 +106,14 @@ async function getProjectData(slug: string) {
       specs: localMatch.specs && localMatch.specs.length > 0
         ? localMatch.specs
         : [
-            { label: "المساحة الصافية", value: localMatch.area },
-            { label: "نظام الجدران", value: "هياكل ألمنيوم معيارية وألواح حماية" },
-            { label: "تشطيب السقف", value: "أغشية PVC مزدوجة الطبقات عازلة" },
-            { label: "نظام التكييف", value: "تكييف مركزي عالي الكفاءة" }
-          ],
+          { label: "المساحة الصافية", value: localMatch.area },
+          { label: "نظام الجدران", value: "هياكل ألمنيوم معيارية وألواح حماية" },
+          { label: "تشطيب السقف", value: "أغشية PVC مزدوجة الطبقات عازلة" },
+          { label: "نظام التكييف", value: "تكييف مركزي عالي الكفاءة" }
+        ],
       coverImage: localMatch.coverImage,
-      videoUrl: localMatch.videoUrl 
-        ? localMatch.videoUrl 
+      videoUrl: localMatch.videoUrl
+        ? localMatch.videoUrl
         : (localMatch.youtubeVideoId ? `https://www.youtube.com/watch?v=${localMatch.youtubeVideoId}` : ""),
       galleryImages: localMatch.galleryImages || [],
       comparison: localMatch.beforeAfter ? {
@@ -319,12 +320,12 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
             <div className="space-y-3">
               {/* نطاق العمل والإنجاز ثابتة في كل المشاريع */}
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">نطاق العمل والإنجاز</span>
-              
+
               {/* العنوان أصبح ديناميكياً ليقرأ sectionTitle الخاص بكل مشروع بدلاً من النص الثابت القديم */}
               <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">
                 {project.sectionTitleAr || "مراحل التنفيذ وتسليم المشروع"}
               </h2>
-              
+
               <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {project.scopeOfWorkAr}
               </p>
@@ -436,35 +437,12 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
               <Video className="w-4 h-4" />
               <span>فيديو التايم لابس والتوثيق التشغيلي للحدث</span>
             </div>
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-              {project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be") ? (
-                <iframe
-                  className="w-full h-full"
-                  src={
-                    project.videoUrl.includes("embed/")
-                      ? project.videoUrl
-                      : `https://www.youtube.com/embed/${project.videoUrl.split("v=")[1]?.split("&")[0] ||
-                      project.videoUrl.split("/").pop()?.split("?")[0]
-                      }?rel=0&modestbranding=1`
-                  }
-                  title={project.titleAr}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <video
-                  className="w-full h-full object-cover"
-                  controls
-                  playsInline
-                  preload="metadata"
-                >
-                  <source
-                    src={project.videoUrl}
-                    type={project.videoUrl.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-                  />
-                  متصفحك لا يدعم تشغيل هذا الفيديو.
-                </video>
-              )}
+            <div id="project-video" className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
+              <SmartVideoPlayer
+                url={project.videoUrl}
+                title={project.titleAr}
+                poster={project.coverImage}
+              />
             </div>
           </div>
         )}

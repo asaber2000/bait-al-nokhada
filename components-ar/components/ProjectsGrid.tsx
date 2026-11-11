@@ -4,6 +4,8 @@ import { useState } from "react";
 import { MapPin, Calendar, Play, ArrowUpLeft, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import ProjectAutoVideo from "@/components/ProjectAutoVideo";
+
 
 interface ProjectsGridArProps {
   initialProjects: any[];
@@ -64,80 +66,29 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                 key={project.slug || idx}
                 className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
               >
-                {/* Media Container: نفس الأبعاد العريضة ومشغل الفيديو التفاعلي المدمج */}
+                {/* Media Container: تشغيل ذكي تلقائي مع الحفاظ على التصميم العربي */}
                 <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[350px] w-full overflow-hidden bg-black">
-                  {isPlaying && (project.videoUrl || youtubeId) ? (
-                    <div className="relative w-full h-full">
-                      {project.videoUrl && (project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be")) ? (
-                        <iframe
-                          src={
-                            project.videoUrl.includes("embed/")
-                              ? `${project.videoUrl}?autoplay=1&rel=0`
-                              : `https://www.youtube.com/embed/${
-                                  project.videoUrl.split("v=")[1]?.split("&")[0] ||
-                                  project.videoUrl.split("/").pop()?.split("?")[0]
-                                }?autoplay=1&rel=0&modestbranding=1`
-                          }
-                          title={arData.title || project.title}
-                          className="w-full h-full border-0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : (
-                        <video
-                          className="w-full h-full object-cover"
-                          controls
-                          autoPlay
-                          playsInline
-                        >
-                          <source
-                            src={project.videoUrl}
-                            type={project.videoUrl?.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-                          />
-                          متصفحك لا يدعم تشغيل هذا الفيديو.
-                        </video>
-                      )}
-
-                      {/* زر إغلاق الفيديو */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setPlayingVideoSlug(null);
-                        }}
-                        className="absolute top-4 left-4 z-30 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#df9d17] transition-all shadow-xl cursor-pointer"
-                        aria-label="إغلاق الفيديو"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
+                  {project.videoUrl ? (
+                    <ProjectAutoVideo
+                      videoUrl={project.videoUrl}
+                      poster={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                      title={arData.title || project.title}
+                    />
                   ) : (
-                    <div
-                      onClick={() => setPlayingVideoSlug(project.slug)}
-                      className="relative w-full h-full cursor-pointer group"
-                    >
-                      <Image
-                        src={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
-                        alt={arData.title || project.title || "مشروع هندسي"}
-                        fill
-                        unoptimized
-                        sizes="(max-width: 1280px) 100vw, 1400px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-black/20 to-transparent pointer-events-none" />
-
-                      {/* شارة التصنيف على اليمين */}
-                      <span className="absolute top-5 right-5 z-10 px-4 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">
-                        {arData.category || project.category}
-                      </span>
-
-                      {/* زر التشغيل الذهبي */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full bg-[#df9d17] hover:bg-black text-white flex items-center justify-center shadow-xl shadow-[#df9d17]/40 group-hover:scale-110 transition-all duration-300">
-                          <Play className="w-8 h-8 fill-current -translate-x-0.5" />
-                        </div>
-                      </div>
-                    </div>
+                    <Image
+                      src={project.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
+                      alt={arData.title || project.title || "مشروع هندسي"}
+                      fill
+                      priority={idx === 0}
+                      sizes="(max-width: 1280px) 100vw, 1400px"
+                      className="object-cover"
+                    />
                   )}
+
+                  {/* شارة التصنيف على اليمين للغة العربية */}
+                  <span className="absolute top-5 right-5 z-10 px-4 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs pointer-events-none">
+                    {arData.category || project.category}
+                  </span>
                 </div>
 
                 {/* تفاصيل المشروع بنفس المسافات الفخمة p-8 sm:p-10 */}
@@ -165,13 +116,13 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
                   </p>
 
                   <div className="pt-5 border-t border-slate-100 flex items-center justify-between text-sm">
-                    <button
-                      onClick={() => setPlayingVideoSlug(project.slug)}
-                      className="text-[#df9d17] hover:text-black font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+                    <Link
+                      href={`/ar/projects/${project.slug}#project-video`}
+                      className="text-[#df9d17] hover:text-black font-bold uppercase tracking-wider flex items-center gap-2 transition-colors"
                     >
                       <Play className="w-4 h-4 fill-current" />
-                      <span>مشاهدة الفيديو ودراسة المشروع مباشرة</span>
-                    </button>
+                      <span>مشاهدة التغطية الميدانية الكاملة</span>
+                    </Link>
 
                     <Link
                       href={`/ar/projects/${project.slug}`}
@@ -185,8 +136,8 @@ export default function ProjectsGridAr({ initialProjects, filterTabs }: Projects
               </div>
             );
           })}
-        </div>
-      </section>
+        </div >
+      </section >
     </>
   );
 }

@@ -33,7 +33,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     year: "2025",
     area: "10000 m²",
     span: "40m Clear Span",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/drift-x-thumbnail.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Thambnails-images/drift-x-thumbnail.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/DriftX.webm",
     sectionTitle: "High-Span Exhibition Arenas & Smart Mobility Pavilions",
     summary: "For DRIFTx at Yas Marina Circuit, Abu Dhabi, Bait Al Nokhada deployed over 10,000 m² of specialized 40m clear-span exhibition pavilions engineered for autonomous mobility showcases and global tech summits.",
@@ -60,13 +60,13 @@ export const projectsDatabase: ProjectItemEn[] = [
       { label: "Wind Load Rating", value: "120 km/h Certified (DIN EN 13782)" }
     ],
     galleryImages: [
-      { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80", caption: "Main Hall Entrance and Registration Portal", type: "exterior" },
-      { url: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80", caption: "Insulated Conference Stage and Keynote Seating", type: "interior" },
-      { url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80", caption: "Aerial Overview of Interconnected Exhibition Pavilions", type: "drone" }
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/DRIFT-X9.webp", caption: "Main Hall Entrance and Registration Portal", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Exhibition-tent-2026.webp", caption: "Insulated Conference Stage and Keynote Seating", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Event-Tent-Providers-for-Corporate-Events+%E2%80%93+UAE.webp", caption: "Aerial Overview of Interconnected Exhibition Pavilions", type: "drone" }
     ],
     beforeAfter: {
-      before: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      after: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80"
+      before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/Event-Tent-Providers-for-Corporate-Events+%E2%80%93+UAE.webp",
+      after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/DriftX/DraftX.webp"
     },
     relatedProducts: [
       { name: "Revolution Tent", slug: "revolution-tent" },
@@ -83,7 +83,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     year: "2026",
     area: "2,500 m²",
     span: "25m Curved Arch Span",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Thambnails-images/Ammal-thumbnail.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Thambnails-images/Ammal-thumbnail.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Amaal.webm",
     sectionTitle: "Bespoke Sales Pavilion & Luxury Vehicle Gallery",
     summary: "Bait Al Nokhada engineered and delivered a 2,500 m² luxury sales gallery and branded showcase pavilion for the Amaal × Mansory Residences launch in Dubai.",
@@ -111,15 +111,15 @@ export const projectsDatabase: ProjectItemEn[] = [
     ],
 
     galleryImages: [
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+2.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+3.webp", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "exterior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Amaal-Inrtior2.webp", caption: "Luxury Experience Center & Vehicle Display Hall", type: "interior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL-interior1.webp", caption: "Private VIP Investor Negotiation Suites", type: "interior" }
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+2.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+3.webp", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Amaal-Inrtior2.webp", caption: "Luxury Experience Center & Vehicle Display Hall", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL-interior1.webp", caption: "Private VIP Investor Negotiation Suites", type: "interior" }
     ],
 
     beforeAfter: {
-      before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL-6.webp",
-      after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Amaal-Sales-Gallery.webp"
+      before: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL-6.webp",
+      after: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Amaal-Sales-Gallery.webp"
     },
 
     relatedProducts: [
@@ -136,7 +136,7 @@ export const projectsDatabase: ProjectItemEn[] = [
     year: "2026",
     area: "35,000 m²",
     span: "40m – 50m Clear Span",
-    coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/gulfood-2026.webp",
+    coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/gulfood-poster.webp",
     videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Gulfood.webm",
 
     // Scopes & Section Headers
@@ -166,15 +166,15 @@ export const projectsDatabase: ProjectItemEn[] = [
     ],
 
     galleryImages: [
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-aerial.webp", caption: "Aerial View of 35,000 m² Temporary Exhibition Complex at DWTC", type: "drone" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-hall-interior.webp", caption: "Unobstructed Multi-Country Pavilion Aisles and Exhibition Staging", type: "interior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-summit-stage.webp", caption: "World Food Economy Summit Keynote Auditorium", type: "interior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-facade-night.webp", caption: "Night View of Main Concourse Entrances and Double Glazed Facades", type: "exterior" }
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Gulfood+-2026.webp", caption: "Aerial View of 35,000 m² Temporary Exhibition Complex at DWTC", type: "drone" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Exhibition-Tent-Rental.webp", caption: "Unobstructed Multi-Country Pavilion Aisles and Exhibition Staging", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/CAPSULE+(1).webp", caption: "World Food Economy Summit Keynote Auditorium", type: "interior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/88.webp", caption: "Night View of Main Concourse Entrances and Double Glazed Facades", type: "exterior" }
     ],
 
     beforeAfter: {
-      before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-before.webp",
-      after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/gulfood-after.webp"
+      before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Exhibition-Tent-Rental.webp",
+      after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Gulfood-2026/Gulfood+-2026.webp"
     },
 
     relatedProducts: [
@@ -193,8 +193,8 @@ export const projectsDatabase: ProjectItemEn[] = [
   year: "2025",
   area: "5000 m²",
   span: "30m – 40m Clear Span",
-  coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/stranger-things.webp",
-  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/StrangerThings.webm",
+  coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/netflix-poster.webp",
+  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Netflix.webm",
 
   // Scopes & Section Headers
   sectionTitle: "Immersive Blackout Arena & Cinematic Entertainment Pavilion",
@@ -223,15 +223,15 @@ export const projectsDatabase: ProjectItemEn[] = [
   ],
 
   galleryImages: [
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-exterior.webp", caption: "Exterior View of 5,000 m² Immersive Blackout Arena on Yas Island", type: "exterior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-interior-stage.webp", caption: "Themed Retail and Surfer Boy Pizza Set Inside the Arena", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-upside-down.webp", caption: "Interactive Upside Down Multimedia Zone with Suspended Rigging", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-facade.webp", caption: "Branded Entrance Portals and Controlled Queue Concourse", type: "exterior" }
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/netflix-event.webp", caption: "Exterior View of 5,000 m² Immersive Blackout Arena on Yas Island", type: "exterior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Large-Scale-Event-Tent-Providers.webp", caption: "Themed Retail and Surfer Boy Pizza Set Inside the Arena", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Big-Events-for-Stranger-things.webp", caption: "Interactive Upside Down Multimedia Zone with Suspended Rigging", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/24.webp", caption: "Branded Entrance Portals and Controlled Queue Concourse", type: "exterior" }
   ],
 
   beforeAfter: {
-    before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-before.webp",
-    after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/stranger-things-after.webp"
+    before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/Large-Scale-Event-Tent-Providers.webp",
+    after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Netflix-Stranger-Things-The-Experience/netflix-event.webp"
   },
 
   relatedProducts: [
@@ -250,8 +250,8 @@ export const projectsDatabase: ProjectItemEn[] = [
   year: "2026",
   area: "15,000 m²",
   span: "30m – 40m Clear Span",
-  coverImage: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Projects/airshow-2025.webp",
-  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/DubaiAirshow.webm",
+  coverImage: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/airshow-poster.webp",
+  videoUrl: "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Projects-Videos/Airshow.webm",
 
   // Scopes & Section Headers
   sectionTitle: "High-Security Aviation Pavilions & Defence Exhibition Arenas",
@@ -280,15 +280,15 @@ export const projectsDatabase: ProjectItemEn[] = [
   ],
 
   galleryImages: [
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-exterior-pavilions.webp", caption: "National Country Pavilions and Chalets on DWC Static Display Concourse", type: "exterior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-interior-exhibit.webp", caption: "Interior Layout with Suspended Avionics and Defense Aircraft Displays", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-vip-chalet.webp", caption: "Executive Meeting Rooms and Bilateral Deal Signing Lounges", type: "interior" },
-    { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-flightline-view.webp", caption: "Direct Flightline View from Panoramic Double-Glazed Frontages", type: "exterior" }
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/event-tent-for-air-show-dubai.webp", caption: "National Country Pavilions and Chalets on DWC Static Display Concourse", type: "exterior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/exhibition-tent-2026.webp", caption: "Interior Layout with Suspended Avionics and Defense Aircraft Displays", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/exhibition-tent-rental.webp", caption: "Executive Meeting Rooms and Bilateral Deal Signing Lounges", type: "interior" },
+    { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/Air-Show-Project-2026.webp", caption: "Direct Flightline View from Panoramic Double-Glazed Frontages", type: "exterior" }
   ],
 
   beforeAfter: {
-    before: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-before.webp",
-    after: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/airshow-after.webp"
+    before: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/Tent-Supplier.webp",
+    after: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Airshow/event-tent-for-air-show-dubai.webp"
   },
 
   relatedProducts: [

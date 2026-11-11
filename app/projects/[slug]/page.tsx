@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import { projectsDatabase } from "@/app/data/projects.En";
 import { client } from "@/app/lib/sanity";
 import ProjectInteractiveMedia from "@/components/ProjectInteractiveMedia";
+import SmartVideoPlayer from "@/components/SmartVideoPlayer";
+
 
 export const revalidate = 60; // Instant Cache & ISR
 
@@ -93,7 +95,7 @@ async function getProjectData(slug: string) {
       year: localMatch.year,
       coveredArea: localMatch.area,
       categoryEn: localMatch.category,
-      sectionTitleEn: localMatch.sectionTitle || "Project Delivery Phases", 
+      sectionTitleEn: localMatch.sectionTitle || "Project Delivery Phases",
       scopeOfWorkEn: localMatch.description,
       challengeTitleEn: localMatch.challengeTitle || "Engineering Challenge & Field Solution",
       engineeringChallengeEn: localMatch.challengeAndSolution,
@@ -302,21 +304,21 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
         </div>
-        </section>
+      </section>
 
       {/* 3. Project Overview & Challenge */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">  
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
               {/* Scope & Execution ثابتة في كل المشاريع */}
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">Scope & Execution</span>
-              
+
               {/* العنوان أصبح ديناميكياً ليقرأ sectionTitle الخاص بكل مشروع بدلاً من النص الثابت القديم */}
               <h2 className="text-2xl sm:text-3xl font-black text-[#0B1220] font-heading">
                 {project.sectionTitleEn || "Project Delivery Phases"}
               </h2>
-              
+
               <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
                 {project.scopeOfWorkEn}
               </p>
@@ -427,35 +429,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <Video className="w-4 h-4" />
               <span>Operational Video & Timelapse Tour</span>
             </div>
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
-              {project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be") ? (
-                <iframe
-                  className="w-full h-full"
-                  src={
-                    project.videoUrl.includes("embed/")
-                      ? project.videoUrl
-                      : `https://www.youtube.com/embed/${project.videoUrl.split("v=")[1]?.split("&")[0] ||
-                      project.videoUrl.split("/").pop()?.split("?")[0]
-                      }?rel=0&modestbranding=1`
-                  }
-                  title={project.titleEn}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <video
-                  className="w-full h-full object-cover"
-                  controls
-                  playsInline
-                  preload="metadata"
-                >
-                  <source
-                    src={project.videoUrl}
-                    type={project.videoUrl.toLowerCase().includes(".webm") ? "video/webm" : "video/mp4"}
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              )}
+            <div id="project-video" className="relative aspect-video w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-black">
+              <SmartVideoPlayer
+                url={project.videoUrl}
+                title={(project as any)?.title || (project as any)?.titleEn || "Project Video"}
+                poster={project.coverImage}
+              />
             </div>
           </div>
         )}
