@@ -25,6 +25,7 @@ async function getSanitySolutions() {
 
     const formattedSanitySolutions = (sanityData || []).map((item: any) => ({
       slug: item.slug,
+      catalogImage: item.catalogImage || item.coverImage,
       heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
       name: item.titleAr,
       badge: item.badgeAr || "هياكل معمارية معتمدة",
@@ -33,11 +34,10 @@ async function getSanitySolutions() {
       industryApplications: item.targetSectors || []
     }));
 
-    const localFiltered = solutionsDatabase.filter(
-      (localItem) => !formattedSanitySolutions.some((s: any) => s.slug === localItem.slug)
-    );
+    const sanitySlugs = new Set(formattedSanitySolutions.map((s: any) => s.slug));
+    const remainingLocal = solutionsDatabase.filter((ls) => !sanitySlugs.has(ls.slug));
 
-    return [...formattedSanitySolutions, ...localFiltered];
+    return [...formattedSanitySolutions, ...remainingLocal];
   } catch (error) {
     console.error("Error fetching English solutions from Sanity:", error);
     return solutionsDatabase;

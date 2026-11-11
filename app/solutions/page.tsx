@@ -26,6 +26,7 @@ async function getSanitySolutionsEn() {
 
     const formattedSanitySolutions = (sanityData || []).map((item: any) => ({
       slug: item.slug,
+      catalogImage: item.catalogImage || item.coverImage,
       heroImage: item.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
       name: item.titleEn,
       badge: item.badgeEn || "Industrial Grade",
@@ -34,7 +35,10 @@ async function getSanitySolutionsEn() {
       industryApplications: item.targetSectorsEn || ["Rapid Deployment", "German Certified Standards"]
     }));
 
-    return [...formattedSanitySolutions, ...solutionsDatabase];
+    const sanitySlugs = new Set(formattedSanitySolutions.map((s: any) => s.slug));
+    const remainingLocal = solutionsDatabase.filter((ls) => !sanitySlugs.has(ls.slug));
+
+    return [...formattedSanitySolutions, ...remainingLocal];
   } catch (error) {
     console.error("Error fetching English solutions from Sanity:", error);
     return solutionsDatabase;
