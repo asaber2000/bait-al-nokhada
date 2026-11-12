@@ -111,8 +111,8 @@ export const projectsDatabase: ProjectItemEn[] = [
     ],
 
     galleryImages: [
-      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+2.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
-      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+3.webp", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Amaal-X-mansory/Amaal-Sales-Gallery.webp", caption: "Panoramic Glass Facade Illuminated at Dusk", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+2.webp", caption: "Royal Majlis VIP Seating with Custom Lighting", type: "exterior" },
       { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Amaal-Inrtior2.webp", caption: "Luxury Experience Center & Vehicle Display Hall", type: "interior" },
       { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL-interior1.webp", caption: "Private VIP Investor Negotiation Suites", type: "interior" }
     ],

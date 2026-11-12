@@ -113,8 +113,8 @@ export const projectsDatabase: ProjectItemAr[] = [
     ],
 
     galleryImages: [
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+2.webp", caption: "الواجهة الزجاجية لمركز مبيعات آمال × منصوري", type: "exterior" },
-      { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL+3.webp", caption: "مجلس استقبال كبار الشخصيات والعملاء", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/Projects-image/Amaal-X-mansory/Amaal-Sales-Gallery.webp", caption: "الواجهة الزجاجية لمركز مبيعات آمال × منصوري", type: "exterior" },
+      { url: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AMAAL+2.webp", caption: "مجلس استقبال كبار الشخصيات والعملاء", type: "exterior" },
       { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/Amaal-Inrtior2.webp", caption: "صالة العرض والمجسمات المعمارية من الداخل", type: "interior" },
       { url: "https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com/media-images/Events/AMAAL-interior1.webp", caption: "أجنحة التفاوض وتوقيع العقود", type: "interior" }
     ],
