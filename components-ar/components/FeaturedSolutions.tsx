@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpLeft, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -86,6 +86,17 @@ export default function FeaturedSolutionsAr() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const active = megaProjectsAr[currentIdx];
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      megaProjectsAr.slice(1).forEach((project) => {
+        const img = new window.Image();
+        img.src = project.image;
+      });
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleNext = () => {
     setDirection(1);
     setCurrentIdx((prev) => (prev + 1) % megaProjectsAr.length);
@@ -108,7 +119,7 @@ export default function FeaturedSolutionsAr() {
 
       <div className="site-container space-y-8 relative z-10">
 
-        {/* 1. الهيدر المعماري الفاخر */}
+        {/* الهيدر المعماري الفاخر */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200/80 pb-6">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-xs font-bold tracking-normal shadow-xs">
@@ -116,15 +127,15 @@ export default function FeaturedSolutionsAr() {
               <span>أبرز إنجازاتنا</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-[#0B1220] tracking-tight">
-             مشاريع بارزة نفخر بها<span className="text-[#df9d17]">.</span>
+              مشاريع بارزة نفخر بها<span className="text-[#df9d17]">.</span>
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
-           خبرة هندسية متقدمة في تصنيع وتركيب خيام الفعاليات والقاعات الكبرى، نُفذت لأرقى المناسبات والمعارض الدولية في الإمارات والسعودية.
+            خبرة هندسية متقدمة في تصنيع وتركيب خيام الفعاليات والقاعات الكبرى، نُفذت لأرقى المناسبات والمعارض الدولية في الإمارات والسعودية.
           </p>
         </div>
 
-        {/* 2. شريط التحكم والترقيم التفاعلي */}
+        {/* شريط التحكم والترقيم التفاعلي */}
         <div className="flex items-center justify-between gap-4">
 
           {/* مؤشرات الانتقال بالضغط */}
@@ -177,7 +188,7 @@ export default function FeaturedSolutionsAr() {
           </div>
         </div>
 
-        {/* 3. شريط المواصفات الهندسية الأربعة */}
+        {/* شريط المواصفات الهندسية الأربعة */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: "اسم العميل / الشريك", value: active.client, isGold: false },
@@ -195,10 +206,10 @@ export default function FeaturedSolutionsAr() {
               <AnimatePresence mode="wait">
                 <motion.p
                   key={active.id + item.label}
-                  initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
                   className={`text-xs sm:text-sm font-bold tracking-wide truncate ${item.isGold ? "text-[#df9d17]" : "text-[#0B1220]"
                     }`}
                 >
@@ -209,57 +220,33 @@ export default function FeaturedSolutionsAr() {
           ))}
         </div>
 
-        {/* 4. مسرح العرض المعماري: انزلاق سينمائي تفاعلي سريع وموجه متوافق مع RTL */}
+        {/* مسرح العرض المعماري: انزلاق سينمائي تفاعلي سريع وموجه متوافق مع RTL */}
         <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-900">
 
-          <AnimatePresence initial={false} custom={direction}>
+          <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
-              custom={direction}
-              initial={{
-                // في نظام الـ RTL: اتجاه الحركة المعكوس طبيعياً لحركة القراءة
-                x: direction > 0 ? -120 : 120,
-                opacity: 0,
-                scale: 0.95
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                scale: 1
-              }}
-              exit={{
-                x: direction > 0 ? 120 : -120,
-                opacity: 0,
-                scale: 0.95
-              }}
-              transition={{
-                duration: 0.35,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              className="absolute inset-0 w-full h-full will-change-transform"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="group relative aspect-[16/9] sm:aspect-[21/9] lg:h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-900"
             >
-              {/* صورة المشروع */}
-              <div className="relative w-full h-full">
-                <Image
-                  src={active.image}
-                  alt={active.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1200px"
-                  priority
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src={active.image}
+                alt={active.title}
+                fill
+                priority
+                quality={100}
+                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 90vw, 1400px"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
               {/* تظليل سينمائي ناعم يبرز العنوان */}
               <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
               {/* العنوان والكاتجوري بتموضع RTL متناسق */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.08 }}
-                className="absolute bottom-6 right-6 left-6 z-20 space-y-1.5"
-              >
+              <div className="absolute bottom-6 right-6 left-6 z-20 space-y-1.5">
                 <span className="inline-block text-[12px] font-bold tracking-normal text-[#fbc200] bg-black/40 border border-[#e6b224]/30 px-3 py-1 rounded-md backdrop-blur-md">
                   {active.category}
                 </span>
@@ -267,12 +254,12 @@ export default function FeaturedSolutionsAr() {
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
                   {active.title}
                 </h3>
-              </motion.div>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* 5. شريط نبذة المشروع وزر دراسة الحالة */}
+        {/* شريط نبذة المشروع وزر دراسة الحالة */}
         <div className="p-6 rounded-2xl bg-white border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs">
           <div className="space-y-1.5 max-w-3xl">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#df9d17] font-bold">

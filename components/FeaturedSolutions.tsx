@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -87,6 +87,17 @@ export default function FeaturedProjects() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const active = megaProjects[currentIdx];
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      megaProjects.slice(1).forEach((project) => {
+        const img = new window.Image();
+        img.src = project.image;
+      });
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleNext = () => {
     setDirection(1);
     setCurrentIdx((prev) => (prev + 1) % megaProjects.length);
@@ -108,7 +119,7 @@ export default function FeaturedProjects() {
 
       <div className="site-container space-y-8 relative z-10">
 
-        {/* 1. الهيدر المعماري الفاخر */}
+        {/* الهيدر المعماري الفاخر */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-6">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
@@ -124,7 +135,7 @@ export default function FeaturedProjects() {
           </p>
         </div>
 
-        {/* 2. شريط التحكم والترقيم التفاعلي */}
+        {/* شريط التحكم والترقيم التفاعلي */}
         <div className="flex items-center justify-between gap-4">
 
           {/* مؤشرات الانتقال بالضغط */}
@@ -175,7 +186,7 @@ export default function FeaturedProjects() {
           </div>
         </div>
 
-        {/* 3. شريط المواصفات الهندسية الأربعة مع انيميشن هولوغرام */}
+        {/* شريط المواصفات الهندسية الأربعة مع انيميشن هولوغرام */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: "CLIENT NAME", value: active.client, isGold: false },
@@ -193,10 +204,10 @@ export default function FeaturedProjects() {
               <AnimatePresence mode="wait">
                 <motion.p
                   key={active.id + item.label}
-                  initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
                   className={`text-xs sm:text-sm font-bold tracking-wide truncate ${item.isGold ? "text-[#df9d17]" : "text-[#0B1220]"
                     }`}
                 >
@@ -207,57 +218,33 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        {/* 4. مسرح العرض المعماري: انفجار العدسة المركزية (Iris Shockwave Burst) */}
-        {/* 4. مسرح العرض المعماري: انتقال Cross-fade فوري وسلس */}
+
+        {/* مسرح العرض المعماري: انتقال Cross-fade فوري وسلس */}
         <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-900">
 
-          <AnimatePresence initial={false} custom={direction}>
+          {/* 4. مسرح العرض المعماري بكامل الجودة الأصلية بدون ضغط أو تغبيش GPU */}
+          <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
-              custom={direction}
-              initial={{
-                x: direction > 0 ? 120 : -120, // تبدأ من إزاحة واضحة لليمين أو اليسار
-                opacity: 0,
-                scale: 0.95
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                scale: 1
-              }}
-              exit={{
-                x: direction > 0 ? -120 : 120, // تخرج باتجاه معاكس واضح
-                opacity: 0,
-                scale: 0.95
-              }}
-              transition={{
-                duration: 0.35,
-                ease: [0.16, 1, 0.3, 1] // توقيت حاد وسريع يعطي انطلاقة قوية
-              }}
-              className="absolute inset-0 w-full h-full will-change-transform"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="group relative aspect-[16/9] sm:aspect-[21/9] lg:h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-900"
             >
-              {/* صورة المشروع */}
-              <div className="relative w-full h-full">
-                <Image
-                  src={active.image}
-                  alt={active.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1200px"
-                  priority
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src={active.image}
+                alt={active.title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
               {/* تظليل سينمائي ناعم يبرز العنوان */}
               <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
-              {/* العنوان والكاتجوري ينزلقان بشكل مستقل ليعطيا تأثيراً ثلاثي الأبعاد */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.08 }}
-                className="absolute bottom-6 left-6 right-6 z-20 space-y-1.5"
-              >
+              <div className="absolute bottom-6 left-6 right-6 z-20 space-y-1.5">
                 <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#fbc200] uppercase bg-black/40 border border-[#fbc200]/30 px-2.5 py-1 rounded-md backdrop-blur-md">
                   {active.category}
                 </span>
@@ -265,10 +252,9 @@ export default function FeaturedProjects() {
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
                   {active.title}
                 </h3>
-              </motion.div>
+              </div>
             </motion.div>
           </AnimatePresence>
-
           {/* حلقة الموجة الارتدادية الذهبية (Shockwave Ring Effect) */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -281,7 +267,7 @@ export default function FeaturedProjects() {
           </AnimatePresence>
         </div>
 
-        {/* 5. شريط نبذة المشروع وزر دراسة الحالة */}
+        {/* شريط نبذة المشروع وزر دراسة الحالة */}
         <div className="p-6 rounded-2xl bg-white border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs">
           <div className="space-y-1.5 max-w-3xl">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#df9d17] font-bold">
