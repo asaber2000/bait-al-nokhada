@@ -10,6 +10,7 @@ import ProjectInteractiveMedia from "@/components/ProjectInteractiveMedia";
 import SmartVideoPlayer from "@/components/SmartVideoPlayer";
 
 
+
 export const revalidate = 60; // Instant Cache & ISR
 
 async function getProjectData(slug: string) {

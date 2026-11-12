@@ -16,20 +16,19 @@ export default function SmartVideoPlayerAr({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // استخراج رابط الـ Embed النظيف من يوتيوب مع دعم التشغيل التلقائي
   const getYouTubeEmbedUrl = (rawUrl: string) => {
     if (!rawUrl) return "";
     if (rawUrl.includes("embed/")) return rawUrl;
 
-    let videoId = "";
-    if (rawUrl.includes("v=")) {
-      videoId = rawUrl.split("v=")[1]?.split("&")[0];
-    } else if (rawUrl.includes("youtu.be/")) {
-      videoId = rawUrl.split("youtu.be/")[1]?.split("?")[0];
-    }
+    const match = rawUrl.match(
+      /(?:youtube\.com\/(?:watch\?v=|shorts\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
+    const videoId = match?.[1] || "";
     return videoId
-      ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=${videoId}`
+      ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&playsinline=1`
       : rawUrl;
   };
 
@@ -42,15 +41,14 @@ export default function SmartVideoPlayerAr({
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
-        if (videoRef.current) {
-          if (entry.isIntersecting) {
-            videoRef.current.play().catch(() => {});
-          } else {
-            videoRef.current.pause();
-          }
+        if (entry.isIntersecting) {
+          setHasLoaded(true);
+          videoRef.current?.play().catch(() => {});
+        } else {
+          videoRef.current?.pause();
         }
       },
-      { threshold: 0.25 }
+      { rootMargin: "400px 0px", threshold: 0.05 }
     );
 
     observer.observe(el);
@@ -68,7 +66,7 @@ export default function SmartVideoPlayerAr({
   return (
     <div ref={containerRef} className="relative w-full h-full bg-black">
       {isYouTube ? (
-        isInView ? (
+        hasLoaded ? (
           <iframe
             className="w-full h-full"
             src={getYouTubeEmbedUrl(url)}
@@ -77,8 +75,15 @@ export default function SmartVideoPlayerAr({
             allowFullScreen
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-slate-950 text-slate-500 text-xs font-sans">
-            جاري تهيئة المشغل الميداني...
+          <div className="relative w-full h-full flex items-center justify-center bg-slate-950 text-slate-400 text-xs font-sans">
+            {poster && (
+              <img
+                src={poster}
+                alt={title}
+                className="absolute inset-0 w-full h-full object-cover opacity-50"
+              />
+            )}
+            <span className="relative z-10">جاري تهيئة المشغل الميداني...</span>
           </div>
         )
       ) : (
