@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
-import { Eye } from "lucide-react";
+import { Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProjectInteractiveMediaProps {
   galleryImages?: { url: string; caption?: string; type?: string }[];
@@ -13,18 +14,147 @@ export default function ProjectInteractiveMedia({
   galleryImages,
   comparison,
 }: ProjectInteractiveMediaProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [mounted, setMounted] = useState(false);
+
+  const validImages = (galleryImages || []).filter((img) => Boolean(img?.url));
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const closeLightbox = () => setActiveIndex(null);
+
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (activeIndex === null) return;
+    setActiveIndex(activeIndex === 0 ? validImages.length - 1 : activeIndex - 1);
+  };
+
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (activeIndex === null) return;
+    setActiveIndex(activeIndex === validImages.length - 1 ? 0 : activeIndex + 1);
+  };
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") {
+        setActiveIndex((prev) =>
+          prev === null ? null : prev === 0 ? validImages.length - 1 : prev - 1
+        );
+      }
+      if (e.key === "ArrowRight") {
+        setActiveIndex((prev) =>
+          prev === null ? null : prev === validImages.length - 1 ? 0 : prev + 1
+        );
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeIndex, validImages.length]);
+
+  const lightboxModal =
+    mounted && activeIndex !== null && validImages[activeIndex]
+      ? createPortal(
+          <div
+            dir="ltr"
+            onClick={closeLightbox}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 999999,
+            }}
+            className="bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 select-none cursor-zoom-out"
+          >
+            {/* عداد الصور */}
+            <div className="fixed top-5 left-5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-xs font-bold z-50">
+              {activeIndex + 1} / {validImages.length}
+            </div>
+
+            {/* زر الإغلاق */}
+            <button
+              type="button"
+              onClick={closeLightbox}
+              className="fixed top-5 right-5 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
+              aria-label="Close preview"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* أسهم التنقل */}
+            {validImages.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prevImage}
+                  className="fixed left-4 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={nextImage}
+                  className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-[#df9d17] text-white transition-all cursor-pointer z-50 shadow-2xl"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              </>
+            )}
+
+            {/* حاوية الصورة في منتصف الشاشة تماماً */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl h-[75vh] sm:h-[82vh] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-black cursor-default flex items-center justify-center"
+            >
+              <Image
+                src={validImages[activeIndex].url}
+                alt={validImages[activeIndex].caption || "High-resolution project view"}
+                fill
+                priority
+                quality={95}
+                className="object-contain object-center p-2"
+              />
+
+              {validImages[activeIndex].caption && (
+                <div className="absolute bottom-4 left-4 right-4 flex justify-center pointer-events-none">
+                  <span className="px-4 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white text-xs sm:text-sm font-medium">
+                    {validImages[activeIndex].caption}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.body
+        )
+      : null;
 
   return (
     <>
       {/* 1. Photo Gallery Grid */}
-      {galleryImages && galleryImages.length > 0 && (
+      {validImages.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-          {galleryImages.map((img, idx) => (
+          {validImages.map((img, idx) => (
             <div
               key={idx}
-              onClick={() => setSelectedImage(img.url)}
+              onClick={() => setActiveIndex(idx)}
               className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#df9d17] transition-all shadow-xs hover:shadow-md bg-slate-100"
             >
               <Image
@@ -44,8 +174,10 @@ export default function ProjectInteractiveMedia({
                 </div>
               )}
 
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                <p className="text-xs font-semibold text-white leading-snug">{img.caption || "Field Documentation"}</p>
+              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2">
+                <p className="text-xs font-semibold text-white leading-snug">
+                  {img.caption || "Field Documentation"}
+                </p>
                 <div className="w-8 h-8 rounded-full bg-[#df9d17] text-white flex items-center justify-center shrink-0 shadow-md group-hover:bg-black transition-colors">
                   <Eye className="w-4 h-4" />
                 </div>
@@ -116,22 +248,8 @@ export default function ProjectInteractiveMedia({
         </div>
       )}
 
-      {/* 3. Lightbox Modal */}
-      {selectedImage && (
-        <div
-          onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-6 cursor-zoom-out"
-        >
-          <div className="relative max-w-5xl max-h-[85vh] w-full h-full">
-            <Image
-              src={selectedImage}
-              alt="Expanded view"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-      )}
+      {/* 3. Portal Lightbox Modal (محقون مباشرة في document.body) */}
+      {lightboxModal}
     </>
   );
 }
