@@ -109,7 +109,7 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <section className="relative bg-[#FDFCF7] py-20 lg:py-24 border-t border-slate-200/60 overflow-hidden">
+    <section className="relative bg-[#FDFCF7] pt-12 pb-16 lg:pt-14 lg:pb-18 border-t border-slate-200/60 overflow-hidden">
       {/* شبكة إحداثيات رادارية معمارية خلفية */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -117,10 +117,10 @@ export default function FeaturedProjects() {
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#e6b224]/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="site-container space-y-8 relative z-10">
+      <div className="site-container space-y-6 relative z-10">
 
         {/* الهيدر المعماري الفاخر */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-slate-200 pb-5">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#df9d17]/10 border border-[#df9d17]/30 text-[#df9d17] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
@@ -130,7 +130,7 @@ export default function FeaturedProjects() {
               Featured Projects<span className="text-[#df9d17]">.</span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed sm:pt-4">
             Proven engineering in modular event tents and large clear-span structures, delivered for royal venues and leading international exhibitions across UAE & KSA.
           </p>
         </div>

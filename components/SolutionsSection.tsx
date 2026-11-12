@@ -105,7 +105,7 @@ export default function SolutionsSection() {
   }, []);
 
   return (
-    <section className="relative py-20 lg:py-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
+    <section className="relative py-10 lg:py-14 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden">
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -114,14 +114,14 @@ export default function SolutionsSection() {
       <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
 
       {/* الهيدر العلوي */}
-      <div className="site-container mb-10 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200/80 pb-8">
-          <div className="space-y-3 max-w-2xl">
+      <div className="site-container mb-6 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-200/80 pb-6">
+          <div className="space-y-2.5 max-w-2xl">
             <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               <Sparkles className="w-3.5 h-3.5" />
               <span>PREMIER TENT SOLUTIONS</span>
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] tracking-tight leading-snug">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
               Our Solutions,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
                 For Every Event
@@ -129,8 +129,8 @@ export default function SolutionsSection() {
             </h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <p className="text-slate-600 text-sm max-w-md font-light leading-relaxed">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:pt-4">
+            <p className="text-slate-600 text-sm max-w-sm font-normal leading-relaxed">
               Explore our comprehensive range of clear-span modular tents, warehouse structures, and custom event halls.
             </p>
 
@@ -145,8 +145,8 @@ export default function SolutionsSection() {
         </div>
       </div>
 
-      <div className="site-container relative z-10 space-y-8">
-        {/* 1. شريط اختيار الحلول بالكامل بدون سكرول داخلي */}
+      <div className="site-container relative z-10 space-y-5">
+        {/*  شريط اختيار الحلول بالكامل بدون سكرول داخلي */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
           {solutions.map((item, idx) => {
             const isSelected = selectedIdx === idx;
@@ -155,11 +155,10 @@ export default function SolutionsSection() {
                 key={item.id}
                 onMouseEnter={() => setSelectedIdx(idx)}
                 onClick={() => setSelectedIdx(idx)}
-                className={`relative px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 cursor-pointer flex items-center gap-2 border ${
-                  isSelected
+                className={`relative px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 cursor-pointer flex items-center gap-2 border ${isSelected
                     ? "text-white border-[#df9d17]"
                     : "bg-white text-slate-700 border-slate-200/90 hover:border-[#df9d17]/50 hover:text-[#0B1220]"
-                }`}
+                  }`}
               >
                 {isSelected && (
                   <motion.span
