@@ -113,7 +113,7 @@ export default async function ArabicSolutionsCatalogPage() {
                       <h2 className="text-xl font-black text-[#0B1220] group-hover:text-[#df9d17] transition-colors leading-snug font-heading">
                         {arData.name}
                       </h2>
-
+ 
 
                       <p className="text-xs sm:text-sm text-slate-600 font-normal line-clamp-2 leading-relaxed">
                         {arData.tagline || arData.overview}
