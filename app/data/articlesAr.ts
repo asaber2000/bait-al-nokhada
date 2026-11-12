@@ -23,7 +23,7 @@ export const articlesArDatabase: ArticleAr[] = [
   {
     id: "1",
     slug: "tent-rental-guide-uae",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp",
     featured: true,
     ar: {
       title: "تأجير خيام في دبي، الشارقة، عجمان وكافة أنحاء الإمارات: الدليل الشامل من بيت النوخذة",

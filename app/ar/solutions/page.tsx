@@ -86,8 +86,10 @@ export default async function ArabicSolutionsCatalogPage() {
               return (
                 <div
                   key={solution.slug || idx}
-                  className="group rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-md text-right"
+                  className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5"
                 >
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#df9d17]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                   <div>
                     <div className="relative w-full aspect-video overflow-hidden bg-slate-100">
                       <Image
@@ -112,11 +114,6 @@ export default async function ArabicSolutionsCatalogPage() {
                         {arData.name}
                       </h2>
 
-                      {arData.overviewTitle && (
-                        <h3 className="text-lg font-bold text-[#0B1220]">
-                          {arData.overviewTitle}
-                        </h3>
-                      )}
 
                       <p className="text-xs sm:text-sm text-slate-600 font-normal line-clamp-2 leading-relaxed">
                         {arData.tagline || arData.overview}

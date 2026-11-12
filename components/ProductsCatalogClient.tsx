@@ -68,8 +68,8 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
                   <div className="absolute inset-0 bg-gradient-to-b from-[#df9d17]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   <div>
-                    <div className="p-3.5 pb-0">
-                      <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/60">
+                    <div>
+                      <div className="relative h-64 w-full overflow-hidden bg-[#F4F6F9] border-b border-slate-100">
                         <Image
                           src={product.catalogImage || product.heroImage || product.coverImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"}
                           alt={product.name}
@@ -80,7 +80,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
                           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
 
-                        <div className="absolute top-3 left-3 z-10">
+                        <div className="absolute top-4 left-4 z-10">
                           <span className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/95 backdrop-blur-md text-[#df9d17] border border-slate-200/80 shadow-xs">
                             {product.category || "Modular Structure"}
                           </span>

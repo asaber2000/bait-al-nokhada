@@ -31,7 +31,7 @@ export const articlesDatabase: ArticleEn[] = [
     date: "August 18, 2026",
     readTime: "8 min read",
     author: "Bait Al Nokhada Editorial & Engineering Desk",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+    heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp",
     featured: true,
     metaTitle: "Tents Rental in Dubai, Sharjah, Ajman & UAE | Bait Al Nokhada",
     metaDescription: "Looking for tents rental in Dubai, Sharjah, Ajman, or across UAE? Explore luxury wedding tents, exhibition arenas, and warehouse storage solutions.",
