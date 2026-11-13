@@ -223,8 +223,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 mt-12 border-t border-slate-200/80 flex flex-col sm:flex-row items-center ju stify-between gap-4 text-[11px] text-slate-500">
         <p>© 2026 Bait Al Nokhada Tents. All Rights Reserved.</p>
         <div className="flex items-center gap-6">
-          <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-          <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
+          <Link href="/terms" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
+          <Link href="/privacy" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>
