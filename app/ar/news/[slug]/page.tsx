@@ -295,11 +295,33 @@ async function getArabicArticleData(slug: string) {
   return null;
 }
 
+async function checkEnglishVersionExists(slug: string) {
+  try {
+    const query = `*[_type == "articleEnglish" && slug.current == $slug][0]{ titleEn }`;
+    return await client.fetch(query, { slug }, { next: { revalidate: 60 } });
+  } catch {
+    return null;
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArabicArticleData(slug);
 
   if (!article) {
+    const enArticle = await checkEnglishVersionExists(slug);
+    if (enArticle) {
+      return {
+        title: `${enArticle.titleEn} | بيت النوخذة`,
+        alternates: {
+          canonical: `https://baitalnokhada.com/news/${slug}/`,
+        },
+        robots: {
+          index: false,
+          follow: true,
+        },
+      };
+    }
     return { title: "المقال غير موجود | بيت النوخذة" };
   }
 
@@ -331,6 +353,47 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
   const article = await getArabicArticleData(slug);
 
   if (!article) {
+    const enArticle = await checkEnglishVersionExists(slug);
+
+    if (enArticle) {
+      return (
+        <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
+          <Navbar />
+          <div className="max-w-2xl mx-auto px-4 py-40">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm text-center space-y-5">
+              <span className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30">
+                النسخة الإنجليزية متوفرة حالياً
+              </span>
+
+              <h1 className="text-xl sm:text-2xl font-black text-[#0B1220] font-heading leading-snug" dir="ltr">
+                {enArticle.titleEn}
+              </h1>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                هذه المقالة متوفرة حالياً باللغة الإنجليزية فقط، ويعمل فريق التحرير الهندسي لدينا على تجهيز النسخة العربية الكاملة قريباً.
+              </p>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Link
+                  href={`/news/${slug}`}
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider transition-all shadow-md"
+                >
+                  اقرأ المقالة باللغة الإنجليزية (Read in English)
+                </Link>
+                <Link
+                  href="/ar/news"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-slate-700 border border-slate-200 hover:border-[#df9d17] font-bold text-xs uppercase tracking-wider transition-all"
+                >
+                  تصفح كافة المقالات العربية
+                </Link>
+              </div>
+            </div>
+          </div>
+          <Footer />
+        </main>
+      );
+    }
+
     return (
       <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] flex flex-col justify-between font-sans text-right">
         <Navbar />
