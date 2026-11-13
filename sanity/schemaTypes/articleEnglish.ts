@@ -244,7 +244,7 @@ export const articleEnglish = {
               type: 'object',
               fields: [
                 { name: 'btnText', title: 'Button Text', type: 'string', initialValue: 'Get a Quote' },
-                { name: 'btnUrl', title: 'Button URL', type: 'string', initialValue: '/contact' },
+                { name: 'btnUrl', title: 'Button URL', type: 'string', initialValue: '/contact-us' },
                 {
                   name: 'btnStyle',
                   title: 'Button Style',

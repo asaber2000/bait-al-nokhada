@@ -126,7 +126,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
               {/* أزرار التواصل */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#df9d17]/20 flex items-center gap-2"
                 >
                   <span>REQUEST A QUOTE</span>
@@ -321,7 +321,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/contact"
+              href="/contact-us"
               className="px-8 py-4 rounded-xl bg-[#df9d17] hover:bg-[#000000] text-white font-black text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
             >
               <span>Submit Project Requirements</span>

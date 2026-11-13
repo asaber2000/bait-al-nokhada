@@ -204,7 +204,7 @@ export const article = {
               type: 'object',
               fields: [
                 { name: 'btnText', title: 'نص الزر', type: 'string', initialValue: 'احصل على عرض سعر' },
-                { name: 'btnUrl', title: 'رابط الزر (URL)', type: 'string', initialValue: '/ar/contact' },
+                { name: 'btnUrl', title: 'رابط الزر (URL)', type: 'string', initialValue: '/ar/contact-us' },
                 {
                   name: 'btnStyle',
                   title: 'لون وتصميم الزر',

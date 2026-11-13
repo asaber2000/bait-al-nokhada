@@ -7,12 +7,12 @@ import Image from "next/image";
 export default function FooterAr() {
   const quickLinks = [
     { name: "الرئيسية", href: "/ar" },
-    { name: "من نحن", href: "/ar/about" },
+    { name: "من نحن", href: "/ar/about-us" },
     { name: "المنتجات", href: "/ar/products" },
     { name: "الحلول والخدمات", href: "/ar/solutions" },
     { name: "المشاريع", href: "/ar/projects" },
     { name: "الأخبار والمقالات", href: "/ar/news" },
-    { name: "تواصل معنا", href: "/ar/contact" },
+    { name: "تواصل معنا", href: "/ar/contact-us" },
   ];
 
   const featuredSolutions = [
@@ -199,7 +199,7 @@ export default function FooterAr() {
           </ul>
           <div className="pt-2">
             <Link
-              href="/ar/contact"
+              href="/ar/contact-us"
               className="inline-flex items-center gap-2 text-xs font-bold text-[#df9d17] hover:text-[#0B1220] transition-colors group"
             >
               <span>طلب عرض سعر واستشارة</span>

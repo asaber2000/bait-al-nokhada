@@ -62,7 +62,7 @@ export default function HeroContentAr() {
           className="inline-flex items-center gap-1.5 sm:gap-2 p-1 rounded-full bg-black/50 backdrop-blur-2xl border border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
         >
           <Link
-            href="/ar/contact"
+            href="/ar/contact-us"
             className="group inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#df9d17] hover:bg-white text-[#0B1220] font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md"
           >
             <span>طلب دراسة مشروع</span>

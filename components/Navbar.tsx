@@ -322,7 +322,7 @@ export default function Navbar() {
                     <span className="text-xs font-mono text-slate-400">01</span>
                   </Link>
                   <Link
-                    href="/about"
+                    href="/about-us"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading uppercase text-slate-900"
                   >
@@ -451,7 +451,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/contact"
+                    href="/contact-us"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading uppercase text-slate-900"
                   >
@@ -478,7 +478,7 @@ export default function Navbar() {
 
                     {/*  About Us */}
                     <Link
-                      href="/about"
+                      href="/about-us"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
                     >
@@ -554,7 +554,7 @@ export default function Navbar() {
 
                     {/*  Contact */}
                     <Link
-                      href="/contact"
+                      href="/contact-us"
                       onClick={() => setMobileMenuOpen(false)}
                       className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/75 hover:text-[#df9d17] transition-all font-heading uppercase"
                     >

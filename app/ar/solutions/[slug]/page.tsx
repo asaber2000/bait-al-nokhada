@@ -127,7 +127,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
               {/* أزرار الأكشن */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/ar/contact"
+                  href="/ar/contact-us"
                   className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#df9d17]/20 flex items-center gap-2"
                 >
                   <span>طلب عرض سعر</span>
@@ -322,7 +322,7 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/ar/contact"
+              href="/ar/contact-us"
               className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
             >
               <span>أرسل متطلبات مشروعك</span>

@@ -565,7 +565,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                   {section.sectionButton && section.sectionButton.btnText && (
                     <div className="pt-4 flex justify-center sm:justify-start">
                       <Link
-                        href={section.sectionButton.btnUrl || "/contact"}
+                        href={section.sectionButton.btnUrl || "/contact-us"}
                         aria-label={section.sectionButton.btnText || "Get a quote"}
                         className={`inline-flex items-center gap-2 px-7 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md ${section.sectionButton.btnStyle === 'outline'
                           ? 'bg-white text-slate-800 border border-slate-200/80 hover:border-[#df9d17]'
@@ -634,7 +634,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
               <h4 className="text-sm font-bold text-[#0B1220]">Planning an Engineering Tent Project?</h4>
               <p className="text-xs text-slate-600 font-normal">Get direct factory rates with custom sizing, HVAC & setup across Dubai & the UAE, KSA.</p>
               <Link
-                href="/contact"
+                href="/contact-us"
                 aria-label="Request a rapid rental quote"
                 className="w-full py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all hover:scale-105"
               >

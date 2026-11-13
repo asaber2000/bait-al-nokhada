@@ -464,7 +464,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
-              href="/contact"
+              href="/contact-us"
               className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all flex items-center gap-2"
             >
               <span>Request Technical Consultation</span>

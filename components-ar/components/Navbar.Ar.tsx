@@ -323,7 +323,7 @@ export default function ArabicNavbar() {
             </Link>
 
             <Link
-              href="/ar/about"
+              href="/ar/about-us"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading text-slate-900"
             >
@@ -454,7 +454,7 @@ export default function ArabicNavbar() {
             </Link>
 
             <Link
-              href="/ar/contact"
+              href="/ar/contact-us"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-3 border-b border-slate-200/70 text-2xl font-black font-heading text-slate-900"
             >
@@ -480,7 +480,7 @@ export default function ArabicNavbar() {
 
               {/* من نحن */}
               <Link
-                href="/ar/about"
+                href="/ar/about-us"
                 onClick={() => setMobileMenuOpen(false)}
                 className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
               >
@@ -556,7 +556,7 @@ export default function ArabicNavbar() {
 
               {/*  تواصل معنا */}
               <Link
-                href="/ar/contact"
+                href="/ar/contact-us"
                 onClick={() => setMobileMenuOpen(false)}
                 className="group flex items-center justify-between py-2 text-3xl xl:text-4xl font-black tracking-tight text-[#0B1220]/80 hover:text-[#df9d17] transition-all font-heading"
               >

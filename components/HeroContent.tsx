@@ -24,7 +24,7 @@ export default function HeroContent({ data }: { data?: HeroData }) {
     const description = data?.description || "Precision-engineered exhibition tents, sales centers, and industrial storage solutions built to international standards. Offering premium tents for sale and rental with full on-site deployment across the UAE, KSA, GCC, and worldwide.";
 
     const primaryBtnText = data?.primaryButtonText || "REQUEST INSTANT QUOTE";
-    const primaryBtnUrl = data?.primaryButtonUrl || "/contact";
+    const primaryBtnUrl = data?.primaryButtonUrl || "/contact-us";
     const secondaryBtnText = data?.secondaryButtonText || "EXPLORE PROJECTS";
     const secondaryBtnUrl = data?.secondaryButtonUrl || "/projects";
 

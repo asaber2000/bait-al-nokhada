@@ -545,7 +545,7 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
                   {section.sectionButton && section.sectionButton.btnText && (
                     <div className="pt-3 text-center">
                       <Link
-                        href={section.sectionButton.btnUrl || "/ar/contact"}
+                        href={section.sectionButton.btnUrl || "/ar/contact-us"}
                         aria-label={section.sectionButton.btnText || "طلب عرض سعر"}
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider shadow-md transition-all duration-300"
                       >
@@ -611,7 +611,7 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
               <h4 className="text-sm font-bold text-[#0B1220]">هل تحتاج لعرض أسعار فوري للتأجير أو الشراء؟</h4>
               <p className="text-xs text-slate-600 font-normal">نوفر لك استشارة فنية وأسعار المصنع مباشرة حسب المساحة والتصميم المطلوب في أي مكان.</p>
               <Link
-                href="/ar/contact"
+                href="/ar/contact-us"
                 aria-label="طلب عرض سعر فوري للتأجير أو الشراء"
                 className="w-full py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-[#0B1220] hover:text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all"
               >

@@ -103,7 +103,7 @@ export default async function ArabicNewsCatalogPage() {
           </p>
           <div className="pt-3">
             <Link
-              href="/ar/contact"
+              href="/ar/contact-us"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-md shadow-[#df9d17]/20"
             >
               <span>تواصل مع الإدارة الهندسية</span>

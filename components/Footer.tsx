@@ -8,12 +8,12 @@ import Image from "next/image";
 export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "About Us", href: "/about-us" },
     { name: "Products", href: "/products" },
     { name: "Solutions", href: "/solutions" },
     { name: "Projects", href: "/projects" },
     { name: "News & Media", href: "/news" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "/contact-us" },
   ];
 
   const featuredSolutions = [
@@ -208,7 +208,7 @@ export default function Footer() {
           </ul>
           <div className="pt-2">
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#df9d17] hover:text-[#0B1220] transition-colors"
             >
               <span>Request Quotation</span>
@@ -223,8 +223,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 mt-12 border-t border-slate-200/80 flex flex-col sm:flex-row items-center ju stify-between gap-4 text-[11px] text-slate-500">
         <p>© 2026 Bait Al Nokhada Tents. All Rights Reserved.</p>
         <div className="flex items-center gap-6">
-          <Link href="/contact" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-          <Link href="/contact" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
+          <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
+          <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

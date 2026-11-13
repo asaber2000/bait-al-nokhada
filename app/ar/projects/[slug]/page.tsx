@@ -471,7 +471,7 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
-              href="/ar/contact"
+              href="/ar/contact-us"
               className="px-8 py-3.5 rounded-xl bg-[#df9d17] hover:bg-black text-white font-bold text-xs uppercase tracking-wider hover:scale-105 shadow-md shadow-[#df9d17]/20 transition-all"
             >
               <span>طلب استشارة فنية وهندسية</span>
