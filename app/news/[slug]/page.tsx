@@ -275,7 +275,7 @@ async function getArticleData(slug: string) {
 
 async function checkArabicVersionExists(slug: string) {
   try {
-    const query = `*[_type == "articleArabic" && slug.current == $slug][0]{ titleAr }`;
+    const query = `*[_type == "article" && slug.current == $slug][0]{ titleAr }`;
     return await client.fetch(query, { slug }, { next: { revalidate: 60 } });
   } catch {
     return null;
