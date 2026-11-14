@@ -15,6 +15,12 @@ export interface SolutionItemEn {
   keyBenefits: { title: string; desc: string }[];
   technicalSpecs: { label: string; value: string }[];
   faqs: { q: string; a: string }[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
 }
 
 export const solutionsDatabase: SolutionItemEn[] = [
@@ -349,7 +355,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Can the side walls be opened during milder winter months?",
         a: "Yes, we offer motorized roll-up systems and retractable sidewalls that allow natural open-air ventilation in winter and hermetic climate-sealed cooling throughout summer."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Luxury Wedding Tent, Rentals & Sales In UAE & KSA",
+      metaDescription:
+        "Discover premium wedding tent rentals & sales in UAE & KSA. Fully customizable luxury tents by Bait Al Nokhada with décor, AC, and expert installation.",
+      focusKeywords: [
+        "Wedding Tent",
+        "Luxury Wedding Tent UAE",
+        "Wedding Tent Rental Dubai",
+        "Wedding Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Wedding Tent",
+    },
   },
   {
     id: "6",

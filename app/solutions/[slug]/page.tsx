@@ -8,6 +8,7 @@ import {
   PhoneCall,
   Video
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -32,6 +33,14 @@ async function getSolutionDetailEn(slug: string) {
       videoSectionTitleEn, 
       youtubeUrlEn,
       faqsEn[]{question, answer}, 
+      _createdAt,
+      _updatedAt,
+      seo{
+        metaTitle,
+        metaDescription,
+        focusKeywords,
+        canonicalUrl
+        },
       "catalogImage": catalogImage.asset->url,
       "gallery": solutionGalleryEn[].asset->url,
       "coverImage": coverImage.asset->url
@@ -40,6 +49,103 @@ async function getSolutionDetailEn(slug: string) {
   } catch (error) {
     return null;
   }
+}
+
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const sanity = await getSolutionDetailEn(slug);
+  const local = solutionsDatabase.find((s) => s.slug === slug);
+
+  const name = sanity?.titleEn || local?.name || "Custom Tent Solution";
+  const rawDesc =
+    sanity?.seo?.metaDescription ||
+    local?.seo?.metaDescription ||
+    sanity?.summaryEn ||
+    local?.tagline ||
+    `Custom ${name} manufacturing, supply, and rental in UAE, Saudi Arabia, and GCC by Bait Al Nokhada Tents Factory.`;
+
+  const metaTitle =
+    sanity?.seo?.metaTitle ||
+    local?.seo?.metaTitle ||
+    `${name} Supplier & Rental in UAE & KSA | Bait Al Nokhada`;
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/solutions/${slug}/`;
+  const arUrl = `${BASE_URL}/ar/solutions/${slug}/`;
+  const ogImage =
+    sanity?.coverImage ||
+    sanity?.catalogImage ||
+    local?.heroImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
+  const keywords: string[] = Array.isArray(sanity?.seo?.focusKeywords)
+    ? sanity.seo.focusKeywords
+    : Array.isArray(local?.seo?.focusKeywords)
+      ? local.seo.focusKeywords
+      : [
+          name,
+          `${name} UAE`,
+          `${name} Dubai`,
+          `${name} Saudi Arabia`,
+          `${name} rental`,
+          `${name} supplier`,
+          "Bait Al Nokhada Tents Factory",
+        ];
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "en-AE": canonicalUrl,
+        "ar-AE": arUrl,
+        "x-default": canonicalUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: canonicalUrl,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: metaTitle,
+      description: metaDescription,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} - Bait Al Nokhada Tents Factory`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function SolutionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -74,8 +180,162 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
           "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
         ];
 
+        const pageUrl = `${BASE_URL}/solutions/${slug}/`;
+
+  const solutionJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "24.93410630",
+          longitude: "55.06500100",
+        },
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "Bait Al Nokhada",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "United Arab Emirates" },
+          { "@type": "Country", name: "Saudi Arabia" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: `${BASE_URL}/`,
+        name: "Bait Al Nokhada Tents Factory",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "en-AE",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${BASE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Solutions",
+            item: `${BASE_URL}/solutions/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: solution.name,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${solution.name} | Bait Al Nokhada Tents Factory`,
+        description: solution.tagline,
+        datePublished: sanity?._createdAt || "2021-07-19T18:06:30+04:00",
+        dateModified: sanity?._updatedAt || "2026-11-14T10:30:00+04:00",
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        about: { "@id": `${pageUrl}#service` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: solution.heroImage,
+        },
+        inLanguage: "en-AE",
+      },
+      {
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        name: solution.name,
+        description: solution.overview || solution.tagline,
+        serviceType: solution.name,
+        category: solution.badge,
+        provider: { "@id": `${BASE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Country", name: "United Arab Emirates" },
+          { "@type": "Country", name: "Saudi Arabia" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        image: solution.heroImage,
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          url: `${BASE_URL}/contact-us/`,
+        },
+        mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+      },
+      ...(solution.faqs && solution.faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${pageUrl}#faq`,
+              mainEntity: solution.faqs.map((faq: { q: string; a: string }) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.a,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Banner */}

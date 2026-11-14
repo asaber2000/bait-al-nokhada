@@ -163,6 +163,41 @@ async redirects() {
           },
         ];
       }),
+      // تحويل روابط المنتجات القديمة بصيغة الجمع (-tents) إلى المفرد (-tent)
+      ...[
+        "arabic-majlis-tents",
+        "arch-tents",
+        "capsule-tents",
+        "dome-tents",
+        "double-decker-tents",
+        "geodesic-tents",
+        "panoramic-tents",
+        "polygon-tents",
+        "pyramid-dome-tents",
+        "pyramid-tents",
+        "revolution-tents",
+        "wave-tents",
+      ].flatMap((pluralSlug) => {
+        const singularSlug = pluralSlug.replace(/-tents$/, "-tent");
+        return [
+          {
+            source: `/products/${pluralSlug}`,
+            destination: `/products/${singularSlug}/`,
+            permanent: true,
+          },
+          {
+            source: `/ar/products/${pluralSlug}`,
+            destination: `/ar/products/${singularSlug}/`,
+            permanent: true,
+          },
+        ];
+      }),
+      // تحويلات صفحات قديمة ظهرت في page-sitemap القديم
+      { source: "/privacy-policy", destination: "/privacy/", permanent: true },
+      { source: "/ar/privacy-policy", destination: "/ar/privacy/", permanent: true },
+      { source: "/about-us-2", destination: "/about-us/", permanent: true },
+      { source: "/shop", destination: "/products/", permanent: true },
+      { source: "/ar/shop", destination: "/ar/products/", permanent: true },
     ];
   },
 };      

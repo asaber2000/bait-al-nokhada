@@ -8,6 +8,7 @@ import {
   PhoneCall,
   Video
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
@@ -33,6 +34,14 @@ async function getSolutionDetail(slug: string) {
       youtubeUrl,
       youtubeUrlAr,
 faqs[]{question, answer}, 
+_createdAt,
+_updatedAt,
+seo{
+  metaTitle,
+  metaDescription,
+  focusKeywords,
+  canonicalUrl
+  },
 "catalogImage": catalogImage.asset->url,
 "gallery": solutionGallery[].asset->url,
 "coverImage": coverImage.asset->url
@@ -41,6 +50,103 @@ faqs[]{question, answer},
   } catch (error) {
     return null;
   }
+}
+
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const sanitySolution = await getSolutionDetail(slug);
+  const localSolution = solutionsDatabase.find((s) => s.slug === slug);
+
+  const name = sanitySolution?.titleAr || localSolution?.name || "حلول الخيام";
+  const rawDesc =
+    sanitySolution?.seo?.metaDescription ||
+    localSolution?.seo?.metaDescription ||
+    sanitySolution?.summaryAr ||
+    localSolution?.tagline ||
+    `تصنيع وتوريد وتأجير ${name} في الإمارات والسعودية ودول الخليج من مصنع بيت النوخذة للخيام.`;
+
+  const metaTitle =
+    sanitySolution?.seo?.metaTitle ||
+    localSolution?.seo?.metaTitle ||
+    `${name} | تصنيع وتأجير في الإمارات والسعودية | بيت النوخذة`;
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/ar/solutions/${slug}/`;
+  const enUrl = `${BASE_URL}/solutions/${slug}/`;
+  const ogImage =
+    sanitySolution?.coverImage ||
+    sanitySolution?.catalogImage ||
+    localSolution?.heroImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
+  const keywords: string[] = Array.isArray(sanitySolution?.seo?.focusKeywords)
+    ? sanitySolution.seo.focusKeywords
+    : Array.isArray(localSolution?.seo?.focusKeywords)
+      ? localSolution.seo.focusKeywords
+      : [
+          name,
+          `تأجير ${name}`,
+          `${name} الإمارات`,
+          `${name} دبي`,
+          `${name} السعودية`,
+          `تصنيع وتوريد ${name}`,
+          "بيت النوخذة للخيام",
+        ];
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "en-AE": enUrl,
+        "ar-AE": canonicalUrl,
+        "x-default": enUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: canonicalUrl,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: metaTitle,
+      description: metaDescription,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} - بيت النوخذة للخيام`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function ArabicSolutionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -86,8 +192,164 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
         ];
 
   const arData = solution;
+
+const pageUrl = `${BASE_URL}/ar/solutions/${slug}/`;
+
+  const arabicSolutionJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "24.93410630",
+          longitude: "55.06500100",
+        },
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "بيت النوخذة للخيام",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/ar/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "الإمارات العربية المتحدة" },
+          { "@type": "Country", name: "المملكة العربية السعودية" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        url: `${BASE_URL}/ar/`,
+        name: "مصنع بيت النوخذة للخيام",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "ar-AE",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "الرئيسية",
+            item: `${BASE_URL}/ar/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "الحلول",
+            item: `${BASE_URL}/ar/solutions/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: localSolution?.seo?.breadcrumbTitle || arData.name,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${arData.name} | مصنع بيت النوخذة للخيام`,
+        description: arData.tagline,
+        datePublished: sanitySolution?._createdAt || "2021-07-19T18:06:30+04:00",
+        dateModified: sanitySolution?._updatedAt || "2026-11-14T10:30:00+04:00",
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/ar/#website` },
+        about: { "@id": `${pageUrl}#service` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: solution.heroImage,
+        },
+        inLanguage: "ar-AE",
+      },
+      {
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        name: arData.name,
+        description: arData.overview || arData.tagline,
+        serviceType: arData.name,
+        category: arData.badge,
+        provider: { "@id": `${BASE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Country", name: "الإمارات العربية المتحدة" },
+          { "@type": "Country", name: "المملكة العربية السعودية" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        image: solution.heroImage,
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          url: `${BASE_URL}/ar/contact-us/`,
+        },
+        mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+      },
+      ...(arData.faqs && arData.faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${pageUrl}#faq`,
+              mainEntity: arData.faqs.map((faq: { q: string; a: string }) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.a,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicSolutionJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Banner */}
