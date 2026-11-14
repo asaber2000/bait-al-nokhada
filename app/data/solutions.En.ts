@@ -87,7 +87,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Are warehouse tents available for short-term rental as well as direct purchase?",
         a: "Yes, Bait Al Nokhada provides scalable short-term and long-term rental agreements for temporary project phases, alongside direct factory manufacturing for permanent facilities."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Warehouse Tents in UAE & KSA | Buy or Rent Industrial Storage Tents",
+      metaDescription:
+        "Heavy-duty warehouse tents for sale or rental in UAE & KSA. Fast setup, durable aluminum frames, waterproof PVC covers. Ideal for storage, logistics & more.",
+      focusKeywords: [
+        "Warehouse Tents",
+        "Luxury Warehouse Tents UAE",
+        "Warehouse Tent Supplier Dubai",
+        "Wedding Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Warehouse Tent",
+    },
   },
   {
     id: "2",
@@ -152,7 +164,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Are your wedding tents available for short-term rental in Dubai and Riyadh?",
         a: "Yes, Bait Al Nokhada provides rapid delivery, luxury installation, on-site technical standby, and post-event removal across the UAE and KSA."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Luxury Wedding Tent, Rentals & Sales In UAE & KSA",
+      metaDescription:
+        "Discover premium wedding tent rentals & sales in UAE & KSA. Fully customizable luxury tents by Bait Al Nokhada with décor, AC, and expert installation.",
+      focusKeywords: [
+        "Wedding Tent",
+        "Luxury Wedding Tent UAE",
+        "Wedding Tent Rental Dubai",
+        "Wedding Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Wedding Tent",
+    },
   },
   {
     id: "3",
@@ -221,7 +245,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Are event tents available for rental with full on-site technical support?",
         a: "Yes, Bait Al Nokhada provides complete event rental services across the UAE and KSA, including rapid deployment, 24/7 on-site engineering standby, and post-event removal."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Custom Event Tent Rentals | Outdoor Event Tents UAE & KSA",
+      metaDescription:
+        "Discover luxury event tents for rent in UAE & KSA. Perfect for any occasion with elegant designs, full customization, and fast setup for unforgettable events.",
+      focusKeywords: [
+        "Event Tents",
+        "Luxury Event Tent UAE",
+        "Event Tent Rentals",
+        "Event Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Event Tent",
+    },
   },
   {
     id: "4",
@@ -290,7 +326,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Are exhibition tents available for temporary rental with on-site maintenance?",
         a: "Yes, Bait Al Nokhada provides turnkey rental programs with complete rapid assembly, round-the-clock technical supervision during the expo, and safe dismantling across the UAE and KSA."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Exhibition Tents in UAE & KSA | Trade Show Tent Rentals",
+      metaDescription:
+        "Discover premium exhibition tents for events, trade shows, and promotions. Sale & rental available across UAE & KSA. Trusted tent supplier since 1997.",
+      focusKeywords: [
+        "Exhibition Tents",
+        "Luxury Exhibition Tent UAE",
+        "Exhibition Tent Rental Dubai",
+        "Exhibition Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Exhibition Tent",
+    },
   },
   {
     id: "5",
@@ -357,16 +405,16 @@ export const solutionsDatabase: SolutionItemEn[] = [
       }
     ],
     seo: {
-      metaTitle: "Luxury Wedding Tent, Rentals & Sales In UAE & KSA",
+      metaTitle: "Sports Tents for Sale & Rental in UAE & KSA | Bait Al Nokhada",
       metaDescription:
-        "Discover premium wedding tent rentals & sales in UAE & KSA. Fully customizable luxury tents by Bait Al Nokhada with décor, AC, and expert installation.",
+        "High-quality sports tents for events and athletic facilities in UAE & KSA. Custom-built, all-weather structures for rent or sale. Quick setup & expert support.",
       focusKeywords: [
-        "Wedding Tent",
-        "Luxury Wedding Tent UAE",
-        "Wedding Tent Rental Dubai",
-        "Wedding Tent Sales KSA",
+        "Sports Tent",
+        "Luxury Sports Tents UAE",
+        "Sports Tent Rental Dubai",
+        "Sports Tent Sales KSA",
       ],
-      breadcrumbTitle: "Wedding Tent",
+      breadcrumbTitle: "Sports Tent",
     },
   },
   {
@@ -432,7 +480,19 @@ export const solutionsDatabase: SolutionItemEn[] = [
         q: "Are Ramadan tents available on seasonal rental across UAE and KSA?",
         a: "Yes, Bait Al Nokhada delivers complete seasonal rental packages covering pre-Ramadan installation, full electrical fit-out, on-call maintenance, and post-Eid dismantling."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Ramadan tent | Ramadan rental tents | Ramadan tents",
+      metaDescription:
+        "Ramadan tents are temporary structures set up during the holy month of Ramadan, a sacred period observed by Muslims worldwide. Ramadan rental tents.",
+      focusKeywords: [
+        "Ramadan tent",
+        "Luxury Ramadan tents UAE",
+        "Ramadan tent Rental Dubai",
+        "Ramadan tent Sales KSA",
+      ],
+      breadcrumbTitle: "Ramadan Tent",
+    },
   },
   {
     id: "7",
@@ -495,6 +555,18 @@ export const solutionsDatabase: SolutionItemEn[] = [
       q: "Are aircraft hangar tents available for both rental and direct purchase?",
       a: "Yes, Bait Al Nokhada offers direct manufacturing for permanent installations as well as scalable long-term rental agreements for tactical deployments and temporary MRO contracts."
     }
-  ]
+  ],
+  seo: {
+      metaTitle: "Aircraft Hangar Tents for Sale & Rental in UAE & KSA",
+      metaDescription:
+        "Durable aircraft hangar tents for sale and rental in UAE & KSA. Ideal for military, MRO, and aviation use. Rapid installation. Custom sizes. Get a quote now.",
+      focusKeywords: [
+        "Aircraft Hangar Tent",
+        "Aircraft Hangar Tents for Sale",
+        "Aircraft Hangar Tents for rent",
+        "Aircraft Hangar Tents ",
+      ],
+      breadcrumbTitle: "Aircraft Hangar Tent",
+    },
 },
 ];
