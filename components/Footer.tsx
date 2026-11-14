@@ -17,13 +17,13 @@ export default function Footer() {
   ];
 
   const featuredSolutions = [
-    { name: "Tent Rental & Leasing", href: "/news/tent-rental-guide-uae" },
-    { name: "Royal Wedding Tents", href: "/solutions/wedding-tents" },
-    { name: "Exhibition & Event Arenas", href: "/solutions/exhibition-tents" },
-    { name: "Sports & Stadium Domes", href: "/solutions/sports-tents" },
-    { name: "Warehouse & Industrial Tents", href: "/solutions/warehouse-tents" },
-    { name: "Aircraft Hangar Tents", href: "/solutions/aircraft-hangar-tents" },
-    { name: "Ramadan Hospitality Tents", href: "/solutions/ramadan-tents" },
+    { name: "Tent Rental & Leasing", href: "/news/tent-rental" },
+    { name: "Royal Wedding Tents", href: "/solutions/wedding-tent" },
+    { name: "Exhibition & Event Arenas", href: "/solutions/exhibition-tent" },
+    { name: "Sports & Stadium Domes", href: "/solutions/sports-tent" },
+    { name: "Warehouse & Industrial Tents", href: "/solutions/warehouse-tent" },
+    { name: "Aircraft Hangar Tents", href: "/solutions/aircraft-hangar-tent" },
+    { name: "Ramadan Hospitality Tents", href: "/solutions/ramadan-tent" },
   ];
 
   const socialLinks = [

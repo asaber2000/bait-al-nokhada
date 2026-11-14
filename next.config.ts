@@ -139,6 +139,30 @@ async redirects() {
             ]
           : []),
       ]),
+      // تحويل روابط الحلول بصيغة الجمع (-tents) إلى المفرد (-tent)
+      ...[
+        "warehouse-tents",
+        "wedding-tents",
+        "event-tents",
+        "exhibition-tents",
+        "sports-tents",
+        "ramadan-tents",
+        "aircraft-hangar-tents",
+      ].flatMap((pluralSlug) => {
+        const singularSlug = pluralSlug.replace(/-tents$/, "-tent");
+        return [
+          {
+            source: `/solutions/${pluralSlug}`,
+            destination: `/solutions/${singularSlug}/`,
+            permanent: true,
+          },
+          {
+            source: `/ar/solutions/${pluralSlug}`,
+            destination: `/ar/solutions/${singularSlug}/`,
+            permanent: true,
+          },
+        ];
+      }),
     ];
   },
 };      

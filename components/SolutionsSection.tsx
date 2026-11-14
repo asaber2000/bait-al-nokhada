@@ -13,7 +13,7 @@ const solutions = [
     desc: "Discover premium exhibition tents for events, trade shows, and promotions. Sale & rental available across UAE & KSA. Trusted tent supplier since 1997.",
     specs: "Up to 60m Clear-Span • High Wind Load",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
-    href: "/solutions/exhibition-tents",
+    href: "/solutions/exhibition-tent",
   },
   {
     id: "02",
@@ -21,7 +21,7 @@ const solutions = [
     desc: "Discover our premium event tents for rent across the UAE, KSA, and GCC—featuring complete branding capabilities, elegant customization, and professional on-site setup services tailored to your event's needs.",
     specs: "Multi-Tiered Staging • Heavy-Duty HVAC Integration",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
-    href: "/solutions/event-tents",
+    href: "/solutions/event-tent",
   },
   {
     id: "03",
@@ -29,7 +29,7 @@ const solutions = [
     desc: "Bait Al Nokhada provides elegant, customized wedding tent rental for outdoor ceremonies in UAE & KSA. Partner with leading outdoor tent experts for your unforgettable celebration in Dubai & Riyadh.",
     specs: "Acoustic Glass Walls • Royal Drapery & Chandeliers",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
-    href: "/solutions/wedding-tents",
+    href: "/solutions/wedding-tent",
   },
   {
     id: "04",
@@ -37,7 +37,7 @@ const solutions = [
     desc: "Custom-built temporary sales center tents designed for real estate developers and commercial launches, featuring premium glass walls, luxury interiors, and full climate control.",
     specs: "Panoramic Glass Façades • Luxury Interior Fit-Out",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AL%20MARWAN3.webp",
-    href: "/solutions/sales-center-tents",
+    href: "/solutions/sales-center-tent",
   },
   {
     id: "05",
@@ -45,7 +45,7 @@ const solutions = [
     desc: "Bait Al Nokhada offers secure, efficient warehouse & storage tents for rent & sale in UAE & KSA. 30+ years in tent manufacturing ensure durable, weatherproof solutions for your goods.",
     specs: "Rapid Deployment • German DIN Safety Standards",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse.webp",
-    href: "/solutions/warehouse-tents",
+    href: "/solutions/warehouse-tent",
   },
   {
     id: "06",
@@ -53,7 +53,7 @@ const solutions = [
     desc: "Heavy-duty, insulated labour rest tents engineered for construction sites and industrial facilities, fully compliant with UAE and regional worker welfare regulations.",
     specs: "Thermal Shield PVC • Civil Defense Compliant",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/labour/labour-tent-for-sale.webp",
-    href: "/solutions/labour-break-time-tents",
+    href: "/solutions/labour-break-time-tent",
   },
   {
     id: "07",
@@ -61,7 +61,7 @@ const solutions = [
     desc: "Our sports tents are specifically designed to provide robust shelter and optimal functionality for athletes, enthusiastic spectators, and essential staff in any sporting environment.",
     specs: "Thermal Roof Insulation • FIFA / Sports Specs",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/2.webp",
-    href: "/solutions/sports-tents",
+    href: "/solutions/sports-tent",
   },
   {
     id: "08",
@@ -69,7 +69,7 @@ const solutions = [
     desc: "Discover luxurious, fully customized Ramadan tents across the UAE and KSA—perfect for Iftar events, suhoor nights, and cultural gatherings. Our traditional and modern tents combine authentic Arab aesthetics with premium comfort and dedicated service.",
     specs: "Custom Interior Majlis • Fire Retardant Class A",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/large-ramadan-tents-UAE.webp",
-    href: "/solutions/ramadan-tents",
+    href: "/solutions/ramadan-tent",
   },
   {
     id: "09",
@@ -77,7 +77,7 @@ const solutions = [
     desc: "Discover spacious and fully equipped temporary mosque tents for daily prayers, Friday gatherings, and Ramadan. Designed with climate control, premium carpeting, and dedicated ablution areas across UAE & KSA.",
     specs: "Anti-Bacterial Carpeting • Complete Climate Control",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Mosque+Tents/mosque-img2.webp",
-    href: "/solutions/mosque-tents",
+    href: "/solutions/mosque-tent",
   },
   {
     id: "10",
@@ -85,7 +85,7 @@ const solutions = [
     desc: "Bait Al Nokhada provides dignified, fully equipped funeral tents with 24/7 rapid setup and installation across UAE & KSA. Complete with comfortable seating, powerful air conditioning, and respectful lighting.",
     specs: "24/7 Fast Setup • Full Climate & Seating Setup",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Funeral+Tents/Funeral-Tents.webp",
-    href: "/solutions/funeral-tents",
+    href: "/solutions/funeral-tent",
   },
 ];
 

@@ -13,7 +13,7 @@ const solutions = [
     desc: "خيام المعارض للإيجار بجودة عالية تناسب الفعاليات والمعارض والمؤتمرات في السعودية والإمارات، مصممة لتحمل الظروف الجوية، وتوفر مساحة عرض أنيقة وعملية منذ عام 1997.",
     specs: "بحور مفتوحة تصل إلى 60 متراً • مقاومة عالية للرياح",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/Exhibition-tent-gulfood.webp",
-    href: "/ar/solutions/exhibition-tents",
+    href: "/ar/solutions/exhibition-tent",
   },
   {
     id: "02",
@@ -21,7 +21,7 @@ const solutions = [
     desc: "نوفر خيمة مناسبات فاخرة للإيجار والبيع في الإمارات والسعودية ودول الخليج، تجمع بين التصميم الأنيق والجودة العالية، مع خدمات تركيب احترافية وتخصيص كامل يناسب كل مناسباتك.",
     specs: "منصات متعددة المستويات • أنظمة تكييف فائقة القدرة",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/Luxury-Tents-for-Events.webp",
-    href: "/ar/solutions/event-tents",
+    href: "/ar/solutions/event-tent",
   },
   {
     id: "03",
@@ -29,7 +29,7 @@ const solutions = [
     desc: "توفر شركة بيت النوخذة خدمات تأجير خيام أفراح في دبي بتصاميم أنيقة ومخصصة لتناسب حفلات الزفاف الخارجية في الإمارات والسعودية. اختر خيمة زفافك من نخبة الخبراء في خيام المناسبات، واحتفل بلحظة لا تُنسى في أجواء فاخرة سواء في دبي أو الرياض.",
     specs: "واجهات زجاجية عازلة للصوت • أقمشة وديكورات مخصصة وثريات",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Wedding/Wedding-tent-for-rent-Dubai.webp",
-    href: "/ar/solutions/wedding-tents",
+    href: "/ar/solutions/wedding-tent",
   },
   {
     id: "04",
@@ -37,7 +37,7 @@ const solutions = [
     desc: "خيام ومقرات مبيعات مؤقتة مجهزة للشركات العقارية والمشاريع الكبرى، مزودة بواجهات زجاجية وتشطيبات داخلية فاخرة وأنظمة تكييف متكاملة لتوفير بيئة استقبال أعمال استثنائية.",
     specs: "واجهات زجاجية بانورامية • تشطيب داخلي فاخر",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/AL%20MARWAN3.webp",
-    href: "/ar/solutions/sales-center-tents",
+    href: "/ar/solutions/sales-center-tent",
   },
   {
     id: "05",
@@ -45,7 +45,7 @@ const solutions = [
     desc: "توفر بيت النوخذة خيام المستودعات المتينة والمقاومة للعوامل الجوية للإيجار والبيع في الإمارات والسعودية، ما يضمن حماية مثالية لبضائعك، تتميز هذه الخيام بسهولة التركيب والمرونة، مما يجعلها الحل الأمثل للتخزين الآمن والمستدام.",
     specs: "سرعة في التوريد والتركيب • معايير السلامة الألمانية DIN",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/warehouse/warehouse.webp",
-    href: "/ar/solutions/warehouse-tents",
+    href: "/ar/solutions/warehouse-tent",
   },
   {
     id: "06",
@@ -53,7 +53,7 @@ const solutions = [
     desc: "خيام استراحة معزولة ومتينة مخصصة لمواقع الإنشاءات والمنشآت الصناعية في الإمارات والسعودية، مطابقة لأعلى معايير الأمن والسلامة ورفاهية العمال.",
     specs: "أنسجة PVC عازلة للحرارة • معتمدة من الدفاع المدني",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/labour/labour-tent-for-sale.webp",
-    href: "/ar/solutions/labour-break-time-tents",
+    href: "/ar/solutions/labour-break-time-tent",
   },
   {
     id: "07",
@@ -61,7 +61,7 @@ const solutions = [
     desc: "نوفر خيام رياضية عالية الجودة توفر حماية قوية ومساحة مريحة للرياضيين والمشجعين، تتحمل الظروف الجوية المختلفة، وتناسب جميع الفعاليات الرياضية في الملاعب أو المناطق المفتوحة.",
     specs: "أسقف عازلة حرارياً • مطابقة لمعايير FIFA الرياضية",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Sports/2.webp",
-    href: "/ar/solutions/sports-tents",
+    href: "/ar/solutions/sports-tent",
   },
   {
     id: "08",
@@ -69,7 +69,7 @@ const solutions = [
     desc: "خيمة رمضانية فاخرة بتصميم تقليدي أو عصري، مثالية لأمسيات الإفطار والسحور في الإمارات والسعودية، توفر راحة استثنائية، وجواً روحانياً دافئاً يجمع بين الفخامة والضيافة العربية الأصيلة.",
     specs: "فرش داخلي ومجالس تفصيل • مقاومة للحريق Class A",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Ramadan/large-ramadan-tents-UAE.webp",
-    href: "/ar/solutions/ramadan-tents",
+    href: "/ar/solutions/ramadan-tent",
   },
   {
     id: "09",
@@ -77,7 +77,7 @@ const solutions = [
     desc: "خيام ومصليات مؤقتة مجهزة بالكامل للصلوات اليومية وصلاة الجمعة وشهر رمضان المبارك، مزودة بسجاد عالي الجودة وتكييف هواء مركزي ومرافق مخصصة للوضوء.",
     specs: "سجاد مضاد للبكتيريا • تدفق هواء مكيف عالي السعة",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Mosque+Tents/mosque-img2.webp",
-    href: "/ar/solutions/mosque-tents",
+    href: "/ar/solutions/mosque-tent",
   },
   {
     id: "10",
@@ -85,7 +85,7 @@ const solutions = [
     desc: "خدمة توفير وتجهيز خيام العزاء الفاخرة على مدار الساعة (24/7) في الإمارات والسعودية، مجهزة بالكامل بكافة متطلبات الضيافة، التكييف، المقاعد المريحة، والإنارة الهادئة.",
     specs: "جاهزية وتركيب على مدار الساعة • عزل صوتي وحراري تام",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Funeral+Tents/Funeral-Tents.webp",
-    href: "/ar/solutions/funeral-tents",
+    href: "/ar/solutions/funeral-tent",
   },
 ];
 
