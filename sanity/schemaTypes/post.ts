@@ -52,7 +52,7 @@ export const article = {
     },
 
     seoFieldsAr,
-
+    
     {
       name: 'customSchema',
       title: 'Custom JSON-LD Schema (Optional - تجاوز السكيما التلقائية)',
