@@ -26,6 +26,7 @@ export interface ArticleEn {
     focusKeywords?: string[];
     breadcrumbTitle?: string;
   };
+  customSchema?: string;
 }
 
 export const articlesDatabase: ArticleEn[] = [
