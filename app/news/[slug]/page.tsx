@@ -276,7 +276,8 @@ async function getArticleData(slug: string) {
       toc: staticMatch.toc || [{ id: "overview", label: "Overview" }],
       rawCreatedAt: "2025-10-01T10:00:00+04:00",
       rawUpdatedAt: "2026-11-16T11:00:00+04:00",
-      seo: (staticMatch as any)?.seo || null
+      seo: (staticMatch as any)?.seo || null,
+      customSchema: (staticMatch as any)?.customSchema || null
     };
   }
 

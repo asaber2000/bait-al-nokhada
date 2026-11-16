@@ -53,6 +53,14 @@ export const article = {
 
     seoFieldsAr,
 
+    {
+      name: 'customSchema',
+      title: 'Custom JSON-LD Schema (Optional - تجاوز السكيما التلقائية)',
+      type: 'text',
+      rows: 6,
+      description: 'ضع كود الـ JSON-LD الجاهز هنا إذا أردت استخدام سكيما مخصصة لهذا المقال بالعربية.',
+    },
+
     // --- القسم العربي ---
     { name: 'titleAr', title: 'عنوان المقال (بالعربية)', type: 'string' },
     {

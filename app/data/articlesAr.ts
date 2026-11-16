@@ -22,6 +22,7 @@ export interface ArticleAr {
     faqs: { q: string; a: string }[];
     contentSections: { id: string; heading: string; body: string; points?: string[] }[];
   };
+  customSchema?: string;
 }
 
 export const articlesArDatabase: ArticleAr[] = [
