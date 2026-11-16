@@ -52,6 +52,14 @@ export const articleEnglish = {
 
     seoFieldsEn,
 
+    {
+      name: 'customSchema',
+      title: 'Custom JSON-LD Schema (Optional - لتجاوز السكيما التلقائية)',
+      type: 'text',
+      rows: 6,
+      description: 'ضع كود الـ JSON-LD الجاهز هنا إذا أردت استخدام سكيما مخصصة لهذا المقال بالتحديد.',
+    },
+
     // --- English Section ---
     { name: 'titleEn', title: 'Article Title (English)', type: 'string' },
     {
