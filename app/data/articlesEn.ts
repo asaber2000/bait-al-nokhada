@@ -1,4 +1,5 @@
 export interface ArticleEn {
+  
   id: string;
   slug: string;
   title: string;
@@ -19,6 +20,12 @@ export interface ArticleEn {
     body: string;
     points?: string[];
   }[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
 }
 
 export const articlesDatabase: ArticleEn[] = [
@@ -118,6 +125,18 @@ export const articlesDatabase: ArticleEn[] = [
         q: "Are warehouse tents compliant with UAE Civil Defense approvals?",
         a: "All our materials are certified fire-retardant (DIN 4102 B1) and fully compliant with UAE Civil Defense and municipal safety regulations."
       }
-    ]
+    ],
+    seo: {
+      metaTitle: "Warehouse Tents in UAE & KSA | Buy or Rent Industrial Storage Tents",
+      metaDescription:
+        "Heavy-duty warehouse tents for sale or rental in UAE & KSA. Fast setup, durable aluminum frames, waterproof PVC covers. Ideal for storage, logistics & more.",
+      focusKeywords: [
+        "Warehouse Tents",
+        "Luxury Warehouse Tents UAE",
+        "Warehouse Tent Supplier Dubai",
+        "Wedding Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Warehouse Tent",
+    },
   },
 ];

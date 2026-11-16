@@ -42,16 +42,20 @@ async function getProjectData(slug: string) {
         "before": beforeImage.asset->url,
         "after": afterImage.asset->url
       },
+      _createdAt,
+      _updatedAt,
       seo {
-        metaTitle,
-        metaDescription,
-        breadcrumbTitle,
-        canonicalUrl,
-        robots {
-          noIndex,
-          noFollow
-        }
-      }
+     metaTitle,
+     metaDescription,
+     focusKeywords,
+     keywords,
+     breadcrumbTitle,
+     canonicalUrl,
+     robots {
+       noIndex,
+       noFollow
+     }
+   }
     }`;
 
     const sanityItem = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
@@ -115,14 +119,20 @@ async function getProjectData(slug: string) {
         before: localMatch.beforeAfter.before,
         after: localMatch.beforeAfter.after
       } : null,
-      seo: null
+      seo: (localMatch as any)?.seo || null
     };
   }
 
   return null;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectData(slug);
 
@@ -130,25 +140,74 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Project Not Found | Bait Al Nokhada" };
   }
 
-  const metaTitle = project.seo?.metaTitle || `${project.titleEn} | Engineering Case Study | Bait Al Nokhada`;
-  const metaDescription = project.seo?.metaDescription || project.scopeOfWorkEn?.slice(0, 160) || "Explore engineering landmark case studies and turnkey deployment by Bait Al Nokhada.";
-  const canonicalUrl = project.seo?.canonicalUrl || `https://baitalnokhada.com/projects/${slug}`;
+  const metaTitle =
+    project.seo?.metaTitle ||
+    `${project.titleEn} | Engineering Case Study | Bait Al Nokhada`;
+  const rawDesc =
+    project.seo?.metaDescription ||
+    project.scopeOfWorkEn ||
+    "Explore engineering landmark case studies and turnkey deployment by Bait Al Nokhada Tents Factory.";
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/projects/${slug}/`;
+  const arUrl = `${BASE_URL}/ar/projects/${slug}/`;
+
+  const keywords: string[] = Array.isArray(project.seo?.focusKeywords)
+    ? project.seo.focusKeywords
+    : [
+      project.titleEn,
+      `${project.categoryEn} UAE`,
+      `${project.locationEn} tent project`,
+      "Bait Al Nokhada Projects",
+      "Custom Tent Engineering UAE",
+    ];
 
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        "en-AE": canonicalUrl,
+        "ar-AE": arUrl,
+        "x-default": canonicalUrl,
+      },
     },
     robots: {
       index: !project.seo?.robots?.noIndex,
       follow: !project.seo?.robots?.noFollow,
+      googleBot: {
+        index: !project.seo?.robots?.noIndex,
+        follow: !project.seo?.robots?.noFollow,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
     },
     openGraph: {
+      type: "article",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: canonicalUrl,
+      siteName: "Bait Al Nokhada Tents Factory",
       title: metaTitle,
       description: metaDescription,
-      url: canonicalUrl,
-      images: [{ url: project.coverImage }],
+      images: [
+        {
+          url: project.coverImage,
+          width: 1200,
+          height: 630,
+          alt: `${project.titleEn} - Bait Al Nokhada Tents Factory`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [project.coverImage],
     },
   };
 }
@@ -170,54 +229,127 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     );
   }
 
-  const currentUrl = `https://baitalnokhada.com/projects/${slug}`;
+  const currentUrl = `${BASE_URL}/projects/${slug}/`;
   const projectSchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
-        "@id": "https://baitalnokhada.com/#organization",
-        "name": "Bait Al Nokhada Tents & Fabric Structures",
-        "url": "https://baitalnokhada.com",
-        "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "24.93410630",
+          longitude: "55.06500100",
+        },
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "Bait Al Nokhada",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "United Arab Emirates" },
+          { "@type": "Country", name: "Saudi Arabia" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: `${BASE_URL}/`,
+        name: "Bait Al Nokhada Tents Factory",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "en-AE",
       },
       {
         "@type": "BreadcrumbList",
         "@id": `${currentUrl}#breadcrumb`,
-        "itemListElement": [
+        itemListElement: [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://baitalnokhada.com"
+            position: 1,
+            name: "Home",
+            item: `${BASE_URL}/`,
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "Projects",
-            "item": "https://baitalnokhada.com/projects"
+            position: 2,
+            name: "Projects",
+            item: `${BASE_URL}/projects/`,
           },
           {
             "@type": "ListItem",
-            "position": 3,
-            "name": project.seo?.breadcrumbTitle || project.titleEn,
-            "item": currentUrl
-          }
-        ]
+            position: 3,
+            name: project.seo?.breadcrumbTitle || project.titleEn,
+            item: currentUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${currentUrl}#webpage`,
+        url: currentUrl,
+        name: `${project.titleEn} | Bait Al Nokhada Tents Factory`,
+        description: project.scopeOfWorkEn,
+        datePublished: "2025-10-01T10:00:00+04:00",
+        dateModified: "2026-11-16T10:30:00+04:00",
+        breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        about: { "@id": `${currentUrl}#article` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: project.coverImage,
+        },
+        inLanguage: "en-AE",
       },
       {
         "@type": "Article",
         "@id": `${currentUrl}#article`,
-        "headline": project.seo?.metaTitle || project.titleEn,
-        "description": project.seo?.metaDescription || project.scopeOfWorkEn,
-        "image": [project.coverImage],
-        "inLanguage": "en-US",
-        "mainEntityOfPage": currentUrl,
-        "publisher": {
-          "@id": "https://baitalnokhada.com/#organization"
-        }
-      }
-    ]
+        headline: project.seo?.metaTitle || project.titleEn,
+        description: project.seo?.metaDescription || project.scopeOfWorkEn,
+        image: [project.coverImage],
+        author: { "@id": `${BASE_URL}/#organization` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+        inLanguage: "en-AE",
+      },
+    ],
   };
 
   return (

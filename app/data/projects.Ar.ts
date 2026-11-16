@@ -1,4 +1,10 @@
 export interface ProjectItemAr {
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
   slug: string;
   title: string;
   client: string;
@@ -73,7 +79,20 @@ export const projectsDatabase: ProjectItemAr[] = [
     relatedProducts: [
       { name: "خيمة ريفوليوشن", slug: "revolution-tent" },
       { name: "خيمة مضلعة", slug: "polygon-tent" }
-    ]
+    ],
+    seo: {
+      metaTitle: "خيام فعالية درفت إكس DRIFTx أبوظبي 10,000 م² | بيت النوخذة",
+      metaDescription:
+        "تفاصيل تنفيذ مصنع بيت النوخذة لـ 10,000 م² من خيام ريفوليوشن والمضلعة ببحر حر 40 متراً في حلبة مرسى ياس بأبوظبي لفعالية درفت إكس (DRIFTx).",
+      focusKeywords: [
+        "خيام فعالية درفت إكس أبوظبي",
+        "خيام معارض أبوظبي",
+        "خيمة ريفوليوشن",
+        "خيمة مضلعة",
+        "مصنع بيت النوخذة",
+      ],
+      breadcrumbTitle: "فعالية درفت إكس 2026",
+    },
   },
   {
     slug: "Amaal-sales-gallery",
@@ -126,7 +145,20 @@ export const projectsDatabase: ProjectItemAr[] = [
 
     relatedProducts: [
       { name: "خيام مراكز المبيعات", slug: "sales-center-tent" },
-    ]
+    ],
+    seo: {
+      metaTitle: "قاعة عرض ومركز مبيعات آمال × منصوري دبي 2,500 م² | بيت النوخذة",
+      metaDescription:
+        "تفاصيل تنفيذ مصنع بيت النوخذة لمركز مبيعات وقاعة عرض بمساحة 2,500 م² وبحر حر 25 متراً بواجهات زجاجية بانورامية لمشروع آمال × منصوري في دبي.",
+      focusKeywords: [
+        "مركز مبيعات آمال ومنصوري دبي",
+        "خيام مراكز المبيعات دبي",
+        "قاعة عرض زجاجية دبي",
+        "خيمة مقوسة 25 متر",
+        "مصنع بيت النوخذة",
+      ],
+      breadcrumbTitle: "آمال × منصوري",
+    },
   },
   {
     slug: "gulfood-dubai-2026",
@@ -183,7 +215,21 @@ export const projectsDatabase: ProjectItemAr[] = [
       { name: "خيمة مضلعة", slug: "polygon-tent" },
       { name: "خيمة أركوم", slug: "arcum-tent" },
       { name: "خيمة طابقين", slug: "double-decker-tent" }
-    ]
+    ],
+    seo: {
+      metaTitle: "خيام معرض جلفود دبي 2026 بمساحة 35,000 م² | بيت النوخذة",
+      metaDescription:
+        "تفاصيل تنفيذ مصنع بيت النوخذة لـ 35,000 م² من خيام المعارض المضلعة والأركوم والطابقين ببحور حرة 40-50 متراً في مركز دبي التجاري لمعرض جلفود 2026.",
+      focusKeywords: [
+        "خيام معرض جلفود دبي 2026",
+        "خيام معارض مركز دبي التجاري العالمي",
+        "خيمة طابقين",
+        "خيمة أركوم",
+        "خيمة مضلعة",
+        "مصنع بيت النوخذة",    
+      ],
+      breadcrumbTitle: "معرض جلفود 2026",
+    },
   },
   {
   slug: "netflix-stranger-things-experience",
@@ -240,7 +286,22 @@ export const projectsDatabase: ProjectItemAr[] = [
     { name: "خيمة مضلعة", slug: "polygon-tent" },
     { name: "خيمة أركوم", slug: "arcum-tent" },
     { name: "خيمة قبة", slug: "dome-tent" }
-  ]
+  ],
+  seo: {
+      metaTitle: "خيام تجربة سترينجر ثينقز أبوظبي 5,000 م² | بيت النوخذة",
+      metaDescription:
+        "تفاصيل تنفيذ مصنع بيت النوخذة لخيام مضلعة وأركوم وقبة معتمة ومعزولة صوتياً بمساحة 5,000 م² في جزيرة ياس بأبوظبي لتجربة Stranger Things من نتفليكس.",
+      focusKeywords: [
+        "خيام تجربة سترينجر ثينقز أبوظبي",
+        "خيام فعاليات جزيرة ياس",
+        "خيام معزولة صوتياً وضوئياً",
+        "خيمة مضلعة",
+        "خيمة أركوم",
+        "خيمة قبة",
+        "مصنع بيت النوخذة",
+      ],
+      breadcrumbTitle: "تجربة سترينجر ثينقز من نتفليكس",
+    },
 },
 {
   slug: "dubai-airshow-2025",
@@ -297,6 +358,20 @@ export const projectsDatabase: ProjectItemAr[] = [
     { name: "خيمة مضلعة", slug: "polygon-tent" },
     { name: "خيمة أركوم", slug: "arcum-tent" },
     { name: "خيمة طابقين", slug: "double-decker-tent" }
-  ]
+  ],
+  seo: {
+      metaTitle: "خيام معرض دبي للطيران 2025 بمساحة 15,000 م² | بيت النوخذة",
+      metaDescription:
+        "تفاصيل تنفيذ مصنع بيت النوخذة لـ 15,000 م² من خيام المعارض المضلعة والأركوم والطابقين في مطار آل مكتوم (DWC) لمعرض دبي للطيران مع تبريد 1,500 طن.",
+      focusKeywords: [
+        "خيام معرض دبي للطيران 2025",
+        "خيام معارض دبي وورلد سنترال",
+        "خيمة طابقين",
+        "خيمة أركوم",
+        "خيمة مضلعة",
+        "مصنع بيت النوخذة",
+      ],
+      breadcrumbTitle: "معرض دبي للطيران 2025",
+    },
 },
 ];

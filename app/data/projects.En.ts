@@ -1,4 +1,10 @@
 export interface ProjectItemEn {
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
   slug: string;
   title: string;
   client: string;
@@ -71,7 +77,22 @@ export const projectsDatabase: ProjectItemEn[] = [
     relatedProducts: [
       { name: "Revolution Tent", slug: "revolution-tent" },
       { name: "Polygon Tent", slug: "polygon-tent" }
-    ]
+    ],
+    seo: {
+      metaTitle: "DRIFTx Abu Dhabi 10,000 m² Event Tents | Bait Al Nokhada",
+      metaDescription:
+        "Explore how Bait Al Nokhada engineered 10,000 m² of 40m clear-span Revolution and Polygon tents at Yas Marina Circuit, Abu Dhabi for DRIFTx summit.",
+      focusKeywords: [
+        "DRIFTx Abu Dhabi",
+        "Exhibition Tents Abu Dhabi",
+        "40m Clear-Span Tents",
+        "Yas Marina Circuit Event Structures",
+        "Revolution Tent",
+        "Polygon Tent",
+        "Bait Al Nokhada",
+      ],
+      breadcrumbTitle: "DRIFTx Event 2026",
+    },
   },
   {
     slug: "Amaal-sales-gallery",
@@ -124,7 +145,21 @@ export const projectsDatabase: ProjectItemEn[] = [
 
     relatedProducts: [
       { name: "Sales Center Tents", slug: "sales-center-tent" },
-    ]
+    ],
+    seo: {
+      metaTitle: "AMAAL x MANSORY 2,500 m² Sales Gallery | Bait Al Nokhada",
+      metaDescription:
+        "Discover how Bait Al Nokhada engineered a 2,500 m² luxury sales center tent with 25m curved clear-span and glass facades for AMAAL x MANSORY in Dubai.",
+      focusKeywords: [
+        "AMAAL x MANSORY Dubai",
+        "Sales Center Tents Dubai",
+        "Luxury Sales Gallery Pavilion",
+        "25m Curved Clear-Span Tent",
+        "Glass Facade Event Structure",
+        "Bait Al Nokhada",
+      ],
+      breadcrumbTitle: "Amaal × Mansory",
+    },
   },
   {
     slug: "gulfood-dubai-2026",
@@ -181,7 +216,22 @@ export const projectsDatabase: ProjectItemEn[] = [
       { name: "Polygon Tent", slug: "polygon-tent" },
       { name: "Arcum Tent", slug: "arcum-tent" },
       { name: "Double Decker Tent", slug: "double-decker-tent" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Gulfood 2026 Dubai 35,000 m² Event Tents | Bait Al Nokhada",
+      metaDescription:
+        "Explore how Bait Al Nokhada engineered 35,000 m² of 40m-50m clear-span Polygon, Arcum, and Double Decker exhibition tents at DWTC for Gulfood 2026 Dubai.",
+      focusKeywords: [
+        "Gulfood 2026 Dubai",
+        "Exhibition Tents DWTC",
+        "35,000 m² Event Tents",
+        "Double Decker Tent",
+        "Arcum Tent",
+        "Polygon Tent",
+        "Bait Al Nokhada",
+      ],
+      breadcrumbTitle: "Gulfood 2026",
+    },
   },
   {
   slug: "netflix-stranger-things-experience",
@@ -238,7 +288,23 @@ export const projectsDatabase: ProjectItemEn[] = [
     { name: "Polygon Tent", slug: "polygon-tent" },
     { name: "Arcum Tent", slug: "arcum-tent" },
     { name: "Dome Tent", slug: "dome-tent" }
-  ]
+  ],
+  seo: {
+      metaTitle: "Stranger Things Experience Abu Dhabi Tents | Bait Al Nokhada",
+      metaDescription:
+        "Explore how Bait Al Nokhada built a 5,000 m² blackout, acoustically insulated Polygon, Arcum, and Dome tent venue on Yas Island for Netflix Stranger Things.",
+      focusKeywords: [
+        "Stranger Things Experience Abu Dhabi",
+        "Yas Island Event Tents",
+        "Blackout Event Tents UAE",
+        "Polygon Tent",
+        "Arcum Tent",
+        "Dome Tent",
+        "Miral Destination",
+        "Bait Al Nokhada",
+      ],
+      breadcrumbTitle: "Netflix: Stranger Things The Experience",
+    },
 },
 {
   slug: "dubai-airshow-2025",
@@ -295,6 +361,21 @@ export const projectsDatabase: ProjectItemEn[] = [
     { name: "Polygon Tent", slug: "polygon-tent" },
     { name: "Arcum Tent", slug: "arcum-tent" },
     { name: "Double Decker Tent", slug: "double-decker-tent" }
-  ]
+  ],
+  seo: {
+      metaTitle: "Dubai Airshow 2025 15,000 m² Exhibition Tents | Bait Al Nokhada   ",
+      metaDescription:
+        "Explore how Bait Al Nokhada engineered 15,000 m² of clear-span Polygon, Arcum, and Double Decker tents at DWC for Dubai Airshow with 1,500 tons HVAC.",
+      focusKeywords: [
+        "Dubai Airshow 2025",
+        "DWC Exhibition Tents",
+        "Aerospace Event Structures",
+        "Double Decker Tent",
+        "Arcum Tent",
+        "Polygon Tent",
+        "Bait Al Nokhada",
+      ],
+      breadcrumbTitle: "Dubai Airshow 2025",
+    },
 },
 ];

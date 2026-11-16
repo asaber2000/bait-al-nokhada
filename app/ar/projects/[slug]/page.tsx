@@ -120,7 +120,7 @@ async function getProjectData(slug: string) {
         before: localMatch.beforeAfter.before,
         after: localMatch.beforeAfter.after
       } : null,
-      seo: null
+      seo: (localMatch as any)?.seo || null
     };
   }
 
@@ -128,7 +128,13 @@ async function getProjectData(slug: string) {
 }
 
 // توليد الميتا داتا والـ SEO ديناميكياً بناءً على ما يُكتب في Sanity
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectData(slug);
 
@@ -136,25 +142,74 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "المشروع غير موجود | بيت النوخذة" };
   }
 
-  const metaTitle = project.seo?.metaTitle || `${project.titleAr} | دراسة حالة وتنفيذ ميداني | بيت النوخذة`;
-  const metaDescription = project.seo?.metaDescription || project.scopeOfWorkAr?.slice(0, 160) || "استكشف تفاصيل المشروع الهندسي ومراحل التنفيذ من بيت النوخذة.";
-  const canonicalUrl = project.seo?.canonicalUrl || `https://baitalnokhada.com/ar/projects/${slug}`;
+  const metaTitle =
+    project.seo?.metaTitle ||
+    `${project.titleAr} | دراسة حالة وتنفيذ ميداني | بيت النوخذة`;
+  const rawDesc =
+    project.seo?.metaDescription ||
+    project.scopeOfWorkAr ||
+    "استكشف تفاصيل المشروع الهندسي ومراحل التنفيذ الميداني من مصنع بيت النوخذة للخيام.";
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/ar/projects/${slug}/`;
+  const enUrl = `${BASE_URL}/projects/${slug}/`;
+
+  const keywords: string[] = Array.isArray(project.seo?.focusKeywords)
+    ? project.seo.focusKeywords
+    : [
+        project.titleAr,
+        `${project.categoryAr} الإمارات`,
+        `مشروع خيام ${project.locationAr}`,
+        "مشاريع بيت النوخذة",
+        "تصنيع وتركيب خيام الإمارات والسعودية",
+      ];
 
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        "en-AE": enUrl,
+        "ar-AE": canonicalUrl,
+        "x-default": enUrl,
+      },
     },
     robots: {
       index: !project.seo?.robots?.noIndex,
       follow: !project.seo?.robots?.noFollow,
+      googleBot: {
+        index: !project.seo?.robots?.noIndex,
+        follow: !project.seo?.robots?.noFollow,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
     },
     openGraph: {
+      type: "article",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: canonicalUrl,
+      siteName: "مصنع بيت النوخذة للخيام",
       title: metaTitle,
       description: metaDescription,
-      url: canonicalUrl,
-      images: [{ url: project.coverImage }],
+      images: [
+        {
+          url: project.coverImage,
+          width: 1200,
+          height: 630,
+          alt: `${project.titleAr} - مصنع بيت النوخذة للخيام`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [project.coverImage],
     },
   };
 }
@@ -176,54 +231,127 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
     );
   }
 
-  const currentUrl = `https://baitalnokhada.com/ar/projects/${slug}`;
+  const currentUrl = `${BASE_URL}/ar/projects/${slug}/`;
   const projectSchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
-        "@id": "https://baitalnokhada.com/#organization",
-        "name": "بيت النوخذة للخيام والمظلات",
-        "url": "https://baitalnokhada.com",
-        "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "24.93410630",
+          longitude: "55.06500100",
+        },
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "بيت النوخذة للخيام",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/ar/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "الإمارات العربية المتحدة" },
+          { "@type": "Country", name: "المملكة العربية السعودية" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        url: `${BASE_URL}/ar/`,
+        name: "مصنع بيت النوخذة للخيام",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "ar-AE",
       },
       {
         "@type": "BreadcrumbList",
         "@id": `${currentUrl}#breadcrumb`,
-        "itemListElement": [
+        itemListElement: [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "الرئيسية",
-            "item": "https://baitalnokhada.com/ar"
+            position: 1,
+            name: "الرئيسية",
+            item: `${BASE_URL}/ar/`,
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "المشاريع المنفذة",
-            "item": "https://baitalnokhada.com/ar/projects"
+            position: 2,
+            name: "المشاريع المنفذة",
+            item: `${BASE_URL}/ar/projects/`,
           },
           {
             "@type": "ListItem",
-            "position": 3,
-            "name": project.seo?.breadcrumbTitle || project.titleAr,
-            "item": currentUrl
-          }
-        ]
+            position: 3,
+            name: project.seo?.breadcrumbTitle || project.titleAr,
+            item: currentUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${currentUrl}#webpage`,
+        url: currentUrl,
+        name: `${project.titleAr} | مصنع بيت النوخذة للخيام`,
+        description: project.scopeOfWorkAr,
+        datePublished: "2025-10-01T10:00:00+04:00",
+        dateModified: "2026-11-16T10:50:00+04:00",
+        breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/ar/#website` },
+        about: { "@id": `${currentUrl}#article` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: project.coverImage,
+        },
+        inLanguage: "ar-AE",
       },
       {
         "@type": "Article",
         "@id": `${currentUrl}#article`,
-        "headline": project.seo?.metaTitle || project.titleAr,
-        "description": project.seo?.metaDescription || project.scopeOfWorkAr,
-        "image": [project.coverImage],
-        "inLanguage": "ar-AE",
-        "mainEntityOfPage": currentUrl,
-        "publisher": {
-          "@id": "https://baitalnokhada.com/#organization"
-        }
-      }
-    ]
+        headline: project.seo?.metaTitle || project.titleAr,
+        description: project.seo?.metaDescription || project.scopeOfWorkAr,
+        image: [project.coverImage],
+        author: { "@id": `${BASE_URL}/#organization` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+        inLanguage: "ar-AE",
+      },
+    ],
   };
 
   return (

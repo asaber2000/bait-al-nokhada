@@ -177,6 +177,7 @@ async function getArabicArticleData(slug: string) {
     const query = `*[_type == "article" && slug.current == $slug][0]{
       _id,
       _createdAt,
+      _updatedAt,
       titleAr,
       descAr,
       categoryAr,
@@ -231,6 +232,8 @@ async function getArabicArticleData(slug: string) {
 
     if (sanityData) {
       return {
+        rawCreatedAt: sanityData._createdAt || new Date().toISOString(),
+        rawUpdatedAt: sanityData._updatedAt || sanityData._createdAt || new Date().toISOString(),
         title: sanityData.titleAr,
         desc: sanityData.descAr,
         heroImage: sanityData.imageUrl || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
@@ -288,7 +291,9 @@ async function getArabicArticleData(slug: string) {
       contentSections: localMatch.ar.contentSections || [],
       faqs: localMatch.ar.faqs || [],
       toc: localMatch.ar.toc || [{ id: "overview", label: "نظرة عامة" }],
-      seo: null
+      rawCreatedAt: "2025-10-01T10:00:00+04:00",
+      rawUpdatedAt: "2026-11-16T11:30:00+04:00",
+      seo: (localMatch as any)?.seo || null
     };
   }
 
@@ -304,17 +309,23 @@ async function checkEnglishVersionExists(slug: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArabicArticleData(slug);
+  const enArticle = await checkEnglishVersionExists(slug);
 
   if (!article) {
-    const enArticle = await checkEnglishVersionExists(slug);
     if (enArticle) {
       return {
         title: `${enArticle.titleEn} | بيت النوخذة`,
         alternates: {
-          canonical: `https://baitalnokhada.com/news/${slug}/`,
+          canonical: `${BASE_URL}/news/${slug}/`,
         },
         robots: {
           index: false,
@@ -325,25 +336,84 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "المقال غير موجود | بيت النوخذة" };
   }
 
-  const metaTitle = article.seo?.metaTitle || `${article.title} | بيت النوخذة للخيام`;
-  const metaDescription = article.seo?.metaDescription || article.desc?.slice(0, 160) || "مقالات ودراسات هندسية متخصصة في صناعة وتأجير الخيام من بيت النوخذة.";
-  const canonicalUrl = article.seo?.canonicalUrl || `https://baitalnokhada.com/ar/news/${slug}`;
+  const metaTitle =
+    article.seo?.metaTitle || `${article.title} | مصنع بيت النوخذة للخيام`;
+  const rawDesc =
+    article.seo?.metaDescription ||
+    article.desc ||
+    "مقالات ودراسات هندسية متخصصة في صناعة وتأجير الخيام في الإمارات والسعودية من مصنع بيت النوخذة.";
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/ar/news/${slug}/`;
+  const enUrl = `${BASE_URL}/news/${slug}/`;
+
+  const rawKeywords =
+    article.seo?.focusKeywords || (article.seo as any)?.keywords;
+
+  const keywords: string[] = Array.isArray(rawKeywords)
+    ? rawKeywords
+    : article.tags?.length > 0
+      ? article.tags
+      : [
+          article.title,
+          `${article.category} الإمارات`,
+          "مدونة بيت النوخذة",
+          "تصنيع وتأجير الخيام في الإمارات والسعودية",
+        ];
 
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
+      ...(enArticle
+        ? {
+            languages: {
+              "en-AE": enUrl,
+              "ar-AE": canonicalUrl,
+              "x-default": enUrl,
+            },
+          }
+        : {}),
     },
     robots: {
       index: !article.seo?.robots?.noIndex,
       follow: !article.seo?.robots?.noFollow,
+      googleBot: {
+        index: !article.seo?.robots?.noIndex,
+        follow: !article.seo?.robots?.noFollow,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
     },
     openGraph: {
+      type: "article",
+      locale: "ar_AE",
+      ...(enArticle ? { alternateLocale: ["en_AE"] } : {}),
+      url: canonicalUrl,
+      siteName: "مصنع بيت النوخذة للخيام",
       title: metaTitle,
       description: metaDescription,
-      url: canonicalUrl,
-      images: [{ url: article.heroImage }],
+      publishedTime: (article as any)?.rawCreatedAt,
+      modifiedTime: (article as any)?.rawUpdatedAt,
+      authors: [article.author || "فريق التحرير الهندسي - بيت النوخذة"],
+      images: [
+        {
+          url: article.heroImage,
+          width: 1200,
+          height: 630,
+          alt: `${article.heroImageAlt || article.title} - مصنع بيت النوخذة للخيام`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [article.heroImage],
     },
   };
 }
@@ -406,55 +476,98 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
     );
   }
 
-  const currentUrl = `https://baitalnokhada.com/ar/news/${slug}`;
+  const currentUrl = `${BASE_URL}/ar/news/${slug}/`;
 
   // حقن السكيما المزدوجة المتطابقة مع RankMath
   const articleSchema: any = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
-        "@id": `${currentUrl}#article`,
-        "headline": article.seo?.metaTitle || article.title,
-        "description": article.seo?.metaDescription || article.desc,
-        "image": [article.heroImage],
-        "datePublished": article.date,
-        "inLanguage": "ar",
-        "mainEntityOfPage": currentUrl,
-        "publisher": {
-          "@type": "Organization",
-          "name": "مصنع بيت النوخذة للخيام والمظلات",
-          "url": "https://baitalnokhada.com",
-          "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
-        }
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "بيت النوخذة للخيام",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/ar/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        url: `${BASE_URL}/ar/`,
+        name: "مصنع بيت النوخذة للخيام",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "ar-AE",
       },
       {
         "@type": "BreadcrumbList",
         "@id": `${currentUrl}#breadcrumb`,
-        "itemListElement": [
+        itemListElement: [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "الرئيسية",
-            "item": "https://baitalnokhada.com/ar"
+            position: 1,
+            name: "الرئيسية",
+            item: `${BASE_URL}/ar/`,
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "الأخبار والمقالات",
-            "item": "https://baitalnokhada.com/ar/news"
+            position: 2,
+            name: "الأخبار والمقالات",
+            item: `${BASE_URL}/ar/news/`,
           },
           {
             "@type": "ListItem",
-            "position": 3,
-            "name": article.seo?.breadcrumbTitle || article.title,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
+            position: 3,
+            name: article.seo?.breadcrumbTitle || article.title,
+            item: currentUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${currentUrl}#webpage`,
+        url: currentUrl,
+        name: `${article.title} | مصنع بيت النوخذة للخيام`,
+        description: article.desc,
+        datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:30:00+04:00",
+        breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/ar/#website` },
+        about: { "@id": `${currentUrl}#article` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: article.heroImage,
+        },
+        inLanguage: "ar-AE",
+      },
+      {
+        "@type": "Article",
+        "@id": `${currentUrl}#article`,
+        headline: article.seo?.metaTitle || article.title,
+        description: article.seo?.metaDescription || article.desc,
+        image: [article.heroImage],
+        datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:30:00+04:00",
+        author: { "@id": `${BASE_URL}/#organization` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+        inLanguage: "ar-AE",
+      },
+    ],
   };
-
   if (article.faqs && article.faqs.length > 0) {
     articleSchema["@graph"].push({
       "@type": "FAQPage",

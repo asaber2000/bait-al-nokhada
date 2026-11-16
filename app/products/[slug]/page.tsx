@@ -12,6 +12,7 @@ import {
   Layers,
   Award,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -51,6 +52,14 @@ async function getSanityProductBySlug(slug: string) {
       summaryAr,
       topBadges,
       "slug": slug.current,
+      _createdAt,
+      _updatedAt,
+      seo{
+        metaTitle,
+        metaDescription,
+        focusKeywords,
+        canonicalUrl
+      },
       "catalogImage": catalogImage.asset->url,
       "coverImage": coverImage.asset->url,
       overviewTitleEn,
@@ -79,6 +88,105 @@ async function getSanityProductBySlug(slug: string) {
   } catch (error) {
     return null;
   }
+}
+
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const sanityProduct = await getSanityProductBySlug(slug);
+  const localMatch = productsDatabase.find((p) => p.slug === slug);
+
+  const name =
+    sanityProduct?.titleEn || localMatch?.name || "Architectural Tent Structure";
+  const rawDesc =
+    sanityProduct?.seo?.metaDescription ||
+    (localMatch as any)?.seo?.metaDescription ||
+    sanityProduct?.summaryEn ||
+    localMatch?.tagline ||
+    `Custom ${name} manufacturing, supply, and rental in UAE, Saudi Arabia, and GCC by Bait Al Nokhada Tents Factory.`;
+
+  const metaTitle =
+    sanityProduct?.seo?.metaTitle ||
+    (localMatch as any)?.seo?.metaTitle ||
+    `${name} Manufacturers & Suppliers in UAE & KSA | Bait Al Nokhada`;
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/products/${slug}/`;
+  const arUrl = `${BASE_URL}/ar/products/${slug}/`;
+  const ogImage =
+    sanityProduct?.coverImage ||
+    sanityProduct?.catalogImage ||
+    localMatch?.heroImage ||
+    (localMatch as any)?.catalogImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
+  const keywords: string[] = Array.isArray(sanityProduct?.seo?.focusKeywords)
+    ? sanityProduct.seo.focusKeywords
+    : Array.isArray((localMatch as any)?.seo?.focusKeywords)
+      ? (localMatch as any).seo.focusKeywords
+      : [
+          name,
+          `${name} UAE`,
+          `${name} Dubai`,
+          `${name} Saudi Arabia`,
+          `${name} manufacturer`,
+          `${name} rental`,
+          "Bait Al Nokhada Tents Factory",
+        ];
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "en-AE": canonicalUrl,
+        "ar-AE": arUrl,
+        "x-default": canonicalUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: canonicalUrl,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: metaTitle,
+      description: metaDescription,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} - Bait Al Nokhada Tents Factory`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function ProductDetailPage({
@@ -234,11 +342,165 @@ export default async function ProductDetailPage({
           "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
         ];
 
+        const pageUrl = `${BASE_URL}/products/${slug}/`;
+  const primaryImage =
+    product?.heroImage ||
+    product?.catalogImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "24.93410630",
+          longitude: "55.06500100",
+        },
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "Bait Al Nokhada",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["English", "Arabic"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "United Arab Emirates" },
+          { "@type": "Country", name: "Saudi Arabia" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: `${BASE_URL}/`,
+        name: "Bait Al Nokhada Tents Factory",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "en-AE",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${BASE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: `${BASE_URL}/products/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: (localMatch as any)?.seo?.breadcrumbTitle || enData.name,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${enData.name} | Bait Al Nokhada Tents Factory`,
+        description: enData.tagline,
+        datePublished: sanityProduct?._createdAt || "2021-07-19T18:06:30+04:00",
+        dateModified: sanityProduct?._updatedAt || "2026-11-16T08:30:00+04:00",
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        about: { "@id": `${pageUrl}#product` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: primaryImage,
+        },
+        inLanguage: "en-AE",
+      },
+      {
+        "@type": "Product",
+        "@id": `${pageUrl}#product`,
+        name: enData.name,
+        description: enData.description || enData.tagline,
+        image: [primaryImage, ...galleryImages].slice(0, 5),
+        category: enData.badge || "Architectural Tent Structures",
+        brand: {
+          "@type": "Brand",
+          name: "Bait Al Nokhada",
+        },
+        manufacturer: { "@id": `${BASE_URL}/#organization` },
+        additionalProperty: (enData.specs || []).map(
+          (spec: { label: string; value: string }) => ({
+            "@type": "PropertyValue",
+            name: spec.label,
+            value: spec.value,
+          })
+        ),
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          url: `${BASE_URL}/contact-us/`,
+          seller: { "@id": `${BASE_URL}/#organization` },
+          areaServed: [
+            { "@type": "Country", name: "United Arab Emirates" },
+            { "@type": "Country", name: "Saudi Arabia" },
+            { "@type": "AdministrativeArea", name: "GCC" },
+            { "@type": "Place", name: "Worldwide" },
+          ],
+        },
+        mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+      },
+    ],
+  };
+
   return (
     <main
       dir="ltr"
       className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-left"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <Navbar />
 
       {/* Grand Hero Section */}

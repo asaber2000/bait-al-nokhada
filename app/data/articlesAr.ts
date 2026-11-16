@@ -1,4 +1,10 @@
 export interface ArticleAr {
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
   id: string;
   slug: string;
   heroImage: string;
@@ -25,6 +31,18 @@ export const articlesArDatabase: ArticleAr[] = [
     slug: "tent-rental-guide-uae",
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp",
     featured: true,
+    seo: {
+      metaTitle: "Warehouse Tents in UAE & KSA | Buy or Rent Industrial Storage Tents",
+      metaDescription:
+        "Heavy-duty warehouse tents for sale or rental in UAE & KSA. Fast setup, durable aluminum frames, waterproof PVC covers. Ideal for storage, logistics & more.",
+      focusKeywords: [
+        "Warehouse Tents",
+        "Luxury Warehouse Tents UAE",
+        "Warehouse Tent Supplier Dubai",
+        "Wedding Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Warehouse Tent",
+    },
     ar: {
       title: "تأجير خيام في دبي، الشارقة، عجمان وكافة أنحاء الإمارات: الدليل الشامل من بيت النوخذة",
       category: "حلول الفعاليات والمناسبات",
@@ -116,7 +134,7 @@ export const articlesArDatabase: ArticleAr[] = [
           q: "هل خيام المستودعات مطابقة لاشتراطات الدفاع المدني والبلديات؟",
           a: "كافة أقمشتنا وهياكلنا معتمدة ضد الحريق DIN 4102 B1 ومطابقة لمعايير الدفاع المدني والبلديات في الإمارات."
         }
-      ]
+      ],
     }
   },
 ];

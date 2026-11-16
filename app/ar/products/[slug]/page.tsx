@@ -12,6 +12,7 @@ import {
   Layers,
   FileText
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
@@ -50,6 +51,14 @@ async function getSanityProductBySlug(slug: string) {
       summaryAr,
       topBadges,
       "slug": slug.current,
+      _createdAt,
+      _updatedAt,
+      seo{
+        metaTitle,
+        metaDescription,
+        focusKeywords,
+        canonicalUrl
+      },
       "catalogImage": catalogImage.asset->url,
       "coverImage": coverImage.asset->url,
       overviewTitleAr,
@@ -76,98 +85,263 @@ async function getSanityProductBySlug(slug: string) {
   }
 }
 
-const generateProductGraphSchema = (product: any, arData: any) => {
-  const currentUrl = `https://baitalnokhada.com/ar/products/${product?.slug || ""}`;
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const sanityProduct = await getSanityProductBySlug(slug);
+  const localMatch = productsDatabase.find((p) => p.slug === slug);
+  const activeAr = (localMatch as any)?.ar || localMatch;
+
+  const name =
+    sanityProduct?.titleAr || activeAr?.name || "خيام وهياكل معمارية";
+  const rawDesc =
+    sanityProduct?.seo?.metaDescription ||
+    (localMatch as any)?.seo?.metaDescription ||
+    sanityProduct?.summaryAr ||
+    activeAr?.tagline ||
+    `تصنيع وتوريد وتأجير ${name} في الإمارات والسعودية ودول الخليج من مصنع بيت النوخذة للخيام.`;
+
+  const metaTitle =
+    sanityProduct?.seo?.metaTitle ||
+    (localMatch as any)?.seo?.metaTitle ||
+    `${name} | تصنيع وتوريد وتأجير في الإمارات والسعودية | بيت النوخذة`;
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/ar/products/${slug}/`;
+  const enUrl = `${BASE_URL}/products/${slug}/`;
+  const ogImage =
+    sanityProduct?.coverImage ||
+    sanityProduct?.catalogImage ||
+    localMatch?.heroImage ||
+    (localMatch as any)?.catalogImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
+  const keywords: string[] = Array.isArray(sanityProduct?.seo?.focusKeywords)
+    ? sanityProduct.seo.focusKeywords
+    : Array.isArray((localMatch as any)?.seo?.focusKeywords)
+      ? (localMatch as any).seo.focusKeywords
+      : [
+        name,
+        `تصنيع ${name}`,
+        `تأجير ${name}`,
+        `${name} الإمارات`,
+        `${name} دبي`,
+        `${name} السعودية`,
+        "بيت النوخذة للخيام",
+      ];
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "en-AE": enUrl,
+        "ar-AE": canonicalUrl,
+        "x-default": enUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: canonicalUrl,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: metaTitle,
+      description: metaDescription,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} - بيت النوخذة للخيام`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [ogImage],
+    },
+  };
+}
+
+const generateProductGraphSchema = (
+  product: any,
+  arData: any,
+  sanityProduct: any,
+  localMatch: any,
+  galleryImages: string[]
+) => {
+  const slug = product?.slug || "";
+  const currentUrl = `${BASE_URL}/ar/products/${slug}/`;
+  const primaryImage =
+    product?.heroImage ||
+    product?.catalogImage ||
+    "https://d3g07f5oxrfvni.cloudfront.net/media-images/event-2/Event-Tent-Providers-for-Corporate-Events.webp";
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Place",
-        "@id": "https://baitalnokhada.com/#place",
-        "geo": {
+        "@id": `${BASE_URL}/#place`,
+        geo: {
           "@type": "GeoCoordinates",
-          "latitude": "24.93410630",
-          "longitude": "55.06500100"
+          latitude: "24.93410630",
+          longitude: "55.06500100",
         },
-        "hasMap": "https://www.google.com/maps/search/?api=1&query=24.93410630, 55.06500100",
-        "address": {
+        hasMap:
+          "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        address: {
           "@type": "PostalAddress",
-          "streetAddress": "Land No. TP 010102 - Technopark",
-          "addressLocality": "Mina Jebel Ali",
-          "addressRegion": "National Industries Park - Dubai",
-          "postalCode": "Dubai",
-          "addressCountry": "AE"
-        }
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
       },
       {
-        "@type": "Organization",
-        "@id": "https://baitalnokhada.com/#organization",
-        "name": "Bait Al Nokhada",
-        "url": "https://baitalnokhada.com",
-        "email": "info@baitalnokhada.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Land No. TP 010102 - Technopark",
-          "addressLocality": "Mina Jebel Ali",
-          "addressRegion": "National Industries Park - Dubai",
-          "postalCode": "Dubai",
-          "addressCountry": "AE"
-        },
-        "logo": {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "بيت النوخذة للخيام",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/ar/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
           "@type": "ImageObject",
-          "@id": "https://baitalnokhada.com/#logo",
-          "url": "https://baitalnokhada.com/wp-content/uploads/2024/08/Brand-identity-2_.png",
-          "width": 1894,
-          "height": 1319
+          "@id": `${BASE_URL}/#logo`,
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
         },
-        "contactPoint": [
+        contactPoint: [
           {
             "@type": "ContactPoint",
-            "telephone": "+971558850631",
-            "contactType": "customer support"
+            telephone: "+971558850631",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
           },
           {
             "@type": "ContactPoint",
-            "telephone": "+97143444091",
-            "contactType": "customer support"
-          }
-        ]
+            telephone: "+97143444091",
+            contactType: "customer support",
+            areaServed: ["AE", "SA", "GCC", "Worldwide"],
+            availableLanguage: ["Arabic", "English"],
+          },
+        ],
+        areaServed: [
+          { "@type": "Country", name: "الإمارات العربية المتحدة" },
+          { "@type": "Country", name: "المملكة العربية السعودية" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+        location: { "@id": `${BASE_URL}/#place` },
       },
       {
         "@type": "WebSite",
-        "@id": "https://baitalnokhada.com/#website",
-        "url": "https://baitalnokhada.com",
-        "name": "BAITALNOKHADA TENTS FACTORY -HEAD OFFICE DUBAI",
-        "publisher": {
-          "@id": "https://baitalnokhada.com/#organization"
-        },
-        "inLanguage": "ar"
+        "@id": `${BASE_URL}/ar/#website`,
+        url: `${BASE_URL}/ar/`,
+        name: "مصنع بيت النوخذة للخيام",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "ar-AE",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${currentUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "الرئيسية",
+            item: `${BASE_URL}/ar/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "المنتجات",
+            item: `${BASE_URL}/ar/products/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: (localMatch as any)?.seo?.breadcrumbTitle || arData?.name,
+            item: currentUrl,
+          },
+        ],
       },
       {
         "@type": "WebPage",
         "@id": `${currentUrl}#webpage`,
-        "url": currentUrl,
-        "name": arData?.name || "خيام بيت النوخذة",
-        "isPartOf": {
-          "@id": "https://baitalnokhada.com/#website"
+        url: currentUrl,
+        name: `${arData?.name || "خيام بيت النوخذة"} | مصنع بيت النوخذة للخيام`,
+        description: arData?.tagline || "",
+        datePublished: sanityProduct?._createdAt || "2021-07-19T18:06:30+04:00",
+        dateModified: sanityProduct?._updatedAt || "2026-11-16T09:43:00+04:00",
+        breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/ar/#website` },
+        about: { "@id": `${currentUrl}#product` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: primaryImage,
         },
-        "inLanguage": "ar"
+        inLanguage: "ar-AE",
       },
       {
         "@type": "Product",
-        "name": arData?.name || "خيام بيت النوخذة",
-        "description": arData?.tagline || "",
-        "@id": `${currentUrl}#richSnippet`,
-        "isPartOf": {
-          "@id": `${currentUrl}#webpage`
+        "@id": `${currentUrl}#product`,
+        name: arData?.name || "خيام بيت النوخذة",
+        description: arData?.description || arData?.tagline || "",
+        image: [primaryImage, ...galleryImages].slice(0, 5),
+        category: arData?.badge || "خيام وهياكل معمارية",
+        brand: {
+          "@type": "Brand",
+          name: "بيت النوخذة",
         },
-        "image": {
-          "@type": "ImageObject",
-          "url": product?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87"
+        manufacturer: { "@id": `${BASE_URL}/#organization` },
+        additionalProperty: (arData?.specs || []).map(
+          (spec: { label: string; value: string }) => ({
+            "@type": "PropertyValue",
+            name: spec.label,
+            value: spec.value,
+          })
+        ),
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          url: `${BASE_URL}/ar/contact-us/`,
+          seller: { "@id": `${BASE_URL}/#organization` },
+          areaServed: [
+            { "@type": "Country", name: "الإمارات العربية المتحدة" },
+            { "@type": "Country", name: "المملكة العربية السعودية" },
+            { "@type": "AdministrativeArea", name: "GCC" },
+            { "@type": "Place", name: "Worldwide" },
+          ],
         },
-        "url": currentUrl
-      }
-    ]
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+      },
+    ],
   };
 };
 
@@ -245,7 +419,13 @@ export default async function ArabicProductDetailPage({
         "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
       ];
 
-  const schemaData = generateProductGraphSchema(product, arData);
+  const schemaData = generateProductGraphSchema(
+    product,
+    arData,
+    sanityProduct,
+    localMatch,
+    galleryImages
+  );
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">

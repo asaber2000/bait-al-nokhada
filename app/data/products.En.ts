@@ -20,6 +20,12 @@ export interface ProductItemEn {
   models: ProductModel[];
   features: string[];
   specs: { label: string; value: string }[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    focusKeywords?: string[];
+    breadcrumbTitle?: string;
+  };
 }
 
 export const productsDatabase: ProductItemEn[] = [
@@ -66,6 +72,18 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Standard Sizes", value: "From 3x3m up to 10x10m (Custom Modular Sizing Available)" },
       { label: "Service Availability", value: "Available for Short-Term Rental & Direct Factory Sale" },
     ],
+    seo: {
+      metaTitle: "Pyramid Tent for Sale & Rental in UAE | Luxury Event Tents by Bait Al Nokhada",
+      metaDescription:
+        "Buy or rent a luxury Pyramid Tent in UAE. Perfect for weddings, VIP events, and exhibitions. Fully customizable and built to impress.",
+      focusKeywords: [
+        "Pyramid Tents",
+        "Luxury Pyramid Tents UAE",
+        "Pyramid Tent Supplier Dubai",
+        "Pyramid Tent for Sale",
+      ],
+      breadcrumbTitle: "Pyramid Tent",
+    },
   },
   {
     id: "2",
@@ -111,6 +129,18 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Standard Sizes", value: "5x5m, 6x6m, 8x8m, 10x10m (Custom Configurations Available)" },
       { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" },
     ],
+    seo: {
+      metaTitle: "Leading Dome Tent Supplier In UAE",
+      metaDescription:
+        "Leading dome tent supplier in UAE. Royal dome tents, full customization, fast setup & delivery across UAE, KSA & beyond.",
+      focusKeywords: [
+        "Dome Tents",
+        "Luxury Dome Tents UAE",
+        "Dome Tent Supplier Dubai",
+        "Dome Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Dome Tent",
+    },
   },
   {
     id: "3",
@@ -154,7 +184,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Electrical & Fit-Out", value: "Integrated Weatherproof Wiring & Power Channels" },
       { label: "Recommended Use", value: "Trade Shows, VIP Lounges, Pop-Ups & Branded Activations" },
       { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Capsule Tents For Events In UAE & KSA | Bait Al Nokhada",
+      metaDescription:
+        "Discover high-quality capsule tent rentals for exhibitions & events in Dubai, Riyadh & beyond. For sale or rent. Lightweight, stylish, and fully customizable.",
+      focusKeywords: [
+        "Capsule Tents",
+        "Luxury Capsule Tents UAE",
+        "Capsule Tent Supplier Dubai",
+        "Capsule Tents Sales KSA",
+      ],
+      breadcrumbTitle: "Capsule Tent",
+    },
   },
   {
     id: "4",
@@ -198,7 +240,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Thermal Insulation System", value: "Multi-Layer Thermal Core for Maximum AC Efficiency" },
       { label: "Flooring & Accessories", value: "Sub-Floor Framing for Carpeting, Glass Doors & Majlis Setup" },
       { label: "Service Availability", value: "Available for Rental & Permanent Custom Manufacturing" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Arabic Majlis Tents | Arabic Tent In UAE | Bait Al Nokhada",
+      metaDescription:
+        "Buy or rent luxury Arabic majlis tents in UAE & KSA. Traditional designs, custom interiors & fast setup. Trusted tent manufacturer since 1997.",
+      focusKeywords: [
+        "Arabic Majlis Tents",
+        "Luxury Arabic Majlis Tents UAE",
+        "Arabic Majlis Tent Supplier Dubai",
+        "Arabic Majlis Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Arabic Majlis Tent",
+    },
   },
   {
     id: "5",
@@ -243,7 +297,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Roof Membrane System", value: "Heavy-Duty Flame-Retardant PVC with Dual Thermal Air Insulation" },
       { label: "Side Wall Systems", value: "Insulated Solid Panels, Panoramic Glass Walls & Double Doors" },
       { label: "Availability", value: "Available for Short-Term Rental & Permanent Turnkey Manufacturing" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Revolution Tent – Premium Tent For Grand Events In UAE & KSA",
+      metaDescription:
+        "Discover Revolution Tent: premium, customizable event tents for exhibitions, weddings & more. Available for rent or sale in UAE & Saudi Arabia.",
+      focusKeywords: [
+        "Revolution Tents",
+        "Luxury Revolution Tents UAE",
+        "Revolution Tent Supplier Dubai",
+        "Revolution Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Revolution Tent",
+    },
   },
   {
     id: "6",
@@ -289,7 +355,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Sidewall Enclosures", value: "Insulated Sandwich Panels, Glass Curtain Walls, or PVC" },
       { label: "Sports Suitability", value: "Fully Compliant for Indoor Padel, Tennis, and Athletics" },
       { label: "Availability", value: "Available for Event Rental & Turnkey Factory Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Polygon Tent | Rent Tent | Tents On Rent | Tent Supplier In UAE",
+      metaDescription:
+        "Buy or rent high-capacity polygon tents in Dubai, Abu Dhabi & Riyadh. Ideal for business, weddings & exhibitions. Engineered for all weather.",
+      focusKeywords: [
+        "Polygon Tents",
+        "Luxury Polygon Tents UAE",
+        "Polygon Tent Supplier Dubai",
+        "Polygon Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Polygon Tent",
+    },
   },
   {
     id: "7",
@@ -335,7 +413,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Eave Height Clearance", value: "4.0m Standard Industrial Clearance for High-Profile Setups" },
       { label: "Sidewall Systems", value: "Tempered Glass Walls, Solid ABS Wall Panels, or Flexible PVC" },
       { label: "Service Availability", value: "Available for Event Rental & Turnkey Factory Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Arch Tent For Sale & Rental In UAE & KSA | Bait Al Nokhada",
+      metaDescription:
+        "Explore premium arch tents for sale or rent in UAE & KSA. Bait Al Nokhada offers clear-span, weatherproof tents for events, exhibitions, and industrial use.",
+      focusKeywords: [
+        "Arch Tents",
+        "Luxury Arch Tents UAE",
+        "Arch Tent Supplier Dubai",
+        "Arch Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Arch Tent",
+    },
   },
   {
     id: "8",
@@ -378,6 +468,18 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Perimeter Walling", value: "Double-Glazed Panoramic Glass Curtain Walls & Solid ABS Panels" },
       { label: "Service Availability", value: "Available for Short-Term Rental & Permanent Manufacturing" }
     ],
+    seo: {
+      metaTitle: "Double Decker Tent Rental & Sales | Bait Al Nokhada",
+      metaDescription:
+        "Discover high-quality Double Decker tent for rent and sale in UAE & KSA. Ideal for VIP lounges, sports events, and exhibitions in Dubai and Riyadh.",
+      focusKeywords: [
+        "Double Decker Tent",
+        "Luxury Double Decker Tents UAE",
+        "Double Decker Tent Supplier Dubai",
+        "Double Decker Tent Rental KSA",
+      ],
+      breadcrumbTitle: "Double Decker Tent",
+    },
   },
   {
     id: "9",
@@ -418,7 +520,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Glass Enclosures", value: "Tempered Clear Safety Glass Panels & Double-Glazed Doors" },
       { label: "Roof Covering", value: "UV-Resistant, Flame-Retardant Transparent PVC" },
       { label: "Service Availability", value: "Available for Short-Term Event Rental & Factory Direct Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Panoramic Tent Manufacturer In Dubai | Bait Al Nokhada",
+      metaDescription:
+        "Trusted manufacturer of panoramic tents in Dubai. Buy or rent luxury tents for events in UAE, Abu Dhabi, Riyadh & Jeddah.",
+      focusKeywords: [
+        "Panoramic Tents",
+        "Luxury Panoramic Tents UAE",
+        "Panoramic Tent Supplier Dubai",
+        "Panoramic Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Panoramic Tent",
+    },
   },
   {
     id: "10",
@@ -461,7 +575,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Internal Clearance", value: "Soaring Spherical Apex Height Ensuring Maximum Interior Volume" },
       { label: "Door & Entrance Systems", value: "Tempered Glass Single/Double Doors & Specialized Air-Lock Tunnels" },
       { label: "Service Availability", value: "Available for Short-Term Event Rental & Factory Direct Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Premium Geodesic Tents For Events & Exhibitions | Bait Al Nokhada",
+      metaDescription:
+        "Discover luxury geodesic tents for events, exhibitions, and outdoor experiences. Available for rent or sale across UAE, KSA, and the Middle East.",
+      focusKeywords: [
+        "Geodesic Tents",
+        "Luxury Geodesic Tents UAE",
+        "Geodesic Tent Supplier Dubai",
+        "Geodesic Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Geodesic Tent",
+    },
   },
   {
     id: "11",
@@ -502,7 +628,19 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Interior Clearance", value: "Generous Eave & Apex Height for Maximum Air Circulation" },
       { label: "Wall Enclosures", value: "Panoramic Glass Panels, Solid ABS Walls, or Flexible PVC Curtains" },
       { label: "Service Availability", value: "Available for Event Rental & Factory Direct Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Wave Tent Rental & Sale In UAE & Saudi Arabia | Bait Al Nokhada",
+      metaDescription:
+        "Modern, elegant Wave Tents for luxury weddings, VIP events & exhibitions. Custom sizes available. Trusted rental & manufacturing company in UAE & KSA.",
+      focusKeywords: [
+        "Wave Tents",
+        "Luxury Wave Tents UAE",
+        "Wave Tent Supplier Dubai",
+        "Wave Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Wave Tent",
+    },
   },
   {
     id: "12",
@@ -544,6 +682,18 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Covering Material", value: "Heavy-Duty Flame-Retardant White PVC (UV & Heat Shielded)" },
       { label: "Side Enclosures", value: "Tempered Glass Walls, Solid ABS Panels, or Sliding PVC Curtains" },
       { label: "Service Availability", value: "Available for Event Rental & Factory Direct Sales" }
-    ]
+    ],
+    seo: {
+      metaTitle: "Pyramid Dome Tent For Rent & Sale In UAE & KSA | Bait Al Nokhada",
+      metaDescription:
+        "Elegant pyramid dome tents for rent or sale across UAE & KSA. Ideal for weddings, exhibitions & VIP events. Custom sizes & finishes available.",
+      focusKeywords: [
+        "Pyramid Dome Tents",
+        "Luxury Pyramid Dome Tents UAE",
+        "Pyramid Dome Tent Supplier Dubai",
+        "Pyramid Dome Tent Sales KSA",
+      ],
+      breadcrumbTitle: "Pyramid Dome Tent",
+    },
   },
 ];

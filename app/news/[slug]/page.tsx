@@ -196,6 +196,7 @@ async function getArticleData(slug: string) {
       seo {
         metaTitle,
         metaDescription,
+        focusKeywords,
         breadcrumbTitle,
         canonicalUrl,
         robots {
@@ -203,13 +204,16 @@ async function getArticleData(slug: string) {
           noFollow
         }
       },
-      _createdAt
+      _createdAt,
+      _updatedAt
     }`;
 
     const sanityData = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
 
     if (sanityData) {
       return {
+        rawCreatedAt: sanityData._createdAt || new Date().toISOString(),
+        rawUpdatedAt: sanityData._updatedAt || sanityData._createdAt || new Date().toISOString(),
         title: sanityData.titleEn,
         desc: sanityData.descEn,
         heroImage: sanityData.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
@@ -242,7 +246,9 @@ async function getArticleData(slug: string) {
           ? sanityData.tocEn.map((t: any) => ({ id: t.id || "overview", label: t.label || "Section" }))
           : [{ id: "overview", label: "Overview" }],
         seo: sanityData.seo || null
+
       };
+
     }
   } catch (error) {
     console.error("Error fetching English article from Sanity:", error);
@@ -266,7 +272,9 @@ async function getArticleData(slug: string) {
       contentSections: staticMatch.contentSections || [],
       faqs: staticMatch.faqs || [],
       toc: staticMatch.toc || [{ id: "overview", label: "Overview" }],
-      seo: null
+      rawCreatedAt: "2025-10-01T10:00:00+04:00",
+      rawUpdatedAt: "2026-11-16T11:00:00+04:00",
+      seo: (staticMatch as any)?.seo || null
     };
   }
 
@@ -282,17 +290,23 @@ async function checkArabicVersionExists(slug: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleData(slug);
+  const arArticle = await checkArabicVersionExists(slug);
 
   if (!article) {
-    const arArticle = await checkArabicVersionExists(slug);
     if (arArticle) {
       return {
         title: `${arArticle.titleAr} | Bait Al Nokhada`,
         alternates: {
-          canonical: `https://baitalnokhada.com/ar/news/${slug}/`,
+          canonical: `${BASE_URL}/ar/news/${slug}/`,
         },
         robots: {
           index: false,
@@ -303,25 +317,84 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Article Not Found | Bait Al Nokhada" };
   }
 
-  const metaTitle = article.seo?.metaTitle || `${article.title} | Bait Al Nokhada Insights`;
-  const metaDescription = article.seo?.metaDescription || article.desc?.slice(0, 160) || "Read authoritative industry insights and engineering articles by Bait Al Nokhada.";
-  const canonicalUrl = article.seo?.canonicalUrl || `https://baitalnokhada.com/news/${slug}`;
+  const metaTitle =
+    article.seo?.metaTitle || `${article.title} | Bait Al Nokhada Insights`;
+  const rawDesc =
+    article.seo?.metaDescription ||
+    article.desc ||
+    "Read authoritative industry insights and engineering articles by Bait Al Nokhada Tents Factory.";
+  const metaDescription =
+    rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+  const canonicalUrl = `${BASE_URL}/news/${slug}/`;
+  const arUrl = `${BASE_URL}/ar/news/${slug}/`;
+
+  const rawKeywords =
+    article.seo?.focusKeywords || (article.seo as any)?.keywords;
+
+  const keywords: string[] = Array.isArray(rawKeywords)
+    ? rawKeywords
+    : article.tags?.length > 0
+      ? article.tags
+      : [
+          article.title,
+          `${article.category} UAE`,
+          "Bait Al Nokhada Insights",
+          "Tents & Fabric Structures UAE",
+        ];
 
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
+      ...(arArticle
+        ? {
+          languages: {
+            "en-AE": canonicalUrl,
+            "ar-AE": arUrl,
+            "x-default": canonicalUrl,
+          },
+        }
+        : {}),
     },
     robots: {
       index: !article.seo?.robots?.noIndex,
       follow: !article.seo?.robots?.noFollow,
+      googleBot: {
+        index: !article.seo?.robots?.noIndex,
+        follow: !article.seo?.robots?.noFollow,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
     },
     openGraph: {
+      type: "article",
+      locale: "en_AE",
+      ...(arArticle ? { alternateLocale: ["ar_AE"] } : {}),
+      url: canonicalUrl,
+      siteName: "Bait Al Nokhada Tents Factory",
       title: metaTitle,
       description: metaDescription,
-      url: canonicalUrl,
-      images: [{ url: article.heroImage }],
+      publishedTime: (article as any)?.rawCreatedAt,
+      modifiedTime: (article as any)?.rawUpdatedAt,
+      authors: [article.author || "Bait Al Nokhada Editorial"],
+      images: [
+        {
+          url: article.heroImage,
+          width: 1200,
+          height: 630,
+          alt: `${article.heroImageAlt || article.title} - Bait Al Nokhada Tents Factory`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [article.heroImage],
     },
   };
 }
@@ -384,55 +457,98 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     );
   }
 
-  const currentUrl = `https://baitalnokhada.com/news/${slug}`;
+  const currentUrl = `${BASE_URL}/news/${slug}/`;
 
-  // السكيما المزدوجة المتوافقة مع RankMath (Article + FAQ + Breadcrumb)
+  // السكيما المزدوجة المتوافقة مع RankMath (Article + FAQ + Breadcrumb + Organization)
   const articleSchema: any = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
-        "@id": `${currentUrl}#article`,
-        "headline": article.seo?.metaTitle || article.title,
-        "description": article.seo?.metaDescription || article.desc,
-        "image": [article.heroImage],
-        "datePublished": article.date,
-        "inLanguage": "en-US",
-        "mainEntityOfPage": currentUrl,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Bait Al Nokhada Tents & Fabric Structures",
-          "url": "https://baitalnokhada.com",
-          "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
-        }
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        name: "Bait Al Nokhada",
+        legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+        url: `${BASE_URL}/`,
+        email: "info@baitalnokhada.com",
+        telephone: "+971558850631",
+        foundingDate: "1997",
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+        },
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Land No. TP 010102 - Technopark",
+          addressLocality: "Mina Jebel Ali",
+          addressRegion: "National Industries Park - Dubai",
+          postalCode: "Dubai",
+          addressCountry: "AE",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: `${BASE_URL}/`,
+        name: "Bait Al Nokhada Tents Factory",
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        inLanguage: "en-AE",
       },
       {
         "@type": "BreadcrumbList",
         "@id": `${currentUrl}#breadcrumb`,
-        "itemListElement": [
+        itemListElement: [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://baitalnokhada.com"
+            position: 1,
+            name: "Home",
+            item: `${BASE_URL}/`,
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "News & Insights",
-            "item": "https://baitalnokhada.com/news"
+            position: 2,
+            name: "News & Insights",
+            item: `${BASE_URL}/news/`,
           },
           {
             "@type": "ListItem",
-            "position": 3,
-            "name": article.seo?.breadcrumbTitle || article.title,
-            "item": currentUrl
-          }
-        ]
-      }
-    ]
+            position: 3,
+            name: article.seo?.breadcrumbTitle || article.title,
+            item: currentUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${currentUrl}#webpage`,
+        url: currentUrl,
+        name: `${article.title} | Bait Al Nokhada Tents Factory`,
+        description: article.desc,
+        datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
+        breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        about: { "@id": `${currentUrl}#article` },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: article.heroImage,
+        },
+        inLanguage: "en-AE",
+      },
+      {
+        "@type": "Article",
+        "@id": `${currentUrl}#article`,
+        headline: article.seo?.metaTitle || article.title,
+        description: article.seo?.metaDescription || article.desc,
+        image: [article.heroImage],
+        datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
+        author: { "@id": `${BASE_URL}/#organization` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+        inLanguage: "en-AE",
+      },
+    ],
   };
-
   // حقن سكيما الأسئلة الشائعة FAQ Schema تلقائياً لجوجل
   if (article.faqs && article.faqs.length > 0) {
     articleSchema["@graph"].push({
