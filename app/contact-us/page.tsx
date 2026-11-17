@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import { useState } from "react";
 import {
   Sparkles,
@@ -51,6 +52,43 @@ const branches = [
   },
 ];
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Contact Us | Bait Al Nokhada Tents Factory (UAE & KSA)",
+    description: "Get in touch with Bait Al Nokhada tent specialists in Dubai, Abu Dhabi, and Riyadh. Request instant factory quotes and industrial structure consultations.",
+    alternates: {
+      canonical: `${BASE_URL}/contact-us/`,
+      languages: {
+        "en-AE": `${BASE_URL}/contact-us/`,
+        "ar-AE": `${BASE_URL}/ar/contact-us/`,
+        "x-default": `${BASE_URL}/contact-us/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/contact-us/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "Contact Us | Bait Al Nokhada Tents Factory (UAE & KSA)",
+      description: "Get in touch with Bait Al Nokhada tent specialists in Dubai, Abu Dhabi, and Riyadh. Request instant factory quotes and industrial structure consultations.",
+    },
+  };
+}
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -59,8 +97,120 @@ export default function ContactPage() {
     setSubmitted(true);
   };
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/contact-us/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact Us",
+            "item": `${BASE_URL}/contact-us/`
+          }
+        ]
+      },
+      {
+        "@type": "ContactPage",
+        "@id": `${BASE_URL}/contact-us/#webpage`,
+        "url": `${BASE_URL}/contact-us/`,
+        "name": "Contact Us | Bait Al Nokhada Tents Factory (UAE & KSA)",
+        "description": "Get in touch with Bait Al Nokhada tent specialists in Dubai, Abu Dhabi, and Riyadh.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        },
+        "breadcrumb": {
+          "@id": `${BASE_URL}/contact-us/#breadcrumb`
+        },
+        "mainEntity": [
+          {
+            "@type": "LocalBusiness",
+            "name": "Bait Al Nokhada - Dubai Headquarters & Factory",
+            "image": `${BASE_URL}/bait-alnokhada-final-g.svg`,
+            "telephone": "+971558850631",
+            "email": "Info@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Land No. TP 010102 - Technopark - Mina Jebel Ali - National Industries Park",
+              "addressLocality": "Dubai",
+              "addressRegion": "Dubai",
+              "addressCountry": "AE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.93410630,
+              "longitude": 55.06500100
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "08:00",
+              "closes": "18:00"
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "Bait Al Nokhada - Abu Dhabi Branch",
+            "telephone": "+971554972465",
+            "email": "info@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Musaffah - ICAD I",
+              "addressLocality": "Abu Dhabi",
+              "addressRegion": "Abu Dhabi",
+              "addressCountry": "AE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.329919,
+              "longitude": 54.506679
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "Bait Al Nokhada - Saudi Arabia (KSA) Office",
+            "telephone": "+966546917670",
+            "email": "info.ksa@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Office, No. 32, Abdalrahman Al Rosis Center, Olaya St",
+              "addressLocality": "Riyadh",
+              "postalCode": "12211",
+              "addressCountry": "SA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.682873,
+              "longitude": 46.690347
+            }
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
       <Navbar />
 
       {/* Header Banner */}

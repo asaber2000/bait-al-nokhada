@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 import { client } from "@/app/lib/sanity";
+import type { Metadata } from "next";
 
 
 export const revalidate = 60;
@@ -45,11 +46,121 @@ async function getSanitySolutionsEn() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Innovative Tent Solutions in UAE & Saudi Arabia | Bait Al Nokhada",
+    description: "Explore custom-engineered modular tent solutions across the UAE and KSA, including logistics warehouses, aircraft hangars, and exhibition venues.",
+    alternates: {
+      canonical: `${BASE_URL}/solutions/`,
+      languages: {
+        "en-AE": `${BASE_URL}/solutions/`,
+        "ar-AE": `${BASE_URL}/ar/solutions/`,
+        "x-default": `${BASE_URL}/solutions/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/solutions/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "Innovative Tent Solutions in UAE & Saudi Arabia | Bait Al Nokhada",
+      description: "Explore custom-engineered modular tent solutions across the UAE and KSA, including logistics warehouses, aircraft hangars, and exhibition venues.",
+    },
+  };
+}
+
 export default async function SolutionsCatalogPage() {
   const allSolutions = await getSanitySolutionsEn();
 
+  const solutionsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "publisher": { "@id": `${BASE_URL}/#organization` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/solutions/#webpage`,
+        "url": `${BASE_URL}/solutions/`,
+        "name": "Innovative Tent Solutions in UAE & Saudi Arabia | Bait Al Nokhada",
+        "description": "Explore custom-engineered modular tent solutions across the UAE and KSA.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/solutions/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Solutions",
+            "item": `${BASE_URL}/solutions/`
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "url": `${BASE_URL}/solutions/`,
+        "numberOfItems": allSolutions.length,
+        "itemListElement": allSolutions.map((sol: any, index: number) => {
+          const sData = sol.name ? sol : (sol.en || sol);
+          return {
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "Service",
+              "name": sData.name,
+              "description": sData.tagline || sData.overview,
+              "image": sData.catalogImage || sData.heroImage,
+              "url": `${BASE_URL}/solutions/${sol.slug}`
+            }
+          };
+        })
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
+      />
       <Navbar />
 
       {/* Header Hero */}

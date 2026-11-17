@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { projectsDatabase } from "../data/projects.En";
 import { client } from "@/app/lib/sanity";
 import ProjectsGrid from "@/components/ProjectsGrid";
+import type { Metadata } from "next";
 
 export const revalidate = 60; // Instant Cache & ISR
 
@@ -55,6 +56,43 @@ async function getSanityEnglishProjects() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Engineering Landmark Venues & Industrial Projects | Bait Al Nokhada",
+    description: "Explore our proven execution of high-capacity exhibition halls, specialized industrial projects, and custom VIP installations engineered across the GCC.",
+    alternates: {
+      canonical: `${BASE_URL}/projects/`,
+      languages: {
+        "en-AE": `${BASE_URL}/projects/`,
+        "ar-AE": `${BASE_URL}/ar/projects/`,
+        "x-default": `${BASE_URL}/projects/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/projects/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "Engineering Landmark Venues & Industrial Projects | Bait Al Nokhada",
+      description: "Explore our proven execution of high-capacity exhibition halls, specialized industrial projects, and custom VIP installations engineered across the GCC.",
+    },
+  };
+}
+
 export default async function ProjectsCatalogPage() {
   const sanityProjects = await getSanityEnglishProjects();
 
@@ -63,8 +101,78 @@ export default async function ProjectsCatalogPage() {
   const remainingLocal = projectsDatabase.filter((lp: any) => !sanitySlugs.has(lp.slug));
   const allProjects = [...sanityProjects, ...remainingLocal];
 
+  const projectsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "publisher": { "@id": `${BASE_URL}/#organization` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/projects/#webpage`,
+        "url": `${BASE_URL}/projects/`,
+        "name": "Engineering Landmark Venues & Industrial Projects | Bait Al Nokhada",
+        "description": "Explore our proven execution of high-capacity exhibition halls and specialized industrial projects.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/projects/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": `${BASE_URL}/projects/`
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "url": `${BASE_URL}/projects/`,
+        "numberOfItems": allProjects.length,
+        "itemListElement": allProjects.map((project: any, index: number) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": project.title,
+            "description": project.summary || project.category,
+            "image": project.coverImage,
+            "url": `${BASE_URL}/projects/${project.slug}`
+          }
+        }))
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsSchema) }}
+      />
       <Navbar />
 
       <section className="relative pt-44 pb-16 px-6 sm:px-12 lg:px-24 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">

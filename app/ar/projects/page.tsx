@@ -4,6 +4,7 @@ import Footer from "@/components-ar/components/Footer.Ar";
 import { projectsDatabase } from "../../data/projects.Ar";
 import { client } from "@/app/lib/sanity";
 import ProjectsGridAr from "@/components-ar/components/ProjectsGrid";
+import type { Metadata } from "next";
 
 // نفس مصفوفة التصنيفات المسطحة لتتطابق حركة أزرار الفلترة بالملي
 const filterTabs = [
@@ -56,6 +57,43 @@ async function getSanityArabicProjects() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "ريادة هندسية في تنفيذ المشاريع الكبرى والفعاليات العالمية | بيت النوخذة",
+    description: "نوثق هنا نخبة من مشاريعنا الميدانية المنجزة؛ من قاعات المعارض الدولية والمنشآت اللوجستية إلى مجالس الاستقبال الفاخرة في الإمارات والمنطقة.",
+    alternates: {
+      canonical: `${BASE_URL}/ar/projects/`,
+      languages: {
+        "en-AE": `${BASE_URL}/projects/`,
+        "ar-AE": `${BASE_URL}/ar/projects/`,
+        "x-default": `${BASE_URL}/projects/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: `${BASE_URL}/ar/projects/`,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: "ريادة هندسية في تنفيذ المشاريع الكبرى والفعاليات العالمية | بيت النوخذة",
+      description: "نوثق هنا نخبة من مشاريعنا الميدانية المنجزة؛ من قاعات المعارض الدولية والمنشآت اللوجستية إلى مجالس الاستقبال الفاخرة في الإمارات والمنطقة.",
+    },
+  };
+}
+
 export default async function ArabicProjectsCatalogPage() {
   const sanityProjects = await getSanityArabicProjects();
   
@@ -64,8 +102,78 @@ export default async function ArabicProjectsCatalogPage() {
   const remainingLocal = projectsDatabase.filter((lp: any) => !sanitySlugs.has(lp.slug));
   const allProjects = [...sanityProjects, ...remainingLocal];
 
+  const arabicProjectsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/ar/#organization`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "url": `${BASE_URL}/ar/`,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        "url": `${BASE_URL}/ar/`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "publisher": { "@id": `${BASE_URL}/ar/#organization` },
+        "inLanguage": "ar-AE"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/ar/projects/#webpage`,
+        "url": `${BASE_URL}/ar/projects/`,
+        "name": "ريادة هندسية في تنفيذ المشاريع الكبرى والفعاليات العالمية | بيت النوخذة",
+        "description": "استعرض نخبة مشاريعنا الهندسية المنجزة من المعارض الكبرى والمنشآت في الإمارات.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/ar/projects/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": `${BASE_URL}/ar/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "المشاريع",
+            "item": `${BASE_URL}/ar/projects/`
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "url": `${BASE_URL}/ar/projects/`,
+        "numberOfItems": allProjects.length,
+        "itemListElement": allProjects.map((project: any, index: number) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": project.title,
+            "description": project.summary || project.category,
+            "image": project.coverImage,
+            "url": `${BASE_URL}/ar/projects/${project.slug}`
+          }
+        }))
+      }
+    ]
+  };
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white text-right font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicProjectsSchema) }}
+      />
       <Navbar />
 
       {/* Hero Banner المعماري الفاخر */}

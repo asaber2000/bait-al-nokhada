@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import { useState } from "react";
 import {
   Sparkles,
@@ -50,6 +51,43 @@ const branches = [
   },
 ];
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "اتصل بنا | مصنع بيت النوخذة للخيام (الإمارات والسعودية)",
+    description: "تواصل مع خبراء الخيام في دبي، أبوظبي، والرياض. اطلب عرض سعر فوري واحصل على استشارات هندسية للمنشآت والخيام الكبرى.",
+    alternates: {
+      canonical: `${BASE_URL}/ar/contact-us/`,
+      languages: {
+        "en-AE": `${BASE_URL}/contact-us/`,
+        "ar-AE": `${BASE_URL}/ar/contact-us/`,
+        "x-default": `${BASE_URL}/contact-us/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: `${BASE_URL}/ar/contact-us/`,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: "اتصل بنا | مصنع بيت النوخذة للخيام (الإمارات والسعودية)",
+      description: "تواصل مع خبراء الخيام في دبي، أبوظبي، والرياض. اطلب عرض سعر فوري واحصل على استشارات هندسية للمنشآت والخيام الكبرى.",
+    },
+  };
+}
+
 export default function ArabicContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,8 +96,120 @@ export default function ArabicContactPage() {
     setSubmitted(true);
   };
 
+  const arabicContactSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        "url": `${BASE_URL}/ar/`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "inLanguage": "ar-AE"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/ar/contact-us/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": `${BASE_URL}/ar/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "اتصل بنا",
+            "item": `${BASE_URL}/ar/contact-us/`
+          }
+        ]
+      },
+      {
+        "@type": "ContactPage",
+        "@id": `${BASE_URL}/ar/contact-us/#webpage`,
+        "url": `${BASE_URL}/ar/contact-us/`,
+        "name": "اتصل بنا | مصنع بيت النوخذة للخيام (الإمارات والسعودية)",
+        "description": "تواصل مع خبراء ومختصي الخيام في دبي، أبوظبي، والرياض.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        },
+        "breadcrumb": {
+          "@id": `${BASE_URL}/ar/contact-us/#breadcrumb`
+        },
+        "mainEntity": [
+          {
+            "@type": "LocalBusiness",
+            "name": "مصنع بيت النوخذة - دبي (المقر الرئيسي)",
+            "image": `${BASE_URL}/bait-alnokhada-final-g.svg`,
+            "telephone": "+971558850631",
+            "email": "Info@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "رقم الأرض TP 010102 - تكنوبارك - ميناء جبل علي - حديقة الصناعات الوطنية",
+              "addressLocality": "دبي",
+              "addressRegion": "دبي",
+              "addressCountry": "AE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.93410630,
+              "longitude": 55.06500100
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "08:00",
+              "closes": "18:00"
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "مصنع بيت النوخذة - فرع أبوظبي",
+            "telephone": "+971554972465",
+            "email": "info@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "م٤١، آيكاد ١، المصفح",
+              "addressLocality": "أبوظبي",
+              "addressRegion": "أبوظبي",
+              "addressCountry": "AE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.329919,
+              "longitude": 54.506679
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "مكتب بيت النوخذة - المملكة العربية السعودية (الرياض)",
+            "telephone": "+966546917670",
+            "email": "info.ksa@baitalnokhada.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "مكتب 32، مركز عبد الرحمن الرويس، طريق العليا",
+              "addressLocality": "الرياض",
+              "postalCode": "12211",
+              "addressCountry": "SA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.682873,
+              "longitude": 46.690347
+            }
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right" dir="rtl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicContactSchema) }}
+      />
       <Navbar />
 
       {/* Header Banner */}

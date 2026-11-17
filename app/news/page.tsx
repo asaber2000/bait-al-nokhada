@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { articlesDatabase } from "@/app/data/articlesEn";
 import { client } from "@/app/lib/sanity";
 import NewsClientView from "@/components/NewsClientView";
+import type { Metadata } from "next";
 
 export const revalidate = 60; // كاش لحظي وتحديث كل 60 ثانية
 
@@ -46,11 +47,102 @@ async function getEnglishArticles() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function Metadata(): Promise<Metadata> {
+  return {
+    title: "News, Guides & Industry Insights | Bait Al Nokhada",
+    description: "Explore the latest engineering insights, tent rental guides, and industrial storage solutions shaping the modular infrastructure across the UAE and KSA.",
+    alternates: {
+      canonical: `${BASE_URL}/news/`,
+      languages: {
+        "en-AE": `${BASE_URL}/news/`,
+        "ar-AE": `${BASE_URL}/ar/news/`,
+        "x-default": `${BASE_URL}/news/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/news/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "News, Guides & Industry Insights | Bait Al Nokhada",
+      description: "Explore the latest engineering insights, tent rental guides, and industrial storage solutions shaping the modular infrastructure across the UAE and KSA.",
+    },
+  };
+}
+
 export default async function NewsPage() {
   const allArticles = await getEnglishArticles();
 
+const blogSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "publisher": { "@id": `${BASE_URL}/#organization` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/news/#webpage`,
+        "url": `${BASE_URL}/news/`,
+        "name": "News, Guides & Industry Insights | Bait Al Nokhada",
+        "description": "Explore the latest engineering insights, tent rental guides, and industrial storage solutions.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/news/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "News & Insights",
+            "item": `${BASE_URL}/news/`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <Navbar />
 
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">

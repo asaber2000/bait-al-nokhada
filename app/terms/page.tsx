@@ -3,18 +3,66 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FileText } from "lucide-react";
 
+const BASE_URL = "https://baitalnokhada.com";
+
 export const metadata: Metadata = {
   title: "Terms of Service | Bait Al Nokhada Tents & Fabric Structures",
   description:
     "Review the Terms of Service governing the use of baitalnokhada.com, quotation requests, intellectual property, and structural engineering services.",
   alternates: {
-    canonical: "https://baitalnokhada.com/terms/",
+    canonical: `${BASE_URL}/terms/`,
+    languages: {
+      "en-AE": `${BASE_URL}/terms/`,
+      "ar-AE": `${BASE_URL}/ar/terms/`,
+      "x-default": `${BASE_URL}/terms/`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_AE",
+    alternateLocale: ["ar_AE"],
+    url: `${BASE_URL}/terms/`,
+    siteName: "Bait Al Nokhada Tents Factory",
+    title: "Terms of Service | Bait Al Nokhada Tents & Fabric Structures",
+    description: "Review the Terms of Service governing the use of baitalnokhada.com, quotation requests, intellectual property, and structural engineering services.",
   },
 };
 
 export default function TermsOfServicePage() {
+  const termsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${BASE_URL}/terms/#webpage`,
+        "url": `${BASE_URL}/terms/`,
+        "name": "Terms of Service | Bait Al Nokhada Tents & Fabric Structures",
+        "description": "Review the Terms of Service governing the use of baitalnokhada.com.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }}
+      />
       <Navbar />
 
       <section className="pt-32 sm:pt-36 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 bg-[#FDFCF7]">

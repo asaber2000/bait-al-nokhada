@@ -5,6 +5,7 @@ import Navbar from "@/components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { client } from "@/app/lib/sanity";
 import NewsClientViewAr from "@/components-ar/components/NewsClientViewAr";
+import type { Metadata } from "next";
 
 export const revalidate = 60; // كاش وتحديث لحظي كل 60 ثانية
 
@@ -54,11 +55,102 @@ async function getArabicArticles() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "الأخبار، المقالات والدراسات الهندسية | بيت النوخذة",
+    description: "تصفح أحدث الدراسات الهندسية، أدلة تأجير الخيام، وحلول التخزين الصناعي ومعايير التصنيع في الإمارات والسعودية من مصنع بيت النوخذة.",
+    alternates: {
+      canonical: `${BASE_URL}/ar/news/`,
+      languages: {
+        "en-AE": `${BASE_URL}/news/`,
+        "ar-AE": `${BASE_URL}/ar/news/`,
+        "x-default": `${BASE_URL}/news/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: `${BASE_URL}/ar/news/`,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: "الأخبار، المقالات والدراسات الهندسية | بيت النوخذة",
+      description: "تصفح أحدث الدراسات الهندسية، أدلة تأجير الخيام، وحلول التخزين الصناعي ومعايير التصنيع في الإمارات والسعودية من مصنع بيت النوخذة.",
+    },
+  };
+}
+
 export default async function ArabicNewsCatalogPage() {
   const allArticles = await getArabicArticles();
 
+  const arabicBlogSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/ar/#organization`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "url": `${BASE_URL}/ar/`,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        "url": `${BASE_URL}/ar/`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "publisher": { "@id": `${BASE_URL}/ar/#organization` },
+        "inLanguage": "ar-AE"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/ar/news/#webpage`,
+        "url": `${BASE_URL}/ar/news/`,
+        "name": "الأخبار، المقالات والدراسات الهندسية | بيت النوخذة",
+        "description": "تصفح أحدث الدراسات الهندسية وأدلة تأجير الخيام وحلول التخزين الصناعي.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/ar/news/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": `${BASE_URL}/ar/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "الأخبار والمقالات",
+            "item": `${BASE_URL}/ar/news/`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans" dir="rtl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicBlogSchema) }}
+      />
       <Navbar />
 
       {/* Hero Header */}

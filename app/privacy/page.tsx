@@ -3,18 +3,66 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 
+const BASE_URL = "https://baitalnokhada.com";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | Bait Al Nokhada Tents & Fabric Structures",
   description:
     "Learn how Bait Al Nokhada Tents & Fabric Structures LLC collects, uses, and protects your personal information when you browse our website or request a quotation.",
   alternates: {
-    canonical: "https://baitalnokhada.com/privacy/",
+    canonical: `${BASE_URL}/privacy/`,
+    languages: {
+      "en-AE": `${BASE_URL}/privacy/`,
+      "ar-AE": `${BASE_URL}/ar/privacy/`,
+      "x-default": `${BASE_URL}/privacy/`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_AE",
+    alternateLocale: ["ar_AE"],
+    url: `${BASE_URL}/privacy/`,
+    siteName: "Bait Al Nokhada Tents Factory",
+    title: "Privacy Policy | Bait Al Nokhada Tents & Fabric Structures",
+    description: "Learn how Bait Al Nokhada Tents & Fabric Structures LLC collects, uses, and protects your personal information.",
   },
 };
 
 export default function PrivacyPolicyPage() {
+  const privacySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${BASE_URL}/privacy/#webpage`,
+        "url": `${BASE_URL}/privacy/`,
+        "name": "Privacy Policy | Bait Al Nokhada Tents & Fabric Structures",
+        "description": "Learn how Bait Al Nokhada collects, uses, and protects your personal information.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacySchema) }}
+      />
       <Navbar />
 
       <section className="pt-32 sm:pt-36 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 bg-[#FDFCF7]">

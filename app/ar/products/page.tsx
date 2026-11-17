@@ -3,7 +3,8 @@ import Navbar from "@/components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { productsDatabase } from "@/app/data/products.Ar";
 import { client } from "@/app/lib/sanity";
-import ProductsCatalogClientAr from "@/components-ar/components/ProductsCatalogClient";
+import ProductsCatalogClientAr from "@/components-ar/components/ProductsCatalogClient"; 
+import type { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -98,6 +99,43 @@ async function getSanityArabicProducts() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "كتالوج الخيام المعمارية وهياكل النسيج | بيت النوخذة",
+    description: "استعرض مجموعة واسعة من الخيام المعمارية، القباب الفضائية، وخيام الضيافة المصنعة وفق أحدث المعايير الهندسية في الإمارات والسعودية.",
+    alternates: {
+      canonical: `${BASE_URL}/ar/products/`,
+      languages: {
+        "en-AE": `${BASE_URL}/products/`,
+        "ar-AE": `${BASE_URL}/ar/products/`,
+        "x-default": `${BASE_URL}/products/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: `${BASE_URL}/ar/products/`,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: "كتالوج الخيام المعمارية وهياكل النسيج | بيت النوخذة",
+      description: "استعرض مجموعة واسعة من الخيام المعمارية، القباب الفضائية، وخيام الضيافة المصنعة في أبوظبي والإمارات.",
+    },
+  };
+}
+
 export default async function ArabicProductsCatalogPage() {
   const sanityProducts = await getSanityArabicProducts();
   const sanitySlugs = new Set(sanityProducts.map((p: any) => p.slug));
@@ -118,19 +156,68 @@ export default async function ArabicProductsCatalogPage() {
 
   const catalogSchema = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "كتالوج الخيام المعمارية وهياكل النسيج | بيت النخادة",
-    "url": "https://baitalnokhada.com/ar/products",
-    "description": "استعرض مجموعة واسعة من الخيام المعمارية، القباب الفضائية، وخيام الضيافة المصنعة في أبوظبي.",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": allProducts.map((product, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": product.name,
-        "url": `https://baitalnokhada.com/ar/products/${product.slug}`
-      }))
-    }
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/ar/#organization`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "url": `${BASE_URL}/ar/`,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        "url": `${BASE_URL}/ar/`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "publisher": { "@id": `${BASE_URL}/ar/#organization` },
+        "inLanguage": "ar-AE"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/ar/products/#webpage`,
+        "url": `${BASE_URL}/ar/products/`,
+        "name": "كتالوج الخيام المعمارية وهياكل النسيج | بيت النوخذة",
+        "description": "استعرض مجموعة واسعة من الخيام المعمارية، القباب الفضائية، وخيام الضيافة المصنعة في أبوظبي والإمارات.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/ar/products/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": `${BASE_URL}/ar/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "الكتالوج والمنتجات",
+            "item": `${BASE_URL}/ar/products/`
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "url": `${BASE_URL}/ar/products/`,
+        "numberOfItems": allProducts.length,
+        "itemListElement": allProducts.map((product, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Product",
+            "name": product.name,
+            "description": product.tagline,
+            "image": product.heroImage || product.catalogImage,
+            "url": `${BASE_URL}/ar/products/${product.slug}`
+          }
+        }))
+      }
+    ]
   };
 
   return (

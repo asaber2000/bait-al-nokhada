@@ -1,5 +1,5 @@
 "use client";
-
+import type { Metadata } from "next";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -96,12 +96,145 @@ const expertiseList = [
   },
 ];
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "من نحن | رواد صناعة وتوريد الخيام الكبرى في الإمارات والسعودية منذ 1997",
+    description: "تعرف على إرث بيت النوخذة الهندسي الممتد لأكثر من 30 عاماً. أكبر مصنع ومورد للخيام الكبرى، خيام الفعاليات والمستودعات في الإمارات والسعودية.",
+    alternates: {
+      canonical: `${BASE_URL}/ar/about-us/`,
+      languages: {
+        "en-AE": `${BASE_URL}/about-us/`,
+        "ar-AE": `${BASE_URL}/ar/about-us/`,
+        "x-default": `${BASE_URL}/about-us/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_AE",
+      alternateLocale: ["en_AE"],
+      url: `${BASE_URL}/ar/about-us/`,
+      siteName: "مصنع بيت النوخذة للخيام",
+      title: "من نحن | رواد صناعة وتوريد الخيام الكبرى في الإمارات والسعودية منذ 1997",
+      description: "تعرف على إرث بيت النوخذة الهندسي الممتد لأكثر من 30 عاماً. أكبر مصنع ومورد للخيام الكبرى، خيام الفعاليات والمستودعات في الإمارات والسعودية.",
+    },
+  };
+}
+
 export default function ArabicAboutPage() {
   const [activeMilestone, setActiveMilestone] = useState(0);
   const active = journeyMilestones[activeMilestone];
 
+  const arabicAboutSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Place",
+        "@id": `${BASE_URL}/ar/#place`,
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "24.93410630",
+          "longitude": "55.06500100"
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=24.93410630,55.06500100",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Land No. TP 010102 - Technopark",
+          "addressLocality": "Mina Jebel Ali",
+          "addressRegion": "National Industries Park - Dubai",
+          "postalCode": "Dubai",
+          "addressCountry": "AE"
+        }
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/ar/#organization`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "legalName": "Bait Al Nokhada Tents & Fabric Structures LLC",
+        "url": `${BASE_URL}/ar/`,
+        "email": "info@baitalnokhada.com",
+        "telephone": "+971558850631",
+        "foundingDate": "1997",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${BASE_URL}/bait-alnokhada-final-g.svg`
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Land No. TP 010102 - Technopark",
+          "addressLocality": "Mina Jebel Ali",
+          "addressRegion": "National Industries Park - Dubai",
+          "postalCode": "Dubai",
+          "addressCountry": "AE"
+        },
+        "location": {
+          "@id": `${BASE_URL}/ar/#place`
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/ar/#website`,
+        "url": `${BASE_URL}/ar/`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "publisher": { "@id": `${BASE_URL}/ar/#organization` },
+        "inLanguage": "ar-AE"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/ar/about-us/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": `${BASE_URL}/ar/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "من نحن",
+            "item": `${BASE_URL}/ar/about-us/`
+          }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": `${BASE_URL}/ar/about-us/#webpage`,
+        "url": `${BASE_URL}/ar/about-us/`,
+        "name": "من نحن | رواد صناعة وتوريد الخيام الكبرى في الإمارات والسعودية منذ 1997",
+        "description": "تعرف على إرث بيت النوخذة الهندسي الممتد لأكثر من 30 عاماً في تصنيع المنشآت والخيام الكبرى.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        },
+        "breadcrumb": {
+          "@id": `${BASE_URL}/ar/about-us/#breadcrumb`
+        },
+        "mainEntity": {
+          "@id": `${BASE_URL}/ar/#organization`
+        }
+      }
+    ]
+  };
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white text-right font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicAboutSchema) }}
+      />
       <Navbar />
 
       {/* 1. Hero Banner */}

@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
@@ -96,12 +97,147 @@ const expertiseList = [
   },
 ];
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "About Us | Leading Tent Manufacturer in UAE & KSA since 1997",
+    description: "Discover Bait Al Nokhada's 30+ years of engineering heritage. Leading manufacturer of large-scale event tents, industrial storage, and custom structures.",
+    alternates: {
+      canonical: `${BASE_URL}/about-us/`,
+      languages: {
+        "en-AE": `${BASE_URL}/about-us/`,
+        "ar-AE": `${BASE_URL}/ar/about-us/`,
+        "x-default": `${BASE_URL}/about-us/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/about-us/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "About Us | Leading Tent Manufacturer in UAE & KSA since 1997",
+      description: "Discover Bait Al Nokhada's 30+ years of engineering heritage. Leading manufacturer of large-scale event tents, industrial storage, and custom structures.",
+    },
+  };
+}
+
 export default function AboutPage() {
   const [activeMilestone, setActiveMilestone] = useState(0);
   const active = journeyMilestones[activeMilestone];
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "24.93410630",
+          "longitude": "55.06500100"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Land No. TP 010102 - Technopark",
+          "addressLocality": "Mina Jebel Ali",
+          "addressRegion": "National Industries Park - Dubai",
+          "postalCode": "Dubai",
+          "addressCountry": "AE"
+        }
+      },
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "legalName": "Bait Al Nokhada Tents & Fabric Structures LLC",
+        "url": BASE_URL,
+        "email": "info@baitalnokhada.com",
+        "telephone": "+971558850631",
+        "foundingDate": "1997",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${BASE_URL}/bait-alnokhada-final-g.svg`
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Land No. TP 010102 - Technopark",
+          "addressLocality": "Mina Jebel Ali",
+          "addressRegion": "National Industries Park - Dubai",
+          "postalCode": "Dubai",
+          "addressCountry": "AE"
+        },
+        "location": {
+          "@id": `${BASE_URL}/#place`
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/bait-al-nokhada-tents-and-fabric-structures-llc"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "publisher": { "@id": `${BASE_URL}/#organization` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/about-us/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": `${BASE_URL}/about-us/`
+          }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": `${BASE_URL}/about-us/#webpage`,
+        "url": `${BASE_URL}/about-us/`,
+        "name": "About Us | Leading Tent Manufacturer in UAE & KSA since 1997",
+        "description": "Discover Bait Al Nokhada's 30+ years of engineering heritage and manufacturing excellence.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        },
+        "breadcrumb": {
+          "@id": `${BASE_URL}/about-us/#breadcrumb`
+        },
+        "mainEntity": {
+          "@id": `${BASE_URL}/#organization`
+        }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       <Navbar />
 
       {/* 1. Hero Banner */}

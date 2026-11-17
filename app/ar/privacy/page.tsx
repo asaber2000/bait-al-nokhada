@@ -3,18 +3,66 @@ import Navbar from "@/components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 
+const BASE_URL = "https://baitalnokhada.com";
+
 export const metadata: Metadata = {
   title: "سياسة الخصوصية | مصنع بيت النوخذة للخيام والمظلات",
   description:
     "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
   alternates: {
-    canonical: "https://baitalnokhada.com/ar/privacy/",
+    canonical: `${BASE_URL}/ar/privacy/`,
+    languages: {
+      "en-AE": `${BASE_URL}/privacy/`,
+      "ar-AE": `${BASE_URL}/ar/privacy/`,
+      "x-default": `${BASE_URL}/privacy/`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "ar_AE",
+    alternateLocale: ["en_AE"],
+    url: `${BASE_URL}/ar/privacy/`,
+    siteName: "مصنع بيت النوخذة للخيام",
+    title: "سياسة الخصوصية | مصنع بيت النوخذة للخيام والمظلات",
+    description: "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
   },
 };
 
 export default function ArabicPrivacyPolicyPage() {
+  const arabicPrivacySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/ar/#organization`,
+        "name": "مصنع بيت النوخذة للخيام",
+        "url": `${BASE_URL}/ar/`,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${BASE_URL}/ar/privacy/#webpage`,
+        "url": `${BASE_URL}/ar/privacy/`,
+        "name": "سياسة الخصوصية | مصنع بيت النوخذة للخيام والمظلات",
+        "description": "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
+        "inLanguage": "ar-AE",
+        "isPartOf": {
+          "@id": `${BASE_URL}/ar/#website`
+        }
+      }
+    ]
+  };
+
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans text-right">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicPrivacySchema) }}
+      />
       <Navbar />
 
       <section className="pt-32 sm:pt-36 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 bg-[#FDFCF7]">

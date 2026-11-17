@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { productsDatabase } from "@/app/data/products.En";
 import { client } from "@/app/lib/sanity";
 import ProductsCatalogClient from "@/components/ProductsCatalogClient";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -45,6 +46,43 @@ async function getSanityProducts() {
   }
 }
 
+const BASE_URL = "https://baitalnokhada.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Architectural Luxury Tents & Tensile Structures Catalog | Bait Al Nokhada",
+    description: "Explore our comprehensive catalog of clear-span event tents, geodesic domes, and industrial structures manufactured in the UAE by Bait Al Nokhada.",
+    alternates: {
+      canonical: `${BASE_URL}/products/`,
+      languages: {
+        "en-AE": `${BASE_URL}/products/`,
+        "ar-AE": `${BASE_URL}/ar/products/`,
+        "x-default": `${BASE_URL}/products/`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_AE",
+      alternateLocale: ["ar_AE"],
+      url: `${BASE_URL}/products/`,
+      siteName: "Bait Al Nokhada Tents Factory",
+      title: "Architectural Luxury Tents & Tensile Structures Catalog | Bait Al Nokhada",
+      description: "Explore our comprehensive catalog of clear-span event tents, geodesic domes, and industrial structures manufactured in the UAE.",
+    },
+  };
+}
+
 export default async function ProductsCatalogPage() {
   const sanityProducts = await getSanityProducts();
   
@@ -69,19 +107,68 @@ export default async function ProductsCatalogPage() {
 
   const catalogSchema = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Architectural Luxury Tents & Tensile Structures Catalog | Bait Al Nokhada",
-    "url": "https://baitalnokhada.com/products",
-    "description": "Explore our comprehensive catalog of clear-span event tents, geodesic domes, and industrial structures manufactured in the UAE.",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": allProducts.map((product, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": product.name,
-        "url": `https://baitalnokhada.com/products/${product.slug}`
-      }))
-    }
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": `${BASE_URL}/#organization`,
+        "name": "Bait Al Nokhada",
+        "url": BASE_URL,
+        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        "url": BASE_URL,
+        "name": "Bait Al Nokhada Tents Factory",
+        "publisher": { "@id": `${BASE_URL}/#organization` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/products/#webpage`,
+        "url": `${BASE_URL}/products/`,
+        "name": "Architectural Luxury Tents & Tensile Structures Catalog | Bait Al Nokhada",
+        "description": "Explore our comprehensive catalog of clear-span event tents, geodesic domes, and industrial structures manufactured in the UAE.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": `${BASE_URL}/#website`
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}/products/#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${BASE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products Catalog",
+            "item": `${BASE_URL}/products/`
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "url": `${BASE_URL}/products/`,
+        "numberOfItems": allProducts.length,
+        "itemListElement": allProducts.map((product, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Product",
+            "name": product.name,
+            "description": product.tagline,
+            "image": product.heroImage || product.catalogImage,
+            "url": `${BASE_URL}/products/${product.slug}`
+          }
+        }))
+      }
+    ]
   };
 
   return (
