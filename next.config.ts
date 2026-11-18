@@ -200,7 +200,31 @@ async redirects() {
       { source: "/about-us-2", destination: "/about-us/", permanent: true },
       { source: "/shop", destination: "/products/", permanent: true },
       { source: "/ar/shop", destination: "/ar/products/", permanent: true },
-      { source: "/fr/:path*", destination: "/", permanent: true }, // توجيه أي رابط فرنسي قديم للصفحة الرئيسية بأمان
+      {
+        source: "/fr/products/:slug/",
+        destination: "/products/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/solutions/:slug/",
+        destination: "/solutions/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/produits/:slug/",
+        destination: "/products/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/:slug/",
+        destination: "/products/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/:path*",
+        destination: "/",
+        permanent: true,
+      }, // توجيه أي رابط فرنسي قديم للصفحة الرئيسية بأمان
       { source: "/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
       { source: "/ar/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
       { source: "/fr/category/خيام/", destination: "/solutions/exhibition-tent/", permanent: true },
