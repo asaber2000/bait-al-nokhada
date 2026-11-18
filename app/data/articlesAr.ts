@@ -33,16 +33,15 @@ export const articlesArDatabase: ArticleAr[] = [
     heroImage: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Exhibitions/exhibition-tents-UAE.webp",
     featured: true,
     seo: {
-      metaTitle: "Warehouse Tents in UAE & KSA | Buy or Rent Industrial Storage Tents",
-      metaDescription:
-        "Heavy-duty warehouse tents for sale or rental in UAE & KSA. Fast setup, durable aluminum frames, waterproof PVC covers. Ideal for storage, logistics & more.",
+      metaTitle: "دليل تأجير الخيام في الإمارات | مصنع بيت النوخذة",
+      metaDescription: "دليل شامل لخدمات تأجير الخيام في دبي والإمارات: خيام الأعراس الملكية، صالات المعارض الكبرى، ومستودعات التخزين الصناعي.",
       focusKeywords: [
-        "Warehouse Tents",
-        "Luxury Warehouse Tents UAE",
-        "Warehouse Tent Supplier Dubai",
-        "Wedding Tent Sales KSA",
+        "تأجير خيام في دبي",
+        "تأجير خيام الإمارات",
+        "خيام مناسبات وأعراس",
+        "مستودعات تخزين مؤقت"
       ],
-      breadcrumbTitle: "Warehouse Tent",
+      breadcrumbTitle: "تأجير الخيام في الإمارات",
     },
     ar: {
       title: "تأجير خيام في دبي، الشارقة، عجمان وكافة أنحاء الإمارات: الدليل الشامل من بيت النوخذة",

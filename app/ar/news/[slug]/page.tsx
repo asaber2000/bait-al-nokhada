@@ -192,24 +192,24 @@ async function getArabicArticleData(slug: string) {
         body[]{
           ...,
           _type == "articleInlineImage" => {
-        "url": image.asset->url,
-        alt,
-        caption
-      },
-      _type == "inlineImage" => {
-        "url": coalesce(image.asset->url, asset->url),
-        alt,
-        caption
-      },
-      _type == "videoBlock" => {
-        videoUrl,
-        videoCaption
-      },
-      _type == "customVideoBlock" => {
-        "fileUrl": sectionVideoFile.asset->url,
-        videoCaption
-      }
-    },
+            "url": image.asset->url,
+            alt,
+            caption
+          },
+          _type == "inlineImage" => {
+            "url": coalesce(image.asset->url, asset->url),
+            alt,
+            caption
+          },
+          _type == "videoBlock" => {
+            videoUrl,
+            videoCaption
+          },
+          _type == "customVideoBlock" => {
+            "fileUrl": sectionVideoFile.asset->url,
+            videoCaption
+          }
+        },
         points,
         "sectionImageUrl": sectionImage.asset->url,
         "sectionImageAlt": sectionImage.alt,
@@ -225,8 +225,8 @@ async function getArabicArticleData(slug: string) {
           noIndex,
           noFollow
         }
-      }
-        customSchema,
+      },
+      customSchema
     }`;
 
     const sanityData = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
