@@ -84,6 +84,7 @@ const nextConfig: NextConfig = {
 
 async redirects() {
     return [
+      
       {
         source: "/about",
         destination: "/about-us/",
@@ -104,6 +105,7 @@ async redirects() {
         destination: "/ar/contact-us/",
         permanent: true,
       },
+      
     // تحويلات المقالات الإنجليزية القديمة (/slug و /ar/slug -> /news/slug/)
       ...legacyEnArticles.flatMap((slug) => [
         {
@@ -198,6 +200,16 @@ async redirects() {
       { source: "/about-us-2", destination: "/about-us/", permanent: true },
       { source: "/shop", destination: "/products/", permanent: true },
       { source: "/ar/shop", destination: "/ar/products/", permanent: true },
+      { source: "/fr/:path*", destination: "/", permanent: true }, // توجيه أي رابط فرنسي قديم للصفحة الرئيسية بأمان
+      { source: "/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
+      { source: "/ar/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
+      { source: "/fr/category/خيام/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/category/tents/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/tent-rentals-for-event/", destination: "/news/event-tent-rental/", permanent: true },
+      { source: "/tent-rental-looking-for-one/", destination: "/contact-us/", permanent: true },
+      { source: "/tent-and-table-rentals/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/marquee-for-sale/", destination: "/products/polygon-tent/", permanent: true },
+      { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
     ];
   },
 };      
