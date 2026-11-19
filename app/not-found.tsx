@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <div
       dir={isArabic ? "rtl" : "ltr"}
-      className="min-h-screen bg-[#FAF8F5] text-[#0F172A] flex flex-col justify-between"
+      className="min-h-screen bg-[#FDFCF7] text-[#0F172A] flex flex-col justify-between"
     >
       {/* شريط علوي متناسق مع هوية الموقع */}
       <header className="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">

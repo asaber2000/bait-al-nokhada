@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   description:
     "Learn how Bait Al Nokhada Tents & Fabric Structures LLC collects, uses, and protects your personal information when you browse our website or request a quotation.",
   alternates: {
-    canonical: `${BASE_URL}/privacy/`,
+    canonical: `${BASE_URL}/privacy-policy/`,
     languages: {
-      "en-AE": `${BASE_URL}/privacy/`,
-      "ar-AE": `${BASE_URL}/ar/privacy/`,
-      "x-default": `${BASE_URL}/privacy/`,
+      "en-AE": `${BASE_URL}/privacy-policy/`,
+      "ar-AE": `${BASE_URL}/ar/privacy-policy/`,
+      "x-default": `${BASE_URL}/privacy-policy/`,
     },
   },
   robots: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AE",
     alternateLocale: ["ar_AE"],
-    url: `${BASE_URL}/privacy/`,
+    url: `${BASE_URL}/privacy-policy/`,
     siteName: "Bait Al Nokhada Tents Factory",
     title: "Privacy Policy | Bait Al Nokhada Tents & Fabric Structures",
     description: "Learn how Bait Al Nokhada Tents & Fabric Structures LLC collects, uses, and protects your personal information.",
@@ -45,8 +45,8 @@ export default function PrivacyPolicyPage() {
       },
       {
         "@type": "WebPage",
-        "@id": `${BASE_URL}/privacy/#webpage`,
-        "url": `${BASE_URL}/privacy/`,
+        "@id": `${BASE_URL}/privacy-policy/#webpage`,
+        "url": `${BASE_URL}/privacy-policy/`,
         "name": "Privacy Policy | Bait Al Nokhada Tents & Fabric Structures",
         "description": "Learn how Bait Al Nokhada collects, uses, and protects your personal information.",
         "inLanguage": "en-US",

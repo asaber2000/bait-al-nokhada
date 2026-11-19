@@ -124,7 +124,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
+      window.history.scrollRestoration = "auto";
     }
 
 
