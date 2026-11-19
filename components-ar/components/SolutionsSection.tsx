@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpLeft, CheckCircle2, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -93,17 +93,6 @@ export default function ArabicSolutionsSection() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const activeItem = solutions[selectedIdx];
 
-  // تحميل مسبق صامت لصور الحلول في الخلفية لمنع ظهور أي فراغ أسود
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      solutions.slice(1).forEach((item) => {
-        const img = new window.Image();
-        img.src = item.image;
-      });
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section dir="rtl" className="relative py-10 lg:py-14 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden text-right">
       {/* خلفية هندسية خافتة */}
@@ -194,8 +183,7 @@ export default function ArabicSolutionsSection() {
                     src={activeItem.image}
                     alt={activeItem.title}
                     fill
-                    priority
-                    quality={95}
+                    quality={90}
                     sizes="(max-width: 1024px) 100vw, 60vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />

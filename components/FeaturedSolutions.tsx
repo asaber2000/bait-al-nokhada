@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -86,17 +86,6 @@ export default function FeaturedProjects() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const active = megaProjects[currentIdx];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      megaProjects.slice(1).forEach((project) => {
-        const img = new window.Image();
-        img.src = project.image;
-      });
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleNext = () => {
     setDirection(1);
@@ -236,8 +225,8 @@ export default function FeaturedProjects() {
                 src={active.image}
                 alt={active.title}
                 fill
-                priority
-                sizes="100vw"
+                quality={85}
+                sizes="(max-width: 1280px) 100vw, 1280px"
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
