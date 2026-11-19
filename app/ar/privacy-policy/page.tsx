@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   description:
     "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
   alternates: {
-    canonical: `${BASE_URL}/ar/privacy/`,
+    canonical: `${BASE_URL}/ar/privacy-policy/`,
     languages: {
-      "en-AE": `${BASE_URL}/privacy/`,
-      "ar-AE": `${BASE_URL}/ar/privacy/`,
-      "x-default": `${BASE_URL}/privacy/`,
+      "en-AE": `${BASE_URL}/privacy-policy/`,
+      "ar-AE": `${BASE_URL}/ar/privacy-policy/`,
+      "x-default": `${BASE_URL}/privacy-policy/`,
     },
   },
   robots: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ar_AE",
     alternateLocale: ["en_AE"],
-    url: `${BASE_URL}/ar/privacy/`,
+    url: `${BASE_URL}/ar/privacy-policy/`,
     siteName: "مصنع بيت النوخذة للخيام",
     title: "سياسة الخصوصية | مصنع بيت النوخذة للخيام والمظلات",
     description: "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
@@ -45,8 +45,8 @@ export default function ArabicPrivacyPolicyPage() {
       },
       {
         "@type": "WebPage",
-        "@id": `${BASE_URL}/ar/privacy/#webpage`,
-        "url": `${BASE_URL}/ar/privacy/`,
+        "@id": `${BASE_URL}/ar/privacy-policy/#webpage`,
+        "url": `${BASE_URL}/ar/privacy-policy/`,
         "name": "سياسة الخصوصية | مصنع بيت النوخذة للخيام والمظلات",
         "description": "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند تصفح موقع مصنع بيت النوخذة للخيام والمظلات أو طلب عرض سعر.",
         "inLanguage": "ar-AE",

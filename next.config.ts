@@ -32,26 +32,17 @@ const legacyEnArticles = [
 
 const legacyArArticles = [
   "tent-rental",
-  "tent-rental-khobar",
-  "tent-suppliers-dammam",
-  "tent-manufacturing-dammam",
-  "tents-for-sale-riyadh",
-  "tent-supplier-installation-riyadh",
-  "event-tents-uae",
-  "tents-for-rent-dubai",
-  "tent-rental-ajman",
   "funeral-tent-rental-uae-saudi",
   "arabic-tent-rental",
   "tent-rental-uae-saudi-arabia",
-  "tent-suppliers-ksa",
   "european-tent-rental",
-  "tents-for-sale-abu-dhabi",
   "european-tent-rental-dubai-abu-dhabi",
-  "event-tents-rental",
   "tent-rental-uae",
-  "best-tent-prices-uae",
   "majlis-tent-rental",
   "tent-rental-guide-uae",
+  "tent-rental-dammam",
+  "tent-installation",
+  "tent-rental-events-dubai-riyadh"
 ];
 
 const nextConfig: NextConfig = {
@@ -72,19 +63,19 @@ const nextConfig: NextConfig = {
         hostname: 'd3g07f5oxrfvni.cloudfront.net',
       },
       {
-      protocol: "https",
-      hostname: "baitalnokhada-landing-media.s3.us-east-1.amazonaws.com",
-    },
-    {
+        protocol: "https",
+        hostname: "baitalnokhada-landing-media.s3.us-east-1.amazonaws.com",
+      },
+      {
         protocol: 'https',
         hostname: 'baitalnokhada.com',
       },
     ],
   },
 
-async redirects() {
+  async redirects() {
     return [
-      
+
       {
         source: "/about",
         destination: "/about-us/",
@@ -105,8 +96,8 @@ async redirects() {
         destination: "/ar/contact-us/",
         permanent: true,
       },
-      
-    // تحويلات المقالات الإنجليزية القديمة (/slug و /ar/slug -> /news/slug/)
+
+      // تحويلات المقالات الإنجليزية القديمة (/slug و /ar/slug -> /news/slug/)
       ...legacyEnArticles.flatMap((slug) => [
         {
           source: `/${slug}`,
@@ -115,12 +106,12 @@ async redirects() {
         },
         ...(!legacyArArticles.includes(slug)
           ? [
-              {
-                source: `/ar/${slug}`,
-                destination: `/news/${slug}/`,
-                permanent: true,
-              },
-            ]
+            {
+              source: `/ar/${slug}`,
+              destination: `/news/${slug}/`,
+              permanent: true,
+            },
+          ]
           : []),
       ]),
 
@@ -133,12 +124,12 @@ async redirects() {
         },
         ...(!legacyEnArticles.includes(slug)
           ? [
-              {
-                source: `/${slug}`,
-                destination: `/ar/news/${slug}/`,
-                permanent: true,
-              },
-            ]
+            {
+              source: `/${slug}`,
+              destination: `/ar/news/${slug}/`,
+              permanent: true,
+            },
+          ]
           : []),
       ]),
       // تحويل روابط الحلول بصيغة الجمع (-tents) إلى المفرد (-tent)
@@ -194,12 +185,114 @@ async redirects() {
           },
         ];
       }),
+
+      ...[
+        // قائمة الحلول (Solutions)
+        "aircraft-hangar-tent",
+        "warehouse-tent",
+        "sports-tent",
+        "exhibition-tent",
+        "wedding-tent",
+        "event-tent",
+        "ramadan-tent",
+      ].flatMap((slug) => [
+        // 1. تحويل المسارات العربية المباشرة القديمة إلى /ar/solutions/slug/
+        { source: `/ar/${slug}/`, destination: `/ar/solutions/${slug}/`, permanent: true },
+        { source: `/ar/${slug}`, destination: `/ar/solutions/${slug}/`, permanent: true },
+        // 2. تحويل المسارات الإنجليزية المباشرة القديمة إلى /solutions/slug/
+        { source: `/${slug}/`, destination: `/solutions/${slug}/`, permanent: true },
+        { source: `/${slug}`, destination: `/solutions/${slug}/`, permanent: true },
+        // 3. تحويل المسارات الفرنسية القديمة إلى /solutions/slug/
+        { source: `/fr/${slug}/`, destination: `/solutions/${slug}/`, permanent: true },
+      ]),
+
+      ...[
+        // قائمة المنتجات (Products)
+        "pyramid-dome-tent",
+        "pyramid-dome-tent-2",
+        "double-decker-tent",
+        "luxury-arabic-majlis-tent",
+        "wave-tent",
+        "geodesic-tent",
+        "panoramic-tent",
+        "arch-tent",
+        "polygon-tent",
+        "revolution-tent",
+        "dome-tent",
+        "pyramid-tent",
+        "arabic-majlis-tent",
+      ].flatMap((slug) => [
+        // 1. تحويل المسارات العربية المباشرة القديمة إلى /ar/products/slug/
+        { source: `/ar/${slug}/`, destination: `/ar/products/${slug}/`, permanent: true },
+        { source: `/ar/${slug}`, destination: `/ar/products/${slug}/`, permanent: true },
+        // 2. تحويل المسارات الإنجليزية المباشرة القديمة إلى /products/slug/
+        { source: `/${slug}/`, destination: `/products/${slug}/`, permanent: true },
+        { source: `/${slug}`, destination: `/products/${slug}/`, permanent: true },
+        // 3. تحويل المسارات الفرنسية القديمة إلى /products/slug/
+        { source: `/fr/${slug}/`, destination: `/products/${slug}/`, permanent: true },
+        { source: `/fr/produits/${slug}/`, destination: `/products/${slug}/`, permanent: true },
+      ]),
       // تحويلات صفحات قديمة ظهرت في page-sitemap القديم
       { source: "/privacy-policy", destination: "/privacy/", permanent: true },
       { source: "/ar/privacy-policy", destination: "/ar/privacy/", permanent: true },
       { source: "/about-us-2", destination: "/about-us/", permanent: true },
       { source: "/shop", destination: "/products/", permanent: true },
       { source: "/ar/shop", destination: "/ar/products/", permanent: true },
+      {
+        source: "/fr/produits/",
+        destination: "/products/",
+        permanent: true,
+      },
+      {
+        source: "/fr/solutions/",
+        destination: "/solutions/",
+        permanent: true,
+      },
+      {
+        source: "/fr/projects/",
+        destination: "/projects/",
+        permanent: true,
+      },
+      {
+        source: "/fr/news/:slug/",
+        destination: "/news/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/nouvelles/:slug/",
+        destination: "/news/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/category/news/:slug/",
+        destination: "/news/:slug/",
+        permanent: true,
+      },
+      {
+        source: "/fr/news/",
+        destination: "/news/",
+        permanent: true,
+      },
+      {
+        source: "/fr/nouvelles/",
+        destination: "/news/",
+        permanent: true,
+      },
+      {
+        source: "/fr/contactez-nous/",
+        destination: "/contact-us/",
+        permanent: true,
+      },
+      {
+        source: "/fr/a-propos-de-nous/",
+        destination: "/about-us/",
+        permanent: true,
+      },
+      {
+        source: "/fr/page-d-accueil/",
+        destination: "/",
+        permanent: true,
+      },
       {
         source: "/fr/products/:slug/",
         destination: "/products/:slug/",
@@ -225,17 +318,169 @@ async redirects() {
         destination: "/",
         permanent: true,
       }, // توجيه أي رابط فرنسي قديم للصفحة الرئيسية بأمان
-      { source: "/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
-      { source: "/ar/category/خيام/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
-      { source: "/fr/category/خيام/", destination: "/solutions/exhibition-tent/", permanent: true },
-      { source: "/category/tents/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/ar/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/fr/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/category/tents/", destination: "/news/", permanent: true },
+      { source: "/ar/category/tents/", destination: "/ar/news/", permanent: true },
+      { source: "/fr/category/tents/", destination: "/news/", permanent: true },
+      { source: "/fr/tents/", destination: "/", permanent: true },
+      { source: "/ar/tents/", destination: "/ar/", permanent: true },
+      { source: "/tents/", destination: "/", permanent: true },
+      { source: "/author/:path*", destination: "/news/", permanent: true },
+      { source: "/ar/author/:path*", destination: "/ar/news/", permanent: true },
+      { source: "/fr/author/:path*", destination: "/news/", permanent: true },
+      { source: "/news/page/:page/", destination: "/news/", permanent: true },
+      { source: "/ar/news/page/:page/", destination: "/ar/news/", permanent: true },
+      { source: "/fr/news/page/:page/", destination: "/news/", permanent: true },
+      { source: "/- --/", destination: "/", permanent: true },
+      { source: "/ar/-/", destination: "/ar/", permanent: true },
+      { source: "/fr/-/", destination: "/", permanent: true },
+      { source: "/ar/curve-tent/", destination: "/ar/products/", permanent: true },
+      { source: "/curve-tent/", destination: "/products/", permanent: true },
+      { source: "/fr/curve-tent/", destination: "/products/", permanent: true },
+      { source: "/fr/arabic-tent/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/arabic-tent/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/arabic-tent/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/fr/exhibition-tents-for-sale/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/exhibition-tents-for-sale/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/ar/exhibition-tents-for-sale/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
+      // قاعدة عامة لالتقاط أي رابط يحتوي على تواريخ ووردبريس القديمة (مثل /2026/05/slug) وتوجيهه للمدونة
+      { source: "/:year(\\d{4})/:month(\\d{2})/:slug*", destination: "/news/", permanent: true },
+      { source: "/ar/:year(\\d{4})/:month(\\d{2})/:slug*", destination: "/ar/news/", permanent: true },
+      { source: "/ar/شركة-مظلات/", destination: "/ar/", permanent: true },
+      { source: "/شركة-مظلات/", destination: "/ar/", permanent: true },
+      { source: "/ar/خيمة-القبة/", destination: "/ar/products/dome-tent/", permanent: true },
+      { source: "/ar/خيام-معارض/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
+      { source: "/ar/الخيمة-رمضانية/", destination: "/ar/solutions/ramadan-tent/", permanent: true },
+      { source: "/ar/خيمة-هرميه/", destination: "/ar/products/pyramid-tent/", permanent: true },
+      { source: "/ar/خيمة-المناسبات/", destination: "/ar/solutions/event-tent/", permanent: true },
+      { source: "/ar/خيمة-المجلس/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/خيام-المنحني/", destination: "/ar/solutions/", permanent: true },
+      { source: "/ar/الخيمة-المضلعة/", destination: "/ar/products/polygon-tent/", permanent: true },
+      { source: "/ar/خيمة-ملكية", destination: "/ar/solutions/", permanent: true },
+      { source: "/ar/خيام-رمضانيه/", destination: "/ar/solutions/ramadan-tent/", permanent: true },
+      { source: "/ar/خيام-العزاء/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
+      { source: "/خيام-العزاء/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
+      { source: "/تاجير-الخيام/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/ar/تاجير-الخيام/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/تاجير-خيام-الخبر/", destination: "/ar/news/tent-rental-khobar/", permanent: true },
+      { source: "/ar/تاجير-خيام-الخبر/", destination: "/ar/news/tent-rental-khobar/", permanent: true },
+      { source: "/محلات-خيام-الدمام/", destination: "/ar/news/tent-suppliers-dammam/", permanent: true },
+      { source: "/ar/محلات-خيام-الدمام/", destination: "/ar/news/tent-suppliers-dammam/", permanent: true },
+      { source: "/تفصيل-خيام-الدمام/", destination: "/ar/news/tent-manufacturing-dammam/", permanent: true },
+      { source: "/ar/تفصيل-خيام-الدمام/", destination: "/ar/news/tent-manufacturing-dammam/", permanent: true },
+      { source: "/خيام-للبيع-بالرياض/", destination: "/ar/news/tents-for-sale-riyadh/", permanent: true },
+      { source: "/ar/خيام-للبيع-بالرياض/", destination: "/ar/news/tents-for-sale-riyadh/", permanent: true },
+      { source: "/تركيب-خيام-الرياض/", destination: "/ar/news/tent-supplier-installation-riyadh/", permanent: true },
+      { source: "/ar/تركيب-خيام-الرياض/", destination: "/ar/news/tent-supplier-installation-riyadh/", permanent: true },
+      { source: "/خيام-المناسبات/", destination: "/ar/news/event-tents-uae/", permanent: true },
+      { source: "/ar/خيام-المناسبات/", destination: "/ar/news/event-tents-uae/", permanent: true },
+      { source: "/خيام-للايجار-في-دبي/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
+      { source: "/ar/خيام-للايجار-في-دبي/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
+      { source: "/خيام-للايجار-في-عجمان/", destination: "/ar/news/tent-rental-ajman/", permanent: true },
+      { source: "/ar/خيام-للايجار-في-عجمان/", destination: "/ar/news/tent-rental-ajman/", permanent: true },
+      { source: "/موردين-الخيام-في-السعودية/", destination: "/ar/news/tent-suppliers-ksa/", permanent: true },
+      { source: "/ar/موردين-الخيام-في-السعودية/", destination: "/ar/news/tent-suppliers-ksa/", permanent: true },
+      { source: "/خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس/", destination: "/ar/news/tents-for-sale-abu-dhabi/", permanent: true },
+      { source: "/ar/خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس/", destination: "/ar/news/tents-for-sale-abu-dhabi/", permanent: true },
+      { source: "/تأجير-خيم-المناسبات/", destination: "/ar/news/event-tents-rental/", permanent: true },
+      { source: "/ar/تأجير-خيم-المناسبات/", destination: "/ar/news/event-tents-rental/", permanent: true },
+      { source: "/أفضل-أسعار-الخيام-في-الإمارات/", destination: "/ar/news/best-tent-prices-uae/", permanent: true },
+      { source: "/ar/أفضل-أسعار-الخيام-في-الإمارات/", destination: "/ar/news/best-tent-prices-uae/", permanent: true },
+      { source: "/ar/هل-تبحث-عن-تأجير-خيام-اوروبية؟/", destination: "/ar/news/european-tent-rental-dubai-abu-dhabi/", permanent: true },
+      { source: "/هل-تبحث-عن-تأجير-خيام-اوروبية؟/", destination: "/ar/news/european-tent-rental-dubai-abu-dhabi/", permanent: true },
+      { source: "/هل-تبحث-عن-خيام-اوروبية-للإيجار-؟/", destination: "/ar/products/", permanent: true },
+      { source: "/ar/هل-تبحث-عن-خيام-اوروبية-للإيجار-؟/", destination: "/ar/products/", permanent: true },
+      { source: "/ar/$/text{خيمة-فعاليات-شركات-دبي-للإيجار.webp}$/", destination: "/ar/solutions/event-tent/", permanent: true },
+      { source: "/$/text{خيمة-فعاليات-شركات-دبي-للإيجار.webp}$/", destination: "/ar/solutions/event-tent/", permanent: true },
+      { source: "/تأجير-خيام-الدمام/", destination: "/ar/news/tent-rental-dammam/", permanent: true },
+      { source: "/ar/تأجير-خيام-الدمام/", destination: "/ar/news/tent-rental-dammam/", permanent: true },
+      { source: "/خيام-للايجار-اليومي/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/ar/خيام-للايجار-اليومي/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/تركيب-خيام/", destination: "/ar/news/tent-installation/", permanent: true },
+      { source: "/ar/تركيب-خيام/", destination: "/ar/news/tent-installation/", permanent: true },
+      { source: "/هل-تبحث-عن-تأجير-الخيام؟/", destination: "/ar/news/tent-rental-events-dubai-riyadh/", permanent: true },
+      { source: "/ar/هل-تبحث-عن-تأجير-الخيام؟/", destination: "/ar/news/tent-rental-events-dubai-riyadh/", permanent: true },
+      { source: "/ar/تأجير-الخيام-2/", destination: "/ar/news/tent-rental-uae-saudi-arabia/", permanent: true },
+      { source: "/تأجير-الخيام-2/", destination: "/ar/news/tent-rental-uae-saudi-arabia/", permanent: true },
+      { source: "/الخيمة-العربية/", destination: "/ar/news/arabic-tent-rental/", permanent: true },
+      { source: "/ar/الخيمة-العربية/", destination: "/ar/news/arabic-tent-rental/", permanent: true },
+      { source: "/ar/المنتجات-بيت-النوخذة-للخيام-والمظلات/", destination: "/ar/products/", permanent: true },
+      { source: "/المنتجات-بيت-النوخذة-للخيام-والمظلات/", destination: "/ar/products/", permanent: true },
+      { source: "/تأجير-خيام-العزاء-في-الإمارات/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
+      { source: "/ar/تأجير-خيام-العزاء-في-الإمارات/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
+      { source: "/ar/محل-تاجير-خيام/", destination: "/ar/", permanent: true },
+      { source: "/محل-تاجير-خيام/", destination: "/ar/", permanent: true },
+      { source: "/services/", destination: "/solutions/", permanent: true },
+      { source: "/ar/services/", destination: "/ar/solutions/", permanent: true },
+      { source: "/ar/royal-tent/", destination: "/ar/solutions/", permanent: true },
+      { source: "/royal-tent/", destination: "/solutions/", permanent: true },
+      { source: "/fr/royal-tent/", destination: "/solutions/", permanent: true },
+      { source: "/fr/combo-pyramid-tent/", destination: "/products/pyramid-dome-tent/", permanent: true },
+      { source: "/combo-pyramid-tent/", destination: "/products/pyramid-dome-tent/", permanent: true },
+      { source: "/ar/combo-pyramid-tent/", destination: "/ar/products/pyramid-dome-tent/", permanent: true },
       { source: "/tent-rentals-for-event/", destination: "/news/event-tent-rental/", permanent: true },
-      { source: "/tent-rental-looking-for-one/", destination: "/contact-us/", permanent: true },
-      { source: "/tent-and-table-rentals/", destination: "/solutions/event-tent/", permanent: true },
-      { source: "/marquee-for-sale/", destination: "/products/polygon-tent/", permanent: true },
+      { source: "/ar/tent-rentals-for-event/", destination: "/news/event-tent-rental/", permanent: true },
+      { source: "/fr/tent-rentals-for-event/", destination: "/news/event-tent-rental/", permanent: true },
+      { source: "/tent-rental-looking-for-one/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/ar/tent-rental-looking-for-one/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/fr/tent-rental-looking-for-one/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/tent-and-table-rentals/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tent-and-table-rentals/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tent-and-table-rentals/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/marquee-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/ar/marquee-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/fr/marquee-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/best-tent-rentals-in-riyadh/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/best-tent-rentals-in-riyadh/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/best-tent-rentals-in-riyadh/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tents-rental/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/tents-rental/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tents-rental/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/looking-for-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/fr/looking-for-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/looking-for-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/fr/tent-rental-2/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tent-rental-2/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/tent-rental-2/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/luxury-arabic-majlis-tent/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/luxury-arabic-majlis-tent/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/luxury-arabic-majlis-tent/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/ar-tent-rental-in-dubai/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
+      { source: "/fr/ar-tent-rental-in-dubai/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
+      { source: "/ar-tent-rental-in-dubai/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
+      { source: "/ar/wedding-tent-for-rent/", destination: "/news/wedding-tent-rentals/", permanent: true },
+      { source: "/fr/wedding-tent-for-rent/", destination: "/news/wedding-tent-rentals/", permanent: true },
+      { source: "/wedding-tent-for-rent/", destination: "/news/wedding-tent-rentals/", permanent: true },
+      { source: "/ar/tent-for-rent-in-dubai/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/fr/tent-for-rent-in-dubai/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/tent-for-rent-in-dubai/", destination: "/news/tent-rental-dubai/", permanent: true },
+      { source: "/ar/tent-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/fr/tent-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/tent-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/ar/tents-in-uae/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tents-in-uae/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/tents-in-uae/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tents-on-rent/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tents-on-rent/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/tents-on-rent/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/arabic-majlis-tents-2/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/fr/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/event-tent-for-rent/", destination: "/ar/solutions/event-tent/", permanent: true },
+      { source: "/fr/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/ar/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/fr/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
+
     ];
   },
-};      
+};
 
 export default nextConfig;
