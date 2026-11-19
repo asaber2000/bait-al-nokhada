@@ -1,225 +1,359 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Mail, ArrowUpLeft, MessageCircle } from "lucide-react";
+import { useRef, memo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { MapPin, Mail, ArrowUpLeft, MessageCircle, Phone } from "lucide-react";
 import Image from "next/image";
 
-export default function FooterAr() {
-  const quickLinks = [
-    { name: "الرئيسية", href: "/ar" },
-    { name: "من نحن", href: "/ar/about-us" },
-    { name: "المنتجات", href: "/ar/products" },
-    { name: "الحلول والخدمات", href: "/ar/solutions" },
-    { name: "المشاريع", href: "/ar/projects" },
-    { name: "الأخبار والمقالات", href: "/ar/news" },
-    { name: "تواصل معنا", href: "/ar/contact-us" },
-  ];
+const quickLinks = [
+  { name: "الرئيسية", href: "/ar" },
+  { name: "من نحن", href: "/ar/about-us" },
+  { name: "المنتجات", href: "/ar/products" },
+  { name: "الحلول والخدمات", href: "/ar/solutions" },
+  { name: "المشاريع", href: "/ar/projects" },
+  { name: "الأخبار والمقالات", href: "/ar/news" },
+  { name: "تواصل معنا", href: "/ar/contact-us" },
+];
 
-  const featuredSolutions = [
-    { name: "تأجير وتوريد الخيام", href: "/ar/news/tent-rental" },
-    { name: "خيام الأعراس الملكية", href: "/ar/solutions/wedding-tent" },
-    { name: "صالات المعارض والقمم", href: "/ar/solutions/exhibition-tent" },
-    { name: "القباب والملاعب الرياضية", href: "/ar/solutions/sports-tent" },
-    { name: "المستودعات والخيام الصناعية", href: "/ar/solutions/warehouse-tent" },
-    { name: "هناجر الطائرات", href: "/ar/solutions/aircraft-hangar-tent" },
-    { name: "خيام الضيافة الرمضانية", href: "/ar/solutions/ramadan-tent" },
-  ];
+const featuredSolutions = [
+  { name: "تأجير وتوريد الخيام", href: "/ar/news/tent-rental" },
+  { name: "خيام الأعراس الملكية", href: "/ar/solutions/wedding-tent" },
+  { name: "صالات المعارض والقمم", href: "/ar/solutions/exhibition-tent" },
+  { name: "القباب والملاعب الرياضية", href: "/ar/solutions/sports-tent" },
+  { name: "المستودعات والخيام الصناعية", href: "/ar/solutions/warehouse-tent" },
+  { name: "هناجر الطائرات", href: "/ar/solutions/aircraft-hangar-tent" },
+  { name: "خيام الضيافة الرمضانية", href: "/ar/solutions/ramadan-tent" },
+];
 
-  const socialLinks = [
-    {
-      name: "Facebook",
-      href: "https://www.facebook.com/baitalnokhada/",
-      svg: (
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      ),
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/company/baitalnokhada/",
-      svg: (
-        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-      ),
-    },
-    {
-      name: "Instagram",
-      href: "https://www.instagram.com/baitalnokhada/",
-      svg: (
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-      ),
-    },
-    {
-      name: "TikTok",
-      href: "https://www.tiktok.com/@baitalnokhada",
-      svg: (
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-      ),
-    },
-    {
-      name: "YouTube",
-      href: "https://www.youtube.com/@BAITALNOKHADA",
-      svg: (
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-      ),
-    },
-    {
-      name: "X (Twitter)",
-      href: "https://twitter.com/bait_nokhada",
-      svg: (
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      ),
-    },
-    {
-      name: "Pinterest",
-      href: "https://www.pinterest.com/baitalnokhada1/",
-      svg: (
-        <path d="M12 0a12 12 0 0 0-4.37 23.18c-.07-.98-.13-2.49.03-3.56.14-.98.92-3.9.92-3.9s-.23-.47-.23-1.17c0-1.1.64-1.92 1.43-1.92.68 0 1 .5 1 1.11 0 .68-.43 1.7-.66 2.65-.19.79.39 1.44 1.17 1.44 1.4 0 2.48-1.48 2.48-3.62 0-1.89-1.36-3.21-3.3-3.21-2.41 0-3.83 1.81-3.83 3.68 0 .73.28 1.51.63 1.93.07.08.08.16.06.25-.07.28-.22.88-.25 1-.04.16-.13.2-.3.12-1.11-.52-1.81-2.14-1.81-3.45 0-2.81 2.04-5.39 5.88-5.39 3.09 0 5.49 2.2 5.49 5.14 0 3.07-1.93 5.54-4.62 5.54-.9 0-1.75-.47-2.04-1.02l-.56 2.11c-.2.78-.75 1.75-1.11 2.34A12 12 0 1 0 12 0z" />
-      ),
-    },
-    {
-      name: "Behance",
-      href: "https://www.behance.net/baitalnokhada",
-      svg: (
-        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.726 3-3.859 0-5.356-2.879-5.356-5.886 0-3.447 2.01-6.114 5.378-6.114 3.738 0 5.002 2.766 4.704 6.275h-7.794c.05 1.636.953 2.925 2.827 2.925 1.42 0 2.37-.775 2.736-1.52l2.231 1.32zm-6.994-4.8h5.361c-.04-1.332-.733-2.52-2.457-2.52-1.748 0-2.617 1.156-2.904 2.52zm-11.732 4.8h-5v-14h5.688c3.279 0 4.78 1.472 4.78 3.518 0 1.267-.624 2.45-1.988 2.936 1.83.476 2.49 1.942 2.49 3.558 0 2.417-1.892 3.988-5.97 3.988zm-2.52-8.358h2.648c1.378 0 2.215-.544 2.215-1.637 0-1.055-.776-1.583-2.124-1.583h-2.739v3.22zm0 5.878h2.898c1.554 0 2.525-.658 2.525-1.879 0-1.208-.949-1.879-2.525-1.879h-2.898v3.758z" />
-      ),
-    },
-  ];
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/baitalnokhada/",
+    svg: (
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/baitalnokhada/",
+    svg: (
+      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+    ),
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/baitalnokhada/",
+    svg: (
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    ),
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@baitalnokhada",
+    svg: (
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@BAITALNOKHADA",
+    svg: (
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    ),
+  },
+  {
+    name: "X (Twitter)",
+    href: "https://twitter.com/bait_nokhada",
+    svg: (
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    ),
+  },
+  {
+    name: "Pinterest",
+    href: "https://www.pinterest.com/baitalnokhada1/",
+    svg: (
+      <path d="M12 0a12 12 0 0 0-4.37 23.18c-.07-.98-.13-2.49.03-3.56.14-.98.92-3.9.92-3.9s-.23-.47-.23-1.17c0-1.1.64-1.92 1.43-1.92.68 0 1 .5 1 1.11 0 .68-.43 1.7-.66 2.65-.19.79.39 1.44 1.17 1.44 1.4 0 2.48-1.48 2.48-3.62 0-1.89-1.36-3.21-3.3-3.21-2.41 0-3.83 1.81-3.83 3.68 0 .73.28 1.51.63 1.93.07.08.08.16.06.25-.07.28-.22.88-.25 1-.04.16-.13.2-.3.12-1.11-.52-1.81-2.14-1.81-3.45 0-2.81 2.04-5.39 5.88-5.39 3.09 0 5.49 2.2 5.49 5.14 0 3.07-1.93 5.54-4.62 5.54-.9 0-1.75-.47-2.04-1.02l-.56 2.11c-.2.78-.75 1.75-1.11 2.34A12 12 0 1 0 12 0z" />
+    ),
+  },
+  {
+    name: "Behance",
+    href: "https://www.behance.net/baitalnokhada",
+    svg: (
+      <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.726 3-3.859 0-5.356-2.879-5.356-5.886 0-3.447 2.01-6.114 5.378-6.114 3.738 0 5.002 2.766 4.704 6.275h-7.794c.05 1.636.953 2.925 2.827 2.925 1.42 0 2.37-.775 2.736-1.52l2.231 1.32zm-6.994-4.8h5.361c-.04-1.332-.733-2.52-2.457-2.52-1.748 0-2.617 1.156-2.904 2.52zm-11.732 4.8h-5v-14h5.688c3.279 0 4.78 1.472 4.78 3.518 0 1.267-.624 2.45-1.988 2.936 1.83.476 2.49 1.942 2.49 3.558 0 2.417-1.892 3.988-5.97 3.988zm-2.52-8.358h2.648c1.378 0 2.215-.544 2.215-1.637 0-1.055-.776-1.583-2.124-1.583h-2.739v3.22zm0 5.878h2.898c1.554 0 2.525-.658 2.525-1.879 0-1.208-.949-1.879-2.525-1.879h-2.898v3.758z" />
+    ),
+  },
+];
+
+const tickerItems = [
+  "بيت النوخذة",
+  "الإمارات • السعودية • الخليج • العالم",
+  "هياكل معمارية وخيام واسعة البحور",
+  "فعاليات • أعراس • مستودعات",
+  "أكثر من ٣٠ عاماً من التميز الهندسي",
+];
+
+const FooterAr = memo(function FooterAr() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end end"],
+  });
+
+  const wordmarkX = useTransform(scrollYProgress, [0, 1], [60, -45]);
+  const wordmarkAccentX = useTransform(scrollYProgress, [0, 1], [-50, 35]);
+
   return (
-    <footer className="bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/60 pt-16 pb-12 text-right" dir="rtl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-slate-200/80">
+    <footer
+      ref={footerRef}
+      className="relative bg-[#FDFCF7] text-[#090D16] border-t border-slate-200/80 pt-16 pb-10 text-right overflow-hidden"
+      dir="rtl"
+    >
+      {/* شريط متحرك مستمر خفيف وهادئ يعطي حركة دائمة */}
+      <div className="border-y border-slate-200/80 bg-white/70 py-2.5 sm:py-3 mb-10 sm:mb-12 overflow-hidden select-none" dir="ltr">
+        <motion.div
+          className="flex items-center gap-6 sm:gap-10 whitespace-nowrap text-[11px] sm:text-xs font-extrabold tracking-[0.06em] text-slate-600 w-max"
+          animate={{ x: ["-50%", "0%"] }}
+          transition={{ duration: 45, ease: "linear", repeat: Infinity }}
+          whileHover={{ transition: { duration: 60 } }}
+        >
+          {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map((item, idx) => (
+            <span key={idx} className="inline-flex items-center gap-6 sm:gap-10">
+              <span className="hover:text-[#df9d17] transition-colors">{item}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#df9d17]" />
+            </span>
+          ))}
+        </motion.div>
+      </div>
+      {/* الأعمدة الرئيسية: فهرس هندسي مفتوح وراقي بدون أرقام */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-12 lg:gap-x-8">
+        {/* العمود الرابع: معلومات الشركة والنبذة (4 أعمدة) */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: "some" }}
+          transition={{ duration: 0.55 }}
+          className="lg:col-span-4 lg:pl-8 space-y-6 flex flex-col justify-between"
+        >
+          <div className="space-y-4">
+            <Link href="/ar" className="inline-block group transition-transform duration-300">
+              <div className="relative overflow-visible flex items-center justify-start h-14 w-56">
+                <Image
+                  src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                  alt="بيت النوخذة"
+                  width={320}
+                  height={90}
+                  className="w-auto h-14 object-contain origin-right scale-[2.7] -translate-x-3"
+                />
+              </div>
+            </Link>
 
-        {/* العمود الرابع: معلومات الشركة والنبذة */}
-        <div className="space-y-4">
-          <Link href="/ar" className="inline-block group transition-transform duration-300">
-            <div className="relative overflow-visible flex items-center justify-start h-14 w-56">
-              <Image
-                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
-                alt="بيت النوخذة"
-                width={320}
-                height={90}
-                className="w-auto h-14 object-contain origin-right scale-[2.7] -translate-x-3"
-              />
-            </div>
-          </Link>
-          <p className="text-xs text-slate-600 font-normal leading-relaxed max-w-sm">
-            الرواد في تصنيع وتركيب الهياكل المعمارية واسعة البحور، خيام الأعراس الفاخرة، والهياكل النسيجية المعتمدة في الإمارات، السعودية، والأسواق العالمية.
-          </p>
+            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed max-w-md pl-4 sm:pl-6">
+              الرواد في تصنيع وتركيب الهياكل المعمارية واسعة البحور، خيام الأعراس الفاخرة، والهياكل النسيجية المعتمدة في الإمارات، السعودية، والأسواق العالمية.
+            </p>
+          </div>
+
           <div className="flex flex-wrap items-center gap-2 pt-2">
             {socialLinks.map((social) => (
-              <a
+              <motion.a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-white hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200/80 shadow-xs hover:border-[#df9d17]"
+                whileHover={{ y: -3, scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 380, damping: 22 }}
+                className="w-8 h-8 rounded-xl bg-white hover:bg-[#df9d17] text-slate-700 hover:text-white flex items-center justify-center transition-colors duration-300 border border-slate-200/80 shadow-xs hover:border-[#df9d17]"
                 aria-label={social.name}
                 title={social.name}
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                   {social.svg}
                 </svg>
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* العمود الثالث: روابط سريعة */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-[#df9d17]">روابط سريعة</h4>
-          <ul className="space-y-2 text-xs">
+        {/* العمود الثالث: روابط سريعة (عمودان) */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: "some" }}
+          transition={{ duration: 0.55, delay: 0.08 }}
+          className="lg:col-span-2 lg:px-7 space-y-5"
+        >
+          <div className="border-b border-[#df9d17]/40 pb-2.5">
+            <h4 className="text-[12px] font-black uppercase tracking-[0.14em] text-[#090D16]">
+              روابط سريعة
+            </h4>
+          </div>
+
+          <ul className="space-y-3 text-sm">
             {quickLinks.map((item, idx) => (
               <li key={idx}>
-                <Link href={item.href} className="text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
-                  {item.name}
+                <Link
+                  href={item.href}
+                  className="group flex items-center justify-between py-1.5 sm:py-0.5 text-sm text-slate-700 hover:text-[#090D16] font-medium transition-colors"
+                >
+                  <span className="relative inline-block group-hover:-translate-x-1.5 transition-transform duration-200">
+                    {item.name}
+                    <span className="block h-[1.5px] w-0 bg-[#df9d17] group-hover:w-full transition-all duration-300" />
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* العمود الثاني: حلول مميزة */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-[#df9d17]">أبرز الحلول والخدمات</h4>
-          <ul className="space-y-2 text-xs">
+        {/* العمود الثاني: أبرز الحلول والخدمات (٣ أعمدة) */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: "some" }}
+          transition={{ duration: 0.55, delay: 0.16 }}
+          className="lg:col-span-3 lg:px-7 space-y-5"
+        >
+          <div className="border-b border-[#df9d17]/40 pb-2.5">
+            <h4 className="text-[12px] font-black uppercase tracking-[0.14em] text-[#090D16]">
+              أبرز الحلول والخدمات
+            </h4>
+          </div>
+
+          <ul className="space-y-3 text-sm">
             {featuredSolutions.map((item, idx) => (
               <li key={idx}>
-                <Link href={item.href} className="text-slate-600 hover:text-[#df9d17] font-medium transition-colors">
-                  {item.name}
+                <Link
+                  href={item.href}
+                  className="group flex items-center justify-between py-1.5 sm:py-0.5 text-sm text-slate-700 hover:text-[#090D16] font-medium transition-colors"
+                >
+                  <span className="relative inline-block group-hover:-translate-x-1.5 transition-transform duration-200">
+                    {item.name}
+                    <span className="block h-[1.5px] w-0 bg-[#df9d17] group-hover:w-full transition-all duration-300" />
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
+        {/* العمود الأول: المقر الرئيسي (٣ أعمدة) */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: "some" }}
+          transition={{ duration: 0.55, delay: 0.24 }}
+          className="lg:col-span-3 lg:pr-8 space-y-5 flex flex-col justify-between"
+        >
+          <div className="space-y-4">
+            <div className="border-b border-[#df9d17]/40 pb-2.5">
+              <h4 className="text-[12px] font-black uppercase tracking-[0.14em] text-[#090D16]">
+                المقر الرئيسي
+              </h4>
+            </div>
 
+            <ul className="space-y-3.5 text-sm text-slate-700 font-medium">
+              <li>
+                <a
+                  href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
+                >
+                  <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+                    <MapPin className="w-4 h-4 text-[#df9d17]" />
+                  </div>
+                  <span className="text-sm text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed">
+                    قطعة رقم TP 010102 - تكنوبارك - ميناء جبل علي - مجمع الصناعات الوطنية - دبي، الإمارات
+                  </span>
+                </a>
+              </li>
 
-        {/* العمود الأول: المقر الرئيسي */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-[#df9d17]">المقر الرئيسي</h4>
-          <ul className="space-y-3 text-xs text-slate-300">
-            {/* 1. العنوان */}
-            <a
-              href="https://www.google.com/maps/place/%D8%A8%D9%8A%D8%AA+%D8%A7%D9%84%D9%86%D9%88%D8%AE%D8%B0%D8%A9+-+BAITALNOKHADA+TENTS+FACTORY+-HEAD+OFFICE+DUBAI%E2%80%AD/@24.934106,55.065001,10z/data=!4m6!3m5!1s0x3e5f0da58ab6364d:0xb668e74c8c5b934b!8m2!3d24.9341063!4d55.065001!16s%2Fg%2F11k3_kdvx5?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3.5 pt-1 hover:text-[#df9d17] transition group cursor-pointer"
-            >
-              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
-                <MapPin className="w-4 h-4 text-[#df9d17]" />
-              </div>
-              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors leading-relaxed group-hover:text-[#D4AF37] transition-colors">
-                قطعة رقم TP 010102 - تكنوبارك - ميناء جبل علي - مجمع الصناعات الوطنية - دبي، الإمارات
-              </span>
-            </a>
+              <li>
+                <a
+                  href="tel:+971558850631"
+                  className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
+                >
+                  <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+                    <Phone className="w-4 h-4 text-[#df9d17]" />
+                  </div>
+                  <span dir="ltr" className="text-sm text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors">
+                    +971 55 885 0631
+                  </span>
+                </a>
+              </li>
 
-            {/* 2. رقم الهاتف */}
-            <a
-              href="//wa.me/97143444091"
-              className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
-            >
-              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
-                <MessageCircle className="w-4 h-4 text-[#df9d17]" />
-              </div>
-              <span dir="ltr" className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors group-hover:text-[#df9d17] transition-colors">
-                +971 4 344 4091
-              </span>
-            </a>
+              <li>
+                <a
+                  href="//wa.me/97143444091"
+                  className="flex items-center gap-3.5 hover:text-[#df9d17] transition group"
+                >
+                  <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+                    <MessageCircle className="w-4 h-4 text-[#df9d17]" />
+                  </div>
+                  <span dir="ltr" className="text-sm text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors">
+                    +971 4 344 4091
+                  </span>
+                </a>
+              </li>
 
-            {/* 3. البريد الإلكتروني */}
-            <a
-              href="mailto:info@baitalnokhada.com"
-              className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
-            >
-              <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
-                <Mail className="w-4 h-4 text-[#df9d17]" />
-              </div>
-              <span className="text-xs text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate group-hover:text-[#df9d17] transition-colors">
-                info@baitalnokhada.com
-              </span>
-            </a>
-          </ul>
-          <div className="pt-2">
+              <li>
+                <a
+                  href="mailto:info@baitalnokhada.com"
+                  className="flex items-center gap-3.5 hover:text-[#df9d17] transition group truncate"
+                >
+                  <div className="p-2 rounded-xl bg-white border border-slate-200/80 group-hover:border-[#df9d17]/60 group-hover:bg-[#df9d17]/10 transition shrink-0 shadow-xs">
+                    <Mail className="w-4 h-4 text-[#df9d17]" />
+                  </div>
+                  <span className="text-sm text-slate-700 font-medium group-hover:text-[#df9d17] transition-colors truncate">
+                    info@baitalnokhada.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="pt-3 border-t border-slate-200/70">
             <Link
               href="/ar/contact-us"
-              className="inline-flex items-center gap-2 text-xs font-bold text-[#df9d17] hover:text-[#0B1220] transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#090D16] hover:text-[#df9d17] transition-colors group"
             >
-              <span>طلب عرض سعر واستشارة</span>
-              <ArrowUpLeft className="w-4 h-4" />
+              <span className="border-b border-[#df9d17] pb-0.5">طلب عرض سعر واستشارة</span>
+              <ArrowUpLeft className="w-4 h-4 text-[#df9d17] transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
+        </motion.div>
+      </div>
+
+      {/* حركة سحب تفاعلية مرتبطة بالسكرول لكلمة بيت النوخذة الكبيرة */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200/80 select-none">
+        <div className="space-y-1.5 sm:space-y-1">
+          <motion.div
+            style={{ x: wordmarkX }}
+            className="font-black tracking-[-0.02em] leading-[0.95] text-[#090D16] text-[clamp(2.2rem,9.8vw,8.8rem)] whitespace-nowrap origin-right scale-x-105 sm:scale-x-115"
+          >
+            بيت النوخذة
+          </motion.div>
+          <motion.div
+            style={{ x: wordmarkAccentX }}
+            className="font-extrabold tracking-[0.04em] text-[9px] sm:[12px] md:text-[13px] text-[#df9d17] leading-relaxed sm:leading-normal pt-1"
+          >
+            هياكل معمارية وخيام • دبي • الإمارات • السعودية • الخليج • العالم
+          </motion.div>
         </div>
-
-
-
       </div>
 
       {/* حقوق النشر السفلية */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-6 mt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
         <div className="flex gap-6">
           <Link href="/ar/terms" className="hover:text-slate-900 transition-colors">شروط الاستخدام</Link>
-          <Link href="/ar/privacy" className="hover:text-slate-900 transition-colors">سياسة الخصوصية</Link>
+          <Link href="/ar/privacy-policy" className="hover:text-slate-900 transition-colors">سياسة الخصوصية</Link>
         </div>
         <p>© 2026 بيت النوخذة للخيام. جميع الحقوق محفوظة.</p>
       </div>
     </footer>
   );
-}
+});
+
+export default FooterAr;
