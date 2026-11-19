@@ -274,7 +274,7 @@ async function getArabicHomeData() {
           "posterUrl": posterImage.asset->url
         }`,
         {},
-        { cache: "no-store" }
+        { next: { revalidate: 3600 } }
       ),
       client.fetch(
         `*[_type == "featureShowcaseAr"][0]{
@@ -290,7 +290,7 @@ async function getArabicHomeData() {
           pillarsList
         }`,
         {},
-        { cache: "no-store" }
+        { next: { revalidate: 3600 } }
       ),
     ]);
 

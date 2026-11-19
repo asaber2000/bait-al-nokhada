@@ -279,7 +279,7 @@ async function getHeroData() {
         "posterUrl": posterImage.asset->url
       }`,
       {},
-      { cache: "no-store" }
+      { next: { revalidate: 3600 } }
     );
   } catch {
     return null;
@@ -302,7 +302,7 @@ async function getFeatureShowcaseData() {
         pillarsList
       }`,
       {},
-      { cache: "no-store" }
+      { next: { revalidate: 3600 } }
     );
   } catch {
     return null;
