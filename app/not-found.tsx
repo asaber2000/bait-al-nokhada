@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function NotFound() {
@@ -16,10 +17,32 @@ export default function NotFound() {
       <header className="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
         <Link
           href={isArabic ? "/ar/" : "/"}
-          className="text-lg font-extrabold tracking-tight flex items-center gap-1"
+          className="flex items-center group transition-transform duration-300 hover:scale-[1.02]"
+          aria-label={isArabic ? "بيت النوخذة" : "Bait Al Nokhada"}
         >
-          <span className="text-[#EAB308]">BAIT</span>
-          <span className="text-[#0F172A]">AL NOKHADA</span>
+          {isArabic ? (
+            <div className="relative overflow-visible flex items-center justify-start">
+              <Image
+                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                alt="بيت النوخذة"
+                width={280}
+                height={80}
+                quality={75}
+                className="w-auto h-12 object-contain origin-right scale-[2.0] sm:scale-[2.2]"
+              />
+            </div>
+          ) : (
+            <div className="relative h-10 w-40 sm:h-11 sm:w-44">
+              <Image
+                src="/bait-alnokhada-final-g.svg"
+                alt="Bait Al Nokhada"
+                fill
+                quality={75}
+                sizes="180px"
+                className="object-contain object-left"
+              />
+            </div>
+          )}
         </Link>
 
         <Link
