@@ -273,8 +273,7 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
               src={sideImageUrl}
               alt="Bait Al Nokhada Exhibition Tents"
               fill
-              priority
-              quality={95}
+              quality={80}
               sizes="(max-width: 1024px) 100vw, 60vw"
               className={`object-cover object-center transition-all duration-700 ease-out ${
                 activeIdx === 0

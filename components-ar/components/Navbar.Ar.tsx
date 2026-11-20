@@ -139,22 +139,6 @@ export default function ArabicNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // تحميل مسبق صامت لصور المنيو في الخلفية بعد استقرار الصفحة
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (typeof window === "undefined") return;
-      [...productsList, ...solutionsList].forEach((item) => {
-        const src = item?.catalogImage || item?.image || item?.coverImage || item?.heroImage;
-        if (typeof src === "string" && (src.startsWith("https://") || src.startsWith("/"))) {
-          const img = new window.Image();
-          img.src = src;
-        }
-      });
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, [productsList, solutionsList]);
-
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileMenuOpen(false);
@@ -292,7 +276,6 @@ export default function ArabicNavbar() {
                     alt="بيت النوخذة"
                     width={240}
                     height={70}
-                    priority
                     className="w-auto h-12 object-contain origin-right scale-[2.0]"
                     />
                 </Link>
@@ -613,7 +596,7 @@ export default function ArabicNavbar() {
                                 src={itemImg}
                                 alt={itemName}
                                 fill
-                                priority
+                                quality={75}
                                 sizes="(max-width: 1280px) 240px, 280px"
                                 className="object-contain p-3 pb-8 group-hover:scale-105 transition-transform duration-500"
                               />
@@ -680,7 +663,7 @@ export default function ArabicNavbar() {
                                 src={itemImg}
                                 alt={itemName}
                                 fill
-                                priority
+                                quality={75}
                                 sizes="(max-width: 1280px) 240px, 280px"
                                 className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                               />

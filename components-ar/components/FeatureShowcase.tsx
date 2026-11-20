@@ -276,8 +276,7 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
               src={sideImageUrl}
               alt="خيام المعارض والفعاليات - بيت النوخذة"
               fill
-              priority
-              quality={95}
+              quality={80}
               sizes="(max-width: 1024px) 100vw, 60vw"
               className={`object-cover transition-all duration-700 ease-out ${
                 activeIdx === 0
