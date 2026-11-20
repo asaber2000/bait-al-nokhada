@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroContent from "@/components/HeroContent";
+import Image from "next/image";
 
 export default function Hero({ sanityData }: { sanityData?: any }) {
   const videoUrl = sanityData?.videoUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm";
@@ -35,10 +36,18 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
 
       {/* حاوية الموقع الأساسية - نفس حواف وأطراف باقي السكشنات بالضبط */}
       <div className="site-container max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* الحاوية المعمارية العائمة بنسبة أبعاد وارتفاع مدروس ومريح للعين */}
         <div className="relative w-full h-[620px] sm:h-[680px] lg:h-[720px] max-h-[82dvh] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-[#070B14] border border-slate-900/[0.08] shadow-[0_15px_45px_-15px_rgba(0,0,0,0.12)] transform-gpu flex items-center justify-center">
-          
+          <Image
+            src={posterUrl}
+            alt="Bait Al Nokhada Hero Poster"
+            fill
+            priority
+            quality={80}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="z-0 object-cover opacity-90 filter brightness-105 pointer-events-none"
+          />
           {/* 1. طبقة الفيديو والخلفية */}
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
             <video
@@ -46,9 +55,8 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               disablePictureInPicture
-              poster={posterUrl}
               className="w-full h-full object-cover opacity-90 filter brightness-105 pointer-events-none"
             >
               <source
@@ -58,13 +66,13 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
             </video>
 
             {/* تظليل سينمائي خفيف لضمان وضوح النصوص */}
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-black/40 z-20" />
           </div>
 
           {/* 2. طبقة المحتوى مع التلاشي الناعم أثناء السكرول */}
           <motion.div
             style={{ opacity, y }}
-            className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none will-change-transform px-4 sm:px-8"
+            className="relative z-30 w-full h-full flex items-center justify-center pointer-events-none will-change-transform px-4 sm:px-8"
           >
             <HeroContent data={sanityData} />
           </motion.div>
