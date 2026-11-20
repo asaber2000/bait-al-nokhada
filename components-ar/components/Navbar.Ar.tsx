@@ -139,6 +139,7 @@ export default function ArabicNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileMenuOpen(false);
@@ -180,7 +181,7 @@ export default function ArabicNavbar() {
           <Link href="/ar" className="flex items-center group transition-transform duration-300 hover:scale-[1.02]">
             <div className="relative overflow-visible flex items-center justify-start">
               <Image
-                src="/logo-w-arabic.png"
+                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
                 alt="بيت النوخذة"
                 width={280}
                 height={80}
@@ -272,10 +273,11 @@ export default function ArabicNavbar() {
                     aria-label="بيت النوخذة - الرئيسية"
                   >
                   <Image
-                    src="/logo-w-arabic.png"
+                    src="/icons/bait-al-nokhada-final-arabic-logo.svg"
                     alt="بيت النوخذة"
                     width={240}
                     height={70}
+                    priority
                     className="w-auto h-12 object-contain origin-right scale-[2.0]"
                     />
                 </Link>
