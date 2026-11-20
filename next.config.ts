@@ -45,6 +45,45 @@ const legacyArArticles = [
   "tent-rental-events-dubai-riyadh"
 ];
 
+const arabicLegacyRedirects: Array<[string, string]> = [
+  ["شركة-مظلات", "/ar/"],
+  ["محل-تاجير-خيام", "/ar/"],
+  ["خيمة-القبة", "/ar/products/dome-tent/"],
+  ["خيمة-هرميه", "/ar/products/pyramid-tent/"],
+  ["خيمة-المجلس", "/ar/products/arabic-majlis-tent/"],
+  ["الخيمة-المضلعة", "/ar/products/polygon-tent/"],
+  ["هل-تبحث-عن-خيام-اوروبية-للإيجار-؟", "/ar/products/"],
+  ["المنتجات-بيت-النوخذة-للخيام-والمظلات", "/ar/products/"],
+  ["خيام-معارض", "/ar/solutions/exhibition-tent/"],
+  ["الخيمة-رمضانية", "/ar/solutions/ramadan-tent/"],
+  ["خيام-رمضانيه", "/ar/solutions/ramadan-tent/"],
+  ["خيمة-المناسبات", "/ar/solutions/event-tent/"],
+  ["خيام-المنحني", "/ar/solutions/"],
+  ["خيمة-ملكية", "/ar/solutions/"],
+  ["خيام-العزاء", "/ar/news/funeral-tent-rental-uae-saudi/"],
+  ["تأجير-خيام-العزاء-في-الإمارات", "/ar/news/funeral-tent-rental-uae-saudi/"],
+  ["تاجير-الخيام", "/ar/news/tent-rental/"],
+  ["خيام-للايجار-اليومي", "/ar/news/tent-rental/"],
+  ["تاجير-خيام-الخبر", "/ar/news/tent-rental-khobar/"],
+  ["محلات-خيام-الدمام", "/ar/news/tent-suppliers-dammam/"],
+  ["تفصيل-خيام-الدمام", "/ar/news/tent-manufacturing-dammam/"],
+  ["خيام-للبيع-بالرياض", "/ar/news/tents-for-sale-riyadh/"],
+  ["تركيب-خيام-الرياض", "/ar/news/tent-supplier-installation-riyadh/"],
+  ["خيام-المناسبات", "/ar/news/event-tents-uae/"],
+  ["خيام-للايجار-في-دبي", "/ar/news/tents-for-rent-dubai/"],
+  ["خيام-للايجار-في-عجمان", "/ar/news/tent-rental-ajman/"],
+  ["موردين-الخيام-في-السعودية", "/ar/news/tent-suppliers-ksa/"],
+  ["خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس", "/ar/news/tents-for-sale-abu-dhabi/"],
+  ["تأجير-خيم-المناسبات", "/ar/news/event-tents-rental/"],
+  ["أفضل-أسعار-الخيام-في-الإمارات", "/ar/news/best-tent-prices-uae/"],
+  ["هل-تبحث-عن-تأجير-خيام-اوروبية؟", "/ar/news/european-tent-rental-dubai-abu-dhabi/"],
+  ["تأجير-خيام-الدمام", "/ar/news/tent-rental-dammam/"],
+  ["تركيب-خيام", "/ar/news/tent-installation/"],
+  ["هل-تبحث-عن-تأجير-الخيام؟", "/ar/news/tent-rental-events-dubai-riyadh/"],
+  ["تأجير-الخيام-2", "/ar/news/tent-rental-uae-saudi-arabia/"],
+  ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
+];
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
@@ -74,8 +113,11 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    return [
-
+    const rawRedirects = [
+      ...arabicLegacyRedirects.flatMap(([slug, destination]) => [
+        { source: `/ar/${slug}/`, destination, permanent: true },
+        { source: `/${slug}/`, destination, permanent: true },
+      ]),
       {
         source: "/about",
         destination: "/about-us/",
@@ -356,68 +398,6 @@ const nextConfig: NextConfig = {
       { source: "/fr/exhibition-tents-for-sale/", destination: "/solutions/exhibition-tent/", permanent: true },
       { source: "/exhibition-tents-for-sale/", destination: "/solutions/exhibition-tent/", permanent: true },
       { source: "/ar/exhibition-tents-for-sale/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
-      { source: "/ar/شركة-مظلات/", destination: "/ar/", permanent: true },
-      { source: "/شركة-مظلات/", destination: "/ar/", permanent: true },
-      { source: "/ar/خيمة-القبة/", destination: "/ar/products/dome-tent/", permanent: true },
-      { source: "/ar/خيام-معارض/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
-      { source: "/ar/الخيمة-رمضانية/", destination: "/ar/solutions/ramadan-tent/", permanent: true },
-      { source: "/ar/خيمة-هرميه/", destination: "/ar/products/pyramid-tent/", permanent: true },
-      { source: "/ar/خيمة-المناسبات/", destination: "/ar/solutions/event-tent/", permanent: true },
-      { source: "/ar/خيمة-المجلس/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
-      { source: "/ar/خيام-المنحني/", destination: "/ar/solutions/", permanent: true },
-      { source: "/ar/الخيمة-المضلعة/", destination: "/ar/products/polygon-tent/", permanent: true },
-      { source: "/ar/خيمة-ملكية", destination: "/ar/solutions/", permanent: true },
-      { source: "/ar/خيام-رمضانيه/", destination: "/ar/solutions/ramadan-tent/", permanent: true },
-      { source: "/ar/خيام-العزاء/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
-      { source: "/خيام-العزاء/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
-      { source: "/تاجير-الخيام/", destination: "/ar/news/tent-rental/", permanent: true },
-      { source: "/ar/تاجير-الخيام/", destination: "/ar/news/tent-rental/", permanent: true },
-      { source: "/تاجير-خيام-الخبر/", destination: "/ar/news/tent-rental-khobar/", permanent: true },
-      { source: "/ar/تاجير-خيام-الخبر/", destination: "/ar/news/tent-rental-khobar/", permanent: true },
-      { source: "/محلات-خيام-الدمام/", destination: "/ar/news/tent-suppliers-dammam/", permanent: true },
-      { source: "/ar/محلات-خيام-الدمام/", destination: "/ar/news/tent-suppliers-dammam/", permanent: true },
-      { source: "/تفصيل-خيام-الدمام/", destination: "/ar/news/tent-manufacturing-dammam/", permanent: true },
-      { source: "/ar/تفصيل-خيام-الدمام/", destination: "/ar/news/tent-manufacturing-dammam/", permanent: true },
-      { source: "/خيام-للبيع-بالرياض/", destination: "/ar/news/tents-for-sale-riyadh/", permanent: true },
-      { source: "/ar/خيام-للبيع-بالرياض/", destination: "/ar/news/tents-for-sale-riyadh/", permanent: true },
-      { source: "/تركيب-خيام-الرياض/", destination: "/ar/news/tent-supplier-installation-riyadh/", permanent: true },
-      { source: "/ar/تركيب-خيام-الرياض/", destination: "/ar/news/tent-supplier-installation-riyadh/", permanent: true },
-      { source: "/خيام-المناسبات/", destination: "/ar/news/event-tents-uae/", permanent: true },
-      { source: "/ar/خيام-المناسبات/", destination: "/ar/news/event-tents-uae/", permanent: true },
-      { source: "/خيام-للايجار-في-دبي/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
-      { source: "/ar/خيام-للايجار-في-دبي/", destination: "/ar/news/tents-for-rent-dubai/", permanent: true },
-      { source: "/خيام-للايجار-في-عجمان/", destination: "/ar/news/tent-rental-ajman/", permanent: true },
-      { source: "/ar/خيام-للايجار-في-عجمان/", destination: "/ar/news/tent-rental-ajman/", permanent: true },
-      { source: "/موردين-الخيام-في-السعودية/", destination: "/ar/news/tent-suppliers-ksa/", permanent: true },
-      { source: "/ar/موردين-الخيام-في-السعودية/", destination: "/ar/news/tent-suppliers-ksa/", permanent: true },
-      { source: "/خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس/", destination: "/ar/news/tents-for-sale-abu-dhabi/", permanent: true },
-      { source: "/ar/خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس/", destination: "/ar/news/tents-for-sale-abu-dhabi/", permanent: true },
-      { source: "/تأجير-خيم-المناسبات/", destination: "/ar/news/event-tents-rental/", permanent: true },
-      { source: "/ar/تأجير-خيم-المناسبات/", destination: "/ar/news/event-tents-rental/", permanent: true },
-      { source: "/أفضل-أسعار-الخيام-في-الإمارات/", destination: "/ar/news/best-tent-prices-uae/", permanent: true },
-      { source: "/ar/أفضل-أسعار-الخيام-في-الإمارات/", destination: "/ar/news/best-tent-prices-uae/", permanent: true },
-      { source: "/ar/هل-تبحث-عن-تأجير-خيام-اوروبية؟/", destination: "/ar/news/european-tent-rental-dubai-abu-dhabi/", permanent: true },
-      { source: "/هل-تبحث-عن-تأجير-خيام-اوروبية؟/", destination: "/ar/news/european-tent-rental-dubai-abu-dhabi/", permanent: true },
-      { source: "/هل-تبحث-عن-خيام-اوروبية-للإيجار-؟/", destination: "/ar/products/", permanent: true },
-      { source: "/ar/هل-تبحث-عن-خيام-اوروبية-للإيجار-؟/", destination: "/ar/products/", permanent: true },
-      { source: "/تأجير-خيام-الدمام/", destination: "/ar/news/tent-rental-dammam/", permanent: true },
-      { source: "/ar/تأجير-خيام-الدمام/", destination: "/ar/news/tent-rental-dammam/", permanent: true },
-      { source: "/خيام-للايجار-اليومي/", destination: "/ar/news/tent-rental/", permanent: true },
-      { source: "/ar/خيام-للايجار-اليومي/", destination: "/ar/news/tent-rental/", permanent: true },
-      { source: "/تركيب-خيام/", destination: "/ar/news/tent-installation/", permanent: true },
-      { source: "/ar/تركيب-خيام/", destination: "/ar/news/tent-installation/", permanent: true },
-      { source: "/هل-تبحث-عن-تأجير-الخيام؟/", destination: "/ar/news/tent-rental-events-dubai-riyadh/", permanent: true },
-      { source: "/ar/هل-تبحث-عن-تأجير-الخيام؟/", destination: "/ar/news/tent-rental-events-dubai-riyadh/", permanent: true },
-      { source: "/ar/تأجير-الخيام-2/", destination: "/ar/news/tent-rental-uae-saudi-arabia/", permanent: true },
-      { source: "/تأجير-الخيام-2/", destination: "/ar/news/tent-rental-uae-saudi-arabia/", permanent: true },
-      { source: "/الخيمة-العربية/", destination: "/ar/news/arabic-tent-rental/", permanent: true },
-      { source: "/ar/الخيمة-العربية/", destination: "/ar/news/arabic-tent-rental/", permanent: true },
-      { source: "/ar/المنتجات-بيت-النوخذة-للخيام-والمظلات/", destination: "/ar/products/", permanent: true },
-      { source: "/المنتجات-بيت-النوخذة-للخيام-والمظلات/", destination: "/ar/products/", permanent: true },
-      { source: "/تأجير-خيام-العزاء-في-الإمارات/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
-      { source: "/ar/تأجير-خيام-العزاء-في-الإمارات/", destination: "/ar/news/funeral-tent-rental-uae-saudi/", permanent: true },
-      { source: "/ar/محل-تاجير-خيام/", destination: "/ar/", permanent: true },
-      { source: "/محل-تاجير-خيام/", destination: "/ar/", permanent: true },
       { source: "/services/", destination: "/solutions/", permanent: true },
       { source: "/ar/services/", destination: "/ar/solutions/", permanent: true },
       { source: "/ar/royal-tent/", destination: "/ar/solutions/", permanent: true },
@@ -488,6 +468,16 @@ const nextConfig: NextConfig = {
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
 
     ];
+    return rawRedirects.flatMap((rule) => {
+      const encodedSource = encodeURI(rule.source);
+      if (encodedSource !== rule.source) {
+        return [
+          rule,
+          { ...rule, source: encodedSource },
+        ];
+      }
+      return [rule];
+    });
   },
 };
 

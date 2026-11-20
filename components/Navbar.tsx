@@ -648,7 +648,6 @@ export default function Navbar() {
                                       src={itemImg}
                                       alt={item.name}
                                       fill
-                                      quality={75}
                                       sizes="(max-width: 1280px) 240px, 280px"
                                       className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                                     />

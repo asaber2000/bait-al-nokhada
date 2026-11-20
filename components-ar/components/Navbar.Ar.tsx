@@ -180,7 +180,7 @@ export default function ArabicNavbar() {
           <Link href="/ar" className="flex items-center group transition-transform duration-300 hover:scale-[1.02]">
             <div className="relative overflow-visible flex items-center justify-start">
               <Image
-                src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                src="/logo-w-arabic.png"
                 alt="بيت النوخذة"
                 width={280}
                 height={80}
@@ -272,7 +272,7 @@ export default function ArabicNavbar() {
                     aria-label="بيت النوخذة - الرئيسية"
                   >
                   <Image
-                    src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                    src="/logo-w-arabic.png"
                     alt="بيت النوخذة"
                     width={240}
                     height={70}
