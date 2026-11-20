@@ -180,7 +180,7 @@ export default function Navbar() {
                 }`}
             >
               <Image
-                src="/bait-alnokhada-final-g.svg"
+                src="/logo.png"
                 alt="Bait Al Nokhada"
                 fill
                 priority
@@ -275,7 +275,7 @@ export default function Navbar() {
                     aria-label="Bait Al Nokhada Home"
                   >
                     <Image
-                      src="/bait-alnokhada-final-g.svg"
+                      src="/logo.png"
                       alt="Bait Al Nokhada"
                       fill
                       className="object-contain object-left"
