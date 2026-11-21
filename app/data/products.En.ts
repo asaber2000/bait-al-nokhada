@@ -48,29 +48,32 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Clear Span",
     description: "The pyramid tent features a timeless triangular design, seamlessly merging traditional aesthetics with modern functionality. It’s exceptionally versatile and ideal for both formal galas and casual gatherings.",
     models: [
-      { name: "Pyramid PT 5x5", size: "5m x 5m (25 m² Area)", capacity: "20 - 30 Guests" },
-      { name: "Pyramid PT 6x6", size: "6m x 6m (36 m² Area)", capacity: "35 - 50 Guests" },
-      { name: "Pyramid PT 8x8", size: "8m x 8m (64 m² Area)", capacity: "60 - 80 Guests" },
-      { name: "Pyramid PT 10x10", size: "10m x 10m (100 m² Area)", capacity: "90 - 120 Guests" },
-      { name: "Pyramid PT Custom", size: "Modular Length Extensions", capacity: "Custom Event Capacities" },
+      { name: "Pyramid Tent 5 m", size: "Width: 5 m", capacity: "Eave: 2.25 m • Ridge: 3.3 m" },
+      { name: "Pyramid Tent 10 m", size: "Width: 10 m", capacity: "Eave: 3.2 m • Ridge: 5.1 m" },
+      { name: "Pyramid Tent 15 m", size: "Width: 15 m", capacity: "Eave: 4.25 m • Ridge: 6.65 m" },
+      { name: "Pyramid Tent 20 m", size: "Width: 20 m", capacity: "Eave: 4.25 m • Ridge: 7.4 m" },
+      { name: "Pyramid Tent 25 m", size: "Width: 25 m", capacity: "Eave: 4.25 m • Ridge: 8.2 m" },
+      { name: "Pyramid Tent 30 m", size: "Width: 30 m", capacity: "Eave: 4.25 m • Ridge: 9.3 m" },
+      { name: "Pyramid Tent 40 m", size: "Width: 40 m", capacity: "Eave: 4.25 m • Ridge: 10.95 m" },
+      { name: "Custom Engineered Span", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "High-Strength Aluminum Structure - Precision-engineered T6/6061 extruded alloy providing 100% unobstructed usable space without center poles.",
-      "Weather-Resistant PVC Membrane - Heavy-duty dual-coated covers engineered for extreme desert heat, rain protection, and high wind stability.",
-      "Certified Flame-Retardant Standards - Globally certified adhering to international safety benchmarks (DIN 4102 B1, M2, and NFPA 701).",
-      "Fully Modular Expanding System - Continuous expansion and interlocking configurations supported via integrated rain gutters.",
-      "Versatile Walling Configurations - Tempered glass panels, solid ABS sandwich walls, and flexible sliding PVC curtains.",
-      "Complete Turnkey Event Fit-Out - High-tonnage climate control HVAC, luxury interior drapery, and integrated custom lighting.",
-      "Comprehensive Accessories & Decor Fit-Out - Tempered glass walls, solid ABS panels, cassette wooden flooring, luxury linings, and centralized HVAC cooling systems."
+      "High-Strength Extruded Aluminum Structure - Precision-engineered aluminum alloy frame providing 100% unobstructed usable space from 5 m up to 40 m standard widths.",
+      "Weather & Wind-Resistant PVC Membrane - Heavy-duty covers engineered for wind resistance, U.V. resistance, tear resistance, and dimensional stability.",
+      "Certified Flame-Retardant & Thermal Comfort - Flame-retardant roof membrane designed for thermal comfort with zero water pockets or bubbles.",
+      "Fully Modular Expanding System - Continuous longitudinal expansion and interlocking configurations with fast installation time.",
+      "Versatile Walling Configurations - Compatible with tempered glass panels, solid insulated wall panels, and flexible sliding PVC curtains.",
+      "5-Year Guarantee & Complete Event Fit-Out - Backed by a 5-year guarantee with full support for HVAC climate control, cassette flooring, and interior linings."
     ],
     specs: [
-      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
-      { label: "Connecting Components", value: "Heavy-Duty Hot-Dip Galvanized Steel Connectors" },
-      { label: "Weather Durability", value: "Engineered for High Winds, Extreme Heat & Heavy Rain" },
-      { label: "Cover Material", value: "Heavy-Duty, Flame-Retardant German PVC (Blackout / Translucent)" },
-      { label: "Side Wall Options", value: "Tempered Glass, Solid ABS Walls, or Flexible PVC Curtains" },
-      { label: "Standard Sizes", value: "From 3x3m up to 10x10m (Custom Modular Sizing Available)" },
-      { label: "Service Availability", value: "Available for Short-Term Rental & Direct Factory Sale" },
+      { label: "Standard Clear-Span Widths", value: "5 m, 10 m, 15 m, 20 m, 25 m, 30 m & 40 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "2.25 m (5 m) • 3.2 m (10 m) • 4.25 m (15 m to 40 m)" },
+      { label: "Standard Ridge Heights", value: "3.3 m up to 10.95 m (By Span Configuration)" },
+      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Cover & Roof System", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Side Wall Options", value: "Tempered Glass, Solid Panels, or Flexible PVC Curtains" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Pyramid Tent for Sale & Rental in UAE | Luxury Event Tents by Bait Al Nokhada",
@@ -105,29 +108,28 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Clear Span",
     description: "This dome tent, with its unique geometric design, offers superior stability and a spacious interior, making it ideal for exhibitions, sports events, and temporary hospitality. It reflects our commitment as a leading tent supplier in the UAE and KSA.",
     models: [
-      { name: "Dome DT 5M", size: "5m Diameter (19.6 m² Area)", capacity: "15 - 20 Guests" },
-      { name: "Dome DT 10M", size: "10m Diameter (78.5 m² Area)", capacity: "50 - 70 Guests" },
-      { name: "Dome DT 15M", size: "15m Diameter (176 m² Area)", capacity: "120 - 160 Guests" },
-      { name: "Dome DT Custom", size: "Custom Large Spans (Up to 35m)", capacity: "Custom Event Capacities" },
+      { name: "Dome Tent 3 m", size: "Width: 3 m", capacity: "Eave: 2.53 m • Ridge: 4.73 m" },
+      { name: "Dome Tent 4 m", size: "Width: 4 m", capacity: "Eave: 2.53 m • Ridge: 4.73 m" },
+      { name: "Dome Tent 5 m", size: "Width: 5 m", capacity: "Eave: 2.53 m • Ridge: 4.73 m" },
+      { name: "Custom Dome Tent", size: "Custom Width & Modular Configurations", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "High-Strength Aluminum Framing - Engineered extruded aluminum alloy structure ensuring 100% unobstructed clear-span interior space without central columns.",
-      "Weather-Resistant Heavy-Duty PVC - Premium durable covers designed for intense desert sun reflection, waterproof sealing, and high wind stability.",
-      "Certified Fire-Retardant Standards - Globally compliant flame-retardant materials adhering to international safety benchmarks (DIN 4102 B1, M2, and NFPA 701).",
-      "Modular Interlocking Configurations - Continuous expansion and multi-tent connection system utilizing integrated rain gutters for large-scale setups.",
-      "Versatile Walling Configurations - Compatible with luxury glass walls, rigid ABS solid paneling, and sliding flexible PVC curtains.",
-      "Complete Event Fit-Out Solutions - Comprehensive integration of high-capacity HVAC cooling, decorative interior linings, and professional lighting.",
-      "Comprehensive Flooring & Accessories - Heavy-duty cassette flooring, VIP carpeting, glass double-doors, and dedicated cable management."
+      "High-Strength Extruded Aluminum Framing - Engineered aluminum alloy structure delivering 100% unobstructed clear-span interior space across 3 m, 4 m, and 5 m standard widths.",
+      "Weather & Wind-Resistant Heavy-Duty PVC - Protective membrane engineered for wind resistance, U.V. resistance, tear resistance, and dimensional stability.",
+      "Certified Flame-Retardant & Thermal Comfort - Flame-retardant roof covering designed for thermal comfort with zero water pockets or bubbles.",
+      "Modular Interlocking & Fast Installation - Precision-engineered connectors enabling fast installation time and seamless multi-unit linking.",
+      "Versatile Walling Configurations - Compatible with tempered glass walls, solid panels, and sliding flexible PVC curtains.",
+      "5-Year Guarantee & Complete Event Fit-Out - Backed by a 5-year guarantee with full compatibility for HVAC cooling, cassette flooring, and interior linings."
     ],
     specs: [
-      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy" },
-      { label: "Connection Elements", value: "Hot-Dip Galvanized Steel Connectors" },
-      { label: "Weather Durability", value: "Engineered for Extreme Heat, Heavy Rain & High Winds" },
-      { label: "Cover Material", value: "Heavy-Duty Flame-Retardant PVC (White / Translucent / Transparent)" },
-      { label: "Interior Layout", value: "100% Usable Space (Zero Center Poles)" },
-      { label: "Side Wall Options", value: "Tempered Glass, Solid ABS Panels, or Sliding PVC Curtains" },
-      { label: "Standard Sizes", value: "5x5m, 6x6m, 8x8m, 10x10m (Custom Configurations Available)" },
-      { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" },
+      { label: "Standard Clear-Span Widths", value: "3 m, 4 m & 5 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Height", value: "2.53 m" },
+      { label: "Standard Ridge Height", value: "4.73 m" },
+      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Cover Material", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Side Wall Options", value: "Tempered Glass, Solid Panels, or Sliding PVC Curtains" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Leading Dome Tent Supplier In UAE",
@@ -164,26 +166,28 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Fully Insulated",
     description: "The Capsule Tent brings futuristic design and portability together in a bold, sculptural form. With a clean, obstruction-free interior and ultra-modern exterior, it delivers visual sophistication and functional excellence. Engineered for fast setup, all-weather performance, and full customization, it’s the perfect choice for exhibitions, trade shows, corporate lounges, and brand activations across the UAE and KSA.",
     models: [
-      { name: "Capsule C-06", size: "6m x 3.5m (21 m²)", capacity: "2 - 4 Guests" },
-      { name: "Capsule C-09", size: "9m x 4.0m (36 m²)", capacity: "4 - 6 Guests" },
-      { name: "Capsule C-12", size: "12m x 4.2m (50 m²)", capacity: "6 - 8 Guests Suite" }
+      { name: "Capsule Tent 10 m", size: "Width: 10 m", capacity: "Eave: 3 m • Ridge: 3.3 m" },
+      { name: "Capsule Tent 15 m", size: "Width: 15 m", capacity: "Eave: 3 m • Ridge: 3.5 m" },
+      { name: "Capsule Tent 20 m", size: "Width: 20 m", capacity: "Eave: 4 m • Ridge: 4.65 m" },
+      { name: "Custom Capsule Tent", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Futuristic Capsule Form - Sleek, sculptural architectural design creating a strong visual impact for high-profile brand activations.",
-      "Clear-Span Aluminum Frame - Heavy-duty curved aluminum structure providing 100% obstruction-free, fully usable interior space.",
-      "Curved Panoramic Glass Walls - Double-glazed insulated glass ends offering wide panoramic views and superior thermal protection.",
-      "All-Weather Durability - Fully insulated shell built to withstand intense desert heat, wind, dust, and heavy rain.",
-      "Rapid Deployment & Setup - Pre-engineered modular design allowing fast on-site assembly with minimal operational downtime.",
-      "Integrated Climate & Lighting - Pre-configured conduits for high-efficiency HVAC cooling, ambient LED lighting, and safe power distribution."
+      "Futuristic Capsule Form - Sleek architectural profile designed for exhibitions, brand activations, and commercial spaces across 10 m, 15 m, and 20 m standard widths.",
+      "Clear-Span Aluminum Frame - Curved extruded aluminum structure providing column-free interior space and dimensional stability.",
+      "Panoramic Glass & Wall Integration - Compatible with double-glazed panoramic glass walls, solid panels, and secure entrances.",
+      "All-Weather & Flame-Retardant Protection - Engineered for wind resistance, U.V. resistance, tear resistance, and flame retardancy with zero pockets or bubbles.",
+      "Rapid Modular Setup - Pre-engineered components enabling fast installation time with minimal on-site disruption.",
+      "5-Year Guarantee & Fit-Out Support - Backed by a 5-year guarantee with support for thermal comfort, HVAC cooling, and integrated lighting."
     ],
     specs: [
-      { label: "Main Frame Assembly", value: "Curved Extruded Aluminum Frame (Rust-Proof)" },
-      { label: "Shell Insulation", value: "High-Density Thermal Insulation Core for Extreme Heat" },
-      { label: "Wind Durability", value: "Engineered & Certified for 100 km/h Wind Resistance" },
-      { label: "Glass Specifications", value: "Double-Glazed Panoramic Tempered Safety Glass" },
-      { label: "Electrical & Fit-Out", value: "Integrated Weatherproof Wiring & Power Channels" },
-      { label: "Recommended Use", value: "Trade Shows, VIP Lounges, Pop-Ups & Branded Activations" },
-      { label: "Availability", value: "Available for Event Rental & Direct Factory Sale" }
+      { label: "Standard Clear-Span Widths", value: "10 m, 15 m & 20 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "3 m (on 10 m & 15 m) • 4 m (on 20 m)" },
+      { label: "Standard Ridge Heights", value: "3.3 m (10 m) • 3.5 m (15 m) • 4.65 m (20 m)" },
+      { label: "Main Frame Assembly", value: "Curved Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Covering & Roof System", value: "Flame-Retardant Membrane with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Glass & Wall Options", value: "Double-Glazed Panoramic Glass Walls & Solid Panels" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Capsule Tents For Events In UAE & KSA | Bait Al Nokhada",
@@ -222,23 +226,24 @@ export const productsDatabase: ProductItemEn[] = [
       { name: "Majlis Royal 12", size: "12m x 20m (240 m²)", capacity: "80 - 120 Guests" },
       { name: "Majlis Royal 20", size: "20m x 40m (800 m²)", capacity: "250 - 350 Guests" },
       { name: "Majlis Grand 30", size: "30m x 60m (1,800 m²)", capacity: "600 - 900 Guests" },
-      { name: "Majlis Custom", size: "Modular Length Extensions", capacity: "Custom Event Capacities" }
+      { name: "Majlis Custom", size: "Modular Widths & Lengths", capacity: "Custom Event Capacities" }
     ],
     features: [
-      "High-Strength Aluminum Frame - Heavy-duty extruded structure engineered for full clear-span layout without any internal poles.",
+      "High-Strength Aluminum Frame - Extruded aluminum structure engineered for full clear-span layout without internal poles.",
       "Traditional Geometric Sadu Linings - Authentic interior textiles treated with certified flame-retardant safety standards (DIN 4102 B1).",
-      "Heavy-Duty Exterior Weather Covering - Premium German PVC exterior engineered for extreme sun reflection, heat resistance, and rain protection.",
+      "Heavy-Duty Exterior Weather Covering - Flame-retardant PVC exterior engineered for solar reflection, heat resistance, and rain protection.",
       "Multi-Layer Desert Thermal Insulation - Advanced thermal barrier systems preventing heat penetration and optimizing internal AC efficiency.",
-      "Traditional Heritage Exterior Accents - Classic exterior patterns, gold trim details, and optional glass hybrid entrance doors.",
-      "Complete Majlis Fit-Out Support - Integrated sub-flooring for luxury Arabian carpets, low majlis seating, and ambient warm lighting."
+      "Traditional Heritage Exterior Accents - Classic exterior patterns, trim details, and optional glass entrance doors.",
+      "Complete Majlis Fit-Out Support - Integrated sub-flooring for carpets, low majlis seating, ambient warm lighting, and a 5-year guarantee."
     ],
     specs: [
-      { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
+      { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
       { label: "Interior Lining Material", value: "Certified Flame-Retardant Traditional Arabian Sadu Textiles" },
-      { label: "Weather Durability", value: "Engineered for 110 km/h Wind Load, Desert Heat & Rain" },
+      { label: "Weather Durability", value: "Engineered for Wind Load, Desert Heat & Rain Protection" },
       { label: "Outer Protective Layer", value: "Heavy-Duty Blackout PVC with Full UV Shielding" },
       { label: "Thermal Insulation System", value: "Multi-Layer Thermal Core for Maximum AC Efficiency" },
       { label: "Flooring & Accessories", value: "Sub-Floor Framing for Carpeting, Glass Doors & Majlis Setup" },
+      { label: "Warranty & Standards", value: "5 Years Guarantee • Flame-Retardant Safety Certified" },
       { label: "Service Availability", value: "Available for Rental & Permanent Custom Manufacturing" }
     ],
     seo: {
@@ -275,28 +280,35 @@ export const productsDatabase: ProductItemEn[] = [
     ],
     windSpeed: "Mega Space",
     catalogBadge: "Heavy Duty",
-    description: "The Revolution Tent is a premium, high-capacity tent structure designed for prestigious, large-scale events across the UAE and KSA. Engineered with clear-span architecture (zero internal poles) and towering ceiling heights, it provides a wide, uninterrupted interior ideal for international exhibitions, trade shows, world summits, and high-profile brand activations. Built with high-strength aluminum profiles and heavy-duty flame-retardant PVC covers, it ensures reliable all-weather performance[cite: 37].",
+    description: "The Revolution Tent is a premium, high-capacity tent structure designed for prestigious, large-scale events across the UAE and KSA. Engineered with clear-span architecture (zero internal poles) and towering ceiling heights, it provides a wide, uninterrupted interior ideal for international exhibitions, trade shows, world summits, and high-profile brand activations. Built with high-strength aluminum profiles and heavy-duty flame-retardant PVC covers, it ensures reliable all-weather performance.",
     models: [
-      { name: "Revolution RV-30", size: "30m Span (Infinite 5m Bays)", capacity: "800 - 1,200 Guests" },
-      { name: "Revolution RV-40", size: "40m Span (Infinite 5m Bays)", capacity: "1,400 - 2,200 Guests" },
-      { name: "Revolution RV-50", size: "50m Span (Infinite 5m Bays)", capacity: "2,500 - 4,500 Guests" }
+      { name: "Revolution Tent 10 m", size: "Width: 10 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 15 m", size: "Width: 15 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 20 m", size: "Width: 20 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 25 m", size: "Width: 25 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 30 m", size: "Width: 30 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 40 m", size: "Width: 40 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 50 m", size: "Width: 50 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Revolution Tent 60 m", size: "Width: 60 m", capacity: "Eave: 6.9 m • Ridge: 9.0 m" },
+      { name: "Custom Engineered Span", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Up to 50m Clear-Span Width - Vast unobstructed interior layout with 100% usable floor area and zero central pillars[cite: 36].",
-      "Engineered High-Payload Roof Trusses - Heavy-duty roof profiles designed to safely support massive AV lighting rigs, sound systems, and LED walls[cite: 36].",
-      "Modular Infinite Bay Expansion - Expandable length configured in 5-meter incremental bays to match any event footprint[cite: 36].",
-      "Compatible with Architectural Façades - Full integration with insulated glass curtain walls, solid wall panels, and automatic entrance doors[cite: 36].",
-      "High-Efficiency Thermal & Sound Insulation - Dual-layer roof membrane systems maintaining optimal indoor AC cooling and exterior noise reduction[cite: 36].",
-      "Comprehensive Large-Scale Event Infrastructure - Fully compatible with heavy equipment access, integrated cable management, and high-tonnage HVAC systems."
+      "Up to 60m Clear-Span Width - Vast unobstructed interior layout with 100% usable floor area and zero central pillars.",
+      "Engineered High-Payload Roof Trusses - Heavy-duty roof profiles designed to safely support massive AV lighting rigs, sound systems, and LED walls.",
+      "Modular Infinite Bay Expansion - Expandable length configured in modular bays to match any event footprint.",
+      "Compatible with Architectural Façades - Full integration with insulated glass curtain walls, solid wall panels, and automatic entrance doors.",
+      "Thermal Comfort & No Pockets or Bubbles - Tensioned dual-layer roof membrane engineered for dimensional stability, thermal insulation, and zero water pockets.",
+      "All-Weather Certified Protection - Wind resistant, U.V. resistant, tear resistant, and flame retardant with fast installation time and a 5-year guarantee."
     ],
     specs: [
-      { label: "Main Profile Structure", value: "High-Strength Box-Section Extruded Aluminum Alloy" },
-      { label: "Wind Load Durability", value: "Certified Resistance for Wind Speeds up to 120 km/h" },
-      { label: "Roof Rigging Payload", value: "Engineered High-Point Rigging Capacity for Staging & AV Systems" },
-      { label: "Eave Height Clearance", value: "Towering 4.0m / 5.0m / 6.0m Clearance for Multi-Level Exhibition Stands" },
-      { label: "Roof Membrane System", value: "Heavy-Duty Flame-Retardant PVC with Dual Thermal Air Insulation" },
+      { label: "Standard Clear-Span Widths", value: "10 m, 15 m, 20 m, 25 m, 30 m, 40 m, 50 m & 60 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Height", value: "6.9 m" },
+      { label: "Standard Ridge Height", value: "9.0 m" },
+      { label: "Main Profile Structure", value: "High-Strength Extruded Aluminum Alloy" },
+      { label: "Weather & Wind Performance", value: "Wind Resistant, U.V. Resistant & Dimensional Stability" },
+      { label: "Roof Membrane System", value: "Flame-Retardant, Tear-Resistant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Side Wall Systems", value: "Insulated Solid Panels, Panoramic Glass Walls & Double Doors" },
-      { label: "Availability", value: "Available for Short-Term Rental & Permanent Turnkey Manufacturing" }
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Revolution Tent – Premium Tent For Grand Events In UAE & KSA",
@@ -334,27 +346,32 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Wide Spans",
     description: "The Polygon Tent combines striking multi-sided geometry with industrial-grade performance for unforgettable event environments. Engineered with a heavy-duty aluminum frame and flame-retardant PVC covers, it delivers vast, column-free interiors and soaring ceiling heights. Ideal for high-capacity exhibitions, indoor sports complexes, and premium commercial activations across the UAE, KSA, and GCC.",
     models: [
-      { name: "Polygon PG-20", size: "20m Span (8.5m Apex Height)", capacity: "2 Padel Courts / High-Cube Logistics" },
-      { name: "Polygon PG-30", size: "30m Span (11.0m Apex Height)", capacity: "4 Padel Courts / Commercial Arena" },
-      { name: "Polygon PG-40", size: "40m Span (14.0m Apex Height)", capacity: "Major Stadium / Industrial Storage" },
-      { name: "Polygon Custom", size: "Spans from 10m to 60m+", capacity: "Tailored Multi-Sport & Mega Expo Capacities" }
+      { name: "Polygonal Tent 15 m, 2 Slopes", size: "Width: 15 m", capacity: "Eave: 4.25 m • Ridge: 7.7 m" },
+      { name: "Polygonal Tent 20 m, 2 Slopes", size: "Width: 20 m", capacity: "Eave: 4.25 m • Ridge: 8.3 m" },
+      { name: "Polygonal Tent 25 m, 2 Slopes", size: "Width: 25 m", capacity: "Eave: 4.25 m • Ridge: 8.86 m" },
+      { name: "Polygonal Tent 30 m, 2 Slopes", size: "Width: 30 m", capacity: "Eave: 4.25 m • Ridge: 11.16 m" },
+      { name: "Polygonal Tent 40 m, 2 Slopes", size: "Width: 40 m", capacity: "Eave: 4.25/6.32 m • Ridge: 12.31/15.19 m" },
+      { name: "Polygonal Tent 50 m, 3 Slopes", size: "Width: 50 m", capacity: "Eave: 4.25/6.32 m • Ridge: 13.45/16.7 m" },
+      { name: "Polygonal Tent 60 m, 3 Slopes", size: "Width: 60 m", capacity: "Eave: 5.46 m • Ridge: 17 m" },
+      { name: "Custom Engineered Span", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Vaulted High-Apex Polygonal Roof - Multi-angle polygonal design providing towering vertical clearance for multi-tier staging, sports flight paths, and heavy warehousing.",
-      "Superior Wind Aerodynamics - Segmented multi-sided rafters engineered to reduce wind resistance and provide exceptional stability in extreme weather.",
-      "Engineered for Indoor Sports Arenas - Ideal vertical clearance and unobstructed spans tailored for indoor padel, tennis, basketball, and gymnastics facilities.",
-      "Vast Column-Free Clear Span - 100% usable internal footprint from 10m up to 60m+ wide without central pillars, allowing total freedom in floor planning.",
-      "Heavy-Duty Industrial Walling - Compatible with insulated thermal sandwich panels, solid ABS walling, double-glazed glass systems, and flexible PVC.",
-      "All-Weather GCC Certification - Engineered with heat-reflective PVC and heavy framing to resist extreme desert temperatures, high winds, and heavy rain."
+      "Vaulted Multi-Slope Polygonal Roof - 2-slope and 3-slope polygonal profiles providing vertical clearance up to 17 m ridge height for sports arenas and warehousing.",
+      "Superior Wind Aerodynamics - Segmented multi-angle rafters engineered for wind resistance and dimensional stability.",
+      "Engineered for Indoor Sports Arenas - Generous vertical clearance and clear spans suited for padel, tennis, basketball, and multi-sport facilities.",
+      "Vast Column-Free Clear Span - Unobstructed internal layout from 15 m up to 60 m standard widths without central pillars.",
+      "Heavy-Duty Industrial Walling - Compatible with insulated sandwich panels, glass systems, solid panels, and PVC enclosures.",
+      "All-Weather Certified Protection - Wind resistant, U.V. resistant, tear resistant, and flame retardant with thermal comfort, no pockets or bubbles, fast installation, and a 5-year guarantee."
     ],
     specs: [
-      { label: "Apex Center Height", value: "8.5m to 14.0m+ Soaring Vertical Clearance" },
+      { label: "Standard Clear-Span Widths", value: "15 m, 20 m, 25 m, 30 m, 40 m, 50 m & 60 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "4.25 m to 6.32 m (5.46 m on 60 m)" },
+      { label: "Standard Ridge Heights", value: "7.7 m up to 17 m (By Span & Slope Configuration)" },
       { label: "Main Frame Structure", value: "High-Strength Extruded Box-Section Aluminum Alloy" },
-      { label: "Wind Durability", value: "Certified Resistance for Wind Speeds up to 120 km/h" },
-      { label: "Cover Material", value: "Heavy-Duty Flame-Retardant PVC (Blockout & UV Resistant)" },
-      { label: "Sidewall Enclosures", value: "Insulated Sandwich Panels, Glass Curtain Walls, or PVC" },
-      { label: "Sports Suitability", value: "Fully Compliant for Indoor Padel, Tennis, and Athletics" },
-      { label: "Availability", value: "Available for Event Rental & Turnkey Factory Sales" }
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Cover & Roof System", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Sidewall Enclosures", value: "Insulated Sandwich Panels, Glass Curtain Walls & PVC" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Polygon Tent | Rent Tent | Tents On Rent | Tent Supplier In UAE",
@@ -393,26 +410,32 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Glass Walls",
     description: "The Arch Tent is a high-performance modular structure crafted to combine modern aesthetics with structural strength, flexibility, and all-weather durability. Its curved, clear-span design provides a wide, column-free interior with towering ceiling volume, making it the ideal choice for corporate events, grand exhibitions, sports facilities, and luxury outdoor galas across Dubai, Abu Dhabi, and Riyadh.",
     models: [
-      { name: "Arch AT-15", size: "15m Span (Infinite Modular Length)", capacity: "150 - 200 Guests" },
-      { name: "Arch AT-25", size: "25m Span (Infinite Modular Length)", capacity: "350 - 500 Guests" },
-      { name: "Arch AT-35", size: "35m Span (Infinite Modular Length)", capacity: "700 - 1,000 Guests" },
-      { name: "Arch Custom", size: "Modular Widths from 10m to 60m", capacity: "Custom Event Capacities" }
+      { name: "Arch Tent 10 m", size: "Width: 10 m", capacity: "Eave: 3.2 m • Ridge: 4.7 m" },
+      { name: "Arch Tent 15 m", size: "Width: 15 m", capacity: "Eave: 4.25 m • Ridge: 6.2 m" },
+      { name: "Arch Tent 20 m", size: "Width: 20 m", capacity: "Eave: 4.25 m • Ridge: 6.9 m" },
+      { name: "Arch Tent 25 m", size: "Width: 25 m", capacity: "Eave: 4.25 m • Ridge: 7.7 m" },
+      { name: "Arch Tent 30 m", size: "Width: 30 m", capacity: "Eave: 4.25 m • Ridge: 8.3 m" },
+      { name: "Arch Tent 40 m", size: "Width: 40 m", capacity: "Eave: 4.25 m • Ridge: 9.85 m" },
+      { name: "Arch Tent 50 m", size: "Width: 50 m", capacity: "Eave: 4.25 m • Ridge: 11.4 m" },
+      { name: "Custom Engineered Span", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Curved Aerodynamic Roof Beam Profile - Engineered curved silhouette that prevents rain and dust accumulation while enhancing exterior wind resistance.",
-      "100% Unobstructed Clear-Span Space - Heavy-duty aluminum structural framework delivering a completely pillar-free floor area for flexible internal zoning.",
-      "Architectural Glass & Automated Entrance Integration - Full compatibility with insulated glass curtain walls, double-glazed doors, and automated sliding entrances.",
-      "Heavy-Duty Flame-Retardant PVC Covering - Premium blackout protective membrane offering superior solar reflection, thermal insulation, and fire safety compliance.",
-      "Modular Multi-Bay Expansion - Scalable longitudinal expansion configured in standard continuous increments to accommodate any project footprint.",
-      "Comprehensive Interior Fit-Out Support - Complete support for high-tonnage HVAC climate control, decorative interior drapery, and integrated ambient lighting systems."
+      "Curved Aerodynamic Roof Beam Profile - Engineered curved silhouette that prevents water pockets or bubbles while enhancing wind resistance.",
+      "100% Unobstructed Clear-Span Space - Extruded aluminum structural framework delivering a completely pillar-free floor area from 10 m to 50 m standard widths.",
+      "Architectural Glass & Automated Entrance Integration - Full compatibility with insulated glass curtain walls, double-glazed doors, and solid wall panels.",
+      "Heavy-Duty Flame-Retardant PVC Covering - Protective membrane offering thermal comfort, U.V. resistance, tear resistance, and dimensional stability.",
+      "Modular Multi-Bay Expansion - Scalable longitudinal expansion configured in continuous modular bays with fast installation time.",
+      "Certified 5-Year Guarantee & Fit-Out Support - Backed by a 5-year guarantee with full support for HVAC climate control, interior lining, and lighting systems."
     ],
     specs: [
-      { label: "Main Structural Frame", value: "Curved Extruded Aluminum Alloy Rafters (Rust-Proof)" },
-      { label: "Covering Membrane", value: "Heavy-Duty Flame-Retardant White Blockout PVC" },
-      { label: "Wind Load Durability", value: "Engineered & Certified for Wind Resistance up to 100 km/h" },
-      { label: "Eave Height Clearance", value: "4.0m Standard Industrial Clearance for High-Profile Setups" },
-      { label: "Sidewall Systems", value: "Tempered Glass Walls, Solid ABS Wall Panels, or Flexible PVC" },
-      { label: "Service Availability", value: "Available for Event Rental & Turnkey Factory Sales" }
+      { label: "Standard Clear-Span Widths", value: "10 m, 15 m, 20 m, 25 m, 30 m, 40 m & 50 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "3.2 m (on 10 m) • 4.25 m (on 15 m to 50 m)" },
+      { label: "Standard Ridge Heights", value: "4.7 m up to 11.4 m (By Span Configuration)" },
+      { label: "Main Structural Frame", value: "Curved Extruded Aluminum Alloy Rafters (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Covering Membrane", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Sidewall Systems", value: "Tempered Glass Walls, Solid Panels, or Flexible PVC" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Arch Tent For Sale & Rental In UAE & KSA | Bait Al Nokhada",
@@ -446,27 +469,33 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "VIP Balcony",
     description: "The Double Decker Tent is a multi-level structure that delivers elegance, capacity, and impact. Designed for luxury events with limited ground footprint, it doubles usable floor space by adding an upper mezzanine level—ideal for VIP hospitality lounges, media centers, or elevated viewing decks overlooking tracks and arenas, while the ground floor hosts grand receptions and public exhibition zones.",
     models: [
-      { name: "Double Decker DD-15", size: "15m Span (Two Levels)", capacity: "500+ VIP Guests" },
-      { name: "Double Decker DD-20", size: "20m Span (Two Levels)", capacity: "800+ VIP Guests" },
-      { name: "Double Decker DD-30", size: "30m Span (Two Levels)", capacity: "1,800+ VIP Guests" },
-      { name: "Double Decker Custom", size: "Modular Widths from 15m to 40m+", capacity: "Tailored Multi-Level Capacities" }
+      { name: "Double Decker Tent 10 m", size: "Width: 10 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 15 m", size: "Width: 15 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 20 m", size: "Width: 20 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 25 m", size: "Width: 25 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 30 m", size: "Width: 30 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 40 m", size: "Width: 40 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 50 m", size: "Width: 50 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Double Decker Tent 60 m", size: "Width: 60 m", capacity: "Eave: 9.96 m • Ridge: 12 m" },
+      { name: "Custom Engineered Span", size: "Custom Width & Modular Length", capacity: "Tailored Multi-Level Specs" }
     ],
     features: [
       "Dual-Level Usable Space Optimization - Doubles functional event capacity on the exact same ground footprint, separating general guest reception from exclusive upper-tier VIP lounges.",
-      "Engineered Steel & Aluminum Mezzanine - Heavy-duty composite intermediate deck built with reinforced load-bearing beams to provide superior structural rigidity and zero vibration.",
+      "Engineered Steel & Aluminum Mezzanine - Heavy-duty composite intermediate deck built with reinforced load-bearing beams for structural stability and dimensional accuracy.",
       "Integrated Outdoor Cantilever Balconies - Elevated open-air viewing terraces offering clear sightlines over racetrack circuits, golf courses, and sports arenas.",
-      "Dedicated Internal Access & Safety Staircases - Equipped with dual internal stairs, ADA-compliant accessibility access, and certified fire escape pathways.",
-      "Full Panoramic Curtain Glass Façades - Double-glazed perimeter thermal glass walls delivering maximum natural lighting, sound reduction, and thermal insulation.",
-      "High-Capacity Multi-Zone Climate Control - Independent centralized HVAC ducted systems maintaining stable temperatures on both upper and ground floors."
+      "Dedicated Internal Access & Safety Staircases - Equipped with internal stairs, accessibility access, and certified fire escape pathways.",
+      "Full Panoramic Curtain Glass Façades - Double-glazed perimeter thermal glass walls delivering natural lighting, sound reduction, and thermal comfort.",
+      "High-Capacity Multi-Zone Climate Control - Independent centralized HVAC ducted systems with zero pockets or bubbles, U.V. and tear resistance, and a 5-year guarantee."
     ],
     specs: [
+      { label: "Standard Clear-Span Widths", value: "10 m, 15 m, 20 m, 25 m, 30 m, 40 m, 50 m & 60 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Height", value: "9.96 m" },
+      { label: "Standard Ridge Height", value: "12 m" },
       { label: "Main Frame Assembly", value: "Reinforced Structural Steel & Extruded Aluminum Profiles" },
-      { label: "Mezzanine Floor Load", value: "High-Load Capacity Certified for High-Density Crowds" },
-      { label: "Total Structure Clearance", value: "Up to 9.5m Total Height (Generous Clearances on Both Levels)" },
-      { label: "Wind Durability", value: "Engineered & Certified for Wind Resistance up to 120 km/h" },
-      { label: "Cover Material", value: "Heavy-Duty Flame-Retardant PVC (White Blockout & UV Shielded)" },
-      { label: "Perimeter Walling", value: "Double-Glazed Panoramic Glass Curtain Walls & Solid ABS Panels" },
-      { label: "Service Availability", value: "Available for Short-Term Rental & Permanent Manufacturing" }
+      { label: "Weather & Dimensional Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Flame Retardant" },
+      { label: "Cover & Roof System", value: "Heavy-Duty PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Perimeter Walling", value: "Double-Glazed Panoramic Glass Curtain Walls & Solid Panels" },
+      { label: "Warranty & Supply", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Double Decker Tent Rental & Sales | Bait Al Nokhada",
@@ -500,26 +529,29 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Crystal Glass",
     description: "The Panoramic Tent merges modern luxury and structural brilliance in a high-peak, clear-span design. Engineered with heavy-duty aluminum framing and thermally efficient, weather-resistant materials, it delivers expansive, unobstructed interiors and breathtaking transparent vistas. Ideal for high-end hospitality lounges, luxury weddings, VIP exhibitions, and premier resort venues across Dubai, Abu Dhabi, Riyadh, and the GCC.",
     models: [
-      { name: "Panoramic PN-15", size: "15m Span (Infinite Modular Length)", capacity: "150 - 200 Guests" },
-      { name: "Panoramic PN-20", size: "20m Span (Infinite Modular Length)", capacity: "250 - 350 Guests" },
-      { name: "Panoramic PN-25", size: "25m Span (Infinite Modular Length)", capacity: "400 - 600 Guests" },
-      { name: "Panoramic Custom", size: "Spans from 10m to 50m+", capacity: "Tailored Multi-Zone Capacities" }
+      { name: "Panoramic Tent 10 m", size: "Diameter: Ø 10 m", capacity: "Eave: 3 m • Ridge: 5.25 m" },
+      { name: "Panoramic Tent 20 m", size: "Diameter: Ø 20 m", capacity: "Eave: 4.3 m • Ridge: 8.5 m" },
+      { name: "Panoramic Tent 30 m", size: "Diameter: Ø 30 m", capacity: "Eave: 4.3 m • Ridge: 10.5 m" },
+      { name: "Panoramic Tent 40 m", size: "Diameter: Ø 40 m", capacity: "Eave: 4.3 m • Ridge: 12 m" },
+      { name: "Custom Panoramic Tent", size: "Custom Diameter & Configuration", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Full 360-Degree Panoramic View - Continuous perimeter glass walling providing unobstructed panoramic visibility and integrating indoor luxury with scenic surroundings.",
-      "Optical-Grade 98% Ultra-Clear Roof - Advanced UV-treated crystal PVC roof membrane engineered to resist discoloration, yellowing, and harsh solar degradation.",
-      "Unobstructed Clear-Span Footprint - 100% usable interior floor area free of internal columns or center poles, granting total creative freedom for event staging.",
-      "Specialized Desert Climate Control - High-efficiency ducted HVAC integration engineered specifically to maintain cool interior temperatures within glazed environments.",
-      "Modular Architectural Glazing - Compatible with high-impact tempered glass panels, automated sliding entrance doors, and solid composite wall inserts.",
-      "All-Weather Durability - Heavy-duty extruded aluminum frame designed to withstand high winds, heavy rain, and extreme ambient summer heat."
+      "Full 360-Degree Panoramic View - Circular polygonal perimeter glazing providing unobstructed panoramic visibility across 10 m, 20 m, 30 m, and 40 m diameters.",
+      "Clear-Span Extruded Aluminum Frame - High-strength structural framing delivering 100% usable interior floor area free of center columns.",
+      "UV-Resistant & Flame-Retardant Roof Membrane - Protective roof covering engineered for U.V. resistance, tear resistance, flame retardancy, and dimensional stability.",
+      "Thermal Comfort & Zero Pockets or Bubbles - Tensioned membrane system designed for thermal comfort with zero water pockets or bubbles.",
+      "Modular Architectural Glazing & Entrances - Compatible with tempered glass panels, double-glazed doors, and insulated solid wall options.",
+      "5-Year Guarantee & Fast Installation - Backed by a 5-year guarantee with fast installation time and full support for HVAC climate control."
     ],
     specs: [
-      { label: "Transparency & Clarity", value: "98% Optical-Grade Crystal Clear View" },
-      { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
-      { label: "Wind Load Durability", value: "Engineered & Certified for Wind Resistance up to 100 km/h" },
-      { label: "Glass Enclosures", value: "Tempered Clear Safety Glass Panels & Double-Glazed Doors" },
-      { label: "Roof Covering", value: "UV-Resistant, Flame-Retardant Transparent PVC" },
-      { label: "Service Availability", value: "Available for Short-Term Event Rental & Factory Direct Sales" }
+      { label: "Standard Diameters", value: "Ø 10 m, Ø 20 m, Ø 30 m & Ø 40 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "3 m (on Ø 10 m) • 4.3 m (on Ø 20 m, Ø 30 m & Ø 40 m)" },
+      { label: "Standard Ridge Heights", value: "5.25 m (10 m) • 8.5 m (20 m) • 10.5 m (30 m) • 12 m (40 m)" },
+      { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Roof Covering", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Glass & Wall Enclosures", value: "Tempered Clear Safety Glass Panels & Double-Glazed Doors" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Panoramic Tent Manufacturer In Dubai | Bait Al Nokhada",
@@ -554,27 +586,33 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "Projection Ready",
     description: "The Geodesic Dome Tent merges avant-garde spherical architecture with exceptional structural strength. Engineered with an interconnected triangular network, it offers superior aerodynamic wind stability, incredible acoustic balance, and an expansive column-free interior. It serves as the ultimate venue for 360° multimedia projections, high-profile product launches, planetariums, immersive brand experiences, and luxury glamping activations across the UAE and KSA.",
     models: [
-      { name: "Geodesic GD-10", size: "10m Diameter (78.5 m² Area)", capacity: "40 - 60 Guests" },
-      { name: "Geodesic GD-15", size: "15m Diameter (176 m² Area)", capacity: "100 - 140 Guests" },
-      { name: "Geodesic GD-25", size: "25m Diameter (490 m² Area)", capacity: "250 - 350 Guests" },
-      { name: "Geodesic GD-35", size: "35m Diameter (960 m² Area)", capacity: "500 - 800 Guests" },
-      { name: "Geodesic Custom", size: "Custom Spans up to 50m+", capacity: "Tailored Multi-Experience Arenas" }
+      { name: "Geodesic Tent 5 m", size: "Diameter: 5 m • Area: 19.6 Sq.m", capacity: "Ridge Height: 3 m" },
+      { name: "Geodesic Tent 10 m", size: "Diameter: 10 m • Area: 77.2 Sq.m", capacity: "Ridge Height: 5 m" },
+      { name: "Geodesic Tent 15 m", size: "Diameter: 15 m • Area: 175.5 Sq.m", capacity: "Ridge Height: 7.5 m" },
+      { name: "Geodesic Tent 20 m", size: "Diameter: 20 m • Area: 312.0 Sq.m", capacity: "Ridge Height: 10 m" },
+      { name: "Geodesic Tent 25 m", size: "Diameter: 25 m • Area: 487.3 Sq.m", capacity: "Ridge Height: 12.5 m" },
+      { name: "Geodesic Tent 30 m", size: "Diameter: 30 m • Area: 701.7 Sq.m", capacity: "Ridge Height: 15 m" },
+      { name: "Geodesic Tent 35 m", size: "Diameter: 35 m • Area: 955.08 Sq.m", capacity: "Ridge Height: 17.5 m" },
+      { name: "Geodesic Tent 40 m", size: "Diameter: 40 m • Area: 1247.0 Sq.m", capacity: "Ridge Height: 20 m" },
+      { name: "Custom Geodesic Dome", size: "Custom Diameter & Configuration", capacity: "Tailored Area & Ridge" }
     ],
     features: [
-      "Spherical Triangulated Framework - Self-supporting geometric network that distributes load evenly, providing extreme structural stability with zero internal columns.",
-      "360-Degree Projection Mapping Readiness - Perfectly spherical interior contour tailored for seamless immersive digital projections, VR showcases, and dome theaters.",
-      "Superior Aerodynamic Wind Resistance - Curved aerodynamic geometry naturally deflects heavy desert winds, gusts, and sandstorms with minimal surface drag.",
-      "Versatile Shell Configurations - Options for fully transparent crystal fronts, dual-tone blackout membranes, or custom branded architectural shells.",
-      "Advanced Climate & Acoustic Control - Fully compatible with ducted high-tonnage HVAC systems and acoustic soundproofing layers for private multimedia galas.",
-      "Rapid Modular Assembly - Precision-engineered bolted joint components facilitating rapid on-site setup and minimal ground impact."
+      "Spherical Triangulated Framework - Self-supporting geometric network providing column-free interior space across 5 m to 40 m standard diameters.",
+      "360-Degree Projection Readiness - Spherical interior geometry suited for immersive projections, showcases, and experiential events.",
+      "Superior Aerodynamic & Wind Resistance - Curved dome contour engineered for wind resistance, U.V. resistance, tear resistance, and dimensional stability.",
+      "Flame-Retardant & Zero Pockets or Bubbles - Tensioned membrane designed for thermal comfort with zero water pockets or bubbles.",
+      "Versatile Shell & Entrance Options - Compatible with transparent or opaque membranes, tempered glass doors, and air-lock access tunnels.",
+      "5-Year Guarantee & Fast Installation - Backed by a 5-year guarantee with fast installation time and support for HVAC cooling and acoustic linings."
     ],
     specs: [
-      { label: "Structural Frame", value: "High-Strength Galvanized Steel Framework with Anti-Corrosion Coating" },
-      { label: "Covering Membrane", value: "Heavy-Duty Flame-Retardant PVC (Blockout, Translucent, or Crystal Clear)" },
-      { label: "Wind Durability", value: "Engineered & Certified for Wind Resistance up to 120 km/h" },
-      { label: "Internal Clearance", value: "Soaring Spherical Apex Height Ensuring Maximum Interior Volume" },
-      { label: "Door & Entrance Systems", value: "Tempered Glass Single/Double Doors & Specialized Air-Lock Tunnels" },
-      { label: "Service Availability", value: "Available for Short-Term Event Rental & Factory Direct Sales" }
+      { label: "Standard Diameters", value: "5 m, 10 m, 15 m, 20 m, 25 m, 30 m, 35 m & 40 m (Plus Custom Sizes)" },
+      { label: "Floor Area Range", value: "19.6 Sq.m up to 1247.0 Sq.m (By Diameter)" },
+      { label: "Standard Ridge Heights", value: "3 m up to 20 m (Half of Diameter Span)" },
+      { label: "Structural Frame", value: "High-Strength Steel Framework with Anti-Corrosion Coating" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Covering Membrane", value: "Flame-Retardant Membrane with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Door & Entrance Systems", value: "Tempered Glass Single/Double Doors & Air-Lock Tunnels" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
     ],
     seo: {
       metaTitle: "Premium Geodesic Tents For Events & Exhibitions | Bait Al Nokhada",
@@ -662,26 +700,28 @@ export const productsDatabase: ProductItemEn[] = [
     catalogBadge: "High Apex",
     description: "The Pyramid Dome Tent presents an innovative fusion of classic high-peak pyramid structures with gentle dome curvature, creating a visually striking silhouette and generous internal volume. Engineered to combine modular flexibility with architectural elegance, it offers an impressive ambiance, superior comfort, and clear-span unobstructed interiors. It is the premier choice for luxury weddings, corporate banquets, hospitality lounges, and prestigious exhibitions across the UAE and KSA.",
     models: [
-      { name: "PD-15", size: "15m x 15m (225 m² Area)", capacity: "150 - 180 Guests" },
-      { name: "PD-20", size: "20m x 20m (400 m² Area)", capacity: "250 - 320 Guests" },
-      { name: "PD-25", size: "25m x 25m (625 m² Area)", capacity: "400 - 500 Guests" },
-      { name: "PD Custom", size: "Modular Spans from 10m to 60m", capacity: "Custom Event Capacities" }
+      { name: "Pyramid Dome Tent 10 m", size: "Width: 10 m", capacity: "Eave: 3.25 m • Ridge: 9.25 m" },
+      { name: "Pyramid Dome Tent 15 m", size: "Width: 15 m", capacity: "Eave: 4.25 m • Ridge: 11.10 m" },
+      { name: "Pyramid Dome Tent 20 m", size: "Width: 20 m", capacity: "Eave: 4.25 m • Ridge: 11.90 m" },
+      { name: "Custom Pyramid Dome Tent", size: "Custom Width & Modular Length", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Unique Hybrid Roofline Geometry - Architectural combination of an elevated central apex and curved eaves that creates a dramatic visual profile for VIP events.",
-      "Natural Convective Chimney Peak Ventilation - Aerodynamic roof design that promotes natural upward thermal airflow, optimizing interior air circulation and cooling efficiency.",
-      "Unobstructed Clear-Span Usable Area - High-strength aluminum structural frame delivering 100% usable floor space with zero center poles or internal obstacles.",
-      "Fast Modular Pin-Lock Assembly - Precision-engineered interlocking components facilitating swift setup, clean on-site deployment, and zero downtime.",
-      "Heavy-Duty Flame-Retardant PVC Covering - Dual-coated weather-resistant membrane engineered for high UV reflection, extreme sun protection, and waterproof sealing.",
-      "Comprehensive Event Fit-Out Compatibility - Seamlessly integrates with glass curtain walls, automated doors, cassette wooden flooring, and centralized HVAC systems."
+      "Unique Hybrid Roofline Geometry - Architectural combination of a dome silhouette and elevated apex profile for distinct visual presence.",
+      "Vertical Air Circulation & Thermal Comfort - Elevated peak geometry supporting comfortable interior air movement and thermal comfort.",
+      "Unobstructed Clear-Span Usable Area - Extruded aluminum structural frame delivering column-free usable interior space across 10 m, 15 m, and 20 m standard widths.",
+      "Fast Modular Assembly & Stability - Precision components enabling fast installation time, wind resistance, and dimensional stability.",
+      "Heavy-Duty Flame-Retardant PVC Covering - Weather-resistant membrane engineered for U.V. resistance, tear resistance, and zero pockets or bubbles.",
+      "5-Year Guarantee & Event Fit-Out Support - Backed by a 5-year guarantee and compatible with glass walls, solid panels, flooring, and climate control."
     ],
     specs: [
-      { label: "Apex Center Height", value: "Up to 8.5m Towering Center Elevation" },
-      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Rust-Proof)" },
-      { label: "Wind Durability", value: "Engineered & Certified for Wind Resistance up to 100 km/h" },
-      { label: "Covering Material", value: "Heavy-Duty Flame-Retardant White PVC (UV & Heat Shielded)" },
-      { label: "Side Enclosures", value: "Tempered Glass Walls, Solid ABS Panels, or Sliding PVC Curtains" },
-      { label: "Service Availability", value: "Available for Event Rental & Factory Direct Sales" }
+      { label: "Standard Clear-Span Widths", value: "10 m, 15 m & 20 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Heights", value: "3.25 m (on 10 m) • 4.25 m (on 15 m & 20 m)" },
+      { label: "Standard Ridge Heights", value: "9.25 m (10 m) • 11.10 m (15 m) • 11.90 m (20 m)" },
+      { label: "Main Frame Structure", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Covering Material", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Side Enclosures", value: "Tempered Glass Walls, Solid Panels, or Sliding PVC Curtains" },
+      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Direct Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Pyramid Dome Tent For Rent & Sale In UAE & KSA | Bait Al Nokhada",

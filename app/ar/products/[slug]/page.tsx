@@ -570,48 +570,61 @@ export default async function ArabicProductDetailPage({
               </div>
             </div>
 
-            <div className="lg:col-span-5 space-y-6">
-              {/* كرت المقاسات */}
-              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+            {/* كرت المقاسات المعتمدة والأبعاد */}
+            <div className="lg:col-span-5">
+              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
                 <h3 className="text-sm font-bold tracking-wider text-[#df9d17] flex items-center gap-2">
-                  <Maximize2 className="w-4 h-4" />
-                  <span>المقاسات المتاحة وسعة الحضور التقديرية</span>
+                  <Maximize2 className="w-4 h-4 shrink-0" />
+                  <span>المقاسات والأبعاد المعتمدة</span>
                 </h3>
                 <div className="space-y-2">
                   {arData?.models?.map((mod: any, idx: number) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-xl border flex items-center justify-between bg-[#FDFCF7] border-slate-200/70 text-slate-700"
+                      className="p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-2 bg-[#FDFCF7] border-slate-200/70 text-slate-600"
                     >
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-[#df9d17] shrink-0" />
-                        <strong className="text-xs font-bold text-[#0B1220]">{mod.name}</strong>
+                      <div>
+                        <strong className="block text-sm font-bold text-[#0B1220]">
+                          {mod.name}
+                        </strong>
+                        {mod.size && (
+                          <span className="text-xs text-[#df9d17] font-semibold">{mod.size}</span>
+                        )}
                       </div>
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white border border-slate-200/80 shadow-xs text-slate-800">
-                        {mod.capacity}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* كرت المواصفات الفنية */}
-              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                  <Boxes className="w-4 h-4 text-[#df9d17]" />
-                  <span>أبرز المواصفات الفنية</span>
-                </h3>
-                <div className="divide-y divide-slate-100 text-xs">
-                  {arData?.specs?.map((spec: any, idx: number) => (
-                    <div key={idx} className="py-2.5 flex justify-between items-center gap-4">
-                      <span className="text-slate-500 font-medium">{spec.label}</span>
-                      <span className="text-[#0B1220] text-left font-bold">{spec.value}</span>
+                      {mod.capacity && (
+                        <span className="text-xs font-semibold px-3 py-1 rounded-lg bg-white text-slate-700 border border-slate-200/80 shadow-xs shrink-0">
+                          {mod.capacity}
+                        </span>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
+          </div>
 
+          {/* المواصفات الفنية الهندسية - شبكة متراصة ملمومة */}
+          <div className="mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+              <Boxes className="w-4 h-4 text-[#df9d17] shrink-0" />
+              <span>المواصفات الفنية الهندسية</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {arData?.specs?.map((spec: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 flex flex-col justify-between gap-1.5"
+                >
+                  <span className="text-[11px] font-semibold tracking-wider text-slate-500">
+                    {spec.label}
+                  </span>
+                  <span className="text-xs sm:text-[13px] font-bold text-[#0B1220] leading-snug">
+                    {spec.value}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

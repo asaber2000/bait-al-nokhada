@@ -651,12 +651,12 @@ export default async function ProductDetailPage({
               </div>
             </div>
 
-            {/* الجانب الأيمن: المقاسات والداتا شيت */}
-            <div className="lg:col-span-5 space-y-6">
+            {/* الجانب الأيمن: المقاسات */}
+            <div className="lg:col-span-5">
               <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
                   <Maximize2 className="w-4 h-4" />
-                  <span>Available Profiles & Guest Capacities</span>
+                  <span>Available Profiles & Standard Dimensions</span>
                 </h3>
                 <div className="space-y-2">
                   {enData?.models?.map((mod: any, idx: number) => (
@@ -677,21 +677,30 @@ export default async function ProductDetailPage({
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                  <Boxes className="w-4 h-4 text-[#df9d17]" />
-                  <span>Official Engineering Data Sheet</span>
-                </h3>
-                <div className="divide-y divide-slate-100 text-xs sm:text-sm">
-                  {enData?.specs?.map((spec: any, idx: number) => (
-                    <div key={idx} className="py-3 flex justify-between gap-4">
-                      <span className="text-slate-500 font-medium">{spec.label}</span>
-                      <span className="text-[#0B1220] font-bold text-right">{spec.value}</span>
-                    </div>
-                  ))}
+          {/* Official Engineering Data Sheet - شبكة متراصة ملمومة */}
+          <div className="mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+              <Boxes className="w-4 h-4 text-[#df9d17]" />
+              <span>Official Engineering Data Sheet</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {enData?.specs?.map((spec: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-2xl bg-[#FDFCF7] border border-slate-200/70 flex flex-col justify-between gap-1.5"
+                >
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                    {spec.label}
+                  </span>
+                  <span className="text-xs sm:text-[13px] font-bold text-[#0B1220] leading-snug">
+                    {spec.value}
+                  </span>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
