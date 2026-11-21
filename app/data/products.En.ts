@@ -177,7 +177,7 @@ export const productsDatabase: ProductItemEn[] = [
       "Panoramic Glass & Wall Integration - Compatible with double-glazed panoramic glass walls, solid panels, and secure entrances.",
       "All-Weather & Flame-Retardant Protection - Engineered for wind resistance, U.V. resistance, tear resistance, and flame retardancy with zero pockets or bubbles.",
       "Rapid Modular Setup - Pre-engineered components enabling fast installation time with minimal on-site disruption.",
-      "5-Year Guarantee & Fit-Out Support - Backed by a 5-year guarantee with support for thermal comfort, HVAC cooling, and integrated lighting."
+      "Complete Fit-Out & Climate Support - Engineered for thermal comfort with support for HVAC cooling, cassette flooring, and integrated lighting."
     ],
     specs: [
       { label: "Standard Clear-Span Widths", value: "10 m, 15 m & 20 m (Plus Custom Sizes)" },
@@ -234,7 +234,7 @@ export const productsDatabase: ProductItemEn[] = [
       "Heavy-Duty Exterior Weather Covering - Flame-retardant PVC exterior engineered for solar reflection, heat resistance, and rain protection.",
       "Multi-Layer Desert Thermal Insulation - Advanced thermal barrier systems preventing heat penetration and optimizing internal AC efficiency.",
       "Traditional Heritage Exterior Accents - Classic exterior patterns, trim details, and optional glass entrance doors.",
-      "Complete Majlis Fit-Out Support - Integrated sub-flooring for carpets, low majlis seating, ambient warm lighting, and a 5-year guarantee."
+      "Complete Majlis Fit-Out Support - Integrated sub-flooring for carpets, low majlis seating, and ambient warm lighting."
     ],
     specs: [
       { label: "Main Structural Frame", value: "High-Strength Extruded Aluminum Alloy (Corrosion-Resistant)" },
@@ -541,7 +541,7 @@ export const productsDatabase: ProductItemEn[] = [
       "UV-Resistant & Flame-Retardant Roof Membrane - Protective roof covering engineered for U.V. resistance, tear resistance, flame retardancy, and dimensional stability.",
       "Thermal Comfort & Zero Pockets or Bubbles - Tensioned membrane system designed for thermal comfort with zero water pockets or bubbles.",
       "Modular Architectural Glazing & Entrances - Compatible with tempered glass panels, double-glazed doors, and insulated solid wall options.",
-      "5-Year Guarantee & Fast Installation - Backed by a 5-year guarantee with fast installation time and full support for HVAC climate control."
+      "Fast Modular Installation & Climate Support - Precision-engineered structure enabling fast installation time and full support for HVAC climate control."
     ],
     specs: [
       { label: "Standard Diameters", value: "Ø 10 m, Ø 20 m, Ø 30 m & Ø 40 m (Plus Custom Sizes)" },
@@ -644,28 +644,30 @@ export const productsDatabase: ProductItemEn[] = [
     ],
     windSpeed: "Wave Design",
     catalogBadge: "Weather Proof",
-    description: "The Wave Tent stands out with its signature curved roof and sleek, pillar-free structure, blending contemporary aesthetics with functional clear-span space. Its sweeping design creates an airy, luxurious atmosphere ideal for VIP lounges, upscale weddings, outdoor exhibitions, and high-profile brand activations[cite: 57]. Built with modular engineering, it offers full flexibility whether used as a standalone venue or combined in a continuous series across the UAE, KSA, and GCC[cite: 57].",
+    description: "The Wave Tent stands out with its signature curved roof and sleek, pillar-free structure, blending contemporary aesthetics with functional clear-span space. Its sweeping design creates an airy, luxurious atmosphere ideal for VIP lounges, upscale weddings, outdoor exhibitions, and high-profile brand activations. Built with modular engineering, it offers full flexibility whether used as a standalone venue or combined in a continuous series across the UAE, KSA, and GCC.",
     models: [
-      { name: "Wave WV-15", size: "15m Span (Infinite Modular Length)", capacity: "150 - 200 Guests" },
-      { name: "Wave WV-20", size: "20m Span (Infinite Modular Length)", capacity: "300 - 450 Guests" },
-      { name: "Wave WV-25", size: "25m Span (Infinite Modular Length)", capacity: "450 - 650 Guests" },
-      { name: "Wave Custom", size: "Custom Spans from 10m to 40m+", capacity: "Tailored Seaside & Gala Capacities" }
+      { name: "Wave Tent 3 m", size: "Width: 3 m", capacity: "Eave: 3.2 m • Ridge: 3.7 m" },
+      { name: "Wave Tent 4 m", size: "Width: 4 m", capacity: "Eave: 3.2 m • Ridge: 3.8 m" },
+      { name: "Wave Tent 5 m", size: "Width: 5 m", capacity: "Eave: 3.2 m • Ridge: 3.9 m" },
+      { name: "Custom Wave Tent", size: "Custom Width & Modular Configurations", capacity: "Tailored Eave & Ridge" }
     ],
     features: [
-      "Sinuous 3D Curved Roofline - Sculptural multi-curved design echoing ocean waves and desert dunes to deliver an iconic visual statement for seaside venues[cite: 55, 56].",
-      "Pillar-Free Clear-Span Interior - Heavy-duty aluminum structural frame ensuring 100% unobstructed floor area with complete freedom for luxury staging[cite: 57].",
-      "High-Gloss Salt-Resistant PVC - Specialized architectural-grade covering engineered to withstand coastal humidity, saline air corrosion, and intense solar UV rays[cite: 55, 56].",
-      "Modular Bay Expansion - Precision-engineered system supporting standalone deployment or multi-unit interlocking configurations with integrated guttering[cite: 57].",
-      "Seamless Glass & Solid Wall Integration - Compatible with full-height panoramic glass curtain walls, double-leaf access doors, and insulated solid panels[cite: 57].",
-      "Specialized Coastal Climate Control - Engineered ducting integration for high-efficiency HVAC cooling to maintain comfortable interior temperatures year-round[cite: 57]."
+      "Sinuous Curved Roofline Geometry - Sculptural wave-style profile delivering a distinctive architectural look for outdoor venues and walkways.",
+      "Pillar-Free Clear-Span Interior - Extruded aluminum structural frame ensuring 100% unobstructed floor area across 3 m, 4 m, and 5 m standard widths.",
+      "Weather & U.V. Resistant PVC Covering - Protective membrane engineered for wind resistance, U.V. resistance, tear resistance, and dimensional stability.",
+      "Flame-Retardant & Zero Pockets or Bubbles - Tensioned roof membrane designed for thermal comfort with zero water pockets or bubbles.",
+      "Modular Linking & Fast Installation - Precision components supporting standalone use or multi-unit linking with fast installation time.",
+      "Complete Event Fit-Out Support - Compatible with glass walls, solid panels, flooring, and climate control."
     ],
     specs: [
-      { label: "Main Frame Rafters", value: "Sculpted Extruded Aluminum Alloy (Corrosion-Proof)" },
-      { label: "Wind Durability", value: "Certified Resistance for Wind Speeds up to 110 km/h" },
-      { label: "Covering Material", value: "Heavy-Duty Flame-Retardant PVC with Protective Lacquered Finish" },
-      { label: "Interior Clearance", value: "Generous Eave & Apex Height for Maximum Air Circulation" },
-      { label: "Wall Enclosures", value: "Panoramic Glass Panels, Solid ABS Walls, or Flexible PVC Curtains" },
-      { label: "Service Availability", value: "Available for Event Rental & Factory Direct Sales" }
+      { label: "Standard Clear-Span Widths", value: "3 m, 4 m & 5 m (Plus Custom Sizes)" },
+      { label: "Standard Eave Height", value: "3.2 m" },
+      { label: "Standard Ridge Heights", value: "3.7 m (3 m) • 3.8 m (4 m) • 3.9 m (5 m)" },
+      { label: "Main Frame Rafters", value: "Curved Extruded Aluminum Alloy (Corrosion-Resistant)" },
+      { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
+      { label: "Covering Material", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
+      { label: "Wall Enclosures", value: "Panoramic Glass Panels, Solid Panels, or Flexible PVC Curtains" },
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Wave Tent Rental & Sale In UAE & Saudi Arabia | Bait Al Nokhada",
@@ -711,7 +713,7 @@ export const productsDatabase: ProductItemEn[] = [
       "Unobstructed Clear-Span Usable Area - Extruded aluminum structural frame delivering column-free usable interior space across 10 m, 15 m, and 20 m standard widths.",
       "Fast Modular Assembly & Stability - Precision components enabling fast installation time, wind resistance, and dimensional stability.",
       "Heavy-Duty Flame-Retardant PVC Covering - Weather-resistant membrane engineered for U.V. resistance, tear resistance, and zero pockets or bubbles.",
-      "5-Year Guarantee & Event Fit-Out Support - Backed by a 5-year guarantee and compatible with glass walls, solid panels, flooring, and climate control."
+      "Complete Event Fit-Out Support - Compatible with glass walls, solid panels, cassette flooring, and HVAC climate control."
     ],
     specs: [
       { label: "Standard Clear-Span Widths", value: "10 m, 15 m & 20 m (Plus Custom Sizes)" },
