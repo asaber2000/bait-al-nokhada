@@ -63,7 +63,7 @@ export const productsDatabase: ProductItemEn[] = [
       "Certified Flame-Retardant & Thermal Comfort - Flame-retardant roof membrane designed for thermal comfort with zero water pockets or bubbles.",
       "Fully Modular Expanding System - Continuous longitudinal expansion and interlocking configurations with fast installation time.",
       "Versatile Walling Configurations - Compatible with tempered glass panels, solid insulated wall panels, and flexible sliding PVC curtains.",
-      "5-Year Guarantee & Complete Event Fit-Out - Backed by a 5-year guarantee with full support for HVAC climate control, cassette flooring, and interior linings."
+      "Complete Event Fit-Out Support - Full compatibility with HVAC climate control, cassette flooring, lighting systems, and interior linings."
     ],
     specs: [
       { label: "Standard Clear-Span Widths", value: "5 m, 10 m, 15 m, 20 m, 25 m, 30 m & 40 m (Plus Custom Sizes)" },
@@ -73,7 +73,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Cover & Roof System", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Side Wall Options", value: "Tempered Glass, Solid Panels, or Flexible PVC Curtains" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Pyramid Tent for Sale & Rental in UAE | Luxury Event Tents by Bait Al Nokhada",
@@ -119,7 +119,7 @@ export const productsDatabase: ProductItemEn[] = [
       "Certified Flame-Retardant & Thermal Comfort - Flame-retardant roof covering designed for thermal comfort with zero water pockets or bubbles.",
       "Modular Interlocking & Fast Installation - Precision-engineered connectors enabling fast installation time and seamless multi-unit linking.",
       "Versatile Walling Configurations - Compatible with tempered glass walls, solid panels, and sliding flexible PVC curtains.",
-      "5-Year Guarantee & Complete Event Fit-Out - Backed by a 5-year guarantee with full compatibility for HVAC cooling, cassette flooring, and interior linings."
+      "Complete Event Fit-Out Support - Compatible with tempered glass walls, solid panels, cassette flooring, and HVAC climate control."
     ],
     specs: [
       { label: "Standard Clear-Span Widths", value: "3 m, 4 m & 5 m (Plus Custom Sizes)" },
@@ -129,7 +129,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Cover Material", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Side Wall Options", value: "Tempered Glass, Solid Panels, or Sliding PVC Curtains" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Leading Dome Tent Supplier In UAE",
@@ -187,7 +187,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Covering & Roof System", value: "Flame-Retardant Membrane with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Glass & Wall Options", value: "Double-Glazed Panoramic Glass Walls & Solid Panels" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Capsule Tents For Events In UAE & KSA | Bait Al Nokhada",
@@ -243,7 +243,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Outer Protective Layer", value: "Heavy-Duty Blackout PVC with Full UV Shielding" },
       { label: "Thermal Insulation System", value: "Multi-Layer Thermal Core for Maximum AC Efficiency" },
       { label: "Flooring & Accessories", value: "Sub-Floor Framing for Carpeting, Glass Doors & Majlis Setup" },
-      { label: "Warranty & Standards", value: "5 Years Guarantee • Flame-Retardant Safety Certified" },
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" },
       { label: "Service Availability", value: "Available for Rental & Permanent Custom Manufacturing" }
     ],
     seo: {
@@ -308,7 +308,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Wind Performance", value: "Wind Resistant, U.V. Resistant & Dimensional Stability" },
       { label: "Roof Membrane System", value: "Flame-Retardant, Tear-Resistant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Side Wall Systems", value: "Insulated Solid Panels, Panoramic Glass Walls & Double Doors" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" },
     ],
     seo: {
       metaTitle: "Revolution Tent – Premium Tent For Grand Events In UAE & KSA",
@@ -371,7 +371,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Cover & Roof System", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Sidewall Enclosures", value: "Insulated Sandwich Panels, Glass Curtain Walls & PVC" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Polygon Tent | Rent Tent | Tents On Rent | Tent Supplier In UAE",
@@ -435,7 +435,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Covering Membrane", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Sidewall Systems", value: "Tempered Glass Walls, Solid Panels, or Flexible PVC" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Arch Tent For Sale & Rental In UAE & KSA | Bait Al Nokhada",
@@ -495,7 +495,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Dimensional Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Flame Retardant" },
       { label: "Cover & Roof System", value: "Heavy-Duty PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Perimeter Walling", value: "Double-Glazed Panoramic Glass Curtain Walls & Solid Panels" },
-      { label: "Warranty & Supply", value: "5 Years Guarantee • Available for Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Double Decker Tent Rental & Sales | Bait Al Nokhada",
@@ -551,7 +551,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Roof Covering", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Glass & Wall Enclosures", value: "Tempered Clear Safety Glass Panels & Double-Glazed Doors" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Panoramic Tent Manufacturer In Dubai | Bait Al Nokhada",
@@ -612,7 +612,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Covering Membrane", value: "Flame-Retardant Membrane with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Door & Entrance Systems", value: "Tempered Glass Single/Double Doors & Air-Lock Tunnels" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Custom Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Premium Geodesic Tents For Events & Exhibitions | Bait Al Nokhada",
@@ -721,7 +721,7 @@ export const productsDatabase: ProductItemEn[] = [
       { label: "Weather & Stability", value: "Wind Resistant, U.V. Resistant, Tear Resistant & Dimensional Stability" },
       { label: "Covering Material", value: "Flame-Retardant PVC with Thermal Comfort & No Pockets or Bubbles" },
       { label: "Side Enclosures", value: "Tempered Glass Walls, Solid Panels, or Sliding PVC Curtains" },
-      { label: "Warranty & Availability", value: "5 Years Guarantee • Available for Event Rental & Direct Factory Manufacturing" }
+      { label: "Supply & Availability", value: "Available for Event Rental & Custom Factory Manufacturing" }
     ],
     seo: {
       metaTitle: "Pyramid Dome Tent For Rent & Sale In UAE & KSA | Bait Al Nokhada",
