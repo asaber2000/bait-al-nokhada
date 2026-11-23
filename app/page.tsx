@@ -133,8 +133,8 @@ const homeJsonLd = {
       logo: {
         "@type": "ImageObject",
         "@id": "https://baitalnokhada.com/#logo",
-        url: "https://baitalnokhada.com/bait-alnokhada-final-g.svg",
-        contentUrl: "https://baitalnokhada.com/bait-alnokhada-final-g.svg",
+        url: "https://baitalnokhada.com/logo.png",
+        contentUrl: "https://baitalnokhada.com/logo.png",
         caption: "BAITALNOKHADA TENTS FACTORY - HEAD OFFICE DUBAI",
         inLanguage: "en-US",
       },

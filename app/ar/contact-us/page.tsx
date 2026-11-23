@@ -106,7 +106,7 @@ export default function ArabicContactPage() {
           {
             "@type": "LocalBusiness",
             "name": "مصنع بيت النوخذة - دبي (المقر الرئيسي)",
-            "image": `${BASE_URL}/bait-alnokhada-final-g.svg`,
+            "image": `${BASE_URL}/logo.png`,
             "telephone": "+971558850631",
             "email": "Info@baitalnokhada.com",
             "address": {

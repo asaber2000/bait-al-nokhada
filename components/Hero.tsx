@@ -6,8 +6,8 @@ import HeroContent from "@/components/HeroContent";
 import Image from "next/image";
 
 export default function Hero({ sanityData }: { sanityData?: any }) {
-  const videoUrl = sanityData?.videoUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Webpage-Home-new-video.webm";
-  const posterUrl = sanityData?.posterUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/bait-al-nokhadaa-poster.webp";
+  const videoUrl = sanityData?.videoUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Hero-Video-tents.webm";
+  const posterUrl = sanityData?.posterUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Poster-hero-video-tents.webp";
   const containerRef = useRef<HTMLElement>(null);
 
   // تتبع سكرول الهيرو الطبيعي أثناء خروجه من الشاشة

@@ -140,7 +140,7 @@ const Footer = memo(function Footer() {
             <Link href="/" className="inline-block group transition-transform duration-300 hover:scale-[1.03]">
               <div className="relative h-11 w-44 sm:h-12 sm:w-48">
                 <Image
-                  src="/bait-alnokhada-final-g.svg"
+                  src="/logo.png"
                   alt="Bait Al Nokhada"
                   fill
                   className="object-contain object-left"
@@ -349,7 +349,7 @@ const Footer = memo(function Footer() {
         <p>© 2026 Bait Al Nokhada Tents. All Rights Reserved.</p>
         <div className="flex items-center gap-6">
           <Link href="/terms" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-          <Link href="/privacy" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
+          <Link href="/privacy-policy" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

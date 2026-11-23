@@ -95,7 +95,7 @@ const blogSchema = {
         "@id": `${BASE_URL}/#organization`,
         "name": "Bait Al Nokhada",
         "url": BASE_URL,
-        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+        "logo": `${BASE_URL}/logo.png`
       },
       {
         "@type": "WebSite",

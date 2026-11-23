@@ -107,7 +107,7 @@ export default function ContactPage() {
           {
             "@type": "LocalBusiness",
             "name": "Bait Al Nokhada - Dubai Headquarters & Factory",
-            "image": `${BASE_URL}/bait-alnokhada-final-g.svg`,
+            "image": `${BASE_URL}/logo.png`,
             "telephone": "+971558850631",
             "email": "Info@baitalnokhada.com",
             "address": {

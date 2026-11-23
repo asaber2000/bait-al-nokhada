@@ -12,7 +12,7 @@ const megaProjects = [
     location: "Dubai World Trade Centre",
     desc: "Delivered a striking polygon pavilion structure for one of the Middle East's largest tech exhibitions, with full HVAC integration and custom branding setups.",
     video: "/Final Comp 01.mp4",
-    slug: "gitex-global",
+    slug: "/gitex-global-2025",
   },
   {
     title: "Dubai Airshow VIP Arena",
@@ -20,7 +20,7 @@ const megaProjects = [
     location: "DWC, Dubai Airshow Site",
     desc: "High-performance tensile structure installation for an international aerospace summit, featuring advanced luxury VIP interior lining and acoustic ceiling protection.",
     video: "/Test.mp4",
-    slug: "dubai-airshow",
+    slug: "/dubai-airshow-2025",
   },
   {
     title: "ADIPEC Energy Exhibition",
@@ -36,7 +36,7 @@ const megaProjects = [
     location: "Dubai, UAE",
     desc: "Massive branded marquee structures delivered for the world's leading food & beverage gathering, equipped with specialized climate-controlled hospitality suites.",
     video: "/Test.mp4",
-    slug: "gulfood",
+    slug: "gulfood-dubai-2026",
   },
 ];
 

@@ -29,7 +29,7 @@ const megaProjects = [
     year: "2026",
     desc: "For Gulfood 2026, Bait Al Nokhada delivered large-scale event structures designed to support a major international food and hospitality exhibition. The project combined functional covered space with a strong presence suited to a high-profile exhibition environment.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/gulfood2026.webp",
-    slug: "gulfood2026",
+    slug: "/gulfood-dubai-2026",
   },
   {
     id: "03",
@@ -53,7 +53,7 @@ const megaProjects = [
     year: "2025",
     desc: "For Netflix’s Stranger Things: The Experience, Bait Al Nokhada delivered a distinctive event environment designed around an immersive visitor journey. The project demonstrates how our structures can combine scale, visual impact and flexibility for branded entertainment experiences.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Events/netflix-stranger-thing.webp",
-    slug: "netflix",
+    slug: "/netflix-stranger-things-experience",
   },
   {
     id: "05",
@@ -65,7 +65,7 @@ const megaProjects = [
     year: "2026",
     desc: "For Dubai Airshow 2025, Bait Al Nokhada delivered large-scale temporary structures supporting one of the region’s leading aviation events. The project reflects our experience in creating professional event environments for high-profile exhibitions and demanding project requirements.",
     image: "https://d3g07f5oxrfvni.cloudfront.net/media-images/Featured%20Projects/airshow.webp",
-    slug: "airshow",
+    slug: "/dubai-airshow-2025",
   },
 
   {

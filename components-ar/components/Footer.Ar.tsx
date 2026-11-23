@@ -140,11 +140,10 @@ const FooterAr = memo(function FooterAr() {
             <Link href="/ar" className="inline-block group transition-transform duration-300">
               <div className="relative overflow-visible flex items-center justify-start h-14 w-56">
                 <Image
-                  src="/icons/bait-al-nokhada-final-arabic-logo.svg"
+                  src="/logo.png"
                   alt="بيت النوخذة"
-                  width={320}
-                  height={90}
-                  className="w-auto h-14 object-contain origin-right scale-[2.7] -translate-x-3"
+                  fill
+                  className="object-contain object-left"
                 />
               </div>
             </Link>

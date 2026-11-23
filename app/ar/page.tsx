@@ -129,8 +129,8 @@ const arabicHomeJsonLd = {
       logo: {
         "@type": "ImageObject",
         "@id": "https://baitalnokhada.com/#logo",
-        url: "https://baitalnokhada.com/bait-alnokhada-final-g.svg",
-        contentUrl: "https://baitalnokhada.com/bait-alnokhada-final-g.svg",
+        url: "https://baitalnokhada.com/logo.png",
+        contentUrl: "https://baitalnokhada.com/logo.png",
         caption: "مصنع بيت النوخذة للخيام - المقر الرئيسي دبي",
         inLanguage: "ar-AE",
       },

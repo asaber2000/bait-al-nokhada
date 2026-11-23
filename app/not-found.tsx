@@ -34,7 +34,7 @@ export default function NotFound() {
           ) : (
             <div className="relative h-10 w-40 sm:h-11 sm:w-44">
               <Image
-                src="/bait-alnokhada-final-g.svg"
+                src="/logo.png"
                 alt="Bait Al Nokhada"
                 fill
                 quality={75}

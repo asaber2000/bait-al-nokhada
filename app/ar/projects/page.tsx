@@ -110,7 +110,7 @@ export default async function ArabicProjectsCatalogPage() {
         "@id": `${BASE_URL}/ar/#organization`,
         "name": "مصنع بيت النوخذة للخيام",
         "url": `${BASE_URL}/ar/`,
-        "logo": `${BASE_URL}/bait-alnokhada-final-g.svg`
+        "logo": `${BASE_URL}/logo.png`
       },
       {
         "@type": "WebSite",

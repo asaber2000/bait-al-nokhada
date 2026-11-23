@@ -233,7 +233,7 @@ const generateProductGraphSchema = (
         logo: {
           "@type": "ImageObject",
           "@id": `${BASE_URL}/#logo`,
-          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+          url: `${BASE_URL}/logo.png`,
         },
         contactPoint: [
           {

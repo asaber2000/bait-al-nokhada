@@ -215,7 +215,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         foundingDate: "1997",
         logo: {
           "@type": "ImageObject",
-          url: `${BASE_URL}/bait-alnokhada-final-g.svg`,
+          url: `${BASE_URL}/logo.png`,
         },
         contactPoint: [
           {
