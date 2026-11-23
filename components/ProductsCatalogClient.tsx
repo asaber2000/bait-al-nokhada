@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Search, Wind, ShieldCheck, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Product {
   slug: string;
@@ -20,6 +24,7 @@ interface Product {
 
 export default function ProductsCatalogClient({ initialProducts }: { initialProducts: Product[] }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const sectionRef = useRef<HTMLElement>(null);
 
   const filteredProducts = initialProducts.filter((product) => {
     const query = searchQuery.toLowerCase().trim();
@@ -33,12 +38,44 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
     );
   });
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 22, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, [searchQuery]);
+
   return (
-    <section className="relative z-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FDFCF7]">
+    <section ref={sectionRef} className="relative z-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FDFCF7]">
       <div className="site-container max-w-7xl mx-auto w-full space-y-10">
 
         {/* Search Input Bar */}
-        <div className="max-w-xl mx-auto w-full">
+        <div className="scroll-item max-w-xl mx-auto w-full">
           <div className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -52,7 +89,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
         </div>
 
         {/* Dynamic Filtered Grid */}
-        <div>
+        <div className="scroll-item">
           {filteredProducts.length === 0 ? (
             <div className="text-center py-16 space-y-3">
               <p className="text-xl font-bold text-[#0B1220]">No structures found matching your query</p>
@@ -63,8 +100,7 @@ export default function ProductsCatalogClient({ initialProducts }: { initialProd
               {filteredProducts.map((product, idx) => (
                 <div
                   key={product.slug || idx}
-                  className="group relative rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5 overflow-hidden"
-                >
+                  className={`${idx >= 3 ? "scroll-item " : ""}group relative rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5 overflow-hidden`}                >
                   <div className="absolute inset-0 bg-gradient-to-b from-[#df9d17]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   <div>

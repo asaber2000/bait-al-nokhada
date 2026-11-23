@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import AwesomeButton from '@/components/AwesomeButton';
+
+gsap.registerPlugin(ScrollTrigger); 
 
 const megaProjects = [
   {
@@ -12,7 +16,7 @@ const megaProjects = [
     location: "Dubai World Trade Centre",
     desc: "Delivered a striking polygon pavilion structure for one of the Middle East's largest tech exhibitions, with full HVAC integration and custom branding setups.",
     video: "/Final Comp 01.mp4",
-    slug: "/gitex-global-2025",
+    slug: "gitex-global-2025",
   },
   {
     title: "Dubai Airshow VIP Arena",
@@ -20,7 +24,7 @@ const megaProjects = [
     location: "DWC, Dubai Airshow Site",
     desc: "High-performance tensile structure installation for an international aerospace summit, featuring advanced luxury VIP interior lining and acoustic ceiling protection.",
     video: "/Test.mp4",
-    slug: "/dubai-airshow-2025",
+    slug: "dubai-airshow-2025",
   },
   {
     title: "ADIPEC Energy Exhibition",
@@ -41,14 +45,44 @@ const megaProjects = [
 ];
 
 export default function FeaturedProjects() {
+
+  const sectionRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 22, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 86%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
+
   return (
-    <section className="relative py-28 bg-[#0B1120]/70 border-t border-white/10 overflow-hidden">
+    <section
+    ref={sectionRef}
+    className="relative py-28 bg-[#0B1120]/70 border-t border-white/10 overflow-hidden">
       
       {/* Glow Effect */}
       <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
 
       {/* الهيدر العلوي */}
-      <div className="w-full px-12 sm:px-16 lg:px-32 mb-20">
+      <div className="scroll-item w-full px-12 sm:px-16 lg:px-32 mb-20">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div className="space-y-4 max-w-2xl">
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20 shadow-inner">
@@ -79,11 +113,7 @@ export default function FeaturedProjects() {
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
+              className={`scroll-item flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
                 isEven ? "" : "lg:flex-row-reverse"
               }`}
             >

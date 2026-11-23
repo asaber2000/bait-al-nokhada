@@ -1,8 +1,13 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const megaProjects = [
   {
@@ -40,14 +45,43 @@ const megaProjects = [
 ];
 
 export default function FeaturedProjects() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 22, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 86%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
+
   return (
-    <section dir="rtl" className="relative py-28 bg-[#0B1120]/70 border-t border-white/10 overflow-hidden text-right">
+    <section 
+    ref={sectionRef} dir="rtl" 
+    className="relative py-28 bg-[#0B1120]/70 border-t border-white/10 overflow-hidden text-right">
       
       {/* Glow Effect */}
       <div className="absolute top-1/4 right-1/3 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[180px] rounded-full pointer-events-none" />
 
       {/* الهيدر العلوي بمسافات جانبية واسعة ومتطابقة */}
-      <div className="w-full px-12 sm:px-16 lg:px-32 mb-20">
+      <div className="scroll-item w-full px-12 sm:px-16 lg:px-32 mb-20">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div className="space-y-4 max-w-2xl">
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#C5A880]/10 text-[#D4AF37] border border-[#C5A880]/20 shadow-inner">
@@ -78,11 +112,7 @@ export default function FeaturedProjects() {
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
+              className={`scroll-item flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
                 isEven ? "" : "lg:flex-row-reverse"
               }`}
             >

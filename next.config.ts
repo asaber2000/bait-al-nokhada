@@ -465,6 +465,8 @@ const nextConfig: NextConfig = {
       { source: "/ar/event-tent-rental-2/", destination: "/ar/solutions/event-tent/", permanent: true },
       { source: "/fr/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/ar/index/", destination: "/ar/", permanent: true },
+      { source: "/privacy/", destination: "/privacy-policy/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
 
     ];

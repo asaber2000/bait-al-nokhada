@@ -93,26 +93,26 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
           }
         );
       }
-
-      // 2. ظهور العناصر بتتابع أنيق وناعم
-      gsap.fromTo(
-        ".editorial-reveal",
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "all",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
     }, sectionRef);
+
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+  gsap.fromTo(
+    el,
+    { y: 20, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.55,
+      ease: "power2.out",
+      clearProps: "transform",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 86%",
+        once: true,
+      },
+    }
+  );
+});
 
     return () => ctx.revert();
   }, []);
@@ -134,19 +134,19 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
       <div className="site-container relative z-10 space-y-14 lg:space-y-16">
         {/* 1. البيان الافتتاحي بنمط المجلات المعمارية الفاخرة (Editorial Statement) */}
         <div className="max-w-5xl space-y-6">
-          <div className="editorial-reveal inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#b87d0e]">
+          <div className="scroll-item inline-flex items-center gap-2.5 text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#b87d0e]">
             <span className="w-8 h-[1.5px] bg-[#df9d17]" />
             <span>{badgeText}</span>
           </div>
 
-          <h1 className="editorial-reveal text-3xl sm:text-5xl lg:text-[52px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.1]">
+          <h1 className="scroll-item text-3xl sm:text-5xl lg:text-[52px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.1]">
             {mainHeadingBlack}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               {mainHeadingGradient}
             </span>
           </h1>
 
-          <div className="editorial-reveal grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2 items-start">
+          <div className="scroll-item grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2 items-start">
             <p className="lg:col-span-7 text-slate-600 text-sm sm:text-base font-normal leading-relaxed whitespace-pre-line">
               {description}
             </p>
@@ -202,7 +202,7 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
         </div>
 
         {/* 2. المسرح التفاعلي المزدوج: قائمة الأرقام التفاعلية + الصورة الكبيرة */}
-        <div className="editorial-reveal grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch pt-4 border-t border-slate-200/80">
+        <div className="scroll-item grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch pt-4 border-t border-slate-200/80">
           {/* العمود الأيسر: الأرقام التفاعلية الثلاثة (Interactive Index List) */}
           <div className="lg:col-span-5 flex flex-col justify-between divide-y divide-slate-200/80">
             {activePillars.map((pillar: any, idx: number) => {

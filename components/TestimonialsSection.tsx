@@ -1,8 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
-import { Quote, Sparkles, ChevronLeft, ChevronRight, Building2, Plane, ShieldAlert, CheckCircle2 } from "lucide-react";
+import { Quote, Sparkles, ChevronLeft, ChevronRight, Building2, Plane, ShieldAlert } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const allTestimonials = [
   {
@@ -97,6 +101,32 @@ function TestimonialCard({ item }: { item: typeof allTestimonials[0] }) {
 }
 
 export default function TestimonialsCarousel() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.55,
+          ease: "power2.out",
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 86%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const itemsPerPage = 3;
@@ -121,8 +151,11 @@ export default function TestimonialsCarousel() {
     currentIndex * itemsPerPage + itemsPerPage
   );
 
+
+
   return (
-    <section 
+    <section
+      ref={sectionRef} 
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       className="relative py-20 lg:py-24 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden"
@@ -131,7 +164,7 @@ export default function TestimonialsCarousel() {
 
       <div className="site-container relative z-10 space-y-10">
         {/* Header متناسق مع أزرار التحكم الفاخرة */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200/80 pb-6">
+        <div className="scroll-item flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200/80 pb-6">
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
@@ -180,6 +213,7 @@ export default function TestimonialsCarousel() {
         </div>
 
         {/* مسرح العرض: انزلاق الكروت مع دخول أنيق */}
+        <div className="scroll-item">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -194,6 +228,7 @@ export default function TestimonialsCarousel() {
             ))}
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </section>
   );

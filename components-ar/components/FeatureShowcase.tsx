@@ -64,12 +64,12 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
   const activePillars =
     sanityData?.pillarsList && sanityData.pillarsList.length > 0
       ? sanityData.pillarsList.map((item: any, i: number) => ({
-          ...item,
-          statValue: item.statValue
-            ? `${Number(item.statValue).toLocaleString("en-US")}${item.statSuffix || ""}`
-            : pillars[i]?.statValue,
-          icon: defaultIcons[i % defaultIcons.length],
-        }))
+        ...item,
+        statValue: item.statValue
+          ? `${Number(item.statValue).toLocaleString("en-US")}${item.statSuffix || ""}`
+          : pillars[i]?.statValue,
+        icon: defaultIcons[i % defaultIcons.length],
+      }))
       : pillars;
 
   useEffect(() => {
@@ -93,23 +93,24 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
       }
 
       // 2. ظهور العناصر بتتابع أنيق وناعم
-      gsap.fromTo(
-        ".editorial-reveal-ar",
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "all",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
+      gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 86%",
+              once: true,
+            },
+          }
+        );
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -133,19 +134,19 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
       <div className="site-container relative z-10 space-y-14 lg:space-y-16">
         {/* 1. البيان الافتتاحي بنمط المجلات المعمارية الفاخرة */}
         <div className="max-w-5xl space-y-6">
-          <div className="editorial-reveal-ar inline-flex items-center gap-2.5 text-xs sm:text-[13px] font-extrabold tracking-normal text-[#b87d0e]">
+          <div className="scroll-item inline-flex items-center gap-2.5 text-xs sm:text-[13px] font-extrabold tracking-normal text-[#b87d0e]">
             <span className="w-8 h-[1.5px] bg-[#df9d17]" />
             <span>{badgeText}</span>
           </div>
 
-          <h1 className="editorial-reveal-ar text-3xl sm:text-5xl lg:text-[50px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.15]">
+          <h1 className="scroll-item text-3xl sm:text-5xl lg:text-[50px] font-black text-[#0B1220] font-heading tracking-tight leading-[1.15]">
             {mainHeadingBlack}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
               {mainHeadingGradient}
             </span>
           </h1>
 
-          <div className="editorial-reveal-ar grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2 items-start">
+          <div className="scroll-item grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2 items-start">
             <p className="lg:col-span-7 text-slate-600 text-sm sm:text-base font-normal leading-relaxed whitespace-pre-line">
               {description}
             </p>
@@ -204,7 +205,7 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
         </div>
 
         {/* 2. المسرح التفاعلي المزدوج: قائمة الأرقام التفاعلية + الصورة الكبيرة */}
-        <div className="editorial-reveal-ar grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch pt-4 border-t border-slate-200/80">
+        <div className="scroll-item grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch pt-4 border-t border-slate-200/80">
           {/* العمود الأيمن في RTL: الأرقام التفاعلية الثلاثة */}
           <div className="lg:col-span-5 flex flex-col justify-between divide-y divide-slate-200/80">
             {activePillars.map((pillar: any, idx: number) => {
@@ -219,18 +220,16 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
                   <div className="flex items-baseline justify-between gap-4">
                     <div className="flex items-baseline gap-3">
                       <span
-                        className={`font-mono text-xs font-bold transition-colors ${
-                          isSelected ? "text-[#df9d17]" : "text-slate-400"
-                        }`}
+                        className={`font-mono text-xs font-bold transition-colors ${isSelected ? "text-[#df9d17]" : "text-slate-400"
+                          }`}
                       >
                         {pillar.num}
                       </span>
                       <h2
-                        className={`text-base sm:text-lg font-black font-heading tracking-normal transition-colors ${
-                          isSelected
+                        className={`text-base sm:text-lg font-black font-heading tracking-normal transition-colors ${isSelected
                             ? "text-[#0B1220]"
                             : "text-slate-400 group-hover:text-slate-700"
-                        }`}
+                          }`}
                       >
                         {pillar.title}
                       </h2>
@@ -238,11 +237,10 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
 
                     <span
                       dir="ltr"
-                      className={`text-xl sm:text-2xl font-black font-mono tracking-tight transition-all duration-300 shrink-0 ${
-                        isSelected
+                      className={`text-xl sm:text-2xl font-black font-mono tracking-tight transition-all duration-300 shrink-0 ${isSelected
                           ? "text-[#df9d17] scale-105"
                           : "text-slate-300 group-hover:text-slate-500"
-                      }`}
+                        }`}
                     >
                       {pillar.statValue}
                     </span>
@@ -250,11 +248,10 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
 
                   {/* الوصف يفتح بنعومة للركيزة النشطة فقط */}
                   <div
-                    className={`grid transition-all duration-300 ease-out ${
-                      isSelected
+                    className={`grid transition-all duration-300 ease-out ${isSelected
                         ? "grid-rows-[1fr] opacity-100 mt-3"
                         : "grid-rows-[0fr] opacity-0 mt-0"
-                    }`}
+                      }`}
                   >
                     <div className="overflow-hidden pr-7">
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -278,13 +275,12 @@ export default function FeatureShowcaseAr({ sanityData }: { sanityData?: any }) 
               fill
               quality={80}
               sizes="(max-width: 1024px) 100vw, 60vw"
-              className={`object-cover transition-all duration-700 ease-out ${
-                activeIdx === 0
+              className={`object-cover transition-all duration-700 ease-out ${activeIdx === 0
                   ? "scale-100 object-center"
                   : activeIdx === 1
-                  ? "scale-105 object-right"
-                  : "scale-105 object-left"
-              }`}
+                    ? "scale-105 object-right"
+                    : "scale-105 object-left"
+                }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-5 right-5 left-5 flex items-center justify-between text-white text-xs font-bold">

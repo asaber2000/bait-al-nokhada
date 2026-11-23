@@ -1,8 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
 import { Quote, Sparkles, ChevronRight, ChevronLeft, Building2, Plane, ShieldAlert } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const allTestimonialsAr = [
   {
@@ -20,7 +24,7 @@ const allTestimonialsAr = [
   {
     client: "معرض ومؤتمر أديبك للطاقة",
     role: "وفد البنية التحتية لقطاع الطاقة",
-    quote: "دقة هندسية متقدمة وسرعة فائقة في التركيب والتجهيز الميداني، مع مطابقة كاملة لأعلى معايير الأمان الألمانية (DIN) عبر جميع القاعات المؤقتة وهياكل المعارض الكبرى." ,
+    quote: "دقة هندسية متقدمة وسرعة فائقة في التركيب والتجهيز الميداني، مع مطابقة كاملة لأعلى معايير الأمان الألمانية (DIN) عبر جميع القاعات المؤقتة وهياكل المعارض الكبرى.",
     icon: ShieldAlert,
   },
   {
@@ -97,6 +101,33 @@ function TestimonialCardAr({ item }: { item: typeof allTestimonialsAr[0] }) {
 }
 
 export default function TestimonialsSectionAr() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.55,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 86%",
+              once: true,
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const itemsPerPage = 3;
@@ -123,7 +154,7 @@ export default function TestimonialsSectionAr() {
   );
 
   return (
-    <section 
+    <section
       dir="rtl"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -133,16 +164,16 @@ export default function TestimonialsSectionAr() {
 
       <div className="site-container relative z-10 space-y-10">
         {/* Header فخم متطابق مع النسخة الإنجليزية ومرتب للـ RTL */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200/80 pb-6">
+        <div className="scroll-item flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200/80 pb-6">
           <div className="space-y-2 max-w-xl text-right">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-normal uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#df9d17]" />
               <span>آراء العملاء والشركاء</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-[#0B1220] tracking-tight leading-tight">
-               وراء كل هيكل،{" "}
+              وراء كل هيكل،{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbc200] via-[#e6b224] to-[#df9d17]">
-               علاقة مبنية على الثقة
+                علاقة مبنية على الثقة
               </span>
             </h2>
           </div>
@@ -154,9 +185,8 @@ export default function TestimonialsSectionAr() {
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    currentIndex === i ? "w-8 bg-[#df9d17]" : "w-2 bg-slate-200 hover:bg-slate-300"
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${currentIndex === i ? "w-8 bg-[#df9d17]" : "w-2 bg-slate-200 hover:bg-slate-300"
+                    }`}
                   aria-label={`الانتقال إلى المجموعة ${i + 1}`}
                 />
               ))}
@@ -184,20 +214,22 @@ export default function TestimonialsSectionAr() {
         </div>
 
         {/* عرض الكروت مع حركة انسيابية وثابتة */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
-          >
-            {visibleItems.map((item, idx) => (
-              <TestimonialCardAr key={item.client + idx} item={item} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        <div className="scroll-item">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+            >
+              {visibleItems.map((item, idx) => (
+                <TestimonialCardAr key={item.client + idx} item={item} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

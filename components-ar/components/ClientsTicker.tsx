@@ -1,7 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const clients = [
   { name: "نتفليكس", logo: "/images/netflix.svg", filterType: "normal", scale: 2 },
@@ -21,20 +26,49 @@ const clients = [
 ];
 
 export default function ClientsTickerAr() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.55,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
+
   return (
-    <section dir="rtl" className="relative py-16 lg:py-20 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans">
+    <section 
+    ref={sectionRef} dir="rtl"
+    className="relative py-16 lg:py-20 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden font-sans">
 
       {/* توهج خلفي محيطي خفيف */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[250px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="w-full px-6 mb-12 text-center">
+      <div className="scroll-item w-full px-6 mb-12 text-center">
         <span className="text-xs font-bold text-[#df9d17] bg-[#df9d17]/10 border border-[#df9d17]/30 px-5 py-2 rounded-full shadow-xs tracking-normal">
           تحظى بثقة كبرى المؤسسات العالمية والجهات الحكومية
         </span>
       </div>
 
       {/* شريط شعارات انسيابي عائم بدون كروت بيضاء */}
-      <div className="flex overflow-hidden select-none w-full [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+      <div className="scroll-item flex overflow-hidden select-none w-full [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <motion.div
           animate={{ x: ["0%", "50%"] }}
           transition={{ ease: "linear", duration: 40, repeat: Infinity }}

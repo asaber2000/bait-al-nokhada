@@ -14,6 +14,7 @@ import {
   ArrowUpLeft
 } from "lucide-react";
 import Navbar from "../../../components-ar/components/Navbar.Ar";
+import AboutScrollReveal from "../../../components/AboutScrollReveal";
 import Footer from "@/components-ar/components/Footer.Ar";
 import AboutJourneyClientArabic from "@/components-ar/components/AboutJourneyClient.Ar"; // مسار مكون التايملاين العربي
 
@@ -228,6 +229,7 @@ export default function ArabicAboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicAboutSchema) }}
       />
       <Navbar />
+      <AboutScrollReveal />
 
       {/* 1. Hero Banner */}
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
@@ -237,7 +239,7 @@ export default function ArabicAboutPage() {
         />
         <div className="absolute top-1/4 right-1/2 translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
+        <div className="scroll-item site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>تأسست عام 1997 • إرث هندسي متواصل</span>
@@ -260,7 +262,7 @@ export default function ArabicAboutPage() {
 
       {/* 3. Vision & Mission */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 bg-[#FDFCF7]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="scroll-item grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-300 space-y-4 relative overflow-hidden shadow-xs hover:shadow-md group">
             <div className="w-12 h-12 rounded-2xl bg-white text-[#df9d17] flex items-center justify-center border border-slate-200/90 shadow-xs group-hover:scale-110 group-hover:border-[#df9d17] transition-all">
               <Compass className="w-6 h-6" />
@@ -285,7 +287,7 @@ export default function ArabicAboutPage() {
 
       {/* 4. Core Capabilities - (استرجاع ديزاين الكروت المتراكبة sticky بالكامل بالعربي) */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-b border-slate-200/60 relative bg-[#FDFCF7]">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-20">
+        <div className="scroll-item text-center max-w-3xl mx-auto space-y-3 mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <span>خدمات شاملة</span>
           </div>
@@ -297,7 +299,7 @@ export default function ArabicAboutPage() {
           </p>
         </div>
 
-        <div className="relative flex flex-col items-center gap-4">
+        <div className="scroll-item relative flex flex-col items-center gap-4">
           {expertiseList.map((item, idx) => (
             <div
               key={idx}
@@ -337,7 +339,7 @@ export default function ArabicAboutPage() {
 
       {/* 5. Executive Message Banner */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-[#FDFCF7]">
-        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white p-8 sm:p-14 shadow-sm">
+        <div className="scroll-item relative rounded-3xl overflow-hidden border border-slate-200/90 bg-white p-8 sm:p-14 shadow-sm">
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-3.5 justify-start">
               <div className="p-3 rounded-2xl bg-white text-[#df9d17] border border-slate-200 shadow-xs">
@@ -367,7 +369,7 @@ export default function ArabicAboutPage() {
       {/* 6. Historical Numbers Strip */}
       <section className="py-16 sm:py-20 border-t border-slate-200/60 bg-[#FDFCF7]">
         <div className="site-container max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
+          <div className="scroll-item grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-3">
               <div className="flex items-center justify-center gap-2 text-[#df9d17]">
                 <Award className="w-6 h-6" />

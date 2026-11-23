@@ -1,5 +1,6 @@
 import { Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import AboutScrollReveal from "@/components/AboutScrollReveal";
 import Footer from "@/components/Footer";
 import { productsDatabase } from "@/app/data/products.En";
 import { client } from "@/app/lib/sanity";
@@ -179,6 +180,7 @@ export default async function ProductsCatalogPage() {
       />
 
       <Navbar />
+      <AboutScrollReveal />
 
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
         <div
@@ -187,7 +189,7 @@ export default async function ProductsCatalogPage() {
         />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
+        <div className="scroll-item site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Over 30 Years of Excellence in Tent Manufacturing & Supply</span>

@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpLeft, CheckCircle2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const solutions = [
   {
@@ -92,6 +96,32 @@ const solutions = [
 export default function ArabicSolutionsSection() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const activeItem = solutions[selectedIdx];
+  const sectionRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 22, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 86%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <section dir="rtl" className="relative py-10 lg:py-14 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden text-right">
@@ -103,7 +133,7 @@ export default function ArabicSolutionsSection() {
       <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-[#df9d17]/5 blur-[160px] rounded-full pointer-events-none" />
 
       {/* الهيدر العلوي */}
-      <div className="site-container mb-6 relative z-10">
+      <div className="scroll-item site-container mb-6 relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-200/80 pb-5">
           <div className="space-y-2.5 max-w-2xl">
             <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-normal bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
@@ -136,7 +166,7 @@ export default function ArabicSolutionsSection() {
 
       <div className="site-container relative z-10 space-y-5">
         {/* 1. شريط اختيار الحلول بالكامل بدون سكرول داخلي */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+        <div className="scroll-item flex flex-wrap items-center gap-2 sm:gap-2.5">
           {solutions.map((item, idx) => {
             const isSelected = selectedIdx === idx;
             return (
@@ -166,7 +196,7 @@ export default function ArabicSolutionsSection() {
         </div>
 
         {/* 2. مسرح العرض المعماري العريض */}
-        <div className="rounded-3xl bg-white border border-slate-200/80 shadow-lg overflow-hidden">
+        <div className="scroll-item rounded-3xl bg-white border border-slate-200/80 shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             {/* الجانب الأيمن في RTL: الصورة العريضة (7 أعمدة) */}
             <div className="lg:col-span-7 relative min-h-[280px] sm:min-h-[380px] lg:min-h-[440px] bg-slate-900 overflow-hidden group">
