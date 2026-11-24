@@ -279,10 +279,12 @@ const nextConfig: NextConfig = {
         { source: `/fr/produits/${slug}/`, destination: `/products/${slug}/`, permanent: true },
       ]),
       // تحويلات صفحات قديمة ظهرت في page-sitemap القديم
-      { source: "/labor-tent", destination: "/solutions/labour-break-time-tent/", permanent: true },
-      { source: "/about-us-2", destination: "/about-us/", permanent: true },
-      { source: "/shop", destination: "/products/", permanent: true },
-      { source: "/ar/shop", destination: "/ar/products/", permanent: true },
+      { source: "/labor-tent/", destination: "/solutions/labour-break-time-tent/", permanent: true },
+      { source: "/ar/labor-tent/", destination: "/ar/solutions/labour-break-time-tent/", permanent: true },
+      { source: "/fr/labor-tent/", destination: "/solutions/labour-break-time-tent/", permanent: true },
+      { source: "/about-us-2/", destination: "/about-us/", permanent: true },
+      { source: "/shop/", destination: "/products/", permanent: true },
+      { source: "/ar/shop/", destination: "/ar/products/", permanent: true },
       { source: "/ar/industries-we-serve/", destination: "/ar/solutions/", permanent: true },
       { source: "/fr/industries-we-serve/", destination: "/solutions/", permanent: true },
       { source: "/industries-we-serve/", destination: "/solutions/", permanent: true },
@@ -474,6 +476,7 @@ const nextConfig: NextConfig = {
       { source: "/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/ar/index/", destination: "/ar/", permanent: true },
       { source: "/privacy/", destination: "/privacy-policy/", permanent: true },
+      { source: "/luxury-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
 
     ];
