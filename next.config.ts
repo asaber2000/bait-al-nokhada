@@ -239,7 +239,6 @@ const nextConfig: NextConfig = {
         "wedding-tent",
         "event-tent",
         "ramadan-tent",
-        "labor-tent",
       ].flatMap((slug) => [
         // 1. تحويل المسارات العربية المباشرة القديمة إلى /ar/solutions/slug/
         { source: `/ar/${slug}/`, destination: `/ar/solutions/${slug}/`, permanent: true },
@@ -278,6 +277,7 @@ const nextConfig: NextConfig = {
         { source: `/fr/produits/${slug}/`, destination: `/products/${slug}/`, permanent: true },
       ]),
       // تحويلات صفحات قديمة ظهرت في page-sitemap القديم
+      { source: "/labor-tent", destination: "/solutions/labour-break-time-tent/", permanent: true },
       { source: "/about-us-2", destination: "/about-us/", permanent: true },
       { source: "/shop", destination: "/products/", permanent: true },
       { source: "/ar/shop", destination: "/ar/products/", permanent: true },
