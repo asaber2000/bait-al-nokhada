@@ -16,6 +16,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
+import AboutScrollReveal from "@/components/AboutScrollReveal";
 import Footer from "@/components-ar/components/Footer.Ar";
 import { productsDatabase } from "@/app/data/products.Ar";
 import { client } from "@/app/lib/sanity";
@@ -435,6 +436,7 @@ export default async function ArabicProductDetailPage({
       />
 
       <Navbar />
+      <AboutScrollReveal />
 
       {/* Grand Hero Section */}
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7] text-right">
@@ -526,7 +528,7 @@ export default async function ArabicProductDetailPage({
         <div className="site-container max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-            <div className="lg:col-span-7 space-y-8">
+            <div className="scroll-item lg:col-span-7 space-y-8">
               <div className="space-y-3">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
                   جودة تصنيع وخبرة معتمدة
@@ -571,7 +573,7 @@ export default async function ArabicProductDetailPage({
             </div>
 
             {/* كرت المقاسات المعتمدة والأبعاد */}
-            <div className="lg:col-span-5">
+            <div className="scroll-item lg:col-span-5">
               <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
                 <h3 className="text-sm font-bold tracking-wider text-[#df9d17] flex items-center gap-2">
                   <Maximize2 className="w-4 h-4 shrink-0" />
@@ -604,7 +606,7 @@ export default async function ArabicProductDetailPage({
           </div>
 
           {/* المواصفات الفنية الهندسية - شبكة متراصة ملمومة */}
-          <div className="mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
+          <div className="scroll-item mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
               <Boxes className="w-4 h-4 text-[#df9d17] shrink-0" />
               <span>المواصفات الفنية الهندسية</span>
@@ -637,7 +639,7 @@ export default async function ArabicProductDetailPage({
 
       {/* 4. Technical RFQ Call to Action */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
+        <div className="scroll-item p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
               استشارة هندسية وعرض سعر مباشر من المصنع

@@ -16,6 +16,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import AboutScrollReveal from "@/components/AboutScrollReveal";
 import Footer from "@/components/Footer";
 import { productsDatabase } from "@/app/data/products.En";
 import { client } from "@/app/lib/sanity";
@@ -502,6 +503,7 @@ export default async function ProductDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
       <Navbar />
+      <AboutScrollReveal />
 
       {/* Grand Hero Section */}
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
@@ -534,7 +536,7 @@ export default async function ProductDetailPage({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* جهة النصوص والأزرار */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="scroll-item lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{enData?.badge || "DIN 4102 B1"}</span>
@@ -652,7 +654,7 @@ export default async function ProductDetailPage({
             </div>
 
             {/* الجانب الأيمن: المقاسات */}
-            <div className="lg:col-span-5">
+            <div className="scroll-item lg:col-span-5">
               <div className="p-7 rounded-3xl bg-white border border-slate-200/80 space-y-4 shadow-xs">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#df9d17] flex items-center gap-2">
                   <Maximize2 className="w-4 h-4" />
@@ -681,7 +683,7 @@ export default async function ProductDetailPage({
           </div>
 
           {/* Official Engineering Data Sheet - شبكة متراصة ملمومة */}
-          <div className="mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
+          <div className="scroll-item mt-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/80 space-y-5 shadow-xs">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
               <Boxes className="w-4 h-4 text-[#df9d17]" />
               <span>Official Engineering Data Sheet</span>
@@ -711,7 +713,7 @@ export default async function ProductDetailPage({
 
       {/* 4. Technical RFQ Call to Action */}
       <section className="pb-20 pt-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
+        <div className="scroll-item p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/90 text-center space-y-5 shadow-xs">
           <div className="space-y-3">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
               DIRECT FACTORY CONSULTATION & PRICING

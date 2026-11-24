@@ -2,6 +2,7 @@ import { Sparkles, ArrowUpRight, Search, CheckCircle2, Video } from "lucide-reac
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import AboutScrollReveal from "@/components/AboutScrollReveal";
 import Footer from "@/components/Footer";
 import { solutionsDatabase } from "@/app/data/solutions.En";
 import { client } from "@/app/lib/sanity";
@@ -162,6 +163,7 @@ export default async function SolutionsCatalogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
       />
       <Navbar />
+      <AboutScrollReveal />
 
       {/* Header Hero */}
       <section className="relative pt-32 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden bg-[#FDFCF7]">
@@ -171,7 +173,7 @@ export default async function SolutionsCatalogPage() {
         />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df9d17]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
+        <div className="scroll-item site-container max-w-7xl mx-auto w-full text-center space-y-5 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ENGINEERED TENT SOLUTIONS • SPECIALIZED SECTORS</span>
@@ -200,7 +202,7 @@ export default async function SolutionsCatalogPage() {
               return (
                 <div
                   key={solution.slug || idx}
-                  className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5"
+                  className={`${idx >= 3 ? "scroll-item " : ""}group relative rounded-3xl overflow-hidden bg-white border border-slate-200/80 hover:border-[#df9d17]/60 transition-all duration-500 flex flex-col justify-between shadow-xs hover:shadow-md hover:-translate-y-1.5`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-b from-[#df9d17]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 

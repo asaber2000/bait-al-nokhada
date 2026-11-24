@@ -61,7 +61,7 @@ export default function ProductGalleryLightbox({
         className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200/60 space-y-8 sm:space-y-10 font-sans text-left"
       >
         {/* Responsive Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3 px-2">
+        <div className="scroll-item text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3 px-2">
           <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#df9d17]">
             Engineering & Project Showcase
           </span>
@@ -75,7 +75,7 @@ export default function ProductGalleryLightbox({
 
         {/* Master Panoramic Frame */}
         <div
-          className="space-y-3 sm:space-y-4 max-w-5xl mx-auto"
+          className="scroll-item space-y-3 sm:space-y-4 max-w-5xl mx-auto"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
