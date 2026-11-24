@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroContent from "@/components/HeroContent";
-import Image from "next/image";
 
 export default function Hero({ sanityData }: { sanityData?: any }) {
   const videoUrl = sanityData?.videoUrl || "https://d3g07f5oxrfvni.cloudfront.net/media-videos/Hero-Video-tents.webm";
@@ -39,15 +38,6 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
 
         {/* الحاوية المعمارية العائمة بنسبة أبعاد وارتفاع مدروس ومريح للعين */}
         <div className="relative w-full h-[620px] sm:h-[680px] lg:h-[720px] max-h-[82dvh] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-[#070B14] border border-slate-900/[0.08] shadow-[0_15px_45px_-15px_rgba(0,0,0,0.12)] transform-gpu flex items-center justify-center">
-          <Image
-            src={posterUrl}
-            alt="Bait Al Nokhada Hero Poster"
-            fill
-            priority
-            quality={80}
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="z-0 object-cover opacity-90 filter brightness-105 pointer-events-none"
-          />
           {/* 1. طبقة الفيديو والخلفية */}
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
             <video
@@ -57,7 +47,8 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               playsInline
               preload="metadata"
               disablePictureInPicture
-              className="w-full h-full object-cover opacity-90 filter brightness-105 pointer-events-none"
+              poster={posterUrl}
+              className="w-full h-full object-cover opacity-100 filter brightness-105 pointer-events-none"
             >
               <source
                 src={videoUrl}
@@ -77,6 +68,7 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
             <HeroContent data={sanityData} />
           </motion.div>
         </div>
+        
 
       </div>
     </section>
