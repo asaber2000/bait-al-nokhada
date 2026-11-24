@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import HeroContent from "@/components/HeroContent";
 
 export default function Hero({ sanityData }: { sanityData?: any }) {
@@ -10,14 +11,24 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
   const containerRef = useRef<HTMLElement>(null);
 
   // تتبع سكرول الهيرو الطبيعي أثناء خروجه من الشاشة
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  const [isDesktop, setIsDesktop] = useState(false);
+const [startVideo, setStartVideo] = useState(false);
 
-  // تلاشي الشفافية بنعومة وصعود هادئ
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.6], [0, -30]);
+useEffect(() => {
+  const media = window.matchMedia("(min-width: 768px)");
+  const updateDevice = () => setIsDesktop(media.matches);
+  updateDevice();
+  media.addEventListener("change", updateDevice);
+
+  const timer = setTimeout(() => {
+    setStartVideo(true);
+  }, 900);
+
+  return () => {
+    media.removeEventListener("change", updateDevice);
+    clearTimeout(timer);
+  };
+}, []);
 
   return (
     <section
@@ -41,35 +52,40 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
           {/* 1. طبقة الفيديو والخلفية */}
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
             <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              disablePictureInPicture
-              {...({ fetchPriority: "high" } as any)}
-              poster={posterUrl}
-              className="w-full h-full object-cover opacity-100 filter brightness-105 pointer-events-none"
-            >
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload={isDesktop || startVideo ? "metadata" : "none"}
+            disablePictureInPicture
+            {...({ fetchPriority: "high" } as any)}
+            poster={posterUrl}
+            className="w-full h-full object-cover opacity-100 filter brightness-105 pointer-events-none"
+          >
+            {(isDesktop || startVideo) && (
               <source
                 src={videoUrl}
                 type="video/webm"
               />
-            </video>
+            )}
+          </video>
 
             {/* تظليل سينمائي خفيف لضمان وضوح النصوص */}
             <div className="absolute inset-0 bg-black/40 z-20" />
           </div>
 
           {/* 2. طبقة المحتوى مع التلاشي الناعم أثناء السكرول */}
+          <div className="relative z-30 w-full h-full flex items-center justify-center pointer-events-none px-4 sm:px-8">
           <motion.div
-            style={{ opacity, y }}
-            className="relative z-30 w-full h-full flex items-center justify-center pointer-events-none will-change-transform px-4 sm:px-8"
+            initial={isDesktop ? { opacity: 0.98 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="w-full h-full flex items-center justify-center"
           >
             <HeroContent data={sanityData} />
           </motion.div>
         </div>
-        
+        </div>
 
       </div>
     </section>
