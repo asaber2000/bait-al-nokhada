@@ -83,7 +83,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["تأجير-الخيام-2", "/ar/news/tent-rental-uae-saudi-arabia/"],
   ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
   ["هل-تبحث-عن-خيام-رمضانية-للإيجار؟", "/ar/solutions/ramadan-tent/"],
-  ["خيام-المجالس-العربية", "/ar/solutions/ramadan-tent/"],
+  ["خيام-المجالس-العربية", "/ar/products/arabic-majlis-tent/"],
 ];
 
 const nextConfig: NextConfig = {
@@ -476,6 +476,8 @@ const nextConfig: NextConfig = {
       { source: "/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/ar/index/", destination: "/ar/", permanent: true },
       { source: "/privacy/", destination: "/privacy-policy/", permanent: true },
+      { source: "/ar/privacy/", destination: "/ar/privacy-policy/", permanent: true },
+      { source: "/fr/privacy/", destination: "/privacy-policy/", permanent: true },
       { source: "/luxury-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
 
