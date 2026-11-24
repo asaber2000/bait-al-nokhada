@@ -185,7 +185,6 @@ const nextConfig: NextConfig = {
         "sports-tents",
         "ramadan-tents",
         "aircraft-hangar-tents",
-        "labor-tent",
       ].flatMap((pluralSlug) => {
         const singularSlug = pluralSlug.replace(/-tents$/, "-tent");
         return [
@@ -240,6 +239,7 @@ const nextConfig: NextConfig = {
         "wedding-tent",
         "event-tent",
         "ramadan-tent",
+        "labor-tent",
       ].flatMap((slug) => [
         // 1. تحويل المسارات العربية المباشرة القديمة إلى /ar/solutions/slug/
         { source: `/ar/${slug}/`, destination: `/ar/solutions/${slug}/`, permanent: true },
