@@ -83,6 +83,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["تأجير-الخيام-2", "/ar/news/tent-rental-uae-saudi-arabia/"],
   ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
   ["هل-تبحث-عن-خيام-رمضانية-للإيجار؟", "/ar/solutions/ramadan-tent/"],
+  ["خيام-المجالس-العربية", "/ar/solutions/ramadan-tent/"],
 ];
 
 const nextConfig: NextConfig = {
@@ -515,7 +516,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https:;",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https:; media-src 'self' blob: https://d3g87f5oxfvni.cloudfront.net https://baitalnokhada-landing-media.s3.us-east-1.amazonaws.com;",
           },
         ],
       },
