@@ -572,10 +572,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </div>
         )}
 
-        {/* Interactive Gallery & Comparison Slider */}
+        {/* Interactive Gallery & Comparison Slider (Before/After temporarily hidden) */}
         <ProjectInteractiveMedia
           galleryImages={project.galleryImages}
-          comparison={project.comparison}
+          comparison={null}
         />
       </section>
 

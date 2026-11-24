@@ -575,10 +575,10 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
           </div>
         )}
 
-        {/* المكون التفاعلي للصور والمقارنة */}
+        {/* المكون التفاعلي للصور والمقارنة (إخفاء مؤقت لسكشن المقارنة) */}
         <ProjectInteractiveMedia
           galleryImages={project.galleryImages}
-          comparison={project.comparison}
+          comparison={null}
         />
       </section>
 
