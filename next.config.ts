@@ -185,6 +185,7 @@ const nextConfig: NextConfig = {
         "sports-tents",
         "ramadan-tents",
         "aircraft-hangar-tents",
+        "labor-tent",
       ].flatMap((pluralSlug) => {
         const singularSlug = pluralSlug.replace(/-tents$/, "-tent");
         return [
