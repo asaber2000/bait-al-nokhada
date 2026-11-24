@@ -368,6 +368,8 @@ const nextConfig: NextConfig = {
       { source: "/category/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/ar/category/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/fr/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/ar/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/خيام/", destination: "/news/", permanent: true },
       { source: "/category/tents/", destination: "/news/", permanent: true },
       { source: "/ar/category/tents/", destination: "/ar/news/", permanent: true },
       { source: "/fr/category/tents/", destination: "/news/", permanent: true },
