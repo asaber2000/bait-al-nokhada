@@ -47,6 +47,7 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               playsInline
               preload="metadata"
               disablePictureInPicture
+              {...({ fetchPriority: "high" } as any)}
               poster={posterUrl}
               className="w-full h-full object-cover opacity-100 filter brightness-105 pointer-events-none"
             >
