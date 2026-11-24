@@ -140,13 +140,15 @@ export default function FeaturedProjects() {
                   }`}
                 aria-label={`Go to slide ${i + 1}`}
               >
-                {currentIdx === i && (
-                  <motion.div
-                    layoutId="activeBarGlow"
-                    className="absolute inset-0 bg-white/40"
-                    transition={{ duration: 0.5 }}
-                  />
-                )}
+                <span className="hidden md:block">
+                  {currentIdx === i && (
+                    <motion.div
+                      layoutId="activeBarGlow"
+                      className="absolute inset-0 bg-white/40"
+                      transition={{ duration: 0.4 }}
+                    />
+                  )}
+                </span>
               </button>
             ))}
           </div>
@@ -190,19 +192,12 @@ export default function FeaturedProjects() {
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block mb-1">
                 {item.label}
               </span>
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={active.id + item.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className={`text-xs sm:text-sm font-bold tracking-wide truncate ${item.isGold ? "text-[#df9d17]" : "text-[#0B1220]"
-                    }`}
-                >
-                  {item.value}
-                </motion.p>
-              </AnimatePresence>
+              <p
+                className={`text-xs sm:text-sm font-bold tracking-wide truncate transition-opacity duration-200 ${item.isGold ? "text-[#df9d17]" : "text-[#0B1220]"
+                  }`}
+              >
+                {item.value}
+              </p>
             </div>
           ))}
         </div>
@@ -234,7 +229,7 @@ export default function FeaturedProjects() {
               <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
               <div className="absolute bottom-6 left-6 right-6 z-20 space-y-1.5">
-                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#fbc200] uppercase bg-black/40 border border-[#fbc200]/30 px-2.5 py-1 rounded-md backdrop-blur-md">
+                <span className="inline-block text-[11px] font-mono font-bold tracking-widest text-[#fbc200] uppercase bg-black/75 border border-[#fbc200]/30 px-2.5 py-1 rounded-md">
                   {active.category}
                 </span>
 
@@ -245,15 +240,17 @@ export default function FeaturedProjects() {
             </motion.div>
           </AnimatePresence>
           {/* حلقة الموجة الارتدادية الذهبية (Shockwave Ring Effect) */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`shockwave-${active.id}`}
-              initial={{ scale: 0.1, opacity: 1, borderWidth: "5px" }}
-              animate={{ scale: 2.5, opacity: 0, borderWidth: "1px" }}
-              transition={{ duration: 0.4, ease: "easeOut" }} // قللها إلى 0.4 ثانية
-              className="pointer-events-none absolute inset-0 m-auto w-44 h-44 rounded-full border border-[#df9d17]/80 z-30"
-            />
-          </AnimatePresence>
+          <div className="hidden md:block">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`shockwave-${active.id}`}
+                initial={{ scale: 0.2, opacity: 0.8 }}
+                animate={{ scale: 2.2, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="pointer-events-none absolute inset-0 m-auto w-44 h-44 rounded-full border-2 border-[#df9d17]/70 z-30"
+              />
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* شريط نبذة المشروع وزر دراسة الحالة */}
