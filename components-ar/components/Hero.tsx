@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroContentAr from "@/components-ar/components/HeroContentAr";
-import Image from "next/image";
 
 export default function Hero({ sanityData }: { sanityData?: any }) {
   const videoUrl =
@@ -42,18 +41,7 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
       {/* حاوية الموقع الأساسية - تطابق كامل مع هوامش وحواف سكشنات الموقع */}
       <div className="site-container max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="relative w-full h-[620px] sm:h-[680px] lg:h-[720px] max-h-[82dvh] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-[#070B14] border border-slate-900/[0.08] shadow-[0_15px_45px_-15px_rgba(0,0,0,0.12)] transform-gpu flex items-center justify-center">
-          
-          {/* صورة البوستر عبر Next.js Image لظهور فوري */}
-          <Image
-            src={posterUrl}
-            alt="بيت النوخذة للخيام"
-            fill
-            priority
-            quality={80}
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="z-0 object-cover opacity-90 filter brightness-105 pointer-events-none"
-          />
+        <div className="relative w-full h-[620px] sm:h-[680px] lg:h-[720px] max-h-[82dvh] rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-[#070B14] border border-slate-900/[0.08] shadow-[0_15px_45px_-15px_rgba(0,0,0,0.12)] transform-gpu flex items-center justify-center">          
 
           {/* 1. طبقة الفيديو */}
           <div className="absolute inset-0 w-full h-full z-10 overflow-hidden pointer-events-none">
@@ -64,7 +52,8 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               playsInline
               preload="metadata"
               disablePictureInPicture
-              className="w-full h-full object-cover opacity-90 filter brightness-105 pointer-events-none"
+              poster={posterUrl}
+              className="w-full h-full object-cover opacity-100 filter brightness-105 pointer-events-none"
             >
               <source src={videoUrl} type="video/webm" />
             </video>
