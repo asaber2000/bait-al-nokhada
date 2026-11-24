@@ -75,48 +75,29 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
       : pillars;
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 1. حركة النص العملاق في الخلفية بالعرض مع السكرول (Monumental Scrub)
-      if (watermarkRef.current) {
-        gsap.fromTo(
-          watermarkRef.current,
-          { xPercent: 8 },
-          {
-            xPercent: -18,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
+  const ctx = gsap.context(() => {
     gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
-  gsap.fromTo(
-    el,
-    { y: 20, opacity: 0 },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.55,
-      ease: "power2.out",
-      clearProps: "transform",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 86%",
-        once: true,
-      },
-    }
-  );
-});
+      gsap.fromTo(
+        el,
+        { y: 16, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.45,
+          ease: "power2.out",
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
+    });
+  }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
-
+  return () => ctx.revert();
+}, []);
   return (
     <section
       ref={sectionRef}
@@ -285,7 +266,7 @@ Contact Bait Al Nokhada for reliable tent solutions—manufactured in the UAE, d
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-white text-xs font-mono">
-              <span className="px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md">
+              <span className="px-3.5 py-1.5 rounded-full bg-black/75">
                 {activePillars[activeIdx]?.statLabel} • {activePillars[activeIdx]?.statValue}
               </span>
             </div>

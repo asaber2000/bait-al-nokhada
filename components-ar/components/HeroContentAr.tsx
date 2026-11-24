@@ -18,7 +18,7 @@ export default function HeroContentAr() {
         className="pointer-events-auto"
       >
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/15">
-          <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17] animate-pulse" />
+          <span className="flex h-1.5 w-1.5 rounded-full bg-[#df9d17]" />
           <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-white/90">
             المصنع الرائد لتصنيع وتأجير الخيام والهياكل الإنشائية • منذ 1997
           </span>
@@ -59,7 +59,7 @@ export default function HeroContentAr() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}
-          className="inline-flex items-center gap-1.5 sm:gap-2 p-1 rounded-full bg-black/50 backdrop-blur-2xl border border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+          className="inline-flex items-center gap-1.5 sm:gap-2 p-1 rounded-full bg-black/50 bg-black/75 border border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
         >
           <Link
             href="/ar/contact-us"
