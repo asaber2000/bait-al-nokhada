@@ -82,6 +82,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["هل-تبحث-عن-تأجير-الخيام؟", "/ar/news/tent-rental-events-dubai-riyadh/"],
   ["تأجير-الخيام-2", "/ar/news/tent-rental-uae-saudi-arabia/"],
   ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
+  ["هل-تبحث-عن-خيام-رمضانية-للإيجار؟", "/ar/solutions/ramadan-tent/"],
 ];
 
 const nextConfig: NextConfig = {
