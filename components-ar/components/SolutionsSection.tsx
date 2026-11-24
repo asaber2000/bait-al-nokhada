@@ -98,33 +98,33 @@ export default function ArabicSolutionsSection() {
   const activeItem = solutions[selectedIdx];
   const sectionRef = useRef<HTMLElement>(null);
 
-useEffect(() => {
-  const ctx = gsap.context(() => {
-    gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { y: 22, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power3.out",
-          clearProps: "transform",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 86%",
-            once: true,
-          },
-        }
-      );
-    });
-  }, sectionRef);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.45,
+            ease: "power2.out",
+            clearProps: "transform,opacity",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      });
+    }, sectionRef);
 
-  return () => ctx.revert();
-}, []);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section dir="rtl" className="relative py-10 lg:py-14 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden text-right">
+    <section ref={sectionRef} dir="rtl" className="relative py-10 lg:py-14 bg-[#FDFCF7] border-t border-slate-200/60 overflow-hidden text-right">
       {/* خلفية هندسية خافتة */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -175,17 +175,19 @@ useEffect(() => {
                 onMouseEnter={() => setSelectedIdx(idx)}
                 onClick={() => setSelectedIdx(idx)}
                 className={`relative px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 cursor-pointer flex items-center gap-2 border ${isSelected
-                    ? "text-white border-[#df9d17]"
-                    : "bg-white text-slate-700 border-slate-200/90 hover:border-[#df9d17]/50 hover:text-[#0B1220]"
+                  ? "bg-[#df9d17] md:bg-transparent text-white border-[#df9d17]"
+                  : "bg-white text-slate-700 border-slate-200/90 hover:border-[#df9d17]/50 hover:text-[#0B1220]"
                   }`}
               >
-                {isSelected && (
-                  <motion.span
-                    layoutId="activeSolutionPillAr"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    className="absolute inset-0 rounded-full bg-[#df9d17] shadow-md shadow-[#df9d17]/25"
-                  />
-                )}
+                <span className="hidden md:block">
+                  {isSelected && (
+                    <motion.span
+                      layoutId="activeSolutionPillAr"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className="absolute inset-0 rounded-full bg-[#df9d17] shadow-md shadow-[#df9d17]/25"
+                    />
+                  )}
+                </span>
                 <span className={`relative z-10 font-mono text-[11px] ${isSelected ? "text-white/90" : "text-[#df9d17]"}`}>
                   {item.id}
                 </span>
@@ -213,7 +215,7 @@ useEffect(() => {
                     src={activeItem.image}
                     alt={activeItem.title}
                     fill
-                    quality={90}
+                    quality={85}
                     sizes="(max-width: 1024px) 100vw, 60vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
@@ -225,14 +227,14 @@ useEffect(() => {
 
               {/* العداد العلوي */}
               <div className="absolute top-5 right-5 z-20">
-                <span className="font-mono text-xs font-bold tracking-widest text-[#0B1220] bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/80 shadow-xs">
+                <span className="font-mono text-xs font-bold tracking-widest text-[#0B1220] bg-white px-3.5 py-1.5 rounded-full border border-slate-200/80 shadow-xs">
                   {activeItem.id} / {solutions.length}
                 </span>
               </div>
 
               {/* شريط المواصفات الهندسية أسفل الصورة */}
               <div className="absolute bottom-5 right-5 left-5 z-20 flex items-center justify-between gap-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/65 backdrop-blur-md border border-white/15 text-white text-xs font-medium">
+                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/80 border border-white/15 text-white text-xs font-medium">
                   <CheckCircle2 className="w-4 h-4 text-[#fbc200] shrink-0" />
                   <span>{activeItem.specs}</span>
                 </div>
