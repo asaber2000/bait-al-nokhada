@@ -87,6 +87,7 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               onPlaying={() => setVideoPlaying(true)}
               className="relative z-10 w-full h-full object-cover brightness-105 pointer-events-none"
             />
+            </div>
 
           {/* تظليل سينمائي ناعم لوضوح النصوص العربية */}
           <div className="absolute inset-0 bg-black/40 z-20" />
@@ -96,7 +97,6 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
             <HeroContentAr data={sanityData} />
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
