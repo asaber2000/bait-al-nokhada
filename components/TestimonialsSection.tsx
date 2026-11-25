@@ -34,16 +34,16 @@ const allTestimonials = [
     icon: Building2,
   },
   {
-    client: "Sharjah Investment & Dev. (Shurooq)",
-    role: "Destinations & Tourism Authority",
-    quote: "Flawless modular event structures delivered with meticulous attention to detail and premium interior finishes, fully aligning with our heritage and royal hospitality standards.",
-    icon: Sparkles,
+    client: "ADNOC",
+    role: "Energy & Industrial Operations",
+    quote: "Heavy-duty industrial warehouses and insulated semi-permanent facilities delivered on schedule, adhering to strict HSE compliance and extreme desert climate durability.",
+    icon: ShieldAlert,
   },
   {
-    client: "Dubai Police GHQ",
-    role: "Special Events & Security Ops",
-    quote: "Highly reliable operational deployment and secure field setups assembled in record time, meeting full civil defense and regional safety compliance standards.",
-    icon: ShieldAlert,
+    client: "Emaar Properties",
+    role: "Flagship Events & Hospitality",
+    quote: "Flawless modular event structures delivered with meticulous attention to detail and premium interior finishes, seamlessly matching our world-class hospitality standards.",
+    icon: Sparkles,
   },
 ];
 
