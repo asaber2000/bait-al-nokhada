@@ -130,8 +130,15 @@ export default function ArabicNavbar() {
       window.history.scrollRestoration = "auto";
     }
 
+    let prevScrolled = window.scrollY > 80;
+    setIsScrolled(prevScrolled);
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
+      const nextScrolled = window.scrollY > 80;
+      if (nextScrolled !== prevScrolled) {
+        prevScrolled = nextScrolled;
+        setIsScrolled(nextScrolled);
+      }
     };
 
     handleScroll();
