@@ -99,28 +99,34 @@ export default function SolutionsSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 16, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.45,
-            ease: "power2.out",
-            clearProps: "transform,opacity",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 88%",
-              once: true,
-            },
-          }
-        );
-      });
-    }, sectionRef);
+    let ctx: gsap.Context | undefined;
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".scroll-item").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { y: 16, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.45,
+              ease: "power2.out",
+              clearProps: "transform,opacity",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 88%",
+                once: true,
+              },
+            }
+          );
+        });
+      }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, []);
 
   return (
