@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpLeft, Sparkles, Building2 } from "lucide-react";
 
-export default function HeroContentAr() {
+export default function HeroContentAr({ data }: { data?: any }) {
   return (
     <div
       dir="rtl"
