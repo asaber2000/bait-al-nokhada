@@ -128,26 +128,34 @@ export default function FeaturedProjects() {
         <div className="flex items-center justify-between gap-4">
 
           {/* مؤشرات الانتقال بالضغط */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {megaProjects.map((item, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => {
                   setDirection(i > currentIdx ? 1 : -1);
                   setCurrentIdx(i);
                 }}
-                className={`h-2 rounded-full transition-all duration-500 relative overflow-hidden ${currentIdx === i ? "w-12 bg-[#df9d17]" : "w-3 bg-slate-200 hover:bg-slate-300"}
-                  }`}
+                className="min-w-11 min-h-11 flex items-center justify-center p-1"
                 aria-label={`Go to slide ${i + 1}`}
               >
-                <span className="hidden md:block">
-                  {currentIdx === i && (
-                    <motion.div
-                      layoutId="activeBarGlow"
-                      className="absolute inset-0 bg-white/40"
-                      transition={{ duration: 0.4 }}
-                    />
-                  )}
+                <span
+                  className={`block h-2 rounded-full transition-all duration-500 relative overflow-hidden ${
+                    currentIdx === i
+                      ? "w-10 sm:w-12 bg-[#9C6600]"
+                      : "w-3 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                >
+                  <span className="hidden md:block">
+                    {currentIdx === i && (
+                      <motion.div
+                        layoutId="activeBarGlow"
+                        className="absolute inset-0 bg-white/40"
+                        transition={{ duration: 0.4 }}
+                      />
+                    )}
+                  </span>
                 </span>
               </button>
             ))}
@@ -155,7 +163,7 @@ export default function FeaturedProjects() {
 
           {/* عداد رقمي مع أسهم النقر ثلاثية الأبعاد */}
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs sm:text-sm tracking-widest text-[#df9d17] bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+            <span className="font-mono text-xs sm:text-sm tracking-widest text-[#9C6600] bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs font-semibold">
               <span className="text-[#0B1220] font-bold">{active.id}</span> / 06
             </span>
             <div className="flex items-center gap-2">
@@ -193,8 +201,9 @@ export default function FeaturedProjects() {
                 {item.label}
               </span>
               <p
-                className={`text-xs sm:text-sm font-bold tracking-wide truncate transition-opacity duration-200 ${item.isGold ? "text-[#df9d17]" : "text-[#0B1220]"
-                  }`}
+                className={`text-xs sm:text-sm font-bold tracking-wide truncate transition-opacity duration-200 ${
+                  item.isGold ? "text-[#9C6600]" : "text-[#0B1220]"
+                }`}
               >
                 {item.value}
               </p>
@@ -256,7 +265,7 @@ export default function FeaturedProjects() {
         {/* شريط نبذة المشروع وزر دراسة الحالة */}
         <div className="p-6 rounded-2xl bg-white border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs">
           <div className="space-y-1.5 max-w-3xl">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#df9d17] font-bold">
+            <span className="text-[14px] font-mono uppercase tracking-widest text-[#9C6600] font-bold">
               ENGINEERING SUMMARY
             </span>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">

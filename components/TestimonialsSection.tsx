@@ -88,9 +88,9 @@ function TestimonialCard({ item }: { item: typeof allTestimonials[0] }) {
           <item.icon className="w-4 h-4" />
         </div>
         <div className="truncate">
-          <h4 className="text-sm font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors truncate">
+          <h3 className="text-sm font-bold text-[#0B1220] group-hover:text-[#df9d17] transition-colors truncate">
             {item.client}
-          </h4>
+          </h3>
           <p className="text-[11px] text-slate-500 font-medium tracking-wide truncate">
             {item.role}
           </p>
