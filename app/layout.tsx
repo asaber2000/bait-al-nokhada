@@ -20,6 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://d3g07f5oxrfvni.cloudfront.net"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
       suppressHydrationWarning
         className={`${fontHeadingEn.variable} ${fontBodyEn.variable} ${fontHeadingAr.variable} ${fontBodyAr.variable} antialiased bg-[#070B14] text-white`}
