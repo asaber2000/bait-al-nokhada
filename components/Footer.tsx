@@ -337,7 +337,7 @@ const Footer = memo(function Footer() {
           </motion.div>
           <motion.div
             style={{ x: wordmarkAccentX }}
-            className="font-extrabold uppercase tracking-[0.12em] sm:tracking-[0.26em] text-[9px] sm:text-xs text-[#df9d17] leading-relaxed sm:leading-normal"
+            className="font-extrabold uppercase tracking-[0.12em] sm:tracking-[0.26em] text-[9px] sm:text-xs text-[#9C6600] leading-relaxed sm:leading-normal"
           >
             ARCHITECTURAL TENTS &amp; STRUCTURES • DUBAI • UAE • KSA • GCC • WORLDWIDE
           </motion.div>
