@@ -23,7 +23,7 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
       if (!video.src) {
         video.src = videoUrl;
         video.load();
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       }
     };
 
@@ -68,11 +68,10 @@ export default function Hero({ sanityData }: { sanityData?: any }) {
               alt="Bait Al Nokhada Luxury Event & Exhibition Tents"
               fill
               priority
-              quality={75}
-              sizes="(max-width: 768px) 100vw, 1280px"
-              className={`object-cover brightness-105 transition-opacity duration-300 z-0 ${
-                videoPlaying ? "opacity-0" : "opacity-100"
-              }`}
+              quality={85}
+              sizes="(max-width: 767px) 100vw, 1280px"
+              className={`object-cover brightness-105 transition-opacity duration-300 z-0 ${videoPlaying ? "opacity-0" : "opacity-100"
+                }`}
             />
 
             {/* الفيديو: يشتغل فوق الصورة ويخفيها فور التشغيل */}

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import FeatureShowcase from "@/components/FeatureShowcase";
-import SolutionsSection from "../components/SolutionsSection";
-import FeaturedSolutions from "@/components/FeaturedSolutions";
-import ClientsTicker from "../components/ClientsTicker";
-import TestimonialsSection from "../components/TestimonialsSection";
-import Footer from "../components/Footer";
 import { client } from "@/app/lib/sanity";
+
+const FeatureShowcase = dynamic(() => import("@/components/FeatureShowcase"));
+const SolutionsSection = dynamic(() => import("../components/SolutionsSection"));
+const FeaturedSolutions = dynamic(() => import("@/components/FeaturedSolutions"));
+const ClientsTicker = dynamic(() => import("../components/ClientsTicker"));
+const TestimonialsSection = dynamic(() => import("../components/TestimonialsSection"));
+const Footer = dynamic(() => import("../components/Footer"));
 
 // ============================================================================
 // 1. SEO, GEO & AIO METADATA (مطابق لإعدادات Rank Math + تحسينات الذكاء الاصطناعي)

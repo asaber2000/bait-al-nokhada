@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import "./globals.css";
 import { fontHeadingEn, fontBodyEn, fontHeadingAr, fontBodyAr } from "./fonts";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const SpeedInsights = dynamic(() =>
+  import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights)
+);
 
 
 export const metadata: Metadata = {
