@@ -88,7 +88,9 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["خيام-المجالس-العربية", "/ar/products/arabic-majlis-tent/"],
   ["أسعار-الخيام-في-الإمارات", "/ar/products/arabic-majlis-tent/"],
   ["افضل-انواع-الخيام-في-السعودية", "/ar/news/tent-suppliers-ksa/"],
-  [" تلبية-احتياجاتك-مع-أفضل-موردين-الخيام", "/ar/news/tent-suppliers-ksa/"], 
+  ["تلبية-احتياجاتك-مع-أفضل-موردين-الخيام", "/ar/news/tent-suppliers-ksa/"], 
+  [" الخيام-الاوروبية", "/news/european-tent-rental-dubai-abu-dhabi/"],
+  ["اسعار-الخيام-المنزلية", "/ar/news/best-tent-prices-uae/"],
 ];
 
 const nextConfig: NextConfig = {
@@ -282,6 +284,10 @@ const nextConfig: NextConfig = {
         { source: `/fr/produits/${slug}/`, destination: `/products/${slug}/`, permanent: true },
       ]),
       // تحويلات صفحات قديمة ظهرت في page-sitemap القديم
+      { source: "/tents-faqs/", destination: "/", permanent: true },
+      { source: "/ar/tents-faqs/", destination: "/ar/", permanent: true },
+      { source: "/solutions/industries-we-serve/", destination: "/solutions/", permanent: true },
+      { source: "/ar/solutions/industries-we-serve/", destination: "/ar/solutions/", permanent: true },
       { source: "/ar/pyramid-dome-tent-2/", destination: "/ar/products/pyramid-dome-tent/", permanent: true },
       { source: "/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
       { source: "/fr/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
