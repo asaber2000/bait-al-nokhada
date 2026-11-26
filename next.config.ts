@@ -89,8 +89,11 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["أسعار-الخيام-في-الإمارات", "/ar/products/arabic-majlis-tent/"],
   ["افضل-انواع-الخيام-في-السعودية", "/ar/news/tent-suppliers-ksa/"],
   ["تلبية-احتياجاتك-مع-أفضل-موردين-الخيام", "/ar/news/tent-suppliers-ksa/"], 
-  ["الخيام-الاوروبية", "/news/european-tent-rental-dubai-abu-dhabi/"],
+  ["الخيام-الاوروبية", "/ar/news/european-tent-rental-dubai-abu-dhabi/"],
   ["اسعار-الخيام-المنزلية", "/ar/news/best-tent-prices-uae/"],
+  ["أسعار-الخيام-في-السعودية", "/ar/news/best-tent-prices-uae/"],
+  ["خيام-للبيع", "/ar/news/tents-for-sale/"],
+ 
 ];
 
 const nextConfig: NextConfig = {
@@ -538,8 +541,11 @@ const nextConfig: NextConfig = {
       { source: "/ar/event-tent-for-rent/", destination: "/ar/solutions/event-tent/", permanent: true },
       { source: "/fr/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
+      { source: "/ar/exhibition-tent-rental/", destination: "/ar/solutions/exhibition-tent/", permanent: true },
+      { source: "/fr/exhibition-tent-rental/", destination: "/solutions/exhibition-tent/", permanent: true },
+      { source: "/ar/exhibition-tent-rental/", destination: "/solutions/exhibition-tent/", permanent: true },
       { source: "/ar/affordable-tents-uae/", destination: "/ar/news/tents-for-sale/", permanent: true },
-      { source: "/affordable-tents-uae/", destination: "/ar/news/tents-for-sale/", permanent: true },
+      { source: "/affordable-tents-uae/", destination: "/news/tents-for-sale/", permanent: true },
       { source: "/fr/affordable-tents-uae/", destination: "/news/tents-for-sale/", permanent: true },
       { source: "/ar/event-tent-rental-2/", destination: "/ar/solutions/event-tent/", permanent: true },
       { source: "/fr/event-tent-rental-2/", destination: "/solutions/event-tent/", permanent: true },
