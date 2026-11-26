@@ -89,7 +89,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["أسعار-الخيام-في-الإمارات", "/ar/products/arabic-majlis-tent/"],
   ["افضل-انواع-الخيام-في-السعودية", "/ar/news/tent-suppliers-ksa/"],
   ["تلبية-احتياجاتك-مع-أفضل-موردين-الخيام", "/ar/news/tent-suppliers-ksa/"], 
-  [" الخيام-الاوروبية", "/news/european-tent-rental-dubai-abu-dhabi/"],
+  ["الخيام-الاوروبية", "/news/european-tent-rental-dubai-abu-dhabi/"],
   ["اسعار-الخيام-المنزلية", "/ar/news/best-tent-prices-uae/"],
 ];
 
@@ -545,7 +545,7 @@ const nextConfig: NextConfig = {
       { source: "/luxury-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
       { source: "/tents-and-shades-companies-in-uae/", destination: "/solutions/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
-
+      { source: "/udesign_template/:path*", destination: "https://baitalnokhada.com/", permanent: true },
     ];
     return rawRedirects.flatMap((rule) => {
       const encodedSource = encodeURI(rule.source);
