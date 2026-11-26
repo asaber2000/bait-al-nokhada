@@ -76,6 +76,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["خيام-للبيع-في-أبو-ظبي-تجربة-فريدة-لمناس", "/ar/news/tents-for-sale-abu-dhabi/"],
   ["تأجير-خيم-المناسبات", "/ar/news/event-tents-rental/"],
   ["أفضل-أسعار-الخيام-في-الإمارات", "/ar/news/best-tent-prices-uae/"],
+  ["أسعار-الخيام-في-الإمارات", "/ar/news/best-tent-prices-uae/"],
   ["هل-تبحث-عن-تأجير-خيام-اوروبية؟", "/ar/news/european-tent-rental-dubai-abu-dhabi/"],
   ["تأجير-خيام-الدمام", "/ar/news/tent-rental-dammam/"],
   ["تركيب-خيام", "/ar/news/tent-installation/"],
@@ -84,6 +85,7 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
   ["هل-تبحث-عن-خيام-رمضانية-للإيجار؟", "/ar/solutions/ramadan-tent/"],
   ["خيام-المجالس-العربية", "/ar/products/arabic-majlis-tent/"],
+  ["أسعار-الخيام-في-الإمارات", "/ar/products/arabic-majlis-tent/"],
 ];
 
 const nextConfig: NextConfig = {
