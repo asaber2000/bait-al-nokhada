@@ -532,6 +532,9 @@ const nextConfig: NextConfig = {
       { source: "/ar/arabic-majlis-tents-2/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
       { source: "/fr/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
       { source: "/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/ar/are-you-looking-for-arabic-majlis-tents/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/are-you-looking-for-arabic-majlis-tents/", destination: "/products/arabic-majlis-tent/", permanent: true },
+      { source: "/fr/are-you-looking-for-arabic-majlis-tents/", destination: "/products/arabic-majlis-tent/", permanent: true },
       { source: "/ar/event-tent-for-rent/", destination: "/ar/solutions/event-tent/", permanent: true },
       { source: "/fr/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/event-tent-for-rent/", destination: "/solutions/event-tent/", permanent: true },
@@ -546,6 +549,7 @@ const nextConfig: NextConfig = {
       { source: "/tents-and-shades-companies-in-uae/", destination: "/solutions/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
       { source: "/udesign_template/:path*", destination: "https://baitalnokhada.com/", permanent: true },
+      { source: "/ar/udesign_template/:path*", destination: "https://baitalnokhada.com/ar/", permanent: true },
     ];
     return rawRedirects.flatMap((rule) => {
       const encodedSource = encodeURI(rule.source);
