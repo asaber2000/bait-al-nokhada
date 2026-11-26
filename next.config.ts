@@ -368,6 +368,40 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       }, // توجيه أي رابط فرنسي قديم للصفحة الرئيسية بأمان
+      { source: "/tents/page/:page/", destination: "/products", permanent: true },
+      { source: "/ar/tents/page/:page/", destination: "/ar/products", permanent: true },
+      { source: "/fr/tents/page/:page/", destination: "/products", permanent: true },
+
+      // 2. صفحات الترقيم العربية القديمة تحت /خيام/page/:page/ (مشفر ومباشر)
+      { source: "/خيام/page/:page/", destination: "/ar/products", permanent: true },
+      { source: "/ar/خيام/page/:page/", destination: "/ar/products", permanent: true },
+      {
+        source: "/%D8%AE%D9%8A%D8%A7%D9%85/page/:page/",
+        destination: "/ar/products",
+        permanent: true,
+      },
+      {
+        source: "/ar/%D8%AE%D9%8A%D8%A7%D9%85/page/:page/",
+        destination: "/ar/products",
+        permanent: true,
+      },
+
+      // 3. روابط فرعية أو أرشيفية قديمة تحت /tents/:slug و /خيام/:slug (لو فيه صفحات كتير بنفس الـ slug)
+      { source: "/tents/:slug/", destination: "/products", permanent: true },
+      { source: "/ar/tents/:slug/", destination: "/ar/products", permanent: true },
+      { source: "/fr/tents/:slug/", destination: "/products", permanent: true },
+      { source: "/خيام/:slug/", destination: "/ar/products", permanent: true },
+      { source: "/ar/خيام/:slug/", destination: "/ar/products", permanent: true },
+      {
+        source: "/%D8%AE%D9%8A%D8%A7%D9%85/:slug/",
+        destination: "/ar/products",
+        permanent: true,
+      },
+      {
+        source: "/ar/%D8%AE%D9%8A%D8%A7%D9%85/:slug/",
+        destination: "/ar/products",
+        permanent: true,
+      },
       { source: "/category/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/ar/category/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/fr/category/خيام/", destination: "/ar/news/", permanent: true },
@@ -384,6 +418,7 @@ const nextConfig: NextConfig = {
       { source: "/fr/author/:path*", destination: "/news/", permanent: true },
       { source: "/news/page/:page/", destination: "/news/", permanent: true },
       { source: "/ar/news/page/:page/", destination: "/ar/news/", permanent: true },
+      { source: "/fr/news/page/:page/", destination: "/news/", permanent: true },
       { source: "/fr/news/page/:page/", destination: "/news/", permanent: true },
       { source: "/--/", destination: "/", permanent: true },
       { source: "/ar/-/", destination: "/ar/", permanent: true },
@@ -479,7 +514,7 @@ const nextConfig: NextConfig = {
       { source: "/ar/privacy/", destination: "/ar/privacy-policy/", permanent: true },
       { source: "/fr/privacy/", destination: "/privacy-policy/", permanent: true },
       { source: "/luxury-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
-      { source: "/tents-and-shades-companies-in-uae/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/tents-and-shades-companies-in-uae/", destination: "/solutions/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
 
     ];
@@ -515,7 +550,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   async headers() {
     return [
       {
