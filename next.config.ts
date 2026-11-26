@@ -555,6 +555,7 @@ const nextConfig: NextConfig = {
       { source: "/ar/privacy/", destination: "/ar/privacy-policy/", permanent: true },
       { source: "/fr/privacy/", destination: "/privacy-policy/", permanent: true },
       { source: "/luxury-tents-for-sale/", destination: "/news/tents-for-sale/", permanent: true },
+      { source: "/ar/luxury-tents-for-sale/", destination: "/ar/news/tents-for-sale/", permanent: true },
       { source: "/tents-and-shades-companies-in-uae/", destination: "/solutions/", permanent: true },
       { source: "/wp-content/uploads/:path*", destination: "https://baitalnokhada.com/", permanent: true },
       { source: "/udesign_template/:path*", destination: "https://baitalnokhada.com/", permanent: true },
