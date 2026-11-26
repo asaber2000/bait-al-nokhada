@@ -93,7 +93,9 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["اسعار-الخيام-المنزلية", "/ar/news/best-tent-prices-uae/"],
   ["أسعار-الخيام-في-السعودية", "/ar/news/best-tent-prices-uae/"],
   ["خيام-للبيع", "/ar/news/tents-for-sale/"],
- 
+  ["مصنع-الخيام", "/ar/"],
+  ["هل-تبحث-عن-تأجير-خيام-مميزة-تناسب-مناسب", "/ar/news/tent-rental/"],
+  ["خيام-للبيع-بسعر-رخيص", "/ar/news/tents-for-sale/"],
 ];
 
 const nextConfig: NextConfig = {
@@ -529,9 +531,21 @@ const nextConfig: NextConfig = {
       { source: "/ar/tents-on-rent/", destination: "/ar/news/tent-rental/", permanent: true },
       { source: "/fr/tents-on-rent/", destination: "/news/tent-rental/", permanent: true },
       { source: "/tents-on-rent/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/daily-tent-rental/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/daily-tent-rental/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/daily-tent-rental/", destination: "/news/tent-rental/", permanent: true },
       { source: "/ar/tent-rental-services/", destination: "/ar/news/tent-rental/", permanent: true },
       { source: "/fr/tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
       { source: "/tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/tent-rental-prices/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/tent-rental-prices/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/tent-rental-prices/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/ar/european-tents-for-rent/", destination: "/ar/news/event-tent-rental/", permanent: true },
+      { source: "/european-tents-for-rent/", destination: "/news/event-tent-rental/", permanent: true },
+      { source: "/fr/european-tents-for-rent/", destination: "/news/event-tent-rental/", permanent: true },
+      { source: "/ar/looking-for-the-best-tent-rental-services/", destination: "/ar/news/tent-rental/", permanent: true },
+      { source: "/looking-for-the-best-tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
+      { source: "/fr/looking-for-the-best-tent-rental-services/", destination: "/news/tent-rental/", permanent: true },
       { source: "/ar/arabic-majlis-tents-2/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
       { source: "/fr/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
       { source: "/arabic-majlis-tents-2/", destination: "/products/arabic-majlis-tent/", permanent: true },
