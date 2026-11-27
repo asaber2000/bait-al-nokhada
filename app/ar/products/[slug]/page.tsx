@@ -302,7 +302,7 @@ const generateProductGraphSchema = (
         dateModified: sanityProduct?._updatedAt || "2026-11-16T09:43:00+04:00",
         breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/ar/#website` },
-        about: { "@id": `${currentUrl}#product` },
+        about: { "@id": `${currentUrl}#service` },
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: primaryImage,
@@ -310,17 +310,20 @@ const generateProductGraphSchema = (
         inLanguage: "ar-AE",
       },
       {
-        "@type": "Product",
-        "@id": `${currentUrl}#product`,
+        "@type": "Service",
+        "@id": `${currentUrl}#service`,
         name: arData?.name || "خيام بيت النوخذة",
         description: arData?.description || arData?.tagline || "",
-        image: [primaryImage, ...galleryImages].slice(0, 5),
+        serviceType: `تصنيع وتوريد وتأجير ${arData?.name || "الخيام"}`,
         category: "خيام وهياكل مؤقتة",
-        brand: {
-          "@type": "Brand",
-          name: "بيت النوخذة",
-        },
-        manufacturer: { "@id": `${BASE_URL}/#organization` },
+        image: [primaryImage, ...galleryImages].slice(0, 5),
+        provider: { "@id": `${BASE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Country", name: "الإمارات العربية المتحدة" },
+          { "@type": "Country", name: "المملكة العربية السعودية" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
         additionalProperty: (arData?.specs || []).map(
           (spec: { label: string; value: string }) => ({
             "@type": "PropertyValue",

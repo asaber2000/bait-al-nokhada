@@ -450,7 +450,7 @@ export default async function ProductDetailPage({
         dateModified: sanityProduct?._updatedAt || "2026-11-16T08:30:00+04:00",
         breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/#website` },
-        about: { "@id": `${pageUrl}#product` },
+        about: { "@id": `${pageUrl}#service` },
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: primaryImage,
@@ -458,17 +458,20 @@ export default async function ProductDetailPage({
         inLanguage: "en-AE",
       },
       {
-        "@type": "Product",
-        "@id": `${pageUrl}#product`,
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
         name: enData.name,
         description: enData.description || enData.tagline,
-        image: [primaryImage, ...galleryImages].slice(0, 5),
+        serviceType: `${enData.name} Manufacturing, Supply & Rental`,
         category: "Tents & Temporary Structures",
-        brand: {
-          "@type": "Brand",
-          name: "Bait Al Nokhada",
-        },
-        manufacturer: { "@id": `${BASE_URL}/#organization` },
+        image: [primaryImage, ...galleryImages].slice(0, 5),
+        provider: { "@id": `${BASE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Country", name: "United Arab Emirates" },
+          { "@type": "Country", name: "Saudi Arabia" },
+          { "@type": "AdministrativeArea", name: "GCC" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
         additionalProperty: (enData.specs || []).map(
           (spec: { label: string; value: string }) => ({
             "@type": "PropertyValue",
