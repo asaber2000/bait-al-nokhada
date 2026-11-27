@@ -228,10 +228,6 @@ const arabicHomeJsonLd = {
         { "@type": "AdministrativeArea", name: "GCC" },
         { "@type": "Place", name: "Worldwide" },
       ],
-      offers: {
-        "@type": "Offer",
-        availability: "https://schema.org/InStock",
-      },
       image: {
         "@id": "https://baitalnokhada.com/ar/#primaryimage",
       },
@@ -240,17 +236,17 @@ const arabicHomeJsonLd = {
       },
     },
     {
-      "@type": "OfferCatalog",
+      "@type": "ItemList",
       "@id": "https://baitalnokhada.com/ar/#catalog",
       name: "حلول وخيام بيت النوخذة",
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام الفعاليات والمؤتمرات", url: "https://baitalnokhada.com/ar/solutions/event-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام المعارض الكبرى", url: "https://baitalnokhada.com/ar/solutions/exhibition-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام المستودعات والمخازن", url: "https://baitalnokhada.com/ar/solutions/warehouse-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام الزفاف والأعراس", url: "https://baitalnokhada.com/ar/solutions/wedding-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام رمضان والمجالس", url: "https://baitalnokhada.com/ar/solutions/ramadan-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام حظائر الطائرات", url: "https://baitalnokhada.com/ar/solutions/aircraft-hangar-tent/" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "خيام الملاعب الرياضية", url: "https://baitalnokhada.com/ar/solutions/sports-tent/" } },
+        { "@type": "ListItem", position: 1, item: { "@type": "Service", name: "خيام الفعاليات والمؤتمرات", url: "https://baitalnokhada.com/ar/solutions/event-tent/" } },
+        { "@type": "ListItem", position: 2, item: { "@type": "Service", name: "خيام المعارض الكبرى", url: "https://baitalnokhada.com/ar/solutions/exhibition-tent/" } },
+        { "@type": "ListItem", position: 3, item: { "@type": "Service", name: "خيام المستودعات والمخازن", url: "https://baitalnokhada.com/ar/solutions/warehouse-tent/" } },
+        { "@type": "ListItem", position: 4, item: { "@type": "Service", name: "خيام الزفاف والأعراس", url: "https://baitalnokhada.com/ar/solutions/wedding-tent/" } },
+        { "@type": "ListItem", position: 5, item: { "@type": "Service", name: "خيام رمضان والمجالس", url: "https://baitalnokhada.com/ar/solutions/ramadan-tent/" } },
+        { "@type": "ListItem", position: 6, item: { "@type": "Service", name: "خيام حظائر الطائرات", url: "https://baitalnokhada.com/ar/solutions/aircraft-hangar-tent/" } },
+        { "@type": "ListItem", position: 7, item: { "@type": "Service", name: "خيام الملاعب الرياضية", url: "https://baitalnokhada.com/ar/solutions/sports-tent/" } },
       ],
     },
   ],
@@ -305,6 +301,10 @@ export default async function ArabicHome() {
   const { heroData, featureShowcaseData } = await getArabicHomeData();
   return (
     <main dir="rtl" className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicHomeJsonLd) }}
+      />
       <Navbar />
       <Hero sanityData={heroData} />
       <FeatureShowcase sanityData={featureShowcaseData} />
