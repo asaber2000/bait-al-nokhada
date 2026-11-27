@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import AboutScrollReveal from "@/components/AboutScrollReveal";
@@ -101,6 +102,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const sanityProduct = await getSanityProductBySlug(slug);
   const localMatch = productsDatabase.find((p) => p.slug === slug);
+  if (!sanityProduct && !localMatch) {
+    return {
+      title: "Product Not Found | Bait Al Nokhada",
+      robots: { index: false, follow: false },
+    };
+  }
 
   const name =
     sanityProduct?.titleEn || localMatch?.name || "Architectural Tent Structure";
@@ -206,8 +213,12 @@ export default async function ProductDetailPage({
 
   // 1. جلب العنصر المحلي الواحد والـ Fallback بنفس أسلوب الملف العربي النظيف
   const localMatch = productsDatabase.find((p) => p.slug === slug);
-  const fallbackProduct = productsDatabase[0] || ({} as any);
-  const activeProduct = localMatch || fallbackProduct;
+
+  if (!sanityProduct && !localMatch) {
+    notFound();
+  }
+
+  const activeProduct = localMatch || ({} as any);
 
   let product: any = null;
   let enData: any = null;
