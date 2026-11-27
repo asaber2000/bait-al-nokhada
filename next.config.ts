@@ -108,7 +108,6 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["أسعار-الخيام-في-السعودية", "/ar/news/best-tent-prices-uae/"],
   ["خيام-للبيع", "/ar/news/tents-for-sale/"],
   ["مصنع-الخيام", "/ar/"],
-  ["هل-تبحث-عن-تأجير-خيام-مميزة-تناسب-مناسب", "/ar/news/tent-rental/"],
   ["خيام-للبيع-بسعر-رخيص", "/ar/news/tents-for-sale/"],
 ];
 
@@ -656,15 +655,7 @@ const nextConfig: NextConfig = {
         destination: "https://tents.batuae.com/Tent-For-Rent-in-GCC",
       },
       {
-        source: "/Tent-For-Rent-in-GCC",
-        destination: "https://tents.batuae.com/Tent-For-Rent-in-GCC",
-      },
-      {
         source: "/event-tents-in-GCC/",
-        destination: "https://tents-ar.batuae.com/event-tents-in-GCC",
-      },
-      {
-        source: "/event-tents-in-GCC",
         destination: "https://tents-ar.batuae.com/event-tents-in-GCC",
       },
     ];
