@@ -305,11 +305,6 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
           { "@type": "Place", name: "Worldwide" },
         ],
         image: solution.heroImage,
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/InStock",
-          url: `${BASE_URL}/contact-us/`,
-        },
         mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
       },
       ...(solution.faqs && solution.faqs.length > 0

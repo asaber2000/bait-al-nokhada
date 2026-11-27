@@ -318,11 +318,6 @@ const pageUrl = `${BASE_URL}/ar/solutions/${slug}/`;
           { "@type": "Place", name: "Worldwide" },
         ],
         image: solution.heroImage,
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/InStock",
-          url: `${BASE_URL}/ar/contact-us/`,
-        },
         mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
       },
       ...(arData.faqs && arData.faqs.length > 0
