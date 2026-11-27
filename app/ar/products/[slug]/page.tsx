@@ -315,7 +315,7 @@ const generateProductGraphSchema = (
         name: arData?.name || "خيام بيت النوخذة",
         description: arData?.description || arData?.tagline || "",
         image: [primaryImage, ...galleryImages].slice(0, 5),
-        category: arData?.badge || "خيام وهياكل معمارية",
+        category: "خيام وهياكل مؤقتة",
         brand: {
           "@type": "Brand",
           name: "بيت النوخذة",
@@ -328,18 +328,6 @@ const generateProductGraphSchema = (
             value: spec.value,
           })
         ),
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/InStock",
-          url: `${BASE_URL}/ar/contact-us/`,
-          seller: { "@id": `${BASE_URL}/#organization` },
-          areaServed: [
-            { "@type": "Country", name: "الإمارات العربية المتحدة" },
-            { "@type": "Country", name: "المملكة العربية السعودية" },
-            { "@type": "AdministrativeArea", name: "GCC" },
-            { "@type": "Place", name: "Worldwide" },
-          ],
-        },
         mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
       },
     ],
@@ -376,7 +364,7 @@ export default async function ArabicProductDetailPage({
     };
     arData = {
       name: sanityProduct.titleAr || activeAr?.name || "منتج مخصص",
-      badge: sanityProduct.topBadges?.[0] || activeAr?.badge || "DIN 4102 B1",
+      badge: sanityProduct.topBadges?.[0] || activeAr?.badge || "خيام وهياكل مؤقتة",
       tagline: sanityProduct.summaryAr || activeAr?.tagline || "حلول خيام معمارية مبتكرة.",
       overviewTitle: sanityProduct.overviewTitleAr || activeAr?.overviewTitle || "التصميم الإنشائي ومعايير جودة المواد",
       description: sanityProduct.overviewDescAr || sanityProduct.summaryAr || activeAr?.description || "",
@@ -393,7 +381,7 @@ export default async function ArabicProductDetailPage({
         { label: "المكونات الفولاذية", value: sanityProduct.engineeringDataSheet?.steelComponents || activeAr?.specs?.[1]?.value || "صلب مجلفن على الساخن" },
         { label: "مقاومة الرياح القصوى", value: sanityProduct.engineeringDataSheet?.windLoad || activeAr?.specs?.[2]?.value || "120 كم/ساعة" },
         { label: "درجات الحرارة التشغيلية", value: sanityProduct.engineeringDataSheet?.operatingTemp || activeAr?.specs?.[3]?.value || "-30°C إلى +70°C" },
-        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || activeAr?.specs?.[4]?.value || "DIN 4102 B1, M2" },
+        { label: "معايير مقاومة الحريق", value: sanityProduct.engineeringDataSheet?.fabricFire || activeAr?.specs?.[4]?.value || "خيام وهياكل مؤقتة" },
         { label: "غطاء السقف والغشاء", value: sanityProduct.engineeringDataSheet?.roofCovering || activeAr?.specs?.[5]?.value || "بي في سي عالي الكثافة معتم/شبه شفاف" },
         { label: "خيارات الجدران الجانبية", value: sanityProduct.engineeringDataSheet?.wallOptions || activeAr?.specs?.[6]?.value || "زجاج مقسى، ساندويتش بانل، ABS" },
         { label: "البحور القياسية المتاحة", value: sanityProduct.engineeringDataSheet?.standardSpans || activeAr?.specs?.[7]?.value || "من 10م حتى 60م بحر مفتوح" }
@@ -468,7 +456,7 @@ export default async function ArabicProductDetailPage({
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{arData?.badge || "DIN 4102 B1"}</span>
+                <span>{arData?.badge || "خيام وهياكل مؤقتة"}</span>
               </div>
 
               <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading">

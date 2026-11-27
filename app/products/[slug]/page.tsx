@@ -229,7 +229,7 @@ export default async function ProductDetailPage({
     };
     enData = {
       name: sanityProduct.titleEn || activeProduct?.name || "Architectural Structure",
-      badge: sanityProduct.topBadges?.[0] || (activeProduct as any)?.badge || "DIN 4102 B1",
+      badge: sanityProduct.topBadges?.[0] || (activeProduct as any)?.badge || "Tents & Temporary Structures",
       tagline:
         sanityProduct.summaryEn ||
         sanityProduct.summaryAr ||
@@ -294,7 +294,7 @@ export default async function ProductDetailPage({
           value:
             sanityProduct.engineeringDataSheet?.fabricFire ||
             activeProduct?.specs?.[4]?.value ||
-            "DIN 4102 B1, M2",
+            "Tents & Temporary Structures, M2",
         },
         {
           label: "Roof Covering",
@@ -463,7 +463,7 @@ export default async function ProductDetailPage({
         name: enData.name,
         description: enData.description || enData.tagline,
         image: [primaryImage, ...galleryImages].slice(0, 5),
-        category: enData.badge || "Architectural Tent Structures",
+        category: "Tents & Temporary Structures",
         brand: {
           "@type": "Brand",
           name: "Bait Al Nokhada",
@@ -476,18 +476,6 @@ export default async function ProductDetailPage({
             value: spec.value,
           })
         ),
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/InStock",
-          url: `${BASE_URL}/contact-us/`,
-          seller: { "@id": `${BASE_URL}/#organization` },
-          areaServed: [
-            { "@type": "Country", name: "United Arab Emirates" },
-            { "@type": "Country", name: "Saudi Arabia" },
-            { "@type": "AdministrativeArea", name: "GCC" },
-            { "@type": "Place", name: "Worldwide" },
-          ],
-        },
         mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
       },
     ],
@@ -539,7 +527,7 @@ export default async function ProductDetailPage({
             <div className="scroll-item lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase bg-[#df9d17]/10 text-[#df9d17] border border-[#df9d17]/30 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>{enData?.badge || "DIN 4102 B1"}</span>
+                <span>{enData?.badge || "Tents & Temporary Structures"}</span>
               </div>
 
               <h1 className="text-2xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black tracking-tight text-[#0B1220] leading-[1.2] font-heading uppercase">

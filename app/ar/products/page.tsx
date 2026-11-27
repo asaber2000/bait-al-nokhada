@@ -23,7 +23,7 @@ const arabicTranslations: Record<string, { name: string; tagline: string }> = {
     tagline: "وحدات إقامة فاخرة VIP وحلول إقامة مستقبلية مدمجة وسريعة التركيب."
   },
   "wave-tent": {
-    name: "خيمة ثورية",
+    name: "خيمة مموجة",
     tagline: "تصميم عصري مبتكر يجمع بين المتانة العالية والشكل المستقبلي للفعاليات الراقية."
   },
   "polygon-tent": {
