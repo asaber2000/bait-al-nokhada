@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
 import AboutScrollReveal from "@/components/AboutScrollReveal";
@@ -97,6 +98,14 @@ export async function generateMetadata({
   const sanityProduct = await getSanityProductBySlug(slug);
   const localMatch = productsDatabase.find((p) => p.slug === slug);
   const activeAr = (localMatch as any)?.ar || localMatch;
+  if (!sanityProduct && !localMatch) {
+    return {
+      title: "المنتج غير موجود | بيت النوخذة",
+      robots: { index: false, follow: false },
+    };
+  }
+
+
 
   const name =
     sanityProduct?.titleAr || activeAr?.name || "خيام وهياكل معمارية";
@@ -352,8 +361,12 @@ export default async function ArabicProductDetailPage({
   }
 
   const localMatch = productsDatabase.find((p) => p.slug === slug);
-  const fallbackProduct = productsDatabase[0] || {};
-  const activeProduct = localMatch || fallbackProduct;
+
+  if (!sanityProduct && !localMatch) {
+    notFound();
+  }
+
+  const activeProduct = localMatch as any;
   const activeAr = activeProduct?.ar || activeProduct;
 
   let product: any = null;
@@ -395,10 +408,6 @@ export default async function ArabicProductDetailPage({
     arData = activeAr;
   }
 
-  if (!product || !arData) {
-    product = productsDatabase[0] || {};
-    arData = product?.ar || product || {};
-  }
 
   const galleryImages: string[] = sanityProduct?.productGallery?.length > 0
     ? sanityProduct.productGallery.map((img: any) => img.url).filter(Boolean)

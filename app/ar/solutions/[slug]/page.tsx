@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components-ar/components/Navbar.Ar";
 import Footer from "@/components-ar/components/Footer.Ar";
@@ -62,6 +63,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const sanitySolution = await getSolutionDetail(slug);
   const localSolution = solutionsDatabase.find((s) => s.slug === slug);
+  if (!sanitySolution && !localSolution) {
+    return {
+      title: "الحل غير موجود | بيت النوخذة",
+      robots: { index: false, follow: false },
+    };
+  }
 
   const name = sanitySolution?.titleAr || localSolution?.name || "حلول الخيام";
   const rawDesc =
@@ -154,6 +161,9 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
 
   const sanitySolution = await getSolutionDetail(slug);
   const localSolution = solutionsDatabase.find((s) => s.slug === slug);
+  if (!sanitySolution && !localSolution) {
+    notFound();
+  }
 
   // دمج بيانات سانتي مع البيانات المحلية كـ fallback
   const solution: any = sanitySolution ? {
@@ -171,14 +181,11 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
     industryApplications: sanitySolution.targetSectors || localSolution?.industryApplications || [],
     technicalSpecs: sanitySolution.technicalHighlights || localSolution?.technicalSpecs || [],
     faqs: sanitySolution.faqs ? sanitySolution.faqs.map((f: any) => ({ q: f.question, a: f.answer })) : localSolution?.faqs || []
-  } : (
-    localSolution
-      ? {
+      }
+    : {
         ...localSolution,
         videoUrl: (localSolution as any)?.videoUrl || (localSolution as any)?.youtubeVideoId || "",
-      }
-      : solutionsDatabase[0]
-  );
+      };
   const galleryImages: string[] =
     sanitySolution?.gallery?.length > 0
       ? sanitySolution.gallery.filter(Boolean)

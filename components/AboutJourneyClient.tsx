@@ -128,7 +128,7 @@ export default function AboutJourneyClient({ journeyMilestones }: { journeyMiles
                   <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#df9d17] shrink-0 mt-0.5" />
                   <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
                     {active.highlight}
-                  </p>ش
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>

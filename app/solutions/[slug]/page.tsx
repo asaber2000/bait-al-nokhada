@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -61,6 +62,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const sanity = await getSolutionDetailEn(slug);
   const local = solutionsDatabase.find((s) => s.slug === slug);
+  if (!sanity && !local) {
+  return {
+    title: "Solution Not Found | Bait Al Nokhada",
+    robots: { index: false, follow: false },
+  };
+}
 
   const name = sanity?.titleEn || local?.name || "Custom Tent Solution";
   const rawDesc =
@@ -152,6 +159,9 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const { slug } = await params;
   const sanity = await getSolutionDetailEn(slug);
   const local = solutionsDatabase.find((s) => s.slug === slug);
+  if (!sanity && !local) {
+  notFound();
+}
 
   const solution: any = sanity ? {
     slug: slug,
@@ -167,7 +177,8 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     faqs: sanity.faqsEn ? sanity.faqsEn.map((f: any) => ({ q: f.question, a: f.answer })) : local?.faqs || [],
     heroImage: sanity.coverImage || local?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "",
-  } : (local || solutionsDatabase[0]);
+    } : local;
+
   const galleryImages: string[] =
     sanity?.gallery?.length > 0
       ? sanity.gallery.filter(Boolean)
