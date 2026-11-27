@@ -31,18 +31,31 @@ const legacyEnArticles = [
 ];
 
 const legacyArArticles = [
+  "tent-rental-khobar",
+  "tent-manufacturing-dammam",
   "tent-rental",
+  "tents-for-sale-riyadh",
+  "event-tents-uae",
+  "tents-for-rent-dubai",
+  "tent-rental-ajman",
+  "tent-supplier-installation-riyadh",
   "funeral-tent-rental-uae-saudi",
   "arabic-tent-rental",
   "tent-rental-uae-saudi-arabia",
   "european-tent-rental",
   "european-tent-rental-dubai-abu-dhabi",
   "tent-rental-uae",
-  "majlis-tent-rental",
+  "majlis-tent-rental",  // need to add
   "tent-rental-guide-uae",
-  "tent-rental-dammam",
-  "tent-installation",
-  "tent-rental-events-dubai-riyadh"
+  "tent-suppliers-dammam",
+  "tent-installation",  // need to add
+  "tent-rental-events-dubai-riyadh", // need to add
+  "tent-rental-dammam",  // need to add
+  "tents-for-sale-abu-dhabi",
+  "event-tents-rental",
+  "best-tent-prices-uae",
+  "are-you-looking-for-arabic-majlis-tents",
+  "tent-suppliers-ksa"
 ];
 
 const arabicLegacyRedirects: Array<[string, string]> = [
@@ -80,8 +93,8 @@ const arabicLegacyRedirects: Array<[string, string]> = [
   ["أفضل-أسعار-الخيام-في-الإمارات", "/ar/news/best-tent-prices-uae/"],
   ["أسعار-الخيام-في-الإمارات", "/ar/news/best-tent-prices-uae/"],
   ["هل-تبحث-عن-تأجير-خيام-اوروبية؟", "/ar/news/european-tent-rental-dubai-abu-dhabi/"],
-  ["تأجير-خيام-الدمام", "/ar/news/tent-rental-dammam/"],
-  ["تركيب-خيام", "/ar/news/tent-installation/"],
+  ["تأجير-خيام-الدمام", "/ar/news/tent-suppliers-dammam/"],
+  ["تركيب-خيام", "/ar/news/tent-supplier-installation-riyadh/"],
   ["هل-تبحث-عن-تأجير-الخيام؟", "/ar/news/tent-rental-events-dubai-riyadh/"],
   ["تأجير-الخيام-2", "/ar/news/tent-rental-uae-saudi-arabia/"],
   ["الخيمة-العربية", "/ar/news/arabic-tent-rental/"],
