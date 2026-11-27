@@ -463,116 +463,131 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   const currentUrl = `${BASE_URL}/news/${slug}/`;
 
   // السكيما المزدوجة المتوافقة مع RankMath (Article + FAQ + Breadcrumb + Organization)
-  const finalSchemaScript = article.customSchema
-    ? (typeof article.customSchema === 'string' ? article.customSchema : JSON.stringify(article.customSchema))
-    : (() => {
-        const articleSchema: any = {
-          "@context": "https://schema.org",
-          "@graph": [
+  const finalSchemaScript = (() => {
+    if (article.customSchema) {
+      if (typeof article.customSchema === "string") {
+        try {
+          const parsed = JSON.parse(article.customSchema);
+          return JSON.stringify(parsed);
+        } catch {
+          // fallback للسكيما القياسية لو النص غير سليم
+        }
+      } else {
+        try {
+          return JSON.stringify(article.customSchema);
+        } catch {
+          // fallback للسكيما القياسية
+        }
+      }
+    }
+
+    const articleSchema: any = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "LocalBusiness"],
+          "@id": `${BASE_URL}/#organization`,
+          name: "Bait Al Nokhada",
+          legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+          url: `${BASE_URL}/`,
+          email: "info@baitalnokhada.com",
+          telephone: "+971558850631",
+          foundingDate: "1997",
+          logo: {
+            "@type": "ImageObject",
+            url: `${BASE_URL}/logo.png`,
+          },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Land No. TP 010102 - Technopark",
+            addressLocality: "Mina Jebel Ali",
+            addressRegion: "National Industries Park - Dubai",
+            postalCode: "Dubai",
+            addressCountry: "AE",
+          },
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${BASE_URL}/#website`,
+          url: `${BASE_URL}/`,
+          name: "Bait Al Nokhada Tents Factory",
+          publisher: { "@id": `${BASE_URL}/#organization` },
+          inLanguage: "en-AE",
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${currentUrl}#breadcrumb`,
+          itemListElement: [
             {
-              "@type": ["Organization", "LocalBusiness"],
-              "@id": `${BASE_URL}/#organization`,
-              name: "Bait Al Nokhada",
-              legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
-              url: `${BASE_URL}/`,
-              email: "info@baitalnokhada.com",
-              telephone: "+971558850631",
-              foundingDate: "1997",
-              logo: {
-                "@type": "ImageObject",
-                url: `${BASE_URL}/logo.png`,
-              },
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Land No. TP 010102 - Technopark",
-                addressLocality: "Mina Jebel Ali",
-                addressRegion: "National Industries Park - Dubai",
-                postalCode: "Dubai",
-                addressCountry: "AE",
-              },
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: `${BASE_URL}/`,
             },
             {
-              "@type": "WebSite",
-              "@id": `${BASE_URL}/#website`,
-              url: `${BASE_URL}/`,
-              name: "Bait Al Nokhada Tents Factory",
-              publisher: { "@id": `${BASE_URL}/#organization` },
-              inLanguage: "en-AE",
+              "@type": "ListItem",
+              position: 2,
+              name: "News & Insights",
+              item: `${BASE_URL}/news/`,
             },
             {
-              "@type": "BreadcrumbList",
-              "@id": `${currentUrl}#breadcrumb`,
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: `${BASE_URL}/`,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "News & Insights",
-                  item: `${BASE_URL}/news/`,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: article.seo?.breadcrumbTitle || article.title,
-                  item: currentUrl,
-                },
-              ],
-            },
-            {
-              "@type": "WebPage",
-              "@id": `${currentUrl}#webpage`,
-              url: currentUrl,
-              name: `${article.title} | Bait Al Nokhada Tents Factory`,
-              description: article.desc,
-              datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
-              dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
-              breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
-              isPartOf: { "@id": `${BASE_URL}/#website` },
-              about: { "@id": `${currentUrl}#article` },
-              primaryImageOfPage: {
-                "@type": "ImageObject",
-                url: article.heroImage,
-              },
-              inLanguage: "en-AE",
-            },
-            {
-              "@type": "Article",
-              "@id": `${currentUrl}#article`,
-              headline: article.seo?.metaTitle || article.title,
-              description: article.seo?.metaDescription || article.desc,
-              image: [article.heroImage],
-              datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
-              dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
-              author: { "@id": `${BASE_URL}/#organization` },
-              publisher: { "@id": `${BASE_URL}/#organization` },
-              mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
-              inLanguage: "en-AE",
+              "@type": "ListItem",
+              position: 3,
+              name: article.seo?.breadcrumbTitle || article.title,
+              item: currentUrl,
             },
           ],
-        };
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${currentUrl}#webpage`,
+          url: currentUrl,
+          name: `${article.title} | Bait Al Nokhada Tents Factory`,
+          description: article.desc,
+          datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+          dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
+          breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+          isPartOf: { "@id": `${BASE_URL}/#website` },
+          about: { "@id": `${currentUrl}#article` },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: article.heroImage,
+          },
+          inLanguage: "en-AE",
+        },
+        {
+          "@type": "Article",
+          "@id": `${currentUrl}#article`,
+          headline: article.seo?.metaTitle || article.title,
+          description: article.seo?.metaDescription || article.desc,
+          image: [article.heroImage],
+          datePublished: (article as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+          dateModified: (article as any)?.rawUpdatedAt || "2026-11-16T11:00:00+04:00",
+          author: { "@id": `${BASE_URL}/#organization` },
+          publisher: { "@id": `${BASE_URL}/#organization` },
+          mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+          inLanguage: "en-AE",
+        },
+      ],
+    };
 
-        if (article.faqs && article.faqs.length > 0) {
-          articleSchema["@graph"].push({
-            "@type": "FAQPage",
-            "@id": `${currentUrl}#faq`,
-            "mainEntity": article.faqs.map((f: any) => ({
-              "@type": "Question",
-              "name": f.q,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": f.a
-              }
-            }))
-          });
-        }
+    if (article.faqs && article.faqs.length > 0) {
+      articleSchema["@graph"].push({
+        "@type": "FAQPage",
+        "@id": `${currentUrl}#faq`,
+        "mainEntity": article.faqs.map((f: any) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": f.a
+          }
+        }))
+      });
+    }
 
-        return JSON.stringify(articleSchema);
-      })();
+    return JSON.stringify(articleSchema);
+  })();
 
   return (
     <main className="min-h-screen bg-[#FDFCF7] text-[#090D16] selection:bg-[#df9d17] selection:text-white">

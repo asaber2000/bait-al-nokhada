@@ -482,72 +482,131 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
   const currentUrl = `${BASE_URL}/ar/news/${slug}/`;
 
   // حقن السكيما المزدوجة المتطابقة مع RankMath
-  const finalSchemaScript = article.customSchema
-    ? (typeof article.customSchema === 'string' ? article.customSchema : JSON.stringify(article.customSchema))
-    : (() => {
-        const articleSchema: any = {
-          "@context": "https://schema.org",
-          "@graph": [
+  const finalSchemaScript = (() => {
+    if (article.customSchema) {
+      if (typeof article.customSchema === "string") {
+        try {
+          const parsed = JSON.parse(article.customSchema);
+          return JSON.stringify(parsed);
+        } catch {
+          // لو الـ customSchema نص JSON غير سليم، نكمل للسكيما القياسية بأمان
+        }
+      } else {
+        try {
+          return JSON.stringify(article.customSchema);
+        } catch {
+          // fallback للسكيما القياسية
+        }
+      }
+    }
+
+    const articleSchema: any = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "LocalBusiness"],
+          "@id": `${BASE_URL}/#organization`,
+          name: "بيت النوخذة للخيام",
+          legalName: "Bait Al Nokhada Tents & Fabric Structures LLC",
+          url: `${BASE_URL}/ar/`,
+          email: "info@baitalnokhada.com",
+          telephone: "+971558850631",
+          foundingDate: "1997",
+          logo: {
+            "@type": "ImageObject",
+            url: `${BASE_URL}/logo.png`,
+          },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Land No. TP 010102 - Technopark",
+            addressLocality: "Mina Jebel Ali",
+            addressRegion: "National Industries Park - Dubai",
+            postalCode: "Dubai",
+            addressCountry: "AE",
+          },
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${BASE_URL}/ar/#website`,
+          url: `${BASE_URL}/ar/`,
+          name: "مصنع بيت النوخذة للخيام",
+          publisher: { "@id": `${BASE_URL}/#organization` },
+          inLanguage: "ar-AE",
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${currentUrl}#breadcrumb`,
+          itemListElement: [
             {
-              "@type": "Article",
-              "@id": `${currentUrl}#article`,
-              "headline": article.seo?.metaTitle || article.title,
-              "description": article.seo?.metaDescription || article.desc,
-              "image": [article.heroImage],
-              "datePublished": article.date,
-              "inLanguage": "ar",
-              "mainEntityOfPage": currentUrl,
-              "publisher": {
-                "@type": "Organization",
-                "name": "مصنع بيت النوخذة للخيام والمظلات",
-                "url": "https://baitalnokhada.com",
-                "logo": "https://baitalnokhada.com/icons/bait-al-nokhada-final-arabic-logo.svg"
-              }
+              "@type": "ListItem",
+              position: 1,
+              name: "الرئيسية",
+              item: `${BASE_URL}/ar/`,
             },
             {
-              "@type": "BreadcrumbList",
-              "@id": `${currentUrl}#breadcrumb`,
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "الرئيسية",
-                  "item": "https://baitalnokhada.com/ar"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "الأخبار والمقالات",
-                  "item": "https://baitalnokhada.com/ar/news"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "name": article.seo?.breadcrumbTitle || article.title,
-                  "item": currentUrl
-                }
-              ]
-            }
-          ]
-        };
+              "@type": "ListItem",
+              position: 2,
+              name: "الأخبار والمقالات",
+              item: `${BASE_URL}/ar/news/`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: article.seo?.breadcrumbTitle || article.title,
+              item: currentUrl,
+            },
+          ],
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${currentUrl}#webpage`,
+          url: currentUrl,
+          name: `${article.title} | مصنع بيت النوخذة للخيام`,
+          description: article.desc,
+          datePublished: article.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+          dateModified: article.rawUpdatedAt || article.rawCreatedAt || "2026-11-16T11:30:00+04:00",
+          breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
+          isPartOf: { "@id": `${BASE_URL}/ar/#website` },
+          about: { "@id": `${currentUrl}#article` },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: article.heroImage,
+          },
+          inLanguage: "ar-AE",
+        },
+        {
+          "@type": "Article",
+          "@id": `${currentUrl}#article`,
+          headline: article.seo?.metaTitle || article.title,
+          description: article.seo?.metaDescription || article.desc,
+          image: [article.heroImage],
+          datePublished: article.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+          dateModified: article.rawUpdatedAt || article.rawCreatedAt || "2026-11-16T11:30:00+04:00",
+          author: { "@id": `${BASE_URL}/#organization` },
+          publisher: { "@id": `${BASE_URL}/#organization` },
+          mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+          inLanguage: "ar-AE",
+        },
+      ],
+    };
 
-        if (article.faqs && article.faqs.length > 0) {
-          articleSchema["@graph"].push({
-            "@type": "FAQPage",
-            "@id": `${currentUrl}#faq`,
-            "mainEntity": article.faqs.map((f: any) => ({
-              "@type": "Question",
-              "name": f.q,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": f.a
-              }
-            }))
-          });
-        }
+    if (article.faqs && article.faqs.length > 0) {
+      articleSchema["@graph"].push({
+        "@type": "FAQPage",
+        "@id": `${currentUrl}#faq`,
+        mainEntity: article.faqs.map((f: any) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.a,
+          },
+        })),
+      });
+    }
 
-        return JSON.stringify(articleSchema);
-      })();
+    return JSON.stringify(articleSchema);
+  })();
 
   const contentSections = article.contentSections || [];
   const tocList = article.toc || [];
