@@ -342,7 +342,8 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
         dateModified: (project as any)?.rawUpdatedAt || "2026-11-16T10:50:00+04:00",
         breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/ar/#website` },
-        about: { "@id": `${currentUrl}#article` },
+        about: { "@id": `${currentUrl}#article` }, 
+        ...(project.videoUrl ? { video: { "@id": `${currentUrl}#video` } } : {}),
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: project.coverImage,
@@ -362,6 +363,24 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
         mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
         inLanguage: "ar-AE",
       },
+      ...(project.videoUrl
+        ? [
+            {
+              "@type": "VideoObject",
+              "@id": `${currentUrl}#video`,
+              name: `${project.titleAr} - توثيق المشروع الهندسي`,
+              description: project.scopeOfWorkAr,
+              thumbnailUrl: [project.coverImage],
+              uploadDate:
+                (project as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+              ...(project.videoUrl.includes("youtube.com") ||
+              project.videoUrl.includes("youtu.be")
+                ? { embedUrl: project.videoUrl }
+                : { contentUrl: project.videoUrl }),
+              mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
+            },
+          ]
+        : []),
     ],
   };
 
