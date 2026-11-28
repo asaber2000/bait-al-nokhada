@@ -359,6 +359,7 @@ const nextConfig: NextConfig = {
       { source: "/fr/author/:path*", destination: "/news/", permanent: true },
       { source: "/fr/category/tents/", destination: "/news/", permanent: true },
       { source: "/fr/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/fr/category/خيام/page/:page/", destination: "/ar/news/", permanent: true },
 
       // منتجات وحلول محددة تحت /fr/produits و /fr/solutions
       { source: "/fr/produits/luxury-arabic-majlis-tent/", destination: "/products/arabic-majlis-tent/", permanent: true },
@@ -532,6 +533,8 @@ const nextConfig: NextConfig = {
       },
       { source: "/category/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/ar/category/خيام/", destination: "/ar/news/", permanent: true },
+      { source: "/ar/category/خيام/page/:page/", destination: "/ar/news/", permanent: true },
+      { source: "/category/خيام/page/:page/", destination: "/ar/news/", permanent: true },
       { source: "/ar/خيام/", destination: "/ar/news/", permanent: true },
       { source: "/خيام/", destination: "/news/", permanent: true },
       { source: "/category/tents/", destination: "/news/", permanent: true },
