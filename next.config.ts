@@ -432,6 +432,7 @@ const nextConfig: NextConfig = {
       { source: "/fr/industries-we-serve/", destination: "/solutions/", permanent: true },
       { source: "/fr/whatsform/", destination: "/contact-us/", permanent: true },
       { source: "/fr/web-stories/feed/", destination: "/about-us/", permanent: true },
+      { source: "/products/موردين-الخيام-في-السعودية/", destination: "/ar/news/tent-suppliers-ksa/", permanent: true },
       {
         source: "/fr/news/:slug/",
         destination: "/news/:slug/",
