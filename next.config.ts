@@ -316,6 +316,8 @@ const nextConfig: NextConfig = {
       { source: "/products/arabic-majlis-tents-in-uae/", destination: "/products/arabic-majlis-tent/", permanent: true },
       { source: "/ar/pyramid-dome-tent-2/", destination: "/ar/products/pyramid-dome-tent/", permanent: true },
       { source: "/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
+      { source: "/ar/products/event-tent-rental/", destination: "/ar/solutions/event-tent/", permanent: true },
+      { source: "/products/event-tent-rental/", destination: "/solutions/event-tent/", permanent: true },
       { source: "/products/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
       { source: "/ar/products/pyramid-dome-tent-2/", destination: "/ar/products/pyramid-dome-tent/", permanent: true },
       { source: "/ar/luxury-arabic-majlis-tent/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
