@@ -63,11 +63,11 @@ export async function generateMetadata({
   const sanity = await getSolutionDetailEn(slug);
   const local = solutionsDatabase.find((s) => s.slug === slug);
   if (!sanity && !local) {
-  return {
-    title: "Solution Not Found | Bait Al Nokhada",
-    robots: { index: false, follow: false },
-  };
-}
+    return {
+      title: "Solution Not Found | Bait Al Nokhada",
+      robots: { index: false, follow: false },
+    };
+  }
 
   const name = sanity?.titleEn || local?.name || "Custom Tent Solution";
   const rawDesc =
@@ -97,14 +97,14 @@ export async function generateMetadata({
     : Array.isArray(local?.seo?.focusKeywords)
       ? local.seo.focusKeywords
       : [
-          name,
-          `${name} UAE`,
-          `${name} Dubai`,
-          `${name} Saudi Arabia`,
-          `${name} rental`,
-          `${name} supplier`,
-          "Bait Al Nokhada Tents Factory",
-        ];
+        name,
+        `${name} UAE`,
+        `${name} Dubai`,
+        `${name} Saudi Arabia`,
+        `${name} rental`,
+        `${name} supplier`,
+        "Bait Al Nokhada Tents Factory",
+      ];
 
   return {
     title: metaTitle,
@@ -160,8 +160,8 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const sanity = await getSolutionDetailEn(slug);
   const local = solutionsDatabase.find((s) => s.slug === slug);
   if (!sanity && !local) {
-  notFound();
-}
+    notFound();
+  }
 
   const solution: any = sanity ? {
     slug: slug,
@@ -177,7 +177,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
     faqs: sanity.faqsEn ? sanity.faqsEn.map((f: any) => ({ q: f.question, a: f.answer })) : local?.faqs || [],
     heroImage: sanity.coverImage || local?.heroImage || "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
     videoUrl: (sanity as any)?.youtubeUrlEn || (sanity as any)?.youtubeUrl || (local as any)?.videoUrl || (local as any)?.youtubeVideoId || "",
-    } : local;
+  } : local;
 
   const galleryImages: string[] =
     sanity?.gallery?.length > 0
@@ -191,7 +191,19 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
           "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
         ];
 
-        const pageUrl = `${BASE_URL}/solutions/${slug}/`;
+  const pageUrl = `${BASE_URL}/solutions/${slug}/`;
+
+  const rawSolutionVideo = String(solution?.videoUrl || "").trim();
+  const extractYoutubeId = (val: string) => {
+    const match = val.match(
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    );
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+  const ytId = extractYoutubeId(rawSolutionVideo);
+  const resolvedVideoUrl = ytId
+    ? `https://www.youtube-nocookie.com/embed/${ytId}`
+    : rawSolutionVideo;
 
   const solutionJsonLd = {
     "@context": "https://schema.org",
@@ -295,6 +307,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/#website` },
         about: { "@id": `${pageUrl}#service` },
+        ...(resolvedVideoUrl ? { video: { "@id": `${pageUrl}#video` } } : {}),
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: solution.heroImage,
@@ -318,21 +331,37 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
         image: solution.heroImage,
         mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
       },
-      ...(solution.faqs && solution.faqs.length > 0
+      ...(resolvedVideoUrl
         ? [
             {
-              "@type": "FAQPage",
-              "@id": `${pageUrl}#faq`,
-              mainEntity: solution.faqs.map((faq: { q: string; a: string }) => ({
-                "@type": "Question",
-                name: faq.q,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.a,
-                },
-              })),
+              "@type": "VideoObject",
+              "@id": `${pageUrl}#video`,
+              name: `${solution.name} - Engineering Project Showcase`,
+              description: solution.tagline || solution.overview,
+              thumbnailUrl: [solution.heroImage],
+              uploadDate:
+                sanity?._createdAt || "2021-07-19T18:06:30+04:00",
+              ...(ytId ? { embedUrl: resolvedVideoUrl } : { contentUrl: resolvedVideoUrl }),
+              mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
             },
           ]
+        : []),
+        
+      ...(solution.faqs && solution.faqs.length > 0
+        ? [
+          {
+            "@type": "FAQPage",
+            "@id": `${pageUrl}#faq`,
+            mainEntity: solution.faqs.map((faq: { q: string; a: string }) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
+            })),
+          },
+        ]
         : []),
     ],
   };
