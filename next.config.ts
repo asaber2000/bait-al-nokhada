@@ -312,6 +312,8 @@ const nextConfig: NextConfig = {
       { source: "/ar/tents-faqs/", destination: "/ar/", permanent: true },
       { source: "/solutions/industries-we-serve/", destination: "/solutions/", permanent: true },
       { source: "/ar/solutions/industries-we-serve/", destination: "/ar/solutions/", permanent: true },
+      { source: "/ar/products/arabic-majlis-tents-in-uae/", destination: "/ar/products/arabic-majlis-tent/", permanent: true },
+      { source: "/products/arabic-majlis-tents-in-uae/", destination: "/products/arabic-majlis-tent/", permanent: true },
       { source: "/ar/pyramid-dome-tent-2/", destination: "/ar/products/pyramid-dome-tent/", permanent: true },
       { source: "/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
       { source: "/products/pyramid-dome-tent-2/", destination: "/products/pyramid-dome-tent/", permanent: true },
