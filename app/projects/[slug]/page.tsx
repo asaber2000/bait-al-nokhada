@@ -62,6 +62,8 @@ async function getProjectData(slug: string) {
 
     if (sanityItem) {
       return {
+        rawCreatedAt: sanityItem._createdAt || "2025-10-01T10:00:00+04:00",
+        rawUpdatedAt: sanityItem._updatedAt || sanityItem._createdAt || "2026-11-16T10:30:00+04:00",
         titleEn: sanityItem.titleEn,
         clientEn: sanityItem.clientEn || "Official Authority",
         locationEn: sanityItem.locationEn || "UAE",
@@ -94,6 +96,8 @@ async function getProjectData(slug: string) {
 
   if (localMatch) {
     return {
+      rawCreatedAt: "2025-10-01T10:00:00+04:00",
+      rawUpdatedAt: "2026-11-16T10:30:00+04:00",
       titleEn: localMatch.title,
       clientEn: localMatch.client,
       locationEn: `${localMatch.city}, ${localMatch.country}`,
@@ -137,7 +141,10 @@ export async function generateMetadata({
   const project = await getProjectData(slug);
 
   if (!project) {
-    return { title: "Project Not Found | Bait Al Nokhada" };
+    return {
+      title: "Project Not Found | Bait Al Nokhada",
+      robots: { index: false, follow: false },
+    };
   }
 
   const metaTitle =
@@ -327,8 +334,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         url: currentUrl,
         name: `${project.titleEn} | Bait Al Nokhada Tents Factory`,
         description: project.scopeOfWorkEn,
-        datePublished: "2025-10-01T10:00:00+04:00",
-        dateModified: "2026-11-16T10:30:00+04:00",
+        datePublished: (project as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (project as any)?.rawUpdatedAt || "2026-11-16T10:30:00+04:00",
         breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/#website` },
         about: { "@id": `${currentUrl}#article` },
@@ -344,6 +351,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         headline: project.seo?.metaTitle || project.titleEn,
         description: project.seo?.metaDescription || project.scopeOfWorkEn,
         image: [project.coverImage],
+        datePublished: (project as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (project as any)?.rawUpdatedAt || "2026-11-16T10:30:00+04:00",
         author: { "@id": `${BASE_URL}/#organization` },
         publisher: { "@id": `${BASE_URL}/#organization` },
         mainEntityOfPage: { "@id": `${currentUrl}#webpage` },

@@ -43,6 +43,8 @@ async function getProjectData(slug: string) {
         "before": beforeImage.asset->url,
         "after": afterImage.asset->url
       },
+      _createdAt,
+      _updatedAt,
         seo {
         metaTitle,
         metaDescription,
@@ -59,6 +61,8 @@ async function getProjectData(slug: string) {
 
     if (sanityItem) {
       return {
+        rawCreatedAt: sanityItem._createdAt || "2025-10-01T10:00:00+04:00",
+        rawUpdatedAt: sanityItem._updatedAt || sanityItem._createdAt || "2026-11-16T10:50:00+04:00",
         titleAr: sanityItem.titleAr,
         clientAr: sanityItem.clientAr || "جهة معتمدة",
         locationAr: sanityItem.locationAr || "الإمارات",
@@ -91,6 +95,8 @@ async function getProjectData(slug: string) {
 
   if (localMatch) {
     return {
+      rawCreatedAt: "2025-10-01T10:00:00+04:00",
+      rawUpdatedAt: "2026-11-16T10:50:00+04:00",
       titleAr: localMatch.title,
       clientAr: localMatch.client,
       locationAr: `${localMatch.city}، ${localMatch.country}`,
@@ -139,7 +145,10 @@ export async function generateMetadata({
   const project = await getProjectData(slug);
 
   if (!project) {
-    return { title: "المشروع غير موجود | بيت النوخذة" };
+    return {
+      title: "المشروع غير موجود | بيت النوخذة",
+      robots: { index: false, follow: false },
+    };
   }
 
   const metaTitle =
@@ -329,8 +338,8 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
         url: currentUrl,
         name: `${project.titleAr} | مصنع بيت النوخذة للخيام`,
         description: project.scopeOfWorkAr,
-        datePublished: "2025-10-01T10:00:00+04:00",
-        dateModified: "2026-11-16T10:50:00+04:00",
+        datePublished: (project as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (project as any)?.rawUpdatedAt || "2026-11-16T10:50:00+04:00",
         breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/ar/#website` },
         about: { "@id": `${currentUrl}#article` },
@@ -346,6 +355,8 @@ export default async function ArabicProjectDetailPage({ params }: { params: Prom
         headline: project.seo?.metaTitle || project.titleAr,
         description: project.seo?.metaDescription || project.scopeOfWorkAr,
         image: [project.coverImage],
+        datePublished: (project as any)?.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        dateModified: (project as any)?.rawUpdatedAt || "2026-11-16T10:50:00+04:00",
         author: { "@id": `${BASE_URL}/#organization` },
         publisher: { "@id": `${BASE_URL}/#organization` },
         mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
