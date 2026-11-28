@@ -202,6 +202,18 @@ export default async function ArabicSolutionDetailPage({ params }: { params: Pro
 
 const pageUrl = `${BASE_URL}/ar/solutions/${slug}/`;
 
+const rawSolutionVideo = String(solution?.videoUrl || "").trim();
+  const extractYoutubeId = (val: string) => {
+    const match = val.match(
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    );
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+  const ytId = extractYoutubeId(rawSolutionVideo);
+  const resolvedVideoUrl = ytId
+    ? `https://www.youtube-nocookie.com/embed/${ytId}`
+    : rawSolutionVideo;
+
   const arabicSolutionJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -304,6 +316,7 @@ const pageUrl = `${BASE_URL}/ar/solutions/${slug}/`;
         breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
         isPartOf: { "@id": `${BASE_URL}/ar/#website` },
         about: { "@id": `${pageUrl}#service` },
+        ...(resolvedVideoUrl ? { video: { "@id": `${pageUrl}#video` } } : {}),
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: solution.heroImage,
@@ -327,6 +340,23 @@ const pageUrl = `${BASE_URL}/ar/solutions/${slug}/`;
         image: solution.heroImage,
         mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
       },
+
+      ...(resolvedVideoUrl
+        ? [
+            {
+              "@type": "VideoObject",
+              "@id": `${pageUrl}#video`,
+              name: `${arData.name} - توثيق التنفيذ الميداني`,
+              description: arData.tagline || arData.overview,
+              thumbnailUrl: [solution.heroImage],
+              uploadDate:
+                sanitySolution?._createdAt || "2021-07-19T18:06:30+04:00",
+              ...(ytId ? { embedUrl: resolvedVideoUrl } : { contentUrl: resolvedVideoUrl }),
+              mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+            },
+          ]
+        : []), 
+        
       ...(arData.faqs && arData.faqs.length > 0
         ? [
             {
