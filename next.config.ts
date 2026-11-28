@@ -143,6 +143,12 @@ const nextConfig: NextConfig = {
     const rawRedirects = [
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/post-sitemap.xml", destination: "/sitemap.xml", permanent: true },
+      {
+        source:
+          "/:sitemap(page-sitemap|category-sitemap|local-sitemap|video-sitemap|udesign_template-sitemap).xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
       ...arabicLegacyRedirects.flatMap(([slug, destination]) => [
         { source: `/ar/${slug}/`, destination, permanent: true },
         { source: `/${slug}/`, destination, permanent: true },
