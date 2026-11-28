@@ -499,6 +499,16 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
         }
       }
     }
+    const firstVideoBlock = (article.contentSections || [])
+      .flatMap((sec: any) => (Array.isArray(sec.rawBody) ? sec.rawBody : []))
+      .find(
+        (b: any) =>
+          (b._type === "videoBlock" && b.videoUrl) ||
+          (b._type === "customVideoBlock" && b.fileUrl)
+      );
+
+    const extractedVideoUrl =
+      firstVideoBlock?.videoUrl || firstVideoBlock?.fileUrl || "";
 
     const articleSchema: any = {
       "@context": "https://schema.org",
@@ -568,6 +578,7 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
           breadcrumb: { "@id": `${currentUrl}#breadcrumb` },
           isPartOf: { "@id": `${BASE_URL}/ar/#website` },
           about: { "@id": `${currentUrl}#article` },
+          ...(extractedVideoUrl ? { video: { "@id": `${currentUrl}#video` } } : {}),
           primaryImageOfPage: {
             "@type": "ImageObject",
             url: article.heroImage,
@@ -602,6 +613,23 @@ export default async function ArabicArticleDetailPage({ params }: { params: Prom
             text: f.a,
           },
         })),
+      });
+    }
+
+    if (extractedVideoUrl) {
+      articleSchema["@graph"].push({
+        "@type": "VideoObject",
+        "@id": `${currentUrl}#video`,
+        name: firstVideoBlock?.videoCaption || article.title,
+        description: article.seo?.metaDescription || article.desc,
+        thumbnailUrl: [article.heroImage],
+        uploadDate:
+          article.rawCreatedAt || "2025-10-01T10:00:00+04:00",
+        ...(extractedVideoUrl.includes("youtube.com") ||
+        extractedVideoUrl.includes("youtu.be")
+          ? { embedUrl: extractedVideoUrl }
+          : { contentUrl: extractedVideoUrl }),
+        mainEntityOfPage: { "@id": `${currentUrl}#webpage` },
       });
     }
 
